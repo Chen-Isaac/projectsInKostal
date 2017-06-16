@@ -393,13 +393,13 @@ export void prodPwmOutChk (char vt2516CfgEntry[],float expectedFreq,float expect
     if ((avgVolt < 0.5) && (pwmFreq == 0) && (pwmDc == 0))
       testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
     else
-      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
+      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
   }
   else if ((expectedFreq == 0) && (expectedDuty == 100)) {
-    if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc == 0))
+    if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc == 100))
       testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
     else
-      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
+      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz  vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
   }
   else {
     if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005))
@@ -412,6 +412,7 @@ export void prodPwmOutChk (char vt2516CfgEntry[],float expectedFreq,float expect
       testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",vt2516CfgEntry,pwmDc,expectedDuty-deviationRange,expectedDuty+deviationRange);
   }
 }
+
 
 export void chFixVoltDOSet (char vt2516CfgEntry[],enum digitalLevel level) {
   char vt2516CfgInfo[2],namespace[100];
