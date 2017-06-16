@@ -5,6 +5,8 @@ ScalarListSingleRecord
 Name	Type	Info	Values
 doorSignal	String		DriverDoorSts
 			PassengerDoorSts
+			RLDoorSts
+			RRDoorSts
 
 drvModeReqVal	String		0
 			1
