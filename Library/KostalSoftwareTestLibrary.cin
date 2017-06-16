@@ -1,0 +1,748 @@
+/*@!Encoding:936*/
+variables {
+
+  char iniParaCfgPath[100];
+  char iniTestStepCfgPath[100];
+  //int respOk;
+  enum demandResult { 
+    timeout = 0, 
+    fulfillment = 1 
+  };
+  
+  enum determiningFactor {
+    determinedBySignal = 0,
+    determinedByHardware = 1
+  };
+  
+  char func[25][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","sendDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","prodPwmOutChk","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","chLoadConnectStatSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
+  
+  enum digitalLevel { 
+    Low = 0, 
+    High = 1,
+    Floating = 2
+  };
+  enum vt7001MeasureRange {
+    all = 0,
+    _100uA_1mA = 1,
+    _1mA_10mA = 2,
+    _10mA_100mA = 3,
+    _100mA_1A = 4,
+    _1A_10A = 5,
+    _10A_100A = 6
+  };
+  enum currentUnit {
+    uA = 0,
+    mA = 1,
+    A = 2
+  };
+  enum connectStat {
+    disconnect = 0,
+    connect = 1
+  };
+  /*enum vt7001InterConnectionMode {
+    supint = 0, 
+    sup1 = 1, 
+    sup2 = 2, 
+    supint_sup1 = 3, 
+    supint_sup2 = 4, 
+    sup1_supint = 5, 
+    sup1_sup2 = 6, 
+    sup2_supint = 7, 
+    sup2_sup1 = 8, 
+    sup_series = 9, 
+    sup_parallel = 10
+  };
+  enum vt7001ExPowerInputChannel {
+    suply1 = 1, 
+    suply2 = 2
+  };
+  enum vt7001OutputChannelNo {
+    out1 = 1,
+    out2 = 2
+  };*/
+  char noParaPick[1][1][1]={'\0'};
+  int routeNum[50]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+}
+
+/*****************ini file data handle***************************/
+export getCfgDataArray (char section[],char entry[],char cfgDataArray[]) {
+  sysGetVariableString(sysvar::iniParaCfgPath,iniParaCfgPath,100); 
+  getProfileArray(section,entry,cfgDataArray,elCount(cfgDataArray),iniParaCfgPath);
+}
+
+export int getCfgStrArray (char section[],char entry[],char cfgStrArray[][]) {//sperated by ','
+  char buff[1000];
+  int i,row,col;
+  sysGetVariableString(sysvar::iniParaCfgPath, iniParaCfgPath, 100);  
+  getProfileString(section,entry,"err",buff,elCount(buff),iniParaCfgPath);
+  if (strncmp(buff,"err",4)!=0) {
+    i=0;
+    row=0;
+    col=0;
+    while((buff[i]!='\0') && (buff[i]!=';')) {
+      if (buff[i]!=',') {
+        cfgStrArray[row][col]=buff[i];
+        col++;
+      }
+      else {
+        cfgStrArray[row][col]='\0';
+        row++;
+        col=0;
+      }
+      i++;
+    }
+    cfgStrArray[row][col]='\0';
+    return row;//return row number
+  }
+  else {
+    //testStepFail("Error","Don't get any string array. Please check the section and entry input.");
+    return(-1);//return -1, means error
+  } 
+}
+
+export int getCfgFuncArray (char section[],char entry[],char cfgFuncArray[][][],int paraNum[]) {//para sperated by ',' func separated by '||'
+  char buff[1000];
+  int i,row,col,funcNum;
+  sysGetVariableString(sysvar::iniTestStepCfgPath, iniTestStepCfgPath, 100);
+  //testStep("","%s,%s,%s",section,entry,iniTestStepCfgPath);
+  getProfileString(section,entry,"err",buff,elCount(buff),iniTestStepCfgPath);
+  //testStep("","%s",buff);
+  if (strncmp(buff,"err",4)!=0) {
+    i=0;
+    row=0;
+    col=0;
+    funcNum=0;
+    while((buff[i]!='\0') && (buff[i]!=';')) {
+      if ((buff[i]!=',') && (buff[i]!='|')){
+        cfgFuncArray[funcNum][row][col]=buff[i];
+        col++;
+      }
+      else if (buff[i]=='|') {
+        cfgFuncArray[funcNum][row][col]='\0';
+        paraNum[funcNum]=row;//return para number for each function
+        funcNum++;
+        row = 0;
+        col = 0;
+      }
+      else {//buff[i]==','
+        cfgFuncArray[funcNum][row][col]='\0';
+        row++;
+        col=0;
+      }
+      i++;
+    }
+    cfgFuncArray[funcNum][row][col]='\0';
+    paraNum[funcNum]=row;//record para number for last function
+    return(funcNum);//return function number
+  }
+  else {
+    //testStepFail("Error","Don't get any function array. Please check the section and entry input.");
+    return -1;//return -1, means error
+  } 
+}
+
+/****************bin file data handle****************************/
+export qword getDataFromBinFile (char filePath[], qword offsetBytePos, int byteLen) {
+  dword fileHandle;
+  byte buff[131072];//length = 0x20000
+  qword selData;//8 byte
+  int i;
+  fileHandle = openFileRead(filePath,1);
+  if (!fileHandle) 
+    testStepFail("Open file","Failed to open file: %s",filePath);
+  else
+    testStepPass("Open file","Success to open file: %s",filePath);
+  fileGetBinaryBlock(buff,offsetBytePos + byteLen,fileHandle);
+  for (i = 0; i < byteLen; i++) {
+    selData = selData + (((qword)buff[offsetBytePos+i])<<(i*8));
+  }
+  testStep("Retrieve subcontent","Retrieve subcontent:%llX from binary file.",(swapQWord(selData))>>((8-byteLen)*8));//show in normal sequence
+  fileClose(fileHandle);
+  return selData;//can be used for sending directly after been shifted then add to base message.qword(0)
+}
+
+/**************************get signal property**************************************/
+export void getShortSigNameStr (signal* sig, char shortSigNameStr[]) {
+  char sigFullName[100];
+  int i,j,flag;
+  strncpy(sigFullName,sig.name,elCount(sigFullName));//CAN1::HS2_CAN::VCU1::CF_Vcu_GarSelDisp
+  i=0;
+  j=0;
+  flag=0;
+  while (sigFullName[i]!='\0') {
+    if (flag == 6) {
+      shortSigNameStr[j]=sigFullName[i];
+      j++;
+    }
+    if (sigFullName[i]==':')
+      flag++;
+    i++; 
+  }
+  shortSigNameStr[j]='\0';
+}
+
+/****************************report record related*********************************/
+export void sigStatGet (char sig[]) {
+  testStep("get signal status","%s = %1.0f",sig,getSignal(sig));
+}
+
+/**************************CAN communication*********************************/
+export void signalSetting (char settingSignal[], float valueBase,int range) {
+  float sigVal;
+  sigVal = valueBase + random(range);
+  setSignal(settingSignal,sigVal);
+  wait(150);
+  if ((getSignal(settingSignal))== sigVal)
+    testStepPass("set signal status","set %s = %1.0f successfully, ",settingSignal,getSignal(settingSignal));
+  else
+    testStepFail("set signal status","set signal failed, %s = %1.0f, != %1.0f",settingSignal,getSignal(settingSignal),sigVal);
+}
+
+export void signalContSetting (char settingSignal[], float startVal, int range, long msGapTime) {
+  float sigVal;
+  int i;
+  for (i = 0;i < range; i++) {
+    sigVal = startVal + i;
+    setSignal(settingSignal,sigVal);
+    wait(150);
+    if ((getSignal(settingSignal))== sigVal)
+      testStepPass("set signal status","set %s = %1.0f successfully, ",settingSignal,getSignal(settingSignal));
+    else
+      testStepFail("set signal status","set signal failed, %s = %1.0f, != %1.0f",settingSignal,getSignal(settingSignal),sigVal);
+    wait(msGapTime);
+  }
+  
+}
+
+export int64 sendDiagChkResp (char section[],char entry[]) {//same sequence as trace shows
+  message* recDiag; 
+  message* sendDiag;
+  qword sendMsg,recMsg,chkRecMsgPart;
+  dword sendMsgId,recMsgId;
+  char diagInfo[7][100];
+  int paraNum,chkByteLen,offsetBytePos;
+  paraNum = getCfgStrArray (section,entry,diagInfo);
+  //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
+  if (paraNum!=-1) {
+    strtoul(diagInfo[0],sendMsgId);
+    sendDiag.id = sendMsgId;
+    sendDiag.DataLength = atol(diagInfo[1]);
+    strtoull(diagInfo[2],sendMsg);
+    sendDiag.qword(0) = swapQWord(sendMsg);
+    strtoul(diagInfo[3],recMsgId);
+    offsetBytePos = atol(diagInfo[4]);
+    chkByteLen = atol(diagInfo[5]);
+    strtoull(diagInfo[6],chkRecMsgPart);
+    testStep(entry,"Start to send %s service request.",entry);
+    output(sendDiag);
+    testStep("Diagnostic Request","Send diagnostic request: 0x%llX",sendMsg);
+    if (testWaitForMessage(recMsgId,5000) == 1) {
+      testGetWaitEventMsgData(recDiag);  
+      recMsg = swapQWord(recDiag.qword(0));//same sequence as trace shows
+      //testStep("","recMsg=%llx,chkPart=%llx,rightResp=%llx",recMsg,((recMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)),chkRecMsgPart);
+      if ((offsetBytePos + chkByteLen) <= 8) {
+        if (((recMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)) == chkRecMsgPart) {
+          testStepPass("Diagnostic Response","Get positive response:0x%llX.",recMsg);
+          return recMsg;
+        }
+        else {
+          testStepFail("Diagnostic Response","Get negative response:0x%llX.",recMsg);
+          return -4;//negative response
+        }
+      }
+      else {
+        testStepFail("Error","Parameter input error:(offsetBytePos + chkByteLen) > 8.");
+        return -3;//(offsetBytePos + chkByteLen) > 8.
+      }
+    }
+    else {
+      testStepFail("Diagnostic Response","No corresponding response.");
+      return -2;//No corresponding response.
+    } 
+  }
+  else 
+    return -1;//error section or entry
+}
+
+export void wait (dword waitMs) {
+  if (waitMs != 0) 
+    testWaitForTimeout(waitMs);
+  testStep("Wait","Wait for %ldms.",waitMs);
+}
+/************************* communication data analyze *********************************/
+export void decodeAsciiFromRecDiag (qword recDiagContent,char reportContent[]) {
+  char decodedAsciiString[100];
+  int index;
+  qword reverseRecDiagContent;
+  if (recDiagContent >= 0) {
+    index = 0;
+    reverseRecDiagContent = swapQWord(recDiagContent);
+    while (reverseRecDiagContent) {
+      decodedAsciiString[index] = (byte)(reverseRecDiagContent & 0xffll);
+      index++;
+      reverseRecDiagContent = (reverseRecDiagContent >> 8);
+    }
+    decodedAsciiString[index] = '\0';
+    testStep("Decode Response","%s %s.",reportContent,decodedAsciiString);
+  }
+}
+
+export qword retrieveSubsetFromResp (qword recDiagContent, int offsetBytePos, int byteLen) {//offsetBytePos=0~7
+  qword subset;
+  if ((offsetBytePos<0) || (offsetBytePos>7) || (offsetBytePos+byteLen>8)) {
+    subset = -1;
+    testStepFail("call function","call function retrieveSubsetFromResp error, please check the input");
+  }
+  else 
+    subset = ((recDiagContent << (offsetBytePos*8)) >> ((8 - byteLen) * 8));
+  return subset;
+}
+
+/****************************vtSystem related*************************************/
+export void vtSysPwrSupInit (char vt7001CfgEntry[]) {
+  char namespace[100],vt7001CfgInfo[3];
+  getCfgDataArray("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  if ((vt7001CfgInfo[1] != 0) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
+    testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
+  else {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_VT7001",vt7001CfgInfo[0]);
+    vtsSetInterconnectionMode(namespace,vt7001CfgInfo[1]);//sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);//Interconnection settings mode:supint,internal power supply connects to both I1 & I2.
+    snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001CfgInfo[0]);
+    vtsSetRefVoltageMode(namespace,1);//sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);//M12_SupInt:Output:Ref Voltage mode = constant
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
+    sysSetVariableInt(namespace,"Active",1);//@sysvar::VTS::M12_Out2::Active = 1;//M12_Out2:OUT2 pin connects to I2;
+  }
+}
+
+export void vtSysWithExPwrSupInit (char vt7001CfgEntry[]) {
+  char namespace[100],vt7001CfgInfo[3];
+  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  if ((vt7001CfgInfo[1] < 1) || (vt7001CfgInfo[1] > 2) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
+    testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
+  else {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_VT7001",vt7001CfgInfo[0]);
+    vtsSetInterconnectionMode(namespace,vt7001CfgInfo[1]);//sysvar::VTS::M12_VT7001.SetInterconnectionMode(1);
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Sup%d",vt7001CfgInfo[0],vt7001CfgInfo[1]);
+    vtsSetRefVoltageMode(namespace,1);//sysvar::VTS::M12_Sup1.SetRefVoltageMode(1);//M12_Sup1 output: Ref Voltage Mode = constant
+    vtsSetMaxCurrentMode(namespace,1);//sysvar::VTS::M12_Sup1.SetMaxCurrentMode(1); //max current mode = constant
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
+    sysSetVariableInt(namespace,"Active",1);//@sysvar::VTS::M12_Out1::Active = 1;//M12_Out1:OUT1 pin connects to I1;
+  }
+}
+
+export void vtSysPwrSupVoltSet (char vt7001CfgEntry[], float volt) {
+  char namespace[100],vt7001CfgInfo[3];
+  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001CfgInfo[0]);//***need to be updated
+  sysSetVariableFloat(namespace,"RefVoltage",volt);
+  testStep("set VBAT voltage status","set VBAT voltage = %4.2fV.",volt);
+  wait(1000);
+}
+
+export void vtSysExPwrSupSet (char vt7001CfgEntry[], float volt, float maxI, int k) {
+  char namespace[100],vt7001CfgInfo[3];
+  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  if ((vt7001CfgInfo[1] < 1) || (vt7001CfgInfo[1] > 2) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
+    testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
+  else {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Sup%d",vt7001CfgInfo[0],vt7001CfgInfo[1]);
+    sysSetVariableFloat(namespace,"RefVoltage",volt/k);//@sysvar::VTS::M12_Sup1::RefVoltage = 1.0v;
+    testStep("set external power supply control voltage","set @sysvar::VTS::M%d_Sup%d::RefVoltage = %2.1fv;.",vt7001CfgInfo[0],vt7001CfgInfo[1],volt/k);
+    sysSetVariableFloat(namespace,"MaxCurrent",maxI/k);//@sysvar::VTS::M12_Sup1::MaxCurrent = 2.5;
+    testStep("set external power supply control voltage","set @sysvar::VTS::M%d_Sup%d::MaxCurrent = %2.1fv;.",vt7001CfgInfo[0],vt7001CfgInfo[1],maxI/k);
+    wait(1000);
+  }
+}
+  
+export float vtSysPwrSupVoltGet (char vt7001CfgEntry[], float highLimitV, float lowLimitV) {
+  float readValue;
+  char namespace[100],vt7001CfgInfo[3];
+  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
+  readValue = sysGetVariableFloat(namespace,"AvgVoltage");
+  if ((readValue < lowLimitV) || (readValue > highLimitV)) 
+     testStepFail("get VBAT voltage status","VBAT = %4.2fV,out of range [%4.2fV~%4.2fV],",readValue,lowLimitV,highLimitV);
+  else
+     testStepPass("get VBAT voltage status","VBAT = %4.2fV,in the range [%4.2fV~%4.2fV],",readValue,lowLimitV,highLimitV);
+  return readValue;
+}
+
+export float vtSysPwrSupCurrGet (char vt7001CfgEntry[],float highLimitA,float lowLimitA,enum vt7001MeasureRange vt7001MeasureRange,enum currentUnit currentUnit) {
+  float readValue;
+  char namespace[100],vt7001CfgInfo[3],iUnit[3][3] = {"uA","mA","A"};
+  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
+  vtsSetMinCurrentMeasurementRange(namespace,vt7001MeasureRange);//sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(0);
+  readValue = sysGetVariableFloat(namespace,"AvgCurrent");
+  if ((readValue < lowLimitA) || (readValue > highLimitA)) 
+     testStepFail("get VBAT current status","VBAT current = %6.3f%s,out of range [%6.3f%s~%6.3f%s],",readValue*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],lowLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],highLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit]);
+  else
+     testStepPass("get VBAT current status","VBAT current = %6.3f%s,in the range [%6.3f%s~%6.3f%s],",readValue*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],lowLimitA*(_pow(10.0,6-currentUnit*3)),iUnit[currentUnit],highLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit]); 
+  return readValue;
+}
+
+export void prodPwmOutChk (char vt2516CfgEntry[],float expectedFreq,float expectedDuty,int deviationRange) {
+  char namespace[100],vt2516CfgInfo[2];
+  float pwmFreq,pwmDc,avgVolt;
+  getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+  pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+  pwmDc = sysGetVariableFloat(namespace,"PWMDC");
+  avgVolt = sysGetVariableFloat(namespace,"Avg");
+  if ((expectedFreq == 0) && (expectedDuty == 0)) {
+    if ((avgVolt < 0.5) && (pwmFreq == 0) && (pwmDc == 0))
+      testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
+    else
+      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
+  }
+  else if ((expectedFreq == 0) && (expectedDuty == 100)) {
+    if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc == 0))
+      testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
+    else
+      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
+  }
+  else {
+    if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005))
+      testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",vt2516CfgEntry,pwmFreq);
+    else
+      testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",vt2516CfgEntry,pwmFreq,expectedFreq*0.995,expectedFreq*1.005);
+    if ((pwmDc > expectedDuty-deviationRange) && (pwmDc < expectedDuty+deviationRange))
+      testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",vt2516CfgEntry,pwmDc);
+    else
+      testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",vt2516CfgEntry,pwmDc,expectedDuty-deviationRange,expectedDuty+deviationRange);
+  }
+}
+
+export void chFixVoltDOSet (char vt2516CfgEntry[],enum digitalLevel level) {
+  char vt2516CfgInfo[2],namespace[100];
+  getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+  switch (level) {
+    case Low:
+      sysSetVariableInt(namespace,"RelayVBatt",0);
+      testWaitForTimeout(200);
+      sysSetVariableInt(namespace,"RelayGnd",1);
+      testWaitForTimeout(200);
+      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates low digital level.",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    break;
+    case High:
+      sysSetVariableInt(namespace,"RelayGnd",0);
+      testWaitForTimeout(200);
+      sysSetVariableInt(namespace,"RelayVBatt",1);
+      testWaitForTimeout(200);
+      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates high digital level.",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    break;
+    case Floating:
+      sysSetVariableInt(namespace,"RelayGnd",0);
+      testWaitForTimeout(200);
+      sysSetVariableInt(namespace,"RelayVBatt",0);
+      testWaitForTimeout(200);
+      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d is set to float.",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    break;
+  }
+}
+
+export void chAOSet (char vt2516CfgEntry[],float analogValue) {
+  char vt2516CfgInfo[2],namespace[100];
+  getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+  vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch5.SetStimulationMode(0);//stim mode inactive
+  vtsSetCurveType(namespace,0);//sysvar::VTS::M9_Ch5.SetCurveType(0);//set curve type as constant
+  vtsSetPWMVoltageHigh(namespace,analogValue);//sysvar::VTS::M9_Ch5.SetPWMVoltageHigh(random(6)+7);//set voltagelow 7-12
+  sysSetVariableInt(namespace,"DigitalOutput",1);//@sysvar::VTS::M9_Ch5::DigitalOutput = 1;//output digital=1
+  vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch5.SetStimulationMode(1);//stim mode as voltage
+  testStep("VT outputs analog value for product input pin","For pin %s:Module%d channel%d generates analog voltage: voltage = %3.1fV",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1],analogValue);
+}
+
+export void chRamVoltDOSet (char pinNameEntry[],enum digitalLevel level) {
+  int randomValue;
+  char vLevelCfgInfo[4];
+  getCfgDataArray ("vLevelCfg",pinNameEntry,vLevelCfgInfo);
+  if (level)
+    randomValue = vLevelCfgInfo[2] + random(vLevelCfgInfo[3]);
+  else
+    randomValue = vLevelCfgInfo[0] + random(vLevelCfgInfo[1]);
+  chAOSet(pinNameEntry,randomValue);
+}
+
+export void chPwmOutSet (char pin[],char pwmWaveCfgEntry[]) {
+  char namespace[100],vt2516CfgInfo[2],pwmWaveCfgInfo[5],duty;
+  getCfgDataArray ("vt2516Cfg",pin,vt2516CfgInfo);
+  getCfgDataArray ("pwmWaveCfg",pwmWaveCfgEntry,pwmWaveCfgInfo);
+  duty = pwmWaveCfgInfo[3]+random(pwmWaveCfgInfo[4]);
+  snprintf(namespace,elCount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+  vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch3.SetStimulationMode(0);//stim mode inactive
+  vtsSetPWMVoltageLow(namespace,pwmWaveCfgInfo[1]);//sysvar::VTS::M9_Ch3.SetPWMVoltageLow(random(3)+1);//set voltagelow 1-3
+  vtsSetPWMVoltageHigh(namespace,pwmWaveCfgInfo[2]);//sysvar::VTS::M9_Ch3.SetPWMVoltageHigh(12);//set voltagehigh 7-15 
+  vtsSetCurveType(namespace,1);//sysvar::VTS::M9_Ch3.SetCurveType(1);//set curve type as PWM
+  sysSetVariableFloat(namespace,"PWMOutputFreq",pwmWaveCfgInfo[0]); //@sysvar::VTS::M9_Ch3::PWMOutputFreq = 100;//PWM output Freq =100Hz
+  sysSetVariableFloat(namespace,"PWMOutputDC",duty);//@sysvar::VTS::M9_Ch3::PWMOutputDC = 10;
+  vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch3.SetStimulationMode(1);//stim mode as voltage
+  vtsStartStimulation(namespace);//sysvar::VTS::M9_Ch3.StartStimulation();
+  testStep("VT outputs PWM for product input pin","For pin %s:Module%d channel%d generates PWM:Highvolt=%dV,Lowvolt=%dV,Duty=%d%%,Freq=%dHz",pin,vt2516CfgInfo[0],vt2516CfgInfo[1],pwmWaveCfgInfo[2],pwmWaveCfgInfo[1],duty,pwmWaveCfgInfo[0]);
+}
+
+export void chLoadConnectStatSet (char vt2516CfgEntry[],enum connectStat stat) {
+  char vt2516CfgInfo[2],namespace[100],connectState[2][11] = {"disconnect","connect"};
+  getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+  sysSetVariableInt(namespace,"RelayOrgComponent",stat);
+  wait(200);
+  testStep("VT channel's load connection status","For pin %s:Module%d channel%d %s with load.",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1],connectState[stat]);
+}
+
+/************************Product function related******************************/
+export void btnPrsImpOnSpecSigChk (char button[],int revPinVoltLevel) {
+  int respOk,paraNum,i,demRes;
+  char heading[200],cfgStrArray[100][100];
+  paraNum = getCfgStrArray("buttonPressImpactOnSpecSigCfg",button,cfgStrArray);
+  //testStep("","paraNum=%d,%s,%s,%s,%s,%s,%s",paraNum,cfgStrArray[0],cfgStrArray[1],cfgStrArray[4],cfgStrArray[5],cfgStrArray[6],cfgStrArray[9]);
+  if (paraNum!=-1) {
+    if ((paraNum+1)%5==0) {
+      for (i=0;i<(paraNum+1)/5;i++) {//paraNum+1==real para number
+        if (strncmp(button,"IDLE",4)!=0) {
+          strncpy(heading,"Press button ",strlen("Press button ")+1);
+          strncat(heading,button,200);
+          strncat(heading," then check the signal ",200);
+          strncat(heading,cfgStrArray[5*i],200);
+          testValidateTesterConfirmation(heading,"",1);
+          wait(atol(cfgStrArray[5*i+2]));
+        }
+        demRes = atol(cfgStrArray[5*i+3])*revPinVoltLevel +atol(cfgStrArray[5*i+4]);
+        respOk = (getSignal(cfgStrArray[5*i])==atodbl(cfgStrArray[5*i+1]));
+        respOk = (respOk == demRes);
+        if (respOk) {
+          if (demRes)
+            testStepPass("Press button and check signal update","Press button:%s,the value of signal:%s updates to %1.0f within %dms.",button,cfgStrArray[5*i],getSignal(cfgStrArray[5*i]),atol(cfgStrArray[5*i+2]));
+          else
+            testStepPass("Press button and check signal update","Press button:%s,the value of signal:%s keeps %1.0f during %dms, not update to %d",button,cfgStrArray[5*i],getSignal(cfgStrArray[5*i]),atol(cfgStrArray[5*i+2]),atol(cfgStrArray[5*i+1]));
+        }
+        else {
+          if (demRes)
+            testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not updates to %d during %dms.",button,cfgStrArray[5*i],getSignal(cfgStrArray[5*i]),atol(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+2]));
+          else
+            testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not keeps the old value during %dms.",button,cfgStrArray[5*i],getSignal(cfgStrArray[5*i]),atol(cfgStrArray[5*i+2]));  
+        }
+      }
+    }
+    else 
+      testStepFail("Error","Data number in entry %s is not right.",button);
+  }
+  else
+    testStepFail("Error","Don't get any string array. Please check the section and entry input.");
+} 
+
+export void btnPrsImpOnSpecPwmChk (char button[],int impFactVal) {
+  int paraNum,i;
+  char cfgStrArray[60][100];//assume pwm check number will not larger than 10 at a time
+  paraNum = getCfgStrArray("buttonPressImpactOnSpecPwmCfg",button,cfgStrArray);
+  //testStep("","paraNum = %d,%s,%s,%s,%s",paraNum,cfgStrArray[0],cfgStrArray[5],cfgStrArray[6],cfgStrArray[11]);
+  if (paraNum!=-1) {
+    if ((paraNum+1)%6==0) {
+      for (i=0;i<(paraNum+1)/6;i++)
+        prodPwmOutChk(cfgStrArray[i*6],atol(cfgStrArray[i*6+1])*impFactVal+atol(cfgStrArray[i*6+2]),atol(cfgStrArray[i*6+3])*impFactVal+atol(cfgStrArray[i*6+4]),atol(cfgStrArray[i*6+5]));  
+    }
+    else 
+      testStepFail("Error","Data number in entry %s is not right.",button);
+  }
+  else 
+    testStepFail("Error","Don't get any string array. Please check the section and entry input.");
+}
+
+export void sigDirTwoStatInSet (char pin[], enum determiningFactor dFct, enum digitalLevel level) {
+  char cfgStrArray[4][100];
+  getCfgStrArray("sigOrientTwoStatInputCfg",pin,cfgStrArray);
+  if (!dFct) {//determinedBySignal
+    testEnableMsg(cfgStrArray[0]);
+    if (level)
+      signalSetting (cfgStrArray[1],atodbl(cfgStrArray[3]),1);
+    else 
+      signalSetting (cfgStrArray[1],atodbl(cfgStrArray[2]),1);
+    chRamVoltDOSet(pin,(enum digitalLevel)(random(2)));  
+  }    
+  else {//determinedByHardware
+    testDisableMsg(cfgStrArray[0]);
+    wait(150);
+    if (level)
+      chRamVoltDOSet(pin,High);
+    else 
+      chRamVoltDOSet(pin,Low);
+  }
+}
+
+export void sigDirMulStatInSet (char specStat[], enum determiningFactor dFct) {
+  char cfgStrArray[5][100];
+  int paraNum;
+  paraNum = getCfgStrArray("sigOrientMultiStatInputCfg",specStat,cfgStrArray);
+  if (paraNum!=-1) {
+    if (!dFct) {//decided by CAN signal
+      testEnableMsg(cfgStrArray[0]);
+      signalSetting(cfgStrArray[1],atol(cfgStrArray[2]),atol(cfgStrArray[3]));
+      chPwmOutSet(cfgStrArray[4],"ANY");//PWM INPUT whatever
+    }
+    else {//decided by PWM input
+      chPwmOutSet(cfgStrArray[4],specStat);
+      testDisableMsg(cfgStrArray[0]);
+    }
+  }
+}
+
+export void specStatImpOnSigChk (char specStat[]) {
+  int returnStatus,paraNum;
+  char impactSigInfo[3][100];
+  paraNum = getCfgStrArray ("specStatImpactOnSigCfg",specStat,impactSigInfo);
+  if (paraNum!=-1) {
+    wait(atol(impactSigInfo[2]));
+    if (getSignal(impactSigInfo[0])==atodbl(impactSigInfo[1]))
+      testStepPass("check signal status","Correct response: %s = %1.0f within %dms.",impactSigInfo[0],getSignal(impactSigInfo[0]),atol(impactSigInfo[2]));
+    else
+      testStepFail("check signal status","Incorrect response: %s = %1.0f, updating to %1.0f didn't completed within %dms.",impactSigInfo[0],getSignal(impactSigInfo[0]),atodbl(impactSigInfo[1]),atol(impactSigInfo[2]));
+  }
+}
+
+export void stateMachine (char stateMachineSection[],int routeNum[],char paraPick[][][]) {//char paraPick[var num][2][100],paraPick[var num][0]=variant name,paraPick[var num][1]=var string value
+  int i,j,n,m,funcNum,findParaValBool,errBool,paraNum[30],cmp;
+  qword recMsg;
+  char step[100],loopNum[5],cfgFuncArray[10][50][200];
+  n = 1;
+  m = 0;
+  i = 0; 
+  j = 0;
+  errBool=0;
+  do {
+    findParaValBool = 0;
+    strncpy(step, "step", elCount(step));
+    ltoa(i+1,loopNum,10);
+    //testStep("","%s",loopNum);
+    strncat(step,loopNum,24);
+    funcNum = getCfgFuncArray(stateMachineSection,step,cfgFuncArray,paraNum);
+    //testStep("","%s,%s,%s,%s,routeNum[i]=%d,paraNum=%d,paraPick_count=%d",cfgFuncArray[0][0],cfgFuncArray[0][1],cfgFuncArray[1][0],cfgFuncArray[1][1],routeNum[i],paraNum[routeNum[i]],elcount(paraPick));
+    if (funcNum!=-1) {
+      if ((funcNum >= routeNum[i])&&(routeNum[i] >= 0)) {
+        if (paraPick[0][0][0]!='\0'){
+          for (n=1;n<=paraNum[routeNum[i]];n++) {//@n=0,string=funcName;
+            if (cfgFuncArray[routeNum[i]][n][0] == '*') {
+              for (m=0;m<elcount(paraPick);m++) {
+                if (strncmp(paraPick[m][0],cfgFuncArray[routeNum[i]][n],1,100)==0) {
+                  strncpy(cfgFuncArray[routeNum[i]][n],paraPick[m][1],elCount(paraPick[m][1]));
+                  m = elCount(paraPick)-1;//stop for loop;
+                  findParaValBool = 1;
+                }
+              }
+              if (!findParaValBool) {
+                errBool = 1;
+                testStepFail("Error","Don't find the parameter value in argument.");
+              }
+            }
+          }
+        }
+        for (j=0;(j<elcount(func))&&(!errBool);j++) {
+          cmp = strncmp(cfgFuncArray[routeNum[i]][0],func[j],elCount(cfgFuncArray[routeNum[i]][0]));
+          //testStep("","func=%s,pick=%s,cmp=%d",cfgFuncArray[routeNum[i]][0],func[j],cmp);
+          if (cmp == 0) {
+            switch(j) {
+              case 0:
+                testValidateTesterConfirmation(cfgFuncArray[routeNum[i]][1],"",1);
+              break;
+              case 1:
+                signalSetting (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]),atol(cfgFuncArray[routeNum[i]][3]));
+              break;
+              case 2:
+                signalContSetting (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atol(cfgFuncArray[routeNum[i]][3]), atol(cfgFuncArray[routeNum[i]][4]));
+              break;
+              case 3:
+                //testStep("",cfgFuncArray[routeNum[i]][1]);
+                testEnableMsg(cfgFuncArray[routeNum[i]][1]);
+              break;
+              case 4:
+                testDisableMsg(cfgFuncArray[routeNum[i]][1]);
+              break;
+              case 5:
+                recMsg = sendDiagChkResp (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
+              break;
+              case 6:
+                //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1]);
+                wait(atol(cfgFuncArray[routeNum[i]][1]));
+              break;
+              case 7:
+                decodeAsciiFromRecDiag (recMsg,cfgFuncArray[routeNum[i]][1]);
+              break;
+              case 8:
+                vtSysPwrSupInit (cfgFuncArray[routeNum[i]][1]);
+              break;
+              case 9:
+                vtSysWithExPwrSupInit (cfgFuncArray[routeNum[i]][1]);
+              break;
+              case 10:
+                vtSysPwrSupVoltSet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]));
+              break;
+              case 11:
+                vtSysExPwrSupSet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atodbl(cfgFuncArray[routeNum[i]][3]), atol(cfgFuncArray[routeNum[i]][4])); 
+              break;
+              case 12:
+                vtSysPwrSupVoltGet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atodbl(cfgFuncArray[routeNum[i]][3]));
+              break;
+              case 13:
+                vtSysPwrSupCurrGet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),(enum vt7001MeasureRange)(atol(cfgFuncArray[routeNum[i]][4])),(enum currentUnit)(atol(cfgFuncArray[routeNum[i]][5])));
+              break;
+              case 14:
+                prodPwmOutChk (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),atol(cfgFuncArray[routeNum[i]][4]));
+              break;
+              case 15:
+                chFixVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
+              break;
+              case 16:
+                chAOSet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2])); 
+              break;
+              case 17:
+                chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
+              break;
+              case 18:
+                chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
+              break;
+              case 19:
+                chLoadConnectStatSet (cfgFuncArray[routeNum[i]][1], (enum connectStat)(atol(cfgFuncArray[routeNum[i]][2])));
+              break;
+              case 20:
+                //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
+                btnPrsImpOnSpecSigChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
+              break;
+              case 21:
+                //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
+                btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
+              break;
+              case 22:
+                sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][3])));
+              break;
+              case 23:
+                sigDirMulStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])));
+              break;
+              case 24:
+                specStatImpOnSigChk (cfgFuncArray[routeNum[i]][1]);
+              break;
+            }
+            j = elCount(func)-1;
+          }
+          else {//cmp!=0
+            if (j == (elCount(func)-1)) {
+              testStepFail("Error","The function %s in your ini file can't be found from the database. Please check your spell.",cfgFuncArray[routeNum[i]][0]); 
+              errBool = 1;
+            }
+          }
+        }
+        i++;
+      }  
+      else {
+        errBool = 1;
+        testStepFail("Error","route number(=%d) is bigger than funcNum(=%d) or smaller than 0,can't pick up the right function.",routeNum[i],funcNum);
+      }
+    }
+    else {//funcNum=-1
+      if (i==0)
+        testStepFail("Error","Can't find the section or entry, please check your ini file.");
+    }
+  }while((funcNum!=-1)&&(!errBool));//exit loop if step not found or error occured.
+  //testStep("","loop is over");
+  for (i=0;i<elcount(routeNum);i++)
+    routeNum[i] = 0;//restore routeNum
+}

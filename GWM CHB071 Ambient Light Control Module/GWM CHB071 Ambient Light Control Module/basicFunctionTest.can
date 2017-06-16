@@ -1,0 +1,66 @@
+/*@!Encoding:936*/
+includes
+{
+  #include "D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin"
+}
+
+variables
+{
+  
+}
+
+export testcase powerOn (void) {
+  stateMachine("powerOn",routeNum,noParaPick);
+}
+
+export testcase powerOff (void) {
+  stateMachine("powerOff",routeNum,noParaPick);
+}
+
+export testcase initProduct (void) {
+  stateMachine("initProduct",routeNum,noParaPick);
+}
+
+export testcase readSwVer (void) {
+  stateMachine("readSwVer",routeNum,noParaPick);
+}
+
+export testcase chkDrivingModeReqSigImpWhenIgnOff (char doorSignal[],char drvModeReqVal[],char msWaitForTurnOn[]) {
+  char paraPick[3][2][100]={{"doorSignal",""},{"drvModeReqVal",""},{"msWaitForTurnOn",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],drvModeReqVal,elCount(paraPick[1][1]));
+  strncpy(paraPick[2][1],msWaitForTurnOn,elCount(paraPick[2][1]));
+  stateMachine("chkDrivingModeReqSigImpWhenIgnOff",routeNum,paraPick);
+}
+
+export testcase chkALCMLightLvlSetSigImpWhenIgnOff (char doorSignal[],char alcmLightLvlSetVal[],char msWaitForTurnOn[]) {
+  char paraPick[3][2][100]={{"doorSignal",""},{"alcmLightLvlSetVal",""},{"msWaitForTurnOn",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],alcmLightLvlSetVal,elCount(paraPick[1][1]));
+  strncpy(paraPick[2][1],msWaitForTurnOn,elCount(paraPick[2][1]));
+  stateMachine("chkALCMLightLvlSetSigImpWhenIgnOff",routeNum,paraPick);
+}
+
+export testcase chkPosLmpStslSigImpWhenIgnOff (char doorSignal[],char posLmpStsVal[],char sysPwrModeVal[]) {
+  char paraPick[3][2][100]={{"doorSignal",""},{"posLmpStsVal",""},{"sysPwrModeVal",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],posLmpStsVal,elCount(paraPick[1][1]));
+  strncpy(paraPick[2][1],sysPwrModeVal,elCount(paraPick[2][1]));
+  stateMachine("chkPosLmpStslSigImpWhenIgnOff",routeNum,paraPick);
+}
+
+export testcase chkDoorOpenSignalImpWhenMode0IgnOff (char doorSignal[],char msWaitForTurnOn[]) {
+  char paraPick[2][2][100]={{"doorSignal",""},{"msWaitForTurnOn",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],msWaitForTurnOn,elCount(paraPick[1][1]));
+  stateMachine("chkDoorOpenSignalImpWhenMode0IgnOff",routeNum,paraPick);
+}
+
+export testcase chkDoorOpenSignalImpExceptMode0IgnOff (char doorSignal[],char msWaitForTurnOn[],char posLmpStsVal[]) {
+  char paraPick[3][2][100]={{"doorSignal",""},{"msWaitForTurnOn",""},{"posLmpStsVal",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],msWaitForTurnOn,elCount(paraPick[1][1]));
+  strncpy(paraPick[2][1],posLmpStsVal,elCount(paraPick[2][1]));
+  stateMachine("chkDoorOpenSignalImpExceptMode0IgnOff",routeNum,paraPick);
+}
+
