@@ -156,6 +156,45 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
           </value>
         </param>
       </caplfunction>
+      <set>
+        <title>try,canbedel</title>
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS2|661|False|END_OF_OBJECT_FrameData|SystemPowerMode|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>OFF</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <caplfunction>
+        <title />
+        <name>prodPwmOutFallingEdgeMeas</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Zone1_B+</const>
+          </value>
+        </param>
+        <param>
+          <type>float</type>
+          <value>
+            <const>200</const>
+          </value>
+        </param>
+        <param>
+          <type>float</type>
+          <value>
+            <const>96</const>
+          </value>
+        </param>
+        <param>
+          <type>int</type>
+          <value>
+            <const>2</const>
+          </value>
+        </param>
+      </caplfunction>
       <canoestandardservice>
         <title />
         <name>testValidateTesterConfirmation</name>

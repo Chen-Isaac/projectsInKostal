@@ -466,6 +466,42 @@ export void prodPwmOutRisingEdgeMeas (char pinName[],float expectedFreq,float ex
   }
 }
 
+export void prodPwmOutFallingEdgeMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
+  char namespace[100],vt2516CfgInfo[2];
+  float pwmFreq,pwmDc_o,pwmDc_u;
+  int64 tFallStart,tFallEnd,tMeaStart,t0;
+  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+  tMeaStart = timeNowInt64();
+  pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
+  do {
+    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+    pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+    //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
+    if (pwmDc_u != pwmDc_o)
+      tFallStart = timeNowInt64();
+    testWaitForTimeout(1);
+  } while ((pwmDc_o - pwmDc_u < 0.2) && (_pow(10,-9)*(timeNowInt64() - tMeaStart)<60));
+  
+  if (_pow(10,-9)*(timeNowInt64() - tMeaStart)>= 60)
+    testStepFail("measure PWM falling edge","pin %s :PWM output didn't start turning off within 1min.",pinName);
+  else {
+    testStepPass("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling started at %fms after measurement.",pinName,pwmFreq,pwmDc_u,_pow(10,-6)*(tFallStart-tMeaStart));
+    do {
+      pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+      pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+      //testStep("","freq=%f,t=%f",pwmFreq,_pow(10,-9)*(t1-t));
+      testWaitForTimeout(1);
+      tFallEnd = timeNowInt64();
+    //testValidateTesterConfirmation("step1","",1);
+    } while ((pwmFreq != 0) && (_pow(10,-9)*(tFallEnd - tFallStart)<3));
+    if (_pow(10,-9)*(tFallEnd - tFallStart)>=3)
+      testStepFail("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM didn't complete turning off within 3s.",pinName,pwmFreq,pwmDc_u);
+    else 
+      testStepPass("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling stopped at %fms after measurement.Falling time is %fms.",pinName,pwmFreq,pwmDc_u,_pow(10,-6)*(tFallEnd-tMeaStart),_pow(10,-6)*(tFallEnd-tFallStart));
+  }
+}
+
 export void chFixVoltDOSet (char vt2516CfgEntry[],enum digitalLevel level) {
   char vt2516CfgInfo[2],namespace[100];
   getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
