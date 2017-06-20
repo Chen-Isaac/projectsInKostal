@@ -101,7 +101,8 @@ sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);
       </canoestandardservice>
       <caplinline>
         <title />
-        <code>testEnableMsg("HUT8");</code>
+        <code>testEnableMsg("HUT8");
+testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq));</code>
       </caplinline>
       <set>
         <title>
@@ -127,6 +128,34 @@ sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);
           </assignment>
         </in>
       </set>
+      <caplfunction>
+        <title />
+        <name>prodPwmOutRisingEdgeChk</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Zone1_B+</const>
+          </value>
+        </param>
+        <param>
+          <type>float</type>
+          <value>
+            <const>200</const>
+          </value>
+        </param>
+        <param>
+          <type>float</type>
+          <value>
+            <const>96</const>
+          </value>
+        </param>
+        <param>
+          <type>int</type>
+          <value>
+            <const>2</const>
+          </value>
+        </param>
+      </caplfunction>
       <canoestandardservice>
         <title />
         <name>testValidateTesterConfirmation</name>
@@ -149,6 +178,10 @@ sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);
           </value>
         </param>
       </canoestandardservice>
+      <caplinline>
+        <title>try, can be deleted</title>
+        <code>testStep("","timestamp2=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq));</code>
+      </caplinline>
       <ttfunction>
         <title />
         <name>switch_off_by_locked_signal</name>
@@ -3391,6 +3424,10 @@ sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);
       <capltestcase>
         <title />
         <name>powerOff</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <name>try</name>
       </capltestcase>
     </tf>
   </tt>

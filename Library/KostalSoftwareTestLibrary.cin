@@ -413,6 +413,58 @@ export void prodPwmOutChk (char vt2516CfgEntry[],float expectedFreq,float expect
   }
 }
 
+export void prodPwmOutRisingEdgeChk (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
+  char namespace[100],vt2516CfgInfo[2];
+  float pwmFreq,pwmDc_o,pwmDc_u;
+  int64 tRiseStart,tRiseEnd,tMeaStart,t0;
+  int flag;
+  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+  tMeaStart = timeNowInt64();
+  do {
+    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+    pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
+    //testStep("","freq=%f,t=%f",pwmFreq,_pow(10,-9)*(t1-t));
+    testWaitForTimeout(1);
+    tRiseStart = timeNowInt64();
+    //testValidateTesterConfirmation("step1","",1);
+  } while ((pwmFreq == 0) && (_pow(10,-9)*(tRiseStart-tMeaStart)<3));
+  if (_pow(10,-9)*(tRiseStart-tMeaStart)>3)
+    testStepFail("measure PWM rising edge","pin %s :PWM output didn't start within 3s.",pinName);
+  else {
+    testStepPass("measure PWM rising edge","pin %s :PWM rising started at %fms after trigger.",pinName,_pow(10,-6)*(tRiseStart-tMeaStart));
+    flag = 0;
+    t0 = tRiseStart;
+    do {
+      pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+      pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+      //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
+      if (pwmDc_u!=pwmDc_o) {
+        pwmDc_o = pwmDc_u;
+        tRiseEnd = timeNowInt64();
+        t0 = tRiseEnd;
+      }
+      else {
+        if (_pow(10,-6)*(timeNowInt64()-t0) >300) 
+          flag = 1;//if pwmDc didn't change within 300ms, so it will be determined as stable
+      }
+      testWaitForTimeout(1);
+    } while ( (!flag) && (_pow(10,-9)*(tRiseEnd - tRiseStart)<3));
+    if (_pow(10,-9)*(tRiseEnd - tRiseStart)>3)
+      testStepFail("measure PWM rising edge","pin %s :PWM was still not stable within 3s.",pinName);
+    else {
+      testStepPass("measure PWM rising edge","pin %s :PWM rising stopped at %fms after trigger.Rising edge is %fms.",pinName,_pow(10,-6)*(tRiseEnd-tMeaStart),_pow(10,-6)*(tRiseEnd-tRiseStart));
+      if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005))
+        testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",pinName,pwmFreq);
+      else
+        testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",pinName,pwmFreq,expectedFreq*0.995,expectedFreq*1.005);
+      if ((pwmDc_u > expectedDuty-deviationRange) && (pwmDc_u < expectedDuty+deviationRange))
+        testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",pinName,pwmDc_u);
+      else
+        testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",pinName,pwmDc_u,expectedDuty-deviationRange,expectedDuty+deviationRange);
+    }
+  }
+}
 
 export void chFixVoltDOSet (char vt2516CfgEntry[],enum digitalLevel level) {
   char vt2516CfgInfo[2],namespace[100];

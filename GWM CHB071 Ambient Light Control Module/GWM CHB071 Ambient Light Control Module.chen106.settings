@@ -32,7 +32,7 @@
           <string>ActiveDocumentIndex</string>
         </key>
         <value type="System.Int32">
-          <int>0</int>
+          <int>2</int>
         </value>
       </item>
       <item>
@@ -235,12 +235,10 @@ HistoryBegin
 HistoryEnd
 FiltersBegin
 Begin
-3 23 31
-2
+3 0 0
+1
 Networks
 ( 0)
-_____CF_C_Matrix
- ( 2 ( 58 ( 0 ) 0 ) 0 ) 
 SymbSelHeaderMgrBegin
 1 9
 0 1 200 0 0
@@ -255,8 +253,10 @@ SymbSelHeaderMgrBegin
 SymbSelHeaderMgrEnd
 End
 Begin
-3 0 1
-0
+3 0 -1
+1
+System variables
+ ( 5 ( 0 ) 0 ) 
 SymbSelHeaderMgrBegin
 1 4
 0 1 200 0 0
@@ -286,7 +286,7 @@ SymbSelHeaderMgrEnd
 End
 
 FiltersEnd
-0 0</string>
+0 1</string>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -345,7 +345,7 @@ FiltersEnd
         <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
           <ArrayOfDocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-15T09:40:18.0854419Z</LastTouched>
+              <LastTouched>2017-06-20T07:23:09.3873065Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -358,14 +358,14 @@ FiltersEnd
                         <Expanded>true</Expanded>
                       </SplitterSettingsTet>
                       <SplitterSettingsPv>
-                        <SplitPosition>421</SplitPosition>
+                        <SplitPosition>456</SplitPosition>
                         <Expanded>true</Expanded>
                       </SplitterSettingsPv>
                       <SplitterSettingsLv>
                         <SplitPosition>185</SplitPosition>
                         <Expanded>true</Expanded>
                       </SplitterSettingsLv>
-                      <ActiveView>4</ActiveView>
+                      <ActiveView>0</ActiveView>
                     </TtEditorSettings>
                   </value>
                 </item>
@@ -383,7 +383,7 @@ FiltersEnd
                           <value type="System.Int32[]">
                             <ArrayOfInt>
                               <int>60</int>
-                              <int>9</int>
+                              <int>8</int>
                             </ArrayOfInt>
                           </value>
                         </item>
@@ -394,7 +394,7 @@ FiltersEnd
                           <value type="System.Int32[]">
                             <ArrayOfInt>
                               <int>115</int>
-                              <int>26</int>
+                              <int>23</int>
                               <int>69</int>
                             </ArrayOfInt>
                           </value>
@@ -417,7 +417,7 @@ FiltersEnd
                           <value type="System.Int32[]">
                             <ArrayOfInt>
                               <int>300</int>
-                              <int>84</int>
+                              <int>75</int>
                               <int>150</int>
                             </ArrayOfInt>
                           </value>
@@ -514,33 +514,6 @@ FiltersEnd
                       </TreeListSettings>
                       <RootNodeId>:0</RootNodeId>
                       <MruList>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Set Variable</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>setvariable</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Set by Tester</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>setvariable_bytester</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Else If</ItemText>
-                          <ImageIndex>182</ImageIndex>
-                          <ModelElementName>elseif</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
                           <ItemText>check_color_mode</ItemText>
                           <ImageIndex>68</ImageIndex>
@@ -880,15 +853,6 @@ FiltersEnd
                           </DataTypeList>
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
-                          <ItemText>CAPL Inline</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>caplinline</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
                           <ItemText>powerOn</ItemText>
                           <ImageIndex>89</ImageIndex>
                           <ModelElementName>capltestcase</ModelElementName>
@@ -1039,6 +1003,47 @@ FiltersEnd
                             <EnumDataType>String</EnumDataType>
                           </DataTypeList>
                         </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>CAPL Inline</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>caplinline</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>prodPwmOutRisingEdgeChk</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>prodPwmOutRisingEdgeChk</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>tryini</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>tryini</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>try</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>try</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
                       </MruList>
                     </TtCvSettings>
                   </value>
@@ -1047,7 +1052,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="ConfigurationSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-15T01:13:33.8256453Z</LastTouched>
+              <LastTouched>2017-06-19T11:01:59.2609969Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1216,7 +1221,119 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunction.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-15T09:40:19.4254419Z</LastTouched>
+              <LastTouched>2017-06-20T07:23:09.4463124Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>RelativeSplitterPosClassicMode</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>100</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>VerticalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>Outlining</string>
+                  </key>
+                  <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.Int32,System.Boolean]">
+                    <SerializableDictionaryOfInt32Boolean>
+                      <item>
+                        <key type="System.Int32">
+                          <int>-1</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                    </SerializableDictionaryOfInt32Boolean>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPosNavigator</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>131</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_TopIndex</string>
+                  </key>
+                  <value type="System.Int32">
+                    <int>0</int>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Focused</string>
+                  </key>
+                  <value type="System.String">
+                    <string>try(): void</string>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Selected</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">try(): void</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Expanded</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Includes</anyType>
+                      <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d7p1:type="q2:string">Test Cases</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CNCVirtualGroups</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.CAPL.Navigator.Model.SerializedNodeList">
+                    <ArrayOfSerializedNode />
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2017-06-20T07:23:09.4573135Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1275,7 +1392,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>96</int>
+                          <int>1762</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1283,7 +1400,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>114</int>
+                          <int>1992</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1291,7 +1408,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>197</int>
+                          <int>2803</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1299,7 +1416,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>282</int>
+                          <int>4194</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1307,7 +1424,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>373</int>
+                          <int>5102</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1315,7 +1432,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>460</int>
+                          <int>5616</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1323,7 +1440,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>936</int>
+                          <int>5801</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1331,7 +1448,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>1429</int>
+                          <int>6271</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1339,7 +1456,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>1888</int>
+                          <int>6830</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1347,119 +1464,175 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>2261</int>
+                          <int>8873</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
                         </value>
                       </item>
-                    </SerializableDictionaryOfInt32Boolean>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>HorizontalSplitterPosNavigator</string>
-                  </key>
-                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
-                    <PersistentSplitterPos>
-                      <SplitterPos>131</SplitterPos>
-                      <Enabled>true</Enabled>
-                    </PersistentSplitterPos>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CaplNavigator_TopIndex</string>
-                  </key>
-                  <value type="System.Int32">
-                    <int>0</int>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CaplNavigator_Focused</string>
-                  </key>
-                  <value type="System.String">
-                    <string>chkDoorOpenSignalImpExceptMode0IgnOff(char doorSignal[], char msWaitForTurnOn[], char posLmpStsVal[]): void</string>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CaplNavigator_Selected</string>
-                  </key>
-                  <value type="System.Collections.ArrayList">
-                    <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">chkDoorOpenSignalImpExceptMode0IgnOff(char doorSignal[], char msWaitForTurnOn[], char posLmpStsVal[]): void</anyType>
-                    </ArrayOfAnyType>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CaplNavigator_Expanded</string>
-                  </key>
-                  <value type="System.Collections.ArrayList">
-                    <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Includes</anyType>
-                      <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d7p1:type="q2:string">Test Cases</anyType>
-                    </ArrayOfAnyType>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CNCVirtualGroups</string>
-                  </key>
-                  <value type="Vector.ITE.Languages.CAPL.Navigator.Model.SerializedNodeList">
-                    <ArrayOfSerializedNode />
-                  </value>
-                </item>
-              </Settings>
-              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
-            </DocumentSettingsBase>
-            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-15T09:40:19.4954419Z</LastTouched>
-              <Settings>
-                <item>
-                  <key type="System.String">
-                    <string>RelativeSplitterPosClassicMode</string>
-                  </key>
-                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
-                    <PersistentSplitterPos>
-                      <SplitterPos>100</SplitterPos>
-                      <Enabled>true</Enabled>
-                    </PersistentSplitterPos>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>HorizontalSplitterPos</string>
-                  </key>
-                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
-                    <PersistentSplitterPos>
-                      <SplitterPos>0</SplitterPos>
-                      <Enabled>false</Enabled>
-                    </PersistentSplitterPos>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>VerticalSplitterPos</string>
-                  </key>
-                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
-                    <PersistentSplitterPos>
-                      <SplitterPos>0</SplitterPos>
-                      <Enabled>false</Enabled>
-                    </PersistentSplitterPos>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>Outlining</string>
-                  </key>
-                  <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.Int32,System.Boolean]">
-                    <SerializableDictionaryOfInt32Boolean>
                       <item>
                         <key type="System.Int32">
-                          <int>-1</int>
+                          <int>9095</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>9662</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>10181</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>11255</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>12402</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>12815</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>13865</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>14567</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>15793</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>18066</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>20848</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>22229</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>23222</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>23587</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>25066</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>25707</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>28054</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>28901</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>29555</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>30129</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>30824</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1492,7 +1665,7 @@ FiltersEnd
                     <string>CaplNavigator_Focused</string>
                   </key>
                   <value type="System.String">
-                    <string>stateMachine(char stateMachineSection[], int routeNum[], char paraPick[][][]): void</string>
+                    <string>prodPwmOutRisingEdgeChk(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</string>
                   </value>
                 </item>
                 <item>
@@ -1501,7 +1674,7 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">stateMachine(char stateMachineSection[], int routeNum[], char paraPick[][][]): void</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">prodPwmOutRisingEdgeChk(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
@@ -1527,7 +1700,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-15T09:40:19.5054419Z</LastTouched>
+              <LastTouched>2017-06-20T07:23:09.5703248Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">

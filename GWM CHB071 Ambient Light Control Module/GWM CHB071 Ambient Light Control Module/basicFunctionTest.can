@@ -64,3 +64,10 @@ export testcase chkDoorOpenSignalImpExceptMode0IgnOff (char doorSignal[],char ms
   stateMachine("chkDoorOpenSignalImpExceptMode0IgnOff",routeNum,paraPick);
 }
 
+export testcase try() {
+  int64 t,t1;
+  t = timeNowInt64();
+  testWaitForTimeout(3000);
+  t1 = timeNowInt64();
+  testStep("","t=%f",_pow(10,-9)*(t1-t));
+}
