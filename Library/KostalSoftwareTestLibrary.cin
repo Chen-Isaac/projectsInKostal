@@ -413,7 +413,7 @@ export void prodPwmOutChk (char vt2516CfgEntry[],float expectedFreq,float expect
   }
 }
 
-export void prodPwmOutRisingEdgeChk (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
+export void prodPwmOutRisingEdgeMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_o,pwmDc_u;
   int64 tRiseStart,tRiseEnd,tMeaStart,t0;

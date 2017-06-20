@@ -345,7 +345,7 @@ FiltersEnd
         <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
           <ArrayOfDocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-20T07:23:09.3873065Z</LastTouched>
+              <LastTouched>2017-06-20T07:57:40.1052025Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1013,20 +1013,6 @@ FiltersEnd
                           <DataTypeList />
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
-                          <ItemText>prodPwmOutRisingEdgeChk</ItemText>
-                          <ImageIndex>69</ImageIndex>
-                          <ModelElementName>caplfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>prodPwmOutRisingEdgeChk</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
-                            <EnumDataType>Int</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
                           <ItemText>tryini</ItemText>
                           <ImageIndex>89</ImageIndex>
                           <ModelElementName>capltestcase</ModelElementName>
@@ -1043,6 +1029,20 @@ FiltersEnd
                           <SignatureName>try</SignatureName>
                           <ClassName />
                           <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>prodPwmOutRisingEdgeChk</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>prodPwmOutRisingEdgeChk</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
                         </TtCustomPopupListItemData>
                       </MruList>
                     </TtCvSettings>
@@ -1221,7 +1221,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunction.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-20T07:23:09.4463124Z</LastTouched>
+              <LastTouched>2017-06-20T07:57:40.1652019Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1333,7 +1333,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-20T07:23:09.4573135Z</LastTouched>
+              <LastTouched>2017-06-20T07:57:40.1752018Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1552,7 +1552,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>20848</int>
+                          <int>20886</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1560,7 +1560,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>22229</int>
+                          <int>22267</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1568,7 +1568,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>23222</int>
+                          <int>23260</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1576,7 +1576,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>23587</int>
+                          <int>23625</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1584,7 +1584,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>25066</int>
+                          <int>25104</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1592,7 +1592,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>25707</int>
+                          <int>25745</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1600,7 +1600,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>28054</int>
+                          <int>28092</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1608,7 +1608,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>28901</int>
+                          <int>28939</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1616,7 +1616,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>29555</int>
+                          <int>29593</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1624,7 +1624,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>30129</int>
+                          <int>30167</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1632,7 +1632,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>30824</int>
+                          <int>30862</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1657,7 +1657,7 @@ FiltersEnd
                     <string>CaplNavigator_TopIndex</string>
                   </key>
                   <value type="System.Int32">
-                    <int>6</int>
+                    <int>1</int>
                   </value>
                 </item>
                 <item>
@@ -1665,7 +1665,7 @@ FiltersEnd
                     <string>CaplNavigator_Focused</string>
                   </key>
                   <value type="System.String">
-                    <string>prodPwmOutRisingEdgeChk(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</string>
+                    <string>prodPwmOutRisingEdgeMeas(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</string>
                   </value>
                 </item>
                 <item>
@@ -1674,7 +1674,7 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">prodPwmOutRisingEdgeChk(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">prodPwmOutRisingEdgeMeas(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
@@ -1700,7 +1700,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-20T07:23:09.5703248Z</LastTouched>
+              <LastTouched>2017-06-20T07:57:40.2252013Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">

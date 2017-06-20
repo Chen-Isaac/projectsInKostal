@@ -130,7 +130,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
       </set>
       <caplfunction>
         <title />
-        <name>prodPwmOutRisingEdgeChk</name>
+        <name>prodPwmOutRisingEdgeMeas</name>
         <param>
           <type>char[]</type>
           <value>
