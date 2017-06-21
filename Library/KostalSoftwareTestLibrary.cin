@@ -65,7 +65,7 @@ variables {
 }
 
 /*****************ini file data handle***************************/
-export getCfgDataArray (char section[],char entry[],char cfgDataArray[]) {
+export void getCfgDataArray (char section[],char entry[],char cfgDataArray[]) {
   sysGetVariableString(sysvar::iniParaCfgPath,iniParaCfgPath,100); 
   getProfileArray(section,entry,cfgDataArray,elCount(cfgDataArray),iniParaCfgPath);
 }
@@ -413,92 +413,119 @@ export void prodPwmOutChk (char vt2516CfgEntry[],float expectedFreq,float expect
   }
 }
 
-export void prodPwmOutRisingEdgeMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
-  char namespace[100],vt2516CfgInfo[2];
-  float pwmFreq,pwmDc_o,pwmDc_u;
+export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
+  char namespace[100],vt2516CfgInfo[2],cfgStrArray[5][30];
+  float pwmFreq,pwmDc_o,pwmDc_u,avgVolt;
   int64 tRiseStart,tRiseEnd,tMeaStart,t0;
-  int flag;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  tMeaStart = timeNowInt64();
-  do {
-    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
-    pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
-    //testStep("","freq=%f,t=%f",pwmFreq,_pow(10,-9)*(t1-t));
-    testWaitForTimeout(1);
-    tRiseStart = timeNowInt64();
-    //testValidateTesterConfirmation("step1","",1);
-  } while ((pwmFreq == 0) && (_pow(10,-9)*(tRiseStart-tMeaStart)<3));
-  if (_pow(10,-9)*(tRiseStart-tMeaStart)>3)
-    testStepFail("measure PWM rising edge","pin %s :PWM output didn't start within 3s.",pinName);
+  int flag,paraNum;
+  paraNum = getCfgStrArray("pwmRiseEdgeCfg",pwmMode,cfgStrArray);
+  if (paraNum == -1)
+    testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
   else {
-    testStepPass("measure PWM rising edge","pin %s :PWM rising started at %fms after trigger.",pinName,_pow(10,-6)*(tRiseStart-tMeaStart));
-    flag = 0;
-    t0 = tRiseStart;
+    getCfgDataArray ("vt2516Cfg",cfgStrArray[0],vt2516CfgInfo);
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    tMeaStart = timeNowInt64();
     do {
       pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
-      pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
-      //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-      if (pwmDc_u!=pwmDc_o) {
-        pwmDc_o = pwmDc_u;
-        tRiseEnd = timeNowInt64();
-        t0 = tRiseEnd;
-      }
-      else {
-        if (_pow(10,-6)*(timeNowInt64()-t0) >300) 
-          flag = 1;//if pwmDc didn't change within 300ms, so it will be determined as stable
-      }
+      pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
+      //testStep("","freq=%f,t=%f",pwmFreq,_pow(10,-9)*(t1-t));
       testWaitForTimeout(1);
-    } while ( (!flag) && (_pow(10,-9)*(tRiseEnd - tRiseStart)<3));
-    if (_pow(10,-9)*(tRiseEnd - tRiseStart)>3)
-      testStepFail("measure PWM rising edge","pin %s :PWM was still not stable within 3s.",pinName);
+      tRiseStart = timeNowInt64();
+      //testValidateTesterConfirmation("step1","",1);
+    } while ((pwmFreq == 0) && (_pow(10,-9)*(tRiseStart-tMeaStart)<3));
+    if (_pow(10,-9)*(tRiseStart-tMeaStart)>3)
+      testStepFail("measure PWM rising edge","pin %s :PWM output didn't start within 3s.",cfgStrArray[0]);
     else {
-      testStepPass("measure PWM rising edge","pin %s :PWM rising stopped at %fms after trigger.Rising edge is %fms.",pinName,_pow(10,-6)*(tRiseEnd-tMeaStart),_pow(10,-6)*(tRiseEnd-tRiseStart));
-      if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005))
-        testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",pinName,pwmFreq);
-      else
-        testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",pinName,pwmFreq,expectedFreq*0.995,expectedFreq*1.005);
-      if ((pwmDc_u > expectedDuty-deviationRange) && (pwmDc_u < expectedDuty+deviationRange))
-        testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",pinName,pwmDc_u);
-      else
-        testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",pinName,pwmDc_u,expectedDuty-deviationRange,expectedDuty+deviationRange);
+      testStepPass("measure PWM rising edge","pin %s :PWM rising started at %5.2fms after trigger.",cfgStrArray[0],_pow(10,-6)*(tRiseStart-tMeaStart));
+      flag = 0;
+      t0 = tRiseStart;
+      do {
+        pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+        pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+        avgVolt = sysGetVariableFloat(namespace,"Avg");
+        //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
+        if (pwmDc_u!=pwmDc_o) {
+          pwmDc_o = pwmDc_u;
+          tRiseEnd = timeNowInt64();
+          t0 = tRiseEnd;
+        }
+        else {
+          if (_pow(10,-6)*(timeNowInt64()-t0) >300) 
+            flag = 1;//if pwmDc didn't change within 300ms, so it will be determined as stable
+        }
+        testWaitForTimeout(1);
+      } while ( (!flag) && (_pow(10,-9)*(tRiseEnd - tRiseStart)<3));
+      if (_pow(10,-9)*(tRiseEnd - tRiseStart)>3)
+        testStepFail("measure PWM rising edge","pin %s :PWM was still not stable within 3s after trigger.",cfgStrArray[0]);
+      else {
+        if ((_pow(10,-6)*(tRiseEnd - tRiseStart)<=atol(cfgStrArray[4])))
+          testStepPass("measure PWM rising edge","pin %s :PWM rising stopped at %6.2fms after trigger.Rising time is %6.2fms,within %sms.",cfgStrArray[0],_pow(10,-6)*(tRiseEnd-tMeaStart),_pow(10,-6)*(tRiseEnd-tRiseStart),cfgStrArray[4]);
+        else 
+          testStepFail("measure PWM rising edge","pin %s :PWM rising stopped at %6.2fms after trigger.Rising time is %6.2fms,larger than %dms.",cfgStrArray[0],_pow(10,-6)*(tRiseEnd-tMeaStart),_pow(10,-6)*(tRiseEnd-tRiseStart),cfgStrArray[4]);
+        if ((atol(cfgStrArray[1]) == 0) && (atol(cfgStrArray[2]) == 100)) {//when duty=100%
+          if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc_u == 100))
+            testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",cfgStrArray[0],pwmFreq,pwmDc_u,avgVolt);
+          else
+            testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz  vs expectedFreq = %sHz, duty = %3.1f%% vs expectedDuty = %s%%, average voltage = %4.2fV",cfgStrArray[0],pwmFreq,cfgStrArray[1],pwmDc_u,cfgStrArray[2],avgVolt);
+        }
+        else {//when duty != 100%
+          if ((pwmFreq > atol(cfgStrArray[1])*0.995) && (pwmFreq < atol(cfgStrArray[1])*1.005))
+            testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",cfgStrArray[0],pwmFreq);
+          else
+            testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",cfgStrArray[0],pwmFreq,atol(cfgStrArray[1])*0.995,atol(cfgStrArray[1])*1.005);
+          if ((pwmDc_u > atol(cfgStrArray[2])-atol(cfgStrArray[3])) && (pwmDc_u < atol(cfgStrArray[2])+atol(cfgStrArray[3])))
+            testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",cfgStrArray[0],pwmDc_u);
+          else
+            testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",cfgStrArray[0],pwmDc_u,atol(cfgStrArray[2])-atol(cfgStrArray[3]),atol(cfgStrArray[2])+atol(cfgStrArray[3]));
+        }
+      }
     }
   }
 }
 
-export void prodPwmOutFallingEdgeMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
-  char namespace[100],vt2516CfgInfo[2];
+export void prodPwmOutFallingEdgeMeas (char pwmMode[]) {
+  char namespace[100],vt2516CfgInfo[2],cfgStrArray[2][30];
   float pwmFreq,pwmDc_o,pwmDc_u;
   int64 tFallStart,tFallEnd,tMeaStart,t0;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  tMeaStart = timeNowInt64();
-  pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
-  do {
-    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
-    pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
-    //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-    if (pwmDc_u != pwmDc_o)
-      tFallStart = timeNowInt64();
-    testWaitForTimeout(1);
-  } while ((pwmDc_o - pwmDc_u < 0.2) && (_pow(10,-9)*(timeNowInt64() - tMeaStart)<60));
-  
-  if (_pow(10,-9)*(timeNowInt64() - tMeaStart)>= 60)
-    testStepFail("measure PWM falling edge","pin %s :PWM output didn't start turning off within 1min.",pinName);
+  int paraNum;
+  paraNum = getCfgStrArray("pwmFallEdgeCfg",pwmMode,cfgStrArray);
+  if (paraNum == -1)
+    testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
   else {
-    testStepPass("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling started at %fms after measurement.",pinName,pwmFreq,pwmDc_u,_pow(10,-6)*(tFallStart-tMeaStart));
+    getCfgDataArray ("vt2516Cfg",cfgStrArray[0],vt2516CfgInfo);
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    tMeaStart = timeNowInt64();
+    pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
     do {
       pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
       pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
-      //testStep("","freq=%f,t=%f",pwmFreq,_pow(10,-9)*(t1-t));
+      //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
+      if (pwmDc_u != pwmDc_o)
+        tFallStart = timeNowInt64();
       testWaitForTimeout(1);
-      tFallEnd = timeNowInt64();
-    //testValidateTesterConfirmation("step1","",1);
-    } while ((pwmFreq != 0) && (_pow(10,-9)*(tFallEnd - tFallStart)<3));
-    if (_pow(10,-9)*(tFallEnd - tFallStart)>=3)
-      testStepFail("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM didn't complete turning off within 3s.",pinName,pwmFreq,pwmDc_u);
-    else 
-      testStepPass("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling stopped at %fms after measurement.Falling time is %fms.",pinName,pwmFreq,pwmDc_u,_pow(10,-6)*(tFallEnd-tMeaStart),_pow(10,-6)*(tFallEnd-tFallStart));
+    } while ((pwmDc_o - pwmDc_u < 0.2) && (_pow(10,-9)*(timeNowInt64() - tMeaStart)<3));
+  
+    if (_pow(10,-9)*(timeNowInt64() - tMeaStart)>= 3)
+      testStepFail("measure PWM falling edge","pin %s :PWM output didn't start turning off within 3s after trigger.",cfgStrArray[0]);
+    else {
+      testStepPass("measure PWM falling edge","pin %s :PWM falling started at %6.2fms after trigger.",cfgStrArray[0],_pow(10,-6)*(tFallStart - tMeaStart));
+      do {
+        pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+        pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+        //testStep("","freq=%f,t=%f",pwmFreq,_pow(10,-9)*(t1-t));
+        testWaitForTimeout(1);
+        tFallEnd = timeNowInt64();
+      //testValidateTesterConfirmation("step1","",1);
+      } while ((pwmFreq != 0) && (_pow(10,-9)*(tFallEnd - tFallStart)<10));
+      if (_pow(10,-9)*(tFallEnd - tFallStart)>=10)
+        testStepFail("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM didn't complete turning off within 10s.",cfgStrArray[0],pwmFreq,pwmDc_u);
+      else {
+        if (_pow(10,-6)*(tFallEnd - tFallStart) <= atol(cfgStrArray[1]))
+          testStepPass("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling stopped at %6.2fms after trigger.Falling time is %6.2fms,within %sms.",cfgStrArray[0],pwmFreq,pwmDc_u,_pow(10,-6)*(tFallEnd-tMeaStart),_pow(10,-6)*(tFallEnd-tFallStart),cfgStrArray[1]);
+        else 
+          testStepFail("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling stopped at %6.2fms after trigger.Falling time is %6.2fms,larger than %sms.",cfgStrArray[0],pwmFreq,pwmDc_u,_pow(10,-6)*(tFallEnd-tMeaStart),_pow(10,-6)*(tFallEnd-tFallStart),cfgStrArray[1]);
+      }   
+    }
   }
 }
 

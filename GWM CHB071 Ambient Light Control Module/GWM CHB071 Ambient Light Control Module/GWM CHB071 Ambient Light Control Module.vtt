@@ -134,25 +134,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
         <param>
           <type>char[]</type>
           <value>
-            <const>Zone1_B+</const>
-          </value>
-        </param>
-        <param>
-          <type>float</type>
-          <value>
-            <const>200</const>
-          </value>
-        </param>
-        <param>
-          <type>float</type>
-          <value>
-            <const>96</const>
-          </value>
-        </param>
-        <param>
-          <type>int</type>
-          <value>
-            <const>2</const>
+            <const>Mode2_B</const>
           </value>
         </param>
       </caplfunction>
@@ -167,31 +149,22 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
           </assignment>
         </in>
       </set>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>18</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
       <caplfunction>
         <title />
         <name>prodPwmOutFallingEdgeMeas</name>
         <param>
           <type>char[]</type>
           <value>
-            <const>Zone1_B+</const>
-          </value>
-        </param>
-        <param>
-          <type>float</type>
-          <value>
-            <const>200</const>
-          </value>
-        </param>
-        <param>
-          <type>float</type>
-          <value>
-            <const>96</const>
-          </value>
-        </param>
-        <param>
-          <type>int</type>
-          <value>
-            <const>2</const>
+            <const>Mode2_B</const>
           </value>
         </param>
       </caplfunction>

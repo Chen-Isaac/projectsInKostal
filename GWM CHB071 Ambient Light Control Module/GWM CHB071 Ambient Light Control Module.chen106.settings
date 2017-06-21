@@ -32,7 +32,7 @@
           <string>ActiveDocumentIndex</string>
         </key>
         <value type="System.Int32">
-          <int>2</int>
+          <int>0</int>
         </value>
       </item>
       <item>
@@ -90,13 +90,18 @@
                 <SerializableDictionaryOfStringObject>
                   <item>
                     <key type="System.String">
-                      <string>ProjectView_Expanded</string>
+                      <string>ProjectView_TopIndex</string>
                     </key>
-                    <value type="System.Collections.ArrayList">
-                      <ArrayOfAnyType>
-                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot</anyType>
-                        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d13p1:type="q2:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot/Test Units/GWM CHB071 Ambient Light Control Module</anyType>
-                      </ArrayOfAnyType>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>16</unsignedInt>
                     </value>
                   </item>
                   <item>
@@ -111,18 +116,13 @@
                   </item>
                   <item>
                     <key type="System.String">
-                      <string>ProjectView_Focused</string>
+                      <string>ProjectView_Expanded</string>
                     </key>
-                    <value type="System.UInt32">
-                      <unsignedInt>16</unsignedInt>
-                    </value>
-                  </item>
-                  <item>
-                    <key type="System.String">
-                      <string>ProjectView_TopIndex</string>
-                    </key>
-                    <value type="System.Int32">
-                      <int>0</int>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot</anyType>
+                        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d13p1:type="q2:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot/Test Units/GWM CHB071 Ambient Light Control Module</anyType>
+                      </ArrayOfAnyType>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -136,12 +136,18 @@
                 <SerializableDictionaryOfStringObject>
                   <item>
                     <key type="System.String">
-                      <string>LibraryView_Expanded</string>
+                      <string>LibraryView_TopIndex</string>
                     </key>
-                    <value type="System.Collections.ArrayList">
-                      <ArrayOfAnyType>
-                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/_1/Library</anyType>
-                      </ArrayOfAnyType>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>18</unsignedInt>
                     </value>
                   </item>
                   <item>
@@ -156,18 +162,12 @@
                   </item>
                   <item>
                     <key type="System.String">
-                      <string>LibraryView_Focused</string>
+                      <string>LibraryView_Expanded</string>
                     </key>
-                    <value type="System.UInt32">
-                      <unsignedInt>18</unsignedInt>
-                    </value>
-                  </item>
-                  <item>
-                    <key type="System.String">
-                      <string>LibraryView_TopIndex</string>
-                    </key>
-                    <value type="System.Int32">
-                      <int>0</int>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/_1/Library</anyType>
+                      </ArrayOfAnyType>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -181,12 +181,18 @@
                 <SerializableDictionaryOfStringObject>
                   <item>
                     <key type="System.String">
-                      <string>HomeDirectoryView_Expanded</string>
+                      <string>HomeDirectoryView_TopIndex</string>
                     </key>
-                    <value type="System.Collections.ArrayList">
-                      <ArrayOfAnyType>
-                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/GWM CHB071 Ambient Light Control Module</anyType>
-                      </ArrayOfAnyType>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>23</unsignedInt>
                     </value>
                   </item>
                   <item>
@@ -201,18 +207,12 @@
                   </item>
                   <item>
                     <key type="System.String">
-                      <string>HomeDirectoryView_Focused</string>
+                      <string>HomeDirectoryView_Expanded</string>
                     </key>
-                    <value type="System.UInt32">
-                      <unsignedInt>23</unsignedInt>
-                    </value>
-                  </item>
-                  <item>
-                    <key type="System.String">
-                      <string>HomeDirectoryView_TopIndex</string>
-                    </key>
-                    <value type="System.Int32">
-                      <int>0</int>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/GWM CHB071 Ambient Light Control Module</anyType>
+                      </ArrayOfAnyType>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -300,11 +300,17 @@ FiltersEnd
                 <SerializableDictionaryOfStringObject>
                   <item>
                     <key type="System.String">
-                      <string>TraceItems_Expanded</string>
+                      <string>TraceItems_TopIndex</string>
                     </key>
-                    <value type="System.Collections.ArrayList">
-                      <ArrayOfAnyType />
+                    <value type="System.Int32">
+                      <int>0</int>
                     </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Focused</string>
+                    </key>
+                    <value type="null" />
                   </item>
                   <item>
                     <key type="System.String">
@@ -316,16 +322,10 @@ FiltersEnd
                   </item>
                   <item>
                     <key type="System.String">
-                      <string>TraceItems_Focused</string>
+                      <string>TraceItems_Expanded</string>
                     </key>
-                    <value type="null" />
-                  </item>
-                  <item>
-                    <key type="System.String">
-                      <string>TraceItems_TopIndex</string>
-                    </key>
-                    <value type="System.Int32">
-                      <int>0</int>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -345,7 +345,7 @@ FiltersEnd
         <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
           <ArrayOfDocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-20T07:57:40.1052025Z</LastTouched>
+              <LastTouched>2017-06-20T09:10:45.9098759Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -365,7 +365,7 @@ FiltersEnd
                         <SplitPosition>185</SplitPosition>
                         <Expanded>true</Expanded>
                       </SplitterSettingsLv>
-                      <ActiveView>0</ActiveView>
+                      <ActiveView>2</ActiveView>
                     </TtEditorSettings>
                   </value>
                 </item>
@@ -383,7 +383,7 @@ FiltersEnd
                           <value type="System.Int32[]">
                             <ArrayOfInt>
                               <int>60</int>
-                              <int>8</int>
+                              <int>10</int>
                             </ArrayOfInt>
                           </value>
                         </item>
@@ -394,7 +394,7 @@ FiltersEnd
                           <value type="System.Int32[]">
                             <ArrayOfInt>
                               <int>115</int>
-                              <int>23</int>
+                              <int>29</int>
                               <int>69</int>
                             </ArrayOfInt>
                           </value>
@@ -514,29 +514,6 @@ FiltersEnd
                       </TreeListSettings>
                       <RootNodeId>:0</RootNodeId>
                       <MruList>
-                        <TtCustomPopupListItemData>
-                          <ItemText>check_color_mode</ItemText>
-                          <ImageIndex>68</ImageIndex>
-                          <ModelElementName>ttfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>check_color_mode</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>Int64</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>switch_off_by_time_ms</ItemText>
-                          <ImageIndex>68</ImageIndex>
-                          <ModelElementName>ttfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>switch_off_by_time_ms</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>Int64</EnumDataType>
-                            <EnumDataType>Int64</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
                           <ItemText>Function Definition</ItemText>
                           <ImageIndex>66</ImageIndex>
@@ -684,15 +661,6 @@ FiltersEnd
                           <DataTypeList>
                             <EnumDataType>Int64</EnumDataType>
                           </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Set</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>set</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
                           <ItemText>testValidateTesterConfirmation</ItemText>
@@ -1044,6 +1012,43 @@ FiltersEnd
                             <EnumDataType>Int</EnumDataType>
                           </DataTypeList>
                         </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>prodPwmOutRisingEdgeMeas</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>prodPwmOutRisingEdgeMeas</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>prodPwmOutFallingEdgeMeas</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>prodPwmOutFallingEdgeMeas</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Set</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>set</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
                       </MruList>
                     </TtCvSettings>
                   </value>
@@ -1221,7 +1226,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunction.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-20T07:57:40.1652019Z</LastTouched>
+              <LastTouched>2017-06-20T09:10:46.0158759Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1270,6 +1275,102 @@ FiltersEnd
                           <boolean>true</boolean>
                         </value>
                       </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>19</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>96</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>114</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>197</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>282</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>373</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>460</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>936</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1429</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1888</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2261</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2742</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
                     </SerializableDictionaryOfInt32Boolean>
                   </value>
                 </item>
@@ -1286,18 +1387,13 @@ FiltersEnd
                 </item>
                 <item>
                   <key type="System.String">
-                    <string>CaplNavigator_TopIndex</string>
+                    <string>CaplNavigator_Expanded</string>
                   </key>
-                  <value type="System.Int32">
-                    <int>0</int>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CaplNavigator_Focused</string>
-                  </key>
-                  <value type="System.String">
-                    <string>try(): void</string>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Includes</anyType>
+                      <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d7p1:type="q2:string">Test Cases</anyType>
+                    </ArrayOfAnyType>
                   </value>
                 </item>
                 <item>
@@ -1312,13 +1408,18 @@ FiltersEnd
                 </item>
                 <item>
                   <key type="System.String">
-                    <string>CaplNavigator_Expanded</string>
+                    <string>CaplNavigator_Focused</string>
                   </key>
-                  <value type="System.Collections.ArrayList">
-                    <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Includes</anyType>
-                      <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d7p1:type="q2:string">Test Cases</anyType>
-                    </ArrayOfAnyType>
+                  <value type="System.String">
+                    <string>try(): void</string>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_TopIndex</string>
+                  </key>
+                  <value type="System.Int32">
+                    <int>0</int>
                   </value>
                 </item>
                 <item>
@@ -1333,7 +1434,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-20T07:57:40.1752018Z</LastTouched>
+              <LastTouched>2017-06-20T09:10:46.0258759Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1560,7 +1661,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>22267</int>
+                          <int>23028</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1568,7 +1669,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>23260</int>
+                          <int>24409</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1576,7 +1677,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>23625</int>
+                          <int>25402</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1584,7 +1685,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>25104</int>
+                          <int>25767</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1592,7 +1693,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>25745</int>
+                          <int>27246</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1600,7 +1701,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>28092</int>
+                          <int>27887</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1608,7 +1709,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>28939</int>
+                          <int>30234</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1616,7 +1717,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>29593</int>
+                          <int>31081</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1624,7 +1725,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>30167</int>
+                          <int>31735</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1632,7 +1733,15 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>30862</int>
+                          <int>32309</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>33004</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1654,18 +1763,12 @@ FiltersEnd
                 </item>
                 <item>
                   <key type="System.String">
-                    <string>CaplNavigator_TopIndex</string>
+                    <string>CaplNavigator_Expanded</string>
                   </key>
-                  <value type="System.Int32">
-                    <int>1</int>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CaplNavigator_Focused</string>
-                  </key>
-                  <value type="System.String">
-                    <string>prodPwmOutRisingEdgeMeas(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</string>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Functions</anyType>
+                    </ArrayOfAnyType>
                   </value>
                 </item>
                 <item>
@@ -1674,18 +1777,24 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">prodPwmOutRisingEdgeMeas(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">prodPwmOutFallingEdgeMeas(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
                 <item>
                   <key type="System.String">
-                    <string>CaplNavigator_Expanded</string>
+                    <string>CaplNavigator_Focused</string>
                   </key>
-                  <value type="System.Collections.ArrayList">
-                    <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Functions</anyType>
-                    </ArrayOfAnyType>
+                  <value type="System.String">
+                    <string>prodPwmOutFallingEdgeMeas(char pinName[], float expectedFreq, float expectedDuty, int deviationRange): void</string>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_TopIndex</string>
+                  </key>
+                  <value type="System.Int32">
+                    <int>1</int>
                   </value>
                 </item>
                 <item>
@@ -1700,7 +1809,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-20T07:57:40.2252013Z</LastTouched>
+              <LastTouched>2017-06-20T09:10:46.1768759Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1769,7 +1878,6 @@ FiltersEnd
             <string>TteVariableOrSymbolRef#wait_for_active_s</string>
             <string>TteVariableOrSymbolRef#i</string>
             <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|DriverDoorSts|1|END_OF_OBJECT_|</string>
-            <string>ValueTableEntry#OFF</string>
             <string>TteVariableOrSymbolRef#system_power_mode_next</string>
             <string>ValueTableEntry#ON</string>
             <string>ConfiguredObject#DBFrameOrPDU_BEGIN_OF_OBJECT|2|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|Tester|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|KostiaReqALCM|1394|False|END_OF_OBJECT_FrameData|4|0|END_OF_OBJECT_|</string>
@@ -1793,7 +1901,6 @@ FiltersEnd
             <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|ALCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|KostiaRspALCM|1395|False|END_OF_OBJECT_FrameData|KostiaRspSigALCMByte5|1|END_OF_OBJECT_|</string>
             <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|ALCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|KostiaRspALCM|1395|False|END_OF_OBJECT_FrameData|KostiaRspSigALCMByte6|1|END_OF_OBJECT_|</string>
             <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|ALCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|KostiaRspALCM|1395|False|END_OF_OBJECT_FrameData|KostiaRspSigALCMByte7|1|END_OF_OBJECT_|</string>
-            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS2|661|False|END_OF_OBJECT_FrameData|SystemPowerMode|1|END_OF_OBJECT_|</string>
             <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|HUT|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|HUT8|710|False|END_OF_OBJECT_FrameData|ALCMLightLvlSet|1|END_OF_OBJECT_|</string>
             <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|PosLmpSts|1|END_OF_OBJECT_|</string>
             <string>TteVariableOrSymbolRef#door_open_signal</string>
@@ -1804,6 +1911,8 @@ FiltersEnd
             <string>ConfiguredObject#ChParList_BEGIN_OF_OBJECT|1|alcmLightLvlSetVal|END_OF_OBJECT_ChParList|</string>
             <string>ConfiguredObject#ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</string>
             <string>ConfiguredObject#ChParList_BEGIN_OF_OBJECT|1|posLmpStsVal|END_OF_OBJECT_ChParList|</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS2|661|False|END_OF_OBJECT_FrameData|SystemPowerMode|1|END_OF_OBJECT_|</string>
+            <string>ValueTableEntry#OFF</string>
           </ArrayOfString>
         </value>
       </item>
