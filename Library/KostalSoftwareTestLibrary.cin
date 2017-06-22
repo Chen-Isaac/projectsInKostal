@@ -455,8 +455,8 @@ export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
           tRiseEnd = timeNowInt64();
         }
         else {
-          if (_pow(10,-6)*(timeNowInt64()-tRiseEnd) >300) 
-            flag = 1;//if pwmDc didn't change within 300ms, so it will be determined as stable
+          if (_pow(10,-6)*(timeNowInt64()-tRiseEnd) >500) 
+            flag = 1;//if pwmDc didn't change within 500ms, so it will be determined as stable
         }
         testWaitForTimeout(1);
       } while ( (!flag) && (_pow(10,-9)*(tRiseEnd - tRiseStart)<3));
@@ -513,8 +513,8 @@ export void prodPwmOutKeepTimeMeas (char pwmMode[]) {
         tRiseEnd = timeNowInt64();
       }
       else {
-        if (_pow(10,-6)*(timeNowInt64()-tRiseEnd) >300) 
-          flag = 1;//if pwmDc didn't change within 300ms, so it will be determined as stable
+        if (_pow(10,-6)*(timeNowInt64()-tRiseEnd) >500) 
+          flag = 1;//if pwmDc didn't change within 500ms, so it will be determined as stable
       }
       testWaitForTimeout(1);
     } while ( (!flag) && (_pow(10,-9)*(tRiseEnd - tMeaStart)<5));

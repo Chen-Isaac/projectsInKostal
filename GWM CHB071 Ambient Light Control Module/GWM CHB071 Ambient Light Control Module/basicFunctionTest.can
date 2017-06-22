@@ -56,12 +56,14 @@ export testcase chkDoorOpenSignalImpWhenMode0IgnOff (char doorSignal[],char msWa
   stateMachine("chkDoorOpenSignalImpWhenMode0IgnOff",routeNum,paraPick);
 }
 
-export testcase chkDoorOpenSignalImpExceptMode0IgnOff (char doorSignal[],char msWaitForTurnOn[],char posLmpStsVal[]) {
-  char paraPick[3][2][100]={{"doorSignal",""},{"msWaitForTurnOn",""},{"posLmpStsVal",""}};
+export testcase chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff (char doorSignal[],char msWaitForTurnOn[],char posLmpStsVal[],char Mode3_6[],char Mode2_5[]) {
+  char paraPick[5][2][100]={{"doorSignal",""},{"msWaitForTurnOn",""},{"posLmpStsVal",""},{"Mode3_6",""},{"Mode2_5",""}};
   strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
   strncpy(paraPick[1][1],msWaitForTurnOn,elCount(paraPick[1][1]));
   strncpy(paraPick[2][1],posLmpStsVal,elCount(paraPick[2][1]));
-  stateMachine("chkDoorOpenSignalImpExceptMode0IgnOff",routeNum,paraPick);
+  strncpy(paraPick[3][1],Mode3_6,elCount(paraPick[3][1]));
+  strncpy(paraPick[4][1],Mode2_5,elCount(paraPick[4][1]));
+  stateMachine("chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff",routeNum,paraPick);
 }
 
 export testcase try() {

@@ -3422,7 +3422,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
       </comment>
       <capltestcaselist>
         <title />
-        <name>chkDoorOpenSignalImpExceptMode0IgnOff</name>
+        <name>chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff</name>
         <combinatorics>combinatorial</combinatorics>
         <structlistparameter />
         <param>
@@ -3439,7 +3439,33 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
         </param>
         <param>
           <type>char[]</type>
-          <listparameter>ChParList_BEGIN_OF_OBJECT|1|posLmpStsVal|END_OF_OBJECT_ChParList|</listparameter>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>Mode3_R</const>
+            </value>
+            <value>
+              <const>Mode3_G</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>Mode2_G</const>
+            </value>
+            <value>
+              <const>Mode2_B</const>
+            </value>
+          </valuelist>
         </param>
       </capltestcaselist>
     </tf>
