@@ -450,18 +450,19 @@ export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
         pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
         avgVolt = sysGetVariableFloat(namespace,"Avg");
         //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-        if (pwmDc_u!=pwmDc_o) {
+        if (pwmDc_u > pwmDc_o) {
+          //testStep("","pwmDc_o = %f%%,pwmDc_u=%f%%",pwmDc_o,pwmDc_u);
           pwmDc_o = pwmDc_u;
           tRiseEnd = timeNowInt64();
         }
         else {
-          if (_pow(10,-6)*(timeNowInt64()-tRiseEnd) >500) 
-            flag = 1;//if pwmDc didn't change within 500ms, so it will be determined as stable
+          if (_pow(10,-6)*(timeNowInt64()-tRiseEnd) >2000) 
+            flag = 1;//if pwmDc didn't change within 2000ms, so it will be determined as stable
         }
         testWaitForTimeout(1);
-      } while ( (!flag) && (_pow(10,-9)*(tRiseEnd - tRiseStart)<3));
-      if (_pow(10,-9)*(tRiseEnd - tRiseStart)>3)
-        testStepFail("measure PWM rising edge","pin %s :PWM was still not stable within 3s after trigger.",cfgStrArray[0]);
+      } while ( (!flag) && (_pow(10,-9)*(tRiseEnd - tRiseStart)<5));
+      if (_pow(10,-9)*(tRiseEnd - tRiseStart)>=5)
+        testStepFail("measure PWM rising edge","pin %s :PWM was still not stable within 5s after trigger.",cfgStrArray[0]);
       else {
         if ((_pow(10,-6)*(tRiseEnd - tRiseStart)<=atol(cfgStrArray[4])))
           testStepPass("measure PWM rising edge","pin %s :PWM rising stopped at %6.2fms after trigger.Rising time is %6.2fms,within %sms.",cfgStrArray[0],_pow(10,-6)*(tRiseEnd-tMeaStart),_pow(10,-6)*(tRiseEnd-tRiseStart),cfgStrArray[4]);
@@ -508,17 +509,17 @@ export void prodPwmOutKeepTimeMeas (char pwmMode[]) {
       pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
       avgVolt = sysGetVariableFloat(namespace,"Avg");
       //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-      if (pwmDc_u!=pwmDc_o) {
+      if (pwmDc_u > pwmDc_o) {
         pwmDc_o = pwmDc_u;
         tRiseEnd = timeNowInt64();
       }
       else {
-        if (_pow(10,-6)*(timeNowInt64()-tRiseEnd) >500) 
-          flag = 1;//if pwmDc didn't change within 500ms, so it will be determined as stable
+        if (_pow(10,-6)*(timeNowInt64()-tRiseEnd)>2000) 
+          flag = 1;//if pwmDc didn't change within 2000ms, so it will be determined as stable
       }
       testWaitForTimeout(1);
     } while ( (!flag) && (_pow(10,-9)*(tRiseEnd - tMeaStart)<5));
-    if (_pow(10,-9)*(tRiseEnd - tMeaStart)>5)
+    if (_pow(10,-9)*(tRiseEnd - tMeaStart)>=5)
       testStepFail("measure PWM keep time","pin %s :PWM was still not stable within 5s after measurement.",cfgStrArray[0]);
     else {
       testStepPass("measure PWM keep time","pin %s :PWM fully generated(rose end) at %6.2fms after measurement.",cfgStrArray[0],_pow(10,-6)*(tRiseEnd-tMeaStart));
@@ -539,7 +540,7 @@ export void prodPwmOutKeepTimeMeas (char pwmMode[]) {
       pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
       pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
       //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-      if (pwmDc_u != pwmDc_o)
+      if (pwmDc_u < pwmDc_o)
         tFallStart = timeNowInt64();
       testWaitForTimeout(1);
     } while ((pwmDc_o - pwmDc_u < 0.2) && (_pow(10,-6)*(timeNowInt64() - tRiseEnd)<2*atol(cfgStrArray[4])));
