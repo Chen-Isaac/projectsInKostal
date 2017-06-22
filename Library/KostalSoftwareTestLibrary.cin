@@ -482,7 +482,7 @@ export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
           if ((pwmDc_u > atol(cfgStrArray[2])-atol(cfgStrArray[3])) && (pwmDc_u < atol(cfgStrArray[2])+atol(cfgStrArray[3])))
             testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",cfgStrArray[0],pwmDc_u);
           else
-            testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",cfgStrArray[0],pwmDc_u,atol(cfgStrArray[2])-atol(cfgStrArray[3]),atol(cfgStrArray[2])+atol(cfgStrArray[3]));
+            testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%d%%-%d%%].",cfgStrArray[0],pwmDc_u,atol(cfgStrArray[2])-atol(cfgStrArray[3]),atol(cfgStrArray[2])+atol(cfgStrArray[3]));
         }
       }
     }
@@ -533,7 +533,7 @@ export void prodPwmOutKeepTimeMeas (char pwmMode[]) {
         if ((pwmFreq > atol(cfgStrArray[1])*0.995) && (pwmFreq < atol(cfgStrArray[1])*1.005) && (pwmDc_u > atol(cfgStrArray[2])-atol(cfgStrArray[3])) && (pwmDc_u < atol(cfgStrArray[2])+atol(cfgStrArray[3])))
           testStepPass("check PWM Frequency and duty","pin %s :output frequency = %4.1fHz,output duty = %3.1f%%",cfgStrArray[0],pwmFreq,pwmDc_u);
         else
-          testStepFail("check PWM Frequency and duty","pin %s :output frequency = %4.1fHz,permit range [%4.1f-%4.1f]Hz.output duty = %3.1f%%,permit range [%3.1f%%-%3.1f%%].",cfgStrArray[0],pwmFreq,atol(cfgStrArray[1])*0.995,atol(cfgStrArray[1])*1.005,pwmDc_u,atol(cfgStrArray[2])-atol(cfgStrArray[3]),atol(cfgStrArray[2])+atol(cfgStrArray[3]));
+          testStepFail("check PWM Frequency and duty","pin %s :output frequency = %4.1fHz,permit range [%4.1f-%4.1f]Hz.output duty = %3.1f%%,permit range [%d%%-%d%%].",cfgStrArray[0],pwmFreq,atol(cfgStrArray[1])*0.995,atol(cfgStrArray[1])*1.005,pwmDc_u,atol(cfgStrArray[2])-atol(cfgStrArray[3]),atol(cfgStrArray[2])+atol(cfgStrArray[3]));
       }
     }
     do {

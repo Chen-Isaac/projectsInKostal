@@ -470,6 +470,19 @@ FiltersEnd
                             </ArrayOfInt>
                           </value>
                         </item>
+                        <item>
+                          <key type="System.String">
+                            <string>4</string>
+                          </key>
+                          <value type="System.Int32[]">
+                            <ArrayOfInt>
+                              <int>15</int>
+                              <int>15</int>
+                              <int>15</int>
+                              <int>15</int>
+                            </ArrayOfInt>
+                          </value>
+                        </item>
                       </CellSizes>
                     </TtParameterViewSettings>
                   </value>

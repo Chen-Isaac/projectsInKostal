@@ -3468,6 +3468,54 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
           </valuelist>
         </param>
       </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <name>chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>2000</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>1</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>Mode6_R</const>
+            </value>
+            <value>
+              <const>Mode6_G</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>Mode5_G</const>
+            </value>
+            <value>
+              <const>Mode5_B</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
     </tf>
     <tf>
       <title>Shutdown Power</title>
