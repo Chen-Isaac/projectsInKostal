@@ -149,15 +149,16 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
           </assignment>
         </in>
       </set>
-      <wait>
+      <caplfunction>
         <title />
-        <time>
+        <name>prodPwmOutKeepTimeMeas</name>
+        <param>
+          <type>char[]</type>
           <value>
-            <const>18</const>
+            <const>Mode2_B</const>
           </value>
-          <unit>s</unit>
-        </time>
-      </wait>
+        </param>
+      </caplfunction>
       <caplfunction>
         <title />
         <name>prodPwmOutFallingEdgeMeas</name>
