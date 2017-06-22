@@ -416,7 +416,7 @@ export void prodPwmOutChk (char vt2516CfgEntry[],float expectedFreq,float expect
 export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
   char namespace[100],vt2516CfgInfo[2],cfgStrArray[5][30];
   float pwmFreq,pwmDc_o,pwmDc_u,avgVolt;
-  int64 tRiseStart,tRiseEnd,tMeaStart,t0;
+  int64 tRiseStart,tRiseEnd,tMeaStart;
   int flag,paraNum;
   paraNum = getCfgStrArray("pwmRiseEdgeCfg",pwmMode,cfgStrArray);
   if (paraNum == -1)
@@ -438,7 +438,7 @@ export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
     else {
       testStepPass("measure PWM rising edge","pin %s :PWM rising started at %5.2fms after trigger.",cfgStrArray[0],_pow(10,-6)*(tRiseStart-tMeaStart));
       flag = 0;
-      t0 = tRiseStart;
+      tRiseEnd = tRiseStart;
       do {
         pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
         pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
@@ -447,10 +447,9 @@ export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
         if (pwmDc_u!=pwmDc_o) {
           pwmDc_o = pwmDc_u;
           tRiseEnd = timeNowInt64();
-          t0 = tRiseEnd;
         }
         else {
-          if (_pow(10,-6)*(timeNowInt64()-t0) >300) 
+          if (_pow(10,-6)*(timeNowInt64()-tRiseEnd) >300) 
             flag = 1;//if pwmDc didn't change within 300ms, so it will be determined as stable
         }
         testWaitForTimeout(1);
@@ -461,7 +460,7 @@ export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
         if ((_pow(10,-6)*(tRiseEnd - tRiseStart)<=atol(cfgStrArray[4])))
           testStepPass("measure PWM rising edge","pin %s :PWM rising stopped at %6.2fms after trigger.Rising time is %6.2fms,within %sms.",cfgStrArray[0],_pow(10,-6)*(tRiseEnd-tMeaStart),_pow(10,-6)*(tRiseEnd-tRiseStart),cfgStrArray[4]);
         else 
-          testStepFail("measure PWM rising edge","pin %s :PWM rising stopped at %6.2fms after trigger.Rising time is %6.2fms,larger than %dms.",cfgStrArray[0],_pow(10,-6)*(tRiseEnd-tMeaStart),_pow(10,-6)*(tRiseEnd-tRiseStart),cfgStrArray[4]);
+          testStepFail("measure PWM rising edge","pin %s :PWM rising stopped at %6.2fms after trigger.Rising time is %6.2fms,larger than %sms.",cfgStrArray[0],_pow(10,-6)*(tRiseEnd-tMeaStart),_pow(10,-6)*(tRiseEnd-tRiseStart),cfgStrArray[4]);
         if ((atol(cfgStrArray[1]) == 0) && (atol(cfgStrArray[2]) == 100)) {//when duty=100%
           if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc_u == 100))
             testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",cfgStrArray[0],pwmFreq,pwmDc_u,avgVolt);
