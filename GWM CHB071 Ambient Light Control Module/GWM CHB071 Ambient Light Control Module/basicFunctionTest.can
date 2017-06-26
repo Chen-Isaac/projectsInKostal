@@ -75,6 +75,22 @@ export testcase chkAlcmKeepTime (char doorSignal[],char Mode2[], char accOrOnMod
   stateMachine("chkAlcmKeepTime",routeNum,paraPick);
 }
 
+export testcase chkDrivingModeReqSigImpWhenAccOn (char doorSignal[],char drvModeReqVal[],char msWaitForTurnOn[]) {
+  char paraPick[3][2][100]={{"doorSignal",""},{"drvModeReqVal",""},{"msWaitForTurnOn",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],drvModeReqVal,elCount(paraPick[1][1]));
+  strncpy(paraPick[2][1],msWaitForTurnOn,elCount(paraPick[2][1]));
+  stateMachine("chkDrivingModeReqSigImpWhenAccOn",routeNum,paraPick);
+}
+
+export testcase chkALCMLightLvlSetSigImpWhenAccOn (char doorSignal[],char alcmLightLvlSetVal[],char msWaitForTurnOn[]) {
+  char paraPick[3][2][100]={{"doorSignal",""},{"alcmLightLvlSetVal",""},{"msWaitForTurnOn",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],alcmLightLvlSetVal,elCount(paraPick[1][1]));
+  strncpy(paraPick[2][1],msWaitForTurnOn,elCount(paraPick[2][1]));
+  stateMachine("chkALCMLightLvlSetSigImpWhenAccOn",routeNum,paraPick);
+}
+
 export testcase try() {
   int64 t,t1;
   t = timeNowInt64();

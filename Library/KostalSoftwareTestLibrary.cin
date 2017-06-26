@@ -450,7 +450,7 @@ export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
         pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
         avgVolt = sysGetVariableFloat(namespace,"Avg");
         //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-        if (pwmDc_u > pwmDc_o) {
+        if (pwmDc_u - pwmDc_o > 0.1) {
           //testStep("","pwmDc_o = %f%%,pwmDc_u=%f%%",pwmDc_o,pwmDc_u);
           pwmDc_o = pwmDc_u;
           tRiseEnd = timeNowInt64();
@@ -509,7 +509,8 @@ export void prodPwmOutKeepTimeMeas (char pwmMode[]) {
       pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
       avgVolt = sysGetVariableFloat(namespace,"Avg");
       //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-      if (pwmDc_u > pwmDc_o) {
+      if (pwmDc_u - pwmDc_o > 0.1 ) {//avoid little change like 20.68 to 20.69
+        //testStep("","pwmDc_o = %f,pwmDc_u = %f",pwmDc_o,pwmDc_u);
         pwmDc_o = pwmDc_u;
         tRiseEnd = timeNowInt64();
       }

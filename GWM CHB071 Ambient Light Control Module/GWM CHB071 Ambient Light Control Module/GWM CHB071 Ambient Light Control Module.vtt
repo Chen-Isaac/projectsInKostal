@@ -3516,6 +3516,15 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
           </valuelist>
         </param>
       </capltestcaselist>
+      <comment>
+        <title>If received ACC or IGN ON signal after 20s,ambient light will be shutted down and switched on last saved color and luminance in 1s</title>
+      </comment>
+      <comment>
+        <title>If all doors are closed and any doors are open again,then the time 20s will be recalculated from door open</title>
+      </comment>
+      <comment>
+        <title>If received ACC or IGN ON signal during light 20s,ambient light will be continuously switched on</title>
+      </comment>
       <capltestcaselist>
         <title />
         <name>chkAlcmKeepTime</name>
@@ -3552,6 +3561,56 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
           <valuelist>
             <value>
               <const>2000</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <tf>
+      <title>3.5.2 Switch on ambient light by ACC or IGN ON</title>
+      <comment>
+        <title>When Power mode is ACC,ALCM will ignore DrivingModeReq and ALCMLightLvlSet signal.</title>
+      </comment>
+      <capltestcaselist>
+        <title />
+        <name>chkDrivingModeReqSigImpWhenAccOn</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|drvModeReqVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>3000</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <name>chkALCMLightLvlSetSigImpWhenAccOn</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|alcmLightLvlSetVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>3000</const>
             </value>
           </valuelist>
         </param>
