@@ -66,6 +66,15 @@ export testcase chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnO
   stateMachine("chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff",routeNum,paraPick);
 }
 
+export testcase chkAlcmKeepTime (char doorSignal[],char Mode2[], char accOrOnMode[],char msWaitForTurnOn[]) {
+  char paraPick[4][2][100]={{"doorSignal",""},{"Mode2",""},{"accOrOnMode",""},{"msWaitForTurnOn",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],Mode2,elCount(paraPick[1][1]));
+  strncpy(paraPick[2][1],accOrOnMode,elCount(paraPick[2][1]));
+  strncpy(paraPick[3][1],msWaitForTurnOn,elCount(paraPick[3][1]));
+  stateMachine("chkAlcmKeepTime",routeNum,paraPick);
+}
+
 export testcase try() {
   int64 t,t1;
   t = timeNowInt64();
