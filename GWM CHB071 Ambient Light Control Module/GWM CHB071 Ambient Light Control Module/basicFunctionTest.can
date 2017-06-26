@@ -91,13 +91,15 @@ export testcase chkALCMLightLvlSetSigImpWhenAccOn (char doorSignal[],char alcmLi
   stateMachine("chkALCMLightLvlSetSigImpWhenAccOn",routeNum,paraPick);
 }
 
-export testcase chkALCMLightLvlSetSigImpWhenIgnOn (char doorSignal[],char alcmLightLvlSetVal[],char msWaitForTurnOn[],char dutyG[],char dutyB[]) {
-  char paraPick[5][2][100]={{"doorSignal",""},{"alcmLightLvlSetVal",""},{"msWaitForTurnOn",""},{"dutyG",""},{"dutyB",""}};
+export testcase chkALCMLightLvlSetSigImpWhenIgnOn (char doorSignal[],char alcmLightLvlSetVal[],char msWaitForTurnOn[],char freqG[],char dutyG[],char freqB[],char dutyB[]) {
+  char paraPick[7][2][100]={{"doorSignal",""},{"alcmLightLvlSetVal",""},{"msWaitForTurnOn",""},{"freqG",""},{"dutyG",""},{"freqB",""},{"dutyB",""}};
   strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
   strncpy(paraPick[1][1],alcmLightLvlSetVal,elCount(paraPick[1][1]));
   strncpy(paraPick[2][1],msWaitForTurnOn,elCount(paraPick[2][1]));
-  strncpy(paraPick[3][1],dutyG,elCount(paraPick[3][1]));
-  strncpy(paraPick[4][1],dutyB,elCount(paraPick[4][1]));
+  strncpy(paraPick[3][1],freqG,elCount(paraPick[3][1]));
+  strncpy(paraPick[4][1],dutyG,elCount(paraPick[4][1]));
+  strncpy(paraPick[5][1],freqB,elCount(paraPick[5][1]));
+  strncpy(paraPick[6][1],dutyB,elCount(paraPick[6][1]));
   stateMachine("chkALCMLightLvlSetSigImpWhenIgnOn",routeNum,paraPick);
 }
 
@@ -107,4 +109,5 @@ export testcase try() {
   testWaitForTimeout(3000);
   t1 = timeNowInt64();
   testStep("","t=%f",_pow(10,-9)*(t1-t));
+  
 }

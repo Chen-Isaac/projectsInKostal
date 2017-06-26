@@ -3650,6 +3650,44 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
               <const>0</const>
             </value>
             <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
               <const>2</const>
             </value>
             <value>
@@ -3678,6 +3716,44 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
             </value>
             <value>
               <const>20</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
             </value>
           </valuelist>
         </param>
@@ -3752,6 +3828,44 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
               <const>0</const>
             </value>
             <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
               <const>2</const>
             </value>
             <value>
@@ -3780,6 +3894,44 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
             </value>
             <value>
               <const>20</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
             </value>
           </valuelist>
         </param>
@@ -3854,6 +4006,44 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
               <const>0</const>
             </value>
             <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
               <const>2</const>
             </value>
             <value>
@@ -3882,6 +4072,44 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
             </value>
             <value>
               <const>20</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
             </value>
           </valuelist>
         </param>
@@ -3956,6 +4184,44 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
               <const>0</const>
             </value>
             <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
               <const>2</const>
             </value>
             <value>
@@ -3984,6 +4250,44 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
             </value>
             <value>
               <const>20</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
+            </value>
+            <value>
+              <const>200</const>
             </value>
           </valuelist>
         </param>
