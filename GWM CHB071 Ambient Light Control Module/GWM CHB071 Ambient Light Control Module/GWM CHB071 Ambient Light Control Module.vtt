@@ -4330,6 +4330,27 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
           </valuelist>
         </param>
       </capltestcaselist>
+      <comment>
+        <title>Ambient light is Mode0,when power mode is ACC,then ALCM can not switch on ambient light.</title>
+      </comment>
+      <capltestcaselist>
+        <title />
+        <name>chkAccImpWhenMode0</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>3000</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
     </tf>
     <tf>
       <title>Shutdown Power</title>

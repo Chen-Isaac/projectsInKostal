@@ -103,6 +103,14 @@ export testcase chkALCMLightLvlSetSigImpWhenIgnOn (char doorSignal[],char alcmLi
   stateMachine("chkALCMLightLvlSetSigImpWhenIgnOn",routeNum,paraPick);
 }
 
+export testcase chkAccImpWhenMode0 (char doorSignal[],char msWaitForTurnOn[]) {
+  char paraPick[2][2][100]={{"doorSignal",""},{"msWaitForTurnOn",""}};
+  strncpy(paraPick[0][1],doorSignal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],msWaitForTurnOn,elCount(paraPick[1][1]));
+  stateMachine("chkAccImpWhenMode0",routeNum,paraPick);
+  
+}
+
 export testcase try() {
   int64 t,t1;
   t = timeNowInt64();
