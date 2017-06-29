@@ -128,7 +128,6 @@ export testcase chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff (char
   routeNum[31] = stepRouteNum;
   routeNum[32] = stepRouteNum;
   stateMachine("chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff",routeNum,paraPick);
-  
 }
 
 export testcase try() {

@@ -32,7 +32,7 @@
           <string>ActiveDocumentIndex</string>
         </key>
         <value type="System.Int32">
-          <int>1</int>
+          <int>2</int>
         </value>
       </item>
       <item>
@@ -345,7 +345,7 @@ FiltersEnd
         <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
           <ArrayOfDocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-26T10:18:10.2914357Z</LastTouched>
+              <LastTouched>2017-06-28T08:56:52.4884414Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -358,7 +358,7 @@ FiltersEnd
                         <Expanded>true</Expanded>
                       </SplitterSettingsTet>
                       <SplitterSettingsPv>
-                        <SplitPosition>743</SplitPosition>
+                        <SplitPosition>388</SplitPosition>
                         <Expanded>true</Expanded>
                       </SplitterSettingsPv>
                       <SplitterSettingsLv>
@@ -589,24 +589,6 @@ FiltersEnd
                       </TreeListSettings>
                       <RootNodeId>:0</RootNodeId>
                       <MruList>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Test Case</ItemText>
-                          <ImageIndex>172</ImageIndex>
-                          <ModelElementName>tc</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>If</ItemText>
-                          <ImageIndex>182</ImageIndex>
-                          <ModelElementName>if</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
                           <ItemText>Else</ItemText>
                           <ImageIndex>182</ImageIndex>
@@ -1112,15 +1094,6 @@ FiltersEnd
                           </DataTypeList>
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
-                          <ItemText>Comment</ItemText>
-                          <ImageIndex>178</ImageIndex>
-                          <ModelElementName>comment</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
                           <ItemText>chkALCMLightLvlSetSigImpWhenIgnOn [list]</ItemText>
                           <ImageIndex>92</ImageIndex>
                           <ModelElementName>capltestcaselist</ModelElementName>
@@ -1133,6 +1106,44 @@ FiltersEnd
                             <EnumDataType>String</EnumDataType>
                             <EnumDataType>String</EnumDataType>
                             <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkAccImpWhenMode0 [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkAccImpWhenMode0</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Comment</ItemText>
+                          <ImageIndex>178</ImageIndex>
+                          <ModelElementName>comment</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
                           </DataTypeList>
                         </TtCustomPopupListItemData>
                       </MruList>
@@ -1312,7 +1323,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunction.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-26T10:18:10.6914357Z</LastTouched>
+              <LastTouched>2017-06-28T08:56:52.5484414Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1489,6 +1500,22 @@ FiltersEnd
                           <boolean>true</boolean>
                         </value>
                       </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>5623</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6651</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
                     </SerializableDictionaryOfInt32Boolean>
                   </value>
                 </item>
@@ -1520,7 +1547,7 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">chkALCMLightLvlSetSigImpWhenIgnOn(char doorSignal[], char alcmLightLvlSetVal[], char msWaitForTurnOn[], char freqG[], char dutyG[], char freqB[], char dutyB[]): void</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff(char doorSignal[], char msWaitForTurnOn[], char posLmpStsVal[], char Mode3_6[], char Mode2_5[], int stepRouteNum): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
@@ -1529,7 +1556,7 @@ FiltersEnd
                     <string>CaplNavigator_Focused</string>
                   </key>
                   <value type="System.String">
-                    <string>chkALCMLightLvlSetSigImpWhenIgnOn(char doorSignal[], char alcmLightLvlSetVal[], char msWaitForTurnOn[], char freqG[], char dutyG[], char freqB[], char dutyB[]): void</string>
+                    <string>chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff(char doorSignal[], char msWaitForTurnOn[], char posLmpStsVal[], char Mode3_6[], char Mode2_5[], int stepRouteNum): void</string>
                   </value>
                 </item>
                 <item>
@@ -1552,7 +1579,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-26T10:18:10.7914357Z</LastTouched>
+              <LastTouched>2017-06-28T08:56:52.5584414Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1611,7 +1638,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>1842</int>
+                          <int>1943</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1619,7 +1646,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>2077</int>
+                          <int>2178</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1627,7 +1654,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>2888</int>
+                          <int>2989</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1635,7 +1662,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>4279</int>
+                          <int>4380</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1643,7 +1670,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>5187</int>
+                          <int>5288</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1651,7 +1678,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>5701</int>
+                          <int>5802</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1659,7 +1686,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>5886</int>
+                          <int>5987</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1667,7 +1694,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>6591</int>
+                          <int>6692</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1675,7 +1702,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>7150</int>
+                          <int>7251</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1683,7 +1710,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>9193</int>
+                          <int>9294</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1691,7 +1718,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>9415</int>
+                          <int>9516</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1699,7 +1726,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>9982</int>
+                          <int>10083</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1707,7 +1734,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>10501</int>
+                          <int>10602</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1715,7 +1742,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>11575</int>
+                          <int>11676</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1723,7 +1750,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>12722</int>
+                          <int>12823</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1731,7 +1758,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>13135</int>
+                          <int>13236</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1739,7 +1766,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>14185</int>
+                          <int>14286</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1747,7 +1774,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>14887</int>
+                          <int>14988</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1755,7 +1782,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>16113</int>
+                          <int>16214</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1763,7 +1790,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>18386</int>
+                          <int>18487</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1771,7 +1798,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>22757</int>
+                          <int>19732</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1779,7 +1806,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>27261</int>
+                          <int>21131</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1787,7 +1814,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>30041</int>
+                          <int>23804</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1795,7 +1822,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>31422</int>
+                          <int>25201</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1803,7 +1830,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>32415</int>
+                          <int>26793</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1811,7 +1838,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>32780</int>
+                          <int>27651</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1819,7 +1846,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>34259</int>
+                          <int>28650</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1827,7 +1854,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>34900</int>
+                          <int>29446</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1835,7 +1862,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>37247</int>
+                          <int>30025</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1843,7 +1870,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>38094</int>
+                          <int>34399</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1851,7 +1878,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>38748</int>
+                          <int>35780</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1859,7 +1886,7 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>39322</int>
+                          <int>36773</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1867,7 +1894,63 @@ FiltersEnd
                       </item>
                       <item>
                         <key type="System.Int32">
-                          <int>40017</int>
+                          <int>37138</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>38617</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>39258</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>41605</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>42452</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>43106</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>43680</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>44375</int>
                         </key>
                         <value type="System.Boolean">
                           <boolean>true</boolean>
@@ -1882,7 +1965,7 @@ FiltersEnd
                   </key>
                   <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
                     <PersistentSplitterPos>
-                      <SplitterPos>205</SplitterPos>
+                      <SplitterPos>227</SplitterPos>
                       <Enabled>true</Enabled>
                     </PersistentSplitterPos>
                   </value>
@@ -1903,7 +1986,7 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">btnPrsImpOnSpecPwmChk(char button[], int impFactVal): void</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">prodPwmOutRiseFallCurveMeas(char vt2516CfgEntry[], float expectedFreq, float expectedDuty, int deviationRange, int msExpectRiseTime): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
@@ -1912,7 +1995,7 @@ FiltersEnd
                     <string>CaplNavigator_Focused</string>
                   </key>
                   <value type="System.String">
-                    <string>btnPrsImpOnSpecPwmChk(char button[], int impFactVal): void</string>
+                    <string>prodPwmOutRiseFallCurveMeas(char vt2516CfgEntry[], float expectedFreq, float expectedDuty, int deviationRange, int msExpectRiseTime): void</string>
                   </value>
                 </item>
                 <item>
@@ -1920,7 +2003,7 @@ FiltersEnd
                     <string>CaplNavigator_TopIndex</string>
                   </key>
                   <value type="System.Int32">
-                    <int>9</int>
+                    <int>11</int>
                   </value>
                 </item>
                 <item>
@@ -1935,7 +2018,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-26T10:18:10.8114357Z</LastTouched>
+              <LastTouched>2017-06-28T08:56:52.8284414Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -2037,8 +2120,8 @@ FiltersEnd
             <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS2|661|False|END_OF_OBJECT_FrameData|SystemPowerMode|1|END_OF_OBJECT_|</string>
             <string>ConfiguredObject#ChParList_BEGIN_OF_OBJECT|1|posLmpStsVal|END_OF_OBJECT_ChParList|</string>
             <string>ConfiguredObject#ChParList_BEGIN_OF_OBJECT|1|drvModeReqVal|END_OF_OBJECT_ChParList|</string>
-            <string>ConfiguredObject#ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</string>
             <string>ConfiguredObject#ChParList_BEGIN_OF_OBJECT|1|alcmLightLvlSetVal|END_OF_OBJECT_ChParList|</string>
+            <string>ConfiguredObject#ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</string>
           </ArrayOfString>
         </value>
       </item>
