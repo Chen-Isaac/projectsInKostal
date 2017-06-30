@@ -4810,6 +4810,38 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
           </valuelist>
         </param>
       </capltestcaselist>
+      <comment>
+        <title>Ambient light is Mode0,if the color mode is Mode0,received IGN ON signal and short or long press one time,ALCM will switch on last saved color and luminance in 1s by dimming,then will change to corresponding color and luminance by received DrivingModeReq and ALCMLightLvlSet signal.</title>
+      </comment>
+      <capltestcaselist>
+        <title />
+        <name>chkIgnOnImpWhenMode0</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>3000</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>Mode2_G_Lv100-50</const>
+            </value>
+            <value>
+              <const>Mode2_B_Lv100-50</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
     </tf>
     <tf>
       <title>Shutdown Power</title>

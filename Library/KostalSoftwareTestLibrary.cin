@@ -436,7 +436,7 @@ export int64 pwmRiseStartTimingMeas (char pinName[]) {
     //testValidateTesterConfirmation("step1","",1);
   } while ((pwmDc_u - pwmDc_o < 0.1)&&(_pow(10,-9)*(tRiseStart-tMeaStart)<3));
   if (_pow(10,-9)*(tRiseStart-tMeaStart)>=3) {
-    testStepFail("measure PWM rising edge","pin %s :PWM output didn't rise within 3s after rising start timing measurement.",pinName);
+    testStepFail("measure PWM rising edge","pin %s :PWM output didn't rise within 3s after rising start timing measurement. Output frequency = %5.2fHz, duty = %3.1f%% at this moment.",pinName,pwmFreq,pwmDc_u);
     return -1; 
   }
   else {
@@ -528,9 +528,9 @@ export int64 pwmFallStartTimingMeas (char pinName[]) {
   }
 }
 
-export int64 pwmFallEndTimingMeas (char pinName[]) {
+export int64 pwmFallEndTimingMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
   char namespace[100],vt2516CfgInfo[2];
-  float pwmFreq,pwmDc_u,pwmDc_o;
+  float pwmFreq,pwmDc_u,pwmDc_o,avgVolt;
   int64 tFallEnd,tMeaStart;
   int flag,direction;
   getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
@@ -543,6 +543,7 @@ export int64 pwmFallEndTimingMeas (char pinName[]) {
   do {
     pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
     pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+    avgVolt = sysGetVariableFloat(namespace,"Avg");
     //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
     if (pwmDc_o - pwmDc_u >= 0.1) {//still falling
       //testStep("","pwmDc_o = %f%%,pwmDc_u=%f%%",pwmDc_o,pwmDc_u);
@@ -559,89 +560,121 @@ export int64 pwmFallEndTimingMeas (char pinName[]) {
           flag = 1;//if pwmDc didn't change within 1500ms, so it will be determined as stable.a specific pwmdc may last for about 200ms then fall again.
       }
     }
+    testWaitForTimeout(1);
   } while ((!flag) && (_pow(10,-9)*(tFallEnd - tMeaStart)<5));
   if (_pow(10,-9)*(tFallEnd - tMeaStart)>=5) {
     testStepFail("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling edge didn't complete within 5s after falling end timing measurment.",pinName,pwmFreq,pwmDc_u);
     return -1;
   }
   else { 
-    testStepPass("measure PWM falling edge","pin %s :PWM falling edge stopped at %6.2fms after falling end timing measurment.",pinName,_pow(10,-6)*(tFallEnd-tMeaStart));
+    testStepPass("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling edge stopped at %6.2fms after falling end timing measurment.",pinName,pwmFreq,pwmDc_u,_pow(10,-6)*(tFallEnd-tMeaStart));
+    if (expectedDuty == 0) {//when duty=0%
+      if ((avgVolt < 0.5) && (pwmFreq == 0) && (pwmDc_u == 0))
+        testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
+      else
+        testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = 0Hz, duty = %3.1f%% vs expectedDuty = 0%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
+    }
+    else {//when duty != 0%
+      if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005) && (pwmDc_u > expectedDuty-deviationRange) && (pwmDc_u < expectedDuty+deviationRange))
+        testStepPass("check PWM","pin %s :output frequency = %4.1fHz,output duty = %3.1f%%.",pinName,pwmFreq,pwmDc_u);
+      else
+        testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%.",pinName,pwmFreq,expectedFreq,pwmDc_u,expectedDuty);
+    }
     return tFallEnd * direction;
   }
 }
 
 export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
-  char cfgStrArray[8][30];
-  int64 tRiseStart,tRiseEnd;
+  char cfgStrArray[10][30];
+  double tRiseStart,tRiseEnd;
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",pwmMode,cfgStrArray);
   if (paraNum == -1)
     testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
   else {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
-    tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[3]));
-    if (_pow(10,-6)*(abs(tRiseEnd) - tRiseStart) <= atol(cfgStrArray[4]))
-      testStepPass("measure PWM rising edge","PWM %s :PWM rising time is %6.2fms,within %sms.",pwmMode,_pow(10,-6)*(tRiseEnd-tRiseStart),cfgStrArray[4]);
+    tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
+    if (_pow(10,-6)*(abs(tRiseEnd) - tRiseStart) <= atol(cfgStrArray[6]))
+      testStepPass("measure PWM rising edge","PWM %s :PWM rising time is %6.2fms,within %sms.",pwmMode,_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
     else
-      testStepFail("measure PWM rising edge","PWM %s :PWM rising time is %6.2fms,longer than %sms.",pwmMode,_pow(10,-6)*(tRiseEnd-tRiseStart),cfgStrArray[4]);
+      testStepFail("measure PWM rising edge","PWM %s :PWM rising time is %6.2fms,longer than %sms.",pwmMode,_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
   }
 }
 
 export void prodPwmOutKeepTimeMeas (char pwmMode[]) {
-  char cfgStrArray[8][30];
-  int64 tFallStart,tRiseEnd;
+  char cfgStrArray[10][30];
+  double tFallStart,tRiseEnd;
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",pwmMode,cfgStrArray);
   if (paraNum == -1)
     testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
   else {
-    tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[3]));
+    tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
     tFallStart = pwmFallStartTimingMeas (cfgStrArray[0]);
-    if ((_pow(10,-6)*(tFallStart - abs(tRiseEnd)) <= atol(cfgStrArray[5]) + atol(cfgStrArray[6])) && (_pow(10,-6)*(tFallStart - tRiseEnd) <= atol(cfgStrArray[5]) - atol(cfgStrArray[6])))
-      testStepPass("measure PWM keep time","PWM %s :PWM keep time is %6.2fms,within range [%s ¡À %sms].",pwmMode,_pow(10,-6)*(tFallStart-tRiseEnd),cfgStrArray[5],cfgStrArray[6]);
+    if ((_pow(10,-6)*(tFallStart - abs(tRiseEnd)) <= atol(cfgStrArray[7]) + atol(cfgStrArray[8])) && (_pow(10,-6)*(tFallStart - tRiseEnd) <= atol(cfgStrArray[7]) - atol(cfgStrArray[8])))
+      testStepPass("measure PWM keep time","PWM %s :PWM keep time is %6.2fms,within range [%s ¡À %sms].",pwmMode,_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
     else
-      testStepFail("measure PWM keep time","PWM %s :PWM keep time is %6.2fms,out of range [%s ¡À %sms].",pwmMode,_pow(10,-6)*(tFallStart-tRiseEnd),cfgStrArray[5],cfgStrArray[6]);
+      testStepFail("measure PWM keep time","PWM %s :PWM keep time is %6.2fms,out of range [%s ¡À %sms].",pwmMode,_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
   }
 }
 
 export void prodPwmOutFallingEdgeMeas (char pwmMode[]) {
-  char cfgStrArray[8][30];
-  int64 tFallStart,tFallEnd;
+  char cfgStrArray[10][30];
+  double tFallStart,tFallEnd;
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",pwmMode,cfgStrArray);
   if (paraNum == -1)
     testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
   else {
-    tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0]);
+    tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
     tFallStart = pwmFallStartTimingMeas(cfgStrArray[0]);
-    if (_pow(10,-6)*(abs(tFallEnd) - tFallStart) <= atol(cfgStrArray[7]))
-      testStepPass("measure PWM falling edge","PWM %s :PWM falling time is %6.2fms,within %sms.",pwmMode,_pow(10,-6)*(tFallEnd-tFallStart),cfgStrArray[7]);
+    if (_pow(10,-6)*(abs(tFallEnd) - tFallStart) <= atol(cfgStrArray[9]))
+      testStepPass("measure PWM falling edge","PWM %s :PWM falling time is %6.2fms,within %sms.",pwmMode,_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
     else
-      testStepFail("measure PWM falling edge","PWM %s :PWM falling time is %6.2fms,longer than %sms.",pwmMode,_pow(10,-6)*(tFallEnd-tFallStart),cfgStrArray[7]);
+      testStepFail("measure PWM falling edge","PWM %s :PWM falling time is %6.2fms,longer than %sms.",pwmMode,_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
   }
 }
 
-export void prodPwmOutRiseFallCurveMeas (char pinName[],float expectedFreq,float expectedRiseEndDuty,float expectedFallEndDuty,int deviationRange,int msExpectRiseTime,int msExpectFallTime) {
-  char cfgStrArray[8][30];
-  int64 tRiseStart,tRiseEnd,tFallStart,tFallEnd;
-  float tRise, tFall;
-  tRiseStart = pwmRiseStartTimingMeas(pinName);
-  tRiseEnd = pwmRiseEndTimingMeas(pinName,expectedFreq,expectedRiseEndDuty,deviationRange);
-  tRise = _pow(10,-6)*(abs(tRiseEnd) - tRiseStart);
-  if (tRise <= msExpectRiseTime)
-    testStepPass("measure PWM rising edge","pin %s :PWM rising time is %6.2fms,within %dms.",pinName,tRise,msExpectRiseTime);
-  else
-    testStepFail("measure PWM rising edge","pin %s :PWM rising time is %6.2fms,longer than %dms.",pinName,tRise,msExpectRiseTime);
-  if (tRiseEnd < 0)
-    tFallStart = abs(tRiseEnd);
-  else
-    tFallStart = pwmFallStartTimingMeas(pinName);
-  tFallEnd = pwmFallEndTimingMeas (pinName);
-  tFall = _pow(10,-6)*(abs(tFallEnd) - tFallStart);
-  if (tFall <= msExpectFallTime)
-    testStepPass("measure PWM falling edge","pin %s :PWM falling time is %6.2fms,within %dms.",pinName,tFall,msExpectFallTime);
-  else
-    testStepFail("measure PWM falling edge","pin %s :PWM falling time is %6.2fms,longer than %dms.",pinName,tFall,msExpectFallTime);
+export void prodPwmOutRiseFallCurveMeas (char pwmMode[]) {
+  char cfgStrArray[10][30];
+  double tRiseStart,tRiseEnd,tFallStart,tFallEnd;
+  double tRise, tFall;
+  int paraNum;
+  paraNum = getCfgStrArray("pwmTimeCfg",pwmMode,cfgStrArray);
+  if (paraNum == -1)
+    testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
+  else {
+    tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
+    if (tRiseStart != -1) {
+      tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
+      if (tRiseEnd != -1) {
+        tRise = _pow(10,-6)*(abs(tRiseEnd) - tRiseStart);
+        //testStep("","tRiseEnd=%lld,abs(tRiseEnd)=%lld,abs(tRiseEnd) - tRiseStart=%lld,tRiseStart=%lld,tRise=%f",tRiseEnd,abs(tRiseEnd),abs(tRiseEnd) - tRiseStart,tRiseStart,tRise);
+        if (tRise <= atol(cfgStrArray[6]))
+          testStepPass("measure PWM rising edge","pin %s :PWM rising time is %6.2fms,within %sms.",cfgStrArray[0],tRise,cfgStrArray[6]);
+        else
+          testStepFail("measure PWM rising edge","pin %s :PWM rising time is %6.2fms,longer than %sms.",cfgStrArray[0],tRise,cfgStrArray[6]);
+        if (tRiseEnd < 0)
+          tFallStart = abs(tRiseEnd);
+        else
+          tFallStart = pwmFallStartTimingMeas(cfgStrArray[0]);
+        if (tFallStart != -1) {
+          tFallEnd = pwmFallEndTimingMeas (cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
+          if (tFallEnd != -1 ) {
+            tFall = _pow(10,-6)*(abs(tFallEnd) - tFallStart);
+            if (tFall <= atol(cfgStrArray[9]))
+              testStepPass("measure PWM falling edge","pin %s :PWM falling time is %6.2fms,within %sms.",cfgStrArray[0],tFall,cfgStrArray[9]);
+            else
+              testStepFail("measure PWM falling edge","pin %s :PWM falling time is %6.2fms,longer than %sms.",cfgStrArray[0],tFall,cfgStrArray[9]);
+          }
+        }
+        else
+          testStepFail("measure PWM falling edge","pin %s :No falling edge occured.",cfgStrArray[0]);
+      } 
+    }
+    else 
+      testStepFail("measure PWM rising edge","pin %s :No wave change occured.",cfgStrArray[0]);
+  }
 }
 
 /*export void prodPwmOutRiseRiseCurveMeas (char pwmMode[]) {
@@ -999,7 +1032,7 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 prodPwmOutFallingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 18:
-                prodPwmOutRiseFallCurveMeas (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),atodbl(cfgFuncArray[routeNum[i]][4]),atol(cfgFuncArray[routeNum[i]][5]),atol(cfgFuncArray[routeNum[i]][6]),atol(cfgFuncArray[routeNum[i]][7]));
+                prodPwmOutRiseFallCurveMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 19:
                 chFixVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
