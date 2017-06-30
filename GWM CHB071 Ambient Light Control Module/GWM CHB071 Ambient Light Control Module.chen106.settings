@@ -417,7 +417,7 @@ FiltersEnd
                           <value type="System.Int32[]">
                             <ArrayOfInt>
                               <int>300</int>
-                              <int>96</int>
+                              <int>56</int>
                               <int>150</int>
                             </ArrayOfInt>
                           </value>
