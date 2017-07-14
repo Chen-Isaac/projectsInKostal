@@ -21,8 +21,8 @@
         <value type="System.Collections.Generic.List`1[System.Drawing.Size]">
           <ArrayOfSize>
             <Size>
-              <Width>1612</Width>
-              <Height>731</Height>
+              <Width>1644</Width>
+              <Height>780</Height>
             </Size>
           </ArrayOfSize>
         </value>
@@ -32,7 +32,7 @@
           <string>ActiveDocumentIndex</string>
         </key>
         <value type="System.Int32">
-          <int>0</int>
+          <int>1</int>
         </value>
       </item>
       <item>
@@ -345,7 +345,7 @@ FiltersEnd
         <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
           <ArrayOfDocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-07-06T03:21:01.2447224Z</LastTouched>
+              <LastTouched>2017-07-13T07:22:00.4810412Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -365,7 +365,7 @@ FiltersEnd
                         <SplitPosition>185</SplitPosition>
                         <Expanded>true</Expanded>
                       </SplitterSettingsLv>
-                      <ActiveView>2</ActiveView>
+                      <ActiveView>0</ActiveView>
                     </TtEditorSettings>
                   </value>
                 </item>
@@ -1328,7 +1328,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunction.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-07-06T03:21:01.3547224Z</LastTouched>
+              <LastTouched>2017-07-13T07:22:00.6410412Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1564,7 +1564,7 @@ FiltersEnd
                     <string>CaplNavigator_Focused</string>
                   </key>
                   <value type="System.String">
-                    <string>initProduct(): void</string>
+                    <string>chkALCMLightLvlSetSigImpWhenIgnOff(char doorSignal[], char alcmLightLvlSetVal[], char msWaitForTurnOn[]): void</string>
                   </value>
                 </item>
                 <item>
@@ -1573,7 +1573,7 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">initProduct(): void</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">chkALCMLightLvlSetSigImpWhenIgnOff(char doorSignal[], char alcmLightLvlSetVal[], char msWaitForTurnOn[]): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
@@ -1600,7 +1600,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-07-06T03:21:01.3947224Z</LastTouched>
+              <LastTouched>2017-07-13T07:22:00.7110412Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1711,7 +1711,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-07-06T03:21:01.4147224Z</LastTouched>
+              <LastTouched>2017-07-13T07:22:00.7210412Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">

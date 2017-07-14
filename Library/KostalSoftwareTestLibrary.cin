@@ -14,7 +14,7 @@ variables {
     determinedByHardware = 1
   };
   
-  char func[30][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","sendDiagChkResp","sendLinDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","prodPwmOutChk","prodPwmOutRisingEdgeMeas","prodPwmOutKeepTimeMeas","prodPwmOutFallingEdgeMeas","prodPwmOutRiseFallCurveMeas","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","chLoadConnectStatSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
+  char func[32][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","sendCanUdsDiagChkResp","sendCanKostiaDiagChkResp","sendLinUdsDiagChkResp","sendLinKostiaDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","prodPwmOutChk","prodPwmOutRisingEdgeMeas","prodPwmOutKeepTimeMeas","prodPwmOutFallingEdgeMeas","prodPwmOutRiseFallCurveMeas","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","chLoadConnectStatSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
   
   enum digitalLevel { 
     Low = 0, 
@@ -186,7 +186,7 @@ export void sigStatGet (char sig[]) {
   testStep("get signal status","%s = %1.0f",sig,getSignal(sig));
 }
 
-/**************************CAN communication*********************************/
+/**************************CAN LIN communication*********************************/
 export void signalSetting (char sigName[], float valueBase,int range) {
   float sigVal;
   int64 t0,t1;
@@ -217,140 +217,326 @@ export void signalContSetting (char settingSignal[], float startVal, int range, 
       testStepFail("set signal status","set signal failed, %s = %1.0f, != %1.0f",settingSignal,getSignal(settingSignal),sigVal);
     wait(msGapTime);
   }
-  
 }
 
-export int64 sendDiagChkResp (char section[],char entry[]) {//same sequence as trace shows
-  message* recDiag; 
-  message* sendDiag;
-  qword sendMsg,recMsg,chkRecMsgPart;
+export int cfgLinMsgAndSend (char section[],char entry[],char diagInfo[][],linmessage* sendDiag,linmessage* recDiag) {
+  qword sendMsg;
+  int paraNum;
+  paraNum = getCfgStrArray(section,entry,diagInfo);
+  //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
+  if (paraNum!=-1) {
+    sendDiag.id = atol(diagInfo[0]);
+    sendDiag.dlc = atol(diagInfo[1]);
+    strtoull(diagInfo[2],sendMsg);
+    recDiag.id = atol(diagInfo[3]);
+    testStep(entry,"Start to send %s service request.",entry);
+    sendDiag.rtr = 1;
+    output(sendDiag);//send header
+    sendDiag.rtr = 0;
+    sendDiag.qword(0) = swapQWord(sendMsg);//send response
+    output(sendDiag);
+    if (testWaitForMessage(sendDiag.id,1000) == 1) {
+      testStep("Diagnostic Request","Send diagnostic request: 0x%llX",sendMsg);
+      return 0;//output message successfully 
+    }
+    else {
+      testStep("Diagnostic Request","Fail to send diagnostic request. Please check the table id.");
+      return -2;
+    }
+  }
+  else {
+    testStepFail("Error","Can't find the item in paraCfg.ini. Please check section and entry's name.");
+    return -1;//error section or entry
+  }
+}
+
+export int cfgCanMsgAndSend (char section[],char entry[],char diagInfo[][],message* sendDiag,message* recDiag) {
+  qword sendMsg;
   dword sendMsgId,recMsgId;
-  char diagInfo[7][100];
-  int paraNum,chkByteLen,offsetBytePos;
-  paraNum = getCfgStrArray (section,entry,diagInfo);
+  int paraNum;
+  paraNum = getCfgStrArray(section,entry,diagInfo);
   //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
   if (paraNum!=-1) {
     strtoul(diagInfo[0],sendMsgId);
     sendDiag.id = sendMsgId;
     sendDiag.DataLength = atol(diagInfo[1]);
     strtoull(diagInfo[2],sendMsg);
-    sendDiag.qword(0) = swapQWord(sendMsg);
     strtoul(diagInfo[3],recMsgId);
+    recDiag.id = recMsgId;
+    testStep(entry,"Start to send %s service request.",entry);
+    sendDiag.qword(0) = swapQWord(sendMsg);//send response
+    output(sendDiag);
+    if (testWaitForMessage(sendDiag.id,1000) == 1) {
+      testStep("Diagnostic Request","Send diagnostic request: 0x%llX",sendMsg);
+      return 0;//output message successfully 
+    }
+    else {
+      testStep("Diagnostic Request","Fail to send diagnostic request. Please check the table id.");
+      return -2;
+    }
+  }
+  else {
+    testStepFail("Error","Can't find the item in paraCfg.ini. Please check section and entry's name.");
+    return -1;//error section or entry
+  }
+}
+
+export int sendCanUdsDiagChkResp (char entry[],byte recMsg[]) {//same sequence as trace shows
+  message* sendDiag;
+  message* recDiag; 
+  qword recCanMsg,chkRecMsgPart;
+  char diagInfo[7][100];
+  int chkByteLen,offsetBytePos,i,j,k,index,dataByte,stopFlag,errorCode;
+  errorCode = cfgCanMsgAndSend("UDS Services",entry,diagInfo,sendDiag,recDiag);
+  //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
+  if (errorCode == 0) {
     offsetBytePos = atol(diagInfo[4]);
     chkByteLen = atol(diagInfo[5]);
     strtoull(diagInfo[6],chkRecMsgPart);
-    testStep(entry,"Start to send %s service request.",entry);
-    output(sendDiag);
-    testStep("Diagnostic Request","Send diagnostic request: 0x%llX",sendMsg);
-    if (testWaitForMessage(recMsgId,5000) == 1) {
-      testGetWaitEventMsgData(recDiag);  
-      recMsg = swapQWord(recDiag.qword(0));//same sequence as trace shows
-      //testStep("","recMsg=%llx,chkPart=%llx,rightResp=%llx",recMsg,((recMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)),chkRecMsgPart);
-      if ((offsetBytePos + chkByteLen) <= 8) {
-        if (((recMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)) == chkRecMsgPart) {
-          testStepPass("Diagnostic Response","Get positive response:0x%llX.",recMsg);
-          return recMsg;
+    index = 0;
+    i = 0;
+    j = 0;
+    do {
+      if (testWaitForMessage(recDiag.id,5000) == 1) {
+        testGetWaitEventMsgData(recDiag);  
+        if (i == 0) {
+          if (recDiag.byte(0) == 0x10) {
+            dataByte = recDiag.byte(1);
+            stopFlag = dataByte - 6;
+            j = 2;//get data from byte3
+          }
+          else {
+            dataByte = recDiag.byte(0);
+            stopFlag = dataByte - 7;
+            j = 1;//get data from byte2
+          }
+          k = (stopFlag > 0)?8:j+dataByte;
         }
         else {
-          testStepFail("Diagnostic Response","Get negative response:0x%llX.",recMsg);
-          return -4;//negative response
+          j = 1;
+          k = (stopFlag - 7 > 0)?8:j+stopFlag;
+          stopFlag = stopFlag - 7;
+        }
+        recCanMsg = swapQWord(recDiag.qword(0));//same sequence as trace shows
+        for (;j<k;j++) {
+          recMsg[index] = recDiag.byte(j);
+          index++;
+        }
+        if (i == 0) {
+          if ((offsetBytePos + chkByteLen) <= 8) {
+            if (((recCanMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)) == chkRecMsgPart) {
+              testStepPass("Diagnostic Response","Get positive response:0x%llX.",recCanMsg);
+              errorCode = 0;
+            }
+            else {
+              testStepFail("Diagnostic Response","Get negative response:0x%llX.",recCanMsg);
+              errorCode = -5;//negative response.
+            }
+          }
+          else {
+            testStepFail("Error","Fail to check the response, since the parameter input error:(offsetBytePos + chkByteLen) > 8.");
+            errorCode = -4;//fail to check,para input error.
+          }
+          if (recDiag.byte(0) == 0x10) {
+            sendDiag.qword(0) = 0x00000000000030ll;//send response
+            output(sendDiag);
+            testStep("Diagnostic Request","Send diagnostic request: 0x%llX",swapQWord(sendDiag.qword(0)));
+          }
+        }
+        else 
+          testStep("Diagnostic Response","Get response:0x%llX.",recCanMsg);
+        i++;
+      }
+      else {
+        testStepFail("Diagnostic Response","No corresponding response.");
+        stopFlag = -1;//No corresponding response.
+        errorCode = -3;//No corresponding response.
+      } 
+    } while (stopFlag > 0);
+    if (errorCode == 0)
+      return dataByte;
+    else
+      return errorCode;
+  }
+  else 
+    return errorCode;
+}
+
+export int sendCanKostiaDiagChkResp (char entry[],byte recMsg[]) {//same sequence as trace shows
+  message* sendDiag;
+  message* recDiag; 
+  qword recCanMsg,chkRecMsgPart;
+  char diagInfo[7][100];
+  int chkByteLen,offsetBytePos,j,index,errorCode;
+  errorCode = cfgCanMsgAndSend("Kostia Services",entry,diagInfo,sendDiag,recDiag);
+  //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
+  if (errorCode == 0) {
+    offsetBytePos = atol(diagInfo[4]);
+    chkByteLen = atol(diagInfo[5]);
+    strtoull(diagInfo[6],chkRecMsgPart);
+    index = 0;
+    if (testWaitForMessage(recDiag.id,5000) == 1) {
+      testGetWaitEventMsgData(recDiag);  
+      recCanMsg = swapQWord(recDiag.qword(0));//same sequence as trace shows
+      for (j=1;j<8;j++) {
+        recMsg[index] = recDiag.byte(j);
+        index++;
+      }
+      if ((offsetBytePos + chkByteLen) <= 8) {
+        if (((recCanMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)) == chkRecMsgPart) {
+          testStepPass("Diagnostic Response","Get positive response:0x%llX.",recCanMsg);
+          errorCode = 0;
+        }
+        else {
+          testStepFail("Diagnostic Response","Get negative response:0x%llX.",recCanMsg);
+          errorCode = -5;//negative response.
         }
       }
       else {
-        testStepFail("Error","Parameter input error:(offsetBytePos + chkByteLen) > 8.");
-        return -3;//(offsetBytePos + chkByteLen) > 8.
+        testStepFail("Error","Fail to check the response, since the parameter input error:(offsetBytePos + chkByteLen) > 8.");
+        errorCode = -4;//fail to check,para input error.
+      }     
+    }
+    else {
+      testStepFail("Diagnostic Response","No corresponding response.");
+      errorCode = -3;//No corresponding response.
+    } 
+      
+    if (errorCode == 0)
+      return 7;//kostial meaningful databyte length = 7
+    else
+      return errorCode;
+  }
+  else 
+    return errorCode;
+}
+
+export int sendLinUdsDiagChkResp (char entry[],byte recMsg[]) {//same sequence as trace shows
+  linmessage* sendDiag;
+  linmessage* recDiag;
+  qword chkRecMsgPart,recLinMsg;
+  char diagInfo[7][100];
+  int chkByteLen,offsetBytePos,i,j,k,index,dataByte,stopFlag,errorCode;
+  errorCode = cfgLinMsgAndSend ("UDS Services",entry,diagInfo,sendDiag,recDiag);
+  if (errorCode == 0) {
+    offsetBytePos = atol(diagInfo[4]);
+    chkByteLen = atol(diagInfo[5]);
+    strtoull(diagInfo[6],chkRecMsgPart);
+    index = 0;
+    i = 0;
+    j = 0;
+    do {
+      recDiag.rtr = 1;
+      output(recDiag);
+      recDiag.rtr = 0;
+      if (testWaitForMessage(recDiag.id,5000) == 1) {
+        testGetWaitEventMsgData(recDiag);  
+        if (i == 0) {
+          if (recDiag.byte(1) == 0x10) {
+            dataByte = recDiag.byte(2);
+            stopFlag = dataByte - 5;
+            j = 3;//get data from byte3
+          }
+          else {
+            dataByte = recDiag.byte(1);
+            stopFlag = dataByte - 6;
+            j = 2;//get data from byte2
+          }
+          k = (stopFlag > 0)?8:j+dataByte;
+        }
+        else {
+          j = 2;
+          k = (stopFlag - 6 > 0)?8:j+stopFlag;
+          stopFlag = stopFlag - 6;
+        }
+        recLinMsg = swapQWord(recDiag.qword(0));//same sequence as trace shows
+        for (;j<k;j++) {
+          recMsg[index] = recDiag.byte(j);
+          index++;
+        }
+        if (i == 0) {
+          if ((offsetBytePos + chkByteLen) <= 8) {
+            if (((recLinMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)) == chkRecMsgPart) {
+              testStepPass("Diagnostic Response","Get positive response:0x%llX.",recLinMsg);
+              errorCode = 0;
+            }
+            else {
+              testStepFail("Diagnostic Response","Get negative response:0x%llX.",recLinMsg);
+              errorCode = -5;//negative response.
+            }
+          }
+          else {
+            testStepFail("Error","Fail to check the response, since the parameter input error:(offsetBytePos + chkByteLen) > 8.");
+            errorCode = -4;//fail to check,para input error.
+          }
+        }
+        else 
+          testStep("Diagnostic Response","Get response:0x%llX.",recLinMsg);
+        i++;
+      }
+      else {
+        testStepFail("Diagnostic Response","No corresponding response.");
+        stopFlag = -1;//No corresponding response.
+        errorCode = -3;//No corresponding response.
+      } 
+    } while (stopFlag > 0);
+    if (errorCode == 0)
+      return dataByte;
+    else
+      return errorCode;
+  }
+  else 
+    return errorCode;
+}
+
+export int sendLinKostiaDiagChkResp (char entry[],byte recMsg[]) {//same sequence as trace shows
+  linmessage* sendDiag;
+  linmessage* recDiag;
+  qword chkRecMsgPart,recLinMsg;
+  char diagInfo[7][100];
+  int chkByteLen,offsetBytePos,j,index,errorCode;
+  errorCode = cfgLinMsgAndSend ("Kostia Services",entry,diagInfo,sendDiag,recDiag);
+  if (errorCode == 0) {
+    offsetBytePos = atol(diagInfo[4]);
+    chkByteLen = atol(diagInfo[5]);
+    strtoull(diagInfo[6],chkRecMsgPart);
+    index = 0;
+    recDiag.rtr = 1;
+    output(recDiag);
+    recDiag.rtr = 0;
+    if (testWaitForMessage(recDiag.id,5000) == 1) {
+      testGetWaitEventMsgData(recDiag);  
+      recLinMsg = swapQWord(recDiag.qword(0));//same sequence as trace shows
+      for (j=1;j<8;j++) {
+        recMsg[index] = recDiag.byte(j);
+        index++;
+      }
+      if ((offsetBytePos + chkByteLen) <= 8) {
+        if (((recLinMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)) == chkRecMsgPart) {
+          testStepPass("Diagnostic Response","Get positive response:0x%llX.",recLinMsg);
+          errorCode = 0;
+        }
+        else {
+          testStepFail("Diagnostic Response","Get negative response:0x%llX.",recLinMsg);
+          errorCode = -5;//negative response.
+        }
+      }
+      else {
+        testStepFail("Error","Fail to check the response, since the parameter input error:(offsetBytePos + chkByteLen) > 8.");
+        errorCode = -4;//fail to check,para input error.
       }
     }
     else {
       testStepFail("Diagnostic Response","No corresponding response.");
-      return -2;//No corresponding response.
+      errorCode = -3;//No corresponding response.
     } 
+    if (errorCode == 0)
+      return 7;//kostial meaningful databyte length = 7
+    else
+      return errorCode;
   }
   else 
-    return -1;//error section or entry
-}
-
-export int sendLinDiagChkResp (char section[],char entry[],qword recLinMsg[]) {//same sequence as trace shows
-  linmessage* recDiag;
-  linmessage* sendDiag;
-  qword sendMsg,chkRecMsgPart;
-  char diagInfo[7][100];
-  int paraNum,masterTableId,chkByteLen,offsetBytePos,i,dataByte;
-  paraNum = getCfgStrArray (section,entry,diagInfo);
-  testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
-  if (paraNum!=-1) {
-    sendDiag.id = atol(diagInfo[0]);
-    sendDiag.dlc = atol(diagInfo[1]);
-    strtoull(diagInfo[2],sendMsg);
-    recDiag.id = atol(diagInfo[3]);
-    offsetBytePos = atol(diagInfo[4]);
-    chkByteLen = atol(diagInfo[5]);
-    strtoull(diagInfo[6],chkRecMsgPart);
-    if ((offsetBytePos + chkByteLen) <= 8) {
-      testStep(entry,"Start to send %s service request.",entry);
-      sendDiag.rtr = 1;
-      output(sendDiag);//send header
-      sendDiag.rtr = 0;
-      sendDiag.qword(0) = swapQWord(sendMsg);//send response
-      output(sendDiag);
-      if (testWaitForMessage(sendDiag.id,1000) == 1) {
-        testStep("Diagnostic Request","Send diagnostic request: 0x%llX",sendMsg);
-        i = 0;
-        do {
-          recDiag.rtr = 1;
-          output(recDiag);
-          recDiag.rtr = 0;
-          if (testWaitForMessage(recDiag.id,5000) == 1) {
-            testGetWaitEventMsgData(recDiag);  
-            if (i == 0) {
-              if (recDiag.byte(1) == 0x10) {
-                dataByte = recDiag.byte(2);
-                dataByte = dataByte - 5;
-              }
-              else {
-                dataByte = recDiag.byte(1);
-                dataByte = dataByte - 6;
-              }
-            }
-            else 
-              dataByte = dataByte - 6;
-            recLinMsg[i] = swapQWord(recDiag.qword(0));//same sequence as trace shows
-            if (i == 0) {
-              if (((recLinMsg[i] << (offsetBytePos*8)) >> ((8-chkByteLen)*8)) == chkRecMsgPart)
-                testStepPass("Diagnostic Response","Get positive response:0x%llX.",recLinMsg[i]);
-              else {
-                testStepFail("Diagnostic Response","Get negative response:0x%llX.",recLinMsg[i]);
-                dataByte = -1;//negative response.
-                i = -5;//negative response.
-              }
-            }
-            else
-              testStep("Diagnostic Response","Get response:0x%llX.",recLinMsg[i]);
-            i++;
-          }
-          else {
-            testStepFail("Diagnostic Response","No corresponding response.");
-            dataByte = -1;//No corresponding response.
-            i = -4;//No corresponding response.
-          } 
-        } while (dataByte > 0);
-        
-        return i;
-      }
-      else {
-        testStep("Diagnostic Request","Fail to send diagnostic request. Please check the table id.");
-        return -3;
-      }
-    }
-    else {
-      testStepFail("Error","Parameter input error:(offsetBytePos + chkByteLen) > 8.");
-      return -2;//(offsetBytePos + chkByteLen) > 8.
-    }
-  }
-  else {
-    testStepFail("Error","Can't find the entry. Please check section and entry's name.");
-    return -1;//error section or entry
-  } 
+    return errorCode;
 }
 
 export void wait (dword waitMs) {
@@ -359,32 +545,19 @@ export void wait (dword waitMs) {
   testStep("Wait","Wait for %ldms.",waitMs);
 }
 /************************* communication data analyze *********************************/
-export void decodeAsciiFromRecDiag (qword recDiagContent,char reportContent[]) {
+export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos,char reportContent[]) {
   char decodedAsciiString[100];
-  int index;
-  qword reverseRecDiagContent;
-  if (recDiagContent >= 0) {
-    index = 0;
-    reverseRecDiagContent = swapQWord(recDiagContent);
-    while (reverseRecDiagContent) {
-      decodedAsciiString[index] = (byte)(reverseRecDiagContent & 0xffll);
-      index++;
-      reverseRecDiagContent = (reverseRecDiagContent >> 8);
+  int i;
+  if (arrayLen > 0) {
+    if (arrayLen > offsetBytePos) {
+      for (i=0;i<arrayLen-offsetBytePos;i++)
+        decodedAsciiString[i] = recMsg[offsetBytePos+i];
+      decodedAsciiString[i] = '\0';
+      testStep("Decode Response as ASCII","%s %s.",reportContent,decodedAsciiString);
     }
-    decodedAsciiString[index] = '\0';
-    testStep("Decode Response","%s %s.",reportContent,decodedAsciiString);
+    else
+      testStep("Error","Response byte number <= offsetBytePos.");
   }
-}
-
-export qword retrieveSubsetFromResp (qword recDiagContent, int offsetBytePos, int byteLen) {//offsetBytePos=0~7
-  qword subset;
-  if ((offsetBytePos<0) || (offsetBytePos>7) || (offsetBytePos+byteLen>8)) {
-    subset = -1;
-    testStepFail("call function","call function retrieveSubsetFromResp error, please check the input");
-  }
-  else 
-    subset = ((recDiagContent << (offsetBytePos*8)) >> ((8 - byteLen) * 8));
-  return subset;
 }
 
 /****************************vtSystem related*************************************/
@@ -1018,8 +1191,8 @@ export void specStatImpOnSigChk (char specStat[]) {
 }
 
 export void stateMachine (char stateMachineSection[],int routeNum[],char paraPick[][][]) {//char paraPick[var num][2][100],paraPick[var num][0]=variant name,paraPick[var num][1]=var string value
-  int i,j,n,m,funcNum,findParaValBool,errBool,paraNum[30],cmp,recLinMsgNum;
-  qword recMsg,recLinMsg[10];
+  int i,j,n,m,funcNum,findParaValBool,errBool,paraNum[30],cmp,recAnalyzeDataByteNum;
+  byte recMsg[100];
   char step[100],loopNum[5],cfgFuncArray[10][50][200];
   n = 1;
   m = 0;
@@ -1075,81 +1248,87 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 testDisableMsg(cfgFuncArray[routeNum[i]][1]);
               break;
               case 5:
-                recMsg = sendDiagChkResp (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
+                recAnalyzeDataByteNum = sendCanUdsDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
               break;
               case 6:
-                recLinMsgNum = sendLinDiagChkResp (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2],recLinMsg);
+                recAnalyzeDataByteNum = sendCanKostiaDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
               break;
               case 7:
+                recAnalyzeDataByteNum = sendLinUdsDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
+              break;
+              case 8:
+                recAnalyzeDataByteNum = sendLinKostiaDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
+              break;
+              case 9:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1]);
                 wait(atol(cfgFuncArray[routeNum[i]][1]));
               break;
-              case 8:
-                decodeAsciiFromRecDiag (recMsg,cfgFuncArray[routeNum[i]][1]);
-              break;
-              case 9:
-                vtSysPwrSupInit (cfgFuncArray[routeNum[i]][1]);
-              break;
               case 10:
-                vtSysWithExPwrSupInit (cfgFuncArray[routeNum[i]][1]);
+                decodeAsciiFromRecDiag (recMsg,recAnalyzeDataByteNum,atol(cfgFuncArray[routeNum[i]][1]),cfgFuncArray[routeNum[i]][2]);
               break;
               case 11:
-                vtSysPwrSupVoltSet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]));
+                vtSysPwrSupInit (cfgFuncArray[routeNum[i]][1]);
               break;
               case 12:
-                vtSysExPwrSupSet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atodbl(cfgFuncArray[routeNum[i]][3]), atol(cfgFuncArray[routeNum[i]][4])); 
+                vtSysWithExPwrSupInit (cfgFuncArray[routeNum[i]][1]);
               break;
               case 13:
-                vtSysPwrSupVoltGet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atodbl(cfgFuncArray[routeNum[i]][3]));
+                vtSysPwrSupVoltSet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]));
               break;
               case 14:
-                vtSysPwrSupCurrGet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),(enum vt7001MeasureRange)(atol(cfgFuncArray[routeNum[i]][4])),(enum currentUnit)(atol(cfgFuncArray[routeNum[i]][5])));
+                vtSysExPwrSupSet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atodbl(cfgFuncArray[routeNum[i]][3]), atol(cfgFuncArray[routeNum[i]][4])); 
               break;
               case 15:
-                prodPwmOutChk (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),atol(cfgFuncArray[routeNum[i]][4]));
+                vtSysPwrSupVoltGet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atodbl(cfgFuncArray[routeNum[i]][3]));
               break;
               case 16:
-                prodPwmOutRisingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
+                vtSysPwrSupCurrGet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),(enum vt7001MeasureRange)(atol(cfgFuncArray[routeNum[i]][4])),(enum currentUnit)(atol(cfgFuncArray[routeNum[i]][5])));
               break;
               case 17:
-                prodPwmOutKeepTimeMeas (cfgFuncArray[routeNum[i]][1]);
+                prodPwmOutChk (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),atol(cfgFuncArray[routeNum[i]][4]));
               break;
               case 18:
-                prodPwmOutFallingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
+                prodPwmOutRisingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 19:
-                prodPwmOutRiseFallCurveMeas (cfgFuncArray[routeNum[i]][1]);
+                prodPwmOutKeepTimeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 20:
-                chFixVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
+                prodPwmOutFallingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 21:
-                chAOSet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2])); 
+                prodPwmOutRiseFallCurveMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 22:
-                chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
+                chFixVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
               case 23:
-                chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
+                chAOSet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2])); 
               break;
               case 24:
-                chLoadConnectStatSet (cfgFuncArray[routeNum[i]][1], (enum connectStat)(atol(cfgFuncArray[routeNum[i]][2])));
+                chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
               case 25:
+                chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
+              break;
+              case 26:
+                chLoadConnectStatSet (cfgFuncArray[routeNum[i]][1], (enum connectStat)(atol(cfgFuncArray[routeNum[i]][2])));
+              break;
+              case 27:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
                 btnPrsImpOnSpecSigChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
               break;
-              case 26:
+              case 28:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
                 btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
               break;
-              case 27:
+              case 29:
                 sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][3])));
               break;
-              case 28:
+              case 30:
                 sigDirMulStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
-              case 29:
+              case 31:
                 specStatImpOnSigChk (cfgFuncArray[routeNum[i]][1]);
               break;
             }
