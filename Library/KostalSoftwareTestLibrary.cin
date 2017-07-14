@@ -271,7 +271,7 @@ export int cfgCanMsgAndSend (char section[],char entry[],char diagInfo[][],messa
       return 0;//output message successfully 
     }
     else {
-      testStep("Diagnostic Request","Fail to send diagnostic request. Please check the table id.");
+      testStep("Diagnostic Request","Fail to send diagnostic request. Please check the cancase cofiguration or the product mode.");
       return -2;
     }
   }
