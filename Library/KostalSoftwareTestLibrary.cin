@@ -14,7 +14,7 @@ variables {
     determinedByHardware = 1
   };
   
-  char func[32][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","sendCanUdsDiagChkResp","sendCanKostiaDiagChkResp","sendLinUdsDiagChkResp","sendLinKostiaDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","prodPwmOutChk","prodPwmOutRisingEdgeMeas","prodPwmOutKeepTimeMeas","prodPwmOutFallingEdgeMeas","prodPwmOutRiseFallCurveMeas","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","chLoadConnectStatSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
+  char func[34][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","linActivateSlot","linDeactivateSlot","sendCanUdsDiagChkResp","sendCanKostiaDiagChkResp","sendLinUdsDiagChkResp","sendLinKostiaDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","prodPwmOutChk","prodPwmOutRisingEdgeMeas","prodPwmOutKeepTimeMeas","prodPwmOutFallingEdgeMeas","prodPwmOutRiseFallCurveMeas","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","chLoadConnectStatSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
   
   enum digitalLevel { 
     Low = 0, 
@@ -1248,87 +1248,93 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 testDisableMsg(cfgFuncArray[routeNum[i]][1]);
               break;
               case 5:
-                recAnalyzeDataByteNum = sendCanUdsDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
+                linActivateSlot(atol(cfgFuncArray[routeNum[i]][1]),atol(cfgFuncArray[routeNum[i]][2]));
               break;
               case 6:
-                recAnalyzeDataByteNum = sendCanKostiaDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
+                linDeactivateSlot(atol(cfgFuncArray[routeNum[i]][1]),atol(cfgFuncArray[routeNum[i]][2]));
               break;
               case 7:
-                recAnalyzeDataByteNum = sendLinUdsDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
+                recAnalyzeDataByteNum = sendCanUdsDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
               break;
               case 8:
-                recAnalyzeDataByteNum = sendLinKostiaDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
+                recAnalyzeDataByteNum = sendCanKostiaDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
               break;
               case 9:
+                recAnalyzeDataByteNum = sendLinUdsDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
+              break;
+              case 10:
+                recAnalyzeDataByteNum = sendLinKostiaDiagChkResp (cfgFuncArray[routeNum[i]][1],recMsg);
+              break;
+              case 11:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1]);
                 wait(atol(cfgFuncArray[routeNum[i]][1]));
               break;
-              case 10:
+              case 12:
                 decodeAsciiFromRecDiag (recMsg,recAnalyzeDataByteNum,atol(cfgFuncArray[routeNum[i]][1]),cfgFuncArray[routeNum[i]][2]);
               break;
-              case 11:
+              case 13:
                 vtSysPwrSupInit (cfgFuncArray[routeNum[i]][1]);
               break;
-              case 12:
+              case 14:
                 vtSysWithExPwrSupInit (cfgFuncArray[routeNum[i]][1]);
               break;
-              case 13:
+              case 15:
                 vtSysPwrSupVoltSet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]));
               break;
-              case 14:
+              case 16:
                 vtSysExPwrSupSet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atodbl(cfgFuncArray[routeNum[i]][3]), atol(cfgFuncArray[routeNum[i]][4])); 
               break;
-              case 15:
+              case 17:
                 vtSysPwrSupVoltGet (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]), atodbl(cfgFuncArray[routeNum[i]][3]));
               break;
-              case 16:
+              case 18:
                 vtSysPwrSupCurrGet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),(enum vt7001MeasureRange)(atol(cfgFuncArray[routeNum[i]][4])),(enum currentUnit)(atol(cfgFuncArray[routeNum[i]][5])));
               break;
-              case 17:
+              case 19:
                 prodPwmOutChk (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),atol(cfgFuncArray[routeNum[i]][4]));
               break;
-              case 18:
+              case 20:
                 prodPwmOutRisingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
-              case 19:
+              case 21:
                 prodPwmOutKeepTimeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
-              case 20:
+              case 22:
                 prodPwmOutFallingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
-              case 21:
+              case 23:
                 prodPwmOutRiseFallCurveMeas (cfgFuncArray[routeNum[i]][1]);
               break;
-              case 22:
+              case 24:
                 chFixVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
-              case 23:
+              case 25:
                 chAOSet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2])); 
               break;
-              case 24:
+              case 26:
                 chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
-              case 25:
+              case 27:
                 chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
               break;
-              case 26:
+              case 28:
                 chLoadConnectStatSet (cfgFuncArray[routeNum[i]][1], (enum connectStat)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
-              case 27:
+              case 29:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
                 btnPrsImpOnSpecSigChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
               break;
-              case 28:
+              case 30:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
                 btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
               break;
-              case 29:
+              case 31:
                 sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][3])));
               break;
-              case 30:
+              case 32:
                 sigDirMulStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
-              case 31:
+              case 33:
                 specStatImpOnSigChk (cfgFuncArray[routeNum[i]][1]);
               break;
             }
