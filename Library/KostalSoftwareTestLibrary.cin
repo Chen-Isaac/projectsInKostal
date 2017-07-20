@@ -14,7 +14,7 @@ variables {
     determinedByHardware = 1
   };
   
-  char func[34][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","linActivateSlot","linDeactivateSlot","sendCanUdsDiagChkResp","sendCanKostiaDiagChkResp","sendLinUdsDiagChkResp","sendLinKostiaDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","prodPwmOutChk","prodPwmOutRisingEdgeMeas","prodPwmOutKeepTimeMeas","prodPwmOutFallingEdgeMeas","prodPwmOutRiseFallCurveMeas","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","chLoadConnectStatSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
+  char func[36][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","linActivateSlot","linDeactivateSlot","sendCanUdsDiagChkResp","sendCanKostiaDiagChkResp","sendLinUdsDiagChkResp","sendLinKostiaDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","vtsSetThreshold1_8","vtsSetThreshold9_16","prodPwmOutChk","prodPwmOutRisingEdgeMeas","prodPwmOutKeepTimeMeas","prodPwmOutFallingEdgeMeas","prodPwmOutRiseFallCurveMeas","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","chLoadConnectStatSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
   
   enum digitalLevel { 
     Low = 0, 
@@ -1193,7 +1193,7 @@ export void specStatImpOnSigChk (char specStat[]) {
 export void stateMachine (char stateMachineSection[],int routeNum[],char paraPick[][][]) {//char paraPick[var num][2][100],paraPick[var num][0]=variant name,paraPick[var num][1]=var string value
   int i,j,n,m,funcNum,findParaValBool,errBool,paraNum[30],cmp,recAnalyzeDataByteNum;
   byte recMsg[100];
-  char step[100],loopNum[5],cfgFuncArray[10][50][200];
+  char step[100],loopNum[5],cfgFuncArray[10][50][200],nameSpace[20];
   n = 1;
   m = 0;
   i = 0; 
@@ -1291,50 +1291,58 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 vtSysPwrSupCurrGet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),(enum vt7001MeasureRange)(atol(cfgFuncArray[routeNum[i]][4])),(enum currentUnit)(atol(cfgFuncArray[routeNum[i]][5])));
               break;
               case 19:
-                prodPwmOutChk (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),atol(cfgFuncArray[routeNum[i]][4]));
+                snprintf(nameSpace,elCount(nameSpace),"VTS::M%s_VT2516",cfgFuncArray[routeNum[i]][1]);
+                vtsSetThreshold1_8(nameSpace,atodbl(cfgFuncArray[routeNum[i]][2]));//vtsSetThreshold1_8("VTS::M9_VT2516",1.1);
               break;
               case 20:
-                prodPwmOutRisingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
-              break;
+                snprintf(nameSpace,elCount(nameSpace),"VTS::M%s_VT2516",cfgFuncArray[routeNum[i]][1]);
+                vtsSetThreshold9_16(nameSpace,atodbl(cfgFuncArray[routeNum[i]][2]));//vtsSetThreshold1_8("VTS::M9_VT2516",1.1);
+              break;  
               case 21:
-                prodPwmOutKeepTimeMeas (cfgFuncArray[routeNum[i]][1]);
+                prodPwmOutChk (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2]),atodbl(cfgFuncArray[routeNum[i]][3]),atol(cfgFuncArray[routeNum[i]][4]));
               break;
               case 22:
-                prodPwmOutFallingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
+                prodPwmOutRisingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 23:
-                prodPwmOutRiseFallCurveMeas (cfgFuncArray[routeNum[i]][1]);
+                prodPwmOutKeepTimeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 24:
-                chFixVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
+                prodPwmOutFallingEdgeMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 25:
-                chAOSet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2])); 
+                prodPwmOutRiseFallCurveMeas (cfgFuncArray[routeNum[i]][1]);
               break;
               case 26:
-                chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
+                chFixVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
               case 27:
-                chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
+                chAOSet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2])); 
               break;
               case 28:
-                chLoadConnectStatSet (cfgFuncArray[routeNum[i]][1], (enum connectStat)(atol(cfgFuncArray[routeNum[i]][2])));
+                chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
               case 29:
+                chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
+              break;
+              case 30:
+                chLoadConnectStatSet (cfgFuncArray[routeNum[i]][1], (enum connectStat)(atol(cfgFuncArray[routeNum[i]][2])));
+              break;
+              case 31:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
                 btnPrsImpOnSpecSigChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
               break;
-              case 30:
+              case 32:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
                 btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
               break;
-              case 31:
+              case 33:
                 sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][3])));
               break;
-              case 32:
+              case 34:
                 sigDirMulStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
-              case 33:
+              case 35:
                 specStatImpOnSigChk (cfgFuncArray[routeNum[i]][1]);
               break;
             }
