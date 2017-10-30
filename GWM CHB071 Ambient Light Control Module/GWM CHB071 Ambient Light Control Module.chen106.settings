@@ -21,8 +21,8 @@
         <value type="System.Collections.Generic.List`1[System.Drawing.Size]">
           <ArrayOfSize>
             <Size>
-              <Width>1644</Width>
-              <Height>780</Height>
+              <Width>1337</Width>
+              <Height>537</Height>
             </Size>
           </ArrayOfSize>
         </value>
@@ -32,7 +32,7 @@
           <string>ActiveDocumentIndex</string>
         </key>
         <value type="System.Int32">
-          <int>1</int>
+          <int>2</int>
         </value>
       </item>
       <item>
@@ -253,7 +253,7 @@ SymbSelHeaderMgrBegin
 SymbSelHeaderMgrEnd
 End
 Begin
-3 0 4
+3 56 4
 1
 System variables
  ( 5 ( 0 ) 0 ) 
@@ -286,7 +286,7 @@ SymbSelHeaderMgrEnd
 End
 
 FiltersEnd
-0 1</string>
+0 3</string>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -345,7 +345,7 @@ FiltersEnd
         <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
           <ArrayOfDocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-07-13T07:22:00.4810412Z</LastTouched>
+              <LastTouched>2017-10-27T08:53:41.1684994Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -358,7 +358,7 @@ FiltersEnd
                         <Expanded>true</Expanded>
                       </SplitterSettingsTet>
                       <SplitterSettingsPv>
-                        <SplitPosition>292</SplitPosition>
+                        <SplitPosition>485</SplitPosition>
                         <Expanded>true</Expanded>
                       </SplitterSettingsPv>
                       <SplitterSettingsLv>
@@ -383,7 +383,7 @@ FiltersEnd
                           <value type="System.Int32[]">
                             <ArrayOfInt>
                               <int>60</int>
-                              <int>21</int>
+                              <int>7</int>
                             </ArrayOfInt>
                           </value>
                         </item>
@@ -417,7 +417,7 @@ FiltersEnd
                           <value type="System.Int32[]">
                             <ArrayOfInt>
                               <int>300</int>
-                              <int>162</int>
+                              <int>68</int>
                               <int>150</int>
                             </ArrayOfInt>
                           </value>
@@ -1159,7 +1159,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="ConfigurationSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-06-19T11:01:59.2609969Z</LastTouched>
+              <LastTouched>2017-10-27T06:54:40.092271Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1171,36 +1171,6 @@ FiltersEnd
                 </item>
               </Settings>
               <SerializedKey>ProjectConfiguration_</SerializedKey>
-            </DocumentSettingsBase>
-            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2016-09-23T01:13:37.1275586Z</LastTouched>
-              <Settings>
-                <item>
-                  <key type="System.String">
-                    <string>0_column0</string>
-                  </key>
-                  <value type="System.Int32">
-                    <int>75</int>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>0_column1</string>
-                  </key>
-                  <value type="System.Int32">
-                    <int>75</int>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>0_column2</string>
-                  </key>
-                  <value type="System.Int32">
-                    <int>75</int>
-                  </value>
-                </item>
-              </Settings>
-              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\NewFile.vparam" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
               <LastTouched>2017-06-06T07:25:56.3967762Z</LastTouched>
@@ -1328,7 +1298,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunction.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-07-13T07:22:00.6410412Z</LastTouched>
+              <LastTouched>2017-10-27T08:53:41.248497Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1546,7 +1516,7 @@ FiltersEnd
                   </key>
                   <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
                     <PersistentSplitterPos>
-                      <SplitterPos>195</SplitterPos>
+                      <SplitterPos>263</SplitterPos>
                       <Enabled>true</Enabled>
                     </PersistentSplitterPos>
                   </value>
@@ -1564,7 +1534,7 @@ FiltersEnd
                     <string>CaplNavigator_Focused</string>
                   </key>
                   <value type="System.String">
-                    <string>chkALCMLightLvlSetSigImpWhenIgnOff(char doorSignal[], char alcmLightLvlSetVal[], char msWaitForTurnOn[]): void</string>
+                    <string>powerOn(): void</string>
                   </value>
                 </item>
                 <item>
@@ -1573,7 +1543,7 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">chkALCMLightLvlSetSigImpWhenIgnOff(char doorSignal[], char alcmLightLvlSetVal[], char msWaitForTurnOn[]): void</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">powerOn(): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
@@ -1600,7 +1570,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-07-13T07:22:00.7110412Z</LastTouched>
+              <LastTouched>2017-10-27T08:53:41.3084952Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1649,6 +1619,358 @@ FiltersEnd
                           <boolean>true</boolean>
                         </value>
                       </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>19</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2138</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2377</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>3192</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>4587</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>5495</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6009</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6198</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6903</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>7459</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>8775</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>10127</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>13064</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>14935</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>17564</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>19367</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>19589</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>20189</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>21319</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>22521</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>22989</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>24094</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>24851</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>26132</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>28386</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>29757</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>32795</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>34246</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>37383</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>38507</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>39786</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>40684</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>42854</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>47232</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>48613</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>49606</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>49971</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>51450</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>52091</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>54438</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>55285</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>55939</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>56513</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>57208</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
                     </SerializableDictionaryOfInt32Boolean>
                   </value>
                 </item>
@@ -1658,7 +1980,7 @@ FiltersEnd
                   </key>
                   <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
                     <PersistentSplitterPos>
-                      <SplitterPos>227</SplitterPos>
+                      <SplitterPos>274</SplitterPos>
                       <Enabled>true</Enabled>
                     </PersistentSplitterPos>
                   </value>
@@ -1668,7 +1990,7 @@ FiltersEnd
                     <string>CaplNavigator_TopIndex</string>
                   </key>
                   <value type="System.Int32">
-                    <int>15</int>
+                    <int>28</int>
                   </value>
                 </item>
                 <item>
@@ -1676,7 +1998,7 @@ FiltersEnd
                     <string>CaplNavigator_Focused</string>
                   </key>
                   <value type="System.String">
-                    <string>stateMachine(char stateMachineSection[], int routeNum[], char paraPick[][][]): void</string>
+                    <string>prodPwmOutFallingEdgeMeas(char pwmMode[]): void</string>
                   </value>
                 </item>
                 <item>
@@ -1685,7 +2007,7 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">stateMachine(char stateMachineSection[], int routeNum[], char paraPick[][][]): void</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">prodPwmOutFallingEdgeMeas(char pwmMode[]): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
@@ -1711,7 +2033,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-07-13T07:22:00.7210412Z</LastTouched>
+              <LastTouched>2017-10-27T08:53:42.3084652Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">

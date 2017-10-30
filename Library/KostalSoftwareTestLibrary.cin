@@ -65,16 +65,16 @@ variables {
 }
 
 /*****************ini file data handle***************************/
-export void getCfgDataArray (char section[],char entry[],char cfgDataArray[]) {
+export void getCfgDataArray (char section[],char keyName[],char cfgDataArray[]) {
   sysGetVariableString(sysvar::iniParaCfgPath,iniParaCfgPath,100); 
-  getProfileArray(section,entry,cfgDataArray,elCount(cfgDataArray),iniParaCfgPath);
+  getProfileArray(section,keyName,cfgDataArray,elCount(cfgDataArray),iniParaCfgPath);
 }
 
-export int getCfgStrArray (char section[],char entry[],char cfgStrArray[][]) {//sperated by ','
+export int getCfgStrArray (char section[],char keyName[],char cfgStrArray[][]) {//sperated by ','
   char buff[1000];
   int i,row,col;
   sysGetVariableString(sysvar::iniParaCfgPath, iniParaCfgPath, 100);  
-  getProfileString(section,entry,"err",buff,elCount(buff),iniParaCfgPath);
+  getProfileString(section,keyName,"err",buff,elCount(buff),iniParaCfgPath);
   if (strncmp(buff,"err",4)!=0) {
     i=0;
     row=0;
@@ -100,12 +100,12 @@ export int getCfgStrArray (char section[],char entry[],char cfgStrArray[][]) {//
   } 
 }
 
-export int getCfgFuncArray (char section[],char entry[],char cfgFuncArray[][][],int paraNum[]) {//para sperated by ',' func separated by '||'
+export int getCfgFuncArray (char section[],char keyName[],char cfgFuncArray[][][],int paraNum[]) {//para sperated by ',' func separated by '||'
   char buff[1000];
   int i,row,col,funcNum;
   sysGetVariableString(sysvar::iniTestStepCfgPath, iniTestStepCfgPath, 100);
   //testStep("","%s,%s,%s",section,entry,iniTestStepCfgPath);
-  getProfileString(section,entry,"err",buff,elCount(buff),iniTestStepCfgPath);
+  getProfileString(section,keyName,"err",buff,elCount(buff),iniTestStepCfgPath);
   //testStep("","%s",buff);
   if (strncmp(buff,"err",4)!=0) {
     i=0;
@@ -219,17 +219,17 @@ export void signalContSetting (char settingSignal[], float startVal, int range, 
   }
 }
 
-export int cfgLinMsgAndSend (char section[],char entry[],char diagInfo[][],linmessage* sendDiag,linmessage* recDiag) {
+export int cfgLinMsgAndSend (char serviceType[],char serviceName[],char diagInfo[][],linmessage* sendDiag,linmessage* recDiag) {//serviceType[] gets from section name, serviceName[] gets from key name in ini file
   qword sendMsg;
   int paraNum;
-  paraNum = getCfgStrArray(section,entry,diagInfo);
+  paraNum = getCfgStrArray(serviceType,serviceName,diagInfo);
   //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
   if (paraNum!=-1) {
     sendDiag.id = atol(diagInfo[0]);
     sendDiag.dlc = atol(diagInfo[1]);
     strtoull(diagInfo[2],sendMsg);
     recDiag.id = atol(diagInfo[3]);
-    testStep(entry,"Start to send %s service request.",entry);
+    testStep(serviceType,"Start to send %s service request.",serviceName);
     sendDiag.rtr = 1;
     output(sendDiag);//send header
     sendDiag.rtr = 0;
@@ -250,11 +250,11 @@ export int cfgLinMsgAndSend (char section[],char entry[],char diagInfo[][],linme
   }
 }
 
-export int cfgCanMsgAndSend (char section[],char entry[],char diagInfo[][],message* sendDiag,message* recDiag) {
+export int cfgCanMsgAndSend (char serviceType[],char serviceName[],char diagInfo[][],message* sendDiag,message* recDiag) {//serviceType[] gets from section name, serviceName[] gets from key name in ini file
   qword sendMsg;
   dword sendMsgId,recMsgId;
   int paraNum;
-  paraNum = getCfgStrArray(section,entry,diagInfo);
+  paraNum = getCfgStrArray(serviceType,serviceName,diagInfo);
   //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
   if (paraNum!=-1) {
     strtoul(diagInfo[0],sendMsgId);
@@ -263,7 +263,7 @@ export int cfgCanMsgAndSend (char section[],char entry[],char diagInfo[][],messa
     strtoull(diagInfo[2],sendMsg);
     strtoul(diagInfo[3],recMsgId);
     recDiag.id = recMsgId;
-    testStep(entry,"Start to send %s service request.",entry);
+    testStep(serviceType,"Start to send %s service request.",serviceName);
     sendDiag.qword(0) = swapQWord(sendMsg);//send response
     output(sendDiag);
     if (testWaitForMessage(sendDiag.id,1000) == 1) {
@@ -281,13 +281,13 @@ export int cfgCanMsgAndSend (char section[],char entry[],char diagInfo[][],messa
   }
 }
 
-export int sendCanUdsDiagChkResp (char entry[],byte recMsg[]) {//same sequence as trace shows
+export int sendCanUdsDiagChkResp (char serviceName[],byte recMsg[]) {//same sequence as trace shows, serviceName[] gets from key name in ini file
   message* sendDiag;
   message* recDiag; 
   qword recCanMsg,chkRecMsgPart;
   char diagInfo[7][100];
   int chkByteLen,offsetBytePos,i,j,k,index,dataByte,stopFlag,errorCode;
-  errorCode = cfgCanMsgAndSend("UDS Services",entry,diagInfo,sendDiag,recDiag);
+  errorCode = cfgCanMsgAndSend("UDS Services",serviceName,diagInfo,sendDiag,recDiag);
   //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
   if (errorCode == 0) {
     offsetBytePos = atol(diagInfo[4]);
@@ -362,13 +362,13 @@ export int sendCanUdsDiagChkResp (char entry[],byte recMsg[]) {//same sequence a
     return errorCode;
 }
 
-export int sendCanKostiaDiagChkResp (char entry[],byte recMsg[]) {//same sequence as trace shows
+export int sendCanKostiaDiagChkResp (char serviceName[],byte recMsg[]) {//same sequence as trace shows,serviceName[] gets from key name in ini file
   message* sendDiag;
   message* recDiag; 
   qword recCanMsg,chkRecMsgPart;
   char diagInfo[7][100];
   int chkByteLen,offsetBytePos,j,index,errorCode;
-  errorCode = cfgCanMsgAndSend("Kostia Services",entry,diagInfo,sendDiag,recDiag);
+  errorCode = cfgCanMsgAndSend("Kostia Services",serviceName,diagInfo,sendDiag,recDiag);
   //testStep("","%s,%s,%s,%s,%s,%s,%s",diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5],diagInfo[6]);
   if (errorCode == 0) {
     offsetBytePos = atol(diagInfo[4]);
@@ -411,13 +411,13 @@ export int sendCanKostiaDiagChkResp (char entry[],byte recMsg[]) {//same sequenc
     return errorCode;
 }
 
-export int sendLinUdsDiagChkResp (char entry[],byte recMsg[]) {//same sequence as trace shows
+export int sendLinUdsDiagChkResp (char serviceName[],byte recMsg[]) {//same sequence as trace shows,serviceName[] gets from key name in ini file
   linmessage* sendDiag;
   linmessage* recDiag;
   qword chkRecMsgPart,recLinMsg;
   char diagInfo[7][100];
   int chkByteLen,offsetBytePos,i,j,k,index,dataByte,stopFlag,errorCode;
-  errorCode = cfgLinMsgAndSend ("UDS Services",entry,diagInfo,sendDiag,recDiag);
+  errorCode = cfgLinMsgAndSend ("UDS Services",serviceName,diagInfo,sendDiag,recDiag);
   if (errorCode == 0) {
     offsetBytePos = atol(diagInfo[4]);
     chkByteLen = atol(diagInfo[5]);
@@ -489,13 +489,13 @@ export int sendLinUdsDiagChkResp (char entry[],byte recMsg[]) {//same sequence a
     return errorCode;
 }
 
-export int sendLinKostiaDiagChkResp (char entry[],byte recMsg[]) {//same sequence as trace shows
+export int sendLinKostiaDiagChkResp (char serviceName[],byte recMsg[]) {//same sequence as trace shows,serviceName[] gets from key name in ini file
   linmessage* sendDiag;
   linmessage* recDiag;
   qword chkRecMsgPart,recLinMsg;
   char diagInfo[7][100];
   int chkByteLen,offsetBytePos,j,index,errorCode;
-  errorCode = cfgLinMsgAndSend ("Kostia Services",entry,diagInfo,sendDiag,recDiag);
+  errorCode = cfgLinMsgAndSend ("Kostia Services",serviceName,diagInfo,sendDiag,recDiag);
   if (errorCode == 0) {
     offsetBytePos = atol(diagInfo[4]);
     chkByteLen = atol(diagInfo[5]);
@@ -561,9 +561,9 @@ export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos
 }
 
 /****************************vtSystem related*************************************/
-export void vtSysPwrSupInit (char vt7001CfgEntry[]) {
+export void vtSysPwrSupInit (char pwrConnectWay[]) {//pwrConnectWay[] gets from key name in section vt7001Cfg 
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  getCfgDataArray("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
   if ((vt7001CfgInfo[1] != 0) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
     testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
   else {
@@ -576,9 +576,9 @@ export void vtSysPwrSupInit (char vt7001CfgEntry[]) {
   }
 }
 
-export void vtSysWithExPwrSupInit (char vt7001CfgEntry[]) {
+export void vtSysWithExPwrSupInit (char pwrConnectWay[]) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
   if ((vt7001CfgInfo[1] < 1) || (vt7001CfgInfo[1] > 2) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
     testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
   else {
@@ -592,18 +592,18 @@ export void vtSysWithExPwrSupInit (char vt7001CfgEntry[]) {
   }
 }
 
-export void vtSysPwrSupVoltSet (char vt7001CfgEntry[], float volt) {
+export void vtSysPwrSupVoltSet (char pwrConnectWay[], float volt) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
   snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001CfgInfo[0]);//***need to be updated
   sysSetVariableFloat(namespace,"RefVoltage",volt);
   testStep("set VBAT voltage status","set VBAT voltage = %4.2fV.",volt);
   wait(1000);
 }
 
-export void vtSysExPwrSupSet (char vt7001CfgEntry[], float volt, float maxI, int k) {
+export void vtSysExPwrSupSet (char pwrConnectWay[], float volt, float maxI, int k) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
   if ((vt7001CfgInfo[1] < 1) || (vt7001CfgInfo[1] > 2) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
     testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
   else {
@@ -616,10 +616,10 @@ export void vtSysExPwrSupSet (char vt7001CfgEntry[], float volt, float maxI, int
   }
 }
   
-export float vtSysPwrSupVoltGet (char vt7001CfgEntry[], float highLimitV, float lowLimitV) {
+export float vtSysPwrSupVoltGet (char pwrConnectWay[], float highLimitV, float lowLimitV) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   float readValue;
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
   snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
   readValue = sysGetVariableFloat(namespace,"AvgVoltage");
   if ((readValue < lowLimitV) || (readValue > highLimitV)) 
@@ -629,10 +629,10 @@ export float vtSysPwrSupVoltGet (char vt7001CfgEntry[], float highLimitV, float 
   return readValue;
 }
 
-export float vtSysPwrSupCurrGet (char vt7001CfgEntry[],float highLimitA,float lowLimitA,enum vt7001MeasureRange vt7001MeasureRange,enum currentUnit currentUnit) {
+export float vtSysPwrSupCurrGet (char pwrConnectWay[],float highLimitA,float lowLimitA,enum vt7001MeasureRange vt7001MeasureRange,enum currentUnit currentUnit) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   float readValue;
   char namespace[100],vt7001CfgInfo[3],iUnit[3][3] = {"uA","mA","A"};
-  getCfgDataArray ("vt7001Cfg",vt7001CfgEntry,vt7001CfgInfo);
+  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
   snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
   vtsSetMinCurrentMeasurementRange(namespace,vt7001MeasureRange);//sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(0);
   readValue = sysGetVariableFloat(namespace,"AvgCurrent");
@@ -643,39 +643,39 @@ export float vtSysPwrSupCurrGet (char vt7001CfgEntry[],float highLimitA,float lo
   return readValue;
 }
 
-export void prodPwmOutChk (char vt2516CfgEntry[],float expectedFreq,float expectedDuty,int deviationRange) {
+export void prodPwmOutChk (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {//pinName[] gets from key name in section vt2516Cfg
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc,avgVolt;
-  getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
+  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
   snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
   pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
   pwmDc = sysGetVariableFloat(namespace,"PWMDC");
   avgVolt = sysGetVariableFloat(namespace,"Avg");
   if ((expectedFreq == 0) && (expectedDuty == 0)) {
     if ((avgVolt < 0.5) && (pwmFreq == 0) && (pwmDc == 0))
-      testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
+      testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc,avgVolt);
     else
-      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
+      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
   }
   else if ((expectedFreq == 0) && (expectedDuty == 100)) {
     if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc == 100))
-      testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,pwmDc,avgVolt);
+      testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc,avgVolt);
     else
-      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz  vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",vt2516CfgEntry,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
+      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz  vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
   }
   else {
     if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005))
-      testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",vt2516CfgEntry,pwmFreq);
+      testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",pinName,pwmFreq);
     else
-      testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",vt2516CfgEntry,pwmFreq,expectedFreq*0.995,expectedFreq*1.005);
+      testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",pinName,pwmFreq,expectedFreq*0.995,expectedFreq*1.005);
     if ((pwmDc > expectedDuty-deviationRange) && (pwmDc < expectedDuty+deviationRange))
-      testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",vt2516CfgEntry,pwmDc);
+      testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",pinName,pwmDc);
     else
-      testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",vt2516CfgEntry,pwmDc,expectedDuty-deviationRange,expectedDuty+deviationRange);
+      testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",pinName,pwmDc,expectedDuty-deviationRange,expectedDuty+deviationRange);
   }
 }
 
-export int64 pwmRiseStartTimingMeas (char pinName[]) {
+export int64 pwmRiseStartTimingMeas (char pinName[]) {//pinName[] gets from key name in section vt2516Cfg
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_o,pwmDc_u;
   int64 tRiseStart,tMeaStart;
@@ -701,7 +701,7 @@ export int64 pwmRiseStartTimingMeas (char pinName[]) {
   }
 }
 
-export int64 pwmRiseEndTimingMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
+export int64 pwmRiseEndTimingMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {//pinName[] gets from key name in section vt2516Cfg
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_o,pwmDc_u,avgVolt;
   int64 tRiseEnd,tMeaStart;
@@ -757,7 +757,7 @@ export int64 pwmRiseEndTimingMeas (char pinName[],float expectedFreq,float expec
   }
 }
 
-export int64 pwmFallStartTimingMeas (char pinName[]) {
+export int64 pwmFallStartTimingMeas (char pinName[]) {//pinName[] gets from key name in section vt2516Cfg
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_o,pwmDc_u;
   int64 tFallStart,tMeaStart;
@@ -784,7 +784,7 @@ export int64 pwmFallStartTimingMeas (char pinName[]) {
   }
 }
 
-export int64 pwmFallEndTimingMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {
+export int64 pwmFallEndTimingMeas (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {//pinName[] gets from key name in section vt2516Cfg
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_u,pwmDc_o,avgVolt;
   int64 tFallEnd,tMeaStart;
@@ -840,54 +840,54 @@ export int64 pwmFallEndTimingMeas (char pinName[],float expectedFreq,float expec
   }
 }
 
-export void prodPwmOutRisingEdgeMeas (char pwmMode[]) {
+export void prodPwmOutRisingEdgeMeas (char productPwmOutMode[]) {//productPwmOutMode[] gets from key name in section: pwmTimeCfg
   char cfgStrArray[10][30];
   double tRiseStart,tRiseEnd;
   int paraNum;
-  paraNum = getCfgStrArray("pwmTimeCfg",pwmMode,cfgStrArray);
+  paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
   if (paraNum == -1)
-    testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
+    testStepFail("Error","This entry %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
     tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
     if (_pow(10,-6)*(abs(tRiseEnd) - tRiseStart) <= atol(cfgStrArray[6]))
-      testStepPass("measure PWM rising edge","PWM %s :PWM rising time is %6.2fms,within %sms.",pwmMode,_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
+      testStepPass("measure PWM rising edge","PIN %s outputs PWM, rise to frequency %sHz,duty %s%% costs %6.2fms,within %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
     else
-      testStepFail("measure PWM rising edge","PWM %s :PWM rising time is %6.2fms,longer than %sms.",pwmMode,_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
+      testStepFail("measure PWM rising edge","PIN %s outputs PWM, rise to frequency %sHz,duty %s%% costs %6.2fms,longer than %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
   }
 }
 
-export void prodPwmOutKeepTimeMeas (char pwmMode[]) {
+export void prodPwmOutKeepTimeMeas (char productPwmOutMode[]) {//productPwmOutMode[] gets from key name in section: pwmTimeCfg
   char cfgStrArray[10][30];
   double tFallStart,tRiseEnd;
   int paraNum;
-  paraNum = getCfgStrArray("pwmTimeCfg",pwmMode,cfgStrArray);
+  paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
   if (paraNum == -1)
-    testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
+    testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
     tFallStart = pwmFallStartTimingMeas (cfgStrArray[0]);
     if ((_pow(10,-6)*(tFallStart - abs(tRiseEnd)) <= atol(cfgStrArray[7]) + atol(cfgStrArray[8])) && (_pow(10,-6)*(tFallStart - tRiseEnd) <= atol(cfgStrArray[7]) - atol(cfgStrArray[8])))
-      testStepPass("measure PWM keep time","PWM %s :PWM keep time is %6.2fms,within range [%s ¡À %sms].",pwmMode,_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
+      testStepPass("measure PWM keep time","PIN %s outputs PWM, keeps at frequency %sHz,duty %s%% for %6.2fms,within range [%s ¡À %sms].",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
     else
-      testStepFail("measure PWM keep time","PWM %s :PWM keep time is %6.2fms,out of range [%s ¡À %sms].",pwmMode,_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
+      testStepFail("measure PWM keep time","PIN %s outputs PWM, keeps at frequency %sHz,duty %s%% for %6.2fms,out of range [%s ¡À %sms].",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
   }
 }
 
-export void prodPwmOutFallingEdgeMeas (char pwmMode[]) {
+export void prodPwmOutFallingEdgeMeas (char productPwmOutMode[]) {//productPwmOutMode[] gets from key name in section: pwmTimeCfg
   char cfgStrArray[10][30];
   double tFallStart,tFallEnd;
   int paraNum;
-  paraNum = getCfgStrArray("pwmTimeCfg",pwmMode,cfgStrArray);
+  paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
   if (paraNum == -1)
-    testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
+    testStepFail("Error","This entry %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
     tFallStart = pwmFallStartTimingMeas(cfgStrArray[0]);
     if (_pow(10,-6)*(abs(tFallEnd) - tFallStart) <= atol(cfgStrArray[9]))
-      testStepPass("measure PWM falling edge","PWM %s :PWM falling time is %6.2fms,within %sms.",pwmMode,_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
+      testStepPass("measure PWM falling edge","PIN %s outputs PWM,PWM falling from frequency %sHz,duty %s%% to frequency %sHz,duty %s%% costs %6.2fms,within %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],cfgStrArray[3],cfgStrArray[4],_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
     else
-      testStepFail("measure PWM falling edge","PWM %s :PWM falling time is %6.2fms,longer than %sms.",pwmMode,_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
+      testStepFail("measure PWM falling edge","PIN %s outputs PWM,PWM falling from frequency %sHz,duty %s%% to frequency %sHz,duty %s%% costs %6.2fms,longer than %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],cfgStrArray[3],cfgStrArray[4],_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
   }
 }
 
@@ -1003,9 +1003,9 @@ export void prodPwmOutRiseFallCurveMeas (char pwmMode[]) {
   }
 }*/
 
-export void chFixVoltDOSet (char vt2516CfgEntry[],enum digitalLevel level) {
+export void chFixVoltDOSet (char pinName[],enum digitalLevel level) {//pinName[] gets from key name in section vt2516Cfg
   char vt2516CfgInfo[2],namespace[100];
-  getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
+  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
   snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
   switch (level) {
     case Low:
@@ -1013,52 +1013,52 @@ export void chFixVoltDOSet (char vt2516CfgEntry[],enum digitalLevel level) {
       testWaitForTimeout(200);
       sysSetVariableInt(namespace,"RelayGnd",1);
       testWaitForTimeout(200);
-      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates low digital level.",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates low digital level.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
     break;
     case High:
       sysSetVariableInt(namespace,"RelayGnd",0);
       testWaitForTimeout(200);
       sysSetVariableInt(namespace,"RelayVBatt",1);
       testWaitForTimeout(200);
-      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates high digital level.",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates high digital level.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
     break;
     case Floating:
       sysSetVariableInt(namespace,"RelayGnd",0);
       testWaitForTimeout(200);
       sysSetVariableInt(namespace,"RelayVBatt",0);
       testWaitForTimeout(200);
-      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d is set to float.",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d is set to float.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
     break;
   }
 }
 
-export void chAOSet (char vt2516CfgEntry[],float analogValue) {
+export void chAOSet (char pinName[],float analogValue) {//pinName[] gets from key name in section vt2516Cfg
   char vt2516CfgInfo[2],namespace[100];
-  getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
+  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
   snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
   vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch5.SetStimulationMode(0);//stim mode inactive
   vtsSetCurveType(namespace,0);//sysvar::VTS::M9_Ch5.SetCurveType(0);//set curve type as constant
   vtsSetPWMVoltageHigh(namespace,analogValue);//sysvar::VTS::M9_Ch5.SetPWMVoltageHigh(random(6)+7);//set voltagelow 7-12
   sysSetVariableInt(namespace,"DigitalOutput",1);//@sysvar::VTS::M9_Ch5::DigitalOutput = 1;//output digital=1
   vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch5.SetStimulationMode(1);//stim mode as voltage
-  testStep("VT outputs analog value for product input pin","For pin %s:Module%d channel%d generates analog voltage: voltage = %3.1fV",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1],analogValue);
+  testStep("VT outputs analog value for product input pin","For pin %s:Module%d channel%d generates analog voltage: voltage = %3.1fV",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],analogValue);
 }
 
-export void chRamVoltDOSet (char pinNameEntry[],enum digitalLevel level) {
+export void chRamVoltDOSet (char pinName[],enum digitalLevel level) {//pinName[] gets from key name in section vLevelCfg
   int randomValue;
   char vLevelCfgInfo[4];
-  getCfgDataArray ("vLevelCfg",pinNameEntry,vLevelCfgInfo);
+  getCfgDataArray ("vLevelCfg",pinName,vLevelCfgInfo);
   if (level)
     randomValue = vLevelCfgInfo[2] + random(vLevelCfgInfo[3]);
   else
     randomValue = vLevelCfgInfo[0] + random(vLevelCfgInfo[1]);
-  chAOSet(pinNameEntry,randomValue);
+  chAOSet(pinName,randomValue);
 }
 
-export void chPwmOutSet (char pin[],char pwmWaveCfgEntry[]) {
+export void chPwmOutSet (char pinName[],char productPwmInMode[]) {//pinName[] gets from key name in section vt2516Cfg,productPwmInMode[]gets from key name in section pwmWaveCfg
   char namespace[100],vt2516CfgInfo[2],pwmWaveCfgInfo[5],duty;
-  getCfgDataArray ("vt2516Cfg",pin,vt2516CfgInfo);
-  getCfgDataArray ("pwmWaveCfg",pwmWaveCfgEntry,pwmWaveCfgInfo);
+  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  getCfgDataArray ("pwmWaveCfg",productPwmInMode,pwmWaveCfgInfo);
   duty = pwmWaveCfgInfo[3]+random(pwmWaveCfgInfo[4]);
   snprintf(namespace,elCount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
   vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch3.SetStimulationMode(0);//stim mode inactive
@@ -1069,16 +1069,16 @@ export void chPwmOutSet (char pin[],char pwmWaveCfgEntry[]) {
   sysSetVariableFloat(namespace,"PWMOutputDC",duty);//@sysvar::VTS::M9_Ch3::PWMOutputDC = 10;
   vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch3.SetStimulationMode(1);//stim mode as voltage
   vtsStartStimulation(namespace);//sysvar::VTS::M9_Ch3.StartStimulation();
-  testStep("VT outputs PWM for product input pin","For pin %s:Module%d channel%d generates PWM:Highvolt=%dV,Lowvolt=%dV,Duty=%d%%,Freq=%dHz",pin,vt2516CfgInfo[0],vt2516CfgInfo[1],pwmWaveCfgInfo[2],pwmWaveCfgInfo[1],duty,pwmWaveCfgInfo[0]);
+  testStep("VT outputs PWM for product input pin","For pin %s:Module%d channel%d generates PWM:Highvolt=%dV,Lowvolt=%dV,Duty=%d%%,Freq=%dHz",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],pwmWaveCfgInfo[2],pwmWaveCfgInfo[1],duty,pwmWaveCfgInfo[0]);
 }
 
-export void chLoadConnectStatSet (char vt2516CfgEntry[],enum connectStat stat) {
+export void chLoadConnectStatSet (char pinName[],enum connectStat stat) {//pinName[] gets from key name in section vt2516Cfg
   char vt2516CfgInfo[2],namespace[100],connectState[2][11] = {"disconnect","connect"};
-  getCfgDataArray ("vt2516Cfg",vt2516CfgEntry,vt2516CfgInfo);
+  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
   snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
   sysSetVariableInt(namespace,"RelayOrgComponent",stat);
   wait(200);
-  testStep("VT channel's load connection status","For pin %s:Module%d channel%d %s with load.",vt2516CfgEntry,vt2516CfgInfo[0],vt2516CfgInfo[1],connectState[stat]);
+  testStep("VT channel's load connection status","For pin %s:Module%d channel%d %s with load.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],connectState[stat]);
 }
 
 /************************Product function related******************************/

@@ -4,6 +4,7 @@
   <tt>
     <ts>
       <title>Power supply initialization</title>
+      <active>true</active>
       <variables />
       <caplinline>
         <title />
@@ -219,6 +220,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
     </ts>
     <ts>
       <title>3.5.1 Switch on Ambient light by door open signal</title>
+      <active>true</active>
       <variables />
       <tc>
         <title>TEST1:When IGN is OFF and initial power on,once received door open status signal is actived,ALCM will change to default color mode and luminance in 1s by dimming directly.Factory default color is blue and default luminance is 50%</title>
@@ -1298,6 +1300,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
     </ts>
     <ts>
       <title>3.5.2 Switch on ambient light by ACC or IGN ON</title>
+      <active>true</active>
       <variables />
       <breakonfail>false</breakonfail>
       <tc>
@@ -2879,6 +2882,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
     </ts>
     <ts>
       <title>3.5.3 Switch off function</title>
+      <active>true</active>
       <breakonfail>false</breakonfail>
       <tc>
         <title>TEST1:If long press switch one time,then will remember current color mode and luminance,then will switch off ambient light in 1s by dimming.During dimming off,if short press switch again,then ambient light will be switched on again.</title>
@@ -3052,6 +3056,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
     </ts>
     <ts>
       <title>Read SW version</title>
+      <active>true</active>
       <breakonfail>false</breakonfail>
       <tc>
         <title>Read SW version</title>
@@ -4907,6 +4912,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
     <function_definitions>
       <function_definition>
         <name>press_pin4_ms_wait_s_for_active</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
@@ -4949,6 +4955,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
       </function_definition>
       <function_definition>
         <name>switch_off_by_time_ms</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
@@ -5073,6 +5080,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
       </function_definition>
       <function_definition>
         <name>switch_on_by_door_open_signal_when_ign_off</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
@@ -5153,6 +5161,7 @@ testStep("","timestamp1=%lld",sysGetVariableTimeNS(sysvar::VTS::M9_Ch3::PWMFreq)
       </function_definition>
       <function_definition>
         <name>check_color_mode_when_ALCMLightLvlSet_actived</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
@@ -6410,6 +6419,7 @@ m9_ch1_pwmdc_low=75*0.98;</code>
       </function_definition>
       <function_definition>
         <name>check_color_mode_when_ALCMLightLvlSet_inactived</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
@@ -7046,6 +7056,7 @@ m9_ch1_pwmdc_low=75*0.98;</code>
       </function_definition>
       <function_definition>
         <name>switch_off_by_locked_signal</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
@@ -7140,6 +7151,7 @@ m9_ch1_pwmdc_low=75*0.98;</code>
       </function_definition>
       <function_definition>
         <name>change_color_mode_by_pin4_then_decide_power_mode</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
@@ -7241,6 +7253,7 @@ m9_ch1_pwmdc_low=75*0.98;</code>
       </function_definition>
       <function_definition>
         <name>enter_mode0_by_pin4_then_decide_power_mode</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
@@ -7399,6 +7412,7 @@ m9_ch1_pwmdc_low=75*0.98;</code>
       </function_definition>
       <function_definition>
         <name>check_color_mode_when_DrivingModeReq_actived</name>
+        <active>true</active>
         <export>true</export>
         <parameters>
           <parameter_definition>
