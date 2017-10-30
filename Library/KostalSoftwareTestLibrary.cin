@@ -21,6 +21,12 @@ variables {
     High = 1,
     Floating = 2
   };
+  
+  enum prodInputStat {
+    Inactive = 0,
+    Active = 1
+  };
+  
   enum vt7001MeasureRange {
     all = 0,
     _100uA_1mA = 1,
@@ -30,15 +36,18 @@ variables {
     _1A_10A = 5,
     _10A_100A = 6
   };
+  
   enum currentUnit {
     uA = 0,
     mA = 1,
     A = 2
   };
+  
   enum connectStat {
     disconnect = 0,
     connect = 1
   };
+  
   /*enum vt7001InterConnectionMode {
     supint = 0, 
     sup1 = 1, 
@@ -52,14 +61,17 @@ variables {
     sup_series = 9, 
     sup_parallel = 10
   };
+  
   enum vt7001ExPowerInputChannel {
     suply1 = 1, 
     suply2 = 2
   };
+  
   enum vt7001OutputChannelNo {
     out1 = 1,
     out2 = 2
   };*/
+  
   char noParaPick[1][1][1]={'\0'};
   int routeNum[100]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 }
@@ -1044,11 +1056,11 @@ export void chAOSet (char pinName[],float analogValue) {//pinName[] gets from ke
   testStep("VT outputs analog value for product input pin","For pin %s:Module%d channel%d generates analog voltage: voltage = %3.1fV",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],analogValue);
 }
 
-export void chRamVoltDOSet (char pinName[],enum digitalLevel level) {//pinName[] gets from key name in section vLevelCfg
+export void chRamVoltDOSet (char pinName[],enum prodInputStat state) {//pinName[] gets from key name in section vLevelCfg
   int randomValue;
   char vLevelCfgInfo[4];
   getCfgDataArray ("vLevelCfg",pinName,vLevelCfgInfo);
-  if (level)
+  if (state)
     randomValue = vLevelCfgInfo[2] + random(vLevelCfgInfo[3]);
   else
     randomValue = vLevelCfgInfo[0] + random(vLevelCfgInfo[1]);
@@ -1139,24 +1151,24 @@ export void btnPrsImpOnSpecPwmChk (char button[],int impFactVal) {
     testStepFail("Error","Don't get any string array. Please check the section and entry input.");
 }
 
-export void sigDirTwoStatInSet (char pin[], enum determiningFactor dFct, enum digitalLevel level) {
+export void sigDirTwoStatInSet (char pin[], enum determiningFactor dFct, enum prodInputStat state) {
   char cfgStrArray[4][100];
   getCfgStrArray("sigOrientTwoStatInputCfg",pin,cfgStrArray);
   if (!dFct) {//determinedBySignal
     testEnableMsg(cfgStrArray[0]);
-    if (level)
+    if (state)
       signalSetting (cfgStrArray[1],atodbl(cfgStrArray[3]),1);
     else 
       signalSetting (cfgStrArray[1],atodbl(cfgStrArray[2]),1);
-    chRamVoltDOSet(pin,(enum digitalLevel)(random(2)));  
+    chRamVoltDOSet(pin,(enum prodInputStat)(random(2)));  
   }    
   else {//determinedByHardware
     testDisableMsg(cfgStrArray[0]);
     wait(150);
-    if (level)
-      chRamVoltDOSet(pin,High);
+    if (state)
+      chRamVoltDOSet(pin,Active);
     else 
-      chRamVoltDOSet(pin,Low);
+      chRamVoltDOSet(pin,Inactive);
   }
 }
 
@@ -1320,7 +1332,7 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 chAOSet (cfgFuncArray[routeNum[i]][1],atodbl(cfgFuncArray[routeNum[i]][2])); 
               break;
               case 28:
-                chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][2])));
+                chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum prodInputStat)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
               case 29:
                 chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
@@ -1337,7 +1349,7 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
               break;
               case 33:
-                sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum digitalLevel)(atol(cfgFuncArray[routeNum[i]][3])));
+                sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum prodInputStat)(atol(cfgFuncArray[routeNum[i]][3])));
               break;
               case 34:
                 sigDirMulStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])));
