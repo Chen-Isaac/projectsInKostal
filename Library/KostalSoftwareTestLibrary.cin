@@ -1067,6 +1067,27 @@ export void chRamVoltDOSet (char pinName[],enum prodInputStat state) {//pinName[
   chAOSet(pinName,randomValue);
 }
 
+export int prodDIPinStatGet (char pinName[]) {
+  char namespace[100],vt2516CfgInfo[2],vLevelCfgInfo[4];
+  float avgVolt;
+  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  getCfgDataArray ("vLevelCfg",pinName,vLevelCfgInfo);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+  avgVolt = sysGetVariableFloat(namespace,"Avg");
+  if ((avgVolt >= vLevelCfgInfo[0] - 0.5) && (avgVolt < vLevelCfgInfo[0] + vLevelCfgInfo[1])) {
+    testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at inactive state.",avgVolt);
+    return (int)Inactive;
+  }
+  else if ((avgVolt >= vLevelCfgInfo[2] - 0.5) && (avgVolt < vLevelCfgInfo[2] + vLevelCfgInfo[3])) {
+    testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at active state.",avgVolt);
+    return (int)Active;
+  }
+  else {
+    testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at no definition state.",avgVolt);
+    return -1;//No definition.
+  }
+}
+
 export void chPwmOutSet (char pinName[],char productPwmInMode[]) {//pinName[] gets from key name in section vt2516Cfg,productPwmInMode[]gets from key name in section pwmWaveCfg
   char namespace[100],vt2516CfgInfo[2],pwmWaveCfgInfo[5],duty;
   getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
