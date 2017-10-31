@@ -1176,7 +1176,7 @@ export void btnPrsImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets
 
 export void sigDirTwoStatInSet (char pinName[], enum determiningFactor dFct, enum prodInputStat state) {
   char cfgStrArray[4][100];
-  getCfgStrArray("sigOrientTwoStatInputCfg",pinName,cfgStrArray);
+  getCfgStrArray("sigDirTwoStatInCfg",pinName,cfgStrArray);
   if (!dFct) {//determinedBySignal
     testEnableMsg(cfgStrArray[0]);
     if (state)
