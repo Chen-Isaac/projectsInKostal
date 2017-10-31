@@ -1198,7 +1198,7 @@ export void sigDirTwoStatInSet (char pinName[], enum determiningFactor dFct, enu
 export void sigDirMulStatInSet (char specStat[], enum determiningFactor dFct) {
   char cfgStrArray[5][100];
   int paraNum;
-  paraNum = getCfgStrArray("sigOrientMultiStatInputCfg",specStat,cfgStrArray);
+  paraNum = getCfgStrArray("sigDirMulStatInCfg",specStat,cfgStrArray);
   if (paraNum!=-1) {
     if (!dFct) {//decided by CAN signal
       testEnableMsg(cfgStrArray[0]);
