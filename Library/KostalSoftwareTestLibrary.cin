@@ -1115,58 +1115,60 @@ export void chLoadConnectStatSet (char pinName[],enum connectStat stat) {//pinNa
 }
 
 /************************Product function related******************************/
-export void btnPrsImpOnSpecSigChk (char button[],int revPinVoltLevel) {
-  int respOk,paraNum,i,demRes;
+export void btnPrsImpOnSpecSigChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecSigCfg
+  int respOk,paraNum,i,demRes,revPinStat;
   char heading[200],cfgStrArray[100][100];
-  paraNum = getCfgStrArray("buttonPressImpactOnSpecSigCfg",button,cfgStrArray);
+  paraNum = getCfgStrArray("buttonPressImpactOnSpecSigCfg",operationMode,cfgStrArray);
   //testStep("","paraNum=%d,%s,%s,%s,%s,%s,%s",paraNum,cfgStrArray[0],cfgStrArray[1],cfgStrArray[4],cfgStrArray[5],cfgStrArray[6],cfgStrArray[9]);
-  if (paraNum!=-1) {
-    if ((paraNum+1)%5==0) {
-      for (i=0;i<(paraNum+1)/5;i++) {//paraNum+1==real para number
-        if (strncmp(button,"IDLE",4)!=0) {
-          strncpy(heading,"Press button ",strlen("Press button ")+1);
-          strncat(heading,button,200);
+  revPinStat = prodDIPinStatGet(cfgStrArray[0]);
+  if ((paraNum!=-1) && (revPinStat!=-1))  {
+    if (paraNum%5==0) {//paraNum+1==real para number,but first parameter only shows once.
+      for (i=0;i<paraNum/5;i++) {
+        if (strncmp(operationMode,"IDLE",4)!=0) {
+          strncpy(heading,"Product operate ",strlen("Product operate ")+1);
+          strncat(heading,operationMode,200);
           strncat(heading," then check the signal ",200);
-          strncat(heading,cfgStrArray[5*i],200);
+          strncat(heading,cfgStrArray[5*i+1],200);
           testValidateTesterConfirmation(heading,"",1);
-          wait(atol(cfgStrArray[5*i+2]));
+          wait(atol(cfgStrArray[5*i+3]));
         }
-        demRes = atol(cfgStrArray[5*i+3])*revPinVoltLevel +atol(cfgStrArray[5*i+4]);
-        respOk = (getSignal(cfgStrArray[5*i])==atodbl(cfgStrArray[5*i+1]));
+        demRes = atol(cfgStrArray[5*i+4])*revPinStat +atol(cfgStrArray[5*i+5]);
+        respOk = (getSignal(cfgStrArray[5*i+1])==atodbl(cfgStrArray[5*i+2]));
         respOk = (respOk == demRes);
         if (respOk) {
           if (demRes)
-            testStepPass("Press button and check signal update","Press button:%s,the value of signal:%s updates to %1.0f within %dms.",button,cfgStrArray[5*i],getSignal(cfgStrArray[5*i]),atol(cfgStrArray[5*i+2]));
+            testStepPass("Press button and check signal update","Product operate:%s,the value of signal:%s updates to %1.0f within %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]));
           else
-            testStepPass("Press button and check signal update","Press button:%s,the value of signal:%s keeps %1.0f during %dms, not update to %d",button,cfgStrArray[5*i],getSignal(cfgStrArray[5*i]),atol(cfgStrArray[5*i+2]),atol(cfgStrArray[5*i+1]));
+            testStepPass("Press button and check signal update","Product operate:%s,the value of signal:%s keeps %1.0f during %dms, not update to %d",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]),atol(cfgStrArray[5*i+2]));
         }
         else {
           if (demRes)
-            testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not updates to %d during %dms.",button,cfgStrArray[5*i],getSignal(cfgStrArray[5*i]),atol(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+2]));
+            testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not updates to %d during %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+2]),atol(cfgStrArray[5*i+3]));
           else
-            testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not keeps the old value during %dms.",button,cfgStrArray[5*i],getSignal(cfgStrArray[5*i]),atol(cfgStrArray[5*i+2]));  
+            testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not keeps the old value during %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]));  
         }
       }
     }
     else 
-      testStepFail("Error","Data number in entry %s is not right.",button);
+      testStepFail("Error","Data number in entry %s is not right.",operationMode);
   }
-  else
+  if (paraNum == -1)
     testStepFail("Error","Don't get any string array. Please check the section and entry input.");
 } 
 
-export void btnPrsImpOnSpecPwmChk (char button[],int impFactVal) {
-  int paraNum,i;
+export void btnPrsImpOnSpecPwmChk (char operationMode[]) {
+  int paraNum,i,impFactVal;
   char cfgStrArray[60][100];//assume pwm check number will not larger than 10 at a time
-  paraNum = getCfgStrArray("buttonPressImpactOnSpecPwmCfg",button,cfgStrArray);
+  paraNum = getCfgStrArray("buttonPressImpactOnSpecPwmCfg",operationMode,cfgStrArray);
+  impFactVal = prodDIPinStatGet(cfgStrArray[0]);
   //testStep("","paraNum = %d,%s,%s,%s,%s",paraNum,cfgStrArray[0],cfgStrArray[5],cfgStrArray[6],cfgStrArray[11]);
-  if (paraNum!=-1) {
-    if ((paraNum+1)%6==0) {
-      for (i=0;i<(paraNum+1)/6;i++)
-        prodPwmOutChk(cfgStrArray[i*6],atol(cfgStrArray[i*6+1])*impFactVal+atol(cfgStrArray[i*6+2]),atol(cfgStrArray[i*6+3])*impFactVal+atol(cfgStrArray[i*6+4]),atol(cfgStrArray[i*6+5]));  
+  if ((paraNum!=-1) && (impFactVal!=-1)) {
+    if (paraNum%6==0) {//paraNum+1==real para number,but first parameter only shows once.
+      for (i=0;i<paraNum/6;i++)
+        prodPwmOutChk(cfgStrArray[i*6+1],atol(cfgStrArray[i*6+2])*impFactVal+atol(cfgStrArray[i*6+3]),atol(cfgStrArray[i*6+4])*impFactVal+atol(cfgStrArray[i*6+5]),atol(cfgStrArray[i*6+6]));  
     }
     else 
-      testStepFail("Error","Data number in entry %s is not right.",button);
+      testStepFail("Error","Data number in entry %s is not right.",operationMode);
   }
   else 
     testStepFail("Error","Don't get any string array. Please check the section and entry input.");
@@ -1363,11 +1365,11 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
               break;
               case 31:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
-                btnPrsImpOnSpecSigChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
+                btnPrsImpOnSpecSigChk (cfgFuncArray[routeNum[i]][1]);
               break;
               case 32:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
-                btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1], atol(cfgFuncArray[routeNum[i]][2]));
+                btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1]);
               break;
               case 33:
                 sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum prodInputStat)(atol(cfgFuncArray[routeNum[i]][3])));
