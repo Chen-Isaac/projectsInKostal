@@ -1358,26 +1358,29 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 chRamVoltDOSet (cfgFuncArray[routeNum[i]][1],(enum prodInputStat)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
               case 29:
-                chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
+                prodDIPinStatGet (cfgFuncArray[routeNum[i]][1]);
               break;
               case 30:
-                chLoadConnectStatSet (cfgFuncArray[routeNum[i]][1], (enum connectStat)(atol(cfgFuncArray[routeNum[i]][2])));
+                chPwmOutSet (cfgFuncArray[routeNum[i]][1],cfgFuncArray[routeNum[i]][2]);
               break;
               case 31:
-                //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
-                btnPrsImpOnSpecSigChk (cfgFuncArray[routeNum[i]][1]);
+                chLoadConnectStatSet (cfgFuncArray[routeNum[i]][1], (enum connectStat)(atol(cfgFuncArray[routeNum[i]][2])));
               break;
               case 32:
                 //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
-                btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1]);
+                btnPrsImpOnSpecSigChk (cfgFuncArray[routeNum[i]][1]);
               break;
               case 33:
-                sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum prodInputStat)(atol(cfgFuncArray[routeNum[i]][3])));
+                //testStep("validation","%s,%s",cfgFuncArray[routeNum[i]][1], cfgFuncArray[routeNum[i]][2]);
+                btnPrsImpOnSpecPwmChk (cfgFuncArray[routeNum[i]][1]);
               break;
               case 34:
-                sigDirMulStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])));
+                sigDirTwoStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])), (enum prodInputStat)(atol(cfgFuncArray[routeNum[i]][3])));
               break;
               case 35:
+                sigDirMulStatInSet (cfgFuncArray[routeNum[i]][1], (enum determiningFactor)(atol(cfgFuncArray[routeNum[i]][2])));
+              break;
+              case 36:
                 specStatImpOnSigChk (cfgFuncArray[routeNum[i]][1]);
               break;
             }
