@@ -1117,7 +1117,7 @@ export void chLoadConnectStatSet (char pinName[],enum connectStat stat) {//pinNa
 /************************Product function related******************************/
 export void btnPrsImpOnSpecSigChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecSigCfg
   int respOk,paraNum,i,demRes,revPinStat;
-  char heading[200],cfgStrArray[100][100];
+  char heading[200],cfgStrArray[101][100];
   paraNum = getCfgStrArray("btnPrsImpOnSpecSigCfg",operationMode,cfgStrArray);
   //testStep("","paraNum=%d,%s,%s,%s,%s,%s,%s",paraNum,cfgStrArray[0],cfgStrArray[1],cfgStrArray[4],cfgStrArray[5],cfgStrArray[6],cfgStrArray[9]);
   revPinStat = prodDIPinStatGet(cfgStrArray[0]);
@@ -1158,7 +1158,7 @@ export void btnPrsImpOnSpecSigChk (char operationMode[]) {//operationMode[] gets
 
 export void btnPrsImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecPwmCfg
   int paraNum,i,impFactVal;
-  char cfgStrArray[60][100];//assume pwm check number will not larger than 10 at a time
+  char cfgStrArray[61][100];//assume pwm check number will not larger than 10 at a time
   paraNum = getCfgStrArray("btnPrsImpOnSpecPwmCfg",operationMode,cfgStrArray);
   impFactVal = prodDIPinStatGet(cfgStrArray[0]);
   //testStep("","paraNum = %d,%s,%s,%s,%s",paraNum,cfgStrArray[0],cfgStrArray[5],cfgStrArray[6],cfgStrArray[11]);
@@ -1174,24 +1174,24 @@ export void btnPrsImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets
     testStepFail("Error","Don't get any string array. Please check the section and entry input.");
 }
 
-export void sigDirTwoStatInSet (char pin[], enum determiningFactor dFct, enum prodInputStat state) {
+export void sigDirTwoStatInSet (char pinName[], enum determiningFactor dFct, enum prodInputStat state) {
   char cfgStrArray[4][100];
-  getCfgStrArray("sigOrientTwoStatInputCfg",pin,cfgStrArray);
+  getCfgStrArray("sigOrientTwoStatInputCfg",pinName,cfgStrArray);
   if (!dFct) {//determinedBySignal
     testEnableMsg(cfgStrArray[0]);
     if (state)
       signalSetting (cfgStrArray[1],atodbl(cfgStrArray[3]),1);
     else 
       signalSetting (cfgStrArray[1],atodbl(cfgStrArray[2]),1);
-    chRamVoltDOSet(pin,(enum prodInputStat)(random(2)));  
+    chRamVoltDOSet(pinName,(enum prodInputStat)(random(2)));  
   }    
   else {//determinedByHardware
     testDisableMsg(cfgStrArray[0]);
     wait(150);
     if (state)
-      chRamVoltDOSet(pin,Active);
+      chRamVoltDOSet(pinName,Active);
     else 
-      chRamVoltDOSet(pin,Inactive);
+      chRamVoltDOSet(pinName,Inactive);
   }
 }
 
