@@ -216,17 +216,17 @@ export void signalSetting (char sigName[], float valueBase,int range) {
     testStepPass("set signal status","set %s = %1.0f successfully after %4.2fms.",sigName,getSignal(sigName),_pow(10,-6)*(t1-t0));
 }
 
-export void signalContSetting (char settingSignal[], float startVal, int range, long msGapTime) {
+export void signalContSetting (char sigName[], float startVal, int range, long msGapTime) {
   float sigVal;
   int i;
   for (i = 0;i < range; i++) {
     sigVal = startVal + i;
-    setSignal(settingSignal,sigVal);
+    setSignal(sigName,sigVal);
     wait(150);
-    if ((getSignal(settingSignal))== sigVal)
-      testStepPass("set signal status","set %s = %1.0f successfully, ",settingSignal,getSignal(settingSignal));
+    if ((getSignal(sigName))== sigVal)
+      testStepPass("set signal status","set %s = %1.0f successfully, ",sigName,getSignal(sigName));
     else
-      testStepFail("set signal status","set signal failed, %s = %1.0f, != %1.0f",settingSignal,getSignal(settingSignal),sigVal);
+      testStepFail("set signal status","set signal failed, %s = %1.0f, != %1.0f",sigName,getSignal(sigName),sigVal);
     wait(msGapTime);
   }
 }
