@@ -903,14 +903,14 @@ export void prodPwmOutFallingEdgeMeas (char productPwmOutMode[]) {//productPwmOu
   }
 }
 
-export void prodPwmOutRiseFallCurveMeas (char pwmMode[]) {
+export void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[]) {
   char cfgStrArray[10][30];
   double tRiseStart,tRiseEnd,tFallStart,tFallEnd;
   double tRise, tFall;
   int paraNum;
-  paraNum = getCfgStrArray("pwmTimeCfg",pwmMode,cfgStrArray);
+  paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
   if (paraNum == -1)
-    testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
+    testStepFail("Error","This entry %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
     if (tRiseStart != -1) {

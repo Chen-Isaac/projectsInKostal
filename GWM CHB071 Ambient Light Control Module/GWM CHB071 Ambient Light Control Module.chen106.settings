@@ -590,39 +590,508 @@ FiltersEnd
                       <RootNodeId>:0</RootNodeId>
                       <MruList>
                         <TtCustomPopupListItemData>
-                          <ItemText>chkRisingTimeAndMemoryFunctionOfIgnOnImpExceptMode0SwitchOff [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <ItemText>switch_on_by_door_open_signal_when_ign_off</ItemText>
+                          <ImageIndex>68</ImageIndex>
+                          <ModelElementName>ttfunction</ModelElementName>
                           <CheckHandle />
-                          <SignatureName>chkRisingTimeAndMemoryFunctionOfIgnOnImpExceptMode0SwitchOff</SignatureName>
+                          <SignatureName>switch_on_by_door_open_signal_when_ign_off</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>Int64</EnumDataType>
+                            <EnumDataType>Signal</EnumDataType>
+                            <EnumDataType>Int64</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>switch_off_by_locked_signal</ItemText>
+                          <ImageIndex>68</ImageIndex>
+                          <ModelElementName>ttfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>switch_off_by_locked_signal</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>Int64</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>testValidateTesterConfirmation</ItemText>
+                          <ImageIndex>66</ImageIndex>
+                          <ModelElementName>canoestandardservice</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>testValidateTesterConfirmation</SignatureName>
                           <ClassName />
                           <DataTypeList>
                             <EnumDataType>String</EnumDataType>
                             <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>Int</EnumDataType>
+                            <EnumDataType>Long</EnumDataType>
                           </DataTypeList>
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
-                          <ItemText>Comment</ItemText>
-                          <ImageIndex>178</ImageIndex>
-                          <ModelElementName>comment</ModelElementName>
+                          <ItemText>Send</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>send</ModelElementName>
                           <CheckHandle />
                           <SignatureName />
                           <ClassName />
                           <DataTypeList />
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
-                          <ItemText>chkIgnOnImpWhenMode0 [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <ItemText>Diagnostic Service</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>diagservice</ModelElementName>
                           <CheckHandle />
-                          <SignatureName>chkIgnOnImpWhenMode0</SignatureName>
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Check</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>statecheck</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Messages Known</ItemText>
+                          <ImageIndex>174</ImageIndex>
+                          <ModelElementName>messages_known</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>testReportAddWindowCapture</ItemText>
+                          <ImageIndex>66</ImageIndex>
+                          <ModelElementName>canoestandardservice</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>testReportAddWindowCapture</SignatureName>
                           <ClassName />
                           <DataTypeList>
                             <EnumDataType>String</EnumDataType>
                             <EnumDataType>String</EnumDataType>
                             <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Return</ItemText>
+                          <ImageIndex>181</ImageIndex>
+                          <ModelElementName>return</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Occurrence Message</ItemText>
+                          <ImageIndex>174</ImageIndex>
+                          <ModelElementName>occurrencetime_rel</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>J1939 Request</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>j1939_request</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Request Response Check</ItemText>
+                          <ImageIndex>174</ImageIndex>
+                          <ModelElementName>requestresponsecheck</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Request Response</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>requestresponse</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>testCollectDiagEcuInformation</ItemText>
+                          <ImageIndex>66</ImageIndex>
+                          <ModelElementName>testcollectdiagecuinformation</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Report</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>report</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>testWaitForReplay</ItemText>
+                          <ImageIndex>66</ImageIndex>
+                          <ModelElementName>canoestandardservice</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>testWaitForReplay</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>testCaseReportMeasuredValue</ItemText>
+                          <ImageIndex>66</ImageIndex>
+                          <ModelElementName>canoestandardservice</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>testCaseReportMeasuredValue</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>EnvVar</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>powerOn</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>powerOn</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>initProduct</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>initProduct</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>readSwVer</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>readSwVer</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>powerOff</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>powerOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkDrivingModeReqSigImpWhenIgnOff [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkDrivingModeReqSigImpWhenIgnOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkALCMLightLvlSetSigImpWhenIgnOff [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkALCMLightLvlSetSigImpWhenIgnOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkPosLmpStslSigImpWhenIgnOff [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkPosLmpStslSigImpWhenIgnOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>tryini [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>tryini</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>tryini2 [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>tryini2</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>tryini3 [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>tryini3</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>Int</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkDoorOpenSignalImpWhenMode0IgnOff [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkDoorOpenSignalImpWhenMode0IgnOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkDoorOpenSignalImpExceptMode0IgnOff [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkDoorOpenSignalImpExceptMode0IgnOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>CAPL Inline</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>caplinline</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>tryini</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>tryini</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>try</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>try</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>prodPwmOutRisingEdgeChk</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>prodPwmOutRisingEdgeChk</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Set</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>set</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Wait</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>wait</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>prodPwmOutRisingEdgeMeas</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>prodPwmOutRisingEdgeMeas</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>prodPwmOutFallingEdgeMeas</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>prodPwmOutFallingEdgeMeas</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>prodPwmOutKeepTimeMeas</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>prodPwmOutKeepTimeMeas</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>signalSetting</ItemText>
+                          <ImageIndex>69</ImageIndex>
+                          <ModelElementName>caplfunction</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>signalSetting</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Float</EnumDataType>
+                            <EnumDataType>Int</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkAlcmKeepTime [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkAlcmKeepTime</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Test Fixture</ItemText>
+                          <ImageIndex>169</ImageIndex>
+                          <ModelElementName>tf</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkALCMLightLvlSetSigImpWhenAccOn [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkALCMLightLvlSetSigImpWhenAccOn</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkDrivingModeReqSigImpWhenAccOn [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkDrivingModeReqSigImpWhenAccOn</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkALCMLightLvlSetSigImpWhenIgnOn [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkALCMLightLvlSetSigImpWhenIgnOn</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>chkAccImpWhenMode0 [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>chkAccImpWhenMode0</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
                             <EnumDataType>String</EnumDataType>
                             <EnumDataType>String</EnumDataType>
                           </DataTypeList>
@@ -645,23 +1114,11 @@ FiltersEnd
                           </DataTypeList>
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
-                          <ItemText>chkAccImpWhenMode0 [list]</ItemText>
+                          <ItemText>chkIgnOnImpWhenMode0 [list]</ItemText>
                           <ImageIndex>92</ImageIndex>
                           <ModelElementName>capltestcaselist</ModelElementName>
                           <CheckHandle />
-                          <SignatureName>chkAccImpWhenMode0</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>chkALCMLightLvlSetSigImpWhenIgnOn [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkALCMLightLvlSetSigImpWhenIgnOn</SignatureName>
+                          <SignatureName>chkIgnOnImpWhenMode0</SignatureName>
                           <ClassName />
                           <DataTypeList>
                             <EnumDataType>String</EnumDataType>
@@ -672,483 +1129,26 @@ FiltersEnd
                           </DataTypeList>
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
-                          <ItemText>chkDrivingModeReqSigImpWhenAccOn [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkDrivingModeReqSigImpWhenAccOn</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>chkALCMLightLvlSetSigImpWhenAccOn [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkALCMLightLvlSetSigImpWhenAccOn</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Test Fixture</ItemText>
-                          <ImageIndex>169</ImageIndex>
-                          <ModelElementName>tf</ModelElementName>
+                          <ItemText>Comment</ItemText>
+                          <ImageIndex>178</ImageIndex>
+                          <ModelElementName>comment</ModelElementName>
                           <CheckHandle />
                           <SignatureName />
                           <ClassName />
                           <DataTypeList />
                         </TtCustomPopupListItemData>
                         <TtCustomPopupListItemData>
-                          <ItemText>chkAlcmKeepTime [list]</ItemText>
+                          <ItemText>chkRisingTimeAndMemoryFunctionOfIgnOnImpExceptMode0SwitchOff [list]</ItemText>
                           <ImageIndex>92</ImageIndex>
                           <ModelElementName>capltestcaselist</ModelElementName>
                           <CheckHandle />
-                          <SignatureName>chkAlcmKeepTime</SignatureName>
+                          <SignatureName>chkRisingTimeAndMemoryFunctionOfIgnOnImpExceptMode0SwitchOff</SignatureName>
                           <ClassName />
                           <DataTypeList>
                             <EnumDataType>String</EnumDataType>
                             <EnumDataType>String</EnumDataType>
                             <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkRisingTimeAndMemoryFunctionOfDoorOpenSignalImpExceptMode0IgnOff</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>signalSetting</ItemText>
-                          <ImageIndex>69</ImageIndex>
-                          <ModelElementName>caplfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>signalSetting</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
                             <EnumDataType>Int</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>prodPwmOutKeepTimeMeas</ItemText>
-                          <ImageIndex>69</ImageIndex>
-                          <ModelElementName>caplfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>prodPwmOutKeepTimeMeas</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>prodPwmOutFallingEdgeMeas</ItemText>
-                          <ImageIndex>69</ImageIndex>
-                          <ModelElementName>caplfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>prodPwmOutFallingEdgeMeas</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
-                            <EnumDataType>Int</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>prodPwmOutRisingEdgeMeas</ItemText>
-                          <ImageIndex>69</ImageIndex>
-                          <ModelElementName>caplfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>prodPwmOutRisingEdgeMeas</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
-                            <EnumDataType>Int</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Wait</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>wait</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Set</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>set</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>prodPwmOutRisingEdgeChk</ItemText>
-                          <ImageIndex>69</ImageIndex>
-                          <ModelElementName>caplfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>prodPwmOutRisingEdgeChk</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
-                            <EnumDataType>Float</EnumDataType>
-                            <EnumDataType>Int</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>try</ItemText>
-                          <ImageIndex>89</ImageIndex>
-                          <ModelElementName>capltestcase</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>try</SignatureName>
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>tryini</ItemText>
-                          <ImageIndex>89</ImageIndex>
-                          <ModelElementName>capltestcase</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>tryini</SignatureName>
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>CAPL Inline</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>caplinline</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>chkDoorOpenSignalImpExceptMode0IgnOff [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkDoorOpenSignalImpExceptMode0IgnOff</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>chkDoorOpenSignalImpWhenMode0IgnOff [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkDoorOpenSignalImpWhenMode0IgnOff</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>tryini3 [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>tryini3</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>Int</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>tryini2 [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>tryini2</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>tryini [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>tryini</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>Int</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>chkPosLmpStslSigImpWhenIgnOff [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkPosLmpStslSigImpWhenIgnOff</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>chkALCMLightLvlSetSigImpWhenIgnOff [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkALCMLightLvlSetSigImpWhenIgnOff</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>chkDrivingModeReqSigImpWhenIgnOff [list]</ItemText>
-                          <ImageIndex>92</ImageIndex>
-                          <ModelElementName>capltestcaselist</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>chkDrivingModeReqSigImpWhenIgnOff</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>powerOff</ItemText>
-                          <ImageIndex>89</ImageIndex>
-                          <ModelElementName>capltestcase</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>powerOff</SignatureName>
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>readSwVer</ItemText>
-                          <ImageIndex>89</ImageIndex>
-                          <ModelElementName>capltestcase</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>readSwVer</SignatureName>
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>initProduct</ItemText>
-                          <ImageIndex>89</ImageIndex>
-                          <ModelElementName>capltestcase</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>initProduct</SignatureName>
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>powerOn</ItemText>
-                          <ImageIndex>89</ImageIndex>
-                          <ModelElementName>capltestcase</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>powerOn</SignatureName>
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>testCaseReportMeasuredValue</ItemText>
-                          <ImageIndex>66</ImageIndex>
-                          <ModelElementName>canoestandardservice</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>testCaseReportMeasuredValue</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>EnvVar</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>testWaitForReplay</ItemText>
-                          <ImageIndex>66</ImageIndex>
-                          <ModelElementName>canoestandardservice</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>testWaitForReplay</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Report</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>report</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>testCollectDiagEcuInformation</ItemText>
-                          <ImageIndex>66</ImageIndex>
-                          <ModelElementName>testcollectdiagecuinformation</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Request Response</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>requestresponse</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Request Response Check</ItemText>
-                          <ImageIndex>174</ImageIndex>
-                          <ModelElementName>requestresponsecheck</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>J1939 Request</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>j1939_request</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Occurrence Message</ItemText>
-                          <ImageIndex>174</ImageIndex>
-                          <ModelElementName>occurrencetime_rel</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Return</ItemText>
-                          <ImageIndex>181</ImageIndex>
-                          <ModelElementName>return</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>testReportAddWindowCapture</ItemText>
-                          <ImageIndex>66</ImageIndex>
-                          <ModelElementName>canoestandardservice</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>testReportAddWindowCapture</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Messages Known</ItemText>
-                          <ImageIndex>174</ImageIndex>
-                          <ModelElementName>messages_known</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Check</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>statecheck</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Diagnostic Service</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>diagservice</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>Send</ItemText>
-                          <ImageIndex>176</ImageIndex>
-                          <ModelElementName>send</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName />
-                          <ClassName />
-                          <DataTypeList />
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>testValidateTesterConfirmation</ItemText>
-                          <ImageIndex>66</ImageIndex>
-                          <ModelElementName>canoestandardservice</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>testValidateTesterConfirmation</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>String</EnumDataType>
-                            <EnumDataType>Long</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>switch_off_by_locked_signal</ItemText>
-                          <ImageIndex>68</ImageIndex>
-                          <ModelElementName>ttfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>switch_off_by_locked_signal</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>Int64</EnumDataType>
-                          </DataTypeList>
-                        </TtCustomPopupListItemData>
-                        <TtCustomPopupListItemData>
-                          <ItemText>switch_on_by_door_open_signal_when_ign_off</ItemText>
-                          <ImageIndex>68</ImageIndex>
-                          <ModelElementName>ttfunction</ModelElementName>
-                          <CheckHandle />
-                          <SignatureName>switch_on_by_door_open_signal_when_ign_off</SignatureName>
-                          <ClassName />
-                          <DataTypeList>
-                            <EnumDataType>Int64</EnumDataType>
-                            <EnumDataType>Signal</EnumDataType>
-                            <EnumDataType>Int64</EnumDataType>
                           </DataTypeList>
                         </TtCustomPopupListItemData>
                       </MruList>
