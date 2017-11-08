@@ -14,7 +14,7 @@ variables {
     determinedByHardware = 1
   };
   
-  char func[36][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","linActivateSlot","linDeactivateSlot","sendCanUdsDiagChkResp","sendCanKostiaDiagChkResp","sendLinUdsDiagChkResp","sendLinKostiaDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","vtsSetThreshold1_8","vtsSetThreshold9_16","prodPwmOutChk","prodPwmOutRisingEdgeMeas","prodPwmOutKeepTimeMeas","prodPwmOutFallingEdgeMeas","prodPwmOutRiseFallCurveMeas","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","chLoadConnectStatSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
+  char func[38][100]= {"testValidateTesterConfirmation","signalSetting","signalContSetting","testEnableMsg","testDisableMsg","linActivateSlot","linDeactivateSlot","sendCanUdsDiagChkResp","sendCanKostiaDiagChkResp","sendLinUdsDiagChkResp","sendLinKostiaDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","vtsSetThreshold1_8","vtsSetThreshold9_16","prodPwmOutChk","prodPwmOutRisingEdgeMeas","prodPwmOutKeepTimeMeas","prodPwmOutFallingEdgeMeas","prodPwmOutRiseFallCurveMeas","chFixVoltDOSet","chAOSet","chRamVoltDOSet","prodDIPinStatGet","chPwmOutSet","chLoadConnectStatSet","prodOperWithPinStatImpOnSpecSigChk","prodOperWithPinStatImpOnSpecPwmChk","prodOperWithSigStatImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
   
   enum digitalLevel { 
     Low = 0, 
@@ -1294,7 +1294,7 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
           if (cmp == 0) {
             switch(j) {
               case 0:
-                testValidateTesterConfirmation(cfgFuncArray[routeNum[i]][1],"",1);
+                testValidateTesterConfirmation (cfgFuncArray[routeNum[i]][1],"",1);
               break;
               case 1:
                 signalSetting (cfgFuncArray[routeNum[i]][1], atodbl(cfgFuncArray[routeNum[i]][2]),atol(cfgFuncArray[routeNum[i]][3]));
