@@ -1138,15 +1138,15 @@ export void prodOperWithPinStatImpOnSpecSigChk (char operationMode[]) {//operati
           respOk = (respOk == demRes);
           if (respOk) {
             if (demRes)
-              testStepPass("Press button and check signal update","Product operate:%s,the value of signal:%s updates to %1.0f within %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]));
+              testStepPass("Operate product and check signal update","Product operate:%s,the value of signal:%s updates to %1.0f within %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]));
             else
-              testStepPass("Press button and check signal update","Product operate:%s,the value of signal:%s keeps %1.0f during %dms, not update to %d",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]),atol(cfgStrArray[5*i+2]));
+              testStepPass("Operate product and check signal update","Product operate:%s,the value of signal:%s keeps %1.0f during %dms, not update to %d",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]),atol(cfgStrArray[5*i+2]));
           }
           else {
             if (demRes)
-              testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not updates to %d during %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+2]),atol(cfgStrArray[5*i+3]));
+              testStepFail("Operate product and check signal update","Product operate:%s,the value of signal:%s is %1.0f, not updates to %d during %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+2]),atol(cfgStrArray[5*i+3]));
             else
-              testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not keeps the old value during %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]));  
+              testStepFail("Operate product and check signal update","Product operate:%s,the value of signal:%s is %1.0f, not keeps the old value during %dms.",operationMode,cfgStrArray[5*i+1],getSignal(cfgStrArray[5*i+1]),atol(cfgStrArray[5*i+3]));  
           }
         }
       }
