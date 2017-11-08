@@ -557,7 +557,7 @@ export void wait (dword waitMs) {
   testStep("Wait","Wait for %ldms.",waitMs);
 }
 /************************* communication data analyze *********************************/
-export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos,char reportContent[]) {
+export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos,char decodeItem[]) {
   char decodedAsciiString[100];
   int i;
   if (arrayLen > 0) {
@@ -565,7 +565,7 @@ export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos
       for (i=0;i<arrayLen-offsetBytePos;i++)
         decodedAsciiString[i] = recMsg[offsetBytePos+i];
       decodedAsciiString[i] = '\0';
-      testStep("Decode Response as ASCII","%s %s.",reportContent,decodedAsciiString);
+      testStep("Decode Response as ASCII","%s: %s.",decodeItem,decodedAsciiString);
     }
     else
       testStep("Error","Response byte number <= offsetBytePos.");
