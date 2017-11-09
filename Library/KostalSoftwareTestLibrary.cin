@@ -335,7 +335,7 @@ export int sendCanUdsDiagChkResp (char serviceName[],byte recMsg[]) {//same sequ
           index++;
         }
         if (i == 0) {
-          if ((offsetBytePos + chkByteLen) <= 8) {
+          if ((offsetBytePos + chkByteLen) <= 8) {//the first message is enough for confirming if it's the right response.
             if (((recCanMsg << (offsetBytePos*8)) >> ((8-chkByteLen)*8)) == chkRecMsgPart) {
               testStepPass("Diagnostic Response","Get positive response:0x%llX.",recCanMsg);
               errorCode = 0;
