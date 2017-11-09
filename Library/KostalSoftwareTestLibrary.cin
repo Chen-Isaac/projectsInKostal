@@ -557,18 +557,18 @@ export void wait (dword waitMs) {
   testStep("Wait","Wait for %ldms.",waitMs);
 }
 /************************* communication data analyze *********************************/
-export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos,char decodeItem[]) {
+export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos,int chkByteLen,char decodeItem[]) {
   char decodedAsciiString[100];
   int i;
   if (arrayLen > 0) {
-    if (arrayLen > offsetBytePos) {
-      for (i=0;i<arrayLen-offsetBytePos;i++)
+    if (arrayLen >= offsetBytePos+chkByteLen) {
+      for (i=0;i<offsetBytePos+chkByteLen;i++)
         decodedAsciiString[i] = recMsg[offsetBytePos+i];
       decodedAsciiString[i] = '\0';
       testStep("Decode Response as ASCII","%s: %s.",decodeItem,decodedAsciiString);
     }
     else
-      testStep("Error","Response byte number <= offsetBytePos.");
+      testStep("Error","Response byte number < offsetBytePos + chkByteLen. ByteNum = %d,offsetBytePos + chkByteLen = %d.",arrayLen,offsetBytePos + chkByteLen);
   }
 }
 
@@ -1332,7 +1332,7 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 wait(atol(cfgFuncArray[routeNum[i]][1]));
               break;
               case 12:
-                decodeAsciiFromRecDiag (recMsg,recAnalyzeDataByteNum,atol(cfgFuncArray[routeNum[i]][1]),cfgFuncArray[routeNum[i]][2]);
+                decodeAsciiFromRecDiag (recMsg,recAnalyzeDataByteNum,atol(cfgFuncArray[routeNum[i]][1]),atol(cfgFuncArray[routeNum[i]][2]),cfgFuncArray[routeNum[i]][3]);
               break;
               case 13:
                 vtSysPwrSupInit (cfgFuncArray[routeNum[i]][1]);
