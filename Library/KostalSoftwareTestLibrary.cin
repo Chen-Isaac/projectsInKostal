@@ -221,12 +221,7 @@ export void signalContSetting (char sigName[], float startVal, int range, long m
   int i;
   for (i = 0;i < range; i++) {
     sigVal = startVal + i;
-    setSignal(sigName,sigVal);
-    wait(150);
-    if ((getSignal(sigName))== sigVal)
-      testStepPass("set signal status","set %s = %1.0f successfully, ",sigName,getSignal(sigName));
-    else
-      testStepFail("set signal status","set signal failed, %s = %1.0f, != %1.0f",sigName,getSignal(sigName),sigVal);
+    signalSetting(sigName,sigVal,1);
     wait(msGapTime);
   }
 }
