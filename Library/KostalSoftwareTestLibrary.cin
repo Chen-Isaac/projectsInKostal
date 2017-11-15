@@ -891,8 +891,8 @@ export void prodPwmOutFallingEdgeMeas (char productPwmOutMode[]) {//productPwmOu
   if (paraNum == -1)
     testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
-    tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
     tFallStart = pwmFallStartTimingMeas(cfgStrArray[0]);
+    tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
     if (_pow(10,-6)*(abs(tFallEnd) - tFallStart) <= atol(cfgStrArray[9]))
       testStepPass("measure PWM falling edge","PIN %s outputs PWM,PWM falling from frequency %sHz,duty %s%% to frequency %sHz,duty %s%% costs %6.2fms,within %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],cfgStrArray[3],cfgStrArray[4],_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
     else
