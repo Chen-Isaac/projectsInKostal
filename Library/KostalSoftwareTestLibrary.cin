@@ -107,7 +107,7 @@ export int getCfgStrArray (char section[],char keyName[],char cfgStrArray[][]) {
     return row;//return row number
   }
   else {
-    //testStepFail("Error","Don't get any string array. Please check the section and entry input.");
+    //testStepFail("Error","Don't get any string array. Please check the section and key name input.");
     return(-1);//return -1, means error
   } 
 }
@@ -116,7 +116,7 @@ export int getCfgFuncArray (char section[],char keyName[],char cfgFuncArray[][][
   char buff[1000];
   int i,row,col,funcNum;
   sysGetVariableString(sysvar::iniTestStepCfgPath, iniTestStepCfgPath, 100);
-  //testStep("","%s,%s,%s",section,entry,iniTestStepCfgPath);
+  //testStep("","%s,%s,%s",section,keyName,iniTestStepCfgPath);
   getProfileString(section,keyName,"err",buff,elCount(buff),iniTestStepCfgPath);
   //testStep("","%s",buff);
   if (strncmp(buff,"err",4)!=0) {
@@ -148,7 +148,7 @@ export int getCfgFuncArray (char section[],char keyName[],char cfgFuncArray[][][
     return(funcNum);//return function number
   }
   else {
-    //testStepFail("Error","Don't get any function array. Please check the section and entry input.");
+    //testStepFail("Error","Don't get any function array. Please check the section and key name input.");
     return -1;//return -1, means error
   } 
 }
@@ -252,8 +252,8 @@ export int cfgLinMsgAndSend (char serviceType[],char serviceName[],char diagInfo
     }
   }
   else {
-    testStepFail("Error","Can't find the item in paraCfg.ini. Please check section and entry's name.");
-    return -1;//error section or entry
+    testStepFail("Error","Can't find the item in paraCfg.ini. Please check section and key's name.");
+    return -1;//error section or key name
   }
 }
 
@@ -283,8 +283,8 @@ export int cfgCanMsgAndSend (char serviceType[],char serviceName[],char diagInfo
     }
   }
   else {
-    testStepFail("Error","Can't find the item in paraCfg.ini. Please check section and entry's name.");
-    return -1;//error section or entry
+    testStepFail("Error","Can't find the item in paraCfg.ini. Please check section and key's name.");
+    return -1;//error section or key name
   }
 }
 
@@ -855,7 +855,7 @@ export void prodPwmOutRisingEdgeMeas (char productPwmOutMode[]) {//productPwmOut
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
   if (paraNum == -1)
-    testStepFail("Error","This entry %s dosen't exist in cfg file.",productPwmOutMode);
+    testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
     tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
@@ -889,7 +889,7 @@ export void prodPwmOutFallingEdgeMeas (char productPwmOutMode[]) {//productPwmOu
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
   if (paraNum == -1)
-    testStepFail("Error","This entry %s dosen't exist in cfg file.",productPwmOutMode);
+    testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
     tFallStart = pwmFallStartTimingMeas(cfgStrArray[0]);
@@ -907,7 +907,7 @@ export void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[]) {
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
   if (paraNum == -1)
-    testStepFail("Error","This entry %s dosen't exist in cfg file.",productPwmOutMode);
+    testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
     if (tRiseStart != -1) {
@@ -949,7 +949,7 @@ export void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[]) {
   int flag,paraNum;
   paraNum = getCfgStrArray("pwmRiseEdgeCfg",pwmMode,cfgStrArray);
   if (paraNum == -1)
-    testStepFail("Error","This entry %s dosen't exist in cfg file.",pwmMode);
+    testStepFail("Error","This key %s dosen't exist in cfg file.",pwmMode);
   else {
     getCfgDataArray ("vt2516Cfg",cfgStrArray[0],vt2516CfgInfo);
     snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
@@ -1149,10 +1149,10 @@ export void prodOperWithPinStatImpOnSpecSigChk (char operationMode[]) {//operati
       }
     }
     else 
-      testStepFail("Error","Data number in entry %s is not right.",operationMode);
+      testStepFail("Error","Data number in key %s is not right.",operationMode);
   }
   if (paraNum == -1)
-    testStepFail("Error","Don't get any string array. Please check the section and entry input.");
+    testStepFail("Error","Don't get any string array. Please check the section and key input.");
 } 
 
 export void prodOperWithPinStatImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecPwmCfg
@@ -1169,10 +1169,10 @@ export void prodOperWithPinStatImpOnSpecPwmChk (char operationMode[]) {//operati
       }
     }
     else 
-      testStepFail("Error","Data number in entry %s is not right.",operationMode);
+      testStepFail("Error","Data number in key %s is not right.",operationMode);
   }
   else
-    testStepFail("Error","Don't get any string array. Please check the section and entry input.");
+    testStepFail("Error","Don't get any string array. Please check the section and key input.");
 }
 
 export void prodOperWithSigStatImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecPwmCfg
@@ -1192,10 +1192,10 @@ export void prodOperWithSigStatImpOnSpecPwmChk (char operationMode[]) {//operati
         testStepFail("Error","The value of signal:%s is %4.1f, not a simple 0,1 value. So this function is not adaptable for this situation.",cfgStrArray[0],impFactVal);
     }
     else 
-      testStepFail("Error","Data number in entry %s is not right.",operationMode);
+      testStepFail("Error","Data number in key %s is not right.",operationMode);
   }
   else
-    testStepFail("Error","Don't get any string array. Please check the section and entry input.");
+    testStepFail("Error","Don't get any string array. Please check the section and key input.");
 }
 
 export void sigDirTwoStatInSet (char pinName[], enum determiningFactor dFct, enum prodInputStat state) {
@@ -1429,7 +1429,7 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
     }
     else {//funcNum=-1
       if (i==0)
-        testStepFail("Error","Can't find the section or entry, please check your ini file.");
+        testStepFail("Error","Can't find the section or key, please check your ini file.");
     }
   }while((funcNum!=-1)&&(!errBool));//exit loop if step not found or error occured.
   //testStep("","loop is over");
