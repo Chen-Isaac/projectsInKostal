@@ -565,6 +565,8 @@ export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos
     else
       testStep("Error","Response byte number < offsetBytePos + chkByteLen. ByteNum = %d,offsetBytePos + chkByteLen = %d.",arrayLen,offsetBytePos + chkByteLen);
   }
+  else 
+    testStepFail("Error","Error code = %d, Something wrong at communication.",arrayLen);
 }
 
 /****************************vtSystem related*************************************/
