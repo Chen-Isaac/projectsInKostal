@@ -77,9 +77,11 @@ variables {
 }
 
 /*****************ini file data handle***************************/
-export void getCfgDataArray (char section[],char keyName[],char cfgDataArray[]) {
+export int getCfgDataArray (char section[],char keyName[],char cfgDataArray[]) {
+  int numOfValsReadIn;
   sysGetVariableString(sysvar::iniParaCfgPath,iniParaCfgPath,100); 
-  getProfileArray(section,keyName,cfgDataArray,elCount(cfgDataArray),iniParaCfgPath);
+  numOfValsReadIn = getProfileArray(section,keyName,cfgDataArray,elCount(cfgDataArray),iniParaCfgPath);
+  return numOfValsReadIn;
 }
 
 export int getCfgStrArray (char section[],char keyName[],char cfgStrArray[][]) {//sperated by ','
@@ -572,141 +574,187 @@ export void decodeAsciiFromRecDiag (byte recMsg[],int arrayLen,int offsetBytePos
 /****************************vtSystem related*************************************/
 export void vtSysPwrSupInit (char pwrConnectWay[]) {//pwrConnectWay[] gets from key name in section vt7001Cfg 
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
-  if ((vt7001CfgInfo[1] != 0) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
-    testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
-  else {
-    snprintf(namespace,elcount(namespace),"VTS::M%d_VT7001",vt7001CfgInfo[0]);
-    vtsSetInterconnectionMode(namespace,vt7001CfgInfo[1]);//sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);//Interconnection settings mode:supint,internal power supply connects to both I1 & I2.
-    snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001CfgInfo[0]);
-    vtsSetRefVoltageMode(namespace,1);//sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);//M12_SupInt:Output:Ref Voltage mode = constant
-    snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
-    sysSetVariableInt(namespace,"Active",1);//@sysvar::VTS::M12_Out2::Active = 1;//M12_Out2:OUT2 pin connects to I2;
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
+  if (numOfValsReadIn == 3) {
+    if ((vt7001CfgInfo[1] != 0) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
+      testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
+    else {
+      snprintf(namespace,elcount(namespace),"VTS::M%d_VT7001",vt7001CfgInfo[0]);
+      vtsSetInterconnectionMode(namespace,vt7001CfgInfo[1]);//sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);//Interconnection settings mode:supint,internal power supply connects to both I1 & I2.
+      snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001CfgInfo[0]);
+      vtsSetRefVoltageMode(namespace,1);//sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);//M12_SupInt:Output:Ref Voltage mode = constant
+      snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
+      sysSetVariableInt(namespace,"Active",1);//@sysvar::VTS::M12_Out2::Active = 1;//M12_Out2:OUT2 pin connects to I2;
+    }
   }
+  else 
+    testStepFail("Error","The value number in section:vt7001Cfg,key name:%s is %d, not equal to 3. Please check the paraCfg.ini file.",pwrConnectWay,numOfValsReadIn);
 }
 
 export void vtSysWithExPwrSupInit (char pwrConnectWay[]) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
-  if ((vt7001CfgInfo[1] < 1) || (vt7001CfgInfo[1] > 2) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
-    testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
-  else {
-    snprintf(namespace,elcount(namespace),"VTS::M%d_VT7001",vt7001CfgInfo[0]);
-    vtsSetInterconnectionMode(namespace,vt7001CfgInfo[1]);//sysvar::VTS::M12_VT7001.SetInterconnectionMode(1);
-    snprintf(namespace,elcount(namespace),"VTS::M%d_Sup%d",vt7001CfgInfo[0],vt7001CfgInfo[1]);
-    vtsSetRefVoltageMode(namespace,1);//sysvar::VTS::M12_Sup1.SetRefVoltageMode(1);//M12_Sup1 output: Ref Voltage Mode = constant
-    vtsSetMaxCurrentMode(namespace,1);//sysvar::VTS::M12_Sup1.SetMaxCurrentMode(1); //max current mode = constant
-    snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
-    sysSetVariableInt(namespace,"Active",1);//@sysvar::VTS::M12_Out1::Active = 1;//M12_Out1:OUT1 pin connects to I1;
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
+  if (numOfValsReadIn == 3) {
+    if ((vt7001CfgInfo[1] < 1) || (vt7001CfgInfo[1] > 2) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
+      testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
+    else {
+      snprintf(namespace,elcount(namespace),"VTS::M%d_VT7001",vt7001CfgInfo[0]);
+      vtsSetInterconnectionMode(namespace,vt7001CfgInfo[1]);//sysvar::VTS::M12_VT7001.SetInterconnectionMode(1);
+      snprintf(namespace,elcount(namespace),"VTS::M%d_Sup%d",vt7001CfgInfo[0],vt7001CfgInfo[1]);
+      vtsSetRefVoltageMode(namespace,1);//sysvar::VTS::M12_Sup1.SetRefVoltageMode(1);//M12_Sup1 output: Ref Voltage Mode = constant
+      vtsSetMaxCurrentMode(namespace,1);//sysvar::VTS::M12_Sup1.SetMaxCurrentMode(1); //max current mode = constant
+      snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
+      sysSetVariableInt(namespace,"Active",1);//@sysvar::VTS::M12_Out1::Active = 1;//M12_Out1:OUT1 pin connects to I1;
+    }
   }
+  else
+    testStepFail("Error","The value number in section:vt7001Cfg,key name:%s is %d, not equal to 3. Please check the paraCfg.ini file.",pwrConnectWay,numOfValsReadIn);
 }
 
 export void vtSysPwrSupVoltSet (char pwrConnectWay[], float volt) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001CfgInfo[0]);//***need to be updated
-  sysSetVariableFloat(namespace,"RefVoltage",volt);
-  testStep("set VBAT voltage status","set VBAT voltage = %4.2fV.",volt);
-  wait(1000);
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
+  if (numOfValsReadIn == 3) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001CfgInfo[0]);//***need to be updated
+    sysSetVariableFloat(namespace,"RefVoltage",volt);
+    testStep("set VBAT voltage status","set VBAT voltage = %4.2fV.",volt);
+    wait(1000);
+  }
+  else
+    testStepFail("Error","The value number in section:vt7001Cfg,key name:%s is %d, not equal to 3. Please check the paraCfg.ini file.",pwrConnectWay,numOfValsReadIn);
 }
 
 export void vtSysExPwrSupSet (char pwrConnectWay[], float volt, float maxI, int k) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
-  if ((vt7001CfgInfo[1] < 1) || (vt7001CfgInfo[1] > 2) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
-    testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
-  else {
-    snprintf(namespace,elcount(namespace),"VTS::M%d_Sup%d",vt7001CfgInfo[0],vt7001CfgInfo[1]);
-    sysSetVariableFloat(namespace,"RefVoltage",volt/k);//@sysvar::VTS::M12_Sup1::RefVoltage = 1.0v;
-    testStep("set external power supply control voltage","set @sysvar::VTS::M%d_Sup%d::RefVoltage = %2.1fv;.",vt7001CfgInfo[0],vt7001CfgInfo[1],volt/k);
-    sysSetVariableFloat(namespace,"MaxCurrent",maxI/k);//@sysvar::VTS::M12_Sup1::MaxCurrent = 2.5;
-    testStep("set external power supply control voltage","set @sysvar::VTS::M%d_Sup%d::MaxCurrent = %2.1fv;.",vt7001CfgInfo[0],vt7001CfgInfo[1],maxI/k);
-    wait(1000);
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
+  if (numOfValsReadIn == 3) {
+    if ((vt7001CfgInfo[1] < 1) || (vt7001CfgInfo[1] > 2) || (vt7001CfgInfo[2] < 1) || (vt7001CfgInfo[2] > 2))
+      testStepFail("Error","There is something wrong with your interConnectionMode and pwrOutputChannel configuration.");
+    else {
+      snprintf(namespace,elcount(namespace),"VTS::M%d_Sup%d",vt7001CfgInfo[0],vt7001CfgInfo[1]);
+      sysSetVariableFloat(namespace,"RefVoltage",volt/k);//@sysvar::VTS::M12_Sup1::RefVoltage = 1.0v;
+      testStep("set external power supply control voltage","set @sysvar::VTS::M%d_Sup%d::RefVoltage = %2.1fv;.",vt7001CfgInfo[0],vt7001CfgInfo[1],volt/k);
+      sysSetVariableFloat(namespace,"MaxCurrent",maxI/k);//@sysvar::VTS::M12_Sup1::MaxCurrent = 2.5;
+      testStep("set external power supply control voltage","set @sysvar::VTS::M%d_Sup%d::MaxCurrent = %2.1fv;.",vt7001CfgInfo[0],vt7001CfgInfo[1],maxI/k);
+      wait(1000);
+    }
   }
+  else
+    testStepFail("Error","The value number in section:vt7001Cfg,key name:%s is %d, not equal to 3. Please check the paraCfg.ini file.",pwrConnectWay,numOfValsReadIn);
 }
   
 export float vtSysPwrSupVoltGet (char pwrConnectWay[], float highLimitV, float lowLimitV) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   float readValue;
   char namespace[100],vt7001CfgInfo[3];
-  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
-  readValue = sysGetVariableFloat(namespace,"AvgVoltage");
-  if ((readValue < lowLimitV) || (readValue > highLimitV)) 
-     testStepFail("get VBAT voltage status","VBAT = %4.2fV,out of range [%4.2fV~%4.2fV],",readValue,lowLimitV,highLimitV);
-  else
-     testStepPass("get VBAT voltage status","VBAT = %4.2fV,in the range [%4.2fV~%4.2fV],",readValue,lowLimitV,highLimitV);
-  return readValue;
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
+  if (numOfValsReadIn == 3) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
+    readValue = sysGetVariableFloat(namespace,"AvgVoltage");
+    if ((readValue < lowLimitV) || (readValue > highLimitV)) 
+      testStepFail("get VBAT voltage status","VBAT = %4.2fV,out of range [%4.2fV~%4.2fV],",readValue,lowLimitV,highLimitV);
+    else
+      testStepPass("get VBAT voltage status","VBAT = %4.2fV,in the range [%4.2fV~%4.2fV],",readValue,lowLimitV,highLimitV);
+    return readValue;
+  }
+  else {
+    testStepFail("Error","The value number in section:vt7001Cfg,key name:%s is %d, not equal to 3. Please check the paraCfg.ini file.",pwrConnectWay,numOfValsReadIn);
+    return -1;
+  }
 }
 
 export float vtSysPwrSupCurrGet (char pwrConnectWay[],float highLimitA,float lowLimitA,enum vt7001MeasureRange vt7001MeasureRange,enum currentUnit currentUnit) {//pwrConnectWay[] gets from key name in section vt7001Cfg
   float readValue;
+  int numOfValsReadIn;
   char namespace[100],vt7001CfgInfo[3],iUnit[3][3] = {"uA","mA","A"};
-  getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
-  vtsSetMinCurrentMeasurementRange(namespace,vt7001MeasureRange);//sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(0);
-  readValue = sysGetVariableFloat(namespace,"AvgCurrent");
-  if ((readValue < lowLimitA) || (readValue > highLimitA)) 
-     testStepFail("get VBAT current status","VBAT current = %6.3f%s,out of range [%6.3f%s~%6.3f%s],",readValue*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],lowLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],highLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit]);
-  else
-     testStepPass("get VBAT current status","VBAT current = %6.3f%s,in the range [%6.3f%s~%6.3f%s],",readValue*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],lowLimitA*(_pow(10.0,6-currentUnit*3)),iUnit[currentUnit],highLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit]); 
-  return readValue;
+  numOfValsReadIn = getCfgDataArray ("vt7001Cfg",pwrConnectWay,vt7001CfgInfo);
+  if (numOfValsReadIn == 3) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001CfgInfo[0],vt7001CfgInfo[2]);
+    vtsSetMinCurrentMeasurementRange(namespace,vt7001MeasureRange);//sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(0);
+    readValue = sysGetVariableFloat(namespace,"AvgCurrent");
+    if ((readValue < lowLimitA) || (readValue > highLimitA)) 
+      testStepFail("get VBAT current status","VBAT current = %6.3f%s,out of range [%6.3f%s~%6.3f%s],",readValue*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],lowLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],highLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit]);
+    else
+      testStepPass("get VBAT current status","VBAT current = %6.3f%s,in the range [%6.3f%s~%6.3f%s],",readValue*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],lowLimitA*(_pow(10.0,6-currentUnit*3)),iUnit[currentUnit],highLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit]); 
+    return readValue;
+  }
+  else {
+    testStepFail("Error","The value number in section:vt7001Cfg,key name:%s is %d, not equal to 3. Please check the paraCfg.ini file.",pwrConnectWay,numOfValsReadIn);
+    return -1;
+  } 
 }
 
 export void prodPwmOutChk (char pinName[],float expectedFreq,float expectedDuty,int deviationRange) {//pinName[] gets from key name in section vt2516Cfg
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc,avgVolt;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
-  pwmDc = sysGetVariableFloat(namespace,"PWMDC");
-  avgVolt = sysGetVariableFloat(namespace,"Avg");
-  if ((expectedFreq == 0) && (expectedDuty == 0)) {
-    if ((avgVolt < 0.5) && (pwmFreq == 0) && (pwmDc == 0))
-      testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc,avgVolt);
-    else
-      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+    pwmDc = sysGetVariableFloat(namespace,"PWMDC");
+    avgVolt = sysGetVariableFloat(namespace,"Avg");
+    if ((expectedFreq == 0) && (expectedDuty == 0)) {
+      if ((avgVolt < 0.5) && (pwmFreq == 0) && (pwmDc == 0))
+        testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc,avgVolt);
+      else
+        testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
+    }
+    else if ((expectedFreq == 0) && (expectedDuty == 100)) {
+      if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc == 100))
+        testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc,avgVolt);
+      else
+        testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz  vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
+    }
+    else {
+      if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005))
+        testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",pinName,pwmFreq);
+      else
+        testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",pinName,pwmFreq,expectedFreq*0.995,expectedFreq*1.005);
+      if ((pwmDc > expectedDuty-deviationRange) && (pwmDc < expectedDuty+deviationRange))
+        testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",pinName,pwmDc);
+      else
+        testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",pinName,pwmDc,expectedDuty-deviationRange,expectedDuty+deviationRange);
+    }
   }
-  else if ((expectedFreq == 0) && (expectedDuty == 100)) {
-    if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc == 100))
-      testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc,avgVolt);
-    else
-      testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz  vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,expectedFreq,pwmDc,expectedDuty,avgVolt);
-  }
-  else {
-    if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005))
-      testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",pinName,pwmFreq);
-    else
-      testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",pinName,pwmFreq,expectedFreq*0.995,expectedFreq*1.005);
-    if ((pwmDc > expectedDuty-deviationRange) && (pwmDc < expectedDuty+deviationRange))
-      testStepPass("check PWM Duty","pin %s :output duty = %3.1f%%",pinName,pwmDc);
-    else
-      testStepFail("check PWM Duty","pin %s :output duty = %3.1f%%,out of range [%3.1f%%-%3.1f%%].",pinName,pwmDc,expectedDuty-deviationRange,expectedDuty+deviationRange);
-  }
+  else
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
 }
 
 export int64 pwmRiseStartTimingMeas (char pinName[]) {//pinName[] gets from key name in section vt2516Cfg
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_o,pwmDc_u;
   int64 tRiseStart,tMeaStart;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  tMeaStart = timeNowInt64();
-  pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
-  do {
-    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
-    pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
-    //testStep("","freq=%f,t=%f",pwmFreq,_pow(10,-9)*(t1-t));
-    testWaitForTimeout(1);
-    tRiseStart = timeNowInt64();
-    //testValidateTesterConfirmation("step1","",1);
-  } while ((pwmDc_u - pwmDc_o < 0.1)&&(_pow(10,-9)*(tRiseStart-tMeaStart)<3));
-  if (_pow(10,-9)*(tRiseStart-tMeaStart)>=3) {
-    testStepFail("measure PWM rising edge","pin %s :PWM output didn't rise within 3s after rising start timing measurement. Output frequency = %5.2fHz, duty = %3.1f%% at this moment.",pinName,pwmFreq,pwmDc_u);
-    return -1; 
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    tMeaStart = timeNowInt64();
+    pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
+    do {
+      pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+      pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+      //testStep("","freq=%f,t=%f",pwmFreq,_pow(10,-9)*(t1-t));
+      testWaitForTimeout(1);
+      tRiseStart = timeNowInt64();
+      //testValidateTesterConfirmation("step1","",1);
+    } while ((pwmDc_u - pwmDc_o < 0.1)&&(_pow(10,-9)*(tRiseStart-tMeaStart)<3));
+    if (_pow(10,-9)*(tRiseStart-tMeaStart)>=3) {
+      testStepFail("measure PWM rising edge","pin %s :PWM output didn't rise within 3s after rising start timing measurement. Output frequency = %5.2fHz, duty = %3.1f%% at this moment.",pinName,pwmFreq,pwmDc_u);
+      return -2; 
+    }
+    else {
+      testStepPass("measure PWM rising edge","pin %s :PWM rising edge started at %5.2fms after rising start timing measurement. Output frequency = %5.2fHz, duty = %3.1f%% at this moment.",pinName,_pow(10,-6)*(tRiseStart-tMeaStart),pwmFreq,pwmDc_u);
+      return tRiseStart;
+    }
   }
   else {
-    testStepPass("measure PWM rising edge","pin %s :PWM rising edge started at %5.2fms after rising start timing measurement. Output frequency = %5.2fHz, duty = %3.1f%% at this moment.",pinName,_pow(10,-6)*(tRiseStart-tMeaStart),pwmFreq,pwmDc_u);
-    return tRiseStart;
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
+    return -1;
   }
 }
 
@@ -714,55 +762,61 @@ export int64 pwmRiseEndTimingMeas (char pinName[],float expectedFreq,float expec
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_o,pwmDc_u,avgVolt;
   int64 tRiseEnd,tMeaStart;
-  int flag,direction;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
-  tMeaStart = timeNowInt64();
-  tRiseEnd = tMeaStart;
-  flag = 0;
-  direction = 1;
-  do {
-    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
-    pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
-    avgVolt = sysGetVariableFloat(namespace,"Avg");
-    //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-    if (pwmDc_u - pwmDc_o >= 0.1) {//still rising
-      //testStep("","pwmDc_o = %f%%,pwmDc_u=%f%%",pwmDc_o,pwmDc_u);
-      pwmDc_o = pwmDc_u;
-      tRiseEnd = timeNowInt64();
+  int flag,direction,numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
+    tMeaStart = timeNowInt64();
+    tRiseEnd = tMeaStart;
+    flag = 0;
+    direction = 1;
+    do {
+      pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+      pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+      avgVolt = sysGetVariableFloat(namespace,"Avg");
+      //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
+      if (pwmDc_u - pwmDc_o >= 0.1) {//still rising
+        //testStep("","pwmDc_o = %f%%,pwmDc_u=%f%%",pwmDc_o,pwmDc_u);
+        pwmDc_o = pwmDc_u;
+        tRiseEnd = timeNowInt64();
+      }
+      else {
+        if (pwmDc_o - pwmDc_u >= 0.1) {
+          flag = 1; //start falling, so quit while loop
+          direction = -1;
+        }
+        else {//abs(pwmDc_u-pwmDc_o) < 0.1, treat it as normal vibration
+          if (_pow(10,-6)*(timeNowInt64()-tRiseEnd)>1500) //sometimes duty from 98% to 100% can be very long 
+            flag = 1;//if pwmDc didn't change within 1500ms, so it will be determined as stable.pwmdc may last for about 200ms then rise again.
+        }
+      }
+      testWaitForTimeout(1);
+    } while ( (!flag) && (_pow(10,-9)*(tRiseEnd-tMeaStart)<5));
+    if (_pow(10,-9)*(tRiseEnd-tMeaStart)>=5) {
+      testStepFail("measure PWM rising edge","pin %s :PWM was still not stable within 5s after rising end timing measurment.",pinName);
+      return -2;
     }
     else {
-      if (pwmDc_o - pwmDc_u >= 0.1) {
-        flag = 1; //start falling, so quit while loop
-        direction = -1;
+      testStepPass("measure PWM rising edge","pin %s :PWM rising edge ended at %6.2fms after rising end timing measurment.",pinName,_pow(10,-6)*(tRiseEnd-tMeaStart));
+      if (expectedDuty == 100) {//when duty=100%
+        if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc_u == 100))
+          testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
+        else
+          testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = 0Hz, duty = %3.1f%% vs expectedDuty = 100%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
       }
-      else {//abs(pwmDc_u-pwmDc_o) < 0.1, treat it as normal vibration
-        if (_pow(10,-6)*(timeNowInt64()-tRiseEnd)>1500) //sometimes duty from 98% to 100% can be very long 
-          flag = 1;//if pwmDc didn't change within 1500ms, so it will be determined as stable.pwmdc may last for about 200ms then rise again.
+      else {//when duty != 100%
+        if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005) && (pwmDc_u > expectedDuty-deviationRange) && (pwmDc_u < expectedDuty+deviationRange))
+          testStepPass("check PWM","pin %s :output frequency = %4.1fHz,output duty = %3.1f%%.",pinName,pwmFreq,pwmDc_u);
+        else
+          testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%.",pinName,pwmFreq,expectedFreq,pwmDc_u,expectedDuty);
       }
+      return tRiseEnd * direction;
     }
-    testWaitForTimeout(1);
-  } while ( (!flag) && (_pow(10,-9)*(tRiseEnd-tMeaStart)<5));
-  if (_pow(10,-9)*(tRiseEnd-tMeaStart)>=5) {
-    testStepFail("measure PWM rising edge","pin %s :PWM was still not stable within 5s after rising end timing measurment.",pinName);
-    return -1;
   }
   else {
-    testStepPass("measure PWM rising edge","pin %s :PWM rising edge ended at %6.2fms after rising end timing measurment.",pinName,_pow(10,-6)*(tRiseEnd-tMeaStart));
-    if (expectedDuty == 100) {//when duty=100%
-      if ((avgVolt > 10) && (pwmFreq == 0) && (pwmDc_u == 100))
-        testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
-      else
-        testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = 0Hz, duty = %3.1f%% vs expectedDuty = 100%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
-    }
-    else {//when duty != 100%
-      if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005) && (pwmDc_u > expectedDuty-deviationRange) && (pwmDc_u < expectedDuty+deviationRange))
-        testStepPass("check PWM","pin %s :output frequency = %4.1fHz,output duty = %3.1f%%.",pinName,pwmFreq,pwmDc_u);
-      else
-        testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%.",pinName,pwmFreq,expectedFreq,pwmDc_u,expectedDuty);
-    }
-    return tRiseEnd * direction;
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
+    return -1;
   }
 }
 
@@ -770,26 +824,32 @@ export int64 pwmFallStartTimingMeas (char pinName[]) {//pinName[] gets from key 
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_o,pwmDc_u;
   int64 tFallStart,tMeaStart;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  tMeaStart = timeNowInt64();
-  pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
-  do {
-    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
-    pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
-    //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-    if (pwmDc_o - pwmDc_u >= 0.1)//avoid little vibration like from 20.68 to 20.69
-      tFallStart = timeNowInt64();
-    testWaitForTimeout(1);
-  } while ((pwmDc_o - pwmDc_u < 0.1) && (_pow(10,-9)*(timeNowInt64() - tMeaStart)<60));
-  
-  if (_pow(10,-9)*(timeNowInt64() - tMeaStart)>= 60) {
-    testStepFail("measure PWM falling edge","pin %s :PWM falling edge didn't start within 60s after falling start timing measurement.",pinName);
-    return -1;
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    tMeaStart = timeNowInt64();
+    pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
+    do {
+      pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+      pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+      //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
+      if (pwmDc_o - pwmDc_u >= 0.1)//avoid little vibration like from 20.68 to 20.69
+        tFallStart = timeNowInt64();
+      testWaitForTimeout(1);
+    } while ((pwmDc_o - pwmDc_u < 0.1) && (_pow(10,-9)*(timeNowInt64() - tMeaStart)<60));
+    if (_pow(10,-9)*(timeNowInt64() - tMeaStart)>= 60) {
+      testStepFail("measure PWM falling edge","pin %s :PWM falling edge didn't start within 60s after falling start timing measurement.",pinName);
+      return -2;
+    }
+    else {
+      testStepPass("measure PWM falling edge","pin %s :PWM falling edge started at %6.2fms after falling start timing measurement.Output frequency = %5.2fHz, duty changed from %3.1f%% to %3.1f%% at this moment.",pinName,_pow(10,-6)*(tFallStart - tMeaStart),pwmFreq,pwmDc_o,pwmDc_u);
+      return tFallStart;
+    }
   }
   else {
-    testStepPass("measure PWM falling edge","pin %s :PWM falling edge started at %6.2fms after falling start timing measurement.Output frequency = %5.2fHz, duty changed from %3.1f%% to %3.1f%% at this moment.",pinName,_pow(10,-6)*(tFallStart - tMeaStart),pwmFreq,pwmDc_o,pwmDc_u);
-    return tFallStart;
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
+    return -1;
   }
 }
 
@@ -797,55 +857,61 @@ export int64 pwmFallEndTimingMeas (char pinName[],float expectedFreq,float expec
   char namespace[100],vt2516CfgInfo[2];
   float pwmFreq,pwmDc_u,pwmDc_o,avgVolt;
   int64 tFallEnd,tMeaStart;
-  int flag,direction;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
-  tMeaStart = timeNowInt64();
-  tFallEnd = tMeaStart;
-  flag = 0;
-  direction = 1;
-  do {
-    pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
-    pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
-    avgVolt = sysGetVariableFloat(namespace,"Avg");
-    //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
-    if (pwmDc_o - pwmDc_u >= 0.1) {//still falling
-      //testStep("","pwmDc_o = %f%%,pwmDc_u=%f%%",pwmDc_o,pwmDc_u);
-      pwmDc_o = pwmDc_u;
-      tFallEnd = timeNowInt64();
-    }
-    else {
-      if (pwmDc_u - pwmDc_o >= 0.1) {
-        flag = 1; //start rising, so quit while loop
-        direction = -1;
+  int flag,direction,numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    pwmDc_o = sysGetVariableFloat(namespace,"PWMDC");
+    tMeaStart = timeNowInt64();
+    tFallEnd = tMeaStart;
+    flag = 0;
+    direction = 1;
+    do {
+      pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+      pwmDc_u = sysGetVariableFloat(namespace,"PWMDC");
+      avgVolt = sysGetVariableFloat(namespace,"Avg");
+      //testStep("","freq=%f,duty_o=%f,duty_u=%f,t=%fms",pwmFreq,pwmDc_o,pwmDc_u,_pow(10,-6)*(timeNowInt64()-tRiseStart));
+      if (pwmDc_o - pwmDc_u >= 0.1) {//still falling
+        //testStep("","pwmDc_o = %f%%,pwmDc_u=%f%%",pwmDc_o,pwmDc_u);
+        pwmDc_o = pwmDc_u;
+        tFallEnd = timeNowInt64();
       }
-      else {//abs(pwmDc_u-pwmDc_o) < 0.1, treat it as normal vibration
-        if (_pow(10,-6)*(timeNowInt64()-tFallEnd)>1500)
-          flag = 1;//if pwmDc didn't change within 1500ms, so it will be determined as stable.a specific pwmdc may last for about 200ms then fall again.
+      else {
+        if (pwmDc_u - pwmDc_o >= 0.1) {
+          flag = 1; //start rising, so quit while loop
+          direction = -1;
+        }
+        else {//abs(pwmDc_u-pwmDc_o) < 0.1, treat it as normal vibration
+          if (_pow(10,-6)*(timeNowInt64()-tFallEnd)>1500)
+            flag = 1;//if pwmDc didn't change within 1500ms, so it will be determined as stable.a specific pwmdc may last for about 200ms then fall again.
+        }
       }
+      testWaitForTimeout(1);
+    } while ((!flag) && (_pow(10,-9)*(tFallEnd - tMeaStart)<5));
+    if (_pow(10,-9)*(tFallEnd - tMeaStart)>=5) {
+      testStepFail("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling edge didn't complete within 5s after falling end timing measurment.",pinName,pwmFreq,pwmDc_u);
+      return -2;
     }
-    testWaitForTimeout(1);
-  } while ((!flag) && (_pow(10,-9)*(tFallEnd - tMeaStart)<5));
-  if (_pow(10,-9)*(tFallEnd - tMeaStart)>=5) {
-    testStepFail("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling edge didn't complete within 5s after falling end timing measurment.",pinName,pwmFreq,pwmDc_u);
-    return -1;
+    else { 
+      testStepPass("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling edge stopped at %6.2fms after falling end timing measurment.",pinName,pwmFreq,pwmDc_u,_pow(10,-6)*(tFallEnd-tMeaStart));
+      if (expectedDuty == 0) {//when duty=0%
+        if ((avgVolt < 0.5) && (pwmFreq == 0) && (pwmDc_u == 0))
+          testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
+        else
+          testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = 0Hz, duty = %3.1f%% vs expectedDuty = 0%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
+      }
+      else {//when duty != 0%
+        if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005) && (pwmDc_u > expectedDuty-deviationRange) && (pwmDc_u < expectedDuty+deviationRange))
+          testStepPass("check PWM","pin %s :output frequency = %4.1fHz,output duty = %3.1f%%.",pinName,pwmFreq,pwmDc_u);
+        else
+          testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%.",pinName,pwmFreq,expectedFreq,pwmDc_u,expectedDuty);
+      }
+      return tFallEnd * direction;
+    }
   }
-  else { 
-    testStepPass("measure PWM falling edge","pin %s :output frequency = %4.1fHz,output duty = %4.2f%%.PWM falling edge stopped at %6.2fms after falling end timing measurment.",pinName,pwmFreq,pwmDc_u,_pow(10,-6)*(tFallEnd-tMeaStart));
-    if (expectedDuty == 0) {//when duty=0%
-      if ((avgVolt < 0.5) && (pwmFreq == 0) && (pwmDc_u == 0))
-        testStepPass("check PWM","pin %s :output frequency = %4.1fHz, duty = %3.1f%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
-      else
-        testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = 0Hz, duty = %3.1f%% vs expectedDuty = 0%%, average voltage = %4.2fV",pinName,pwmFreq,pwmDc_u,avgVolt);
-    }
-    else {//when duty != 0%
-      if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005) && (pwmDc_u > expectedDuty-deviationRange) && (pwmDc_u < expectedDuty+deviationRange))
-        testStepPass("check PWM","pin %s :output frequency = %4.1fHz,output duty = %3.1f%%.",pinName,pwmFreq,pwmDc_u);
-      else
-        testStepFail("check PWM","check PWM fail -> pin %s :output frequency = %4.1fHz vs expectedFreq = %4.1fHz, duty = %3.1f%% vs expectedDuty = %3.1f%%.",pinName,pwmFreq,expectedFreq,pwmDc_u,expectedDuty);
-    }
-    return tFallEnd * direction;
+  else {
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
+    return -1;
   }
 }
 
@@ -858,11 +924,15 @@ export void prodPwmOutRisingEdgeMeas (char productPwmOutMode[]) {//productPwmOut
     testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
-    tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
-    if (_pow(10,-6)*(abs(tRiseEnd) - tRiseStart) <= atol(cfgStrArray[6]))
-      testStepPass("measure PWM rising edge","PIN %s outputs PWM, rise to frequency %sHz,duty %s%% costs %6.2fms,within %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
-    else
-      testStepFail("measure PWM rising edge","PIN %s outputs PWM, rise to frequency %sHz,duty %s%% costs %6.2fms,longer than %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
+    if ((tRiseStart != -1) && (tRiseStart != -2)) {
+      tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
+      if ((tRiseEnd != -1) && (tRiseEnd != -2)) {
+        if (_pow(10,-6)*(abs(tRiseEnd) - tRiseStart) <= atol(cfgStrArray[6]))
+          testStepPass("measure PWM rising edge","PIN %s outputs PWM, rise to frequency %sHz,duty %s%% costs %6.2fms,within %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
+        else
+          testStepFail("measure PWM rising edge","PIN %s outputs PWM, rise to frequency %sHz,duty %s%% costs %6.2fms,longer than %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(abs(tRiseEnd) - tRiseStart),cfgStrArray[6]);
+      }
+    }
   }
 }
 
@@ -875,11 +945,15 @@ export void prodPwmOutKeepTimeMeas (char productPwmOutMode[]) {//productPwmOutMo
     testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
-    tFallStart = pwmFallStartTimingMeas (cfgStrArray[0]);
-    if ((_pow(10,-6)*(tFallStart - abs(tRiseEnd)) <= atol(cfgStrArray[7]) + atol(cfgStrArray[8])) && (_pow(10,-6)*(tFallStart - tRiseEnd) <= atol(cfgStrArray[7]) - atol(cfgStrArray[8])))
-      testStepPass("measure PWM keep time","PIN %s outputs PWM, keeps at frequency %sHz,duty %s%% for %6.2fms,within range [%s ¡À %sms].",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
-    else
-      testStepFail("measure PWM keep time","PIN %s outputs PWM, keeps at frequency %sHz,duty %s%% for %6.2fms,out of range [%s ¡À %sms].",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
+    if ((tRiseEnd != -1) && (tRiseEnd != -2)) {
+      tFallStart = pwmFallStartTimingMeas (cfgStrArray[0]);
+      if ((tFallStart != -1) && (tFallStart != -2)) {
+        if ((_pow(10,-6)*(tFallStart - abs(tRiseEnd)) <= atol(cfgStrArray[7]) + atol(cfgStrArray[8])) && (_pow(10,-6)*(tFallStart - tRiseEnd) <= atol(cfgStrArray[7]) - atol(cfgStrArray[8])))
+          testStepPass("measure PWM keep time","PIN %s outputs PWM, keeps at frequency %sHz,duty %s%% for %6.2fms,within range [%s ¡À %sms].",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
+        else
+          testStepFail("measure PWM keep time","PIN %s outputs PWM, keeps at frequency %sHz,duty %s%% for %6.2fms,out of range [%s ¡À %sms].",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],_pow(10,-6)*(tFallStart - abs(tRiseEnd)),cfgStrArray[7],cfgStrArray[8]);
+      }
+    }
   }
 }
 
@@ -892,11 +966,15 @@ export void prodPwmOutFallingEdgeMeas (char productPwmOutMode[]) {//productPwmOu
     testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tFallStart = pwmFallStartTimingMeas(cfgStrArray[0]);
-    tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
-    if (_pow(10,-6)*(abs(tFallEnd) - tFallStart) <= atol(cfgStrArray[9]))
-      testStepPass("measure PWM falling edge","PIN %s outputs PWM,PWM falling from frequency %sHz,duty %s%% to frequency %sHz,duty %s%% costs %6.2fms,within %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],cfgStrArray[3],cfgStrArray[4],_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
-    else
-      testStepFail("measure PWM falling edge","PIN %s outputs PWM,PWM falling from frequency %sHz,duty %s%% to frequency %sHz,duty %s%% costs %6.2fms,longer than %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],cfgStrArray[3],cfgStrArray[4],_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
+    if ((tFallStart != -1) && (tFallStart != -2)) {
+      tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
+      if ((tFallEnd != -1) && (tFallEnd != -2)) {
+        if (_pow(10,-6)*(abs(tFallEnd) - tFallStart) <= atol(cfgStrArray[9]))
+          testStepPass("measure PWM falling edge","PIN %s outputs PWM,PWM falling from frequency %sHz,duty %s%% to frequency %sHz,duty %s%% costs %6.2fms,within %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],cfgStrArray[3],cfgStrArray[4],_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
+        else
+          testStepFail("measure PWM falling edge","PIN %s outputs PWM,PWM falling from frequency %sHz,duty %s%% to frequency %sHz,duty %s%% costs %6.2fms,longer than %sms.",cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],cfgStrArray[3],cfgStrArray[4],_pow(10,-6)*(abs(tFallEnd) - tFallStart),cfgStrArray[9]);
+      }
+    }
   }
 }
 
@@ -910,9 +988,9 @@ export void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[]) {
     testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
   else {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
-    if (tRiseStart != -1) {
+    if ((tRiseStart != -1) && (tRiseStart != -2)) {
       tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
-      if (tRiseEnd != -1) {
+      if ((tRiseEnd != -1) && (tRiseEnd != -2)) {
         tRise = _pow(10,-6)*(abs(tRiseEnd) - tRiseStart);
         //testStep("","tRiseEnd=%lld,abs(tRiseEnd)=%lld,abs(tRiseEnd) - tRiseStart=%lld,tRiseStart=%lld,tRise=%f",tRiseEnd,abs(tRiseEnd),abs(tRiseEnd) - tRiseStart,tRiseStart,tRise);
         if (tRise <= atol(cfgStrArray[6]))
@@ -923,9 +1001,9 @@ export void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[]) {
           tFallStart = abs(tRiseEnd);
         else
           tFallStart = pwmFallStartTimingMeas(cfgStrArray[0]);
-        if (tFallStart != -1) {
+        if ((tFallStart != -1) && (tFallStart != -2)){
           tFallEnd = pwmFallEndTimingMeas (cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
-          if (tFallEnd != -1 ) {
+          if ((tFallEnd != -1) && (tFallEnd != -2)) {
             tFall = _pow(10,-6)*(abs(tFallEnd) - tFallStart);
             if (tFall <= atol(cfgStrArray[9]))
               testStepPass("measure PWM falling edge","pin %s :PWM falling time is %6.2fms,within %sms.",cfgStrArray[0],tFall,cfgStrArray[9]);
@@ -1014,101 +1092,142 @@ export void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[]) {
 
 export void chFixVoltDOSet (char pinName[],enum digitalLevel level) {//pinName[] gets from key name in section vt2516Cfg
   char vt2516CfgInfo[2],namespace[100];
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  switch (level) {
-    case Low:
-      sysSetVariableInt(namespace,"RelayVBatt",0);
-      testWaitForTimeout(200);
-      sysSetVariableInt(namespace,"RelayGnd",1);
-      testWaitForTimeout(200);
-      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates low digital level.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
-    break;
-    case High:
-      sysSetVariableInt(namespace,"RelayGnd",0);
-      testWaitForTimeout(200);
-      sysSetVariableInt(namespace,"RelayVBatt",1);
-      testWaitForTimeout(200);
-      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates high digital level.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
-    break;
-    case Floating:
-      sysSetVariableInt(namespace,"RelayGnd",0);
-      testWaitForTimeout(200);
-      sysSetVariableInt(namespace,"RelayVBatt",0);
-      testWaitForTimeout(200);
-      testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d is set to float.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
-    break;
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    switch (level) {
+      case Low:
+        sysSetVariableInt(namespace,"RelayVBatt",0);
+        testWaitForTimeout(200);
+        sysSetVariableInt(namespace,"RelayGnd",1);
+        testWaitForTimeout(200);
+        testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates low digital level.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+      break;
+      case High:
+        sysSetVariableInt(namespace,"RelayGnd",0);
+        testWaitForTimeout(200);
+        sysSetVariableInt(namespace,"RelayVBatt",1);
+        testWaitForTimeout(200);
+        testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates high digital level.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+      break;
+      case Floating:
+        sysSetVariableInt(namespace,"RelayGnd",0);
+        testWaitForTimeout(200);
+        sysSetVariableInt(namespace,"RelayVBatt",0);
+        testWaitForTimeout(200);
+        testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d is set to float.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1]);
+      break;
+    }
   }
+  else
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
 }
 
 export void chAOSet (char pinName[],float analogValue) {//pinName[] gets from key name in section vt2516Cfg
   char vt2516CfgInfo[2],namespace[100];
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch5.SetStimulationMode(0);//stim mode inactive
-  vtsSetCurveType(namespace,0);//sysvar::VTS::M9_Ch5.SetCurveType(0);//set curve type as constant
-  vtsSetPWMVoltageHigh(namespace,analogValue);//sysvar::VTS::M9_Ch5.SetPWMVoltageHigh(random(6)+7);//set voltagelow 7-12
-  sysSetVariableInt(namespace,"DigitalOutput",1);//@sysvar::VTS::M9_Ch5::DigitalOutput = 1;//output digital=1
-  vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch5.SetStimulationMode(1);//stim mode as voltage
-  testStep("VT outputs analog value for product input pin","For pin %s:Module%d channel%d generates analog voltage: voltage = %3.1fV",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],analogValue);
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch5.SetStimulationMode(0);//stim mode inactive
+    vtsSetCurveType(namespace,0);//sysvar::VTS::M9_Ch5.SetCurveType(0);//set curve type as constant
+    vtsSetPWMVoltageHigh(namespace,analogValue);//sysvar::VTS::M9_Ch5.SetPWMVoltageHigh(random(6)+7);//set voltagelow 7-12
+    sysSetVariableInt(namespace,"DigitalOutput",1);//@sysvar::VTS::M9_Ch5::DigitalOutput = 1;//output digital=1
+    vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch5.SetStimulationMode(1);//stim mode as voltage
+    testStep("VT outputs analog value for product input pin","For pin %s:Module%d channel%d generates analog voltage: voltage = %3.1fV",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],analogValue);
+  }
+  else
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
 }
 
 export void chRamVoltDOSet (char pinName[],enum prodInputStat state) {//pinName[] gets from key name in section vLevelCfg
-  int randomValue;
+  int randomValue,numOfValsReadIn;
   char vLevelCfgInfo[4];
-  getCfgDataArray ("vLevelCfg",pinName,vLevelCfgInfo);
-  if (state)
-    randomValue = vLevelCfgInfo[2] + random(vLevelCfgInfo[3]);
+  numOfValsReadIn = getCfgDataArray ("vLevelCfg",pinName,vLevelCfgInfo);
+  if (numOfValsReadIn == 4) {
+    if (state)
+      randomValue = vLevelCfgInfo[2] + random(vLevelCfgInfo[3]);
+    else
+      randomValue = vLevelCfgInfo[0] + random(vLevelCfgInfo[1]);
+    chAOSet(pinName,randomValue);
+  }
   else
-    randomValue = vLevelCfgInfo[0] + random(vLevelCfgInfo[1]);
-  chAOSet(pinName,randomValue);
+    testStepFail("Error","The value number in section:vLevelCfg,key name:%s is %d, not equal to 4. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
 }
 
 export int prodDIPinStatGet (char pinName[]) {
   char namespace[100],vt2516CfgInfo[2],vLevelCfgInfo[4];
   float avgVolt;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  getCfgDataArray ("vLevelCfg",pinName,vLevelCfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  avgVolt = sysGetVariableFloat(namespace,"Avg");
-  if ((avgVolt >= vLevelCfgInfo[0] - 0.5) && (avgVolt < vLevelCfgInfo[0] + vLevelCfgInfo[1])) {
-    testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at inactive state.",avgVolt);
-    return (int)Inactive;
-  }
-  else if ((avgVolt >= vLevelCfgInfo[2] - 0.5) && (avgVolt < vLevelCfgInfo[2] + vLevelCfgInfo[3])) {
-    testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at active state.",avgVolt);
-    return (int)Active;
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    numOfValsReadIn = getCfgDataArray ("vLevelCfg",pinName,vLevelCfgInfo);
+    if (numOfValsReadIn == 4) {
+      snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+      avgVolt = sysGetVariableFloat(namespace,"Avg");
+      if ((avgVolt >= vLevelCfgInfo[0] - 0.5) && (avgVolt < vLevelCfgInfo[0] + vLevelCfgInfo[1])) {
+        testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at inactive state.",avgVolt);
+        return (int)Inactive;
+      }
+      else if ((avgVolt >= vLevelCfgInfo[2] - 0.5) && (avgVolt < vLevelCfgInfo[2] + vLevelCfgInfo[3])) {
+        testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at active state.",avgVolt);
+        return (int)Active;
+      }
+      else {
+        testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at no definition state.",avgVolt);
+        return -3;//No definition.
+      }
+    }
+    else {
+      testStepFail("Error","The value number in section:vLevelCfg,key name:%s is %d, not equal to 4. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
+      return -2;
+    }
   }
   else {
-    testStep("DI PIN Level measurement","PIN %s: Input voltage level is %4.2fV, at no definition state.",avgVolt);
-    return -1;//No definition.
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
+    return -1;
   }
 }
 
 export void chPwmOutSet (char pinName[],char productPwmInMode[]) {//pinName[] gets from key name in section vt2516Cfg,productPwmInMode[]gets from key name in section pwmWaveCfg
   char namespace[100],vt2516CfgInfo[2],pwmWaveCfgInfo[5],duty;
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  getCfgDataArray ("pwmWaveCfg",productPwmInMode,pwmWaveCfgInfo);
-  duty = pwmWaveCfgInfo[3]+random(pwmWaveCfgInfo[4]);
-  snprintf(namespace,elCount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch3.SetStimulationMode(0);//stim mode inactive
-  vtsSetPWMVoltageLow(namespace,pwmWaveCfgInfo[1]);//sysvar::VTS::M9_Ch3.SetPWMVoltageLow(random(3)+1);//set voltagelow 1-3
-  vtsSetPWMVoltageHigh(namespace,pwmWaveCfgInfo[2]);//sysvar::VTS::M9_Ch3.SetPWMVoltageHigh(12);//set voltagehigh 7-15 
-  vtsSetCurveType(namespace,1);//sysvar::VTS::M9_Ch3.SetCurveType(1);//set curve type as PWM
-  sysSetVariableFloat(namespace,"PWMOutputFreq",pwmWaveCfgInfo[0]); //@sysvar::VTS::M9_Ch3::PWMOutputFreq = 100;//PWM output Freq =100Hz
-  sysSetVariableFloat(namespace,"PWMOutputDC",duty);//@sysvar::VTS::M9_Ch3::PWMOutputDC = 10;
-  vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch3.SetStimulationMode(1);//stim mode as voltage
-  vtsStartStimulation(namespace);//sysvar::VTS::M9_Ch3.StartStimulation();
-  testStep("VT outputs PWM for product input pin","For pin %s:Module%d channel%d generates PWM:Highvolt=%dV,Lowvolt=%dV,Duty=%d%%,Freq=%dHz",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],pwmWaveCfgInfo[2],pwmWaveCfgInfo[1],duty,pwmWaveCfgInfo[0]);
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    numOfValsReadIn = getCfgDataArray ("pwmWaveCfg",productPwmInMode,pwmWaveCfgInfo);
+    if (numOfValsReadIn == 5) {
+      duty = pwmWaveCfgInfo[3]+random(pwmWaveCfgInfo[4]);
+      snprintf(namespace,elCount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+      vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch3.SetStimulationMode(0);//stim mode inactive
+      vtsSetPWMVoltageLow(namespace,pwmWaveCfgInfo[1]);//sysvar::VTS::M9_Ch3.SetPWMVoltageLow(random(3)+1);//set voltagelow 1-3
+      vtsSetPWMVoltageHigh(namespace,pwmWaveCfgInfo[2]);//sysvar::VTS::M9_Ch3.SetPWMVoltageHigh(12);//set voltagehigh 7-15 
+      vtsSetCurveType(namespace,1);//sysvar::VTS::M9_Ch3.SetCurveType(1);//set curve type as PWM
+      sysSetVariableFloat(namespace,"PWMOutputFreq",pwmWaveCfgInfo[0]); //@sysvar::VTS::M9_Ch3::PWMOutputFreq = 100;//PWM output Freq =100Hz
+      sysSetVariableFloat(namespace,"PWMOutputDC",duty);//@sysvar::VTS::M9_Ch3::PWMOutputDC = 10;
+      vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch3.SetStimulationMode(1);//stim mode as voltage
+      vtsStartStimulation(namespace);//sysvar::VTS::M9_Ch3.StartStimulation();
+      testStep("VT outputs PWM for product input pin","For pin %s:Module%d channel%d generates PWM:Highvolt=%dV,Lowvolt=%dV,Duty=%d%%,Freq=%dHz",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],pwmWaveCfgInfo[2],pwmWaveCfgInfo[1],duty,pwmWaveCfgInfo[0]);
+    }
+    else
+      testStepFail("Error","The value number in section:pwmWaveCfg,key name:%s is %d, not equal to 5. Please check the paraCfg.ini file.",productPwmInMode,numOfValsReadIn);
+  }
+  else
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
 }
 
 export void chLoadConnectStatSet (char pinName[],enum connectStat stat) {//pinName[] gets from key name in section vt2516Cfg
   char vt2516CfgInfo[2],namespace[100],connectState[2][11] = {"disconnect","connect"};
-  getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
-  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
-  sysSetVariableInt(namespace,"RelayOrgComponent",stat);
-  wait(200);
-  testStep("VT channel's load connection status","For pin %s:Module%d channel%d %s with load.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],connectState[stat]);
+  int numOfValsReadIn;
+  numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
+  if (numOfValsReadIn == 2) {
+    snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
+    sysSetVariableInt(namespace,"RelayOrgComponent",stat);
+    wait(200);
+    testStep("VT channel's load connection status","For pin %s:Module%d channel%d %s with load.",pinName,vt2516CfgInfo[0],vt2516CfgInfo[1],connectState[stat]);
+  }
+  else
+    testStepFail("Error","The value number in section:vt2516Cfg,key name:%s is %d, not equal to 2. Please check the paraCfg.ini file.",pinName,numOfValsReadIn);
 }
 
 /************************Product function related******************************/
@@ -1120,7 +1239,7 @@ export void prodOperWithPinStatImpOnSpecSigChk (char operationMode[]) {//operati
   if (paraNum!=-1)  {
     if (paraNum%5==0) {//paraNum+1==real para number,but first parameter only shows once.
       revPinStat = prodDIPinStatGet(cfgStrArray[0]);
-      if (revPinStat!=-1) { 
+      if (revPinStat >= 0) { 
         for (i=0;i<paraNum/5;i++) {
           if (strncmp(operationMode,"IDLE",4)!=0) {
             strncpy(heading,"Product operate ",strlen("Product operate ")+1);
@@ -1163,7 +1282,7 @@ export void prodOperWithPinStatImpOnSpecPwmChk (char operationMode[]) {//operati
   if (paraNum!=-1) {
     if (paraNum%6==0) {//paraNum+1==real para number,but first parameter only shows once.
       impFactVal = prodDIPinStatGet(cfgStrArray[0]);
-      if (impFactVal!=-1) {
+      if (impFactVal >= 0) {
         for (i=0;i<paraNum/6;i++)
           prodPwmOutChk(cfgStrArray[i*6+1],atol(cfgStrArray[i*6+2])*impFactVal+atol(cfgStrArray[i*6+3]),atol(cfgStrArray[i*6+4])*impFactVal+atol(cfgStrArray[i*6+5]),atol(cfgStrArray[i*6+6]));  
       }
