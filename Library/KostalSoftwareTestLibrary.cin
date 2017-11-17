@@ -150,7 +150,7 @@ export int getCfgFuncArray (char section[],char keyName[],char cfgFuncArray[][][
     return funcNum;//return funcNum = real function number - 1
   }
   else {
-    //testStepFail("Error","Don't find the key %s in section %s at testStepCfg.ini. Please check the section and key name.");
+    testStepFail("Error","Don't find the key %s in section %s at testStepCfg.ini file. Please check the section and key's name.",keyName,section);
     return -1;//return -1, means error
   } 
 }
@@ -1382,7 +1382,7 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
               }
               if (!findParaValBool) {
                 errBool = 1;
-                testStepFail("Error","Don't find the parameter value in argument.");
+                testStepFail("Error","Don't find any defined argument to substitute for parameter %s in function %s.",cfgFuncArray[routeNum[i]][n],cfgFuncArray[routeNum[i]][0]);
               }
             }
           }
@@ -1517,7 +1517,7 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
           }
           else {//cmp!=0
             if (j == (elCount(func)-1)) {
-              testStepFail("Error","The function %s in your ini file can't be found from the database. Please check your spell.",cfgFuncArray[routeNum[i]][0]); 
+              testStepFail("Error","The function %s in testStepCfg.ini file can't be found from the library. Please check your spell, or add it into the library first.",cfgFuncArray[routeNum[i]][0]); 
               errBool = 1;
             }
           }
@@ -1526,12 +1526,8 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
       }  
       else {
         errBool = 1;
-        testStepFail("Error","route number(=%d) is bigger than funcNum(=%d) or smaller than 0,can't pick up the right function.",routeNum[i],funcNum);
+        testStepFail("Error","route number(=%d) is bigger than funcNum(=%d) or smaller than 0,program can't pick up the right function.",routeNum[i],funcNum);
       }
-    }
-    else {//funcNum=-1
-      if (i==0)
-        testStepFail("Error","Can't find the section or key, please check your ini file.");
     }
   }while((funcNum!=-1)&&(!errBool));//exit loop if step not found or error occured.
   //testStep("","loop is over");
