@@ -106,15 +106,15 @@ export int getCfgStrArray (char section[],char keyName[],char cfgStrArray[][]) {
       i++;
     }
     cfgStrArray[row][col]='\0';
-    return row;//return row number
+    return row;//return row number = real key stringNum - 1
   }
   else {
-    //testStepFail("Error","Don't get any string array. Please check the section and key name input.");
-    return(-1);//return -1, means error
+    testStepFail("Error","Don't find the key %s in section %s at paraCfg.ini file, Please check the section and key name.",keyName,section);
+    return -1;//return -1, means error
   } 
 }
 
-export int getCfgFuncArray (char section[],char keyName[],char cfgFuncArray[][][],int paraNum[]) {//para sperated by ',' func separated by '||'
+export int getCfgFuncArray (char section[],char keyName[],char cfgFuncArray[][][],int paraNum[]) {//para sperated by ',' func separated by '|'
   char buff[1000];
   int i,row,col,funcNum;
   sysGetVariableString(sysvar::iniTestStepCfgPath, iniTestStepCfgPath, 100);
@@ -147,10 +147,10 @@ export int getCfgFuncArray (char section[],char keyName[],char cfgFuncArray[][][
     }
     cfgFuncArray[funcNum][row][col]='\0';
     paraNum[funcNum]=row;//record para number for last function
-    return(funcNum);//return function number
+    return funcNum;//return funcNum = real function number - 1
   }
   else {
-    //testStepFail("Error","Don't get any function array. Please check the section and key name input.");
+    //testStepFail("Error","Don't find the key %s in section %s at testStepCfg.ini. Please check the section and key name.");
     return -1;//return -1, means error
   } 
 }
@@ -253,10 +253,8 @@ export int cfgLinMsgAndSend (char serviceType[],char serviceName[],char diagInfo
       return -2;
     }
   }
-  else {
-    testStepFail("Error","Can't find the item in paraCfg.ini. Please check section and key's name.");
+  else 
     return -1;//error section or key name
-  }
 }
 
 export int cfgCanMsgAndSend (char serviceType[],char serviceName[],char diagInfo[][],message* sendDiag,message* recDiag) {//serviceType[] gets from section name, serviceName[] gets from key name in ini file
@@ -284,10 +282,8 @@ export int cfgCanMsgAndSend (char serviceType[],char serviceName[],char diagInfo
       return -2;
     }
   }
-  else {
-    testStepFail("Error","Can't find the item in paraCfg.ini. Please check section and key's name.");
+  else
     return -1;//error section or key name
-  }
 }
 
 export int sendCanUdsDiagChkResp (char serviceName[],byte recMsg[]) {//same sequence as trace shows, serviceName[] gets from key name in ini file
@@ -920,9 +916,7 @@ export void prodPwmOutRisingEdgeMeas (char productPwmOutMode[]) {//productPwmOut
   double tRiseStart,tRiseEnd;
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
-  if (paraNum == -1)
-    testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
-  else {
+  if (paraNum != -1) {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
     if ((tRiseStart != -1) && (tRiseStart != -2)) {
       tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
@@ -941,9 +935,7 @@ export void prodPwmOutKeepTimeMeas (char productPwmOutMode[]) {//productPwmOutMo
   double tFallStart,tRiseEnd;
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
-  if (paraNum == -1)
-    testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
-  else {
+  if (paraNum != -1) {
     tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
     if ((tRiseEnd != -1) && (tRiseEnd != -2)) {
       tFallStart = pwmFallStartTimingMeas (cfgStrArray[0]);
@@ -962,9 +954,7 @@ export void prodPwmOutFallingEdgeMeas (char productPwmOutMode[]) {//productPwmOu
   double tFallStart,tFallEnd;
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
-  if (paraNum == -1)
-    testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
-  else {
+  if (paraNum != -1) {
     tFallStart = pwmFallStartTimingMeas(cfgStrArray[0]);
     if ((tFallStart != -1) && (tFallStart != -2)) {
       tFallEnd = pwmFallEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[3]),atodbl(cfgStrArray[4]),atol(cfgStrArray[5]));
@@ -984,9 +974,7 @@ export void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[]) {
   double tRise, tFall;
   int paraNum;
   paraNum = getCfgStrArray("pwmTimeCfg",productPwmOutMode,cfgStrArray);
-  if (paraNum == -1)
-    testStepFail("Error","This key %s dosen't exist in cfg file.",productPwmOutMode);
-  else {
+  if (paraNum != -1) {
     tRiseStart = pwmRiseStartTimingMeas(cfgStrArray[0]);
     if ((tRiseStart != -1) && (tRiseStart != -2)) {
       tRiseEnd = pwmRiseEndTimingMeas(cfgStrArray[0],atodbl(cfgStrArray[1]),atodbl(cfgStrArray[2]),atol(cfgStrArray[5]));
@@ -1026,9 +1014,7 @@ export void prodPwmOutRiseFallCurveMeas (char productPwmOutMode[]) {
   int64 tRiseStart,tRiseEnd,tMeaStart;
   int flag,paraNum;
   paraNum = getCfgStrArray("pwmRiseEdgeCfg",pwmMode,cfgStrArray);
-  if (paraNum == -1)
-    testStepFail("Error","This key %s dosen't exist in cfg file.",pwmMode);
-  else {
+  if (paraNum != -1) {
     getCfgDataArray ("vt2516Cfg",cfgStrArray[0],vt2516CfgInfo);
     snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);
     tMeaStart = timeNowInt64();
@@ -1270,8 +1256,6 @@ export void prodOperWithPinStatImpOnSpecSigChk (char operationMode[]) {//operati
     else 
       testStepFail("Error","Data number in key %s is not right.",operationMode);
   }
-  if (paraNum == -1)
-    testStepFail("Error","Don't get any string array. Please check the section and key input.");
 } 
 
 export void prodOperWithPinStatImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecPwmCfg
@@ -1290,8 +1274,6 @@ export void prodOperWithPinStatImpOnSpecPwmChk (char operationMode[]) {//operati
     else 
       testStepFail("Error","Data number in key %s is not right.",operationMode);
   }
-  else
-    testStepFail("Error","Don't get any string array. Please check the section and key input.");
 }
 
 export void prodOperWithSigStatImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecPwmCfg
@@ -1313,28 +1295,29 @@ export void prodOperWithSigStatImpOnSpecPwmChk (char operationMode[]) {//operati
     else 
       testStepFail("Error","Data number in key %s is not right.",operationMode);
   }
-  else
-    testStepFail("Error","Don't get any string array. Please check the section and key input.");
 }
 
 export void sigDirTwoStatInSet (char pinName[], enum determiningFactor dFct, enum prodInputStat state) {
   char cfgStrArray[4][100];
-  getCfgStrArray("sigDirTwoStatInCfg",pinName,cfgStrArray);
-  if (!dFct) {//determinedBySignal
-    testEnableMsg(cfgStrArray[0]);
-    if (state)
-      signalSetting (cfgStrArray[1],atodbl(cfgStrArray[3]),1);
-    else 
-      signalSetting (cfgStrArray[1],atodbl(cfgStrArray[2]),1);
-    chRamVoltDOSet(pinName,(enum prodInputStat)(random(2)));  
-  }    
-  else {//determinedByHardware
-    testDisableMsg(cfgStrArray[0]);
-    wait(150);
-    if (state)
-      chRamVoltDOSet(pinName,Active);
-    else 
-      chRamVoltDOSet(pinName,Inactive);
+  int paraNum;
+  paraNum = getCfgStrArray("sigDirTwoStatInCfg",pinName,cfgStrArray);
+  if (paraNum != -1) {
+    if (!dFct) {//determinedBySignal
+      testEnableMsg(cfgStrArray[0]);
+      if (state)
+        signalSetting (cfgStrArray[1],atodbl(cfgStrArray[3]),1);
+      else 
+        signalSetting (cfgStrArray[1],atodbl(cfgStrArray[2]),1);
+      chRamVoltDOSet(pinName,(enum prodInputStat)(random(2)));  
+    }    
+    else {//determinedByHardware
+      testDisableMsg(cfgStrArray[0]);
+      wait(150);
+      if (state)
+        chRamVoltDOSet(pinName,Active);
+      else 
+        chRamVoltDOSet(pinName,Inactive);
+    }
   }
 }
 
