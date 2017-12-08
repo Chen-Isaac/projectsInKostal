@@ -1552,9 +1552,9 @@ export int prodOperWithPinStatImpOnSpecSigChk (char operationMode[]) {//operatio
       if (revPinStat >= 0) { 
         for (i=0;(i<paraNum/5 && (res<-10000 || res>=0));i++) {
           if (strncmp(operationMode,"IDLE",4)!=0) {
-            strncpy(heading,"Product operate ",strlen("Product operate ")+1);
+            strncpy(heading,"Operate product ",strlen("Operate product ")+1);
             strncat(heading,operationMode,200);
-            strncat(heading," then check the signal ",200);
+            strncat(heading," for checking the signal ",200);
             strncat(heading,cfgStrArray[5*i+1],200);
             testValidateTesterConfirmation(heading,"",1);
             resWait = wait(atol(cfgStrArray[5*i+3]));
@@ -1599,7 +1599,7 @@ export int prodOperWithPinStatImpOnSpecSigChk (char operationMode[]) {//operatio
 
 export int prodOperWithPinStatImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecPwmCfg
   int paraNum,i,impFactVal,res,resChk;
-  char cfgStrArray[61][100];//assume pwm check number will not larger than 10 at a time
+  char heading[200],cfgStrArray[61][100];//assume pwm check number will not larger than 10 at a time
   paraNum = getCfgStrArray("prodOperWithPinStatImpOnSpecPwmCfg",operationMode,cfgStrArray);
   res = 0;
   //testStep("","paraNum = %d,%s,%s,%s,%s",paraNum,cfgStrArray[0],cfgStrArray[5],cfgStrArray[6],cfgStrArray[11]);
@@ -1608,6 +1608,13 @@ export int prodOperWithPinStatImpOnSpecPwmChk (char operationMode[]) {//operatio
       impFactVal = prodDIPinStatGet(cfgStrArray[0]);
       if (impFactVal >= 0) {
         for (i=0;(i<paraNum/6 && (res<-10000 || res==0));i++) {
+          if (strncmp(operationMode,"IDLE",4)!=0) {
+            strncpy(heading,"Operate product ",strlen("Operate product ")+1);
+            strncat(heading,operationMode,200);
+            strncat(heading," for checking the PIN:",200);
+            strncat(heading,cfgStrArray[6*i+1],200);
+            testValidateTesterConfirmation(heading,"",1);
+          }
           resChk = prodPwmOutChk(cfgStrArray[i*6+1],atol(cfgStrArray[i*6+2])*impFactVal+atol(cfgStrArray[i*6+3]),atol(cfgStrArray[i*6+4])*impFactVal+atol(cfgStrArray[i*6+5]),atol(cfgStrArray[i*6+6]));
           if (resChk == -1001)
             res = -1002;
@@ -1631,7 +1638,7 @@ export int prodOperWithPinStatImpOnSpecPwmChk (char operationMode[]) {//operatio
 export int prodOperWithSigStatImpOnSpecPwmChk (char operationMode[]) {//operationMode[] gets from key name in section: btnPrsImpOnSpecPwmCfg
   int paraNum,i,res,resChk;
   float impFactVal;
-  char cfgStrArray[61][100];//assume pwm check number will not larger than 10 at a time
+  char heading[200],cfgStrArray[61][100];//assume pwm check number will not larger than 10 at a time
   paraNum = getCfgStrArray("prodOperWithSigStatImpOnSpecPwmCfg",operationMode,cfgStrArray);
   //testStep("","paraNum = %d,%s,%s,%s,%s",paraNum,cfgStrArray[0],cfgStrArray[5],cfgStrArray[6],cfgStrArray[11]);
   res = 0;
@@ -1640,6 +1647,13 @@ export int prodOperWithSigStatImpOnSpecPwmChk (char operationMode[]) {//operatio
       impFactVal = getSignal(cfgStrArray[0]);
       if ((impFactVal == 1.0) || (impFactVal == 0)){
         for (i=0;(i<paraNum/6 && (res<-10000 || res==0));i++) {
+          if (strncmp(operationMode,"IDLE",4)!=0) {
+            strncpy(heading,"Operate product ",strlen("Operate product ")+1);
+            strncat(heading,operationMode,200);
+            strncat(heading," for checking the PIN:",200);
+            strncat(heading,cfgStrArray[6*i+1],200);
+            testValidateTesterConfirmation(heading,"",1);
+          }
           resChk = prodPwmOutChk(cfgStrArray[i*6+1],atol(cfgStrArray[i*6+2])*impFactVal+atol(cfgStrArray[i*6+3]),atol(cfgStrArray[i*6+4])*impFactVal+atol(cfgStrArray[i*6+5]),atol(cfgStrArray[i*6+6])); 
           if (resChk == -1001)
             res = -1002;
