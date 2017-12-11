@@ -1971,14 +1971,18 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
                 res = specStatImpOnSigChk (cfgFuncArray[routeNum[i]][1]);
               break;
             }
-            testStep("Res","Res = %d.",res);
-            if ((res > -100001) && (res < -1000))
-              testStepFail("Error","At step %s, function:%s, res = %d. Please fix it then run the test sequence again.",loopNum,func[j],res);
+            //testStep("Res","Res = %d.",res);
+            if ((res > -10001) && (res < -1000))
+              testStepFail("Error","At step %s, call function:%s error, error code = %d. Test sequence stop running. Please fix it then run the test sequence again.",loopNum,func[j],res);
+            else if (res >= 0)
+              testStepPass("Call function","At step %s, call function:%s success, function return value = %d.",loopNum,func[j],res);
+            else
+              testStepFail("Failure","At step %s, call function:%s has a failure, error code = %d.",loopNum,func[j],res);
             j = elCount(func)-1;
           }
           else {//cmp!=0
             if (j == (elCount(func)-1)) {
-              testStepFail("Error","At step %s, function %s in testStepCfg.ini file can't be found in the library. Please check the function name, or add it into the library first.",loopNum,cfgFuncArray[routeNum[i]][0]); 
+              testStepFail("Error","At step %s, function:%s in testStepCfg.ini file can't be found in the library. Test sequence stop running. Please check the function name, or add it into the library.",loopNum,cfgFuncArray[routeNum[i]][0]); 
               errBool = 1;
             }
           }
@@ -1987,12 +1991,12 @@ export void stateMachine (char stateMachineSection[],int routeNum[],char paraPic
       }  
       else {
         errBool = 1;
-        testStepFail("Error","At step %s, route number(=%d) > funcNum(=%d) or < 0,program can't pick up the right function.",loopNum,routeNum[i],funcNum);
+        testStepFail("Error","At step %s, route number(=%d) > funcNum(=%d) or < 0,program can't pick up the right function. Test sequence stop running.",loopNum,routeNum[i],funcNum);
       }
     }
     else {//The loop will quit when one step(not exist in iniFile) not found in the iniFile. Not suitable for the nonexist step report a failure just for quiting the loop.
       if (i==0)
-        testStepFail("Error","Don't find the key: %s in section: %s at testStepCfg.ini file. Please check the section and key's name.",step,stateMachineSection);
+        testStepFail("Error","Don't find the key: %s in section: %s at testStepCfg.ini file. Test sequence stop running. Please check the section and key's name.",step,stateMachineSection);
     }
   }while((funcNum!=-1001)&&(!errBool)&&((res>=0)||(res<=-10001)));//exit loop if step not found or error occured.
   //testStep("","loop is over");
