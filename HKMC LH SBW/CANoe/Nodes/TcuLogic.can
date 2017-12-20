@@ -1,0 +1,31 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+on preStart
+{
+  $G_SEL_DISP = 0;
+}
+
+on signal CF_Lvr_PosInf
+{
+  if(@NM_CAN1::TCU::Enable_TcuSimulation == 1)
+  {
+    switch($CF_Lvr_PosInf)
+    {
+      case 1: {$G_SEL_DISP = 0;break;}  //P
+      case 3: {$G_SEL_DISP = 7;break;}//R
+      case 8: {$G_SEL_DISP = 6;break;}//N
+      case 9: {$G_SEL_DISP = 6;break;}//N
+      case 7: {$G_SEL_DISP = 8;break;}//D
+      default: {break;} 
+    }
+  } 
+}

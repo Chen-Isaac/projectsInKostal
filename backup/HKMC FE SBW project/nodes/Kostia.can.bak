@@ -1,0 +1,122 @@
+
+includes
+{
+	#include "..\Capl\Definition.cin"
+}
+variables
+{
+    /**************** Kostia Response Rx message ****************/
+    byte KostiaResponseByte[8];
+    
+    /**************** Kostia Request Rx message ****************/
+    byte KostiaRequestByte[8];
+    
+    mstimer timKostiaResponsePending;
+
+
+    /******************************************/
+}
+
+on timer timKostiaResponsePending
+{
+  /* Set Kostia Response TimeOut */
+  @evnKostiaResponseTimeoutFlg = 1;
+  putvalue( envKostiaDisplayString, "Kostia Response Timeout!" );
+  
+  /* Kostia Status transfer to IDLE */
+	@envKostiaProcessStatus = KOSTIA_STATUS_IDLE;
+  /* Stop Timeout Detection */
+  cancelTimer(timKostiaResponsePending);
+}
+
+on message Kostia_Request
+{
+  byte idx;
+  byte tmp;
+  
+  switch(this.byte(0)) {
+    case KOSTIA_SID_LOG:
+      tmp = 0;
+      for( idx=1; idx<8; idx++ ) {
+        if( this.byte(idx) == 0x00 ) {
+          tmp++;
+        }
+      }
+      if( tmp == 7 ) {
+        @envKostiaProcessStatus = KOSTIA_STATUS_LOGOUT;
+        @envKostiaLogoutStatus = 0;
+        setTimer(timKostiaResponsePending, 1000);
+      } else {
+        @envKostiaProcessStatus = KOSTIA_STATUS_LOGIN;
+        @envKostiaLoginStatus = 0;
+        setTimer(timKostiaResponsePending, 1000);
+      }
+
+      break;
+      
+    default:
+      break;
+  }
+
+}
+
+on message Kostia_Response
+{
+	byte idx;
+  byte tmp;
+  
+  cancelTimer(timKostiaResponsePending);
+  
+  /* Store Kostia Response Buffer */
+  for(idx=0;idx<8;idx++) {
+    KostiaResponseByte[idx] = this.byte(idx);
+  }
+  
+  /* Process Kostia Response */
+  switch(@envKostiaProcessStatus) {
+    case KOSTIA_STATUS_LOGIN:
+        /* Check if response value is right */
+        idx = 0;
+        tmp = 0;
+        for(idx=0; idx<8; idx++) {
+          if( KostiaResponseByte[idx]== KOSTIA_LOGIN_RESPONSE_MESSAGE[idx] ) {
+            tmp++;
+          }
+        }
+
+        if( tmp != 8 ) {
+          @envKostiaLoginStatus = 2;
+          putvalue( envKostiaDisplayString, "Login Failed!" );
+        } else {
+          @envKostiaLoginStatus = 1;
+          putvalue( envKostiaDisplayString, "Login Successed!" );
+        }
+        
+      break;
+      
+    case KOSTIA_STATUS_LOGOUT:
+        /* Check if response value is right */
+        idx = 0;
+        tmp = 0;
+        for(idx=0; idx<8; idx++) {
+          if( KostiaResponseByte[idx]== KOSTIA_LOGOUT_RESPONSE_MESSAGE[idx] ) {
+            tmp++;
+          }
+        }
+
+        if( tmp != 8 ) {
+          @envKostiaLogoutStatus = 2;
+          putvalue( envKostiaDisplayString, "Logout Failed!" );
+        } else {
+          @envKostiaLogoutStatus = 1;
+          putvalue( envKostiaDisplayString, "Logout Successed!" );
+        }
+      break;
+      
+    default:
+      break;
+  }
+  
+  @envKostiaProcessStatus = KOSTIA_STATUS_IDLE;
+}
+

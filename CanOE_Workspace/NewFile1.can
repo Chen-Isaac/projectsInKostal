@@ -1,0 +1,33 @@
+/*@!Encoding:1252*/
+
+on envVar Wakeup
+{
+  linSendWakeup();
+}
+
+on envVar GotoSleep
+{
+  linSendSleepModFrm(0,1,0XFF);
+}
+
+on key 'a'
+{
+  diagSetTarget("LIM");
+  
+  BYTE request[3];
+  request[0] = 0x22;
+  request[1] = 0x60;
+  request[2] = 0x61;
+  diagSendRequestPDU(request, 3);
+}
+
+
+
+
+
+
+
+
+
+
+

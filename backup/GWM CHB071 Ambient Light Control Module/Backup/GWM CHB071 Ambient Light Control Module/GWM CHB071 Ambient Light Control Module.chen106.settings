@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Project>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>CANoeConfigPathSutImport</string>
+        </key>
+        <value type="System.String">
+          <string>C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control\ALCM_Panel\Can_Panel\CanPanel.cfg</string>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </Project>
+  <WindowManagement>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>DocContainerSizes</string>
+        </key>
+        <value type="System.Collections.Generic.List`1[System.Drawing.Size]">
+          <ArrayOfSize>
+            <Size>
+              <Width>1478</Width>
+              <Height>808</Height>
+            </Size>
+          </ArrayOfSize>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>ActiveDocumentIndex</string>
+        </key>
+        <value type="System.Int32">
+          <int>0</int>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>DocumentLayout</string>
+        </key>
+        <value type="Vector.ITE.WindowManagement.DocInfoList">
+          <ArrayOfDocumentInfo>
+            <DocumentInfo>
+              <PositionInContainer>0</PositionInContainer>
+              <ContainerIndex>0</ContainerIndex>
+              <DocType>TTTestModule</DocType>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt" /&gt;</SerializedBasedFileName>
+              <ContextGUID>ge0leqevhj9p</ContextGUID>
+              <ContextGUIDForGUI>ge0leqevhj9p</ContextGUIDForGUI>
+            </DocumentInfo>
+          </ArrayOfDocumentInfo>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>ViewSettings</string>
+        </key>
+        <value type="Vector.ITE.ViewManagement.ViewManagementServiceProvider+ViewSettingsDictionary">
+          <ViewSettingsDictionary>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>ProjectView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>15</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot/Test Units/GWM CHB071 Ambient Light Control Module/GWM CHB071 Ambient Light Control Module.vtt</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot</anyType>
+                        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d13p1:type="q2:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot/Test Units/GWM CHB071 Ambient Light Control Module</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>LibraryView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Focused</string>
+                    </key>
+                    <value type="null" />
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>HomeDirectoryView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>17</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/GWM CHB071 Ambient Light Control Module</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>SymbolExplorer</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>State</string>
+                    </key>
+                    <value type="System.String">
+                      <string>1
+HistoryBegin
+1 0
+HistoryEnd
+FiltersBegin
+Begin
+3 484 491
+2
+Networks
+( 0)
+_____CF_C_Matrix
+ ( 1 ( 0 ) 0 ) 
+SymbSelHeaderMgrBegin
+1 9
+0 1 200 0 0
+9 1 100 0 0
+1 1 100 0 0
+14 0 100 0 0
+15 1 80 0 0
+2 0 100 0 0
+3 0 75 1 1
+5 1 75 1 1
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 7
+1
+System variables
+ ( 1 ( 0 ) 0 ) 
+SymbSelHeaderMgrBegin
+1 4
+0 1 200 0 0
+10 1 75 0 0
+11 1 100 0 0
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 -1
+0
+SymbSelHeaderMgrBegin
+1 3
+0 1 200 0 0
+7 0 100 0 0
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 0
+0
+SymbSelHeaderMgrBegin
+1 2
+0 1 200 0 0
+13 1 75 0 0
+SymbSelHeaderMgrEnd
+End
+
+FiltersEnd
+0 0</string>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>TraceItemExplorer</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Focused</string>
+                    </key>
+                    <value type="null" />
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+          </ViewSettingsDictionary>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </WindowManagement>
+  <DocumentManagement>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>DocSettings</string>
+        </key>
+        <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
+          <ArrayOfDocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2016-09-21T00:45:22.1491016Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>EditorSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.TtEditorSettings">
+                    <TtEditorSettings>
+                      <SplitterSettingsTet>
+                        <SplitPosition>150</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsTet>
+                      <SplitterSettingsPv>
+                        <SplitPosition>528</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsPv>
+                      <SplitterSettingsLv>
+                        <SplitPosition>185</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsLv>
+                      <ActiveView>2</ActiveView>
+                    </TtEditorSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>ParameterViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.ParameterView.TtParameterViewSettings">
+                    <TtParameterViewSettings>
+                      <CellSizes>
+                        <item>
+                          <key type="System.String">
+                            <string>#8E1A09C3</string>
+                          </key>
+                          <value type="System.Int32[]">
+                            <ArrayOfInt>
+                              <int>60</int>
+                              <int>7</int>
+                            </ArrayOfInt>
+                          </value>
+                        </item>
+                        <item>
+                          <key type="System.String">
+                            <string>#25279774</string>
+                          </key>
+                          <value type="System.Int32[]">
+                            <ArrayOfInt>
+                              <int>115</int>
+                              <int>19</int>
+                              <int>69</int>
+                            </ArrayOfInt>
+                          </value>
+                        </item>
+                        <item>
+                          <key type="System.String">
+                            <string>#B503B6F3</string>
+                          </key>
+                          <value type="System.Int32[]">
+                            <ArrayOfInt>
+                              <int>60</int>
+                              <int>8</int>
+                            </ArrayOfInt>
+                          </value>
+                        </item>
+                      </CellSizes>
+                    </TtParameterViewSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>TestExecutionTreeSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.TestExecutionTree.TtTetSettings">
+                    <TtTetSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>75</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                    </TtTetSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>LibraryViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.LibraryView.TtLvSettings">
+                    <TtLvSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>75</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                    </TtLvSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CommandViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.CommandView.TtCvSettings">
+                    <TtCvSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>273</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>1018</Width>
+                            <VisibleIndex>1</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                      <RootNodeId>:0</RootNodeId>
+                      <MruList>
+                        <TtCustomPopupListItemData>
+                          <ItemText>testValidateTesterConfirmation</ItemText>
+                          <ImageIndex>66</ImageIndex>
+                          <ModelElementName>canoestandardservice</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>testValidateTesterConfirmation</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>String</EnumDataType>
+                            <EnumDataType>Long</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Wait</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>wait</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Report</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>report</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>For</ItemText>
+                          <ImageIndex>183</ImageIndex>
+                          <ModelElementName>for</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Set</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>set</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Test Sequence</ItemText>
+                          <ImageIndex>170</ImageIndex>
+                          <ModelElementName>ts</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>CAPL Inline</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>caplinline</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Set Variable</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>setvariable</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>For Each</ItemText>
+                          <ImageIndex>183</ImageIndex>
+                          <ModelElementName>foreach</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Await Signals Available</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>awaitsignalsavailable</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Await Value Match</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>awaitvaluematch</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Check</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>statecheck</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                      </MruList>
+                    </TtCvSettings>
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="ConfigurationSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2016-09-21T00:44:54.7391016Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>SelectedTabPage</string>
+                  </key>
+                  <value type="Vector.ITE.Project.ProjectConfiguration.ProjectConfigurationTabPage">
+                    <ProjectConfigurationTabPage>NetOptions</ProjectConfigurationTabPage>
+                  </value>
+                </item>
+              </Settings>
+              <SerializedKey>ProjectConfiguration_</SerializedKey>
+            </DocumentSettingsBase>
+          </ArrayOfDocumentSettingsBase>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </DocumentManagement>
+  <BookmarkService>
+    <SerializableDictionaryOfStringObject />
+  </BookmarkService>
+  <SearchAndReplace>
+    <SerializableDictionaryOfStringObject />
+  </SearchAndReplace>
+  <FunctionExplorer>
+    <SerializableDictionaryOfStringObject />
+  </FunctionExplorer>
+  <TempFileRepository>
+    <SerializableDictionaryOfStringObject />
+  </TempFileRepository>
+  <TestTableEditor>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>TtRUList</string>
+        </key>
+        <value type="System.Collections.Generic.List`1[System.String]">
+          <ArrayOfString>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS1|165|False|END_OF_OBJECT_FrameData|RKEDoorLockCmd|1|END_OF_OBJECT_|</string>
+            <string>ValueTableEntry#RKE door lock</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS1|165|False|END_OF_OBJECT_FrameData|PKEDoorLockCmd|1|END_OF_OBJECT_|</string>
+            <string>ValueTableEntry#No Action</string>
+            <string>ValueTableEntry#PKE door Lock</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|AvgVoltage|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|RelayGnd|VTS::M9_Ch4|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|PosLmpSts|1|END_OF_OBJECT_|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|OpenDoorSignals||0|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|PassengerDoorSts|1|END_OF_OBJECT_|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|OpenDoorSignals||-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ValueTableEntry#ACC</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RRDoorSts|1|END_OF_OBJECT_|</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS2|661|False|END_OF_OBJECT_FrameData|SystemPowerMode|1|END_OF_OBJECT_|</string>
+            <string>ValueTableEntry#ON</string>
+            <string>ValueTableEntry#OFF</string>
+            <string>TteVariableOrSymbolRef#i</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|DriverDoorSts|1|END_OF_OBJECT_|</string>
+            <string>ValueTableEntry#Open</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|HUT|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|HUT8|710|False|END_OF_OBJECT_FrameData|ALCMLightLvlSet|1|END_OF_OBJECT_|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</string>
+            <string>ConfiguredObject#DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RLDoorSts|1|END_OF_OBJECT_|</string>
+            <string>ValueTableEntry#Closed</string>
+          </ArrayOfString>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </TestTableEditor>
+  <TestSequenceDiagram>
+    <SerializableDictionaryOfStringObject />
+  </TestSequenceDiagram>
+  <LanguagesCommon>
+    <SerializableDictionaryOfStringObject />
+  </LanguagesCommon>
+  <InterfaceFunctionExplorer>
+    <SerializableDictionaryOfStringObject />
+  </InterfaceFunctionExplorer>
+  <ITETester>
+    <SerializableDictionaryOfStringObject />
+  </ITETester>
+  <MeasurePerformance>
+    <SerializableDictionaryOfStringObject />
+  </MeasurePerformance>
+  <TraceItems>
+    <SerializableDictionaryOfStringObject />
+  </TraceItems>
+  <IntelliSymbolManagement>
+    <SerializableDictionaryOfStringObject />
+  </IntelliSymbolManagement>
+  <PrintDialog>
+    <SerializableDictionaryOfStringObject />
+  </PrintDialog>
+</Settings>

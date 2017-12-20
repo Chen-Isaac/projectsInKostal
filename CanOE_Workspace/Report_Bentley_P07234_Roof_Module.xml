@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2017-12-20 16:28:07" timestamp=" 118.686099" verdicts="5_extended">
+  <testunit starttime="2017-12-20 16:28:07" timestamp=" 118.686099">
+    <skippedcase starttime="2017-12-20 16:28:07" timestamp=" 118.686099">
+      <title>powerOn ()</title>
+    </skippedcase>
+    <skippedcase starttime="2017-12-20 16:28:07" timestamp=" 118.686099">
+      <title>checkKostia ()</title>
+    </skippedcase>
+    <skippedcase starttime="2017-12-20 16:28:07" timestamp=" 118.686099">
+      <title>powerOff ()</title>
+    </skippedcase>
+    <skippedcase starttime="2017-12-20 16:28:07" timestamp=" 118.686099">
+      <title>try ()</title>
+    </skippedcase>
+    <testcase starttime="2017-12-20 16:28:07" timestamp=" 118.686099">
+      <teststep timestamp=" 118.686099" level="0" type="user" ident="linActivate" result="na">res = 1</teststep>
+      <teststep timestamp=" 118.686099" level="0" type="user" ident="linActivate" result="na">res = 1</teststep>
+      <teststep timestamp=" 118.686099" level="0" type="user" ident="linChangeSchedTable" result="na">res = 5</teststep>
+      <verdict time="2017-12-20 16:28:07" timestamp=" 118.686099" endtime="2017-12-20 16:28:07" endtimestamp=" 118.686099" result="none" />
+      <title>try1 ()</title>
+    </testcase>
+    <verdict time="2017-12-20 16:28:07" timestamp=" 118.686099" endtime="2017-12-20 16:28:07" endtimestamp=" 118.686099" result="none" />
+    <title>Bentley_P07234_Roof_Module</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>Bentley_P07234_Roof_Module</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>D:\Isaac\CanOE_Workspace\Bentley_P07234_Roof_Module\Bentley_P07234_Roof_Module.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2017-12-20, 16:26:04</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2017-12-20 16:28:07" timestamp=" 118.686099" endtime="2017-12-20 16:28:07" endtimestamp=" 118.686099" result="none" />
+  <title>Bentley_P07234_Roof_Module</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>chen106</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 9.0.86 (SP3)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>D:\Isaac\CanOE_Workspace\Bentley_P07234_Roof_Module_Cfg_V.1.1.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>Bentley_P07234_Roof_Module</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.15, C:\Program Files (x86)\Vector CANoe 9.0\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.27, C:\Program Files (x86)\Vector CANoe 9.0\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 9.0.86, C:\Program Files (x86)\Vector CANoe 9.0\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="LIN Channel Interfaces" category="CategoryLINIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+      <xinfo key="channel">
+        <name>Channel</name>
+        <description>1</description>
+      </xinfo>
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VN1630</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>501043</description>
+      </xinfo>
+      <xinfo key="driverdllversion">
+        <name>Driver DLL version</name>
+        <description>9.2.22</description>
+      </xinfo>
+      <xinfo key="driverversion">
+        <name>Driver version</name>
+        <description>8.9.22</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>LIN Firmware version</name>
+        <description>1.57</description>
+      </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT8012</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>1031</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>0.0.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x10</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT1004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>452</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT1004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>450</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT1004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>448</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT1004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>449</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>331</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>348</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>329</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>339</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2516A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>174</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.2</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2516A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>234</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.2</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2516A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>210</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.2</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT7001A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>267</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.0.5</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x10</description>
+      </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+</testreport>
+<!--footprint="39534c9b7b5e9503b8475526adb6f11c" version="1"-->

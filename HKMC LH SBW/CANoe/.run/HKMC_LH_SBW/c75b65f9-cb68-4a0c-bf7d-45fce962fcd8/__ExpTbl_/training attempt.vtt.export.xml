@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <testsequence name="NewTestSequence" comment="" signature="" file="C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\training attempt\training attempt.vtt">
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/ts_definitions[1]/ts_definition[1]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </testsequence>
+</tclibrary>

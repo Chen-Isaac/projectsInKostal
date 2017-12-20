@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <capltestcase>
+      <title />
+      <name>powerOn</name>
+    </capltestcase>
+    <capltestcase>
+      <title />
+      <name>initProduct</name>
+    </capltestcase>
+    <capltestcase>
+      <title />
+      <name>checkFunctions1</name>
+    </capltestcase>
+    <capltestcase>
+      <title />
+      <name>checkFunctions2</name>
+    </capltestcase>
+    <capltestcase>
+      <title />
+      <name>checkFunctions3</name>
+    </capltestcase>
+    <capltestcase>
+      <title />
+      <name>UDSKostia</name>
+    </capltestcase>
+    <capltestcase>
+      <title />
+      <name>powerOff</name>
+    </capltestcase>
+    <tc>
+      <title />
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>3000</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+    </tc>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

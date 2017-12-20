@@ -1,0 +1,718 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="SBW">
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl7" Children="Controls" ControlName="grpPanelCtrl">
+      <Object Type="Vector.CANalyzer.Panels.Design.PanelButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="PanelButtonControl1" Children="Controls" ControlName="BtnFaultManager">
+        <Property Name="Name">PanelButtonControl1</Property>
+        <Property Name="Size">81, 28</Property>
+        <Property Name="Location">6, 24</Property>
+        <Property Name="PanelList">1;1;FAULT_MEMORY.xvp</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="Text">FM</Property>
+        <Property Name="TabIndex">27</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.PanelButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="PanelButtonControl2" Children="Controls" ControlName="btnKostia">
+        <Property Name="Name">PanelButtonControl2</Property>
+        <Property Name="Size">81, 28</Property>
+        <Property Name="Location">93, 24</Property>
+        <Property Name="PanelList">1;1;KTAppl.xvp</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="Text">Kostia</Property>
+        <Property Name="TabIndex">28</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl7</Property>
+      <Property Name="Size">183, 84</Property>
+      <Property Name="Location">274, 586</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt</Property>
+      <Property Name="Text">Panel Control</Property>
+      <Property Name="TabIndex">29</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl22" ControlName="SbwTxDir">
+      <Property Name="Name">SwitchControl22</Property>
+      <Property Name="Size">46, 96</Property>
+      <Property Name="Location">38, 446</Property>
+      <Property Name="StateCnt">2</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="TransparentColor">White</Property>
+      <Property Name="ImageFile">..\png\indArrow.png</Property>
+      <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envVcuTxFlg;1;;;-1</Property>
+      <Property Name="TabIndex">26</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl21" ControlName="VcuTxDir">
+      <Property Name="Name">SwitchControl21</Property>
+      <Property Name="Size">50, 96</Property>
+      <Property Name="Location">112, 446</Property>
+      <Property Name="StateCnt">2</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="TransparentColor">White</Property>
+      <Property Name="ImageFile">..\png\indArrow_r.png</Property>
+      <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envSbwTxFlg;1;;;-1</Property>
+      <Property Name="TabIndex">25</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl6" Children="Controls" ControlName="GB_VCU">
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl2" Children="Controls" ControlName="CB_VCU_EvRdy">
+        <Property Name="Name">ComboBoxControl2</Property>
+        <Property Name="Size">166, 27</Property>
+        <Property Name="Location">4, 84</Property>
+        <Property Name="DropDownWidth">166</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9.75pt</Property>
+        <Property Name="SymbolConfiguration">4;1;CANdb1;;;envVcu_EvRdy;1;;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl2" Children="Controls" ControlName="Check Box">
+        <Property Name="Name">CheckBoxControl2</Property>
+        <Property Name="Size">66, 23</Property>
+        <Property Name="Location">6, 24</Property>
+        <Property Name="Text">Enable</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envVCUTxEnable;1;;;-1</Property>
+        <Property Name="TabIndex">4</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl1" Children="Controls" ControlName="Check Box">
+        <Property Name="Name">CheckBoxControl1</Property>
+        <Property Name="Size">87, 23</Property>
+        <Property Name="Location">85, 24</Property>
+        <Property Name="Text">Simulation</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envVCU_SimulationEnable;1;;;-1</Property>
+        <Property Name="TabIndex">4</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl1" Children="Controls" ControlName="CB_VCU_GearShift">
+        <Property Name="Name">ComboBoxControl1</Property>
+        <Property Name="Size">166, 27</Property>
+        <Property Name="Location">4, 53</Property>
+        <Property Name="DropDownWidth">166</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9.75pt</Property>
+        <Property Name="SymbolConfiguration">4;1;HS2_CAN;;;envVCU_GarSelDisp;1;;;-1</Property>
+        <Property Name="TabIndex">3</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl6</Property>
+      <Property Name="Size">182, 123</Property>
+      <Property Name="Location">12, 547</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt, style=Bold</Property>
+      <Property Name="Text">VCU</Property>
+      <Property Name="TabIndex">24</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl5" Children="Controls" ControlName="Group Box 5">
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl20" ControlName="Switch_Park">
+        <Property Name="Name">SwitchControl20</Property>
+        <Property Name="Size">181, 428</Property>
+        <Property Name="Location">0, 10</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\png\DegradeMask.png</Property>
+        <Property Name="SymbolConfiguration">4;2;HS2_CAN;EGSM;LVR1;CF_Lvr_UnitStatus;0;CAN;;-1</Property>
+        <Property Name="TabIndex">29</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl23" ControlName="Switch_PRelease">
+        <Property Name="Name">SwitchControl23</Property>
+        <Property Name="Size">120, 43</Property>
+        <Property Name="Location">30, 171</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\png\Indication_PRelease.png</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnIndication_PRelease;1;;;-1</Property>
+        <Property Name="TabIndex">30</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl19" ControlName="Indication_R">
+        <Property Name="Name">SwitchControl19</Property>
+        <Property Name="Size">40, 43</Property>
+        <Property Name="Location">125, 108</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\png\Indication_R.png</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnIndication_R;1;;;-1</Property>
+        <Property Name="TabIndex">28</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl17" ControlName="Indication_D">
+        <Property Name="Name">SwitchControl17</Property>
+        <Property Name="Size">40, 43</Property>
+        <Property Name="Location">12, 108</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\png\Indication_D.png</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnIndication_D;1;;;-1</Property>
+        <Property Name="TabIndex">26</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl16" ControlName="Indication_N">
+        <Property Name="Name">SwitchControl16</Property>
+        <Property Name="Size">40, 43</Property>
+        <Property Name="Location">69, 108</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\png\Indication_N.png</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnIndication_N;1;;;-1</Property>
+        <Property Name="TabIndex">25</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl15" ControlName="Indication_P">
+        <Property Name="Name">SwitchControl15</Property>
+        <Property Name="Size">40, 43</Property>
+        <Property Name="Location">69, 50</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\png\Indication_P.png</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnIndication_P;1;;;-1</Property>
+        <Property Name="TabIndex">24</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl14" ControlName="Switch_Unlock">
+        <Property Name="Name">SwitchControl14</Property>
+        <Property Name="Size">120, 173</Property>
+        <Property Name="Location">30, 231</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\bmp\btnUnlock.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnUnlock_Pressed;1;;;-1</Property>
+        <Property Name="TabIndex">23</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl13" ControlName="Switch_Park">
+        <Property Name="Name">SwitchControl13</Property>
+        <Property Name="Size">150, 54</Property>
+        <Property Name="Location">14, 42</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\bmp\btnP.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnP_Pressed;1;;;-1</Property>
+        <Property Name="TabIndex">22</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl9" ControlName="Switch_N">
+        <Property Name="Name">SwitchControl9</Property>
+        <Property Name="Size">50, 54</Property>
+        <Property Name="Location">64, 103</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\bmp\btnDNR.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnN_Pressed;1;;;-1</Property>
+        <Property Name="TabIndex">19</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl12" ControlName="Switch_PRlease">
+        <Property Name="Name">SwitchControl12</Property>
+        <Property Name="Size">150, 54</Property>
+        <Property Name="Location">15, 165</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\bmp\btnPRelease.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnPRelease_Pressed;1;;;-1</Property>
+        <Property Name="TabIndex">22</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl10" ControlName="Switch_D">
+        <Property Name="Name">SwitchControl10</Property>
+        <Property Name="Size">50, 54</Property>
+        <Property Name="Location">9, 103</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\bmp\btnDNR.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnD_Pressed;1;;;-1</Property>
+        <Property Name="TabIndex">20</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl11" ControlName="Switch_R">
+        <Property Name="Name">SwitchControl11</Property>
+        <Property Name="Size">50, 54</Property>
+        <Property Name="Location">120, 103</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="ImageFile">..\bmp\btnDNR.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnR_Pressed;1;;;-1</Property>
+        <Property Name="TabIndex">21</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl5</Property>
+      <Property Name="Size">181, 445</Property>
+      <Property Name="Location">12, 3</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt, style=Bold</Property>
+      <Property Name="Text">SBW</Property>
+      <Property Name="TabIndex">23</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box 4">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl15" Children="Controls" ControlName="Checksum Validation">
+        <Property Name="Name">TextBoxControl15</Property>
+        <Property Name="Size">247, 44</Property>
+        <Property Name="Location">6, 165</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Warning Status</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">247, 23</Property>
+        <Property Name="SymbolConfiguration">4;2;HS2_CAN;LVR;LVR1;CF_Lvr_Wrn;0;CAN;;-1</Property>
+        <Property Name="TabIndex">30</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl13" Children="Controls" ControlName="Checksum Validation">
+        <Property Name="Name">TextBoxControl13</Property>
+        <Property Name="Size">247, 44</Property>
+        <Property Name="Location">6, 212</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Decimal</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Button Signal Error Counter</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">247, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envBtnSingalErrCount;1;;;-1</Property>
+        <Property Name="TabIndex">30</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl3" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl3</Property>
+        <Property Name="Size">20, 22</Property>
+        <Property Name="Location">137, 88</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\bmp\lIndicatorLight_3.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnErrFlg_D;1;;;-1</Property>
+        <Property Name="TabIndex">12</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl3" Children="Controls" ControlName="Input/Output Box 3">
+        <Property Name="Name">TextBoxControl3</Property>
+        <Property Name="Size">90, 44</Property>
+        <Property Name="Location">30, 69</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Button N</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">90, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnState_N;1;;;-1</Property>
+        <Property Name="TabIndex">4</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl4" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl4</Property>
+        <Property Name="Size">20, 22</Property>
+        <Property Name="Location">6, 88</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\bmp\lIndicatorLight_3.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnErrFlg_N;1;;;-1</Property>
+        <Property Name="TabIndex">12</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl11" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl11</Property>
+        <Property Name="Size">90, 44</Property>
+        <Property Name="Location">163, 21</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Button R</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">90, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnState_R;1;;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl1</Property>
+        <Property Name="Size">90, 44</Property>
+        <Property Name="Location">163, 69</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Button D</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">90, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnState_D;1;;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl7" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl7</Property>
+        <Property Name="Size">20, 22</Property>
+        <Property Name="Location">137, 136</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\bmp\lIndicatorLight_3.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnErrFlg_Unlock;1;;;-1</Property>
+        <Property Name="TabIndex">10</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl6" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl6</Property>
+        <Property Name="Size">20, 22</Property>
+        <Property Name="Location">6, 133</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\bmp\lIndicatorLight_3.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnErrFlg_PRelease;1;;;-1</Property>
+        <Property Name="TabIndex">10</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl9" Children="Controls" ControlName="Input/Output Box 4">
+        <Property Name="Name">TextBoxControl9</Property>
+        <Property Name="Size">90, 44</Property>
+        <Property Name="Location">32, 117</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Button P Rel</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">90, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnState_PRelease;1;;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl4" Children="Controls" ControlName="Input/Output Box 4">
+        <Property Name="Name">TextBoxControl4</Property>
+        <Property Name="Size">90, 44</Property>
+        <Property Name="Location">30, 22</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Button P</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">90, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnState_P;1;;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl5" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl5</Property>
+        <Property Name="Size">20, 22</Property>
+        <Property Name="Location">6, 40</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\bmp\lIndicatorLight_3.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnErrFlg_P;1;;;-1</Property>
+        <Property Name="TabIndex">10</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl10" Children="Controls" ControlName="Input/Output Box 4">
+        <Property Name="Name">TextBoxControl10</Property>
+        <Property Name="Size">90, 44</Property>
+        <Property Name="Location">163, 117</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Button Unlock</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">90, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnBtnState_Unlock;1;;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl8" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl8</Property>
+        <Property Name="Size">20, 22</Property>
+        <Property Name="Location">137, 39</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\bmp\lIndicatorLight_3.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnErrFlg_R;1;;;-1</Property>
+        <Property Name="TabIndex">12</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">259, 263</Property>
+      <Property Name="Location">199, 3</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt</Property>
+      <Property Name="Text">Button State</Property>
+      <Property Name="TabIndex">18</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl4" Children="Controls" ControlName="Group Box 3">
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="b_ValidationErrorClr">
+        <Property Name="Name">ButtonControl1</Property>
+        <Property Name="Size">60, 28</Property>
+        <Property Name="Location">193, 81</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="Text">Clear</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envValidationErrorClear;1;;;-1</Property>
+        <Property Name="TabIndex">14</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls" ControlName="Rolling Count">
+        <Property Name="Name">TextBoxControl2</Property>
+        <Property Name="Size">155, 44</Property>
+        <Property Name="Location">32, 22</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">RC Validation</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">155, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envRollingCounterValidation;4;;;-1</Property>
+        <Property Name="TabIndex">13</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl2" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl2</Property>
+        <Property Name="Size">20, 22</Property>
+        <Property Name="Location">6, 40</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\bmp\lIndicatorLight_3.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envRollingCounterIndication;1;;;-1</Property>
+        <Property Name="TabIndex">12</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl1" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl1</Property>
+        <Property Name="Size">20, 22</Property>
+        <Property Name="Location">6, 88</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\bmp\lIndicatorLight_3.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;HS2_CAN;;;envChecksumIndication;1;;;-1</Property>
+        <Property Name="TabIndex">10</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl14" Children="Controls" ControlName="Checksum Validation">
+        <Property Name="Name">TextBoxControl14</Property>
+        <Property Name="Size">155, 44</Property>
+        <Property Name="Location">32, 69</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Checksum Validation</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">155, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;HS2_CAN;;;envChecksumValidation;4;;;-1</Property>
+        <Property Name="TabIndex">10</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl4</Property>
+      <Property Name="Size">259, 118</Property>
+      <Property Name="Location">199, 461</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt</Property>
+      <Property Name="Text">Message Validation</Property>
+      <Property Name="TabIndex">17</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl2" Children="Controls" ControlName="b_IntervalTimeSummayClr">
+        <Property Name="Name">ButtonControl2</Property>
+        <Property Name="Size">60, 28</Property>
+        <Property Name="Location">193, 87</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="Text">Clear</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envIntervalTimeSummayClear;1;;;-1</Property>
+        <Property Name="TabIndex">16</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl8" Children="Controls" ControlName="Input/Output Box 7">
+        <Property Name="Name">TextBoxControl8</Property>
+        <Property Name="Size">181, 44</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Double</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Interval Time Min:</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">181, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;evnIntervalTimeMin;2;;;-1</Property>
+        <Property Name="TabIndex">15</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl7" Children="Controls" ControlName="Input/Output Box 2">
+        <Property Name="Name">TextBoxControl7</Property>
+        <Property Name="Size">181, 42</Property>
+        <Property Name="Location">6, 69</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Double</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Interval Time Max:</Property>
+        <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+        <Property Name="DescriptionSize">181, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envIntervalTimeMax;2;;;-1</Property>
+        <Property Name="TabIndex">14</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl3</Property>
+      <Property Name="Size">259, 125</Property>
+      <Property Name="Location">199, 330</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt</Property>
+      <Property Name="Text">Interval Time Summary</Property>
+      <Property Name="TabIndex">16</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl1" Children="Controls" ControlName="Radio Button">
+      <Property Name="Name">RadioButtonControl1</Property>
+      <Property Name="Size">89, 16</Property>
+      <Property Name="Location">-15, -24</Property>
+      <Property Name="Text">Description</Property>
+      <Property Name="SymbolConfiguration">
+      </Property>
+      <Property Name="TabIndex">1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl5" Children="Controls" ControlName="Input/Output Box 5">
+        <Property Name="Name">TextBoxControl5</Property>
+        <Property Name="Size">116, 44</Property>
+        <Property Name="Location">137, 12</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Decimal</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;255</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Checksum</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">116, 23</Property>
+        <Property Name="SymbolConfiguration">4;2;HS2_CAN;LVR;LVR1;CF_But_CS;0;CAN;;-1</Property>
+        <Property Name="TabIndex">6</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl6" Children="Controls" ControlName="Input/Output Box 6">
+        <Property Name="Name">TextBoxControl6</Property>
+        <Property Name="Size">116, 44</Property>
+        <Property Name="Location">6, 12</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Decimal</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;15</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">Rolling Counter:</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">116, 23</Property>
+        <Property Name="SymbolConfiguration">4;2;HS2_CAN;LVR;LVR1;CF_But_AC;0;CAN;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">259, 61</Property>
+      <Property Name="Location">199, 263</Property>
+      <Property Name="Text">
+      </Property>
+      <Property Name="TabIndex">0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">469, 682</Property>
+  </Object>
+</Panel>

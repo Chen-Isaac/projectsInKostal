@@ -1,0 +1,306 @@
+VERSION "DIPBNNYYYYYYYYYYYYYYYYYYYYYYYYYYNNNNNNNNNN/4/%%%/4/'%**4NNN///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: KOSTIA SG
+VAL_TABLE_ KTResp_IstSyncFest 95 "LoginNichtOK" 85 "LoginInOrdnung" ;
+VAL_TABLE_ KT_Status 4 "Dienst_fehlerhaft" 3 "Dienst_timeout" 2 "Dienst_beendet" 1 "Dienst_starten" ;
+VAL_TABLE_ KTReq_SyncFest 170 "FestWert" ;
+VAL_TABLE_ KTResp_Fehlercode 1 "ADRESS_MISMATCH" 2 "UNKNOWN_FUNCTION" 3 "INVALID_REQUEST" 4 "V_ERASE" 5 "V_PROGRAM" 6 "INVALID_LOGIN" 7 "INVALID_MODE" 8 "MODE_ERROR" 9 "INVALID_PAGE" 10 "COM_ERROR" 11 "LOGIN_REQUIRED" ;
+VAL_TABLE_ KT_Pages 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_TABLE_ KT_RBR_Status 2 "RBR_ApplAdr" 1 "RBR_Init_Pointer" 0 "RBR_Mode_inaktiv" ;
+VAL_TABLE_ KT_FSP_Delay 1 "Delay" 0 "kein_Delay" ;
+VAL_TABLE_ KTResp_IstModus 6 "RbrMode" 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+VAL_TABLE_ KTReq_SollModus 6 "RbrMode" 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+
+
+BO_ 1581 KostiaResp: 8 SG
+ SG_ KTReq_PageAdresse_H : 63|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ KTResp_DiagService1WwOffset m128 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ KTResp_DiagServiceNr m128 : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ KTResp_FFGData_7 m11 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_FFGData_6 m11 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_FFGData_5 m11 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_FFGData_4 m11 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_FFGData_3 m11 : 24|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_FFGData_2 m11 : 16|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_FFGData_1 m11 : 8|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_ADEAd24 m13 : 56|8@1+ (1,0) [0|0] ""  KOSTIA,SG
+ SG_ KTResp_ADEAd32 m13 : 48|8@1+ (1,0) [0|0] ""  KOSTIA,SG
+ SG_ KTResp_ADEAd40 m13 : 40|8@1+ (1,0) [0|0] ""  KOSTIA,SG
+ SG_ KTResp_ADEAd48 m13 : 32|8@1+ (1,0) [0|0] ""  KOSTIA,SG
+ SG_ KTResp_ADEAd56 m13 : 24|8@1+ (1,0) [0|0] ""  KOSTIA,SG
+ SG_ KTResp_ADEAd64 m13 : 16|8@1+ (1,0) [0|0] ""  KOSTIA,SG
+ SG_ KTResp_ADEPage m13 : 8|8@1+ (1,0) [0|0] ""  KOSTIA,SG
+ SG_ KTResp_RESLogin_7 m12 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RESLogin_6 m12 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RESLogin_5 m12 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RESLogin_4 m12 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RESLogin_3 m12 : 24|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RESLogin_2 m12 : 16|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RESLogin_1 m12 : 8|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RBRKStatus m9 : 8|8@1+ (1,0) [0|0] ""  KOSTIA,SG
+ SG_ KTResp_RBRIData_7 m8 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RBRIData_6 m8 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RBRIData_5 m8 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RBRIData_4 m8 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_RBRIAnzahlDaten m8 : 24|3@1+ (1,0) [1|7] ""  KOSTIA
+ SG_ KTResp_RBRIAdresse m8 : 15|16@0+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SGIData_7 m7 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SGIData_6 m7 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SGIData_5 m7 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SGIData_4 m7 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SGIData_3 m7 : 24|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SGIData_2 m7 : 16|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SGIData_1 m7 : 8|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_FSPDelay m6 : 24|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_FSPAdresse m6 : 15|16@0+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPSData_7 m5 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPSData_6 m5 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPSData_5 m5 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPSData_4 m5 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPSPage m5 : 26|6@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPSAnzahlDaten m5 : 24|2@1+ (1,0) [0|3] ""  KOSTIA
+ SG_ KTResp_SPSAdresse m5 : 15|16@0+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPLData_7 m4 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPLData_6 m4 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPLData_5 m4 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPLData_4 m4 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPLData_3 m4 : 24|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPLData_2 m4 : 16|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_SPLData_1 m4 : 8|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_MWLogin_7 m3 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_MWLogin_6 m3 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_MWLogin_5 m3 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_MWLogin_4 m3 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_MWLogin_3 m3 : 24|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_MWLogin_2 m3 : 16|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_MWIstModus m3 : 8|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Sync_7 m2 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Sync_6 m2 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Sync_5 m2 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Sync_4 m2 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Sync_3 m2 : 24|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Sync_2 m2 : 16|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Sync_Fest m2 : 8|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Login_7 m1 : 56|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Login_6 m1 : 48|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Login_5 m1 : 40|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Login_4 m1 : 32|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Login_3 m1 : 24|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Login_2 m1 : 16|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Login_1 m1 : 8|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTRespFehlercode m0 : 8|8@1+ (1,0) [0|0] ""  KOSTIA
+ SG_ KTResp_Befehl_Fehler M : 0|8@1+ (1,0) [0|0] ""  KOSTIA
+
+BO_ 1580 KostiaReq: 8 KOSTIA
+ SG_ KTReq_PageAdresse_H m4 : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ KTReq_PageAdresse_L m4 : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ KTReq_DiagService1WwOffset m128 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ KTReq_DiagServiceNr m128 : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ KTReq_FFGData_7 m11 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_FFGData_6 m11 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_FFGData_5 m11 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_FFGData_4 m11 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_FFGData_3 m11 : 24|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_FFGData_2 m11 : 16|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_FFGData_1 m11 : 8|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_ADEAd24 m13 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_ADEAd32 m13 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_ADEAd40 m13 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_ADEAd48 m13 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_ADEAd56 m13 : 24|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_ADEAd64 m13 : 16|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_ADEPage m13 : 8|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RESLogin_7 m12 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RESLogin_6 m12 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RESLogin_5 m12 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RESLogin_4 m12 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RESLogin_3 m12 : 24|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RESLogin_2 m12 : 16|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RESLogin_1 m12 : 8|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RBRKStatus m9 : 8|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RBRIData_7 m8 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RBRIData_6 m8 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RBRIData_5 m8 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RBRIData_4 m8 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_RBRIAnzahlDaten m8 : 24|3@1+ (1,0) [1|7] ""  SG
+ SG_ KTReq_RBRIAdresse m8 : 15|16@0+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SGIData_7 m7 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SGIData_6 m7 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SGIData_5 m7 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SGIData_4 m7 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SGIData_3 m7 : 24|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SGIData_2 m7 : 16|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SGIData_1 m7 : 8|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_FSPDelay m6 : 24|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_FSPAdresse m6 : 15|16@0+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SPSPage m5 : 26|6@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SPSData_7 m5 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SPSData_6 m5 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SPSData_5 m5 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SPSData_4 m5 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SPSAnzahlDaten m5 : 24|2@1+ (1,0) [0|3] ""  SG
+ SG_ KTReq_SPSAdresse m5 : 15|16@0+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SPLPage m4 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_SPLAnzahlDaten m4 : 24|3@1+ (1,0) [1|7] ""  SG
+ SG_ KTReq_SPLAdresse m4 : 15|16@0+ (1,0) [0|0] ""  SG
+ SG_ KTReq_MWLogin_7 m3 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_MWLogin_6 m3 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_MWLogin_5 m3 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_MWLogin_4 m3 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_MWLogin_3 m3 : 24|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_MWLogin_2 m3 : 16|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_MWSollModus m3 : 8|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Sync_7 m2 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Sync_6 m2 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Sync_5 m2 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Sync_4 m2 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Sync_3 m2 : 24|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Sync_2 m2 : 16|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Sync_Fest m2 : 8|8@1+ (1,0) [170|170] ""  SG
+ SG_ KTReq_Login_7 m1 : 56|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Login_6 m1 : 48|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Login_5 m1 : 40|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Login_4 m1 : 32|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Login_3 m1 : 24|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Login_2 m1 : 16|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Login_1 m1 : 8|8@1+ (1,0) [0|0] ""  SG
+ SG_ KTReq_Befehlstitel M : 0|8@1+ (1,0) [0|0] ""  SG
+
+
+
+EV_ envKT2AiWriteKostia: 0 [0|0] "" 0 1 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_IstSyncFest: 0 [0|0] "" 0 2 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_RBRKStatus: 0 [0|0] "" 0 3 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_FSPDelay: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_IstModus: 0 [0|0] "" 0 5 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_SollModus: 0 [0|0] "" 0 6 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_Fehlercode: 0 [0|0] "" 0 7 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_Status: 0 [0|0] "" 0 8 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_Daten: 0 [0|0] "" 0 9 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_Page: 0 [0|0] "" 0 10 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_AnzahlDaten: 0 [0|0] "" 0 11 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_Adresse: 0 [0|0] "" 0 12 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+
+EV_ envKT2A_FehlerText: 0 [0|0] "" 0 13 DUMMY_NODE_VECTOR8003  SG,KOSTIA;
+
+EV_ envKT2A_Dienst: 0 [0|0] "" 0 14 DUMMY_NODE_VECTOR3  SG,KOSTIA;
+ENVVAR_DATA_ envKT2A_Daten: 7;
+
+CM_ SG_ 1580 KTReq_SPSAnzahlDaten "Achtung: Es müssen die Anzahl der Daten minus 1 angegeben werden ! ! !";
+CM_ EV_ envKT2A_RBRKStatus "RBR-Mode inaktiv
+Ausgabe über Pointer
+appl.spez. festgelegte Adressen";
+CM_ EV_ envKT2A_FSPDelay "= Delay. Es werden bis zum Logout aus Kostia keine Fehler in den Fehlerspeicher eingeschrieben.";
+CM_ EV_ envKT2A_IstModus "in welchen Modus soll gewechselt werden.
+
+Normal, Sleep, Test, Flash";
+CM_ EV_ envKT2A_SollModus "welcher Modus wurde eingenommen
+
+Normal, Sleep, Test, Flash";
+CM_ EV_ envKT2A_Fehlercode "wenn <> '0' dann Fehler";
+CM_ EV_ envKT2A_Status "Dienst starten: UV auf 'envKTA_Status::Dienst_starten'
+
+Dienst beendet, UV auf 
+
+'envKT2A_Status::Dienst_beendet'      i.o.
+'envKT2A_Status::Dienst_timeout'        Antw > 1s
+'envKT2A_Status::Dienst_fehlerhaft'     Antw mit Fehlercode
+
+gesetzt";
+CM_ EV_ envKT2A_Daten "enthält die an das SG zu sendenden restlichen Daten
+
+z.B.:
+
+byte LoginDaten[7] = {0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29 };
+
+putvalue(envKT2A_Dienst, envKT2A_Dienst::Login_Request);
+putvalue(envKT2A_Daten, LoginDaten);
+
+bzw. gelesenen Daten";
+CM_ EV_ envKT2A_Page "die zu bearbeitende Seite
+z.B.: 
+
+putvalue(envKT2A_Page, envKT2A_Page::EEPROM);
+putvalue(envKT2A_Page, envKT2A_Page::Sensoren);
+";
+CM_ EV_ envKT2A_AnzahlDaten "die Anzahl der zu lesenden Bytes.
+
+Bei Lesezugriffen: 1 - 7
+Bei Schreibzugriffen: 0 - 3  (entspricht 1 - 4 effektiv)";
+CM_ EV_ envKT2A_Adresse "wenn notwendig, die zu lesende Adresse";
+CM_ EV_ envKT2A_FehlerText "Fehlercod in textueller Darstellung";
+CM_ EV_ envKT2A_Dienst "Aufzurufender Kostia-Dienst
+z.B.: 
+
+putvalue(envKT2A_Dienst, envKT2A_Dienst::Login_Request);
+putvalue(envKT2A_Dienst, envKT2A_Dienst::Speicher_Lesen);
+";
+VAL_ 1581 KTResp_ADEPage 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_ 1581 KTResp_RBRKStatus 2 "RBR_ApplAdr" 1 "RBR_Init_Pointer" 0 "RBR_Mode_inaktiv" ;
+VAL_ 1581 KTResp_FSPDelay 1 "Delay" 0 "kein_Delay" ;
+VAL_ 1581 KTResp_SPSPage 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_ 1581 KTResp_MWIstModus 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+VAL_ 1581 KTResp_Sync_Fest 95 "LoginNichtOK" 85 "LoginInOrdnung" ;
+VAL_ 1581 KTRespFehlercode 129 "NULLPUNKT_NICHT_LOESCHBAR" 128 "NULLPUNKTABGLEICH_FEHLERHAFT" 1 "ADRESS_MISMATCH" 2 "UNKNOWN_FUNCTION" 3 "INVALID_REQUEST" 4 "V_ERASE" 5 "V_PROGRAM" 6 "INVALID_LOGIN" 7 "INVALID_MODE" 8 "MODE_ERROR" 9 "INVALID_PAGE" 10 "COM_ERROR" 11 "LOGIN_REQUIRED" ;
+VAL_ 1581 KTResp_Befehl_Fehler 128 "Diag_LWS_Nullpunkt" 13 "Adressraum_Erweiterung" 12 "Reset_Ausloesen" 11 "Flasher_Freigabe" 10 "Flash_Loeschen" 9 "RBR_Start_Stop" 8 "RBR_Initialisieren" 7 "SG_Initialisieren" 6 "Fehlerspeicher_Loeschen" 5 "Speicher_Schreiben" 4 "Speicher_Lesen" 3 "Modus_Wechsel" 2 "Sync" 1 "Login_Request" 0 "Fehler" ;
+VAL_ 1580 KTReq_ADEPage 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_ 1580 KTReq_RBRKStatus 2 "RBR_ApplAdr" 1 "RBR_Init_Pointer" 0 "RBR_Mode_inaktiv" ;
+VAL_ 1580 KTReq_FSPDelay 1 "Delay" 0 "kein_Delay" ;
+VAL_ 1580 KTReq_SPSPage 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_ 1580 KTReq_SPLPage 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_ 1580 KTReq_MWSollModus 6 "RbrMode" 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+VAL_ 1580 KTReq_Sync_Fest 170 "FestWert" ;
+VAL_ 1580 KTReq_Befehlstitel 128 "Diag_LWS_Nullpunkt" 13 "Adressraum_Erweiterung" 12 "Reset_Ausloesen" 11 "Flasher_Freigabe" 10 "Flash_Loeschen" 9 "RBR_Start_Stop" 8 "RBR_Initialisieren" 7 "SG_Initialisieren" 6 "Fehlerspeicher_Loeschen" 5 "Speicher_Schreiben" 4 "Speicher_Lesen" 3 "Modus_Wechsel" 2 "Sync" 1 "Login_Request" 0 "not_used" ;
+VAL_ envKT2A_IstSyncFest 95 "LoginNichtOK" 85 "LoginInOrdnung" ;
+VAL_ envKT2A_RBRKStatus 2 "RBR_ApplAdr" 1 "RBR_Init_Pointer" 0 "RBR_Mode_inaktiv" ;
+VAL_ envKT2A_FSPDelay 1 "Delay" 0 "kein_Delay" ;
+VAL_ envKT2A_SollModus 6 "RbrMode" 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+VAL_ envKT2A_Fehlercode 1 "ADRESS_MISMATCH" 2 "UNKNOWN_FUNCTION" 3 "INVALID_REQUEST" 4 "V_ERASE" 5 "V_PROGRAM" 6 "INVALID_LOGIN" 7 "INVALID_MODE" 8 "MODE_ERROR" 9 "INVALID_PAGE" 10 "COM_ERROR" 11 "LOGIN_REQUIRED" ;
+VAL_ envKT2A_Status 4 "Dienst_fehlerhaft" 3 "Dienst_timeout" 2 "Dienst_beendet" 1 "Dienst_starten" ;
+VAL_ envKT2A_Page 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_ envKT2A_Dienst 128 "Diag_LWS_Nullpunkt" 13 "Adressraum_Erweiterung" 12 "Reset_Ausloesen" 11 "Flasher_Freigabe" 10 "Flash_Loeschen" 9 "RBR_Start_Stop" 8 "RBR_Initialisieren" 7 "SG_Initialisieren" 6 "Fehlerspeicher_Loeschen" 5 "Speicher_Schreiben" 4 "Speicher_Lesen" 3 "Modus_Wechsel" 2 "Sync" 1 "Login_Request" 0 "not_used" ;
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <testsequence name="attempt" comment="" signature="testsequence attempt(signal sig, char str[])" file="C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\training attempt\training attempt.can">
+    <parameter name="sig" type="signal" raw_type="signal" />
+    <parameter name="str" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>54</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testsequence>
+  <function name="tf_FrmStatusCycleTimeIncremented" comment="" signature="long tf_FrmStatusCycleTimeIncremented(long increment)" file="C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\training attempt\training attempt.can">
+    <return type="long" raw_type="long" />
+    <parameter name="increment" type="long" raw_type="long" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>116</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="shit" comment="" signature="int shit(long increment)" file="C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\training attempt\training attempt.can">
+    <return type="int" raw_type="int" />
+    <parameter name="increment" type="long" raw_type="long" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>227</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+</tclibrary>

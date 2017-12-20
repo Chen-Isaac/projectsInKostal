@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="ALCM_SIGNAL_CONTROL_PANEL">
+    <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl2" Children="Controls" ControlName="Check Box 2">
+      <Property Name="Name">CheckBoxControl2</Property>
+      <Property Name="Size">72, 17</Property>
+      <Property Name="Location">174, 389</Property>
+      <Property Name="Text">RelayGnd</Property>
+      <Property Name="SymbolConfiguration">4;16;VTS::M9_Ch4;;;RelayGnd;1;;;-1</Property>
+      <Property Name="TabIndex">10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl4</Property>
+      <Property Name="Size">101, 13</Property>
+      <Property Name="Location">293, 62</Property>
+      <Property Name="Text">PassengerDoorSts</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl3</Property>
+      <Property Name="Size">83, 13</Property>
+      <Property Name="Location">192, 62</Property>
+      <Property Name="Text">DriverDoorSts</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">59, 13</Property>
+      <Property Name="Location">114, 62</Property>
+      <Property Name="Text">RRDoorSts</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl9</Property>
+      <Property Name="Size">101, 13</Property>
+      <Property Name="Location">175, 243</Property>
+      <Property Name="Text">RKEDoorUnlockCmd</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl8</Property>
+      <Property Name="Size">89, 13</Property>
+      <Property Name="Location">175, 171</Property>
+      <Property Name="Text">RKEDoorLockCmd</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl7</Property>
+      <Property Name="Size">95, 13</Property>
+      <Property Name="Location">25, 320</Property>
+      <Property Name="Text">SystemPowerMode</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl6</Property>
+      <Property Name="Size">95, 13</Property>
+      <Property Name="Location">25, 243</Property>
+      <Property Name="Text">ALCMLightLvlSet</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl5</Property>
+      <Property Name="Size">89, 13</Property>
+      <Property Name="Location">25, 171</Property>
+      <Property Name="Text">DrivingModeReq</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">59, 13</Property>
+      <Property Name="Location">25, 62</Property>
+      <Property Name="Text">RLDoorSts</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.NumericUpDownControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="NumericUpDownControl5" Children="Controls" ControlName="Numeric Up/Down 5">
+      <Property Name="Name">NumericUpDownControl5</Property>
+      <Property Name="Size">40, 21</Property>
+      <Property Name="Location">175, 262</Property>
+      <Property Name="Maximum">3</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;PEPS;PEPS1;RKEDoorUnlockCmd;1;CAN;;-1</Property>
+      <Property Name="TabIndex">9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.NumericUpDownControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="NumericUpDownControl4" Children="Controls" ControlName="Numeric Up/Down 4">
+      <Property Name="Name">NumericUpDownControl4</Property>
+      <Property Name="Size">40, 21</Property>
+      <Property Name="Location">175, 191</Property>
+      <Property Name="Maximum">3</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;PEPS;PEPS1;RKEDoorLockCmd;1;CAN;;-1</Property>
+      <Property Name="TabIndex">8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.NumericUpDownControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="NumericUpDownControl3" Children="Controls" ControlName="Numeric Up/Down 3">
+      <Property Name="Name">NumericUpDownControl3</Property>
+      <Property Name="Size">40, 21</Property>
+      <Property Name="Location">25, 339</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;PEPS;PEPS2;SystemPowerMode;1;CAN;;-1</Property>
+      <Property Name="TabIndex">7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.NumericUpDownControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="NumericUpDownControl2" Children="Controls" ControlName="Numeric Up/Down 2">
+      <Property Name="Name">NumericUpDownControl2</Property>
+      <Property Name="Size">40, 21</Property>
+      <Property Name="Location">25, 262</Property>
+      <Property Name="Maximum">15</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;HUT;HUT8;ALCMLightLvlSet;1;CAN;;-1</Property>
+      <Property Name="TabIndex">6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl1" Children="Controls" ControlName="Check Box">
+      <Property Name="Name">CheckBoxControl1</Property>
+      <Property Name="Size">78, 17</Property>
+      <Property Name="Location">174, 346</Property>
+      <Property Name="Text">PosLmpSts</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;BCM;BCM1;PosLmpSts;1;CAN;;-1</Property>
+      <Property Name="TabIndex">5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.NumericUpDownControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="NumericUpDownControl1" Children="Controls" ControlName="Numeric Up/Down">
+      <Property Name="Name">NumericUpDownControl1</Property>
+      <Property Name="Size">40, 21</Property>
+      <Property Name="Location">25, 191</Property>
+      <Property Name="Maximum">15</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;BCM;BCM8;DrivingModeReq;1;CAN;;-1</Property>
+      <Property Name="TabIndex">4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl4" ControlName="Switch/Indicator 4">
+      <Property Name="Name">SwitchControl4</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">293, 80</Property>
+      <Property Name="StateCnt">2</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="IsButton">True</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;BCM;BCM1;PassengerDoorSts;1;CAN;;-1</Property>
+      <Property Name="TabIndex">3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl3" ControlName="Switch/Indicator 3">
+      <Property Name="Name">SwitchControl3</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">192, 80</Property>
+      <Property Name="StateCnt">2</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="IsButton">True</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;BCM;BCM1;DriverDoorSts;1;CAN;;-1</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl2" ControlName="Switch/Indicator 2">
+      <Property Name="Name">SwitchControl2</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">114, 80</Property>
+      <Property Name="StateCnt">2</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="IsButton">True</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;BCM;BCM1;RRDoorSts;1;CAN;;-1</Property>
+      <Property Name="TabIndex">1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.5.62.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl1" ControlName="Switch/Indicator">
+      <Property Name="Name">SwitchControl1</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">25, 80</Property>
+      <Property Name="StateCnt">2</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="IsButton">True</Property>
+      <Property Name="SymbolConfiguration">4;2;_____CF_C_Matrix;BCM;BCM1;RLDoorSts;1;CAN;;-1</Property>
+      <Property Name="TabIndex">0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">624, 491</Property>
+  </Object>
+</Panel>

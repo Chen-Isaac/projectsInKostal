@@ -1,0 +1,884 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <nestedcallparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_5_1</name>
+      <title>a. Door Open Auto P Mode:If either door is open(Level B), vehicle stop, gear D or R and brake on to off, then SBW shall send P signal</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>vehicleGearPosStatus</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>vehicleGearPosStatus_DorR</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_5_2</name>
+      <title>b. Door Open Auto P Mode:If either door is open (Level A), vehicle stop, gear P or N and detecting position D or R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit4)</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>vehicleGearPosStatus</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>vehicleGearPosStatus_PorN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_5_3</name>
+      <title>c. Door Open Auto P Mode:If either door is open (Level A), vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU.</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>vehicleGearPosStatus</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>vehicleGearPosStatus_DorR</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_5_4</name>
+      <title>d. Door Open Auto P Mode:If either door is open (Level A), vehicle stop, gear D and detecting position R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit4)</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_5_5</name>
+      <title>e. Door Open Auto P Mode:If either door is open (Level A), vehicle stop, gear R and detecting position D, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit4)</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_6_1</name>
+      <title>a. If driver seat belt is off, vehicle stop, gear D or R and brake on to off, then SBW send P signal.</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>vehicleGearPosStatus</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>vehicleGearPosStatus_DorR</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_6_2</name>
+      <title>b. If driver seat belt is off, vehicle stop, gear P or N and detecting position D or R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>vehicleGearPosStatus</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>vehicleGearPosStatus_PorN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_6_3</name>
+      <title>c. If driver seat belt is off, vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>vehicleGearPosStatus</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>vehicleGearPosStatus_DorR</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_6_4</name>
+      <title>d. If driver seat belt is off, vehicle stop, gear D and detecting position R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_6_5</name>
+      <title>e. If driver seat belt is off, vehicle stop, gear R and detecting position D, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_7_1</name>
+      <title>a. Set Auto N Mode</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_7_2</name>
+      <title>b. Test auto N mode after mode set</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_7_4</name>
+      <title>d. Test auto N mode inactive after mode reset</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_capltestcaselist_6_0_8_2</name>
+      <title>13.4.1.a The indicators should be controlled according to the Vehicle gear position sent by TCU when IG is ON. If the Vehicle gear position is fault,SBW shall turn off all the indicators.</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_8_3</name>
+      <title>13.4.1.b The indicators should be controlled according to PRA position when IG OFF. While PRA is at P position, SBW shall light P indicator. While PRA is at Not P position, SBW shall light N indicator.</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_notN</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_notN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_8_5</name>
+      <title>13.4.2.5 Operation:blinking Mode</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_notN</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_notN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_9_1</name>
+      <title>15.3.1.a IG ON Mode: If PRA positon is not P and Gear changes to NOT N position, SBW shall operate PRA to P Position.</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>canSigTimeoutBool</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>canSigTimeoutBool</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>vehicleGearPosStatus</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>vehicleGearPosStatus_notN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_9_3</name>
+      <title>15.3.1.1.a TCU OFF: When last gear is D,SBW shall operate PRA to Not P position.</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_D</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_D</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_9_4</name>
+      <title>15.3.1.1.b-c TCU OFF: When last gear is P,R or N SBW shall keep PRA in P position.After PRA is operated from Not P Position to P position, SBW should not operate PRA again while keep in TCU OFF condition unless IGN OFF to ON again.</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_PRorN</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_PRorN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_9_8</name>
+      <title>15.3.1.3 Recovery TCU OFF at Vehicle Driving</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_D</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_D</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_9_9</name>
+      <title>15.3.1.4 Recovery TCU OFF at Vehicle Stop</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_D</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_D</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_10_1</name>
+      <title>testPRAUnderIGOffMode</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_notN</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_notN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_12_1</name>
+      <title>15.3.4 N Park Mode</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_notN</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_notN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_13_1</name>
+      <title>15.3.5.a Manual Release Function: The manual release function is only allowed in below condition:N Park Mode (PRA Not P Position) -&gt; Pressed P switch (PRA P Position)</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_notN</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_notN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_6_0_13_3</name>
+      <title>15.3.5.d Manual Release Function: If Driver Door open in Standby mode, SBW shall not allowed the manual release. If driver do the manual release, SBW shall waits 4 seconds, then operate PRA to P position.</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>G_SEL_DISP_value_of_notN</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>G_SEL_DISP_value_of_notN</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+  </nestedcallparameterlist>
+  <caplfunction>
+    <name>_ttg_fct_tt_6_0</name>
+  </caplfunction>
+  <testsequence>
+    <title>Test preparation:Power supply initialization</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_0</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>11.5.1 P switch handling</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_1</name>
+    </caplfunction>
+  </testsequence>
+  <testfixture>
+    <title>11.6 Brake Input Handling</title>
+    <testcase>
+      <title>11.6.3 CF_Lvr_BkeAct for Brake</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_6_0_2_1</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>11.6.4 Valid P Switch Press</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_2_2</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>11.6.5 Valid P-Release Switch Press</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_2_3</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_2</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>12.5.2 Sending Gear Position Pattern Sequence</title>
+    <testcase>
+      <title>12.5.2 Sending Gear Position Pattern Sequence</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_6_0_3_2</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_3</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testsequence>
+    <title>12.6 Unlock Switch Handling</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_4</name>
+    </caplfunction>
+  </testsequence>
+  <testfixture>
+    <title>12.7.1.1 Door Open Auto P Mode</title>
+    <testcaselist>
+      <title>a. Door Open Auto P Mode:If either door is open(Level B), vehicle stop, gear D or R and brake on to off, then SBW shall send P signal</title>
+      <refname>_ttg_list_tttestcaselist_6_0_5_1</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_5_1</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>b. Door Open Auto P Mode:If either door is open (Level A), vehicle stop, gear P or N and detecting position D or R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit4)</title>
+      <refname>_ttg_list_tttestcaselist_6_0_5_2</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_5_2</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>c. Door Open Auto P Mode:If either door is open (Level A), vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU.</title>
+      <refname>_ttg_list_tttestcaselist_6_0_5_3</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_5_3</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>d. Door Open Auto P Mode:If either door is open (Level A), vehicle stop, gear D and detecting position R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit4)</title>
+      <refname>_ttg_list_tttestcaselist_6_0_5_4</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_5_4</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>e. Door Open Auto P Mode:If either door is open (Level A), vehicle stop, gear R and detecting position D, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit4)</title>
+      <refname>_ttg_list_tttestcaselist_6_0_5_5</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_5_5</name>
+      </caplfunction>
+    </testcaselist>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_5</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>12.7.1.2 Driver Seat Belt OFF Auto P</title>
+    <testcaselist>
+      <title>a. If driver seat belt is off, vehicle stop, gear D or R and brake on to off, then SBW send P signal.</title>
+      <refname>_ttg_list_tttestcaselist_6_0_6_1</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_6_1</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>b. If driver seat belt is off, vehicle stop, gear P or N and detecting position D or R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+      <refname>_ttg_list_tttestcaselist_6_0_6_2</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_6_2</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>c. If driver seat belt is off, vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU</title>
+      <refname>_ttg_list_tttestcaselist_6_0_6_3</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_6_3</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>d. If driver seat belt is off, vehicle stop, gear D and detecting position R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+      <refname>_ttg_list_tttestcaselist_6_0_6_4</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_6_4</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>e. If driver seat belt is off, vehicle stop, gear R and detecting position D, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+      <refname>_ttg_list_tttestcaselist_6_0_6_5</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_6_5</name>
+      </caplfunction>
+    </testcaselist>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_6</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>12.7.1.3 Auto N Mode</title>
+    <testcaselist>
+      <title>a. Set Auto N Mode</title>
+      <refname>_ttg_list_tttestcaselist_6_0_7_1</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_7_1</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>b. Test auto N mode after mode set</title>
+      <refname>_ttg_list_tttestcaselist_6_0_7_2</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_7_2</name>
+      </caplfunction>
+    </testcaselist>
+    <testcase>
+      <title>c. Mode Reset</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_7_3</name>
+      </caplfunction>
+    </testcase>
+    <testcaselist>
+      <title>d. Test auto N mode inactive after mode reset</title>
+      <refname>_ttg_list_tttestcaselist_6_0_7_4</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_7_4</name>
+      </caplfunction>
+    </testcaselist>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_7</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>13 Illumination Control</title>
+    <testcase>
+      <title>13.3 Backlight Illumination</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_8_1</name>
+      </caplfunction>
+    </testcase>
+    <testcaselist>
+      <title>13.4.1.a The indicators should be controlled according to the Vehicle gear position sent by TCU when IG is ON. If the Vehicle gear position is fault,SBW shall turn off all the indicators.</title>
+      <refname>_ttg_list_capltestcaselist_6_0_8_2</refname>
+      <caplfunction>
+        <name>_ttg_fct_capltestcaselist_6_0_8_2</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>13.4.1.b The indicators should be controlled according to PRA position when IG OFF. While PRA is at P position, SBW shall light P indicator. While PRA is at Not P position, SBW shall light N indicator.</title>
+      <refname>_ttg_list_tttestcaselist_6_0_8_3</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_8_3</name>
+      </caplfunction>
+    </testcaselist>
+    <testcase>
+      <title>13.4.2.2-13.4.2.4 Operation:timeout mode,day mode,night mode</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_8_4</name>
+      </caplfunction>
+    </testcase>
+    <testcaselist>
+      <title>13.4.2.5 Operation:blinking Mode</title>
+      <refname>_ttg_list_tttestcaselist_6_0_8_5</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_8_5</name>
+      </caplfunction>
+    </testcaselist>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_8</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>15.3.1 PRA Logic: IG ON Mode</title>
+    <testcaselist>
+      <title>15.3.1.a IG ON Mode: If PRA positon is not P and Gear changes to NOT N position, SBW shall operate PRA to P Position.</title>
+      <refname>_ttg_list_tttestcaselist_6_0_9_1</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_9_1</name>
+      </caplfunction>
+    </testcaselist>
+    <testcase>
+      <title>15.3.1.b IG ON Mode: If P Switch pressed ON while IGN ON and vehicle stop, SBW shall operate PRA to P position.</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_9_2</name>
+      </caplfunction>
+    </testcase>
+    <testcaselist>
+      <title>15.3.1.1.a TCU OFF: When last gear is D,SBW shall operate PRA to Not P position.</title>
+      <refname>_ttg_list_tttestcaselist_6_0_9_3</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_9_3</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>15.3.1.1.b-c TCU OFF: When last gear is P,R or N SBW shall keep PRA in P position.After PRA is operated from Not P Position to P position, SBW should not operate PRA again while keep in TCU OFF condition unless IGN OFF to ON again.</title>
+      <refname>_ttg_list_tttestcaselist_6_0_9_4</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_9_4</name>
+      </caplfunction>
+    </testcaselist>
+    <testcase>
+      <title>15.3.1.1.d TCU OFF: When P switch is pressed when vehicle is stopped, SBW shall operate PRA to P position</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_9_5</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>15.3.1.2.c TCU Request: During the activating to Not P position by receiving CF_Tcu_PrelReq = 0x1 from TCU, if receiving the CF_Tcu_PrelReq = 0x0 from TCU, then SBW shall operate PRA to P position immediately.</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_9_6</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>15.3.1.2.d TCU Request: Otherwise SBW shall ignore TCU request, without any PRA operation.</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_9_7</name>
+      </caplfunction>
+    </testcase>
+    <testcaselist>
+      <title>15.3.1.3 Recovery TCU OFF at Vehicle Driving</title>
+      <refname>_ttg_list_tttestcaselist_6_0_9_8</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_9_8</name>
+      </caplfunction>
+    </testcaselist>
+    <testcaselist>
+      <title>15.3.1.4 Recovery TCU OFF at Vehicle Stop</title>
+      <refname>_ttg_list_tttestcaselist_6_0_9_9</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_9_9</name>
+      </caplfunction>
+    </testcaselist>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_9</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>15.3.2 PRA Logic: IG OFF Mode</title>
+    <testcaselist>
+      <title>testPRAUnderIGOffMode</title>
+      <refname>_ttg_list_tttestcaselist_6_0_10_1</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_10_1</name>
+      </caplfunction>
+    </testcaselist>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_10</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>15.3.3 Gear N IG OFF Mode</title>
+    <testcase>
+      <title>15.3.3.a Gear N IG OFF Mode: SBW shall initially keep PRA to Not P position unless below condition happened.</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_11_1</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>15.3.3.b Gear N IG OFF Mode: While timeout, SBW shall operate PRA to P position</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_11_2</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_11</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>15.3.4 N Park Mode</title>
+    <testcaselist>
+      <title>15.3.4 N Park Mode</title>
+      <refname>_ttg_list_tttestcaselist_6_0_12_1</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_12_1</name>
+      </caplfunction>
+    </testcaselist>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_12</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>15.3.5 Manual Release Function</title>
+    <testcaselist>
+      <title>15.3.5.a Manual Release Function: The manual release function is only allowed in below condition:N Park Mode (PRA Not P Position) -&gt; Pressed P switch (PRA P Position)</title>
+      <refname>_ttg_list_tttestcaselist_6_0_13_1</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_13_1</name>
+      </caplfunction>
+    </testcaselist>
+    <testcase>
+      <title>15.3.5.b Manual Release Function: When IG ON, if driver do manual release, Waits 4 seconds, SBW shall operate PRA to P position.</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_13_2</name>
+      </caplfunction>
+    </testcase>
+    <testcaselist>
+      <title>15.3.5.d Manual Release Function: If Driver Door open in Standby mode, SBW shall not allowed the manual release. If driver do the manual release, SBW shall waits 4 seconds, then operate PRA to P position.</title>
+      <refname>_ttg_list_tttestcaselist_6_0_13_3</refname>
+      <caplfunction>
+        <name>_ttg_fct_tttestcaselist_6_0_13_3</name>
+      </caplfunction>
+    </testcaselist>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_13</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testsequence>
+    <title>15.3.6 TCU Eol Complete</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_14</name>
+    </caplfunction>
+  </testsequence>
+  <testfixture>
+    <title>15.3.7 Limp-Home function</title>
+    <testcase>
+      <title>15.3.7.c Limp-Home function: IGN ON and PRA is not P position within low voltage range (8v-8.5v), then SBW shall operate PRA to P position.</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_15_1</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>15.3.7.a IGN OFF and Determine a low voltage range (8v – 8.5v) and execute an operation command of “P” or “Not P” to PRA depending on the input of valid P switch press and valid P-Release switch press.</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_15_2</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_15</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testsequence>
+    <title>15.3.8 PRA Disable Voltage</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_16</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>try</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_17</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>Test Sequence</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_18</name>
+    </caplfunction>
+  </testsequence>
+  <testfixture>
+    <title>confirm PRA position</title>
+    <testcase>
+      <title>P position</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_19_1</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>Not P position</title>
+      <caplfunction>
+        <name>_ttg_fct_tc_6_0_19_2</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_19</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testsequence>
+    <title>Test completion:shutdown the power</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_20</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>try ig on</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_21</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>try DTC</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_6_0_22</name>
+    </caplfunction>
+  </testsequence>
+  <testfixture>
+    <title>Setup Initialization &amp; Power On</title>
+    <testcase>
+      <title>readSwVer ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_6_0_23_1</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_6_0_23</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+</testtree>

@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="BY63x Roof Module - LIN Control Panel">
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl7" Children="Controls" ControlName="Group Box 7">
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl21" Children="Controls" ControlName="Check Box 21">
+        <Property Name="Name">CheckBoxControl21</Property>
+        <Property Name="Size">84, 17</Property>
+        <Property Name="Location">6, 354</Property>
+        <Property Name="Text">LIM_defekt</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_defekt;1;LIN;;-1</Property>
+        <Property Name="TabIndex">14</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl20" Children="Controls" ControlName="Check Box 20">
+        <Property Name="Name">CheckBoxControl20</Property>
+        <Property Name="Size">126, 17</Property>
+        <Property Name="Location">6, 330</Property>
+        <Property Name="Text">BCM1_Leuchten_Aus</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leuchten_Aus;1;LIN;;-1</Property>
+        <Property Name="TabIndex">13</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl19" Children="Controls" ControlName="Check Box 19">
+        <Property Name="Name">CheckBoxControl19</Property>
+        <Property Name="Size">126, 17</Property>
+        <Property Name="Location">6, 307</Property>
+        <Property Name="Text">LIM_ResponseError</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_ResponseError;1;LIN;;-1</Property>
+        <Property Name="TabIndex">12</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl18" Children="Controls" ControlName="Check Box 18">
+        <Property Name="Name">CheckBoxControl18</Property>
+        <Property Name="Size">108, 17</Property>
+        <Property Name="Location">6, 283</Property>
+        <Property Name="Text">LIM_Lokalaktiv</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Lokalaktiv;1;LIN;;-1</Property>
+        <Property Name="TabIndex">11</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl17" Children="Controls" ControlName="Check Box 17">
+        <Property Name="Name">CheckBoxControl17</Property>
+        <Property Name="Size">186, 17</Property>
+        <Property Name="Location">6, 259</Property>
+        <Property Name="Text">LIM_Tasten_Innenlicht_V_def</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Tasten_Innenlicht_V_def;1;LIN;;-1</Property>
+        <Property Name="TabIndex">10</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl16" Children="Controls" ControlName="Check Box 16">
+        <Property Name="Name">CheckBoxControl16</Property>
+        <Property Name="Size">186, 17</Property>
+        <Property Name="Location">6, 235</Property>
+        <Property Name="Text">LIM_Taster_Leselicht_vl_def</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leselicht_vl_def;1;LIN;;-1</Property>
+        <Property Name="TabIndex">9</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl15" Children="Controls" ControlName="Check Box 15">
+        <Property Name="Name">CheckBoxControl15</Property>
+        <Property Name="Size">186, 17</Property>
+        <Property Name="Location">6, 212</Property>
+        <Property Name="Text">LIM_Taster_Leselicht_vr_def</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leselicht_vr_def;1;LIN;;-1</Property>
+        <Property Name="TabIndex">8</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl14" Children="Controls" ControlName="Check Box 14">
+        <Property Name="Name">CheckBoxControl14</Property>
+        <Property Name="Size">228, 17</Property>
+        <Property Name="Location">6, 188</Property>
+        <Property Name="Text">LIM_ErrorGueltigkeit_Lichterfehler</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_ErrorGueltigkeit_Lichterfehler;1;LIN;;-1</Property>
+        <Property Name="TabIndex">7</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl13" Children="Controls" ControlName="Check Box 13">
+        <Property Name="Name">CheckBoxControl13</Property>
+        <Property Name="Size">222, 17</Property>
+        <Property Name="Location">6, 165</Property>
+        <Property Name="Text">LIM_ErrorGueltigkeit_Tasterfehler</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_ErrorGueltigkeit_Tasterfehler;1;LIN;;-1</Property>
+        <Property Name="TabIndex">6</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl12" Children="Controls" ControlName="Check Box 12">
+        <Property Name="Name">CheckBoxControl12</Property>
+        <Property Name="Size">180, 17</Property>
+        <Property Name="Location">6, 117</Property>
+        <Property Name="Text">LIM_Innenbeleuchtung_aktiv</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Innenbeleuchtung_aktiv;1;LIN;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl11" Children="Controls" ControlName="Check Box 11">
+        <Property Name="Name">CheckBoxControl11</Property>
+        <Property Name="Size">192, 17</Property>
+        <Property Name="Location">6, 141</Property>
+        <Property Name="Text">LIM_Innenbeleuchtung_V_aktiv</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Innenbeleuchtung_V_aktiv;1;LIN;;-1</Property>
+        <Property Name="TabIndex">4</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl10" Children="Controls" ControlName="Check Box 10">
+        <Property Name="Name">CheckBoxControl10</Property>
+        <Property Name="Size">138, 17</Property>
+        <Property Name="Location">6, 93</Property>
+        <Property Name="Text">LIM_Uebertemperatur</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Uebertemperatur;1;LIN;;-1</Property>
+        <Property Name="TabIndex">3</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl9" Children="Controls" ControlName="Check Box 9">
+        <Property Name="Name">CheckBoxControl9</Property>
+        <Property Name="Size">126, 17</Property>
+        <Property Name="Location">6, 69</Property>
+        <Property Name="Text">LIM_Unterspannung</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Unterspannung;1;LIN;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl8" Children="Controls" ControlName="Check Box 8">
+        <Property Name="Name">CheckBoxControl8</Property>
+        <Property Name="Size">126, 17</Property>
+        <Property Name="Location">6, 45</Property>
+        <Property Name="Text">LIM_Ueberspannung</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Ueberspannung;1;LIN;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl7" Children="Controls" ControlName="Check Box 7">
+        <Property Name="Name">CheckBoxControl7</Property>
+        <Property Name="Size">192, 17</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="Text">Innenleuchten_Stellgliedtest</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;Innenleuchten_Stellgliedtest;1;LIN;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl7</Property>
+      <Property Name="Size">260, 432</Property>
+      <Property Name="Location">427, 19</Property>
+      <Property Name="Text">Diagnosis</Property>
+      <Property Name="TabIndex">6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl6" Children="Controls" ControlName="Group Box 6">
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="TrackBarControl1" Children="Controls" ControlName="Track Bar">
+        <Property Name="Name">TrackBarControl1</Property>
+        <Property Name="Size">188, 47</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="Maximum">253</Property>
+        <Property Name="MaximumDouble">253</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;DI_KL_58d;1;LIN;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl6</Property>
+      <Property Name="Size">200, 73</Property>
+      <Property Name="Location">221, 265</Property>
+      <Property Name="Text">Function Illumination</Property>
+      <Property Name="TabIndex">5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl5" Children="Controls" ControlName="Group Box 5">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl1</Property>
+        <Property Name="Size">188, 21</Property>
+        <Property Name="Location">6, 206</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Decimal</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;2;0;15</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="DescriptionText">LIM_PAO_Alivesignal:</Property>
+        <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+        <Property Name="DescriptionSize">128, 23</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PAO_Alivesignal;1;LIN;;-1</Property>
+        <Property Name="TabIndex">6</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl12" Children="Controls" ControlName="Combo Box 12">
+        <Property Name="Name">ComboBoxControl12</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 178</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PAO_ON_Status;1;LIN;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl11" Children="Controls" ControlName="Combo Box 11">
+        <Property Name="Name">ComboBoxControl11</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 149</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PAO_OFF_Status;1;LIN;;-1</Property>
+        <Property Name="TabIndex">4</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl10" Children="Controls" ControlName="Combo Box 10">
+        <Property Name="Name">ComboBoxControl10</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 121</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PAO_Schriftzug_Status;1;LIN;;-1</Property>
+        <Property Name="TabIndex">3</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl9" Children="Controls" ControlName="Combo Box 9">
+        <Property Name="Name">ComboBoxControl9</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;SC_PAO_Schriftzug_Anf;1;LIN;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl8" Children="Controls" ControlName="Combo Box 8">
+        <Property Name="Name">ComboBoxControl8</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 50</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;SC_PAO_OFF_Anf;1;LIN;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl7" Children="Controls" ControlName="Combo Box 7">
+        <Property Name="Name">ComboBoxControl7</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 78</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;SC_PAO_ON_Anf;1;LIN;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl5</Property>
+      <Property Name="Size">200, 239</Property>
+      <Property Name="Location">221, 19</Property>
+      <Property Name="Text">PAO Display</Property>
+      <Property Name="TabIndex">4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl4" Children="Controls" ControlName="Group Box 4">
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl6" Children="Controls" ControlName="Combo Box 6">
+        <Property Name="Name">ComboBoxControl6</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 50</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;UGDO_B;UGDO_Bs_01;UGDO_SW_Switchboard;1;LIN;;-1</Property>
+        <Property Name="TabIndex">3</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl5" Children="Controls" ControlName="Combo Box 5">
+        <Property Name="Name">ComboBoxControl5</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">5, 78</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;UGDO_B;UGDO_Bs_01;UGDO_SW_Buttons;1;LIN;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl6" Children="Controls" ControlName="Check Box 6">
+        <Property Name="Name">CheckBoxControl6</Property>
+        <Property Name="Size">144, 17</Property>
+        <Property Name="Location">5, 106</Property>
+        <Property Name="Text">UGDO_B_ResponseError</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;UGDO_B;UGDO_Bs_01;UGDO_B_ResponseError;1;LIN;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl4" Children="Controls" ControlName="Combo Box 4">
+        <Property Name="Name">ComboBoxControl4</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;UGDO_Be_01;UGDO_SW_LED_Code;1;LIN;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl4</Property>
+      <Property Name="Size">200, 135</Property>
+      <Property Name="Location">15, 316</Property>
+      <Property Name="Text">GDO Switch</Property>
+      <Property Name="TabIndex">3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box 3">
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl5" Children="Controls" ControlName="Check Box 5">
+        <Property Name="Name">CheckBoxControl5</Property>
+        <Property Name="Size">120, 17</Property>
+        <Property Name="Location">6, 45</Property>
+        <Property Name="Text">LIM_bCall_Taster</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_bCall_Taster;1;LIN;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl4" Children="Controls" ControlName="Check Box 4">
+        <Property Name="Name">CheckBoxControl4</Property>
+        <Property Name="Size">96, 17</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="Text">bCall_active</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;bCall_active;1;LIN;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl3</Property>
+      <Property Name="Size">200, 75</Property>
+      <Property Name="Location">15, 121</Property>
+      <Property Name="Text">B-Call Switch</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl3" Children="Controls" ControlName="Check Box 3">
+        <Property Name="Name">CheckBoxControl3</Property>
+        <Property Name="Size">132, 17</Property>
+        <Property Name="Location">6, 45</Property>
+        <Property Name="Text">Right Reading Lamp</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leselicht_Anf_vr;1;LIN;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl2" Children="Controls" ControlName="Check Box 2">
+        <Property Name="Name">CheckBoxControl2</Property>
+        <Property Name="Size">126, 17</Property>
+        <Property Name="Location">6, 69</Property>
+        <Property Name="Text">Left Reading Lamp</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leselicht_Anf_vl;1;LIN;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl1" Children="Controls" ControlName="Check Box">
+        <Property Name="Name">CheckBoxControl1</Property>
+        <Property Name="Size">108, 17</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="Text">Interior Light</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Innenlicht_V;1;LIN;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">200, 95</Property>
+      <Property Name="Location">15, 19</Property>
+      <Property Name="Text">AutoDoor Switch</Property>
+      <Property Name="TabIndex">1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl3" Children="Controls" ControlName="Combo Box 3">
+        <Property Name="Name">ComboBoxControl3</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 50</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;eCall_Statuslicht_Farbe2;1;LIN;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl2" Children="Controls" ControlName="Combo Box 2">
+        <Property Name="Name">ComboBoxControl2</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 78</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;eCall_Statuslicht_Farbe1;1;LIN;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl1" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl1</Property>
+        <Property Name="Size">188, 20</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;eCall_Taste;1;LIN;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">200, 107</Property>
+      <Property Name="Location">15, 203</Property>
+      <Property Name="Text">E-Call Switch</Property>
+      <Property Name="TabIndex">0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">690, 467</Property>
+  </Object>
+</Panel>

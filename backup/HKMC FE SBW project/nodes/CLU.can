@@ -1,0 +1,210 @@
+/*@@var:*/
+variables
+{
+  /* -------------------------------------------------------------
+  | CAPL template for CANoe Ford IL +15 models (no NM)
+  | ActiveX based control panels
+  | Functionality is done in CANoe directly.
+  | You can add application code for this node in this file.
+    -------------------------------------------------------------- */
+
+  const cMaxStrLen  = 256;
+  const cMaxBusses  =  32;
+  int   gNrOfBusses =   0;
+  char  gNodeName[cMaxStrLen] = "CLU";
+  char  gBusNames[cMaxBusses][cMaxStrLen];
+  DWORD gBusContext[cMaxBusses];
+  int   gBusMode[cMaxBusses]; /* 0 == no NM; 1 == OSEK NM; 2 == AUTOSAR NM; 3 == OSEK + AUTOSAR NM */
+  int   i;
+
+  // Internal usage (do not delete variable cNodeFirstGenVersion and cNodeLastGenVersion and their comments):
+  const double cNodeFirstGenVersion = 1.0400;
+  const double cNodeLastGenVersion  = 1.0400; /*<LastGenVersion>*/
+  const cTemplateType = 0;
+
+  // Please insert your variables below this comment
+
+}
+/*@@end*/
+
+/*@@preStart:PreStart:*/
+on preStart
+{
+  gNrOfBusses = 0;
+  for (i = 0; i < cMaxBusses; i++)
+  {
+    gBusContext[i] = 0;
+    gBusMode[i]    = 0;
+  }
+
+  /* Block start #preStart#; do not delete this line and do not include application code in this code block! */
+  strncpy(gBusNames[gNrOfBusses], "HKMC_AE_EGSM", cMaxStrLen);
+  gBusMode[gNrOfBusses]    = 0;
+  gNrOfBusses++;
+  
+  /* Block end #preStart#; do not delete this line! */
+
+  for (i = 0; i < gNrOfBusses; i++)
+  {
+    gBusContext[i] = GetBusNameContext(gBusNames[i]);
+    if (gBusContext[i] == 0)
+    {
+      write("%s: ERROR: not connected to bus '%s'!", gNodeName, gBusNames[i]);
+    }
+  }
+
+  CheckTemplate();
+
+  if (getValue(EnvStartWithoutSending) > 0)
+  {
+    for (i = 0; i < gNrOfBusses; i++)
+    {
+      if (gBusContext[i] == 0) continue;
+      SetBusContext(gBusContext[i]);
+      ILControlInit();
+      ILControlSimulationOff();
+      if ((gBusMode[i] & 1) != 0)
+      { // OSEK NM
+        //NMCtrlSimulationOff();
+      }
+      if ((gBusMode[i] & 2) != 0)
+      { // AUTOSAR NM
+        //NM_CtrlSimulationOff();
+      }
+    }
+  }
+  else
+  {
+    for (i = 0; i < gNrOfBusses; i++)
+    {
+      if (gBusContext[i] == 0) continue;
+      if ((gBusMode[i] == 0) && (getValue(EnvClamp15) == 0))
+      { // no NM
+        SetBusContext(gBusContext[i]);
+        ILControlInit();
+      }
+    }
+  }
+  // Please insert your code below this comment
+  
+}
+/*@@end*/
+
+/*@@startStart:Start:*/
+on start
+{
+  if (getValue(EnvClamp15) > 0)
+  {
+    for (i = 0; i < gNrOfBusses; i++)
+    {
+      if (gBusContext[i] == 0) continue;
+      SetBusContext(gBusContext[i]);
+      ILActivateClamp15();
+    }
+  }
+  // Please insert your code below this comment
+  
+}
+/*@@end*/
+
+/*@@stop:StopMeasurement:*/
+on stopMeasurement
+{
+  // Please insert your code below this comment
+  
+}
+/*@@end*/
+
+/*@@envVar:EnvClamp15:*/
+on envVar EnvClamp15
+{
+  if(getValue(this) > 0)
+  {
+    for (i = 0; i < gNrOfBusses; i++)
+    {
+      if (gBusContext[i] == 0) continue;
+      SetBusContext(gBusContext[i]);
+      if (gBusMode[i] == 0)
+      { // no NM
+        ILControlStart();
+      }
+      ILActivateClamp15();
+    }
+  }
+  else
+  {
+    for (i = 0; i < gNrOfBusses; i++)
+    {
+      if (gBusContext[i] == 0) continue;
+      SetBusContext(gBusContext[i]);
+      ILDeactivateClamp15();
+      if (gBusMode[i] == 0)
+      { // no NM
+        ILControlStop();
+      }
+    }
+  }
+}
+/*@@end*/
+
+/*@@envVar:EnvStartWithoutSending:*/
+on envVar EnvStartWithoutSending
+{
+  if(getValue(this) == 0)
+  {
+    for (i = 0; i < gNrOfBusses; i++)
+    {
+      if (gBusContext[i] == 0) continue;
+      SetBusContext(gBusContext[i]);
+      if ((gBusMode[i] & 1) != 0)
+      { // OSEK NM
+        //NMCtrlSimulationOn();
+      }
+      if ((gBusMode[i] & 2) != 0)
+      { // AUTOSAR NM
+        //NM_CtrlSimulationOn();
+      }
+      ILControlSimulationOn();
+
+      if (getValue(EnvClamp15) > 0)
+      {
+        if (gBusMode[i] == 0)
+        { // no NM
+          ILControlStart();
+        }
+        ILActivateClamp15();
+        if ((gBusMode[i] & 1) != 0)
+        { // OSEK NM
+          //GotoMode_Awake();
+        }
+        if ((gBusMode[i] & 2) != 0)
+        { // AUTOSAR NM
+          //Nm_NetworkRequest();
+        }
+      }
+      else
+      {
+        if (gBusMode[i] == 0)
+        { // no NM
+          ILControlStop();
+        }
+      }
+    }
+  }
+}
+/*@@end*/
+
+/*@@caplFunc:CheckTemplate():*///function
+void CheckTemplate ()
+{
+  for (i = 0; i < gNrOfBusses; i++)
+  {
+    if ((gBusMode[i] | cTemplateType) > cTemplateType)
+    {
+      write("%s: ERROR: The CAPL template supports bus mode %d, but bus '%s' requests mode %d!", gNodeName, cTemplateType, gBusNames[i], gBusMode[i]);
+      write(" Please exchange or adapt the CAPL file manually.");
+    }
+  }
+}
+/*@@end*/
+

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <nestedcallparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_capltestcaselist_1_0_1</name>
+      <title>chkALCMLightLvlSetSigImpWhenAccOn</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>doorSignal</name>
+        <type>string</type>
+        <listparameter>
+          <syspar>
+            <name>doorSignal</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>msWaitForTurnOn</name>
+        <type>string</type>
+        <valuelist>
+          <value>
+            <const>3000</const>
+          </value>
+        </valuelist>
+      </callparameter>
+      <callparameter>
+        <name>alcmLightLvlSetVal</name>
+        <type>string</type>
+        <listparameter>
+          <syspar>
+            <name>alcmLightLvlSetVal</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+  </nestedcallparameterlist>
+  <caplfunction>
+    <name>_ttg_fct_tt_1_0</name>
+  </caplfunction>
+  <testcase>
+    <title>powerOn ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_1_0_0</name>
+    </caplfunction>
+  </testcase>
+  <testcaselist>
+    <title>chkALCMLightLvlSetSigImpWhenAccOn</title>
+    <refname>_ttg_list_capltestcaselist_1_0_1</refname>
+    <caplfunction>
+      <name>_ttg_fct_capltestcaselist_1_0_1</name>
+    </caplfunction>
+  </testcaselist>
+</testtree>

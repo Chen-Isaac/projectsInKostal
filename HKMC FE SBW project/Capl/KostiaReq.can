@@ -1,0 +1,63 @@
+includes
+{
+	#include "..\Capl\Definition.cin"
+}
+
+variables
+{
+  /**************** Kostia Request Tx message ****************/
+  message Kostia_Request msgKostiaRequest;
+}
+
+
+/**************** Button Trigger ****************/
+on envVar envKostiaLoginRequest
+{
+	if( @envKostiaLoginRequest == 1 ) {
+    KostiaRequest_Login();
+    output(msgKostiaRequest);
+  }
+}
+
+on envVar envKostiaLogoutRequest
+{
+	if( @envKostiaLogoutRequest == 1 ) {
+    KostiaRequest_LogOut();
+    output(msgKostiaRequest);
+  }
+}
+
+on envVar envKostia_ReadMemory
+{
+	if( @envKostia_ReadMemory == 1 ) {
+    KostiaRequest_ReadMemory();
+    output(msgKostiaRequest);
+  }
+}
+
+void KostiaRequest_Login()
+{
+  byte idx;
+  
+  for( idx=0; idx<8; idx++ ) {
+    msgKostiaRequest.byte(idx) = KOSTIA_LOGIN_REQUEST_MESSAGE[idx];
+  }
+}
+
+void KostiaRequest_Logout()
+{
+  byte idx;
+  
+  for( idx=0; idx<8; idx++ ) {
+    msgKostiaRequest.byte(idx) = KOSTIA_LOGOUT_REQUEST_MESSAGE[idx];
+  }
+}
+
+void KostiaRequest_ReadMemory()
+{
+  byte idx;
+  
+  for( idx=0; idx<8; idx++ ) {
+    msgKostiaRequest.byte(idx) = KOSTIA_LOGOUT_REQUEST_MESSAGE[idx];
+  }
+}

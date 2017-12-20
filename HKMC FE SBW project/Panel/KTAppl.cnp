@@ -1,0 +1,41 @@
+VPanel 22 656 570 0 0 255"Local Functions [KOSTIA]"
+255 255 255
+32
+ElemFrame 10 475 180 55 ElemFrame <PE> 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Fault Manager"
+ElemValueTableBox 315 285 169 285 EnvVar:envKTAiPage <PE> EnvVar:envKTAiPage 0 0 0 0
+ElemValueTableBox 170 180 165 220 EnvVar:envKTAiSollModus <PE> EnvVar:envKTAiSollModus 0 0 0 0
+ElemSBM 15 80 625 22 ElemSBM <PE> <VFileName V4 QL> 1 "..\Bitmaps\Greenline_long.bmp" * 1 0
+ElemBN 10 145 130 25 EnvVar:envKTA_Login <PE> EnvVar:envKTA_Login 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Login"
+ElemEdit 20 115 610 17 EnvVar:envKT2A_FehlerText <PE> EnvVar:envKT2A_FehlerText 0 0 0 :0 2 2 0 0 8421376 16777215 1 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana" 255 16711680 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana" -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana"""
+ElemST 20 100 530 14 ElemST <PE> 0 0 16777215 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana""KOSTIA Message"
+ElemBN 10 180 150 25 EnvVar:envKTA_ModusWechsel <PE> EnvVar:envKTA_ModusWechsel 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Mode-Change"
+ElemSwitchAndDisplay 145 145 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTAaLogin 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemSwitchAndDisplay 340 180 25 25 EnvVar:envKTAaModusWechsel <PE> EnvVar:envKTAaModusWechsel 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemBN 405 145 130 25 EnvVar:envKTA_Logout <PE> EnvVar:envKTA_Logout 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Logout"
+ElemSwitchAndDisplay 540 145 25 25 EnvVar:envKTAaLogout <PE> EnvVar:envKTAaLogout 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemFrame 8 213 522 250 ElemFrame <PE> 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Memory Editor"
+ElemBN 205 145 130 25 EnvVar:envKTA_Sync <PE> EnvVar:envKTA_Sync 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Sync"
+ElemSwitchAndDisplay 340 145 25 25 EnvVar:envKTAaSync <PE> EnvVar:envKTAaSync 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemBN 25 235 150 23 EnvVar:envKTA_SpeicherLesen <PE> EnvVar:envKTA_SpeicherLesen 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Memory Read"
+ElemBN 335 235 150 23 EnvVar:envKTA_SpeicherSchreiben <PE> EnvVar:envKTA_SpeicherSchreiben 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Memory Write"
+ElemEdit 25 285 100 19 EnvVar:envKTAiAnfangsAdresse <PE> EnvVar:envKTAiAnfangsAdresse 0 0 0 :1 0 2 1 0 16777215 0 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana" 255 16711680 0 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana" -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana"""
+ElemEdit 170 285 100 19 EnvVar:envKTAiEndAdresse <PE> EnvVar:envKTAiEndAdresse 0 0 0 :1 0 2 1 0 16777215 0 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana" 255 16711680 0 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana" -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana"""
+ElemHexEdit 25 315 494 136 EnvVar:envKTAiDaten <PE> EnvVar:envKTAiDaten 0 0 0 16 1 1 3 16777215 0 -12 0 0 0 700 0 0 0 0 3 2 1 49"Courier New"
+ElemST 25 270 97 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana""Start Address"
+ElemST 170 270 81 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana""EndAdresse"
+ElemST 319 270 81 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana""Page"
+ElemSwitchAndDisplay 180 235 25 25 EnvVar:envKTAaSpeicherLesen <PE> EnvVar:envKTAaSpeicherLesen 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemSwitchAndDisplay 490 235 25 25 EnvVar:envKTAaSpeicherSchreiben <PE> EnvVar:envKTAaSpeicherSchreiben 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemEdit 20 20 610 15 EnvVar:envKTA_Display_Z1 <PE> EnvVar:envKTA_Display_Z1 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 35 610 15 EnvVar:envKTA_Display_Z2 <PE> EnvVar:envKTA_Display_Z2 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 50 610 15 EnvVar:envKTA_Display_Z3 <PE> EnvVar:envKTA_Display_Z3 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 65 610 15 EnvVar:envKTA_Display_Z4 <PE> EnvVar:envKTA_Display_Z4 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemFrame 10 5 635 135 ElemFrame <PE> 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Display"
+ElemSwitchAndDisplay 215 235 80 23 EnvVar:envKTA_Taskaufruf <PE> EnvVar:envKTA_Taskaufruf 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\zyklisch.bmp"  1 5 1 0 1 0 0
+ElemPanelCtrlBN 25 490 150 30 ElemPanelCtrlBN <PE>
+ -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana" 0"Fault Manager"
+<VFileName V4 QL> 1 "FAULT_MEMORY.CNP" 
+~
+@
+
+

@@ -1,0 +1,8 @@
+[NStatePersistence]
+Signature=VectorStatePersistence
+[VGlobalMeasurementIndex]
+mMeasurementIndex=33
+[VTestConfigurationConfigData]
+Bentley_P07234_Roof_Module_NextTestRun=22
+[VTestExecutable]
+Bentley_P07234_Roof_Module_LastReportFile=Report_Bentley_P07234_Roof_Module.xml

@@ -32,7 +32,7 @@
           <string>ActiveDocumentIndex</string>
         </key>
         <value type="System.Int32">
-          <int>2</int>
+          <int>1</int>
         </value>
       </item>
       <item>
@@ -90,18 +90,13 @@
                 <SerializableDictionaryOfStringObject>
                   <item>
                     <key type="System.String">
-                      <string>ProjectView_TopIndex</string>
+                      <string>ProjectView_Expanded</string>
                     </key>
-                    <value type="System.Int32">
-                      <int>0</int>
-                    </value>
-                  </item>
-                  <item>
-                    <key type="System.String">
-                      <string>ProjectView_Focused</string>
-                    </key>
-                    <value type="System.UInt32">
-                      <unsignedInt>16</unsignedInt>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot</anyType>
+                        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d13p1:type="q2:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot/Test Units/GWM CHB071 Ambient Light Control Module</anyType>
+                      </ArrayOfAnyType>
                     </value>
                   </item>
                   <item>
@@ -116,13 +111,18 @@
                   </item>
                   <item>
                     <key type="System.String">
-                      <string>ProjectView_Expanded</string>
+                      <string>ProjectView_Focused</string>
                     </key>
-                    <value type="System.Collections.ArrayList">
-                      <ArrayOfAnyType>
-                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot</anyType>
-                        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d13p1:type="q2:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/ProjectRoot/Test Units/GWM CHB071 Ambient Light Control Module</anyType>
-                      </ArrayOfAnyType>
+                    <value type="System.UInt32">
+                      <unsignedInt>16</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -136,18 +136,12 @@
                 <SerializableDictionaryOfStringObject>
                   <item>
                     <key type="System.String">
-                      <string>LibraryView_TopIndex</string>
+                      <string>LibraryView_Expanded</string>
                     </key>
-                    <value type="System.Int32">
-                      <int>0</int>
-                    </value>
-                  </item>
-                  <item>
-                    <key type="System.String">
-                      <string>LibraryView_Focused</string>
-                    </key>
-                    <value type="System.UInt32">
-                      <unsignedInt>18</unsignedInt>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/_1/Library</anyType>
+                      </ArrayOfAnyType>
                     </value>
                   </item>
                   <item>
@@ -162,12 +156,18 @@
                   </item>
                   <item>
                     <key type="System.String">
-                      <string>LibraryView_Expanded</string>
+                      <string>LibraryView_Focused</string>
                     </key>
-                    <value type="System.Collections.ArrayList">
-                      <ArrayOfAnyType>
-                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/_1/Library</anyType>
-                      </ArrayOfAnyType>
+                    <value type="System.UInt32">
+                      <unsignedInt>18</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -181,18 +181,12 @@
                 <SerializableDictionaryOfStringObject>
                   <item>
                     <key type="System.String">
-                      <string>HomeDirectoryView_TopIndex</string>
+                      <string>HomeDirectoryView_Expanded</string>
                     </key>
-                    <value type="System.Int32">
-                      <int>0</int>
-                    </value>
-                  </item>
-                  <item>
-                    <key type="System.String">
-                      <string>HomeDirectoryView_Focused</string>
-                    </key>
-                    <value type="System.UInt32">
-                      <unsignedInt>22</unsignedInt>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/GWM CHB071 Ambient Light Control Module</anyType>
+                      </ArrayOfAnyType>
                     </value>
                   </item>
                   <item>
@@ -207,12 +201,18 @@
                   </item>
                   <item>
                     <key type="System.String">
-                      <string>HomeDirectoryView_Expanded</string>
+                      <string>HomeDirectoryView_Focused</string>
                     </key>
-                    <value type="System.Collections.ArrayList">
-                      <ArrayOfAnyType>
-                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">GWM CHB071 Ambient Light Control Module/GWM CHB071 Ambient Light Control Module</anyType>
-                      </ArrayOfAnyType>
+                    <value type="System.UInt32">
+                      <unsignedInt>22</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -300,17 +300,11 @@ FiltersEnd
                 <SerializableDictionaryOfStringObject>
                   <item>
                     <key type="System.String">
-                      <string>TraceItems_TopIndex</string>
+                      <string>TraceItems_Expanded</string>
                     </key>
-                    <value type="System.Int32">
-                      <int>0</int>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
                     </value>
-                  </item>
-                  <item>
-                    <key type="System.String">
-                      <string>TraceItems_Focused</string>
-                    </key>
-                    <value type="null" />
                   </item>
                   <item>
                     <key type="System.String">
@@ -322,10 +316,16 @@ FiltersEnd
                   </item>
                   <item>
                     <key type="System.String">
-                      <string>TraceItems_Expanded</string>
+                      <string>TraceItems_Focused</string>
                     </key>
-                    <value type="System.Collections.ArrayList">
-                      <ArrayOfAnyType />
+                    <value type="null" />
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
                     </value>
                   </item>
                 </SerializableDictionaryOfStringObject>
@@ -345,7 +345,7 @@ FiltersEnd
         <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
           <ArrayOfDocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-12-11T05:56:36.3675169Z</LastTouched>
+              <LastTouched>2017-12-12T09:01:26.413306Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1298,7 +1298,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunction.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-12-11T05:56:36.4175164Z</LastTouched>
+              <LastTouched>2017-12-12T09:01:26.463306Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -1523,13 +1523,18 @@ FiltersEnd
                 </item>
                 <item>
                   <key type="System.String">
-                    <string>CaplNavigator_Expanded</string>
+                    <string>CaplNavigator_TopIndex</string>
                   </key>
-                  <value type="System.Collections.ArrayList">
-                    <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Includes</anyType>
-                      <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d7p1:type="q2:string">Test Cases</anyType>
-                    </ArrayOfAnyType>
+                  <value type="System.Int32">
+                    <int>0</int>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Focused</string>
+                  </key>
+                  <value type="System.String">
+                    <string>chkALCMLightLvlSetSigImpWhenIgnOff(char doorSignal[], char alcmLightLvlSetVal[], char msWaitForTurnOn[]): void</string>
                   </value>
                 </item>
                 <item>
@@ -1538,24 +1543,19 @@ FiltersEnd
                   </key>
                   <value type="System.Collections.ArrayList">
                     <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">KostalSoftwareTestLibrary</anyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">chkALCMLightLvlSetSigImpWhenIgnOff(char doorSignal[], char alcmLightLvlSetVal[], char msWaitForTurnOn[]): void</anyType>
                     </ArrayOfAnyType>
                   </value>
                 </item>
                 <item>
                   <key type="System.String">
-                    <string>CaplNavigator_Focused</string>
+                    <string>CaplNavigator_Expanded</string>
                   </key>
-                  <value type="System.String">
-                    <string>KostalSoftwareTestLibrary</string>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CaplNavigator_TopIndex</string>
-                  </key>
-                  <value type="System.Int32">
-                    <int>0</int>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Includes</anyType>
+                      <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d7p1:type="q2:string">Test Cases</anyType>
+                    </ArrayOfAnyType>
                   </value>
                 </item>
                 <item>
@@ -1570,7 +1570,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="GWM CHB071 Ambient Light Control Module\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-12-11T05:56:36.4375162Z</LastTouched>
+              <LastTouched>2017-12-12T09:01:26.503306Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">
@@ -2003,12 +2003,18 @@ FiltersEnd
                 </item>
                 <item>
                   <key type="System.String">
-                    <string>CaplNavigator_Expanded</string>
+                    <string>CaplNavigator_TopIndex</string>
                   </key>
-                  <value type="System.Collections.ArrayList">
-                    <ArrayOfAnyType>
-                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Functions</anyType>
-                    </ArrayOfAnyType>
+                  <value type="System.Int32">
+                    <int>18</int>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Focused</string>
+                  </key>
+                  <value type="System.String">
+                    <string>prodOperWithPinStatImpOnSpecPwmChk(char operationMode[]): int</string>
                   </value>
                 </item>
                 <item>
@@ -2023,18 +2029,12 @@ FiltersEnd
                 </item>
                 <item>
                   <key type="System.String">
-                    <string>CaplNavigator_Focused</string>
+                    <string>CaplNavigator_Expanded</string>
                   </key>
-                  <value type="System.String">
-                    <string>prodOperWithPinStatImpOnSpecPwmChk(char operationMode[]): int</string>
-                  </value>
-                </item>
-                <item>
-                  <key type="System.String">
-                    <string>CaplNavigator_TopIndex</string>
-                  </key>
-                  <value type="System.Int32">
-                    <int>20</int>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Functions</anyType>
+                    </ArrayOfAnyType>
                   </value>
                 </item>
                 <item>
@@ -2049,7 +2049,7 @@ FiltersEnd
               <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
             </DocumentSettingsBase>
             <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <LastTouched>2017-12-11T05:56:37.5275053Z</LastTouched>
+              <LastTouched>2017-12-12T09:01:26.573306Z</LastTouched>
               <Settings>
                 <item>
                   <key type="System.String">

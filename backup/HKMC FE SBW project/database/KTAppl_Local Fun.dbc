@@ -1,0 +1,225 @@
+VERSION "HIPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYNNNNNNNNNN/4/%%%/4/'%**4NNN///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: KT_APPL_LocalFun
+VAL_TABLE_ Status 4 "Dienst_fehlerhaft" 3 "Dienst_timeout" 2 "Dienst_beendet" 1 "Dienst_starten" ;
+VAL_TABLE_ envKTATaskReady 1 "TaskReady" 0 "TaskRunning" ;
+VAL_TABLE_ KTA_Taskaufruf 1 "zyklisch" 0 "einmalig" ;
+VAL_TABLE_ KTA_Entscheidung 1 "io" 0 "nicht_io" ;
+VAL_TABLE_ KT_Pages 13 "OHC" 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_TABLE_ KT_FSP_Delay 1 "Delay" 0 "kein_Delay" ;
+VAL_TABLE_ KTResp_IstModus 6 "RbrMode" 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+VAL_TABLE_ KTReq_SollModus 6 "RbrMode" 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+
+
+
+
+EV_ envKTA_LocFun_ResetProg: 0 [0|0] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_SW_Customer: 0 [0|0] "" 0 2 DUMMY_NODE_VECTOR8003 Vector__XXX;
+
+EV_ envKTAr_SW_Internal: 0 [0|0] "" 0 3 DUMMY_NODE_VECTOR8003 Vector__XXX;
+
+EV_ envKTAr_SW_Release: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ReadVersion: 0 [0|0] "" 0 5 DUMMY_NODE_VECTOR0  KT_APPL_LocalFun;
+
+EV_ envKTAr_LEC_D: 0 [0|0] "" 0 6 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_LEC_N: 0 [0|0] "" 0 7 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_LEC_R: 0 [0|0] "" 0 8 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_LEC_P: 0 [0|0] "" 0 9 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_Detent: 0 [0|0] "" 0 10 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_ACC: 0 [0|0] "" 0 11 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_VBAT: 0 [0|0] "" 0 12 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_IGN: 0 [0|0] "" 0 13 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_KL30: 0 [0|0] "" 0 14 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_VCC: 0 [0|0] "" 0 15 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envKTAr_AD_D3: 0 [0|0] "" 0 16 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_D2: 0 [0|0] "" 0 17 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_D1: 0 [0|0] "" 0 18 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_N3: 0 [0|0] "" 0 19 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_N2: 0 [0|0] "" 0 20 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_N1: 0 [0|0] "" 0 21 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_PR2: 0 [0|0] "" 0 22 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_PR1: 0 [0|0] "" 0 23 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_R2: 0 [0|0] "" 0 24 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_R1: 0 [0|0] "" 0 25 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_R3: 0 [0|0] "" 0 26 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_P3: 0 [0|0] "" 0 27 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_P2: 0 [0|0] "" 0 28 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTAr_AD_P1: 0 [0|0] "" 0 29 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_LocFun_ReadADC: 0 [0|0] "" 0 30 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_SetKostalMLX: 0 [0|0] "" 0 31 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_LocFun_SetMLX: 0 [0|0] "" 0 32 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_RBRBackTActFloat: 1 [0|360] "" 0 33 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBRBackTMLX1Float: 1 [0|360] "" 0 34 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBRBackTMLX0Float: 1 [0|360] "" 0 35 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_Reset_0C_Alarm: 0 [0|5] "" 0 36 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_ResetAppBut_0C: 0 [0|1] "" 0 37 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBRBackt_Init_Alarm: 0 [0|5] "" 0 38 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBRBackT_Init_But: 0 [0|1] "" 0 39 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBRBackTActData: 0 [0|1] "" 0 40 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_RBRBackTMLX1Data: 0 [0|1] "" 0 41 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_RBRBackTMLX0Data: 0 [0|1] "" 0 42 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ADCData: 0 [0|1] "" 0 43 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_CyclicADCSW: 0 [0|1] "" 0 44 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_GetADCBut: 0 [0|1] "" 0 45 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBR03_MCountData: 0 [0|0] "" 0 46 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_RBR03_ResetError_But: 0 [0|1] "" 0 47 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBR03_CRC_Alarm: 0 [-5|5] "" 0 48 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBR03_CRCData: 0 [0|0] "" 0 49 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_RBR03_MSGNO_Alarm: 0 [-5|5] "" 0 50 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBR03_ABS_f: 1 [-5000|5000] "" 0 51 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTA_RBR03_MLX1_f: 1 [0|16777215] "" 0 52 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTA_RBR03_MLX0_f: 1 [0|16777215] "" 0 53 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTA_RBR03_Control_Alarm: 0 [0|5] "" 0 54 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBR03_Init_Alarm: 0 [0|5] "" 0 55 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBR03_Control_But: 0 [0|1] "" 0 56 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_RBR03_Init_But: 0 [0|1] "" 0 57 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_HallCalStatusData: 0 [0|5] "" 0 58 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ABSCalStatusData: 0 [0|5] "" 0 59 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ABS_Float: 1 [-32000|32000] "" 0 60 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_LocFun_RawMLX1_Int: 0 [0|17000] "" 0 61 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_LocFun_RawMLX0_Int: 0 [0|17000] "" 0 62 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_LocFun_FaultLight: 0 [0|5] "" 0 63 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ABSAngleData: 0 [0|1] "" 0 64 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ReadSASCalStatBut: 0 [0|1] "" 0 65 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ResetABSOnlyBut: 0 [0|1] "" 0 66 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_SetHallOffsetsBut: 0 [0|1] "" 0 67 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_SetABSOffsetBut: 0 [0|1] "" 0 68 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ABSAngleIn: 0 [0|32767] "" 0 69 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_RawMLX0In: 0 [0|32767] "" 0 70 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_RawMLX1In: 0 [0|32767] "" 0 71 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_CyclicRawMLXSW: 0 [0|1] "" 0 72 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_DisplayFaults: 0 [0|1] "" 0 73 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_DisplayBuff2: 0 [0|1] "" 0 74 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_DisplayBuff1: 0 [0|1] "" 0 75 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_RawMLX1Data: 0 [0|1] "" 0 76 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_RawMLX0Data: 0 [0|1] "" 0 77 DUMMY_NODE_VECTOR8003  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ResetAppBut: 0 [0|1] "" 0 78 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_ResetSASOffsetsBut: 0 [0|1] "" 0 79 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_GetRawMLXBut: 0 [0|1] "" 0 80 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_CalABSOffsetBut: 0 [0|1] "" 0 81 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+
+EV_ envKTA_LocFun_CalAngleOffsetBut: 0 [0|1] "" 0 82 DUMMY_NODE_VECTOR3  KT_APPL_LocalFun;
+ENVVAR_DATA_ envKTA_RBR03_MCountData: 1;
+ENVVAR_DATA_ envKTA_RBR03_CRCData: 1;
+
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+

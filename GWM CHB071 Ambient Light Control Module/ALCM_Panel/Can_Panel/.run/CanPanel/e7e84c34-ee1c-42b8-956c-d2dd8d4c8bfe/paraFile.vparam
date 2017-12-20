@@ -1,0 +1,47 @@
+Vector Parameter	1.0
+
+ScalarListSingleRecord
+
+Name	Type	Info	Values
+doorSignal	String		DriverDoorSts
+			PassengerDoorSts
+			RLDoorSts
+			RRDoorSts
+
+drvModeReqVal	String		0
+			1
+			2
+			3
+			4
+			5
+			6
+			7
+			8
+			9
+			10
+			11
+			12
+			13
+			14
+			15
+
+alcmLightLvlSetVal	String		0
+			1
+			2
+			3
+			4
+			5
+			6
+			7
+			8
+			9
+			10
+
+posLmpStsVal	String		0
+			1
+
+sysPwrModeVal	String		0
+			1
+			2
+			3
+

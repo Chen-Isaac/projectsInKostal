@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="">
+    <namespace name="IL" comment="">
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Klemme15" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Klemme30" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+    </namespace>
+    <namespace name="NM_CAN1" comment="">
+      <namespace name="CGW" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestBus" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ApplActivity" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mode" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestIL" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="State" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DeactivateNM" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+      </namespace>
+      <namespace name="ESC" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestBus" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ApplActivity" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mode" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestIL" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="State" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DeactivateNM" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+      </namespace>
+      <namespace name="TCU" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestBus" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ApplActivity" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mode" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestIL" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="State" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DeactivateNM" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="Enable_TcuSimulation" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+      </namespace>
+      <namespace name="EMS" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestBus" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ApplActivity" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mode" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestIL" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="State" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DeactivateNM" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+      </namespace>
+      <namespace name="Tester" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestBus" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ApplActivity" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Mode" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="RequestIL" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="State" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DeactivateNM" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+      </namespace>
+      <namespace name="StateControl" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="BusRequestAll" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ControlsDisabled" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ILRequestAll" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="NmPduTxEnable" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="BusReleaseAll" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ILReleaseAll" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ActiveNodes" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="DeactivateNM" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+      </namespace>
+    </namespace>
+    <namespace name="IL_CAN1" comment="">
+      <namespace name="EnableNode" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="CGW" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="ESC" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="TCU" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="EMS" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="Tester" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+      </namespace>
+      <namespace name="Message_NormalCyclePeriod" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="10" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="10" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU12" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="10" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS16" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="10" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU13" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="10" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_ESC_WHL_SPD11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU14" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="100" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW_CP2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="100" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="200" />
+      </namespace>
+      <namespace name="Message_EnableCyclic" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU12" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS16" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU13" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_ESC_WHL_SPD11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU14" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW_CP2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+      </namespace>
+      <namespace name="Message_CyclePeriod" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU12" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS16" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU13" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="20" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_ESC_WHL_SPD11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="40" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU14" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="200" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW_CP2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="40" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="200" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="400" />
+      </namespace>
+      <namespace name="Message_SetNormalCycle" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU12" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS16" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU13" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_ESC_WHL_SPD11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU14" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW_CP2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+      </namespace>
+      <namespace name="Message_SetNewCycleContinously" comment="">
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU12" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_EMS_EMS16" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU13" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_ESC_WHL_SPD11" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_TCU_TCU14" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW_CP2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+        <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="HKMC_LH_SBW_CGW_CGW2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+      </namespace>
+      <variable anlyzLocal="0" readOnly="false" valueSequence="false" unit="" name="enable_AllNodes" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="1" />
+    </namespace>
+  </namespace>
+</systemvariables>

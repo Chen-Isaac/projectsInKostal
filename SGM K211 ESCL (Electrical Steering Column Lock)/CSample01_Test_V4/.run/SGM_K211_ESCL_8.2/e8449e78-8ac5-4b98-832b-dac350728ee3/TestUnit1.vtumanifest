@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <FileFormatVersion>1</FileFormatVersion>
+  <TestUnitName>TestUnit1</TestUnitName>
+  <TsoProject>C:\Users\chen106\Desktop\K211 ESCL\vTESTstudio_Project.vtsoproj</TsoProject>
+  <TsoProjectRelative>.\..\vTESTstudio_Project.vtsoproj</TsoProjectRelative>
+  <EditableSources>false</EditableSources>
+  <BuildInfo>
+    <CaplCompiler>8.5.98.0</CaplCompiler>
+    <MinRequiredCANoeVersion>8.2.41</MinRequiredCANoeVersion>
+    <TsoVersion>2.0.50.0</TsoVersion>
+    <NetApiVersion></NetApiVersion>
+  </BuildInfo>
+  <NetTypeLibGenerator>
+    <NamespaceGeneration>NoNamespace</NamespaceGeneration>
+    <NetTypeLibs />
+  </NetTypeLibGenerator>
+  <VariantProperties />
+  <Sources>
+    <CaplFiles />
+    <CaplIncludeFiles />
+    <NetFiles />
+    <NetBinaries />
+    <VttFiles>
+      <VttFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="NewFile.vtt" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="NewFile.vxtx" /&gt;</Binary>
+        <CaplFile>
+          <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="NewFile.vxtx.can" /&gt;</Source>
+          <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="NewFile.vxtx.cbf" /&gt;</Binary>
+        </CaplFile>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\NewFile.vtt.export.xml" /&gt;</ExportTable>
+      </VttFile>
+    </VttFiles>
+    <ParameterFiles />
+    <WaveformFiles />
+    <WaveformBinaries />
+    <CaplDlls />
+  </Sources>
+  <TestSysVar>
+    <Source></Source>
+  </TestSysVar>
+  <ExternalReferences />
+  <SutEnvironment>
+    <Networks />
+    <UseAllNetworks>false</UseAllNetworks>
+  </SutEnvironment>
+  <TUProperties>
+    <Caption></Caption>
+    <Description></Description>
+    <Version></Version>
+    <TestDesigners>
+      <Columns />
+      <TestDesignerEntries />
+    </TestDesigners>
+    <TUInfos />
+  </TUProperties>
+  <NodeLayerDlls>
+    <NodeLayerDll>
+      <Path>CANstress_NL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>FRStressNL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>J1939TestServiceLibraryNL.dll</Path>
+    </NodeLayerDll>
+  </NodeLayerDlls>
+  <UserFiles />
+  <TetEntries>
+    <TetEntry>
+      <Type>vtt</Type>
+      <Identifier>NewFile.vtt</Identifier>
+    </TetEntry>
+  </TetEntries>
+</Manifest>

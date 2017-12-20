@@ -1,0 +1,39 @@
+/*@!Encoding:936*/
+includes
+{
+  #include "D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin"
+}
+
+variables
+{
+
+}
+
+export testcase powerOn (void) {
+  stateMachine("powerOn",routeNum,noParaPick);
+}
+
+export testcase powerOff (void) {
+  stateMachine("powerOff",routeNum,noParaPick);
+}
+
+export testcase initProduct (void) {
+  stateMachine("initProduct",routeNum,noParaPick);
+}
+
+export testcase checkFunctions1 (void) {
+  stateMachine("checkFunctions1",routeNum,noParaPick);
+}
+
+export testcase checkFunctions2 (void) {
+  stateMachine("checkFunctions2",routeNum,noParaPick);
+}
+
+export testcase checkFunctions3 (void) {
+  stateMachine("checkFunctions3",routeNum,noParaPick);
+}
+
+export testcase UDSKostia (void) {
+  stateMachine("UDS Kostia",routeNum,noParaPick);
+}
+

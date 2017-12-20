@@ -1456,7 +1456,7 @@ export int chPwmOutSet (char pinName[],char productPwmInMode[]) {//pinName[] get
   numOfValsReadIn = getCfgDataArray ("vt2516Cfg",pinName,vt2516CfgInfo);
   if (numOfValsReadIn == 2) {
     numOfValsReadIn = getCfgDataArray ("pwmWaveCfg",productPwmInMode,pwmWaveCfgInfo);
-    testStep("","pwmWaveCfg num = %d",numOfValsReadIn);
+    //testStep("","pwmWaveCfg num = %d",numOfValsReadIn);
     if (numOfValsReadIn == 5) {
       duty = pwmWaveCfgInfo[3]+random(pwmWaveCfgInfo[4]);
       snprintf(namespace,elCount(namespace),"VTS::M%d_Ch%d",vt2516CfgInfo[0],vt2516CfgInfo[1]);

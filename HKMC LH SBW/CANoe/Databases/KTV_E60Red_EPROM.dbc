@@ -1,0 +1,177 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+
+BS_:
+
+BU_:
+
+
+
+
+EV_ envKTV_BMW_HW_Stern_NummerLED: 0 [0|0] "" 0 1 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_BMW_HW_Stern_Nummer: 0 [0|0] "" 0 2 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKIndexSub: 0 [0|0] "" 0 3 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKIndexMain: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKIndexSubLED: 0 [0|0] "" 0 5 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKIndexMainLED: 0 [0|0] "" 0 6 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKVersionSubSWintern_3: 0 [0|0] "" 0 7 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKVersionSubSWintern_2: 0 [0|0] "" 0 8 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKVersionMainSWintern_3: 0 [0|0] "" 0 9 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKVersionMainSWintern_2: 0 [0|0] "" 0 10 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_SpeicherLesenTransf: 0 [0|0] "" 0 11 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTV_LKVersionSubSWinternLED: 0 [0|0] "" 0 12 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKVersionSubSWintern_1: 0 [0|0] "" 0 13 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKVersionMainSWinternLED: 0 [0|0] "" 0 14 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_LKVersionMainSWintern_1: 0 [0|0] "" 0 15 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_HardwareReferenz_x: 0 [0|0] "" 0 16 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_HardwareReferenz_PPP: 0 [0|0] "" 0 17 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_PhysECU_HW_NrLED: 0 [0|0] "" 0 18 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_HardwareReferenzLED: 0 [0|0] "" 0 19 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_BMW_HardwareIndexLED: 0 [0|0] "" 0 20 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_BMW_ZusammenbauNrLED: 0 [0|0] "" 0 21 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_BMW_TeilenummerLED: 0 [0|0] "" 0 22 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_SeriennummerLED: 0 [0|0] "" 0 23 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_EEPROM_VersionLED: 0 [0|0] "" 0 24 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_HardwareindexLED: 0 [0|0] "" 0 25 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_KomponentencodierungLED: 0 [0|0] "" 0 26 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_EEPROM_Inhalt: 0 [0|0] "" 0 27 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_SpeicherLesen: 0 [0|0] "" 0 28 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTV_BMW_HardwareIndex: 0 [0|0] "" 0 29 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_PhysECU_HW_Nr: 0 [0|0] "" 0 30 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_HardwareReferenz_ZZZ: 0 [0|0] "" 0 31 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_BMW_ZusammenbauNr: 0 [0|0] "" 0 32 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_BMW_Teilenummer: 0 [0|0] "" 0 33 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_Seriennummer: 0 [0|0] "" 0 34 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_Hardwareindex: 0 [0|0] "" 0 35 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_Komponentencodierung: 0 [0|0] "" 0 36 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_NullpunktLED: 0 [0|0] "" 0 37 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTV_EEPROM_Version: 0 [0|0] "" 0 38 DUMMY_NODE_VECTOR3 Vector__XXX;
+ENVVAR_DATA_ envKTV_BMW_HW_Stern_Nummer: 0;
+ENVVAR_DATA_ envKTV_LKVersionSubSWintern_1: 0;
+ENVVAR_DATA_ envKTV_LKVersionMainSWintern_1: 0;
+ENVVAR_DATA_ envKTV_HardwareReferenz_x: 3;
+ENVVAR_DATA_ envKTV_HardwareReferenz_PPP: 3;
+ENVVAR_DATA_ envKTV_EEPROM_Inhalt: 1024;
+ENVVAR_DATA_ envKTV_BMW_HardwareIndex: 0;
+ENVVAR_DATA_ envKTV_PhysECU_HW_Nr: 3;
+ENVVAR_DATA_ envKTV_HardwareReferenz_ZZZ: 3;
+ENVVAR_DATA_ envKTV_BMW_ZusammenbauNr: 3;
+ENVVAR_DATA_ envKTV_BMW_Teilenummer: 3;
+ENVVAR_DATA_ envKTV_Seriennummer: 1;
+ENVVAR_DATA_ envKTV_Komponentencodierung: 2;
+
+BA_DEF_  "SM Parameters" STRING ;
+BA_DEF_  "Baud Rate" INT 0 100000;
+BA_DEF_  "Cycle Length" INT 0 100000;
+BA_DEF_  "Max Static Id" INT 0 100000;
+BA_DEF_  "Max Id" INT 0 100000;
+BA_DEF_  "Macrotick Length" FLOAT 0 100000;
+BA_DEF_  "Channel Number" INT 0 1;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "Sync" INT 0 1;
+BA_DEF_ BO_  "Mux" INT 0 1;
+BA_DEF_ BO_  "Identifier Number" INT 0 100000;
+BA_DEF_ BO_  "Slot Length" INT 0 100000;
+BA_DEF_ BO_  "Slot Start" INT 0 100000;
+BA_DEF_DEF_  "SM Parameters" "";
+BA_DEF_DEF_  "Baud Rate" 20;
+BA_DEF_DEF_  "Cycle Length" 0;
+BA_DEF_DEF_  "Max Static Id" 0;
+BA_DEF_DEF_  "Max Id" 0;
+BA_DEF_DEF_  "Macrotick Length" 0;
+BA_DEF_DEF_  "Channel Number" 0;
+BA_DEF_DEF_  "BusType" "FlexRay";
+BA_DEF_DEF_  "Sync" 0;
+BA_DEF_DEF_  "Mux" 0;
+BA_DEF_DEF_  "Identifier Number" 0;
+BA_DEF_DEF_  "Slot Length" 0;
+BA_DEF_DEF_  "Slot Start" 0;
+BA_ "SM Parameters" "FlexRay{BR{10}MAD{19}NP{0}NIT{0}SSL{169}SSN{12}CL{2209}FSSL{7}IFGL{3}MCCV{0}DELCO{254}}";
+BA_ "Macrotick Length" 19;
+BA_ "Baud Rate" 10;
+BA_ "Cycle Length" 2209;
+BA_ "Max Static Id" 11;
+BA_ "Max Id" 11;
+BA_ "Channel Number" 0;
+BA_ "BusType" "CAN";
+VAL_ envKTV_BMW_HW_Stern_NummerLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_LKIndexSubLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_LKIndexMainLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_LKVersionSubSWinternLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_LKVersionMainSWinternLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_PhysECU_HW_NrLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_HardwareReferenzLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_BMW_HardwareIndexLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_BMW_ZusammenbauNrLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_BMW_TeilenummerLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_SeriennummerLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_EEPROM_VersionLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_HardwareindexLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_KomponentencodierungLED 1 "OK" 0 "NOK" ;
+VAL_ envKTV_NullpunktLED 1 "OK" 0 "NOK" ;

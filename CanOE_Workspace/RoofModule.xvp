@@ -1,0 +1,1705 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="RoofModule">
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl9" Children="Controls" ControlName="Group Box 10">
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl4" Children="Controls" ControlName="Button 2">
+        <Property Name="Name">ButtonControl4</Property>
+        <Property Name="Size">100, 45</Property>
+        <Property Name="Location">314, 22</Property>
+        <Property Name="Text">GoToSleep</Property>
+        <Property Name="SymbolConfiguration">4;1;RoofModule_Env;;;GotoSleep;1;;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl3" Children="Controls" ControlName="Wakeup">
+        <Property Name="Name">ButtonControl3</Property>
+        <Property Name="Size">107, 48</Property>
+        <Property Name="Location">72, 22</Property>
+        <Property Name="Text">Wakeup</Property>
+        <Property Name="SymbolConfiguration">4;1;RoofModule_Env;;;Wakeup;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl9</Property>
+      <Property Name="Size">606, 97</Property>
+      <Property Name="Location">10, 750</Property>
+      <Property Name="Text">Network Management</Property>
+      <Property Name="TabIndex">28</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl10" Children="Controls" ControlName="Group Box 9">
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl89" Children="Controls" ControlName="Combo Box 46">
+          <Property Name="Name">ComboBoxControl89</Property>
+          <Property Name="Size">75, 20</Property>
+          <Property Name="Location">434, 116</Property>
+          <Property Name="DropDownWidth">75</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_Leselicht_ZusatzL_hl_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">31</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl89" Children="Controls" ControlName="Static Text 58">
+          <Property Name="Name">StaticTextControl89</Property>
+          <Property Name="Size">179, 13</Property>
+          <Property Name="Location">257, 121</Property>
+          <Property Name="Text">LIM_Leselicht_ZusatzL_hl_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl88" Children="Controls" ControlName="Combo Box 46">
+          <Property Name="Name">ComboBoxControl88</Property>
+          <Property Name="Size">75, 20</Property>
+          <Property Name="Location">434, 89</Property>
+          <Property Name="DropDownWidth">75</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_Leselicht_ZusatzL_hr_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">29</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl88" Children="Controls" ControlName="Static Text 57">
+          <Property Name="Name">StaticTextControl88</Property>
+          <Property Name="Size">179, 13</Property>
+          <Property Name="Location">257, 93</Property>
+          <Property Name="Text">LIM_Leselicht_ZusatzL_hr_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl87" Children="Controls" ControlName="Combo Box 45">
+          <Property Name="Name">ComboBoxControl87</Property>
+          <Property Name="Size">78, 20</Property>
+          <Property Name="Location">431, 62</Property>
+          <Property Name="DropDownWidth">78</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_Taster_REAR_hinten_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">27</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl87" Children="Controls" ControlName="Static Text 56">
+          <Property Name="Name">StaticTextControl87</Property>
+          <Property Name="Size">167, 13</Property>
+          <Property Name="Location">257, 67</Property>
+          <Property Name="Text">LIM_Taster_REAR_hinten_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl86" Children="Controls" ControlName="Combo Box 44">
+          <Property Name="Name">ComboBoxControl86</Property>
+          <Property Name="Size">68, 20</Property>
+          <Property Name="Location">441, 36</Property>
+          <Property Name="DropDownWidth">68</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_Innenlicht_ZusatzL_hl_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">25</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl86" Children="Controls" ControlName="Static Text 55">
+          <Property Name="Name">StaticTextControl86</Property>
+          <Property Name="Size">185, 13</Property>
+          <Property Name="Location">257, 39</Property>
+          <Property Name="Text">LIM_Innenlicht_ZusatzL_hl_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl85" Children="Controls" ControlName="Combo Box 43">
+          <Property Name="Name">ComboBoxControl85</Property>
+          <Property Name="Size">68, 20</Property>
+          <Property Name="Location">441, 13</Property>
+          <Property Name="DropDownWidth">68</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_Innenlicht_ZusatzL_hr_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">23</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl85" Children="Controls" ControlName="Static Text 54">
+          <Property Name="Name">StaticTextControl85</Property>
+          <Property Name="Size">185, 13</Property>
+          <Property Name="Location">257, 15</Property>
+          <Property Name="Text">LIM_Innenlicht_ZusatzL_hr_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl84" Children="Controls" ControlName="Combo Box 42">
+          <Property Name="Name">ComboBoxControl84</Property>
+          <Property Name="Size">68, 20</Property>
+          <Property Name="Location">176, 118</Property>
+          <Property Name="DropDownWidth">68</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_FLED_REAR_hinten_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">21</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl84" Children="Controls" ControlName="Static Text 53">
+          <Property Name="Name">StaticTextControl84</Property>
+          <Property Name="Size">155, 13</Property>
+          <Property Name="Location">7, 121</Property>
+          <Property Name="Text">LIM_FLED_REAR_hinten_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl83" Children="Controls" ControlName="Combo Box 41">
+          <Property Name="Name">ComboBoxControl83</Property>
+          <Property Name="Size">61, 20</Property>
+          <Property Name="Location">183, 91</Property>
+          <Property Name="DropDownWidth">61</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_Leselicht_hl_umschalten;1;LIN;;-1</Property>
+          <Property Name="TabIndex">19</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl83" Children="Controls" ControlName="Static Text 52">
+          <Property Name="Name">StaticTextControl83</Property>
+          <Property Name="Size">173, 13</Property>
+          <Property Name="Location">8, 94</Property>
+          <Property Name="Text">LIM_Leselicht_hl_umschalten:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl82" Children="Controls" ControlName="Combo Box 40">
+          <Property Name="Name">ComboBoxControl82</Property>
+          <Property Name="Size">61, 20</Property>
+          <Property Name="Location">183, 64</Property>
+          <Property Name="DropDownWidth">61</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_Leselicht_hr_umschalten;1;LIN;;-1</Property>
+          <Property Name="TabIndex">17</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl82" Children="Controls" ControlName="Static Text 51">
+          <Property Name="Name">StaticTextControl82</Property>
+          <Property Name="Size">173, 13</Property>
+          <Property Name="Location">8, 67</Property>
+          <Property Name="Text">LIM_Leselicht_hr_umschalten:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="Input/Output Box 2">
+          <Property Name="Name">TextBoxControl1</Property>
+          <Property Name="Size">172, 21</Property>
+          <Property Name="Location">7, 13</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">LIM_DI_Rear:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">79, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_DI_Rear;1;LIN;;-1</Property>
+          <Property Name="TabIndex">14</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl51" Children="Controls" ControlName="Combo Box 4">
+          <Property Name="Name">ComboBoxControl51</Property>
+          <Property Name="Size">61, 20</Property>
+          <Property Name="Location">183, 36</Property>
+          <Property Name="DropDownWidth">61</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_02;LIM_Innenlicht_H_umschalten;1;LIN;;-1</Property>
+          <Property Name="TabIndex">13</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl51" Children="Controls" ControlName="Static Text 22">
+          <Property Name="Name">StaticTextControl51</Property>
+          <Property Name="Size">173, 13</Property>
+          <Property Name="Location">8, 39</Property>
+          <Property Name="Text">LIM_Innenlicht_H_umschalten:</Property>
+        </Object>
+        <Property Name="Name">GroupBoxControl10</Property>
+        <Property Name="Size">515, 144</Property>
+        <Property Name="Location">3, 593</Property>
+        <Property Name="Text">Receive:LIMs_02</Property>
+        <Property Name="TabIndex">27</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl8" Children="Controls" ControlName="Group Box 7">
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl81" Children="Controls" ControlName="Combo Box 39">
+          <Property Name="Name">ComboBoxControl81</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">160, 490</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Uebertemperatur;1;LIN;;-1</Property>
+          <Property Name="TabIndex">117</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl81" Children="Controls" ControlName="Static Text 50">
+          <Property Name="Name">StaticTextControl81</Property>
+          <Property Name="Size">125, 13</Property>
+          <Property Name="Location">6, 493</Property>
+          <Property Name="Text">LIM_Uebertemperatur:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl80" Children="Controls" ControlName="Combo Box 38">
+          <Property Name="Name">ComboBoxControl80</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">160, 466</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Ueberspannung;1;LIN;;-1</Property>
+          <Property Name="TabIndex">115</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl80" Children="Controls" ControlName="Static Text 49">
+          <Property Name="Name">StaticTextControl80</Property>
+          <Property Name="Size">113, 13</Property>
+          <Property Name="Location">6, 469</Property>
+          <Property Name="Text">LIM_Ueberspannung:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl79" Children="Controls" ControlName="Combo Box 37">
+          <Property Name="Name">ComboBoxControl79</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">160, 442</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Unterspannung;1;LIN;;-1</Property>
+          <Property Name="TabIndex">113</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl79" Children="Controls" ControlName="Static Text 48">
+          <Property Name="Name">StaticTextControl79</Property>
+          <Property Name="Size">113, 13</Property>
+          <Property Name="Location">6, 446</Property>
+          <Property Name="Text">LIM_Unterspannung:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl78" Children="Controls" ControlName="Combo Box 36">
+          <Property Name="Name">ComboBoxControl78</Property>
+          <Property Name="Size">103, 20</Property>
+          <Property Name="Location">178, 418</Property>
+          <Property Name="DropDownWidth">103</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leselicht_hr_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">111</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl78" Children="Controls" ControlName="Static Text 47">
+          <Property Name="Name">StaticTextControl78</Property>
+          <Property Name="Size">173, 13</Property>
+          <Property Name="Location">6, 419</Property>
+          <Property Name="Text">LIM_Taster_Leselicht_hr_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl77" Children="Controls" ControlName="Combo Box 35">
+          <Property Name="Name">ComboBoxControl77</Property>
+          <Property Name="Size">104, 20</Property>
+          <Property Name="Location">177, 394</Property>
+          <Property Name="DropDownWidth">104</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leselicht_hl_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">109</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl77" Children="Controls" ControlName="Static Text 46">
+          <Property Name="Name">StaticTextControl77</Property>
+          <Property Name="Size">173, 13</Property>
+          <Property Name="Location">7, 398</Property>
+          <Property Name="Text">LIM_Taster_Leselicht_hl_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl76" Children="Controls" ControlName="Combo Box 34">
+          <Property Name="Name">ComboBoxControl76</Property>
+          <Property Name="Size">102, 20</Property>
+          <Property Name="Location">179, 370</Property>
+          <Property Name="DropDownWidth">102</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leselicht_vr_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">107</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl76" Children="Controls" ControlName="Static Text 45">
+          <Property Name="Name">StaticTextControl76</Property>
+          <Property Name="Size">173, 13</Property>
+          <Property Name="Location">7, 374</Property>
+          <Property Name="Text">LIM_Taster_Leselicht_vr_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl75" Children="Controls" ControlName="Combo Box 33">
+          <Property Name="Name">ComboBoxControl75</Property>
+          <Property Name="Size">103, 20</Property>
+          <Property Name="Location">178, 346</Property>
+          <Property Name="DropDownWidth">103</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leselicht_vl_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">105</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl75" Children="Controls" ControlName="Static Text 44">
+          <Property Name="Name">StaticTextControl75</Property>
+          <Property Name="Size">173, 13</Property>
+          <Property Name="Location">7, 349</Property>
+          <Property Name="Text">LIM_Taster_Leselicht_vl_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl74" Children="Controls" ControlName="Combo Box 32">
+          <Property Name="Name">ComboBoxControl74</Property>
+          <Property Name="Size">90, 20</Property>
+          <Property Name="Location">191, 322</Property>
+          <Property Name="DropDownWidth">90</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leseleuchten_H_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">103</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl73" Children="Controls" ControlName="Combo Box 31">
+          <Property Name="Name">ComboBoxControl73</Property>
+          <Property Name="Size">104, 20</Property>
+          <Property Name="Location">177, 299</Property>
+          <Property Name="DropDownWidth">104</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Tasten_Innenlicht_V_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">102</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl74" Children="Controls" ControlName="Static Text 43">
+          <Property Name="Name">StaticTextControl74</Property>
+          <Property Name="Size">185, 13</Property>
+          <Property Name="Location">7, 326</Property>
+          <Property Name="Text">LIM_Taster_Leseleuchten_H_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl73" Children="Controls" ControlName="Static Text 42">
+          <Property Name="Name">StaticTextControl73</Property>
+          <Property Name="Size">173, 13</Property>
+          <Property Name="Location">6, 303</Property>
+          <Property Name="Text">LIM_Tasten_Innenlicht_V_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl72" Children="Controls" ControlName="Combo Box 30">
+          <Property Name="Name">ComboBoxControl72</Property>
+          <Property Name="Size">70, 20</Property>
+          <Property Name="Location">211, 276</Property>
+          <Property Name="DropDownWidth">70</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_ErrorGueltigkeit_Tasterfehler;1;LIN;;-1</Property>
+          <Property Name="TabIndex">99</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl72" Children="Controls" ControlName="Static Text 41">
+          <Property Name="Name">StaticTextControl72</Property>
+          <Property Name="Size">209, 13</Property>
+          <Property Name="Location">7, 279</Property>
+          <Property Name="Text">LIM_ErrorGueltigkeit_Tasterfehler:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl71" Children="Controls" ControlName="Combo Box 29">
+          <Property Name="Name">ComboBoxControl71</Property>
+          <Property Name="Size">326, 20</Property>
+          <Property Name="Location">184, 13</Property>
+          <Property Name="DropDownWidth">326</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Innenbeleuchtung_V_aktiv;1;LIN;;-1</Property>
+          <Property Name="TabIndex">97</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl71" Children="Controls" ControlName="Static Text 40">
+          <Property Name="Name">StaticTextControl71</Property>
+          <Property Name="Size">179, 13</Property>
+          <Property Name="Location">7, 16</Property>
+          <Property Name="Text">LIM_Innenbeleuchtung_V_aktiv:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl70" Children="Controls" ControlName="Combo Box 28">
+          <Property Name="Name">ComboBoxControl70</Property>
+          <Property Name="Size">341, 20</Property>
+          <Property Name="Location">169, 37</Property>
+          <Property Name="DropDownWidth">341</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Innenbeleuchtung_aktiv;1;LIN;;-1</Property>
+          <Property Name="TabIndex">95</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl70" Children="Controls" ControlName="Static Text 39">
+          <Property Name="Name">StaticTextControl70</Property>
+          <Property Name="Size">167, 13</Property>
+          <Property Name="Location">7, 40</Property>
+          <Property Name="Text">LIM_Innenbeleuchtung_aktiv:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl69" Children="Controls" ControlName="Combo Box 27">
+          <Property Name="Name">ComboBoxControl69</Property>
+          <Property Name="Size">114, 20</Property>
+          <Property Name="Location">166, 61</Property>
+          <Property Name="DropDownWidth">114</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_IL_Modus_Status;1;LIN;;-1</Property>
+          <Property Name="TabIndex">93</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl69" Children="Controls" ControlName="Static Text 38">
+          <Property Name="Name">StaticTextControl69</Property>
+          <Property Name="Size">125, 13</Property>
+          <Property Name="Location">7, 64</Property>
+          <Property Name="Text">LIM_IL_Modus_Status:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl68" Children="Controls" ControlName="Combo Box 26">
+          <Property Name="Name">ComboBoxControl68</Property>
+          <Property Name="Size">62, 20</Property>
+          <Property Name="Location">218, 84</Property>
+          <Property Name="DropDownWidth">62</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_ErrorGueltigkeit_Lichterfehler;1;LIN;;-1</Property>
+          <Property Name="TabIndex">91</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl68" Children="Controls" ControlName="Static Text 37">
+          <Property Name="Name">StaticTextControl68</Property>
+          <Property Name="Size">215, 13</Property>
+          <Property Name="Location">7, 89</Property>
+          <Property Name="Text">LIM_ErrorGueltigkeit_Lichterfehler:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl67" Children="Controls" ControlName="Combo Box 25">
+          <Property Name="Name">ComboBoxControl67</Property>
+          <Property Name="Size">114, 20</Property>
+          <Property Name="Location">166, 108</Property>
+          <Property Name="DropDownWidth">114</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_ISP_EC_Aufblenden_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">89</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl67" Children="Controls" ControlName="Static Text 36">
+          <Property Name="Name">StaticTextControl67</Property>
+          <Property Name="Size">161, 13</Property>
+          <Property Name="Location">7, 113</Property>
+          <Property Name="Text">LIM_ISP_EC_Aufblenden_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl66" Children="Controls" ControlName="Combo Box 24">
+          <Property Name="Name">ComboBoxControl66</Property>
+          <Property Name="Size">113, 20</Property>
+          <Property Name="Location">166, 132</Property>
+          <Property Name="DropDownWidth">113</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Innenlicht_H_1_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">87</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl66" Children="Controls" ControlName="Static Text 35">
+          <Property Name="Name">StaticTextControl66</Property>
+          <Property Name="Size">143, 13</Property>
+          <Property Name="Location">7, 132</Property>
+          <Property Name="Text">LIM_Innenlicht_H_1_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl65" Children="Controls" ControlName="Combo Box 23">
+          <Property Name="Name">ComboBoxControl65</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">158, 156</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Leselicht_hl_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">85</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl65" Children="Controls" ControlName="Static Text 34">
+          <Property Name="Name">StaticTextControl65</Property>
+          <Property Name="Size">131, 13</Property>
+          <Property Name="Location">7, 158</Property>
+          <Property Name="Text">LIM_Leselicht_hl_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl64" Children="Controls" ControlName="Combo Box 22">
+          <Property Name="Name">ComboBoxControl64</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">158, 180</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Leselicht_hr_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">83</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl64" Children="Controls" ControlName="Static Text 33">
+          <Property Name="Name">StaticTextControl64</Property>
+          <Property Name="Size">131, 13</Property>
+          <Property Name="Location">7, 182</Property>
+          <Property Name="Text">LIM_Leselicht_hr_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl63" Children="Controls" ControlName="Combo Box 21">
+          <Property Name="Name">ComboBoxControl63</Property>
+          <Property Name="Size">102, 20</Property>
+          <Property Name="Location">177, 205</Property>
+          <Property Name="DropDownWidth">110</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_bCall_Taster;1;LIN;;-1</Property>
+          <Property Name="TabIndex">81</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl63" Children="Controls" ControlName="Static Text 32">
+          <Property Name="Name">StaticTextControl63</Property>
+          <Property Name="Size">107, 13</Property>
+          <Property Name="Location">7, 208</Property>
+          <Property Name="Text">LIM_bCall_Taster:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl62" Children="Controls" ControlName="Combo Box 21">
+          <Property Name="Name">ComboBoxControl62</Property>
+          <Property Name="Size">102, 20</Property>
+          <Property Name="Location">177, 229</Property>
+          <Property Name="DropDownWidth">110</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Lokalaktiv;1;LIN;;-1</Property>
+          <Property Name="TabIndex">79</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl62" Children="Controls" ControlName="Static Text 32">
+          <Property Name="Name">StaticTextControl62</Property>
+          <Property Name="Size">95, 13</Property>
+          <Property Name="Location">7, 232</Property>
+          <Property Name="Text">LIM_Lokalaktiv:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl61" Children="Controls" ControlName="Combo Box 16">
+          <Property Name="Name">ComboBoxControl61</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">389, 61</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;eCall_Taste;1;LIN;;-1</Property>
+          <Property Name="TabIndex">77</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl61" Children="Controls" ControlName="Static Text 27">
+          <Property Name="Name">StaticTextControl61</Property>
+          <Property Name="Size">77, 13</Property>
+          <Property Name="Location">296, 63</Property>
+          <Property Name="Text">eCall_Taste:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl60" Children="Controls" ControlName="Combo Box 16">
+          <Property Name="Name">ComboBoxControl60</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">389, 83</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_S_SAD_Vo;1;LIN;;-1</Property>
+          <Property Name="TabIndex">75</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl60" Children="Controls" ControlName="Static Text 27">
+          <Property Name="Name">StaticTextControl60</Property>
+          <Property Name="Size">83, 13</Property>
+          <Property Name="Location">296, 87</Property>
+          <Property Name="Text">LIM_S_SAD_vo:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl59" Children="Controls" ControlName="Combo Box 21">
+          <Property Name="Name">ComboBoxControl59</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">389, 107</Property>
+          <Property Name="DropDownWidth">110</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Rear_Mode;1;LIN;;-1</Property>
+          <Property Name="TabIndex">73</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl59" Children="Controls" ControlName="Static Text 32">
+          <Property Name="Name">StaticTextControl59</Property>
+          <Property Name="Size">89, 13</Property>
+          <Property Name="Location">296, 110</Property>
+          <Property Name="Text">LIM_Rear_Mode:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl58" Children="Controls" ControlName="Combo Box 21">
+          <Property Name="Name">ComboBoxControl58</Property>
+          <Property Name="Size">98, 20</Property>
+          <Property Name="Location">412, 130</Property>
+          <Property Name="DropDownWidth">110</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PAO_OFF_Status;1;LIN;;-1</Property>
+          <Property Name="TabIndex">71</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl58" Children="Controls" ControlName="Static Text 32">
+          <Property Name="Name">StaticTextControl58</Property>
+          <Property Name="Size">119, 13</Property>
+          <Property Name="Location">296, 133</Property>
+          <Property Name="Text">LIM_PAO_OFF_Status:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl57" Children="Controls" ControlName="Combo Box 21">
+          <Property Name="Name">ComboBoxControl57</Property>
+          <Property Name="Size">98, 20</Property>
+          <Property Name="Location">412, 153</Property>
+          <Property Name="DropDownWidth">110</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PAO_ON_Status;1;LIN;;-1</Property>
+          <Property Name="TabIndex">69</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl57" Children="Controls" ControlName="Static Text 32">
+          <Property Name="Name">StaticTextControl57</Property>
+          <Property Name="Size">115, 13</Property>
+          <Property Name="Location">296, 156</Property>
+          <Property Name="Text">LIM_PAO_ON_Status:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl56" Children="Controls" ControlName="Combo Box 21">
+          <Property Name="Name">ComboBoxControl56</Property>
+          <Property Name="Size">103, 20</Property>
+          <Property Name="Location">177, 252</Property>
+          <Property Name="DropDownWidth">103</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PAO_Schriftzug_Status;1;LIN;;-1</Property>
+          <Property Name="TabIndex">67</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl56" Children="Controls" ControlName="Static Text 32">
+          <Property Name="Name">StaticTextControl56</Property>
+          <Property Name="Size">161, 13</Property>
+          <Property Name="Location">7, 257</Property>
+          <Property Name="Text">LIM_PAO_Schriftzug_Status:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl55" Children="Controls" ControlName="Combo Box 2">
+          <Property Name="Name">ComboBoxControl55</Property>
+          <Property Name="Size">132, 20</Property>
+          <Property Name="Location">378, 201</Property>
+          <Property Name="DropDownWidth">83</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PDC;1;LIN;;-1</Property>
+          <Property Name="TabIndex">64</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl55" Children="Controls" ControlName="Static Text 20">
+          <Property Name="Name">StaticTextControl55</Property>
+          <Property Name="Size">53, 13</Property>
+          <Property Name="Location">296, 206</Property>
+          <Property Name="Text">LIM_PDC:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl54" Children="Controls" ControlName="Combo Box 20">
+          <Property Name="Name">ComboBoxControl54</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">390, 533</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_S_Rollo_vo;1;LIN;;-1</Property>
+          <Property Name="TabIndex">63</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl54" Children="Controls" ControlName="Static Text 31">
+          <Property Name="Name">StaticTextControl54</Property>
+          <Property Name="Size">95, 13</Property>
+          <Property Name="Location">296, 541</Property>
+          <Property Name="Text">LIM_S_Rollo_vo:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl53" Children="Controls" ControlName="Combo Box 19">
+          <Property Name="Name">ComboBoxControl53</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">389, 508</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_S_Rollo_hi;1;LIN;;-1</Property>
+          <Property Name="TabIndex">61</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl53" Children="Controls" ControlName="Static Text 30">
+          <Property Name="Name">StaticTextControl53</Property>
+          <Property Name="Size">95, 13</Property>
+          <Property Name="Location">296, 515</Property>
+          <Property Name="Text">LIM_S_Rollo_hi:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl52" Children="Controls" ControlName="Combo Box 18">
+          <Property Name="Name">ComboBoxControl52</Property>
+          <Property Name="Size">134, 20</Property>
+          <Property Name="Location">147, 537</Property>
+          <Property Name="DropDownWidth">134</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_TK_Funktion_Status;1;LIN;;-1</Property>
+          <Property Name="TabIndex">59</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl52" Children="Controls" ControlName="Static Text 29">
+          <Property Name="Name">StaticTextControl52</Property>
+          <Property Name="Size">143, 13</Property>
+          <Property Name="Location">6, 541</Property>
+          <Property Name="Text">LIM_TK_Funktion_Status:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl50" Children="Controls" ControlName="Combo Box 17">
+          <Property Name="Name">ComboBoxControl50</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">160, 515</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_ResponseError;1;LIN;;-1</Property>
+          <Property Name="TabIndex">57</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl50" Children="Controls" ControlName="Static Text 28">
+          <Property Name="Name">StaticTextControl50</Property>
+          <Property Name="Size">113, 13</Property>
+          <Property Name="Location">6, 518</Property>
+          <Property Name="Text">LIM_ResponseError:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl16" Children="Controls" ControlName="Combo Box 16">
+          <Property Name="Name">ComboBoxControl16</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">389, 483</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_S_SAD_hi;1;LIN;;-1</Property>
+          <Property Name="TabIndex">55</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl15" Children="Controls" ControlName="Static Text 27">
+          <Property Name="Name">StaticTextControl15</Property>
+          <Property Name="Size">83, 13</Property>
+          <Property Name="Location">296, 490</Property>
+          <Property Name="Text">LIM_S_SAD_hi:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl13" Children="Controls" ControlName="Combo Box 15">
+          <Property Name="Name">ComboBoxControl13</Property>
+          <Property Name="Size">132, 20</Property>
+          <Property Name="Location">378, 434</Property>
+          <Property Name="DropDownWidth">132</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Sideview;1;LIN;;-1</Property>
+          <Property Name="TabIndex">53</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl10" Children="Controls" ControlName="Static Text 26">
+          <Property Name="Name">StaticTextControl10</Property>
+          <Property Name="Size">83, 13</Property>
+          <Property Name="Location">296, 437</Property>
+          <Property Name="Text">LIM_Sideview:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl12" Children="Controls" ControlName="Combo Box 14">
+          <Property Name="Name">ComboBoxControl12</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">389, 409</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Beleuchtung_Panormadach_def;1;LIN;;-1</Property>
+          <Property Name="TabIndex">51</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" Children="Controls" ControlName="Static Text 25">
+          <Property Name="Name">StaticTextControl9</Property>
+          <Property Name="Size">197, 13</Property>
+          <Property Name="Location">296, 390</Property>
+          <Property Name="Text">LIM_Beleuchtung_Panormadach_def:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl6" Children="Controls" ControlName="Combo Box 13">
+          <Property Name="Name">ComboBoxControl6</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">388, 363</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Leselicht_hr_def_Sitzreihe3;1;LIN;;-1</Property>
+          <Property Name="TabIndex">49</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="Static Text 24">
+          <Property Name="Name">StaticTextControl7</Property>
+          <Property Name="Size">197, 13</Property>
+          <Property Name="Location">296, 346</Property>
+          <Property Name="Text">LIM_Leselicht_hr_def_Sitzreihe3:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl5" Children="Controls" ControlName="Combo Box 12">
+          <Property Name="Name">ComboBoxControl5</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">389, 321</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Leselicht_hl_def_Sitzreihe3;1;LIN;;-1</Property>
+          <Property Name="TabIndex">47</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text 23">
+          <Property Name="Name">StaticTextControl5</Property>
+          <Property Name="Size">197, 13</Property>
+          <Property Name="Location">296, 305</Property>
+          <Property Name="Text">LIM_Leselicht_hl_def_Sitzreihe3:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl3" Children="Controls" ControlName="Combo Box 8">
+          <Property Name="Name">ComboBoxControl3</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">388, 282</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leselicht_hr_def_SR3;1;LIN;;-1</Property>
+          <Property Name="TabIndex">45</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text 8">
+          <Property Name="Name">StaticTextControl2</Property>
+          <Property Name="Size">197, 13</Property>
+          <Property Name="Location">296, 266</Property>
+          <Property Name="Text">LIM_Taster_Leselicht_hr_def_SR3:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl1" Children="Controls" ControlName="Combo Box 2">
+          <Property Name="Name">ComboBoxControl1</Property>
+          <Property Name="Size">122, 20</Property>
+          <Property Name="Location">388, 244</Property>
+          <Property Name="DropDownWidth">83</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_Taster_Leselicht_hl_def_SR3;1;LIN;;-1</Property>
+          <Property Name="TabIndex">42</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text 20">
+          <Property Name="Name">StaticTextControl1</Property>
+          <Property Name="Size">197, 13</Property>
+          <Property Name="Location">296, 229</Property>
+          <Property Name="Text">LIM_Taster_Leselicht_hl_def_SR3:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl51" Children="Controls" ControlName="Input/Output Box 24">
+          <Property Name="Name">TextBoxControl51</Property>
+          <Property Name="Size">213, 21</Property>
+          <Property Name="Location">296, 459</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">LIM_PAO_Alivesignal:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">128, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_PAO_Alivesignal;1;LIN;;-1</Property>
+          <Property Name="TabIndex">36</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl34" Children="Controls" ControlName="Combo Box 2">
+          <Property Name="Name">ComboBoxControl34</Property>
+          <Property Name="Size">121, 20</Property>
+          <Property Name="Location">389, 177</Property>
+          <Property Name="DropDownWidth">83</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;LIM;LIMs_01;LIM_defekt;1;LIN;;-1</Property>
+          <Property Name="TabIndex">28</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl23" Children="Controls" ControlName="Static Text 20">
+          <Property Name="Name">StaticTextControl23</Property>
+          <Property Name="Size">71, 13</Property>
+          <Property Name="Location">296, 181</Property>
+          <Property Name="Text">LIN_defekt:</Property>
+        </Object>
+        <Property Name="Name">GroupBoxControl8</Property>
+        <Property Name="Size">518, 564</Property>
+        <Property Name="Location">3, 22</Property>
+        <Property Name="Text">Receive:LIMs_01</Property>
+        <Property Name="TabIndex">6</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">527, 747</Property>
+      <Property Name="Location">628, 11</Property>
+      <Property Name="Text">Node:LIM</Property>
+      <Property Name="TabIndex">6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl7" Children="Controls" ControlName="Group Box 6">
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls" ControlName="Input/Output Box 3">
+          <Property Name="Name">TextBoxControl2</Property>
+          <Property Name="Size">254, 21</Property>
+          <Property Name="Location">11, 69</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">DI_KL_58xs:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">73, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;UGDO_Be_01;DI_KL_58xs;1;LIN;;-1</Property>
+          <Property Name="TabIndex">43</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl23" Children="Controls" ControlName="Combo Box 11">
+          <Property Name="Name">ComboBoxControl23</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">166, 43</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;UGDO_Be_01;UGDO_SW_Function;1;LIN;;-1</Property>
+          <Property Name="TabIndex">5</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl22" Children="Controls" ControlName="Combo Box 11">
+          <Property Name="Name">ComboBoxControl22</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">166, 19</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;UGDO_Be_01;UGDO_SW_LED_Code;1;LIN;;-1</Property>
+          <Property Name="TabIndex">3</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl45" Children="Controls" ControlName="Static Text 18">
+          <Property Name="Name">StaticTextControl45</Property>
+          <Property Name="Size">107, 13</Property>
+          <Property Name="Location">11, 47</Property>
+          <Property Name="Text">UGDO_SW_Function:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl44" Children="Controls" ControlName="Static Text 17">
+          <Property Name="Name">StaticTextControl44</Property>
+          <Property Name="Size">107, 13</Property>
+          <Property Name="Location">11, 23</Property>
+          <Property Name="Text">UGDO_SW_LED_Code:</Property>
+        </Object>
+        <Property Name="Name">GroupBoxControl7</Property>
+        <Property Name="Size">275, 100</Property>
+        <Property Name="Location">6, 445</Property>
+        <Property Name="Text">Frame:USDO_Be_01</Property>
+        <Property Name="TabIndex">36</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl13" Children="Controls" ControlName="Static Text 6">
+        <Property Name="Name">StaticTextControl13</Property>
+        <Property Name="Size">113, 13</Property>
+        <Property Name="Location">11, 233</Property>
+        <Property Name="Text">BCM1_SCON_Leuchte:</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl11" Children="Controls" ControlName="Static Text 2">
+        <Property Name="Name">StaticTextControl11</Property>
+        <Property Name="Size">137, 13</Property>
+        <Property Name="Location">11, 159</Property>
+        <Property Name="Text">BCM1_SCON_Anforderung:</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text 4">
+        <Property Name="Name">StaticTextControl4</Property>
+        <Property Name="Size">89, 13</Property>
+        <Property Name="Location">11, 108</Property>
+        <Property Name="Text">SC_PAO_ON_Anf:</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text 3">
+        <Property Name="Name">StaticTextControl3</Property>
+        <Property Name="Size">95, 13</Property>
+        <Property Name="Location">11, 84</Property>
+        <Property Name="Text">SC_PAO_OFF_Anf:</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box 4">
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl42" Children="Controls" ControlName="Input/Output Box">
+          <Property Name="Name">TextBoxControl42</Property>
+          <Property Name="Size">261, 21</Property>
+          <Property Name="Location">4, 157</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">BCM_Dimmwert_Flaechenlicht_Farbe1:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">215, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM_Dimmwert_Flaechenlicht_Farbe1;1;LIN;;-1</Property>
+          <Property Name="TabIndex">9</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl33" Children="Controls" ControlName="Input/Output Box">
+          <Property Name="Name">TextBoxControl33</Property>
+          <Property Name="Size">261, 21</Property>
+          <Property Name="Location">4, 37</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">BCM1_SCON_Winkel:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">110, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_SCON_Winkel;1;LIN;;-1</Property>
+          <Property Name="TabIndex">9</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl32" Children="Controls" ControlName="Input/Output Box">
+          <Property Name="Name">TextBoxControl32</Property>
+          <Property Name="Size">260, 21</Property>
+          <Property Name="Location">5, 182</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">BCM1_SCON_Fokus:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">103, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_SCON_Fokus;1;LIN;;-1</Property>
+          <Property Name="TabIndex">10</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl16" Children="Controls" ControlName="Input/Output Box">
+          <Property Name="Name">TextBoxControl16</Property>
+          <Property Name="Size">260, 21</Property>
+          <Property Name="Location">4, 255</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">BCM1_SCON_Dimmwert:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">122, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_SCON_Dimmwert;1;LIN;;-1</Property>
+          <Property Name="TabIndex">9</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl4" Children="Controls" ControlName="Input/Output Box">
+          <Property Name="Name">TextBoxControl4</Property>
+          <Property Name="Size">261, 21</Property>
+          <Property Name="Location">4, 12</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">BCM1_SCON_Auslenkung:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">134, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_SCON_Auslenkung;1;LIN;;-1</Property>
+          <Property Name="TabIndex">8</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl10" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl10</Property>
+          <Property Name="Size">75, 20</Property>
+          <Property Name="Location">189, 233</Property>
+          <Property Name="DropDownWidth">85</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_Leselicht_Anf_hl_ZusatzL;1;LIN;;-1</Property>
+          <Property Name="TabIndex">46</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl20" Children="Controls" ControlName="Static Text 13">
+          <Property Name="Name">StaticTextControl20</Property>
+          <Property Name="Size">101, 13</Property>
+          <Property Name="Location">7, 386</Property>
+          <Property Name="Text">BCM1_Verdeck_zu:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl2" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl2</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">165, 134</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_SCON_Anforderung;1;LIN;;-1</Property>
+          <Property Name="TabIndex">51</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl12" Children="Controls" ControlName="Static Text">
+          <Property Name="Name">StaticTextControl12</Property>
+          <Property Name="Size">137, 13</Property>
+          <Property Name="Location">5, 113</Property>
+          <Property Name="Text">SC_PAO_Schriftzug_Anf:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl21" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl21</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">166, 382</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_Verdeck_zu;1;LIN;;-1</Property>
+          <Property Name="TabIndex">30</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl4" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl4</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">165, 108</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;SC_PAO_Schriftzug_Anf;1;LIN;;-1</Property>
+          <Property Name="TabIndex">52</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl19" Children="Controls" ControlName="Static Text 12">
+          <Property Name="Name">StaticTextControl19</Property>
+          <Property Name="Size">77, 13</Property>
+          <Property Name="Location">8, 362</Property>
+          <Property Name="Text">LED_LIM_PDC:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl9" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl9</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">165, 88</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;SC_PAO_ON_Anf;1;LIN;;-1</Property>
+          <Property Name="TabIndex">53</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl20" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl20</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">166, 359</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;LED_LIM_PDC;1;LIN;;-1</Property>
+          <Property Name="TabIndex">30</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl19" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl19</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">166, 335</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;eCall_Statuslicht_Farbe2;1;LIN;;-1</Property>
+          <Property Name="TabIndex">30</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl11" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl11</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">165, 63</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;SC_PAO_OFF_Anf;1;LIN;;-1</Property>
+          <Property Name="TabIndex">49</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl18" Children="Controls" ControlName="Static Text 11">
+          <Property Name="Name">StaticTextControl18</Property>
+          <Property Name="Size">155, 13</Property>
+          <Property Name="Location">7, 339</Property>
+          <Property Name="Text">eCall_Statuslicht_Farbe2:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl18" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl18</Property>
+          <Property Name="Size">99, 20</Property>
+          <Property Name="Location">166, 310</Property>
+          <Property Name="DropDownWidth">99</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;eCall_Statuslicht_Farbe1;1;LIN;;-1</Property>
+          <Property Name="TabIndex">30</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl17" Children="Controls" ControlName="Static Text 10">
+          <Property Name="Name">StaticTextControl17</Property>
+          <Property Name="Size">155, 13</Property>
+          <Property Name="Location">5, 312</Property>
+          <Property Name="Text">eCall_Statuslicht_Farbe1:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl17" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl17</Property>
+          <Property Name="Size">74, 20</Property>
+          <Property Name="Location">190, 284</Property>
+          <Property Name="DropDownWidth">86</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_Leselicht_Anf_hr_ZusatzL;1;LIN;;-1</Property>
+          <Property Name="TabIndex">30</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl16" Children="Controls" ControlName="Static Text 9">
+          <Property Name="Name">StaticTextControl16</Property>
+          <Property Name="Size">185, 13</Property>
+          <Property Name="Location">5, 285</Property>
+          <Property Name="Text">BCM1_Leselicht_Anf_hr_ZusatzL:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl15" Children="Controls" ControlName="Combo Box 10">
+          <Property Name="Name">ComboBoxControl15</Property>
+          <Property Name="Size">146, 20</Property>
+          <Property Name="Location">118, 208</Property>
+          <Property Name="DropDownWidth">101</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_01;BCM1_SCON_Leuchte;1;LIN;;-1</Property>
+          <Property Name="TabIndex">29</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl14" Children="Controls" ControlName="Static Text 7">
+          <Property Name="Name">StaticTextControl14</Property>
+          <Property Name="Size">185, 13</Property>
+          <Property Name="Location">6, 236</Property>
+          <Property Name="Text">BCM1_Leselicht_Anf_hl_ZusatzL:</Property>
+        </Object>
+        <Property Name="Name">GroupBoxControl3</Property>
+        <Property Name="Size">275, 416</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="Text">Send:LIMe_01</Property>
+        <Property Name="TabIndex">34</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl6" Children="Controls" ControlName="Group Box 5">
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl44" Children="Controls" ControlName="Input/Output Box">
+          <Property Name="Name">TextBoxControl44</Property>
+          <Property Name="Size">286, 21</Property>
+          <Property Name="Location">10, 40</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">DI_KL_58st:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">73, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;DI_KL_58st;1;LIN;;-1</Property>
+          <Property Name="TabIndex">10</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl43" Children="Controls" ControlName="Input/Output Box">
+          <Property Name="Name">TextBoxControl43</Property>
+          <Property Name="Size">286, 21</Property>
+          <Property Name="Location">10, 16</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Symbolic</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">DI_KL_58d:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="ValueType">RawValue</Property>
+          <Property Name="DescriptionSize">66, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;DI_KL_58d;1;LIN;;-1</Property>
+          <Property Name="TabIndex">9</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl37" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl37</Property>
+          <Property Name="Size">191, 13</Property>
+          <Property Name="Location">8, 626</Property>
+          <Property Name="Text">BCM1_Innenlicht_Anf_hr_ZusatzL:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl15" Children="Controls" ControlName="Input/Output Box 35">
+          <Property Name="Name">TextBoxControl15</Property>
+          <Property Name="Size">288, 21</Property>
+          <Property Name="Location">8, 469</Property>
+          <Property Name="AlarmUpperTextColor">WindowText</Property>
+          <Property Name="ValueDecimalPlaces">0</Property>
+          <Property Name="AlarmLowerBkgColor">Salmon</Property>
+          <Property Name="ValueDisplay">Decimal</Property>
+          <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+          <Property Name="AlarmLowerTextColor">WindowText</Property>
+          <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+          <Property Name="AlarmGeneralSettings">1;2;0;100</Property>
+          <Property Name="DisplayLabel">Left</Property>
+          <Property Name="DescriptionText">BCM1_DI_Beleuchtung_Panormadach:</Property>
+          <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+          <Property Name="DescriptionSize">202, 23</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_DI_Beleuchtung_Panormadach;1;LIN;;-1</Property>
+          <Property Name="TabIndex">79</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl39" Children="Controls" ControlName="Combo Box 9">
+          <Property Name="Name">ComboBoxControl39</Property>
+          <Property Name="Size">150, 20</Property>
+          <Property Name="Location">147, 671</Property>
+          <Property Name="DropDownWidth">84</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Lauflicht_disable;1;LIN;;-1</Property>
+          <Property Name="TabIndex">51</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl30" Children="Controls" ControlName="Combo Box 9">
+          <Property Name="Name">ComboBoxControl30</Property>
+          <Property Name="Size">124, 20</Property>
+          <Property Name="Location">173, 444</Property>
+          <Property Name="DropDownWidth">84</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;FT_Kisi_re_aktiv;1;LIN;;-1</Property>
+          <Property Name="TabIndex">51</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl44" Children="Controls" ControlName="Combo Box 7">
+          <Property Name="Name">ComboBoxControl44</Property>
+          <Property Name="Size">87, 20</Property>
+          <Property Name="Location">210, 620</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Innenlicht_Anf_hr_ZusatzL;1;LIN;;-1</Property>
+          <Property Name="TabIndex">50</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl40" Children="Controls" ControlName="Combo Box 9">
+          <Property Name="Name">ComboBoxControl40</Property>
+          <Property Name="Size">87, 20</Property>
+          <Property Name="Location">211, 543</Property>
+          <Property Name="DropDownWidth">87</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leselicht_Anf_hl_Sitzreihe3;1;LIN;;-1</Property>
+          <Property Name="TabIndex">46</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl25" Children="Controls" ControlName="Combo Box 9">
+          <Property Name="Name">ComboBoxControl25</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 217</Property>
+          <Property Name="DropDownWidth">84</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Innenlicht_V;1;LIN;;-1</Property>
+          <Property Name="TabIndex">42</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl41" Children="Controls" ControlName="Combo Box 5">
+          <Property Name="Name">ComboBoxControl41</Property>
+          <Property Name="Size">87, 20</Property>
+          <Property Name="Location">211, 645</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Innenlicht_Anf_hl_ZusatzL;1;LIN;;-1</Property>
+          <Property Name="TabIndex">48</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl31" Children="Controls" ControlName="Combo Box 9">
+          <Property Name="Name">ComboBoxControl31</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 315</Property>
+          <Property Name="DropDownWidth">87</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leselicht_Anf_vr;1;LIN;;-1</Property>
+          <Property Name="TabIndex">46</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl42" Children="Controls" ControlName="Combo Box">
+          <Property Name="Name">ComboBoxControl42</Property>
+          <Property Name="Size">150, 20</Property>
+          <Property Name="Location">147, 595</Property>
+          <Property Name="DropDownWidth">118</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_TK_Funktion;1;LIN;;-1</Property>
+          <Property Name="TabIndex">47</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl14" Children="Controls" ControlName="Combo Box 9">
+          <Property Name="Name">ComboBoxControl14</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 90</Property>
+          <Property Name="DropDownWidth">87</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;bCall_active;1;LIN;;-1</Property>
+          <Property Name="TabIndex">37</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl32" Children="Controls" ControlName="Combo Box 5">
+          <Property Name="Name">ComboBoxControl32</Property>
+          <Property Name="Size">124, 20</Property>
+          <Property Name="Location">173, 394</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Innenlicht_gedimmt_V;1;LIN;;-1</Property>
+          <Property Name="TabIndex">48</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl26" Children="Controls" ControlName="Combo Box 5">
+          <Property Name="Name">ComboBoxControl26</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 167</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_DI_Rampe_Leselicht;1;LIN;;-1</Property>
+          <Property Name="TabIndex">39</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl45" Children="Controls" ControlName="Combo Box 5">
+          <Property Name="Name">ComboBoxControl45</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 493</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_CAN_Sleep;1;LIN;;-1</Property>
+          <Property Name="TabIndex">43</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl33" Children="Controls" ControlName="Combo Box">
+          <Property Name="Name">ComboBoxControl33</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 368</Property>
+          <Property Name="DropDownWidth">118</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Innenlicht_gedimmt_H;1;LIN;;-1</Property>
+          <Property Name="TabIndex">47</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl46" Children="Controls" ControlName="Combo Box 6">
+          <Property Name="Name">ComboBoxControl46</Property>
+          <Property Name="Size">87, 20</Property>
+          <Property Name="Location">211, 569</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leselicht_Anf_hr_Sitzreihe3;1;LIN;;-1</Property>
+          <Property Name="TabIndex">44</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl47" Children="Controls" ControlName="Combo Box 7">
+          <Property Name="Name">ComboBoxControl47</Property>
+          <Property Name="Size">87, 20</Property>
+          <Property Name="Location">210, 518</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;Klemme_15;1;LIN;;-1</Property>
+          <Property Name="TabIndex">45</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl35" Children="Controls" ControlName="Combo Box 7">
+          <Property Name="Name">ComboBoxControl35</Property>
+          <Property Name="Size">124, 20</Property>
+          <Property Name="Location">173, 419</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;FT_Kisi_li_aktiv;1;LIN;;-1</Property>
+          <Property Name="TabIndex">50</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl27" Children="Controls" ControlName="Combo Box">
+          <Property Name="Name">ComboBoxControl27</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 141</Property>
+          <Property Name="DropDownWidth">118</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_DI_Rampe_Innenlicht;1;LIN;;-1</Property>
+          <Property Name="TabIndex">38</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl36" Children="Controls" ControlName="Combo Box 5">
+          <Property Name="Name">ComboBoxControl36</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 266</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leselicht_Anf_hr;1;LIN;;-1</Property>
+          <Property Name="TabIndex">43</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl28" Children="Controls" ControlName="Combo Box 6">
+          <Property Name="Name">ComboBoxControl28</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 240</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leselicht_Anf_hl;1;LIN;;-1</Property>
+          <Property Name="TabIndex">40</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl37" Children="Controls" ControlName="Combo Box 6">
+          <Property Name="Name">ComboBoxControl37</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 342</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leuchten_Aus;1;LIN;;-1</Property>
+          <Property Name="TabIndex">44</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl43" Children="Controls" ControlName="Static Text 16">
+          <Property Name="Name">StaticTextControl43</Property>
+          <Property Name="Size">143, 13</Property>
+          <Property Name="Location">7, 679</Property>
+          <Property Name="Text">BCM1_Lauflicht_disable:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl38" Children="Controls" ControlName="Combo Box 7">
+          <Property Name="Name">ComboBoxControl38</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 291</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Leselicht_Anf_vl;1;LIN;;-1</Property>
+          <Property Name="TabIndex">45</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl29" Children="Controls" ControlName="Combo Box 7">
+          <Property Name="Name">ComboBoxControl29</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 192</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;BCM1_Innenlicht_H;1;LIN;;-1</Property>
+          <Property Name="TabIndex">41</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl38" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl38</Property>
+          <Property Name="Size">191, 13</Property>
+          <Property Name="Location">8, 655</Property>
+          <Property Name="Text">BCM1_Innenlicht_Anf_hl_ZusatzL:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl39" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl39</Property>
+          <Property Name="Size">107, 13</Property>
+          <Property Name="Location">7, 602</Property>
+          <Property Name="Text">BCM1_TK_Funktion:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl40" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl40</Property>
+          <Property Name="Size">203, 13</Property>
+          <Property Name="Location">7, 577</Property>
+          <Property Name="Text">BCM1_Leselicht_Anf_hr_Sitzreihe3:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl41" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl41</Property>
+          <Property Name="Size">203, 13</Property>
+          <Property Name="Location">7, 550</Property>
+          <Property Name="Text">BCM1_Leselicht_Anf_hl_Sitzreihe3:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl42" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl42</Property>
+          <Property Name="Size">65, 13</Property>
+          <Property Name="Location">7, 526</Property>
+          <Property Name="Text">Klemme_15:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl36" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl36</Property>
+          <Property Name="Size">95, 13</Property>
+          <Property Name="Location">7, 502</Property>
+          <Property Name="Text">BCM1_CAN_Sleep:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl35" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl35</Property>
+          <Property Name="Size">155, 13</Property>
+          <Property Name="Location">6, 149</Property>
+          <Property Name="Text">BCM1_DI_Rampe_Innenlicht:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl34" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl34</Property>
+          <Property Name="Size">113, 13</Property>
+          <Property Name="Location">6, 199</Property>
+          <Property Name="Text">BCM1_Innenlicht_H:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl33" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl33</Property>
+          <Property Name="Size">113, 13</Property>
+          <Property Name="Location">6, 225</Property>
+          <Property Name="Text">BCM1_Innenlicht_V:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl32" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl32</Property>
+          <Property Name="Size">137, 13</Property>
+          <Property Name="Location">7, 249</Property>
+          <Property Name="Text">BCM1_Leselicht_Anf_hl:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl31" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl31</Property>
+          <Property Name="Size">137, 13</Property>
+          <Property Name="Location">6, 275</Property>
+          <Property Name="Text">BCM1_Leselicht_Anf_hr:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl30" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl30</Property>
+          <Property Name="Size">137, 13</Property>
+          <Property Name="Location">7, 300</Property>
+          <Property Name="Text">BCM1_Leselicht_Anf_vl:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl29" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl29</Property>
+          <Property Name="Size">137, 13</Property>
+          <Property Name="Location">7, 324</Property>
+          <Property Name="Text">BCM1_Leselicht_Anf_vr:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl28" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl28</Property>
+          <Property Name="Size">113, 13</Property>
+          <Property Name="Location">7, 351</Property>
+          <Property Name="Text">BCM1_Leuchten_Aus:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl27" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl27</Property>
+          <Property Name="Size">161, 13</Property>
+          <Property Name="Location">6, 377</Property>
+          <Property Name="Text">BCM1_Innenlicht_gedimmt_H:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl26" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl26</Property>
+          <Property Name="Size">161, 13</Property>
+          <Property Name="Location">6, 403</Property>
+          <Property Name="Text">BCM1_Innenlicht_gedimmt_V:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl25" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl25</Property>
+          <Property Name="Size">107, 13</Property>
+          <Property Name="Location">7, 428</Property>
+          <Property Name="Text">FT_Kisi_li_aktiv:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl24" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl24</Property>
+          <Property Name="Size">107, 13</Property>
+          <Property Name="Location">6, 453</Property>
+          <Property Name="Text">FT_Kisi_re_aktiv:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl22" Children="Controls" ControlName="Static Text 15">
+          <Property Name="Name">StaticTextControl22</Property>
+          <Property Name="Size">149, 13</Property>
+          <Property Name="Location">7, 177</Property>
+          <Property Name="Text">BCM1_DI_Rampe_Leselicht:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl21" Children="Controls" ControlName="Static Text 14">
+          <Property Name="Name">StaticTextControl21</Property>
+          <Property Name="Size">89, 13</Property>
+          <Property Name="Location">6, 123</Property>
+          <Property Name="Text">TSG_FT_01_alt:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text 5">
+          <Property Name="Name">StaticTextControl6</Property>
+          <Property Name="Size">179, 13</Property>
+          <Property Name="Location">7, 73</Property>
+          <Property Name="Text">Innenleuchten_Stellgliedtest:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="Static Text 5">
+          <Property Name="Name">StaticTextControl8</Property>
+          <Property Name="Size">83, 13</Property>
+          <Property Name="Location">6, 96</Property>
+          <Property Name="Text">bCall_active:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl7" Children="Controls" ControlName="Combo Box 6">
+          <Property Name="Name">ComboBoxControl7</Property>
+          <Property Name="Size">123, 20</Property>
+          <Property Name="Location">173, 115</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;TSG_FT_01_alt;1;LIN;;-1</Property>
+          <Property Name="TabIndex">9</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl8" Children="Controls" ControlName="Combo Box 7">
+          <Property Name="Name">ComboBoxControl8</Property>
+          <Property Name="Size">87, 20</Property>
+          <Property Name="Location">209, 65</Property>
+          <Property Name="DropDownWidth">141</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;BCM1;LIMe_02;Innenleuchten_Stellgliedtest;1;LIN;;-1</Property>
+          <Property Name="TabIndex">10</Property>
+        </Object>
+        <Property Name="Name">GroupBoxControl6</Property>
+        <Property Name="Size">303, 705</Property>
+        <Property Name="Location">295, 22</Property>
+        <Property Name="Text">Send:LIMe_02</Property>
+        <Property Name="TabIndex">35</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">606, 732</Property>
+      <Property Name="Location">10, 11</Property>
+      <Property Name="Text">Node:BCM1</Property>
+      <Property Name="TabIndex">5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl4" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl11" Children="Controls" ControlName="Group Box 8">
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl49" Children="Controls" ControlName="Combo Box 3">
+          <Property Name="Name">ComboBoxControl49</Property>
+          <Property Name="Size">88, 20</Property>
+          <Property Name="Location">419, 13</Property>
+          <Property Name="DropDownWidth">88</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;UGDO_B;UGDO_Bs_01;UGDO_B_ResponseError;1;LIN;;-1</Property>
+          <Property Name="TabIndex">15</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl49" Children="Controls" ControlName="Static Text 21">
+          <Property Name="Name">StaticTextControl49</Property>
+          <Property Name="Size">131, 13</Property>
+          <Property Name="Location">255, 16</Property>
+          <Property Name="Text">UGDO_B_ResponseError:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl48" Children="Controls" ControlName="Combo Box 3">
+          <Property Name="Name">ComboBoxControl48</Property>
+          <Property Name="Size">109, 20</Property>
+          <Property Name="Location">133, 40</Property>
+          <Property Name="DropDownWidth">88</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;UGDO_B;UGDO_Bs_01;UGDO_SW_Switchboard;1;LIN;;-1</Property>
+          <Property Name="TabIndex">13</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl48" Children="Controls" ControlName="Static Text 21">
+          <Property Name="Name">StaticTextControl48</Property>
+          <Property Name="Size">125, 13</Property>
+          <Property Name="Location">8, 44</Property>
+          <Property Name="Text">UGDO_SW_Switchboard:</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl43" Children="Controls" ControlName="Combo Box 3">
+          <Property Name="Name">ComboBoxControl43</Property>
+          <Property Name="Size">137, 20</Property>
+          <Property Name="Location">105, 14</Property>
+          <Property Name="DropDownWidth">81</Property>
+          <Property Name="BackColor">Window</Property>
+          <Property Name="ForeColor">WindowText</Property>
+          <Property Name="SymbolConfiguration">4;2;MLBevo_Konzern_MLBevo_BCM1_LIN2_;UGDO_B;UGDO_Bs_01;UGDO_SW_Buttons;1;LIN;;-1</Property>
+          <Property Name="TabIndex">11</Property>
+        </Object>
+        <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl47" Children="Controls" ControlName="Static Text 21">
+          <Property Name="Name">StaticTextControl47</Property>
+          <Property Name="Size">101, 13</Property>
+          <Property Name="Location">8, 18</Property>
+          <Property Name="Text">UGDO_SW_Buttons:</Property>
+        </Object>
+        <Property Name="Name">GroupBoxControl11</Property>
+        <Property Name="Size">513, 70</Property>
+        <Property Name="Location">5, 13</Property>
+        <Property Name="Text">Receive:UGDO_Bs_01</Property>
+        <Property Name="TabIndex">7</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl4</Property>
+      <Property Name="Size">527, 90</Property>
+      <Property Name="Location">627, 764</Property>
+      <Property Name="Text">Node:UGDO</Property>
+      <Property Name="TabIndex">7</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">1166, 858</Property>
+  </Object>
+</Panel>

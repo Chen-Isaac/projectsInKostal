@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Change History">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl22" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl22</Property>
+      <Property Name="Size">115, 77</Property>
+      <Property Name="Location">766, 392</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Zhou Hu</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl23" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl23</Property>
+      <Property Name="Size">118, 77</Property>
+      <Property Name="Location">535, 392</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">26-10-2016</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl24" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl24</Property>
+      <Property Name="Size">118, 77</Property>
+      <Property Name="Location">652, 392</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Gopal Dandagi</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl25" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl25</Property>
+      <Property Name="Size">375, 77</Property>
+      <Property Name="Location">161, 392</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Scrolling panel issue is addressed for Main Panel and UDS panel and implemented warning message for TCU behavior at equal to 8km vehicle speed</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl26" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl26</Property>
+      <Property Name="Size">118, 77</Property>
+      <Property Name="Location">44, 392</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">0004</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl17" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl17</Property>
+      <Property Name="Size">115, 141</Property>
+      <Property Name="Location">766, 256</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Zhou Hu</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl18" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl18</Property>
+      <Property Name="Size">118, 141</Property>
+      <Property Name="Location">535, 256</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">24-10-2016</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl19" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl19</Property>
+      <Property Name="Size">118, 141</Property>
+      <Property Name="Location">652, 256</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Gopal Dandagi</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl20" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl20</Property>
+      <Property Name="Size">375, 141</Property>
+      <Property Name="Location">161, 256</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Implemented reportDTCExtendedDataRecordByDTCNumber in UDS panel for $19, Added DID numbers to $22 in value table so that the same can be seen in UDS panel,  IFM is updated for Read faults from text file IFM_list.txt</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl21" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl21</Property>
+      <Property Name="Size">118, 141</Property>
+      <Property Name="Location">44, 256</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">0003</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl14" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl14</Property>
+      <Property Name="Size">116, 117</Property>
+      <Property Name="Location">765, 144</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Zhou Hu</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl15" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl15</Property>
+      <Property Name="Size">116, 24</Property>
+      <Property Name="Location">765, 120</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Zhou Hu</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl16" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl16</Property>
+      <Property Name="Size">116, 38</Property>
+      <Property Name="Location">765, 84</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt, style=Bold</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Approved</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl13" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl13</Property>
+      <Property Name="Size">134, 24</Property>
+      <Property Name="Location">44, 38</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt, style=Bold</Property>
+      <Property Name="Text">Change History</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl9</Property>
+      <Property Name="Size">119, 117</Property>
+      <Property Name="Location">534, 144</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">19-10-2016</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl10" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl10</Property>
+      <Property Name="Size">118, 117</Property>
+      <Property Name="Location">651, 144</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Gopal Dandagi</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl11" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl11</Property>
+      <Property Name="Size">375, 118</Property>
+      <Property Name="Location">161, 144</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">UDS is updated to display DTC name and number in $19 ReadDTCInformation, supplier ID is added to customer ID in $22 ReadDataByIdentifier and added input box to provide 5th byte for Short term adjustment in $2F InputOutputControlByIdentifier</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl12" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl12</Property>
+      <Property Name="Size">118, 117</Property>
+      <Property Name="Location">44, 144</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">0002</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl5</Property>
+      <Property Name="Size">119, 24</Property>
+      <Property Name="Location">534, 120</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">17-10-2016</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl6</Property>
+      <Property Name="Size">118, 24</Property>
+      <Property Name="Location">651, 120</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Gopal Dandagi</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl7</Property>
+      <Property Name="Size">375, 24</Property>
+      <Property Name="Location">161, 120</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Base Lined</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl8</Property>
+      <Property Name="Size">118, 24</Property>
+      <Property Name="Location">44, 120</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">0001</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl4</Property>
+      <Property Name="Size">119, 38</Property>
+      <Property Name="Location">534, 84</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt, style=Bold</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Date</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl3</Property>
+      <Property Name="Size">118, 38</Property>
+      <Property Name="Location">651, 84</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt, style=Bold</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Author</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">375, 38</Property>
+      <Property Name="Location">161, 84</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt, style=Bold</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Change</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">118, 38</Property>
+      <Property Name="Location">44, 84</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt, style=Bold</Property>
+      <Property Name="BorderStyle">FixedSingle</Property>
+      <Property Name="Text">Index</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">926, 629</Property>
+    <Property Name="BackColor">White</Property>
+  </Object>
+</Panel>

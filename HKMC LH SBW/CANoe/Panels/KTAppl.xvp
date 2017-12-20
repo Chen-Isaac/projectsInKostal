@@ -1,0 +1,549 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Local Functions[KOSTIA]">
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl3" Children="Controls" ControlName="Button 3">
+      <Property Name="Name">ButtonControl3</Property>
+      <Property Name="Size">120, 27</Property>
+      <Property Name="Location">355, 180</Property>
+      <Property Name="Font">Microsoft YaHei, 8.25pt, style=Bold</Property>
+      <Property Name="Text">Reset</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTA_LocFun_ResetProg;1;;;-1</Property>
+      <Property Name="TabIndex">38</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl2" Children="Controls" ControlName="Button 2">
+      <Property Name="Name">ButtonControl2</Property>
+      <Property Name="Size">75, 23</Property>
+      <Property Name="Location">-15, -16</Property>
+      <Property Name="Text">Button</Property>
+      <Property Name="SymbolConfiguration">
+      </Property>
+      <Property Name="TabIndex">37</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="Button">
+        <Property Name="Name">ButtonControl1</Property>
+        <Property Name="Size">140, 29</Property>
+        <Property Name="Location">47, 110</Property>
+        <Property Name="Font">SimSun, 10.5pt, style=Bold</Property>
+        <Property Name="Text">Read Version</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTA_LocFun_ReadVersion;1;;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl8" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl8</Property>
+        <Property Name="Size">210, 21</Property>
+        <Property Name="Location">6, 79</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Verdana, 11px, style=Bold</Property>
+        <Property Name="DescriptionText">Customer Version</Property>
+        <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+        <Property Name="DescriptionSize">117, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_SW_Customer;4;;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl7" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl7</Property>
+        <Property Name="Size">210, 21</Property>
+        <Property Name="Location">6, 51</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Verdana, 11px, style=Bold</Property>
+        <Property Name="DescriptionText">Internal   Version</Property>
+        <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+        <Property Name="DescriptionSize">116, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_SW_Internal;4;;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls" ControlName="envKTAr_SW_Release">
+        <Property Name="Name">TextBoxControl2</Property>
+        <Property Name="Size">210, 21</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Verdana, 11px, style=Bold</Property>
+        <Property Name="DescriptionText">Software Release</Property>
+        <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+        <Property Name="DescriptionSize">115, 23</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_SW_Release;4;;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl3</Property>
+      <Property Name="Size">241, 158</Property>
+      <Property Name="Location">268, 561</Property>
+      <Property Name="Font">Verdana, 11px, style=Bold</Property>
+      <Property Name="Text">Version:</Property>
+      <Property Name="TabIndex">34</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.PanelButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="PanelButtonControl1" Children="Controls" ControlName="PanelButtonControl0">
+      <Property Name="Name">PanelButtonControl1</Property>
+      <Property Name="Size">138, 30</Property>
+      <Property Name="Location">22, 633</Property>
+      <Property Name="ClosePanels">False</Property>
+      <Property Name="PanelList">1;1;AD Port.xvp</Property>
+      <Property Name="Font">Verdana, 11px, style=Bold</Property>
+      <Property Name="Text">Read AD Port</Property>
+      <Property Name="UseTransparentColor">False</Property>
+      <Property Name="TabIndex">0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl3" Children="Controls" ControlName="EnvVar:envKTA_Display_Z4">
+      <Property Name="Name">TextBoxControl3</Property>
+      <Property Name="Size">552, 14</Property>
+      <Property Name="Location">16, 65</Property>
+      <Property Name="AlarmUpperTextColor">Black</Property>
+      <Property Name="BoxForeColor">Black</Property>
+      <Property Name="AlarmLowerBkgColor">Blue</Property>
+      <Property Name="ValueDisplay">Decimal</Property>
+      <Property Name="AlarmUpperBkgColor">Red</Property>
+      <Property Name="AlarmLowerTextColor">Black</Property>
+      <Property Name="BoxFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="AlarmUpperFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_Display_Z4:</Property>
+      <Property Name="AlarmLowerFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="BoxBackColor">136, 208, 180</Property>
+      <Property Name="DescriptionSize">116, 15</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_Display_Z4</Property>
+      <Property Name="TabIndex">3</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl4" Children="Controls" ControlName="EnvVar:envKTA_Display_Z3">
+      <Property Name="Name">TextBoxControl4</Property>
+      <Property Name="Size">552, 14</Property>
+      <Property Name="Location">16, 50</Property>
+      <Property Name="AlarmUpperTextColor">Black</Property>
+      <Property Name="BoxForeColor">Black</Property>
+      <Property Name="AlarmLowerBkgColor">Blue</Property>
+      <Property Name="ValueDisplay">Decimal</Property>
+      <Property Name="AlarmUpperBkgColor">Red</Property>
+      <Property Name="AlarmLowerTextColor">Black</Property>
+      <Property Name="BoxFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="AlarmUpperFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_Display_Z3:</Property>
+      <Property Name="AlarmLowerFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="BoxBackColor">136, 208, 180</Property>
+      <Property Name="DescriptionSize">116, 15</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_Display_Z3</Property>
+      <Property Name="TabIndex">4</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl5" Children="Controls" ControlName="EnvVar:envKTA_Display_Z2">
+      <Property Name="Name">TextBoxControl5</Property>
+      <Property Name="Size">552, 14</Property>
+      <Property Name="Location">16, 35</Property>
+      <Property Name="AlarmUpperTextColor">Black</Property>
+      <Property Name="BoxForeColor">Black</Property>
+      <Property Name="AlarmLowerBkgColor">Blue</Property>
+      <Property Name="ValueDisplay">Decimal</Property>
+      <Property Name="AlarmUpperBkgColor">Red</Property>
+      <Property Name="AlarmLowerTextColor">Black</Property>
+      <Property Name="BoxFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="AlarmUpperFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_Display_Z2:</Property>
+      <Property Name="AlarmLowerFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="BoxBackColor">136, 208, 180</Property>
+      <Property Name="DescriptionSize">116, 15</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_Display_Z2</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl6" Children="Controls" ControlName="EnvVar:envKTA_Display_Z1">
+      <Property Name="Name">TextBoxControl6</Property>
+      <Property Name="Size">552, 14</Property>
+      <Property Name="Location">16, 19</Property>
+      <Property Name="AlarmUpperTextColor">Black</Property>
+      <Property Name="BoxForeColor">Black</Property>
+      <Property Name="AlarmLowerBkgColor">Blue</Property>
+      <Property Name="ValueDisplay">Decimal</Property>
+      <Property Name="AlarmUpperBkgColor">Red</Property>
+      <Property Name="AlarmLowerTextColor">Black</Property>
+      <Property Name="BoxFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="AlarmUpperFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_Display_Z1:</Property>
+      <Property Name="AlarmLowerFont">Microsoft Sans Serif, 12px</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="BoxBackColor">136, 208, 180</Property>
+      <Property Name="DescriptionSize">116, 15</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_Display_Z1</Property>
+      <Property Name="TabIndex">6</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI17" ControlName="EnvVar:envKTAaSync">
+      <Property Name="Name">SwitchControlBSI17</Property>
+      <Property Name="Size">25, 25</Property>
+      <Property Name="Location">315, 147</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+      <Property Name="ImageFile">..\Bitmaps\TriLED.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTAaSync</Property>
+      <Property Name="TabIndex">17</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl18" Children="Controls" ControlName="EnvVar:envKTA_Sync">
+      <Property Name="Name">ButtonControl18</Property>
+      <Property Name="Size">120, 27</Property>
+      <Property Name="Location">188, 146</Property>
+      <Property Name="Font">Microsoft YaHei, 8.25pt, style=Bold</Property>
+      <Property Name="Text">Sync</Property>
+      <Property Name="UseTransparentColor">False</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_Sync</Property>
+      <Property Name="TabIndex">18</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl19" Children="Controls" ControlName="GroupBoxControl19">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl9" Children="Controls" ControlName="EnvVar:envKTAiAnfangsAdresse">
+        <Property Name="Name">TextBoxControl9</Property>
+        <Property Name="Size">133, 41</Property>
+        <Property Name="Location">12, 106</Property>
+        <Property Name="AlarmUpperTextColor">Black</Property>
+        <Property Name="BoxForeColor">Black</Property>
+        <Property Name="AlarmLowerBkgColor">Blue</Property>
+        <Property Name="ValueDisplay">Hexadecimal</Property>
+        <Property Name="AlarmUpperBkgColor">Red</Property>
+        <Property Name="AlarmLowerTextColor">Black</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 8.25pt, style=Bold</Property>
+        <Property Name="DescriptionText">Extended Address (0x)</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="DescriptionSize">133, 21</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl;;;envKTExtendedAdresse;1;;;-1</Property>
+        <Property Name="TabIndex">41</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl4" Children="Controls" ControlName="Button 3">
+        <Property Name="Name">ButtonControl4</Property>
+        <Property Name="Size">120, 27</Property>
+        <Property Name="Location">178, 123</Property>
+        <Property Name="Font">Microsoft YaHei, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Send Ext Address</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTA_LocFun_ExtAdrSend;1;;;-1</Property>
+        <Property Name="TabIndex">39</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.PanelButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="PanelButtonControl2" Children="Controls" ControlName="Panel Control Button">
+        <Property Name="Name">PanelButtonControl2</Property>
+        <Property Name="Size">8, 8</Property>
+        <Property Name="Location">258, 205</Property>
+        <Property Name="PanelList">1;0</Property>
+        <Property Name="Text">Panel Control</Property>
+        <Property Name="TabIndex">19</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI1" ControlName="EnvVar:envKTA_Taskaufruf">
+        <Property Name="Name">SwitchControlBSI1</Property>
+        <Property Name="Size">80, 23</Property>
+        <Property Name="Location">179, 24</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="ImageFile">..\Bitmaps\zyklisch.png</Property>
+        <Property Name="SymbolConfiguration">1;1;;;;envKTA_Taskaufruf</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl1" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl1</Property>
+        <Property Name="Size">120, 25</Property>
+        <Property Name="Location">345, 76</Property>
+        <Property Name="DropDownWidth">120</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl;;;envKTAiPage;1;;;-1</Property>
+        <Property Name="TabIndex">17</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="EnvVar:envKTAiAnfangsAdresse">
+        <Property Name="Name">TextBoxControl1</Property>
+        <Property Name="Size">120, 41</Property>
+        <Property Name="Location">179, 55</Property>
+        <Property Name="AlarmUpperTextColor">Black</Property>
+        <Property Name="BoxForeColor">Black</Property>
+        <Property Name="AlarmLowerBkgColor">Blue</Property>
+        <Property Name="ValueDisplay">Hexadecimal</Property>
+        <Property Name="AlarmUpperBkgColor">Red</Property>
+        <Property Name="AlarmLowerTextColor">Black</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 8.25pt, style=Bold</Property>
+        <Property Name="DescriptionText">End Address (0x)</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="DescriptionSize">120, 21</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl;;;envKTAiEndAdresse;1;;;-1</Property>
+        <Property Name="TabIndex">15</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl14" Children="Controls" ControlName="EnvVar:envKTAiAnfangsAdresse">
+        <Property Name="Name">TextBoxControl14</Property>
+        <Property Name="Size">120, 41</Property>
+        <Property Name="Location">12, 55</Property>
+        <Property Name="AlarmUpperTextColor">Black</Property>
+        <Property Name="BoxForeColor">Black</Property>
+        <Property Name="AlarmLowerBkgColor">Blue</Property>
+        <Property Name="ValueDisplay">Hexadecimal</Property>
+        <Property Name="AlarmUpperBkgColor">Red</Property>
+        <Property Name="AlarmLowerTextColor">Black</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Top</Property>
+        <Property Name="TextFont">Microsoft YaHei, 8.25pt, style=Bold</Property>
+        <Property Name="DescriptionText">Start Address (0x)</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 8.25pt</Property>
+        <Property Name="DescriptionSize">120, 21</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl;;;envKTAiAnfangsAdresse;1;;;-1</Property>
+        <Property Name="TabIndex">14</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI7" ControlName="EnvVar:envKTAaSpeicherSchreiben">
+        <Property Name="Name">SwitchControlBSI7</Property>
+        <Property Name="Size">25, 25</Property>
+        <Property Name="Location">471, 22</Property>
+        <Property Name="StateCnt">4</Property>
+        <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+        <Property Name="ImageFile">..\Bitmaps\TriLED.bmp</Property>
+        <Property Name="SymbolConfiguration">1;1;;;;envKTAaSpeicherSchreiben</Property>
+        <Property Name="TabIndex">7</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl12" Children="Controls" ControlName="EnvVar:envKTAiDaten">
+        <Property Name="Name">HexEditorControl12</Property>
+        <Property Name="Size">548, 152</Property>
+        <Property Name="Location">10, 185</Property>
+        <Property Name="BackColor">White</Property>
+        <Property Name="Font">Consolas, 10.5pt</Property>
+        <Property Name="ForeColor">Black</Property>
+        <Property Name="ColumnCount">16</Property>
+        <Property Name="SymbolDataType">ByteArray</Property>
+        <Property Name="SymbolConfiguration">1;1;;;;envKTAiDaten</Property>
+        <Property Name="TabIndex">12</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl15" Children="Controls" ControlName="EnvVar:envKTA_SpeicherSchreiben">
+        <Property Name="Name">ButtonControl15</Property>
+        <Property Name="Size">120, 27</Property>
+        <Property Name="Location">345, 22</Property>
+        <Property Name="Font">Verdana, 11px, style=Bold</Property>
+        <Property Name="Text">Memory Write</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">1;1;;;;envKTA_SpeicherSchreiben</Property>
+        <Property Name="TabIndex">15</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" Children="Controls" ControlName="StaticTextControl9">
+        <Property Name="Name">StaticTextControl9</Property>
+        <Property Name="Size">34, 17</Property>
+        <Property Name="Location">345, 60</Property>
+        <Property Name="Font">Microsoft YaHei, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Page</Property>
+        <Property Name="ForeColor">Black</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl16" Children="Controls" ControlName="EnvVar:envKTA_SpeicherLesen">
+        <Property Name="Name">ButtonControl16</Property>
+        <Property Name="Size">120, 27</Property>
+        <Property Name="Location">12, 22</Property>
+        <Property Name="Font">Verdana, 11px, style=Bold</Property>
+        <Property Name="Text">Memory Read</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">1;1;;;;envKTA_SpeicherLesen</Property>
+        <Property Name="TabIndex">16</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI8" ControlName="EnvVar:envKTAaSpeicherLesen">
+        <Property Name="Name">SwitchControlBSI8</Property>
+        <Property Name="Size">25, 25</Property>
+        <Property Name="Location">138, 22</Property>
+        <Property Name="StateCnt">4</Property>
+        <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+        <Property Name="ImageFile">..\Bitmaps\TriLED.bmp</Property>
+        <Property Name="SymbolConfiguration">1;1;;;;envKTAaSpeicherLesen</Property>
+        <Property Name="TabIndex">8</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl19</Property>
+      <Property Name="Size">568, 343</Property>
+      <Property Name="Location">10, 211</Property>
+      <Property Name="Font">Verdana, 11px, style=Bold</Property>
+      <Property Name="Text">Memory Editor</Property>
+      <Property Name="ForeColor">Black</Property>
+      <Property Name="TabIndex">19</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI20" ControlName="EnvVar:envKTAaLogout">
+      <Property Name="Name">SwitchControlBSI20</Property>
+      <Property Name="Size">25, 25</Property>
+      <Property Name="Location">481, 149</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+      <Property Name="ImageFile">..\Bitmaps\TriLED.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTAaLogout</Property>
+      <Property Name="TabIndex">20</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl21" Children="Controls" ControlName="EnvVar:envKTA_Logout">
+      <Property Name="Name">ButtonControl21</Property>
+      <Property Name="Size">120, 27</Property>
+      <Property Name="Location">355, 147</Property>
+      <Property Name="Font">Microsoft YaHei, 8.25pt, style=Bold</Property>
+      <Property Name="Text">Logout</Property>
+      <Property Name="UseTransparentColor">False</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_Logout</Property>
+      <Property Name="TabIndex">21</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI22" ControlName="EnvVar:envKTAaModusWechsel">
+      <Property Name="Name">SwitchControlBSI22</Property>
+      <Property Name="Size">25, 25</Property>
+      <Property Name="Location">315, 182</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+      <Property Name="ImageFile">..\Bitmaps\TriLED.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTAaModusWechsel</Property>
+      <Property Name="TabIndex">22</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI23" ControlName="EnvVar:envKTAaLogin">
+      <Property Name="Name">SwitchControlBSI23</Property>
+      <Property Name="Size">25, 25</Property>
+      <Property Name="Location">148, 147</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+      <Property Name="ImageFile">..\Bitmaps\TriLED.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTAaLogin</Property>
+      <Property Name="TabIndex">23</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl24" Children="Controls" ControlName="EnvVar:envKTA_ModusWechsel">
+      <Property Name="Name">ButtonControl24</Property>
+      <Property Name="Size">120, 27</Property>
+      <Property Name="Location">22, 180</Property>
+      <Property Name="Font">Microsoft YaHei, 8.25pt, style=Bold</Property>
+      <Property Name="Text">Mode-Change</Property>
+      <Property Name="UseTransparentColor">False</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_ModusWechsel</Property>
+      <Property Name="TabIndex">24</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl25" Children="Controls" ControlName="StaticTextControl25">
+      <Property Name="Name">StaticTextControl25</Property>
+      <Property Name="Size">552, 14</Property>
+      <Property Name="Location">16, 100</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Verdana, 11px</Property>
+      <Property Name="Text">KOSTIA Message</Property>
+      <Property Name="ForeColor">Black</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl26" Children="Controls" ControlName="EnvVar:envKT2A_FehlerText">
+      <Property Name="Name">TextBoxControl26</Property>
+      <Property Name="Size">552, 14</Property>
+      <Property Name="Location">16, 115</Property>
+      <Property Name="AlarmUpperTextColor">Black</Property>
+      <Property Name="BoxForeColor">White</Property>
+      <Property Name="AlarmLowerBkgColor">Blue</Property>
+      <Property Name="ValueDisplay">Decimal</Property>
+      <Property Name="AlarmUpperBkgColor">Red</Property>
+      <Property Name="AlarmLowerTextColor">Black</Property>
+      <Property Name="BoxFont">Verdana, 11px, style=Bold</Property>
+      <Property Name="AlarmUpperFont">Verdana, 11px, style=Bold</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKT2A_FehlerText:</Property>
+      <Property Name="AlarmLowerFont">Verdana, 11px, style=Bold</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="BoxBackColor">Teal</Property>
+      <Property Name="DescriptionSize">122, 15</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKT2A_FehlerText</Property>
+      <Property Name="TabIndex">26</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl27" Children="Controls" ControlName="EnvVar:envKTA_Login">
+      <Property Name="Name">ButtonControl27</Property>
+      <Property Name="Size">120, 27</Property>
+      <Property Name="Location">22, 145</Property>
+      <Property Name="Font">Microsoft YaHei, 8.25pt, style=Bold</Property>
+      <Property Name="Text">Login</Property>
+      <Property Name="UseTransparentColor">False</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_Login</Property>
+      <Property Name="TabIndex">27</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl29" Children="Controls" ControlName="EnvVar:envKTAiSollModus">
+      <Property Name="Name">ComboBoxControl29</Property>
+      <Property Name="Size">120, 25</Property>
+      <Property Name="Location">188, 180</Property>
+      <Property Name="DropDownWidth">165</Property>
+      <Property Name="BackColor">Window</Property>
+      <Property Name="ForeColor">WindowText</Property>
+      <Property Name="MaxDropDownItems">4</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTAiSollModus</Property>
+      <Property Name="TabIndex">29</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl30" Children="Controls" ControlName="EnvVar:envKTAiPage">
+      <Property Name="Name">ComboBoxControl30</Property>
+      <Property Name="Size">169, 20</Property>
+      <Property Name="Location">315, 285</Property>
+      <Property Name="DropDownWidth">169</Property>
+      <Property Name="BackColor">Window</Property>
+      <Property Name="ForeColor">WindowText</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTAiPage</Property>
+      <Property Name="TabIndex">30</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl31" Children="Controls" ControlName="GroupBoxControl31">
+      <Object Type="Vector.CANalyzer.Panels.Design.PanelButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="PanelButtonControl0" Children="Controls" ControlName="PanelButtonControl0">
+        <Property Name="Name">PanelButtonControl0</Property>
+        <Property Name="Size">138, 30</Property>
+        <Property Name="Location">12, 21</Property>
+        <Property Name="ClosePanels">False</Property>
+        <Property Name="PanelList">1;1;IFM.xvp</Property>
+        <Property Name="Font">Verdana, 11px, style=Bold</Property>
+        <Property Name="Text">Fault Manager</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl31</Property>
+      <Property Name="Size">163, 57</Property>
+      <Property Name="Location">10, 561</Property>
+      <Property Name="Font">Microsoft YaHei, 8.25pt, style=Bold</Property>
+      <Property Name="Text">Fault Manager</Property>
+      <Property Name="ForeColor">Black</Property>
+      <Property Name="TabIndex">31</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.PictureBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="PictureBoxControl28" ControlName="PictureBoxControl28">
+      <Property Name="Name">PictureBoxControl28</Property>
+      <Property Name="Size">552, 22</Property>
+      <Property Name="Location">16, 80</Property>
+      <Property Name="ImageFile">..\Bitmaps\Greenline_long.bmp</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" ControlName="GroupBoxControl2">
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">568, 135</Property>
+      <Property Name="Location">10, 5</Property>
+      <Property Name="Font">Verdana, 11px, style=Bold</Property>
+      <Property Name="Text">Display</Property>
+      <Property Name="ForeColor">Black</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">613, 740</Property>
+    <Property Name="Panel">Panel</Property>
+  </Object>
+</Panel>

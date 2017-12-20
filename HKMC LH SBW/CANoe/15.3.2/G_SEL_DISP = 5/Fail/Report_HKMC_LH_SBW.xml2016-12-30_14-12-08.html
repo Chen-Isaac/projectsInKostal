@@ -1,0 +1,1651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>HKMC_LH_SBW</title>
+    <style type="text/css">
+      
+       
+      
+      @media screen
+      {
+        body
+        {
+          background-color: rgb(255, 255, 255);
+          font-family:      arial, verdana, trebuchet, officina, sans-serif;
+        }
+      }
+  
+      
+      @media print
+      {
+        
+        body
+        {
+          background-color: rgb(255, 255, 255);
+          font-family:      arial, verdana, trebuchet, officina, sans-serif;
+        }
+        
+        
+        a
+        {
+          text-decoration: none;
+        }
+        
+        
+        .HeadingTable, .SubHeadingTable, .GroupHeadingTable , .GroupEndTable
+        {
+          border-width: 2px;
+          border-style: solid;
+          border-color: rgb(150,150,150);
+        }
+        
+        .ResultBlockHeading
+        {
+          border-width: 1px;
+          border-style: solid;
+          border-color: rgb(150,150,150);
+        }
+        
+        table.ResultTable, table.OverviewTable, table.CheckStatisticsTable
+        {
+          border-collapse: collapse;
+        }
+        
+        td.DefaultCell, td.DefineCell, td.NumberCell, td.NumberCellPositiveResult, td.NumberCellNegativeResult, 
+        td.NumberCellErrorResult, td.NumberCellInconclusiveResult, td.NumberCellNoneResult, td.NumberCellNoColor,
+        td.PositiveResultCell, td.NegativeResultCell, td.WarningCell, td.NoneResultCell, td.InconclusiveResultCell,
+        td.ErrorResultCell, th.TableHeadingCell
+        {
+          border-width: 1px;
+          border-style: solid;
+          border-color: rgb(150,150,150);
+        }
+        
+        .PatternSeparator
+        {
+          
+          border-style: none;
+        }
+        
+        .PositiveResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .NegativeResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .NoneResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .InconclusiveResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .ErrorResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+
+        
+        .TestcaseHeadingDefaultResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .TestcaseHeadingPositiveResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .TestcaseHeadingNegativeResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        table.ScreenOnly, a.Undecorated, .LinkCell
+        {
+          display: none;
+        }
+      }
+      
+      a.Undecorated:hover 
+      {
+        color:red;
+      }
+      a.Undecorated
+      { 
+        text-decoration: none; 
+      }
+      
+      .NavStyle
+      {
+        background-color: rgb(220, 221, 222);
+      }
+      
+      td.LinkCell, td.UpCell
+      {
+        
+        width:              1px;
+        white-space:        nowrap;
+      }
+
+      
+      table
+      {
+        margin-bottom:    10px;
+        vertical-align:   top; 
+        border:           0;
+        border-spacing:   1px;
+        padding:          2px;
+      }
+      table.ScreenOnly
+      {
+        vertical-align: top; 
+        margin-bottom:  10px;
+      }
+      .NoMarginBottom
+      {
+        margin-bottom:    0px;
+      }
+      .HeadingTable
+      {
+        width:            100%;
+        text-align:       center;
+        margin-top:       15px;
+        margin-bottom:    30px;
+        margin-left:      auto;
+        margin-right:     auto;
+        background-color: rgb(220, 221, 222);
+      }
+      
+      .SubHeadingTable
+      {
+        width:            100%;
+        text-align:       center;
+        margin-top:       15px;
+        margin-bottom:    25px;
+        background-color: rgb(220, 221, 222);
+      }
+      
+      .GroupHeadingTable, .GroupEndTable
+      {
+        width:            100%;
+        text-align:       center;
+        margin-top:       15px;
+        padding-right:    20px;
+        background-color: rgb(220, 221, 222);
+      }
+      
+      .DefaultTable
+      {
+        padding:        0px;
+        border-spacing: 0px;
+      }
+      
+      .CheckStatisticsTable
+      {
+        margin-bottom: 8px;
+        padding-right:  20px;
+      }
+  
+      .OverviewTable
+      {
+        text-align:     left;
+      }
+      
+      .OverviewResultTable
+      {
+        width:          100%;
+        margin-bottom:  0px;
+        border-spacing: 0px;
+        padding:        0px;
+        text-align:     center;
+      }
+      
+      .ResultTable
+      {
+        width:          100%;
+        text-align:     left;
+        padding-right:  20px;
+      }
+      
+      .ResultTableInner
+      {
+        width:          100%;
+        text-align:     left;
+        padding-right:  0px;
+      }
+  
+      table.ResultTable td, table.ChildLinkTable td
+      {
+        vertical-align: top;
+      }
+      .ChildLinkTable
+      {
+        width:          1px;
+        text-align:     left;
+      }
+      .InfoTable
+      {
+        text-align:     left;
+        padding-right:  0px;
+        margin-bottom:  0px;
+        border-spacing: 0px;
+      }
+      .InfoTableExpand
+      {
+        width:          100%;
+        text-align:     left;
+        padding-right:  0px;
+        margin-bottom:  0px;
+        border-spacing: 0px;
+      }
+      .OverallResultTable
+      {
+        width:         50%;
+        text-align:    center;
+        margin-bottom: 20px;
+        margin-left:   auto;
+        margin-right:  auto;
+        font-weight:   bold;
+      }
+      
+      .TableHeadingCell
+      {
+        background-color: rgb(179, 179, 179);
+        font-family:      arial, verdana, trebuchet, officina, sans-serif;
+        font-weight:      bold;
+        text-align:       center;
+      }
+  
+      .CellNoColor
+      {
+        text-align:     left;
+        vertical-align: top;
+      }   
+      
+      .DefineCell
+      {
+        background-color: rgb(179, 179, 179);
+        text-align:       left;
+      }
+      
+      .DefaultCell, .DefaultCellBold
+      {
+        background-color: rgb(229, 229, 229);
+        text-align:       left;
+      }
+      
+      .DefaultCellBold
+      {
+        font-weight:      bold;
+      }
+        
+      .NumberCell
+      {
+        background-color: rgb(229, 229, 229);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellNegativeResult
+      {
+        background-color: rgb(240, 0, 0);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellPositiveResult
+      {
+        background-color: rgb(25, 165, 88);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellNoneResult
+      {
+        background-color: rgb(105, 105, 105);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellInconclusiveResult
+      {
+        background-color: rgb(255, 165, 0);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellErrorResult
+      {
+        background-color: rgb(205, 0, 0);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellNoColor
+      {        
+        text-align: center;
+      }
+      
+      .PositiveResultCell
+      {
+        background-color: rgb(25, 165, 88);
+      }
+    
+      .NegativeResultCell
+      {
+        background-color: rgb(240, 0, 0);
+      }
+      
+      .NoneResultCell
+      {
+        background-color: rgb(105, 105, 105);
+      }
+      
+      .InconclusiveResultCell
+      {
+        background-color: rgb(255, 165, 0);
+      }
+      
+      .ErrorResultCell
+      {
+        background-color: rgb(205, 0, 0);
+        white-space:        nowrap;
+      }
+
+      .WarningCell
+      {
+        background-color: rgb(255, 255, 0);
+      }
+
+      .TestcaseHeadingDefaultResult
+      {
+        background-color: rgb(179, 179, 179);
+      }
+      .TestcaseHeadingPositiveResult
+      {
+        background-color: rgb(25, 165, 88);
+      }      
+      .TestcaseHeadingNegativeResult
+      {
+        background-color: rgb(240, 0, 0);
+      }      
+      .TestcaseHeadingNoneResult
+      {
+        background-color: rgb(105, 105, 105);
+      }
+      .TestcaseHeadingInconclusiveResult
+      {
+        background-color: rgb(255, 165, 0);
+      }
+      .TestcaseHeadingErrorResult
+      {
+        background-color: rgb(205, 0, 0);
+      }
+      
+      .PatternSeparator
+      {
+        height: 0.2em;
+      }
+      
+      .NegativeResult
+      {
+        background-color: rgb(240, 0, 0);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      .PositiveResult
+      {
+        background-color: rgb(25, 165, 88);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      .NoneResult
+      {
+        background-color: rgb(105, 105, 105);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      .InconclusiveResult
+      {
+        background-color: rgb(255, 165, 0);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      .ErrorResult
+      {
+        background-color: rgb(205, 0, 0);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      
+      
+      
+      .Heading1
+      {
+        font-family: arial, sans-serif;
+        font-weight: bold;
+        font-size:   26px;
+      }
+      
+      .Heading2
+      {
+        font-family: arial, sans-serif;
+        font-weight: bold;
+        font-size:   20px;
+      }
+      
+      .Heading3
+      {
+        font-family:   arial, sans-serif;
+        font-weight:   bold;
+        font-size:     18px;
+        margin-bottom: 20px;
+        margin-top:    20px;
+      }
+      
+      .Heading4
+      {
+        font-family:   arial, sans-serif;
+        font-weight:   bold;
+        font-size:     16px;
+        margin-top:    10px;
+        margin-bottom: 10px;
+      }
+      
+      
+      img
+      {
+        Margin-bottom: 10px;
+        Margin-right:  10px;
+      }
+      
+      
+      p
+      {
+        Margin-bottom: 20px;
+      }
+      
+      
+      .DefaultTableBackground
+      {
+        background-color: rgb(229, 229, 229);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .NegativeResultBackground
+      {
+        background-color: rgb(240, 0, 0);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .PositiveResultBackground
+      {
+        background-color: rgb(25, 165, 88);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .WarningResultBackground
+      {
+        background-color: rgb(255, 255, 0);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .NoneResultBackground
+      {
+        background-color: rgb(105, 105, 105);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .InconclusiveResultBackground
+      {
+        background-color: rgb(255, 165, 0);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .ErrorResultBackground
+      {
+        background-color: rgb(205, 0, 0);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .TestGroupHeadingBackground
+      {
+        background-color: rgb(179, 179, 179);
+      }
+    
+      
+      .Indentation
+      {
+        margin-left:  20px;
+      }
+    </style>
+    <script type="text/javascript">
+      var EXPANDED = '[−]';
+      var COLLAPSED = '[+]';
+      var VISIBLE = 'Visible';
+      var HIDDEN = 'Hidden';
+      var NONE = 'none';
+      var BLOCK = '';
+      function getDivId(id) { return 'div_' + id; }
+      function getLinkId(id) { return 'lnk_' + id; }
+      function getTableId(id) { return 'tbl_' + id; }
+      function getTbl2Id(id) { return 'tbl_t' + id; }
+      
+      
+      function switchText(oldText) { return oldText == COLLAPSED ? EXPANDED : COLLAPSED ; }
+      function getStyleFromText(linkText) { return linkText == COLLAPSED ? HIDDEN : VISIBLE; }
+      
+      function getElements(tagName, elementId)
+      {
+        this.elements = [];
+        var index = 0;
+        var elm = document.getElementsByTagName(tagName);
+        var len = elm.length;
+        for (var i = 0; i < len; i++) 
+        {
+          var id = elm[i].id;
+          if (id && id.indexOf(elementId) == 0)
+          {
+            this.elements[index] = elm[i];
+            index++;
+          }
+        }
+        return this.elements;
+      }
+      function matchElements(tagName, matchId)
+      {
+        this.elements = [];
+        var index = 0;
+        var elm = document.getElementsByTagName(tagName);
+        for (var i = 0; i < elm.length; i++) 
+        {
+          var id = elm[i].id;
+          var tc = id.replace(/s[0-9]+\./, "");
+          if (tc && tc == matchId)
+          {
+            this.elements[index] = elm[i];
+            index++;
+          }
+        }
+        return this.elements;  
+      }
+      function onoff(elm, style)
+      {
+        if(elm.style.display == NONE)
+        {
+          if(style == null || style == VISIBLE)
+            elm.style.display = BLOCK;
+        }
+        else
+        {
+          if(style == null || style == HIDDEN)
+            elm.style.display = NONE;
+        }
+      }
+      function switchTagStyle(tag, id, style)
+      {
+        var divs = getElements(tag, id);
+        for(var i = 0; i < divs.length; i++)
+          onoff(divs[i], style);
+      }
+      function switchRowStyle(tbl, style)
+      {
+        var rows = tbl.rows.length;
+        for(var rowIndex=0; rowIndex < rows; rowIndex++)
+        {
+          var row = tbl.rows[rowIndex];
+          if (row.id != "on")
+            onoff(row, style);
+        }
+      }
+      function switchTableRowStyle(tableId, style)
+      {
+        var tables = getElements('table', tableId);
+        for(var i = 0; i < tables.length; i++)
+          switchRowStyle(tables[i], style);
+      }
+      function switchLinkText(linkId, newText)
+      {
+        var link = getElements('a', linkId);
+        var len = link.length;
+        for(var i = 0; i < len; i++)
+        {
+          var lnk = link[i];
+          if(newText == null)
+          {
+            var oldText = lnk.text;
+            newText = switchText(oldText)
+          }
+          lnk.text = newText;
+        }
+      }
+      function switchTag(tag, id, text)
+      {
+        var style = getStyleFromText(text);
+        switchTagStyle(tag, id, style);
+      }
+      function switchTable(id)
+      {
+        switchLinkText(getTableId(id));
+        switchTableRowStyle(getTableId(id));
+      }
+      function switchDiv(id, linkText)
+      {
+        var text = switchText(linkText);
+        switchLinkText(getLinkId(id), text);
+        switchTag('div', getDivId(id), text);
+      }      
+      function switchAll(id, linkText)
+      {
+        var text = switchText(linkText);
+        switchLinkText(getLinkId(id), text);
+        switchTag('div', getDivId(id), text);
+        var style = getStyleFromText(text);
+        switchTableRowStyle(getTbl2Id(id), style);
+      }
+      function showTable(id)
+      {
+        var tableId = getTableId(id);
+        switchLinkText(tableId, EXPANDED);
+        switchTableRowStyle(tableId, VISIBLE);
+      }
+      function hideTable(id)
+      {
+        var tableId = getTableId(id);
+        switchTableRowStyle(tableId, HIDDEN);
+        switchLinkText(tableId, COLLAPSED);
+      }
+      function showDiv(id)
+      {
+        switchLinkText(getLinkId(id), EXPANDED);
+        switchTag('div', getDivId(id), EXPANDED);
+      }
+      function showTC(id)
+      {
+        var divId = getDivId(id);
+        var elms = matchElements('div', divId); 
+        if(elms != null && elms.length > 0)
+        {
+          id = elms[0].id.replace(getDivId(''), '');
+          showDiv(id);
+        }
+      }
+      
+    </script>
+  </head>
+  <body>
+    <a name="TOP"></a>
+    <table class="HeadingTable">
+      <tr>
+        <td>
+          <big class="Heading1">Report: HKMC_LH_SBW</big>
+        </td>
+      </tr>
+    </table>
+    <center>
+      <table class="OverallResultTable">
+        <tr>
+          <td class="NegativeResult">Test failed</td>
+        </tr>
+      </table>
+    </center>
+    <a name="GeneralTestInfo"></a>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <div class="Heading2">General Test Information</div>
+        </td>
+      </tr>
+    </table>
+    <div class="Indentation">
+      <div class="Heading4">Tester</div>
+      <div class="Indentation">
+        <table>
+          <tr>
+            <td class="CellNoColor">Windows Login Name: </td>
+            <td class="CellNoColor">chen106</td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading4">Test Setup</div>
+      <div class="Indentation">
+        <table>
+          <tr>
+            <td class="CellNoColor">Version: </td>
+            <td class="CellNoColor">CANoe.LIN 8.5.112 (SP6)</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Configuration: </td>
+            <td class="CellNoColor">C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\HKMC_LH_SBW.cfg</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Configuration Comment: </td>
+            <td class="CellNoColor"></td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Test Configuration: </td>
+            <td class="CellNoColor">HKMC_LH_SBW</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Windows Computer Name: </td>
+            <td class="CellNoColor">CN150449</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module CANoeILNLVector: </td>
+            <td class="CellNoColor">CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANoeILNLVector.dll</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module CANOEILNLDEFAULT: </td>
+            <td class="CellNoColor">CANoe Interaction Layer NL (Default) Version 3.16.30 (Mar 17 2016 15:53:01) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLDEFAULT.DLL</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module CANstress_NL: </td>
+            <td class="CellNoColor">CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module FRStressNL: </td>
+            <td class="CellNoColor">FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module J1939TestServiceLibraryNL: </td>
+            <td class="CellNoColor">J1939 Test Service Library for CANoe, Version 8.5.112, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading4">Hardware</div>
+      <div class="Indentation">
+        <div class="Heading4">CAN Channel Interfaces</div>
+        <div class="Indentation">
+          <table>
+            <tr>
+              <th class="TableHeadingCell">Channel</th>
+              <th class="TableHeadingCell">Device</th>
+              <th class="TableHeadingCell">Serial number</th>
+              <th class="TableHeadingCell">Driver DLL version</th>
+              <th class="TableHeadingCell">Driver version</th>
+            </tr>
+            <tr>
+              <td class="NumberCell">1</td>
+              <td class="NumberCell">VN1630</td>
+              <td class="NumberCell">501043</td>
+              <td class="NumberCell">9.2.22</td>
+              <td class="NumberCell">8.9.22</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="Indentation">
+        <div class="Heading4">VT-System</div>
+        <div class="Indentation">
+          <table>
+            <tr>
+              <th class="TableHeadingCell">Device</th>
+              <th class="TableHeadingCell">Serial number</th>
+              <th class="TableHeadingCell">Firmware version</th>
+              <th class="TableHeadingCell">Hardware version</th>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT8012</td>
+              <td class="NumberCell">1031</td>
+              <td class="NumberCell">0.0.0</td>
+              <td class="NumberCell">0x10</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT1004A</td>
+              <td class="NumberCell">452</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT1004A</td>
+              <td class="NumberCell">450</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT1004A</td>
+              <td class="NumberCell">448</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT1004A</td>
+              <td class="NumberCell">449</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2004A</td>
+              <td class="NumberCell">331</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2004A</td>
+              <td class="NumberCell">348</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2004A</td>
+              <td class="NumberCell">329</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2004A</td>
+              <td class="NumberCell">339</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2516A</td>
+              <td class="NumberCell">174</td>
+              <td class="NumberCell">2.1.2</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2516A</td>
+              <td class="NumberCell">234</td>
+              <td class="NumberCell">2.1.2</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2516A</td>
+              <td class="NumberCell">210</td>
+              <td class="NumberCell">2.1.2</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT7001A</td>
+              <td class="NumberCell">267</td>
+              <td class="NumberCell">2.0.5</td>
+              <td class="NumberCell">0x10</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <a name="TestOverview"></a>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <div class="Heading2">Test Overview</div>
+        </td>
+      </tr>
+    </table>
+    <div class="Indentation">
+      <table class="DefaultTable">
+        <tr>
+          <td style="padding-right: 0.5em;" class="CellNoColor">Test begin: </td>
+          <td style="padding-right: 0.5em;" class="CellNoColor">2016-12-30 14:11:57</td>
+          <td class="CellNoColor">(logging timestamp  970.404570)</td>
+        </tr>
+        <tr>
+          <td style="padding-right: 0.5em;" class="CellNoColor">Test end: </td>
+          <td style="padding-right: 0.5em;" class="CellNoColor">2016-12-30 14:12:08</td>
+          <td class="CellNoColor" nowrap>(logging timestamp  982.328580)</td>
+        </tr>
+      </table>
+      <div class="Heading4">Statistics</div>
+      <div class="Indentation">
+        <table class="OverviewTable">
+          <tr>
+            <td class="DefineCell">Executed test cases </td>
+            <td class="NumberCell" width="60">1</td>
+            <td class="DefaultCell"></td>
+          </tr>
+          <tr>
+            <td class="DefineCell">Test cases passed </td>
+            <td class="NumberCell">0</td>
+            <td class="NumberCell">0% of executed test cases</td>
+          </tr>
+          <tr>
+            <td class="DefineCell">Test cases inconclusive</td>
+            <td class="NumberCell">0</td>
+            <td class="NumberCell">0% of executed test cases</td>
+          </tr>
+          <tr>
+            <td class="DefineCell">Test cases failed </td>
+            <td class="NumberCellNegativeResult">1</td>
+            <td class="NumberCellNegativeResult">100% of executed test cases</td>
+          </tr>
+          <tr>
+            <td class="DefineCell">Test cases with error in test system </td>
+            <td class="NumberCell">0</td>
+            <td class="NumberCell">0% of executed test cases</td>
+          </tr>
+          <tr>
+            <td class="DefineCell">Number of failures outside of test cases</td>
+            <td class="NumberCell"></td>
+            <td class="NumberCell"></td>
+          </tr>
+          <tr>
+            <td class="DefineCell" style="text-indent: 20px;">Inconclusive</td>
+            <td class="NumberCell">0</td>
+            <td class="NumberCell"></td>
+          </tr>
+          <tr>
+            <td class="DefineCell" style="text-indent: 20px;">Fail</td>
+            <td class="NumberCell">0</td>
+            <td class="NumberCell"></td>
+          </tr>
+          <tr>
+            <td class="DefineCell" style="text-indent: 20px;">Error in test system</td>
+            <td class="NumberCell">0</td>
+            <td class="NumberCell"></td>
+          </tr>
+          <tr>
+            <td class="DefineCell">Not executed test cases </td>
+            <td class="DefaultCell"></td>
+            <td class="DefaultCell"></td>
+          </tr>
+          <tr class="DefaultCell" style="text-indent: 20px;">
+            <td colspan="3">Some elements were not executed because they were deactivated by the tester.</td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading4">Test Results</div>
+      <div class="Indentation">
+        <table class="OverviewTable">
+          <tr>
+            <td class="DefineCell">1</td>
+            <td class="DefineCell">
+              <b>
+                <a href="#i__40629896_8">HKMC LH SBW</a>
+              </b>
+            </td>
+            <td class="NegativeResultCell">fail</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>11.6 Brake Input Handling</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>12.5.2 Sending Gear Position Pattern Sequence</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>12.7.1.1 Door Open Auto P Mode</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>12.7.1.2 Driver Seat Belt OFF Auto P</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>12.7.1.3 Auto N Mode</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>13 Illumination Control</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>15.3.1 PRA Logic: IG ON Mode</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell">
+              <b>1.1</b>
+            </td>
+            <td class="DefineCell">
+              <a href="#i__40629896_989">
+                <b>15.3.2 PRA Logic: IG OFF Mode</b>
+              </a>
+            </td>
+            <td style="padding:0px;" class="DefineCell" colspan="2"></td>
+          </tr>
+          <tr>
+            <td class="DefineCell">
+              <b>1.1.1</b>
+            </td>
+            <td class="DefineCell">
+              <a href="#i__40629896_138">
+                <b>testPRAUnderIGOffMode</b>
+              </a>
+            </td>
+            <td style="padding:0px;" class="DefineCell">
+              <table class="OverviewResultTable">
+                <tr>
+                  <td class="NegativeResultCell" width="100%">1</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefaultCell">testPRAUnderIGOffMode (G_SEL_DISP_value_of_notN=0)</td>
+            <td class="DefaultCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell">1.1.1.1</td>
+            <td class="DefaultCell">
+              <a href="#i__40629896_154">testPRAUnderIGOffMode (G_SEL_DISP_value_of_notN=5)</a>
+            </td>
+            <td class="NegativeResultCell">
+              <a href="#i__40629896_758" onclick="showTC('1.1.1.1')">fail</a>
+            </td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefaultCell">testPRAUnderIGOffMode (G_SEL_DISP_value_of_notN=7)</td>
+            <td class="DefaultCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefaultCell">testPRAUnderIGOffMode (G_SEL_DISP_value_of_notN=8)</td>
+            <td class="DefaultCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>15.3.3 Gear N IG OFF Mode</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>15.3.4 N Park Mode</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>15.3.5 Manual Release Function</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>15.3.7 Limp-Home function</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"></td>
+            <td class="DefineCell"><b>confirm PRA position</b></td>
+            <td class="DefineCell">not executed</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <a name="TestModuleInfo"></a>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <div class="Heading2">Test Configuration Information</div>
+        </td>
+      </tr>
+    </table>
+    <a name="i__40629896_1"></a>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <big class="Heading2">Test Case Details</big>
+        </td>
+      </tr>
+    </table>
+    <table class="GroupHeadingTable">
+      <tr height="20px"></tr>
+      <tr>
+        <td class="LinkCell">
+          <a class="Undecorated" id="lnk_1" href="javascript:switchAll('1',document.all['lnk_1'].text)">[−]</a>
+        </td>
+        <td>
+          <big class="Heading3">
+            <a name="i__40629896_8">1 Test Unit: HKMC LH SBW</a>
+          </big>
+        </td>
+      </tr>
+      <tr height="20px"></tr>
+    </table>
+    <div id="div_1">
+      <div class="Heading4">General Information</div>
+      <div class="Indentation">
+        <table>
+          <tr>
+            <td class="CellNoColor">Name: </td>
+            <td class="CellNoColor">HKMC LH SBW</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Description: </td>
+            <td class="CellNoColor"></td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Version: </td>
+            <td class="CellNoColor"></td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">File: </td>
+            <td class="CellNoColor">C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\HKMC LH SBW\HKMC LH SBW.vtuexe</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Last modification: </td>
+            <td class="CellNoColor">2016-12-30, 13:54:01</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <table class="GroupHeadingTable">
+      <tr>
+        <td class="LinkCell" rowspan="1">
+          <a class="Undecorated" id="lnk_1.1" href="javascript:switchAll('1.1',document.all['lnk_1.1'].text)">[−]</a>
+        </td>
+        <td rowspan="2">
+          <big class="Heading3">1.1<a name="i__40629896_989"> Test Fixture: 15.3.2 PRA Logic: IG OFF Mode</a>
+          </big>
+        </td>
+      </tr>
+    </table>
+    <div id="div_1.1"></div>
+    <div id="div_1.1"></div>
+    <a name="i__40629896_138"></a>
+    <table class="GroupHeadingTable">
+      <tr>
+        <td class="LinkCell" rowspan="2">
+          <a class="Undecorated" id="lnk_1.1.1" href="javascript:switchAll('1.1.1',document.all['lnk_1.1.1'].text)">[−]</a>
+        </td>
+        <td rowspan="2">
+          <big class="Heading3">1.1.1<a name="i__40629896_983"> Test Case List: testPRAUnderIGOffMode</a>
+          </big>
+        </td>
+        <td width="1px;" nowrap>Test Case Verdicts</td>
+      </tr>
+      <tr>
+        <td style="padding:0px;" width="1px">
+          <table class="OverviewResultTable">
+            <tr>
+              <td class="NegativeResultCell" width="100%">1</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <div class="Indentation"></div>
+    <table>
+      <tr>
+        <td class="LinkCell">
+          <a class="Undecorated" id="lnk_1.1.1.1" href="javascript:switchAll('1.1.1.1',document.all['lnk_1.1.1.1'].text)">[−]</a>
+        </td>
+        <td class="TestcaseHeadingNegativeResult">
+          <big class="Heading3">1.1.1.1 <a name="i__40629896_154">testPRAUnderIGOffMode (G_SEL_DISP_value_of_notN=5)</a>: Failed</big>
+        </td>
+      </tr>
+    </table>
+    <div class="Indentation" id="div_1.1.1.1">
+      <div class="Indentation">
+        <table class="DefaultTable">
+          <tr>
+            <td style="padding-right: 0.5em;" class="CellNoColor">Test case begin: </td>
+            <td style="padding-right: 0.5em;" class="CellNoColor">2016-12-30 14:11:57</td>
+            <td class="CellNoColor">(logging timestamp  970.404570)</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 0.5em;" class="CellNoColor">Test case end: </td>
+            <td style="padding-right: 0.5em;" class="CellNoColor">2016-12-30 14:12:08</td>
+            <td class="CellNoColor" nowrap>(logging timestamp  982.328580)</td>
+          </tr>
+        </table>
+      </div>
+      <div class="Indentation">
+        <table class="ScreenOnly">
+          <tbody>
+            <tr>
+              <td>
+                <a class="Undecorated" href="javascript:showTable('1.1.1.1_')">[expand test steps]</a>
+              </td>
+              <td width="2px"></td>
+              <td>
+                <a class="Undecorated" href="javascript:hideTable('1.1.1.1_')">[collapse test steps]</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="div_1.1.1.1">
+        <table class="TestGroupHeadingBackground">
+          <tr>
+            <td>
+              <big class="Heading3">Preparation of Test Case</big>
+            </td>
+          </tr>
+        </table>
+        <div class="Indentation">
+          <table class="ResultTable">
+            <tr>
+              <th class="TableHeadingCell" width="1px">Timestamp</th>
+              <th class="TableHeadingCell" width="1px">Test Step</th>
+              <th class="TableHeadingCell" width="auto">Description</th>
+              <th class="TableHeadingCell" width="1px">Result</th>
+            </tr>
+            <tr>
+              <td class="PatternSeparator" colspan="4"></td>
+            </tr>
+            <tr class="PositiveResultBackground">
+              <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+                <big class="Heading4">1. Prepare the graph to see CF_Lvr_PNStat,CF_Lvr_PRelStat,CF_Tcu_PRelReq,G_SEL_DISP easily: Passed</big>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-indent: 20px;" class="DefineCell"> 970.404570</td>
+              <td class="NumberCell"></td>
+              <td class="DefaultCell">Execute testValidateTesterConfirmation("Prepare the graph to see CF_Lvr_PNStat,CF_Lvr_PRelStat,CF_Tcu_PRelReq,G_SEL_DISP easily", "Prepare the graph to see CF_Lvr_PNStat,CF_Lvr_PRelStat,CF_Tcu_PRelReq,G_SEL_DISP easily", 1)</td>
+              <td class="DefaultCell">-</td>
+            </tr>
+            <tr>
+              <td style="text-indent: 20px;" class="DefineCell"> 971.578580</td>
+              <td class="NumberCell"></td>
+              <td class="DefaultCell">Question/Text: Prepare the graph to see CF_Lvr_PNStat,CF_Lvr_PRelStat,CF_Tcu_PRelReq,G_SEL_DISP easily<br>Tester confirmed with 'Yes'.</td>
+              <td class="PositiveResultCell">pass</td>
+            </tr>
+            <tr>
+              <td class="DefineCell"> 972.078580</td>
+              <td class="NumberCell">PRAPosStatus</td>
+              <td class="DefaultCell">to P position:receives CF_Tcu_PrelReq = 0x0 (1-&gt;0 edge) from TCU.</td>
+              <td class="DefaultCell">-</td>
+            </tr>
+            <tr>
+              <td class="PatternSeparator" colspan="4"></td>
+            </tr>
+            <tr class="PositiveResultBackground">
+              <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+                <big class="Heading4">2. check if SBW operate PRA to P position at initial: Passed</big>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-indent: 20px;" class="DefineCell"> 972.078580</td>
+              <td class="NumberCell">1</td>
+              <td class="DefaultCell">Waited for occurrence of 2 value condition(s).</td>
+              <td class="PositiveResultCell">pass</td>
+            </tr>
+            <tr>
+              <td style="text-indent: 20px;" class="DefineCell"> 972.078580</td>
+              <td class="NumberCell"></td>
+              <td class="DefaultCell">
+                <table class="NoMarginBottom">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a class="Undecorated" id="tbl_1.1.1.1_i__40629896_244" href="javascript:switchTable('1.1.1.1_i__40629896_244')">[−]</a>
+                      </td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="InfoTableExpand" id="tbl_1.1.1.1_i__40629896_244">
+                  <tr>
+                    <td class="DefineCell" style="text-indent: 0px;">Symbol</td>
+                    <td class="DefineCell">Op.</td>
+                    <td class="DefineCell">Reference Value</td>
+                    <td class="DefineCell">Actual</td>
+                    <td class="DefineCell" width="1px">Result</td>
+                  </tr>
+                  <tr>
+                    <td class="DefaultCell" style="text-indent: 0px;">CAN signal 'CF_Lvr_PNStat'</td>
+                    <td class="DefaultCell">==</td>
+                    <td class="DefaultCell">1 (Park Status)</td>
+                    <td class="DefaultCell">1</td>
+                    <td class="PositiveResultCell">pass</td>
+                  </tr>
+                  <tr>
+                    <td class="DefaultCell" style="text-indent: 0px;">CAN signal 'CF_Lvr_PRelStat'</td>
+                    <td class="DefaultCell">==</td>
+                    <td class="DefaultCell">0 (Parking not released)</td>
+                    <td class="DefaultCell">0</td>
+                    <td class="PositiveResultCell">pass</td>
+                  </tr>
+                </table>
+              </td>
+              <td class="DefaultCell">-</td>
+            </tr>
+            <tr>
+              <td class="PatternSeparator" colspan="4"></td>
+            </tr>
+            <tr class="PositiveResultBackground">
+              <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+                <big class="Heading4">3. capture CF_Lvr_PNStat&amp;CF_Lvr_PRelStat: Passed</big>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-indent: 20px;" class="DefineCell"> 972.578580</td>
+              <td class="DefaultCell"></td>
+              <td class="DefaultCell">Set PRA to P position at initial<br><img src="./Report_HKMC_LH_SBW.xml2016-12-30_14-12-57/15.3.2%20Set%20PRA%20to%20P%20position%20at%20initial.png"></td>
+              <td class="DefaultCell">-</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <table class="TestGroupHeadingBackground">
+        <tr>
+          <td>
+            <big class="Heading3">Main Part of Test Case</big>
+          </td>
+        </tr>
+      </table>
+      <div class="Indentation">
+        <table class="ResultTable">
+          <tr>
+            <th class="TableHeadingCell" width="1px">Timestamp</th>
+            <th class="TableHeadingCell" width="1px">Test Step</th>
+            <th class="TableHeadingCell" width="auto">Description</th>
+            <th class="TableHeadingCell" width="1px">Result</th>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 972.578580</td>
+            <td class="NumberCell">vehicleSpeedOutputValid</td>
+            <td class="DefaultCell">VS_TCU signal occurs valid value,WHL_SPD_FL whatever</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 972.578580</td>
+            <td class="NumberCell">FaultInjection-function</td>
+            <td class="DefaultCell">TestEnableMsg: Message TCU12 - successfully.</td>
+            <td class="PositiveResultCell">pass</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 972.578580</td>
+            <td class="NumberCell">Set signal value</td>
+            <td class="DefaultCell">Signal: 'Signal:CAN1/PB/TCU12/VS_TCU'.  Value: 113 </td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 972.628580</td>
+            <td class="NumberCell">VS_TCU status</td>
+            <td class="DefaultCell">VS_TCU = 113</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 972.628580</td>
+            <td class="NumberCell">FaultInjection-function</td>
+            <td class="DefaultCell">TestEnableMsg: Message WHL_SPD11 - successfully.</td>
+            <td class="PositiveResultCell">pass</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 972.628580</td>
+            <td class="NumberCell">Set signal value</td>
+            <td class="DefaultCell">Signal: 'Signal:CAN1/PB/WHL_SPD11/WHL_SPD_FL'.  Value: 13149 </td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 972.678580</td>
+            <td class="NumberCell">WHL_SPD_FL status</td>
+            <td class="DefaultCell">WHL_SPD_FL = 13149</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="PositiveResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">1. Wait: Passed</big>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell"> 973.678580</td>
+            <td class="NumberCell">1</td>
+            <td class="DefaultCell">Waited for 1.000 s</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 974.778580</td>
+            <td class="NumberCell">IGN status</td>
+            <td class="DefaultCell">IGN off, IGN voltage = 4.04v</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 975.278580</td>
+            <td class="NumberCell">Enter IG Off mode</td>
+            <td class="DefaultCell"> IGN voltage = 4.04v,G_SEL_DISP = D = 5</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="PositiveResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">2. check if SBW operate PRA to not P position: Passed</big>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell"> 975.278580</td>
+            <td class="NumberCell">1</td>
+            <td class="DefaultCell">Waited for occurrence of 2 value condition(s).</td>
+            <td class="PositiveResultCell">pass</td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell"> 975.278580</td>
+            <td class="NumberCell"></td>
+            <td class="DefaultCell">
+              <table class="NoMarginBottom">
+                <tbody>
+                  <tr>
+                    <td>
+                      <a class="Undecorated" id="tbl_1.1.1.1_i__40629896_543" href="javascript:switchTable('1.1.1.1_i__40629896_543')">[−]</a>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="InfoTableExpand" id="tbl_1.1.1.1_i__40629896_543">
+                <tr>
+                  <td class="DefineCell" style="text-indent: 0px;">Symbol</td>
+                  <td class="DefineCell">Op.</td>
+                  <td class="DefineCell">Reference Value</td>
+                  <td class="DefineCell">Actual</td>
+                  <td class="DefineCell" width="1px">Result</td>
+                </tr>
+                <tr>
+                  <td class="DefaultCell" style="text-indent: 0px;">CAN signal 'CF_Lvr_PNStat'</td>
+                  <td class="DefaultCell">==</td>
+                  <td class="DefaultCell">2 (Not Park Status)</td>
+                  <td class="DefaultCell">2</td>
+                  <td class="PositiveResultCell">pass</td>
+                </tr>
+                <tr>
+                  <td class="DefaultCell" style="text-indent: 0px;">CAN signal 'CF_Lvr_PRelStat'</td>
+                  <td class="DefaultCell">==</td>
+                  <td class="DefaultCell">1 (Parking released)</td>
+                  <td class="DefaultCell">1</td>
+                  <td class="PositiveResultCell">pass</td>
+                </tr>
+              </table>
+            </td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="PositiveResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">3. capture CF_Lvr_PNStat&amp;CF_Lvr_PRelStat: Passed</big>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell"> 975.778580</td>
+            <td class="DefaultCell"></td>
+            <td class="DefaultCell">15.3.2 When the last gear is D, R or P SBW shall keep PRA to Not P Position<br><img src="./Report_HKMC_LH_SBW.xml2016-12-30_14-12-57/15.3.2%20When%20the%20last%20gear%20is%20D,%20R%20or%20P%20SBW%20shall%20keep%20PRA%20to%20Not%20P%20Position.png"></td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 975.778580</td>
+            <td class="NumberCell">vehicleSpeedOutputValid</td>
+            <td class="DefaultCell">VS_TCU signal occurs timeout or error value,WHL_SPD_FL is valid</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 975.778580</td>
+            <td class="NumberCell">FaultInjection-function</td>
+            <td class="DefaultCell">TestDisableMsg: Message TCU12 - successfully.</td>
+            <td class="PositiveResultCell">pass</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 975.778580</td>
+            <td class="NumberCell">VS_TCU status</td>
+            <td class="DefaultCell">VS_TCU = timeout</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 975.778580</td>
+            <td class="NumberCell">FaultInjection-function</td>
+            <td class="DefaultCell">TestEnableMsg: Message WHL_SPD11 - successfully.</td>
+            <td class="PositiveResultCell">pass</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 975.778580</td>
+            <td class="NumberCell">Set signal value</td>
+            <td class="DefaultCell">Signal: 'Signal:CAN1/PB/WHL_SPD11/WHL_SPD_FL'.  Value: 11 </td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="DefineCell"> 975.828580</td>
+            <td class="NumberCell">WHL_SPD_FL status</td>
+            <td class="DefaultCell">WHL_SPD_FL =    11</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="NegativeResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">4. check if SBW operate PRA to P position: Failed</big>
+            </td>
+          </tr>
+          <tr id="i__40629896_758">
+            <td style="text-indent: 20px;" class="DefineCell"> 980.828580</td>
+            <td class="NumberCell">1</td>
+            <td class="DefaultCell">Waited for occurrence of 2 value condition(s).</td>
+            <td class="NegativeResultCell">fail</td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell"> 980.828580</td>
+            <td class="NumberCell"></td>
+            <td class="DefaultCell">
+              <table class="NoMarginBottom">
+                <tbody>
+                  <tr>
+                    <td>
+                      <a class="Undecorated" id="tbl_1.1.1.1_i__40629896_777" href="javascript:switchTable('1.1.1.1_i__40629896_777')">[−]</a>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="InfoTableExpand" id="tbl_1.1.1.1_i__40629896_777">
+                <tr>
+                  <td class="DefineCell" style="text-indent: 0px;">Symbol</td>
+                  <td class="DefineCell">Op.</td>
+                  <td class="DefineCell">Reference Value</td>
+                  <td class="DefineCell">Actual</td>
+                  <td class="DefineCell" width="1px">Result</td>
+                </tr>
+                <tr>
+                  <td class="DefaultCell" style="text-indent: 0px;">CAN signal 'CF_Lvr_PNStat'</td>
+                  <td class="DefaultCell">==</td>
+                  <td class="DefaultCell">1 (Park Status)</td>
+                  <td class="DefaultCell">2</td>
+                  <td class="NegativeResultCell">fail</td>
+                </tr>
+                <tr>
+                  <td class="DefaultCell" style="text-indent: 0px;">CAN signal 'CF_Lvr_PRelStat'</td>
+                  <td class="DefaultCell">==</td>
+                  <td class="DefaultCell">0 (Parking not released)</td>
+                  <td class="DefaultCell">1</td>
+                  <td class="NegativeResultCell">fail</td>
+                </tr>
+              </table>
+            </td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="PositiveResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">5. capture CF_Lvr_PNStat&amp;CF_Lvr_PRelStat: Passed</big>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell"> 981.328580</td>
+            <td class="DefaultCell"></td>
+            <td class="DefaultCell">15.3.2 After the vehicle speed is less than 1km/h,then SBW shall keep PRA for P Position<br><img src="./Report_HKMC_LH_SBW.xml2016-12-30_14-12-57/15.3.2%20After%20the%20vehicle%20speed%20is%20less%20than%201km_h,then%20SBW%20shall%20keep%20PRA%20for%20P%20Position.png"></td>
+            <td class="DefaultCell">-</td>
+          </tr>
+        </table>
+      </div>
+      <div id="div_1.1.1.1">
+        <table class="TestGroupHeadingBackground">
+          <tr>
+            <td>
+              <big class="Heading3">Completion of Test Case</big>
+            </td>
+          </tr>
+        </table>
+        <div class="Indentation">
+          <table class="ResultTable">
+            <tr>
+              <th class="TableHeadingCell" width="1px">Timestamp</th>
+              <th class="TableHeadingCell" width="1px">Test Step</th>
+              <th class="TableHeadingCell" width="auto">Description</th>
+              <th class="TableHeadingCell" width="1px">Result</th>
+            </tr>
+            <tr>
+              <td class="DefineCell"> 982.328580</td>
+              <td class="NumberCell">IGN status</td>
+              <td class="DefaultCell">IGN on, IGN voltage = 8.53v</td>
+              <td class="DefaultCell">-</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <table class="GroupEndTable">
+      <tr>
+        <td>End of Test Case List: testPRAUnderIGOffMode</td>
+      </tr>
+    </table>
+    <table class="GroupEndTable">
+      <tr>
+        <td>End of Test Fixture: 15.3.2 PRA Logic: IG OFF Mode</td>
+      </tr>
+    </table>
+    <table class="GroupEndTable">
+      <tr>
+        <td>End of Test Unit: HKMC LH SBW</td>
+      </tr>
+    </table>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <div class="Heading2">End of Report</div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

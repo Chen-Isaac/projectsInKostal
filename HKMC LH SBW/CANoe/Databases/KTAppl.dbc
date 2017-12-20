@@ -1,0 +1,150 @@
+VERSION "HIPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYNNNNNNNNNN/4/%%%/4/'%**4NNN///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: KT_APPL
+VAL_TABLE_ Status 4 "Dienst_fehlerhaft" 3 "Dienst_timeout" 2 "Dienst_beendet" 1 "Dienst_starten" ;
+VAL_TABLE_ envKTATaskReady 1 "TaskReady" 0 "TaskRunning" ;
+VAL_TABLE_ KTA_Taskaufruf 1 "zyklisch" 0 "einmalig" ;
+VAL_TABLE_ KTA_Entscheidung 1 "io" 0 "nicht_io" ;
+VAL_TABLE_ KT_Pages 13 "OHC" 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_TABLE_ KT_FSP_Delay 1 "Delay" 0 "kein_Delay" ;
+VAL_TABLE_ KTResp_IstModus 6 "RbrMode" 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+VAL_TABLE_ KTReq_SollModus 6 "RbrMode" 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+
+
+
+
+EV_ envKTExtendedAdresse: 0 [0|0] "" 0 1 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTA_Display_Faults: 0 [0|0] "" 0 2 DUMMY_NODE_VECTOR8003  KT_APPL;
+
+EV_ envKTAaFehlerRead: 0 [0|1] "" 0 3 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAppl_Status: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTA_TaskReady: 0 [0|0] "" 0 5 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTA_Taskaufruf: 0 [0|0] "" 0 6 DUMMY_NODE_VECTOR3 Vector__XXX;
+
+EV_ envKTAiApplStatus: 0 [0|0] "" 0 7 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAiDaten1: 0 [0|0] "" 0 8 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaSGInit: 0 [0|0] "" 0 9 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_SGInit: 0 [0|0] "" 0 10 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAiFSpDelay: 0 [0|0] "" 0 11 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAiFSpAdresse: 0 [0|0] "" 0 12 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaFehlerspLoeschen: 0 [0|0] "" 0 13 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_FehlerspLoeschen: 0 [0|0] "" 0 14 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaResetAusloesen: 0 [0|0] "" 0 15 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_ResetAusloesen: 0 [0|0] "" 0 16 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAiSollModus: 0 [0|0] "" 0 17 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_Display_Z4: 0 [0|0] "" 0 18 DUMMY_NODE_VECTOR8003  KT_APPL;
+
+EV_ envKTA_Display_Z3: 0 [0|0] "" 0 19 DUMMY_NODE_VECTOR8003  KT_APPL;
+
+EV_ envKTA_Display_Z2: 0 [0|0] "" 0 20 DUMMY_NODE_VECTOR8003  KT_APPL;
+
+EV_ envKTA_Display_Z1: 0 [0|0] "" 0 21 DUMMY_NODE_VECTOR8003  KT_APPL;
+
+EV_ envKTAiPage: 0 [0|0] "" 0 22 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAiEndAdresse: 0 [0|0] "" 0 23 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAiAnfangsAdresse: 0 [0|0] "" 0 24 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaSpeicherSchreiben: 0 [0|0] "" 0 25 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaSpeicherLesen: 0 [0|0] "" 0 26 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_SpeicherSchreiben: 0 [0|0] "" 0 27 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_SpeicherLesen: 0 [0|0] "" 0 28 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAiDaten: 0 [0|0] "" 0 29 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaSync: 0 [0|0] "" 0 30 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_Sync: 0 [0|0] "" 0 31 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaLogout: 0 [0|0] "" 0 32 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_Logout: 0 [0|0] "" 0 33 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaModusWechsel: 0 [0|0] "" 0 34 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTAaLogin: 0 [0|0] "" 0 35 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_ModusWechsel: 0 [0|0] "" 0 36 DUMMY_NODE_VECTOR3  KT_APPL;
+
+EV_ envKTA_Login: 0 [0|0] "" 0 37 DUMMY_NODE_VECTOR3  KT_APPL;
+ENVVAR_DATA_ envKTAiDaten1: 7;
+ENVVAR_DATA_ envKTAiDaten: 0;
+
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+VAL_ envKTAppl_Status 4 "Dienst_fehlerhaft" 3 "Dienst_timeout" 2 "Dienst_beendet" 1 "Dienst_starten" ;
+VAL_ envKTA_TaskReady 1 "TaskReady" 0 "TaskRunning" ;
+VAL_ envKTA_Taskaufruf 1 "zyklisch" 0 "einmalig" ;
+VAL_ envKTAaSGInit 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+VAL_ envKTAiFSpDelay 1 "mit_Sperre" 0 "ohne_Sperre" ;
+VAL_ envKTAaFehlerspLoeschen 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+VAL_ envKTAaResetAusloesen 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+VAL_ envKTAiSollModus 128 "CalibrationMode" 3 "TestMode" 2 "FastSleepMode" 0 "Normal_Mode" ;
+VAL_ envKTAiPage 53 "MagSensDrv" 52 "Function" 5 "FlashEE" 12 "Version" 11 "Actuator" 10 "Sensor" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" ;
+VAL_ envKTAaSpeicherSchreiben 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+VAL_ envKTAaSpeicherLesen 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+VAL_ envKTAaSync 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+VAL_ envKTAaLogout 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+VAL_ envKTAaModusWechsel 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+VAL_ envKTAaLogin 3 "io" 2 "nicht_io_hell" 1 "nicht_io" 0 "warten" ;
+

@@ -1,0 +1,14 @@
+/*@!Encoding:936*/
+includes
+{
+}
+
+variables
+{
+
+}
+
+export testsequence attempt (Signal *sig, char str[])
+{
+  
+}

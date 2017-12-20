@@ -1,0 +1,1065 @@
+/*@!Encoding:936*/
+includes
+{
+}
+
+variables
+{
+enum digitalLevel { 
+    Low = 0, 
+    High = 1 
+  };
+  enum vt7001InterConnectionMode {
+    supint = 0, 
+    sup1 = 1, 
+    sup2 = 2, 
+    supint_sup1 = 3, 
+    supint_sup2 = 4, 
+    sup1_supint = 5, 
+    sup1_sup2 = 6, 
+    sup2_supint = 7, 
+    sup2_sup1 = 8, 
+    sup_series = 9, 
+    sup_parallel = 10
+  };
+  enum vt7001ExPowerInputChannel {
+    suply1 = 1, 
+    suply2 = 2
+  };
+  enum vt7001OutputChannelNo {
+    out1 = 1,
+    out2 = 2
+  };
+  enum vt7001MeasureRange {
+    all = 0,
+    _100uA_1mA = 1,
+    _1mA_10mA = 2,
+    _10mA_100mA = 3,
+    _100mA_1A = 4,
+    _1A_10A = 5,
+    _10A_100A = 6
+  };
+  enum currentUnit {
+    uA = 0,
+    mA = 1,
+    A = 2
+  };
+  struct vt7001Cfg {
+    int moduleNo;
+    enum vt7001InterConnectionMode interConnectionMode;
+    enum vt7001OutputChannelNo outChNum;
+    enum vt7001ExPowerInputChannel exPwrInputCh;
+  };
+  struct vt2516Cfg {
+    int moduleNo;
+    int channelNo;
+    char productPinName[100];
+  };
+  struct vLevelCfg {
+    int vLowBase;
+    int vLowRange;
+    int vHighBase;
+    int vHighRange;
+  };
+  struct pwmWaveCfg {
+    float freq;
+    float voltLow;
+    float voltHigh;
+    float duty;
+  };
+int respOk;
+  struct specSignalUpdateResp {
+     float demandVal;
+     dword msTimeout;
+  };
+enum demandResult { 
+    timeout = 0, 
+    fulfillment = 1 
+  };
+  
+  enum determiningFactor {
+    determinedBySignal = 0,
+    determinedByHardware = 1
+  };
+  
+  enum stateChangeManipulate {
+    init = 0,
+    byHw = 1,
+    bySig = 2,
+    byTime = 3,
+    stop = 4
+  };
+  struct buttonPressOnSpecSigImpactCfg {
+    char buttonName[100];
+    int updatedSignalVal;
+    int msWaitBeforeCheck;
+  };
+  
+  struct sigOrientTwoStatInputCfg {
+    dword msgId;
+    int sigLowVal;
+    int sigHighVal;
+    struct vt2516Cfg vt2516Cfg;
+    struct vLevelCfg vLevelCfg;
+  };
+  struct adjPwmDutyWaveCfg {
+    float freq;
+    float voltLow;
+    float voltHigh;
+    float dutyBase;
+    int dutyRange;
+  };
+  struct sigOrientMultiStatInputCfg {
+    dword msgId;
+    int specSigVal;
+    struct vt2516Cfg vt2516Cfg;
+    struct adjPwmDutyWaveCfg specStatPwmWaveCfg;
+  };
+message Kostia_Request sendDiaq;
+  qword recDiagContent;
+  struct vt7001Cfg vt7001Cfg = {12,supint,out2,suply1};
+  struct vt2516Cfg ignCfg = {9,6,"IGN"};
+  struct vt2516Cfg accCfg = {9,5,"ACC"};
+  struct vt2516Cfg detentCfg = {9,2,"Detent"};
+  struct vt2516Cfg pwmInCfg = {9,3,"PWM_IN"};
+  struct vt2516Cfg pwmOutCfg = {9,1,"PWM_OUT"};
+  struct vLevelCfg ignVLevelCfg = {0,4,8,5};
+  struct vLevelCfg accVLevelCfg = {0,4,8,5};
+  struct vLevelCfg detentVLevelCfg = {8,5,0,4};//low is active
+  struct buttonPressOnSpecSigImpactCfg xOnCF_Lvr_xButtonStatusImpactCfg = {"X",1,500};
+  struct buttonPressOnSpecSigImpactCfg xOnCF_Lvr_xButtonStatus_ReversedImpactCfg = {"X",2,500};
+  struct sigOrientTwoStatInputCfg detentInputCfg = {0x450,0,1,{9,2,"Detent"},{8,5,0,4}};
+  enum indStat {
+    P = 0, 
+    R = 1, 
+    N = 2,
+    D = 3,
+    OFF = 4
+  };
+  struct sigOrientMultiStatInputCfg pHighLightIndInputCfg = {0x200,0,{9,3,"PWM_IN"},{100,0,12,8,5}};//P=0 8%~12%
+  struct sigOrientMultiStatInputCfg rHighLightIndInputCfg = {0x200,7,{9,3,"PWM_IN"},{100,0,12,18,5}};//R=7 18%~22%
+  struct sigOrientMultiStatInputCfg nHighLightIndInputCfg = {0x200,6,{9,3,"PWM_IN"},{100,0,12,28,5}};//N=6 28%~32%
+  struct sigOrientMultiStatInputCfg dHighLightIndInputCfg = {0x200,5,{9,3,"PWM_IN"},{100,0,12,38,5}};//D=5 38%~42%
+  struct sigOrientMultiStatInputCfg offHighLightIndInputCfg = {0x200,1,{9,3,"PWM_IN"},{100,0,12,48,5}};//off 1~4 8~15;Not-Display 48%~52%, Fault 88%~92%
+  struct specSignalUpdateResp pHighLightSigUpdateResp = {1,1000};//P lighted=1
+  struct specSignalUpdateResp rHighLightSigUpdateResp = {2,1000};//R lighted=2
+  struct specSignalUpdateResp nHighLightSigUpdateResp = {3,1000};//N lighted=3
+  struct specSignalUpdateResp dHighLightSigUpdateResp = {4,1000};//D lighted=4
+  struct specSignalUpdateResp offHighLightSigUpdateResp = {0,1000};//ALL light OFF=0
+}
+
+export void enterKostia (void) {
+  
+  testStep("Login-Request","Start to send Login-Request Service.");
+  sendDiaq.qword(0) = 0x5f4c4154534f4b01ll;
+  sendDiagCheckResp(sendDiaq,Kostia_Response,8,0x014b4f5354414c5fll);
+}
+
+export void fromIgnOnModeToNWashMode (void) {
+  setChannelOutputRandomVoltageAsDigitalLevel(accCfg,accVLevelCfg,High);//ACC ON
+  testWaitForTimeout(200);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//IGN OFF
+}
+
+export void fromIgnOnModeToNParkMode (void) {
+  setChannelOutputRandomVoltageAsDigitalLevel(accCfg,accVLevelCfg,Low);//ACC OFF
+  testWaitForTimeout(200);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//IGN OFF
+}
+
+export void fromIgnOffModeToSilenceMode (int drvDrSwSigVal) {
+  //make welcome function counter = 0
+  signalSettingAndReport(CF_Gway_DrvDrSw,drvDrSwSigVal);//close or open door
+  testWaitForTimeout(3*60*1000-200);//wait for 3mins,so welcome function counter must have already been 0 during 20s
+  testStep("wait","wait for 3min");
+}
+
+export void fromSilenceModeToIgnOnMode (int decideBySignalBool) {
+  signalSettingAndReport(CF_Gway_DrvDrSw,1);//open door
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//IGN ON
+}
+
+export void fromInitModeToSilenceMode (int drvDrSwSigVal, int wayNo) {
+  testStep("Read signal","$CF_Gway_DrvDrSw = %1.0f at the beginning.",$CF_Gway_DrvDrSw);
+  switch(wayNo) {
+    case 0://IGN is not detected ON in 20s
+      signalSettingAndReport(CF_Gway_DrvDrSw,1);//1=dooropen
+      testWaitForTimeout(20*1000-200);//wait 20s,so welcome counter must be equal to 0
+      testStep("wait","wait for 20s to make sure that IGN is not detected ON in 20s");
+      break;
+    case 1://
+      if ($CF_Gway_DrvDrSw == 1) {
+        testWaitForTimeout(20000);
+        testStep("wait","wait for 20s to make sure that welcome counter is equal to 0");
+      }
+      //testValidateTesterConfirmation("check $CF_Gway_DrvDrSw","",1);
+      signalSettingAndReport(CF_Gway_DrvDrSw,drvDrSwSigVal);//1=open,0=closed,2=B-CAN timeout
+      break;
+  }
+}
+
+export void fromSilenceModeToSleepMode (int wayNo) {
+  float current;
+  current = readVtSystemPowerSupplyCurrent(vt7001Cfg,0.05,0,_10mA_100mA,mA);
+  if (current > 0.002) {//it's in silence mode
+    switch (wayNo) {
+      case 0:
+        if ($CF_Gway_DrvDrSw == 0) {//$CF_Gway_DrvDrSw = door close
+          testWaitForTimeout(15000);
+          testStep("wait","wait for 15s");
+        }
+        else {
+          if ($CF_Gway_DrvDrSw == 1) {//door open
+            signalSettingAndReport(CF_Gway_DrvDrSw,0);//0 = door close
+            testWaitForTimeout(4000);
+          }
+          else {// B CAN TIMEOUT
+            signalSettingAndReport(CF_Gway_DrvDrSw,0);//0 = door close
+            testWaitForTimeout(15000);
+            testStep("wait","wait for 15s");
+          }
+        }
+        break;
+      case 1://door signal timeout
+        if (($CF_Gway_DrvDrSw == 0) || ($CF_Gway_DrvDrSw == 2)) {//$CF_Gway_DrvDrSw = door close
+          testDisableMsg(CGW1);
+          testWaitForTimeout(20000);
+          testStep("wait","wait for 20s");
+        }
+        else {
+          testDisableMsg(CGW1);
+          testWaitForTimeout(8000);
+        }
+        break;
+    }
+    
+    readVtSystemPowerSupplyCurrent(vt7001Cfg,0.001,0,all,mA);
+    /*testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,1);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,2);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,3);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,4);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,5);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,6);
+    testEnableMsg(CGW1);*/
+  }
+  else //it's in sleep mode already
+    testStepFail("check mode","directly go into the sleep mode,no through silence mode.");
+}
+
+export void shutdownPowerAndEnterInitMode (float volt) {
+  vtSystemPowerSupplyVoltSetting(vt7001Cfg,0);
+  testWaitForTimeout(500);
+  readVtSystemPowerSupplyVolt(vt7001Cfg,0.2,-0.2);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//ign off
+  testWaitForTimeout(100);
+  vtSystemPowerSupplyVoltSetting(vt7001Cfg,volt);
+  readVtSystemPowerSupplyVolt(vt7001Cfg,volt+0.2,volt-0.2);
+}
+
+export void setInput_b_ILLStatus (int status,int setOnMode,int setClearMode) {
+  if (status) {//set Input_b_ILLStatus = on
+    setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+    signalSettingAndReport(CF_Gway_DrvDrSw,0);//0=closed
+    signalSettingAndReport(CF_Gway_RKECmd,0);//0=none 2=unlock
+    signalSettingAndReport(CF_Gway_SMKRKECmd,0);//0=none 2=unlock
+    switch (setOnMode) {
+      case 0://by IGN on
+        setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//ign on
+      break;
+      case 1://by Welcome counter is not equal to zero
+        signalSettingAndReport(CF_Gway_DrvDrSw,1);//Door Open Event(CF_Gway_DrvDrSw*) will set the counter)
+      break;
+    } 
+  }
+  else {//set Input_b_ILLStatus = off
+    signalSettingAndReport(CF_Gway_RKECmd,0);//0=none 2=unlock
+    signalSettingAndReport(CF_Gway_SMKRKECmd,0);//0=none 2=unlock
+    switch (setClearMode) {
+      /*case 0:         /////test this part in state machine
+        //enter sleep state
+      break;
+      case 1:
+        //enter silence state
+      break;*/
+      case 0://RKE Lock Command == Lock while IGN OFF
+        setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//ign off
+        signalSettingAndReport(CF_Gway_RKECmd,1);//1=lock
+      break; 
+      case 1://SMKRKE Command == Lock Event while IGN OFF
+        setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//ign off
+        signalSettingAndReport(CF_Gway_SMKRKECmd,1);
+      break;
+    }
+  }
+}
+
+export testcase tryIni (void) {
+  int v;
+  char buffer[100];
+  v = getProfileInt("byHw","para3",-1,"C:\\Users\\chen106\\Desktop\\try.ini");
+  testStep("para3","%d",v);
+  getProfileString("byHw","para1","error", buffer, elcount(buffer), "C:\\Users\\chen106\\Desktop\\try.ini");
+  testStep("para1","%s",buffer);
+  getProfileString("byHw","para2","error", buffer, elcount(buffer), "C:\\Users\\chen106\\Desktop\\try.ini");
+  testStep("para2","%s",buffer);
+}
+
+export testcase powerOn (void) {
+  vtSystemPowerSupplyInitSetting(vt7001Cfg);
+  vtSystemPowerSupplyVoltSetting(vt7001Cfg,12);
+  readVtSystemPowerSupplyVolt(vt7001Cfg,12.2,11.8);
+  readVtSystemPowerSupplyCurrent(vt7001Cfg,0.2,0,_100mA_1A,mA);
+}
+
+export testcase powerOff (void) {
+  vtSystemPowerSupplyVoltSetting(vt7001Cfg,0);
+  readVtSystemPowerSupplyVolt(vt7001Cfg,0.25,-0.2);
+  readVtSystemPowerSupplyCurrent(vt7001Cfg,0.2,0,all,uA);
+}
+
+export testcase initProduct (void) {
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  signalSettingAndReport(CF_Vcu_GarSelDisp,0);
+  signalSettingAndReport(CF_Gway_IntTailAct,1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+}
+
+export testcase readSwVer (void) {
+  enterKostia();
+  testStep("Read software internal version","Start to read VM_SW_Internal.");
+  sendDiaq.qword(0) = 0x0c06120004ll;//page=0c for version info
+  recDiagContent = sendDiagCheckResp(sendDiaq,Kostia_Response,1,0x04ll);
+  decodeAsciiFromRecDiagThenPrint(recDiagContent,"The current software internal version is");
+  testStep("Read software external version","Start to read VM_SW_External.");
+  sendDiaq.qword(0) = 0x0c060c0004ll;//page=0c for version info
+  recDiagContent = sendDiagCheckResp(sendDiaq,Kostia_Response,1,0x04ll);
+  decodeAsciiFromRecDiagThenPrint(recDiagContent,"The current software external version is");
+  
+}
+
+export testcase oneTimeOneButtonFunctionCheck (int oneButtonPressMode,int ignValueLevel) {
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,(enum digitalLevel)ignValueLevel);
+  testWaitForTimeout(500);
+  testStep("test condition","Test happens under no botton pressed.");
+  if (($CF_Lvr_PButtonStatus ==2)&&($CF_Lvr_RButtonStatus ==2)&&($CF_Lvr_NButtonStatus == 2)&&($CF_Lvr_DButtonStatus == 2)&&($CF_Lvr_PRelStat == 2)&&($CF_Lvr_PButtonStatus_Reversed ==1)&&($CF_Lvr_RButtonStatus_Reversed ==1)&&($CF_Lvr_NButtonStatus_Reversed == 1)&&($CF_Lvr_DButtonStatus_Reversed == 1)&&($CF_Lvr_PRelButStatus_Reversed == 1))
+    testStepPass("Read button status","All the button status are correct when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  else
+    testStepFail("Read button status","Something wrong when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  checkProductPwmOutput(pwmOutCfg,100,50);//check if PWM is idle
+  switch (oneButtonPressMode) {
+    case 0://'P'
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P",2);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P",2);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      checkProductPwmOutput(pwmOutCfg,100,10);
+      break;
+    case 1://'R':
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"R",2);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"R",2);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,20+(!ignValueLevel)*30);
+      break;
+    case 2://'N':
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"N",2);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"N",2);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,30+(!ignValueLevel)*20);
+      break;
+    case 3://'D':
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"D",2);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"D",2);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,40+(!ignValueLevel)*10);
+      break;
+		case 4://PRelease
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"PRelease",9);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"PRelease",9);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,50+(!ignValueLevel)*20);
+		  break;
+  }
+}
+
+export testcase oneTimeTwoButtonFunctionCheck (int twoButtonPressMode,int ignValueLevel) {
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,(enum digitalLevel)ignValueLevel);
+  testWaitForTimeout(500);
+  testStep("test condition","Test happens under no botton pressed.");
+  if (($CF_Lvr_PButtonStatus ==2)&&($CF_Lvr_RButtonStatus ==2)&&($CF_Lvr_NButtonStatus == 2)&&($CF_Lvr_DButtonStatus == 2)&&($CF_Lvr_PRelStat == 2)&&($CF_Lvr_PButtonStatus_Reversed ==1)&&($CF_Lvr_RButtonStatus_Reversed ==1)&&($CF_Lvr_NButtonStatus_Reversed == 1)&&($CF_Lvr_DButtonStatus_Reversed == 1)&&($CF_Lvr_PRelButStatus_Reversed == 1))
+    testStepPass("Read button status","All the button status are correct when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  else
+    testStepFail("Read button status","Something wrong when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  checkProductPwmOutput(pwmOutCfg,100,50);//check if PWM is idle
+  switch (twoButtonPressMode) {
+    case 0://P R
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P&R",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P&R",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 1://P N
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P&N",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P&N",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 2://P D
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P&D",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P&D",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 3://P P-Release
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P&PRelease",11);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P&PRelease",11);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 4://R N
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"R&N",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"R&N",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 5://R D
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"R&D",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"R&D",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 6://R P-Release
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"R&PRelease",11);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"R&PRelease",11);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 7://N D
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"N&D",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"N&D",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 8://N P-Release
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"N&P-Release",11);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"N&PRelease",11);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 9://D P-Release
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"D&P-Release",11);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"D&PRelease",11);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+  }
+}
+
+export testcase testIndicatorControlFunctionStateChart (int setOnMode,int setClearMode) {
+  setInput_b_ILLStatus(0,0,setClearMode);
+  testValidateTesterConfirmation("check if highlight and backlight indicator are off.","",1);
+  setInput_b_ILLStatus(1,setOnMode,0);
+  testValidateTesterConfirmation("check if highlight and backlight indicator are on.","",1);
+}
+
+export testcase testHighLightIndicatorBehavior (enum indStat indStat,int decideBySignalBool) {
+  int fact;
+  char title[100];
+  switch (indStat) {
+    case P:
+      sigOrientMultiStatInputSetting(pHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,pHighLightSigUpdateResp);
+      strncpy(title,"check if P highlight indicator is lighten.",100);
+    break;
+    case R:
+      sigOrientMultiStatInputSetting(rHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,rHighLightSigUpdateResp);
+      strncpy(title,"check if R highlight indicator is lighten.",100);
+    break;
+    case N:
+      sigOrientMultiStatInputSetting(nHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,nHighLightSigUpdateResp);
+      strncpy(title,"check if N highlight indicator is lighten.",100);
+    break;
+    case D:
+      sigOrientMultiStatInputSetting(dHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,dHighLightSigUpdateResp);
+      strncpy(title,"check if D highlight indicator is lighten.",100);
+    break;
+    case OFF:
+      fact = random(2);
+      offHighLightIndInputCfg.specSigVal = fact*(random(4)+1)+(1-fact)*(random(8)+8);
+      offHighLightIndInputCfg.specStatPwmWaveCfg.dutyBase = fact*(48)+(1-fact)*(88);
+      sigOrientMultiStatInputSetting(offHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,offHighLightSigUpdateResp);
+      strncpy(title,"check if ALL highlight indicator is off.",100);
+    break;
+  }
+  testValidateTesterConfirmation(title,"",1);
+}
+
+export testcase testRheostatLevelRow1 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,0);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++) 
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight","",1);
+}
+
+export testcase testRheostatLevelRow2 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,0);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++)
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight","",1);
+}
+
+export testcase testRheostatLevelRow3_4 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,1);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow5_6 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,1); //0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow7 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testDisableMsg(CGW2);//disable $CF_Gway_IntTailAct
+  testWaitForTimeout(100);
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++) 
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight","",1);
+}
+
+export testcase testRheostatLevelRow8_9 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testDisableMsg(CGW2);//disable $CF_Gway_IntTailAct
+  testWaitForTimeout(100);
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow10 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,0);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++) 
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for highlight and backlight is off.");
+  testValidateTesterConfirmation("check if illumination is 100% for highlight and backlight is off.","",1);
+}
+
+export testcase testRheostatLevelRow11 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,0);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++) 
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for highlight and backlight is off.");
+  testValidateTesterConfirmation("check if illumination is 100% for highlight and backlight is off.","",1);
+}
+
+export testcase testRheostatLevelRow12_13 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,1);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow14_15 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,1);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow16 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testDisableMsg(CGW2);//disable $CF_Gway_IntTailAct
+  testWaitForTimeout(100);
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++)
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% highlight indicator and backlight is off.");
+  testValidateTesterConfirmation("check if illumination is 100% highlight indicator and backlight is off.","",1);
+}
+
+export testcase testRheostatLevelRow17_18 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testDisableMsg(CGW2);//disable $CF_Gway_IntTailAct
+  testWaitForTimeout(100);
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase checkOperationModeChangeFromIgnOnModeToInitModeToSilenceModeToSleep (int routeNo, int fromSilenceModeToSleepModeWayNo) {
+  switch (routeNo) {
+    case 0://shut down power --> init --> silence
+      testStep("route 0","route 0:shut down power --> init --> silence(way 0)");
+      shutdownPowerAndEnterInitMode(12);
+      fromInitModeToSilenceMode(1,0);
+      break;
+    case 1://shut down power --> init --> silence
+      testStep("route 1","route 1:shut down power --> init --> silence(way 1)");
+      shutdownPowerAndEnterInitMode(12);
+      fromInitModeToSilenceMode(0,1);
+      break;
+    case 2://shut down power --> init --> silence
+      testStep("route 2","route 2:shut down power --> init --> silence(way 2)");
+      shutdownPowerAndEnterInitMode(12);
+      fromInitModeToSilenceMode(2,1);
+      break;
+  }
+  testValidateTesterConfirmation("Check if TX is stoped to judge it has entered the silence mode or not","",1);
+  testValidateTesterConfirmation("Check if backlight and indicator turn off under the silence mode","",1);
+  fromSilenceModeToSleepMode(fromSilenceModeToSleepModeWayNo);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//return to ign on mode
+}
+
+export testcase checkOperationModeChangeFromIgnOnModeToNWashModeToSilenceModeToSleep (int drvDrSwSigVal,int throughNParkToSilenceBool,int fromSilenceModeToSleepModeWayNo) {
+  //ign on --> N WASH --> silence (door close/open/B CAN timeout)
+  if (throughNParkToSilenceBool)
+    testStep("route ","route:ign on -->N WASH --> N PARK -- silence");
+  else
+    testStep("route","route:ign on --> N WASH --> silence");
+  fromIgnOnModeToNWashMode();
+  if (throughNParkToSilenceBool)
+    setChannelOutputRandomVoltageAsDigitalLevel(accCfg,accVLevelCfg,Low);
+  fromIgnOffModeToSilenceMode(drvDrSwSigVal);
+  testValidateTesterConfirmation("Check if TX is stoped to judge it has entered the silence mode or not","",1);
+  testValidateTesterConfirmation("Check if backlight and indicator turn off under the silence mode","",1);
+  fromSilenceModeToSleepMode(fromSilenceModeToSleepModeWayNo);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//return to ign on mode
+}
+
+export testcase checkOperationModeChangeFromIgnOnModeToNParkModeToSilenceModeToSleep (int drvDrSwSigVal,int fromSilenceModeToSleepModeWayNo) {
+  testStep("route","route:ign on --> N PARK --> silence");
+  fromIgnOnModeToNParkMode();
+  fromIgnOffModeToSilenceMode(drvDrSwSigVal);  
+  testValidateTesterConfirmation("Check if TX is stoped to judge it has entered the silence mode or not","",1);
+  testValidateTesterConfirmation("Check if backlight and indicator turn off under the silence mode","",1);
+  fromSilenceModeToSleepMode(fromSilenceModeToSleepModeWayNo);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//return to ign on mode
+}
+
+export void readSignalStatus (signal* signalToRead) {
+  testStep("get signal status","%s = %1.0f",signalToRead.name,$signalToRead);
+}
+
+export void vtSystemPowerSupplyInitSetting (struct vt7001Cfg vt7001Cfg) {
+  char namespace[100];
+  snprintf(namespace,elcount(namespace),"VTS::M%d_VT7001",vt7001Cfg.moduleNo);
+  vtsSetInterconnectionMode(namespace,vt7001Cfg.interConnectionMode);//sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);//Interconnection settings mode:supint,internal power supply connects to both I1 & I2.
+  snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001Cfg.moduleNo);
+  vtsSetRefVoltageMode(namespace,1);//sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);//M12_SupInt:Output:Ref Voltage mode = constant
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001Cfg.moduleNo,vt7001Cfg.outChNum);
+  sysSetVariableInt(namespace,"Active",1);//@sysvar::VTS::M12_Out2::Active = 1;//M12_Out2:OUT2 pin connects to I2;
+}
+
+export void vtSystemWithExternalPowerSupplyInitSetting (struct vt7001Cfg vt7001Cfg) {
+  char namespace[100];
+  snprintf(namespace,elcount(namespace),"VTS::M%d_VT7001",vt7001Cfg.moduleNo);
+  vtsSetInterconnectionMode(namespace,vt7001Cfg.exPwrInputCh);//sysvar::VTS::M12_VT7001.SetInterconnectionMode(1);
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Sup%d",vt7001Cfg.moduleNo,vt7001Cfg.exPwrInputCh);
+  vtsSetRefVoltageMode(namespace,1);//sysvar::VTS::M12_Sup1.SetRefVoltageMode(1);//M12_Sup1 output: Ref Voltage Mode = constant
+  vtsSetMaxCurrentMode(namespace,1);//sysvar::VTS::M12_Sup1.SetMaxCurrentMode(1); //max current mode = constant
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001Cfg.moduleNo,vt7001Cfg.outChNum);
+  sysSetVariableInt(namespace,"Active",1);//@sysvar::VTS::M12_Out1::Active = 1;//M12_Out1:OUT1 pin connects to I1;
+}
+
+export void vtSystemPowerSupplyVoltSetting (struct vt7001Cfg vt7001Cfg, float volt) {
+  char namespace[100];
+  snprintf(namespace,elcount(namespace),"VTS::M%d_SupInt",vt7001Cfg.moduleNo);//***need to be updated
+  sysSetVariableFloat(namespace,"RefVoltage",volt);
+  testWaitForTimeout(1000);
+  testStep("set VBAT voltage status","set VBAT voltage = %4.2fV.",volt);
+}
+
+export void vtSystemExternalPowerSupplySetting (struct vt7001Cfg vt7001Cfg, float volt, float maxI, int k) {
+  char namespace[100];
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Sup%d",vt7001Cfg.moduleNo,vt7001Cfg.exPwrInputCh);
+  sysSetVariableFloat(namespace,"RefVoltage",volt/k);//@sysvar::VTS::M12_Sup1::RefVoltage = 1.0v;
+  testStep("set external power supply control voltage","set @sysvar::VTS::M%d_Sup%d::RefVoltage = %2.1fv;.",vt7001Cfg.moduleNo,vt7001Cfg.exPwrInputCh,volt/k);
+  sysSetVariableFloat(namespace,"MaxCurrent",maxI/k);//@sysvar::VTS::M12_Sup1::MaxCurrent = 2.5;
+  testStep("set external power supply control voltage","set @sysvar::VTS::M%d_Sup%d::MaxCurrent = %2.1fv;.",vt7001Cfg.moduleNo,vt7001Cfg.exPwrInputCh,maxI/k);
+  testWaitForTimeout(1000);
+}
+
+export float readVtSystemPowerSupplyVolt (struct vt7001Cfg vt7001Cfg, float highLimitV, float lowLimitV) {
+  char namespace[100];
+  float readValue;
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001Cfg.moduleNo,vt7001Cfg.outChNum);
+  readValue = sysGetVariableFloat(namespace,"AvgVoltage");
+  if ((readValue < lowLimitV) || (readValue > highLimitV)) 
+     testStepFail("get VBAT voltage status","VBAT = %4.2fV,out of range [%3.1fV~%3.1fV],",readValue,lowLimitV,highLimitV);
+  else
+     testStepPass("get VBAT voltage status","VBAT = %4.2fV,in the range [%3.1fV~%3.1fV],",readValue,lowLimitV,highLimitV);
+  return readValue;
+}
+
+export float readVtSystemPowerSupplyCurrent (struct vt7001Cfg vt7001Cfg,float highLimitA,float lowLimitA,enum vt7001MeasureRange vt7001MeasureRange,enum currentUnit currentUnit) {
+  char namespace[100];
+  float readValue;
+  char iUnit[3][3] = {"uA","mA","A"};
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Out%d",vt7001Cfg.moduleNo,vt7001Cfg.outChNum);
+  
+  vtsSetMinCurrentMeasurementRange(namespace,vt7001MeasureRange);//sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(0);
+  readValue = sysGetVariableFloat(namespace,"AvgCurrent");
+  if ((readValue < lowLimitA) || (readValue > highLimitA)) 
+     testStepFail("get VBAT current status","VBAT current = %6.3f%s,out of range [%6.3f%s~%6.3f%s],",readValue*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],lowLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],highLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit]);
+  else
+     testStepPass("get VBAT current status","VBAT current = %6.3f%s,in the range [%6.3f%s~%6.3f%s],",readValue*(_pow(10,6-currentUnit*3)),iUnit[currentUnit],lowLimitA*(_pow(10.0,6-currentUnit*3)),iUnit[currentUnit],highLimitA*(_pow(10,6-currentUnit*3)),iUnit[currentUnit]); 
+  return readValue;
+}
+
+export void checkProductPwmOutput (struct vt2516Cfg vt2516Cfg,float expectedFreq,float expectedDuty) {
+  char namespace[100];
+  float pwmFreq;
+  float pwmDc;
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516Cfg.moduleNo,vt2516Cfg.channelNo);
+  pwmFreq = sysGetVariableFloat(namespace,"PWMFreq");
+  pwmDc = sysGetVariableFloat(namespace,"PWMDC");
+  if ((pwmFreq > expectedFreq*0.995) && (pwmFreq < expectedFreq*1.005))
+    testStepPass("check PWM Frequency","pin %s :output frequency = %4.1fHz",vt2516Cfg.productPinName,pwmFreq);
+  else
+    testStepFail("check PWM Frequency","pin %s :output frequency = %4.1fHz,out of range [%4.1f-%4.1f]Hz.",vt2516Cfg.productPinName,pwmFreq,expectedFreq*0.995,expectedFreq*1.005);
+  if ((pwmDc > expectedDuty-3) && (pwmDc < expectedDuty+3))
+    testStepPass("check PWM Duty","pin %s :output duty is %3.1f%%",vt2516Cfg.productPinName,pwmDc);
+  else
+    testStepFail("check PWM Duty","pin %s :output duty is %3.1f%%,out of range [%3.1f%%-%3.1f%%].",vt2516Cfg.productPinName,pwmDc,expectedDuty-3,expectedDuty+3);
+}
+
+export void setChannelOutputFixedVoltageAsDigitalLevel (struct vt2516Cfg vt2516Cfg,enum digitalLevel level) {
+  char namespace[100];
+  char levelName[2][5] = {"low","high"};
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516Cfg.moduleNo,vt2516Cfg.channelNo);
+  if (level) {
+    sysSetVariableInt(namespace,"RelayGnd",0);
+    testWaitForTimeout(100);
+    sysSetVariableInt(namespace,"RelayVBatt",1);
+    testWaitForTimeout(100);
+  }
+  else {
+    sysSetVariableInt(namespace,"RelayVBatt",0);
+    testWaitForTimeout(100);
+    sysSetVariableInt(namespace,"RelayGnd",1);
+    testWaitForTimeout(100);
+  }
+  testStep("VT outputs digital level for product input pin","For pin %s:Module%d channel%d generates %s digital level.",vt2516Cfg.productPinName,vt2516Cfg.moduleNo,vt2516Cfg.channelNo,levelName[level]);
+}
+
+export void setChannelOutputAnalogValue (struct vt2516Cfg vt2516Cfg,float analogValue) {
+  char namespace[100];
+  snprintf(namespace,elcount(namespace),"VTS::M%d_Ch%d",vt2516Cfg.moduleNo,vt2516Cfg.channelNo);
+  vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch5.SetStimulationMode(0);//stim mode inactive
+  vtsSetCurveType(namespace,0);//sysvar::VTS::M9_Ch5.SetCurveType(0);//set curve type as constant
+  vtsSetPWMVoltageHigh(namespace,analogValue);//sysvar::VTS::M9_Ch5.SetPWMVoltageHigh(random(6)+7);//set voltagelow 7-12
+  sysSetVariableInt(namespace,"DigitalOutput",1);//@sysvar::VTS::M9_Ch5::DigitalOutput = 1;//output digital=1
+  vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch5.SetStimulationMode(1);//stim mode as voltage
+  testStep("VT outputs analog value for product input pin","For pin %s:Module%d channel%d generates analog voltage: voltage = %3.1fV",vt2516Cfg.productPinName,vt2516Cfg.moduleNo,vt2516Cfg.channelNo,analogValue);
+}
+
+export void setChannelOutputRandomVoltageAsDigitalLevel (struct vt2516Cfg vt2516Cfg,struct vLevelCfg vLevelCfg,enum digitalLevel level) {
+  int randomValue;
+  if (level)
+    randomValue = random(vLevelCfg.vHighRange) + vLevelCfg.vHighBase;
+  else
+    randomValue = random(vLevelCfg.vLowRange) + vLevelCfg.vLowBase;
+  setChannelOutputAnalogValue(vt2516Cfg,randomValue);
+}
+
+export void setChannelOutputPwm (struct vt2516Cfg vt2516Cfg,struct pwmWaveCfg pwmWaveCfg) {
+  char namespace[100];
+  snprintf(namespace,elCount(namespace),"VTS::M%d_Ch%d",vt2516Cfg.moduleNo,vt2516Cfg.channelNo);
+  vtsSetStimulationMode(namespace,0);//sysvar::VTS::M9_Ch3.SetStimulationMode(0);//stim mode inactive
+  vtsSetPWMVoltageLow(namespace,pwmWaveCfg.voltLow);//sysvar::VTS::M9_Ch3.SetPWMVoltageLow(random(3)+1);//set voltagelow 1-3
+  vtsSetPWMVoltageHigh(namespace,pwmWaveCfg.voltHigh);//sysvar::VTS::M9_Ch3.SetPWMVoltageHigh(12);//set voltagehigh 7-15 
+  vtsSetCurveType(namespace,1);//sysvar::VTS::M9_Ch3.SetCurveType(1);//set curve type as PWM
+  sysSetVariableFloat(namespace,"PWMOutputFreq",pwmWaveCfg.freq); //@sysvar::VTS::M9_Ch3::PWMOutputFreq = 100;//PWM output Freq =100Hz
+  sysSetVariableFloat(namespace,"PWMOutputDC",pwmWaveCfg.duty);//@sysvar::VTS::M9_Ch3::PWMOutputDC = 10;
+  vtsSetStimulationMode(namespace,1);//sysvar::VTS::M9_Ch3.SetStimulationMode(1);//stim mode as voltage
+  vtsStartStimulation(namespace);//sysvar::VTS::M9_Ch3.StartStimulation();
+  testStep("VT outputs PWM for product input pin","For pin %s:Module%d channel%d generates PWM:Highvolt=%3.1fV,Lowvolt=%3.1fV,Duty=%3.1f%%,Freq=%5.2fHz",vt2516Cfg.productPinName,vt2516Cfg.moduleNo,vt2516Cfg.channelNo,pwmWaveCfg.voltHigh,pwmWaveCfg.voltLow,pwmWaveCfg.duty,pwmWaveCfg.freq);
+}
+
+export qword sendDiagCheckResp (message* sendDiag, dbMsg* recDiagDb, int checkByteLenFromBegin,qword correctRespContent) {//same sequence as trace shows
+  message* recDiag;
+  qword recDiagContent;
+  respOk = 0;
+  output(sendDiag);
+  testStep("Diagnostic Request","Send diagnostic request: 0x%llX",swapQWord(sendDiag.qword(0)));
+  if (testWaitForMessage(recDiagDb,5000) == 1) {
+    testGetWaitEventMsgData(recDiag);  
+    recDiagContent = swapQWord(recDiag.qword(0));//same sequence as trace shows
+    if ((recDiagContent >> ((8-checkByteLenFromBegin)*8)) == correctRespContent) {
+      testStepPass("Diagnostic Response","Get positive response:0x%llX.",recDiagContent);
+      respOk = 1;
+    }
+    else 
+      testStepFail("Diagnostic Response","Get negative response:0x%llX.",recDiagContent);
+  }
+  else
+    testStepFail("Diagnostic Response","No corresponding response.");
+  return recDiagContent;
+}
+
+export void decodeAsciiFromRecDiagThenPrint (qword recDiagContent,char reportContent[]) {
+  char decodedAsciiString[100];
+  int index;
+  qword reverseRecDiagContent;
+  index = 0;
+  reverseRecDiagContent = swapQWord(recDiagContent);
+  while (reverseRecDiagContent) {
+    decodedAsciiString[index] = (byte)(reverseRecDiagContent & 0xffll);
+    index++;
+    reverseRecDiagContent = (reverseRecDiagContent >> 8);
+  }
+  decodedAsciiString[index] = '\0';
+  testStep("Decode Response","%s %s.",reportContent,decodedAsciiString);
+}
+
+export qword retrieveSubsetFromResp (qword recDiagContent, int offsetBytePos, int byteLen) {//offsetBytePos=0~7
+  qword subset;
+  if ((offsetBytePos<0) || (offsetBytePos>7) || (offsetBytePos+byteLen>8)) {
+    subset = -1;
+    testStepFail("call function","call function retrieveSubsetFromResp error, please check the input");
+  }
+  else 
+    subset = ((recDiagContent << (offsetBytePos*8)) >> ((8 - byteLen) * 8));
+  return subset;
+}
+
+export void signalSettingAndReport (signal* settingSignal, float value) {
+  setSignal(settingSignal, value);
+  testWaitForTimeout(100);
+  if (($settingSignal)== value)
+    testStepPass("set signal status","set %s = %1.0f successfully, ",settingSignal.name,$settingSignal);
+  else
+    testStepFail("set signal status","set signal failed, %s = %1.0f, != %1.0f",settingSignal.name,$settingSignal,value);
+}
+
+export void chkSignalUpdateResp (signal* checkedSignal, struct specSignalUpdateResp specSignalUpdateResp) {
+  int returnStatus;
+  returnStatus = testWaitForSignalMatch(checkedSignal,specSignalUpdateResp.demandVal,specSignalUpdateResp.msTimeout);
+  if (returnStatus == 1)
+    testStepPass("check signal status","Correct response: %s = %1.0f within %dms.",checkedSignal.name,$checkedSignal,specSignalUpdateResp.msTimeout);
+  else
+    testStepFail("check signal status","Incorrect response: %s = %1.0f, update to %1.0f didn't completed within %dms.",checkedSignal.name,$checkedSignal,specSignalUpdateResp.demandVal,specSignalUpdateResp.msTimeout);
+}
+
+export void chkBtnPressImpactOnSpecSig (struct buttonPressOnSpecSigImpactCfg buttonPressOnSpecSigImpactCfg, signal* activatedSignal, enum demandResult demandResult) {
+  int respOk;
+  char heading[200];
+  strncpy(heading,"Press button ",strlen("Press button ")+1);
+  strncat(heading,buttonPressOnSpecSigImpactCfg.buttonName,200);
+  strncat(heading," then start to check the corresponding signal",200);
+  testValidateTesterConfirmation(heading,"",1);
+  respOk = (testWaitForSignalMatch(activatedSignal,buttonPressOnSpecSigImpactCfg.updatedSignalVal,buttonPressOnSpecSigImpactCfg.msWaitBeforeCheck) == demandResult);
+  if (respOk) {
+    if (demandResult)
+      testStepPass("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f within %dms.",buttonPressOnSpecSigImpactCfg.buttonName,activatedSignal.name,$activatedSignal,buttonPressOnSpecSigImpactCfg.msWaitBeforeCheck);
+    else
+      testStepPass("Press button and check signal update","Press button:%s,the value of signal:%s keeps %1.0f during %dms, not update to %d",buttonPressOnSpecSigImpactCfg.buttonName,activatedSignal.name,$activatedSignal,buttonPressOnSpecSigImpactCfg.msWaitBeforeCheck,buttonPressOnSpecSigImpactCfg.updatedSignalVal);
+  }
+  else {
+    if (demandResult)
+      testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not update to %d during %dms.",buttonPressOnSpecSigImpactCfg.buttonName,activatedSignal.name,$activatedSignal,buttonPressOnSpecSigImpactCfg.updatedSignalVal,buttonPressOnSpecSigImpactCfg.msWaitBeforeCheck);
+    else
+      testStepFail("Press button and check signal update","Press button:%s,the value of signal:%s is %1.0f, not keep the old value during %dms.",buttonPressOnSpecSigImpactCfg.buttonName,activatedSignal.name,$activatedSignal,buttonPressOnSpecSigImpactCfg.msWaitBeforeCheck);  
+  }
+}
+
+export void sigOrientTwoStatInputSetting (struct sigOrientTwoStatInputCfg inputCfg, signal* inputSignal, enum determiningFactor dFct, enum digitalLevel level) {
+  if (!dFct) {//determinedBySignal
+    testEnableMsg(inputCfg.msgId);
+    if (level)
+      $inputSignal = inputCfg.sigHighVal;
+    else 
+      $inputSignal = inputCfg.sigLowVal;
+    setChannelOutputRandomVoltageAsDigitalLevel(inputCfg.vt2516Cfg,inputCfg.vLevelCfg,(enum digitalLevel)(random(2)));  
+  }    
+  else {//determinedByHardware
+    testDisableMsg(inputCfg.msgId);
+    if (level)
+      setChannelOutputRandomVoltageAsDigitalLevel(inputCfg.vt2516Cfg,inputCfg.vLevelCfg,High);
+    else 
+      setChannelOutputRandomVoltageAsDigitalLevel(inputCfg.vt2516Cfg,inputCfg.vLevelCfg,Low);
+  }
+}
+
+export void sigOrientMultiStatInputSetting (struct sigOrientMultiStatInputCfg specStatInputCfg, signal* inputSignal, enum determiningFactor dFct) {
+  struct pwmWaveCfg anyOutputPwmWaveCfg;
+  struct pwmWaveCfg outputPwmWaveCfg;
+  
+  outputPwmWaveCfg.duty = specStatInputCfg.specStatPwmWaveCfg.dutyBase + random(specStatInputCfg.specStatPwmWaveCfg.dutyRange);
+  outputPwmWaveCfg.freq = specStatInputCfg.specStatPwmWaveCfg.freq;
+  outputPwmWaveCfg.voltLow = specStatInputCfg.specStatPwmWaveCfg.voltLow;
+  outputPwmWaveCfg.voltHigh = specStatInputCfg.specStatPwmWaveCfg.voltHigh;
+  
+  anyOutputPwmWaveCfg.duty = random(101);
+  anyOutputPwmWaveCfg.freq = outputPwmWaveCfg.freq;
+  anyOutputPwmWaveCfg.voltLow = outputPwmWaveCfg.voltLow;
+  anyOutputPwmWaveCfg.voltHigh = outputPwmWaveCfg.voltHigh;
+  
+  if (!dFct) {//decided by CAN signal
+    testEnableMsg(specStatInputCfg.msgId);
+    signalSettingAndReport(inputSignal,specStatInputCfg.specSigVal);
+    setChannelOutputPwm(specStatInputCfg.vt2516Cfg,anyOutputPwmWaveCfg);//PWM INPUT whatever
+  }
+  else {//decided by PWM input
+    setChannelOutputPwm(specStatInputCfg.vt2516Cfg,outputPwmWaveCfg);
+    testDisableMsg(specStatInputCfg.msgId);
+    //testStep("set message","Disable signal:CF_Vcu_GarSelDisp.");
+  }
+}
+
+export void stateMachine (enum stateChangeManipulate path[]) {
+  enum stateChangeManipulate route;
+  int i;
+  //int try = 3;
+  
+  //init
+  route = init;
+  //getValue("try");
+  for (i = 0; i < elCount(path); i++){
+    route = path[i];
+    switch (path[i]) {
+      case init:
+        
+        break;
+      case byHw:
+      //setChannelOutputRandomVoltageAsDigitalLevel (vt2516Cfg,vLevelCfg,level);
+        break;
+        
+      case bySig:
+        //signalSettingAndReport(signal* settingSignal, float value);
+        break;
+      case byTime:
+        
+        break;
+      
+    }
+    
+  }
+  
+  
+}

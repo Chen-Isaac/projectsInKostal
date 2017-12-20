@@ -1,0 +1,18 @@
+includes
+{
+  #include "D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin"
+}
+
+variables
+{
+
+}
+
+export testcase powerOn (void) {
+  stateMachine("powerOn",routeNum,noParaPick);
+}
+
+export testcase powerOff (void) {
+  stateMachine("powerOff",routeNum,noParaPick);
+}
+

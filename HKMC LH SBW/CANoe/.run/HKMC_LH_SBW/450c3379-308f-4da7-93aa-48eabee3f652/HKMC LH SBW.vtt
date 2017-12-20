@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>Power supply initialization</title>
+      <variables />
+      <caplinline>
+        <title>Initialize VT system,make VT internal power supply voltage output equals 12V</title>
+        <code>sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);
+sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);
+@sysvar::VTS::M12_Out2::Active = 1;
+@sysvar::VTS::M12_SupInt::RefVoltage = 12;</code>
+      </caplinline>
+      <wait>
+        <title>Wait for power supply initialization complete</title>
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title />
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgVoltage|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <range>
+              <fromto>
+                <from>
+                  <const>11.5</const>
+                </from>
+                <to>
+                  <const>12.5</const>
+                </to>
+              </fromto>
+            </range>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <range>
+              <fromto>
+                <from>
+                  <const>0.001</const>
+                </from>
+                <to>
+                  <const>0.1</const>
+                </to>
+              </fromto>
+            </range>
+          </compare>
+        </expected>
+      </statecheck>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>for 3.5.2 debug</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const />
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+    </ts>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions>
+      <function_definition>
+        <name>setIgnStatus</name>
+        <parameters>
+          <parameter_definition>
+            <name>ignStatus</name>
+            <type>int</type>
+          </parameter_definition>
+        </parameters>
+        <caplinline>
+          <title>stim mode inactive</title>
+          <code>sysvar::VTS::M9_Ch4.SetStimulationMode(0);//stim mode inactive
+</code>
+        </caplinline>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <variable>ignStatus</variable>
+            </value>
+            <eq>
+              <const>0</const>
+            </eq>
+          </compare>
+          <caplinline>
+            <title>IGN connects to GND</title>
+            <code>sysvar::VTS::M9_Ch4.SetPWMVoltageLow(random(4));//set voltagelow 0-4
+@sysvar::VTS::M9_Ch4::DigitalOutput = 0;//output digital=0
+sysvar::VTS::M9_Ch4.SetStimulationMode(1);////stim mode as voltage
+</code>
+          </caplinline>
+        </if>
+        <else>
+          <title />
+          <caplinline>
+            <title>IGN connects to BATT</title>
+            <code>sysvar::VTS::M9_Ch4.SetPWMVoltageHigh(random(5)+7);//set voltagelow 7-12
+@sysvar::VTS::M9_Ch4::DigitalOutput = 1;//output digital=1
+sysvar::VTS::M9_Ch4.SetStimulationMode(1);////stim mode as voltage</code>
+          </caplinline>
+        </else>
+      </function_definition>
+      <function_definition>
+        <name>setAccStatus</name>
+        <parameters>
+          <parameter_definition>
+            <name>accStatus</name>
+            <type>int</type>
+          </parameter_definition>
+        </parameters>
+        <variables>
+          <variable_definition>
+            <name>status</name>
+            <type>int</type>
+            <source>
+              <const>0</const>
+            </source>
+          </variable_definition>
+          <variable_definition>
+            <name>chooseOffMethod</name>
+            <type>int</type>
+            <source>
+              <const>0</const>
+            </source>
+          </variable_definition>
+        </variables>
+        <caplinline>
+          <title>stim mode inactive</title>
+          <code>sysvar::VTS::M9_Ch5.SetStimulationMode(0);//stim mode inactive</code>
+        </caplinline>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <variable>accStatus</variable>
+            </value>
+            <eq>
+              <const>0</const>
+            </eq>
+          </compare>
+          <caplinline>
+            <title>set a random chooseOffMethod value</title>
+            <code>chooseOffMethod=random(1);</code>
+          </caplinline>
+          <if>
+            <title />
+            <compare>
+              <value>
+                <variable>chooseOffMethod</variable>
+              </value>
+              <eq>
+                <const>0</const>
+              </eq>
+            </compare>
+            <caplinline>
+              <title>ACC connects to GND</title>
+              <code>sysvar::VTS::M9_Ch5.SetPWMVoltageLow(random(4));//set voltagelow 0-4
+@sysvar::VTS::M9_Ch5::DigitalOutput = 0;//output digital=0
+sysvar::VTS::M9_Ch5.SetStimulationMode(1);////stim mode as voltage</code>
+            </caplinline>
+          </if>
+          <else>
+            <title />
+            <caplinline>
+              <title>set status as ACC OFF</title>
+              <code>status=random(1);
+status=status*(random(3)+4)+(1-status)*random(1);</code>
+            </caplinline>
+            <set>
+              <title />
+              <in>
+                <assignment>
+                  <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|HKMC_LH_SBW|1|PB|CGW|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|CGW1|1345|False|END_OF_OBJECT_FrameData|CF_Gway_IGNSw|1|END_OF_OBJECT_|</dbobject>
+                  <source>
+                    <variable>status</variable>
+                  </source>
+                </assignment>
+              </in>
+            </set>
+          </else>
+        </if>
+        <else>
+          <title />
+          <caplinline>
+            <title>ACC connects to BATT</title>
+            <code>sysvar::VTS::M9_Ch5.SetPWMVoltageHigh(random(5)+7);//set voltagelow 7-12
+@sysvar::VTS::M9_Ch5::DigitalOutput = 1;//output digital=1
+sysvar::VTS::M9_Ch5.SetStimulationMode(1);////stim mode as voltage</code>
+          </caplinline>
+          <caplinline>
+            <title>set status as ACC or IG</title>
+            <code>status=random(1)+2;</code>
+          </caplinline>
+          <set>
+            <title />
+            <in>
+              <assignment>
+                <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|HKMC_LH_SBW|1|PB|CGW|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|CGW1|1345|False|END_OF_OBJECT_FrameData|CF_Gway_IGNSw|1|END_OF_OBJECT_|</dbobject>
+                <source>
+                  <variable>status</variable>
+                </source>
+              </assignment>
+            </in>
+          </set>
+        </else>
+      </function_definition>
+      <function_definition>
+        <name>setDriverDoorStatus</name>
+        <parameters>
+          <parameter_definition>
+            <name>driverDoorOpen</name>
+            <type>int</type>
+          </parameter_definition>
+        </parameters>
+        <variables>
+          <variable_definition>
+            <name>driverDoorStatus</name>
+            <type>int</type>
+            <source>
+              <const>0</const>
+            </source>
+          </variable_definition>
+          <variable_definition>
+            <name>driverDoorOpenMethod</name>
+            <type>int</type>
+            <source>
+              <const>0</const>
+            </source>
+          </variable_definition>
+        </variables>
+        <caplinline>
+          <title>stim mode inactive</title>
+          <code>sysvar::VTS::M9_Ch8.SetStimulationMode(0);//stim mode inactive</code>
+        </caplinline>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <variable>driverDoorOpen</variable>
+            </value>
+            <eq>
+              <const>0</const>
+            </eq>
+          </compare>
+          <caplinline>
+            <title>Set driver door hard wire float</title>
+            <code>@sysvar::VTS::M9_Ch8::RelayGnd = 0;</code>
+          </caplinline>
+          <caplinline>
+            <title>Set driver door status as not open</title>
+            <code>driverDoorStatus=random(1);
+driverDoorStatus=driverDoorStatus*(random(1)+2);</code>
+          </caplinline>
+          <set>
+            <title />
+            <in>
+              <assignment>
+                <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|HKMC_LH_SBW|1|PB|CGW|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|CGW1|1345|False|END_OF_OBJECT_FrameData|CF_Gway_DrvDrSw|1|END_OF_OBJECT_|</dbobject>
+                <source>
+                  <valuetable_entry>Colse</valuetable_entry>
+                </source>
+              </assignment>
+            </in>
+          </set>
+        </if>
+        <else>
+          <title />
+          <caplinline>
+            <title>set a random driverDoorOpenMethod value</title>
+            <code>driverDoorOpenMethod=random(1);</code>
+          </caplinline>
+          <if>
+            <title />
+            <compare>
+              <value>
+                <variable>driverDoorOpenMethod</variable>
+              </value>
+              <eq>
+                <const>0</const>
+              </eq>
+            </compare>
+            <caplinline>
+              <title>DOOR_OPEN connects to GND</title>
+              <code>@sysvar::VTS::M9_Ch8::RelayGnd = 1;</code>
+            </caplinline>
+          </if>
+          <else>
+            <title />
+            <set>
+              <title />
+              <in>
+                <assignment>
+                  <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|HKMC_LH_SBW|1|PB|CGW|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|CGW1|1345|False|END_OF_OBJECT_FrameData|CF_Gway_DrvDrSw|1|END_OF_OBJECT_|</dbobject>
+                  <source>
+                    <const>1</const>
+                  </source>
+                </assignment>
+              </in>
+            </set>
+          </else>
+        </else>
+      </function_definition>
+      <function_definition>
+        <name>setVehicleSpeed</name>
+        <parameters>
+          <parameter_definition>
+            <name>vehicleSpeedSignalStatus</name>
+            <type>int</type>
+          </parameter_definition>
+        </parameters>
+        <variables>
+          <variable_definition>
+            <name>vs_tcu_timeoutBool</name>
+            <type>int</type>
+            <source>
+              <const>0</const>
+            </source>
+          </variable_definition>
+          <variable_definition>
+            <name>WHL_SPD_FL_timeoutBool</name>
+            <type>int</type>
+            <source>
+              <const>0</const>
+            </source>
+          </variable_definition>
+        </variables>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <variable>vehicleSpeedSignalStatus</variable>
+            </value>
+            <eq>
+              <const>0</const>
+            </eq>
+          </compare>
+          <comment>
+            <title>VS_TCU and WHL_SPD_FL both no good</title>
+          </comment>
+          <caplinline>
+            <title />
+            <code>vs_tcu_timeoutBool=random(1);</code>
+          </caplinline>
+          <if>
+            <title />
+            <compare>
+              <value>
+                <variable>vs_tcu_timeoutBool</variable>
+              </value>
+              <eq>
+                <const>0</const>
+              </eq>
+            </compare>
+            <set>
+              <title />
+              <in>
+                <assignment>
+                  <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|HKMC_LH_SBW|1|PB|TCU|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|TCU12|274|False|END_OF_OBJECT_FrameData|VS_TCU|1|END_OF_OBJECT_|</dbobject>
+                  <source>
+                    <const>0xFF</const>
+                  </source>
+                </assignment>
+              </in>
+            </set>
+          </if>
+          <else>
+            <title />
+          </else>
+          <if>
+            <title />
+            <compare>
+              <value>
+                <variable>WHL_SPD_FL_timeoutBool</variable>
+              </value>
+              <eq>
+                <const>0</const>
+              </eq>
+            </compare>
+            <set>
+              <title />
+              <in>
+                <assignment>
+                  <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|HKMC_LH_SBW|1|PB|ESC|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|WHL_SPD11|902|False|END_OF_OBJECT_FrameData|WHL_SPD_FL|1|END_OF_OBJECT_|</dbobject>
+                  <source>
+                    <const>0x3FFF</const>
+                  </source>
+                </assignment>
+              </in>
+            </set>
+          </if>
+        </if>
+      </function_definition>
+    </function_definitions>
+  </ttlib>
+</ttroot>

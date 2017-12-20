@@ -1,0 +1,8 @@
+[NStatePersistence]
+Signature=VectorStatePersistence
+[VGlobalMeasurementIndex]
+mMeasurementIndex=704
+[VTestConfigurationConfigData]
+HKMC_FE_SBW_NextTestRun=4
+[VTestExecutable]
+HKMC_FE_SBW_LastReportFile=Report_HKMC_FE_SBW.xml

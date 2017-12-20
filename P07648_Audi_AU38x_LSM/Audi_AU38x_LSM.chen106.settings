@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Project>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>CANoeConfigPathSutImport</string>
+        </key>
+        <value type="System.String">
+          <string>D:\Isaac\P07648_Audi_AU38x_LSM\Canoe\Audi_LTM_8.2.cfg</string>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </Project>
+  <WindowManagement>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>DocContainerSizes</string>
+        </key>
+        <value type="System.Collections.Generic.List`1[System.Drawing.Size]">
+          <ArrayOfSize>
+            <Size>
+              <Width>1668</Width>
+              <Height>748</Height>
+            </Size>
+          </ArrayOfSize>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>ActiveDocumentIndex</string>
+        </key>
+        <value type="System.Int32">
+          <int>0</int>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>DocumentLayout</string>
+        </key>
+        <value type="Vector.ITE.WindowManagement.DocInfoList">
+          <ArrayOfDocumentInfo>
+            <DocumentInfo>
+              <PositionInContainer>0</PositionInContainer>
+              <ContainerIndex>0</ContainerIndex>
+              <DocType>TTTestModule</DocType>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM\Audi_AU38x_LSM.vtt" /&gt;</SerializedBasedFileName>
+              <ContextGUID>4rtq21cuueuf</ContextGUID>
+              <ContextGUIDForGUI>4rtq21cuueuf</ContextGUIDForGUI>
+            </DocumentInfo>
+            <DocumentInfo>
+              <PositionInContainer>1</PositionInContainer>
+              <ContainerIndex>0</ContainerIndex>
+              <DocType>CAPLIncludeFile</DocType>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\Library\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
+              <ContextGUID>4rtq21cuueuf</ContextGUID>
+              <ContextGUIDForGUI>4rtq21cuueuf</ContextGUIDForGUI>
+            </DocumentInfo>
+            <DocumentInfo>
+              <PositionInContainer>2</PositionInContainer>
+              <ContainerIndex>0</ContainerIndex>
+              <DocType>CAPLFile</DocType>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
+              <ContextGUID>4rtq21cuueuf</ContextGUID>
+              <ContextGUIDForGUI>4rtq21cuueuf</ContextGUIDForGUI>
+            </DocumentInfo>
+          </ArrayOfDocumentInfo>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>ViewSettings</string>
+        </key>
+        <value type="Vector.ITE.ViewManagement.ViewManagementServiceProvider+ViewSettingsDictionary">
+          <ViewSettingsDictionary>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>ProjectView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">P07648_Audi_AU38x_LSM/ProjectRoot</anyType>
+                        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d13p1:type="q2:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">P07648_Audi_AU38x_LSM/ProjectRoot/Test Units/Audi_AU38x_LSM</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">P07648_Audi_AU38x_LSM/ProjectRoot/Test Units/Audi_AU38x_LSM/basicFunctionTest.can</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>18</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>LibraryView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">P07648_Audi_AU38x_LSM/_1/Library</anyType>
+                        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d13p1:type="q2:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">P07648_Audi_AU38x_LSM/_1/Library/Library/Communication</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">P07648_Audi_AU38x_LSM/_1/Library/Library/KostalSoftwareTestLibrary.cin</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>20</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>HomeDirectoryView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">P07648_Audi_AU38x_LSM/P07648_Audi_AU38x_LSM</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">P07648_Audi_AU38x_LSM/P07648_Audi_AU38x_LSM</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>24</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>SymbolExplorer</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>State</string>
+                    </key>
+                    <value type="System.String">
+                      <string>1
+HistoryBegin
+1 0
+HistoryEnd
+FiltersBegin
+Begin
+3 0 -1
+4
+DOC018773700000_MLBevo_Konzern_M
+ ( 2 ( 0 ) 0 ) 
+Networks
+( 0)
+SinalPannelEnv
+( 2 ( 0 ) 0)
+VW_DiagEnv
+( 2 ( 0 ) 0)
+SymbSelHeaderMgrBegin
+1 9
+0 1 200 0 0
+9 1 100 0 0
+1 1 100 0 0
+14 0 100 0 0
+15 1 80 0 0
+2 0 100 0 0
+3 0 75 1 1
+5 1 75 1 1
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 -1
+1
+System variables
+ ( 0 ) 
+SymbSelHeaderMgrBegin
+1 4
+0 1 200 0 0
+10 1 75 0 0
+11 1 100 0 0
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 -1
+0
+SymbSelHeaderMgrBegin
+1 3
+0 1 200 0 0
+7 0 100 0 0
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 -1
+0
+SymbSelHeaderMgrBegin
+1 2
+0 1 200 0 0
+13 1 75 0 0
+SymbSelHeaderMgrEnd
+End
+
+FiltersEnd
+0 1</string>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>TraceItemExplorer</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Focused</string>
+                    </key>
+                    <value type="null" />
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+          </ViewSettingsDictionary>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </WindowManagement>
+  <DocumentManagement>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>DocSettings</string>
+        </key>
+        <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
+          <ArrayOfDocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2017-11-29T07:24:36.0690527Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>RelativeSplitterPosClassicMode</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>100</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>VerticalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>Outlining</string>
+                  </key>
+                  <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.Int32,System.Boolean]">
+                    <SerializableDictionaryOfInt32Boolean>
+                      <item>
+                        <key type="System.Int32">
+                          <int>-1</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>19</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>96</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>114</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>197</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>282</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>369</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>614</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>745</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1020</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1163</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1453</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1590</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2423</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2763</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2921</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                    </SerializableDictionaryOfInt32Boolean>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPosNavigator</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>170</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Expanded</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Includes</anyType>
+                      <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d7p1:type="q2:string">Test Cases</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Selected</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">disableLTMe_01(): void</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Focused</string>
+                  </key>
+                  <value type="System.String">
+                    <string>disableLTMe_01(): void</string>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_TopIndex</string>
+                  </key>
+                  <value type="System.Int32">
+                    <int>0</int>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CNCVirtualGroups</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.CAPL.Navigator.Model.SerializedNodeList">
+                    <ArrayOfSerializedNode />
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM\Audi_AU38x_LSM.can" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2017-12-20T08:18:49.6948372Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>EditorSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.TtEditorSettings">
+                    <TtEditorSettings>
+                      <SplitterSettingsTet>
+                        <SplitPosition>150</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsTet>
+                      <SplitterSettingsPv>
+                        <SplitPosition>250</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsPv>
+                      <SplitterSettingsLv>
+                        <SplitPosition>185</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsLv>
+                      <ActiveView>1</ActiveView>
+                    </TtEditorSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>ParameterViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.ParameterView.TtParameterViewSettings">
+                    <TtParameterViewSettings>
+                      <CellSizes />
+                    </TtParameterViewSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>TestExecutionTreeSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.TestExecutionTree.TtTetSettings">
+                    <TtTetSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>87</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                    </TtTetSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>LibraryViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.LibraryView.TtLvSettings">
+                    <TtLvSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>75</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                    </TtLvSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CommandViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.CommandView.TtCvSettings">
+                    <TtCvSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>300</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>300</Width>
+                            <VisibleIndex>1</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                      <RootNodeId>:0</RootNodeId>
+                      <MruList>
+                        <TtCustomPopupListItemData>
+                          <ItemText>checkKostia</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>checkKostia</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>checkFunctions2</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>checkFunctions2</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>checkFunctions1</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>checkFunctions1</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Test Fixture</ItemText>
+                          <ImageIndex>169</ImageIndex>
+                          <ModelElementName>tf</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>enableLTMe_01</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>enableLTMe_01</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>disableLTMe_01</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>disableLTMe_01</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>rearFogLightBtnRelateSigImpOnLight</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>rearFogLightBtnRelateSigImpOnLight</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>rearFogLightBtnImp [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>rearFogLightBtnImp</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>allWeatherLightBtnRelateSigImpOnLight</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>allWeatherLightBtnRelateSigImpOnLight</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>allWeatherLightBtnImp [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>allWeatherLightBtnImp</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>autoLightBtnRelateSigImpOnLight</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>autoLightBtnRelateSigImpOnLight</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>autoLightBtnImp [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>autoLightBtnImp</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>try</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>try</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>readSwVer</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>readSwVer</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>frontDefogButtonImp [list]</ItemText>
+                          <ImageIndex>92</ImageIndex>
+                          <ModelElementName>capltestcaselist</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>frontDefogButtonImp</SignatureName>
+                          <ClassName />
+                          <DataTypeList>
+                            <EnumDataType>String</EnumDataType>
+                          </DataTypeList>
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>frontDefogButtonImp</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>frontDefogButtonImp</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>powerOff</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>powerOff</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>powerOn</ItemText>
+                          <ImageIndex>89</ImageIndex>
+                          <ModelElementName>capltestcase</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName>powerOn</SignatureName>
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                        <TtCustomPopupListItemData>
+                          <ItemText>Test Case</ItemText>
+                          <ImageIndex>172</ImageIndex>
+                          <ModelElementName>tc</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                      </MruList>
+                    </TtCvSettings>
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM\Audi_AU38x_LSM.vtt" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2017-12-20T08:18:49.7648372Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>RelativeSplitterPosClassicMode</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>100</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>VerticalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>Outlining</string>
+                  </key>
+                  <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.Int32,System.Boolean]">
+                    <SerializableDictionaryOfInt32Boolean>
+                      <item>
+                        <key type="System.Int32">
+                          <int>-1</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>19</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2305</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2610</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>3468</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>4907</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6008</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6522</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6711</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>7678</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>8111</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>9411</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>10704</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>13745</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>15648</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>18287</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>20100</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>20632</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>21515</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>23375</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>25433</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>26336</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>28034</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>29100</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>30780</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>33652</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>35332</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>38729</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>40606</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>44103</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>45446</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>46951</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>48429</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>51043</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>55339</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>58444</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>60221</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>60918</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>62534</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>65707</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>66816</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>69805</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>71473</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>73340</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>74632</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>75646</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>76501</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                    </SerializableDictionaryOfInt32Boolean>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPosNavigator</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>234</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_TopIndex</string>
+                  </key>
+                  <value type="System.Int32">
+                    <int>8</int>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Focused</string>
+                  </key>
+                  <value type="System.String">
+                    <string>cfgLinMsgAndSend(char serviceType[], char serviceName[], char diagInfo[][], linMessage sendDiag, linMessage recDiag): int</string>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Selected</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">cfgLinMsgAndSend(char serviceType[], char serviceName[], char diagInfo[][], linMessage sendDiag, linMessage recDiag): int</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Expanded</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Functions</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CNCVirtualGroups</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.CAPL.Navigator.Model.SerializedNodeList">
+                    <ArrayOfSerializedNode />
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\Library\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2017-12-20T08:18:49.8348372Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>RelativeSplitterPosClassicMode</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>100</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>VerticalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>Outlining</string>
+                  </key>
+                  <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.Int32,System.Boolean]">
+                    <SerializableDictionaryOfInt32Boolean>
+                      <item>
+                        <key type="System.Int32">
+                          <int>-1</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>0</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>77</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>93</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>176</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>261</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>348</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>594</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>725</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1001</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1144</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1435</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1572</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1671</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1770</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                    </SerializableDictionaryOfInt32Boolean>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPosNavigator</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>170</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_TopIndex</string>
+                  </key>
+                  <value type="System.Int32">
+                    <int>0</int>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Focused</string>
+                  </key>
+                  <value type="System.String">
+                    <string>rearFogLightBtnImp(char value_Bel_LTM_Nebelschlusslicht[]): void</string>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Selected</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">rearFogLightBtnImp(char value_Bel_LTM_Nebelschlusslicht[]): void</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Expanded</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Test Cases</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CNCVirtualGroups</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.CAPL.Navigator.Model.SerializedNodeList">
+                    <ArrayOfSerializedNode />
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+          </ArrayOfDocumentSettingsBase>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </DocumentManagement>
+  <BookmarkService>
+    <SerializableDictionaryOfStringObject />
+  </BookmarkService>
+  <SearchAndReplace>
+    <SerializableDictionaryOfStringObject />
+  </SearchAndReplace>
+  <FunctionExplorer>
+    <SerializableDictionaryOfStringObject />
+  </FunctionExplorer>
+  <TempFileRepository>
+    <SerializableDictionaryOfStringObject />
+  </TempFileRepository>
+  <TestTableEditor>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>TtRUList</string>
+        </key>
+        <value type="System.Collections.Generic.List`1[System.String]">
+          <ArrayOfString />
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </TestTableEditor>
+  <TestSequenceDiagram>
+    <SerializableDictionaryOfStringObject />
+  </TestSequenceDiagram>
+  <LanguagesCommon>
+    <SerializableDictionaryOfStringObject />
+  </LanguagesCommon>
+  <InterfaceFunctionExplorer>
+    <SerializableDictionaryOfStringObject />
+  </InterfaceFunctionExplorer>
+  <ITETester>
+    <SerializableDictionaryOfStringObject />
+  </ITETester>
+  <MeasurePerformance>
+    <SerializableDictionaryOfStringObject />
+  </MeasurePerformance>
+  <TraceItems>
+    <SerializableDictionaryOfStringObject />
+  </TraceItems>
+  <IntelliSymbolManagement>
+    <SerializableDictionaryOfStringObject />
+  </IntelliSymbolManagement>
+  <PrintDialog>
+    <SerializableDictionaryOfStringObject />
+  </PrintDialog>
+</Settings>

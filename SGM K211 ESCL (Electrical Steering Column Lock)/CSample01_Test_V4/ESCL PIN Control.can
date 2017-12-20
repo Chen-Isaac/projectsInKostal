@@ -1,0 +1,217 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  msTimer waitATime;
+  msTimer OSSpdTimer;
+  msTimer LFM_x348_msTimer;
+  msTimer LFM_x34A_msTimer;
+  msTimer LFM_x34B_msTimer;
+  message ESCL_Status msg;
+  message Driven_Wheel_Grnd_Velocity_HS DrvGndSpdMsg348;
+  message NonDriven_Wheel_Grnd_Velocity_HS NonDrvGndSpdMsg34A;
+  message Wheel_Ground_Velocity_Check_Data WhlGndSpdChkMsg34B;
+  long timeLastFrame=0,timePresentFrame=0,firstPresentFrame;
+  int showTimeDiff = 1,flag = 1;
+  byte seqNumber;
+  word temp16;
+}
+
+
+on envVar invertedIgn {
+  if (@invertedIgn == 1) {
+    //  invertedIgn == high
+    @sysvar::VTS::M9_Ch1::RelayGnd = 0;
+    setTimer(waitATime,500);
+    @sysvar::VTS::M9_Ch1::RelayVBatt = 1;
+  }
+  else {
+    @sysvar::VTS::M9_Ch1::RelayVBatt = 0;
+    setTimer(waitATime,500);
+    @sysvar::VTS::M9_Ch1::RelayGnd = 1;
+  }
+}
+
+on envVar commEnableWakeUp {
+  if (@commEnableWakeUp == 1) {
+    //  commEnableWakeUp == high
+    @sysvar::VTS::M9_Ch2::RelayGnd = 0;
+    setTimer(waitATime,500);
+    @sysvar::VTS::M9_Ch2::RelayVBatt = 1;
+  }
+  else {
+    @sysvar::VTS::M9_Ch2::RelayVBatt = 0;
+    setTimer(waitATime,500);
+    @sysvar::VTS::M9_Ch2::RelayGnd = 1;
+  }
+}
+
+on envVar reset {
+  //if (@reset == 1) {
+    //  invertedIgn == float, commEnableWakeUp == float
+    @sysvar::VTS::M9_Ch1::RelayGnd = 0;
+    @sysvar::VTS::M9_Ch1::RelayVBatt = 0;
+    @sysvar::VTS::M9_Ch2::RelayGnd = 0;
+    @sysvar::VTS::M9_Ch2::RelayVBatt = 0;
+  //}
+}
+
+on timer waitATime {
+  
+}
+
+on message ESCL_Status {
+  if (showTimeDiff) {
+    if (flag) {
+      firstPresentFrame = timeDiff(msg,now);
+      flag = 0;
+    }
+    timePresentFrame = timeDiff(msg,now);
+    if ((timePresentFrame - timeLastFrame > 105) && (timeLastFrame!=0)) {
+      @timeDiffP = timePresentFrame - timeLastFrame;
+      @timeOccurSinceStart = timeLastFrame - firstPresentFrame;
+      showTimeDiff = 0;
+    }
+    timeLastFrame = timePresentFrame;
+  }
+}
+
+on timer OSSpdTimer {
+  setTimer(OSSpdTimer,50);
+  LFM_Update_SpeedFrame_Signal();
+  switch(random(6)) {
+    case 0:
+      output(DrvGndSpdMsg348);
+      setTimer(LFM_x34A_msTimer,1);
+      setTimer(LFM_x34B_msTimer,2);
+    break;
+    case 1:
+      output(DrvGndSpdMsg348);
+      setTimer(LFM_x34B_msTimer,1);
+      setTimer(LFM_x34A_msTimer,2);
+    break;
+    case 2:
+      output(NonDrvGndSpdMsg34A);
+      setTimer(LFM_x348_msTimer,1);
+      setTimer(LFM_x34B_msTimer,2);
+    break;
+    case 3:
+      output(NonDrvGndSpdMsg34A);           
+      setTimer(LFM_x34B_msTimer,1);
+      setTimer(LFM_x348_msTimer,2);
+    break;
+    case 4:
+      output(WhlGndSpdChkMsg34B);
+      setTimer(LFM_x348_msTimer,1);
+      setTimer(LFM_x34A_msTimer,2);
+    break;         
+    default:
+      output(WhlGndSpdChkMsg34B);
+      setTimer(LFM_x34A_msTimer,1);
+      setTimer(LFM_x348_msTimer,2);            
+    break;          
+  }           
+}
+
+on envVar wheelVelSimu {
+  seqNumber = 0x00;
+  setTimer(OSSpdTimer,50);
+  @WhlGrndVlctyLftDrvn = 0;
+  @WhlGrndVlctyRtDrvn = 0;
+  @WhlGrndVlctyLftNnDrvn = 0;
+  @WhlGrndVlctyRtNnDrvn = 0;
+  @WhlGrndVlctyLftDrvnV = 0;//valid
+  @WhlGrndVlctyRtDrvnV = 0;//valid
+  @WhlGrndVlctyLftNnDrvnV = 0;//valid
+  @WhlGrndVlctyRtNnDrvnV = 0;//valid
+}
+
+/* This function is called for update speed frame signal values.
+ * Speed frame include CAN frames:0x348,0x34A,0x034B;
+ */
+void LFM_Update_SpeedFrame_Signal(void) {
+  seqNumber++;
+  seqNumber &= 0x03;
+  DrvGndSpdMsg348.WhlGrndVlctyDrvnSeqNum = seqNumber;
+  NonDrvGndSpdMsg34A.WhlGrndVlctyNnDrvnSeqNum = seqNumber;
+  WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnSeqNum = seqNumber;
+  WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnSeqNum = seqNumber;
+  temp16 = (word)(DrvGndSpdMsg348.WhlGrndVlctyLftDrvnV <<14)+(word)(DrvGndSpdMsg348.WhlGrndVlctyLftDrvn)+(word)(DrvGndSpdMsg348.WhlGrndVlctyDrvnSeqNum);
+  temp16 ^= 0xFFFF;
+  temp16++;
+  WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnLftPv = temp16;
+  temp16 = (word)(DrvGndSpdMsg348.WhlGrndVlctyRtDrvnV <<14)+(word)(DrvGndSpdMsg348.WhlGrndVlctyRtDrvn)+(word)(DrvGndSpdMsg348.WhlGrndVlctyDrvnSeqNum);
+  temp16 ^= 0xFFFF;
+  temp16++;
+  WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnRtPv = temp16;
+  temp16 = (word)(NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvnV <<14)+(word)(NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn)+(word)(NonDrvGndSpdMsg34A.WhlGrndVlctyNnDrvnSeqNum);
+  temp16 ^= 0xFFFF;
+  temp16++;
+  WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnLftPv = temp16;
+  temp16 = (word)(NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvnV <<14)+(word)(NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn)+(word)(NonDrvGndSpdMsg34A.WhlGrndVlctyNnDrvnSeqNum);
+  temp16 ^= 0xFFFF;
+  temp16++;
+  WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnRtPv = temp16;
+}
+
+on timer LFM_x348_msTimer {
+  output(DrvGndSpdMsg348);
+}
+
+on timer LFM_x34A_msTimer {
+  output(NonDrvGndSpdMsg34A);
+}
+
+on timer LFM_x34B_msTimer {
+  output(WhlGndSpdChkMsg34B);
+}
+
+on message Driven_Wheel_Grnd_Velocity_HS {
+  if(this.DIR == Tx) {
+    DrvGndSpdMsg348.WhlGrndVlctyLftDrvn.phys = (word)(@WhlGrndVlctyLftDrvn);//0.03125 is the factor from raw to phys.
+    DrvGndSpdMsg348.WhlGrndVlctyRtDrvn.phys = (word)(@WhlGrndVlctyRtDrvn);
+    DrvGndSpdMsg348.WhlGrndVlctyLftDrvnV = @WhlGrndVlctyLftDrvnV;
+    DrvGndSpdMsg348.WhlGrndVlctyRtDrvnV = @WhlGrndVlctyRtDrvnV;
+  }
+}
+on message NonDriven_Wheel_Grnd_Velocity_HS {
+  if(this.DIR == Tx) {
+    NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn.phys = (word)(@WhlGrndVlctyLftNnDrvn);
+    NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn.phys = (word)(@WhlGrndVlctyRtNnDrvn);
+    NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvnV = @WhlGrndVlctyLftNnDrvnV;
+    NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvnV = @WhlGrndVlctyRtNnDrvnV;
+  }
+}
+
+on errorActive {
+  write("CAN Controller at error active.");
+  write("TX errors = %d",this.errorCountTX);
+  write("Rx errors = %d",this.errorCountRX);
+  write("time = %d",timeNow());
+}
+
+on warningLimit {
+  write("CAN Controller at warning limit.");
+  write("TX errors = %d",this.errorCountTX);
+  write("Rx errors = %d",this.errorCountRX);
+  write("time = %d",timeNow());
+}
+
+on errorPassive {
+  write("CAN Controller at error passive.");
+  write("TX errors = %d",this.errorCountTX);
+  write("Rx errors = %d",this.errorCountRX);
+  write("time = %d",timeNow());
+}
+
+on busOff {
+  write("CAN Controller at bus off.");
+  write("TX errors = %d",this.errorCountTX);
+  write("Rx errors = %d",this.errorCountRX);
+  write("time = %d",timeNow());
+  
+}

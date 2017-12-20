@@ -1,0 +1,1233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>Power supply initialization</title>
+      <caplinline>
+        <title>Initialize VT system,make VT internal power supply voltage output equals 12V</title>
+        <code>sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);
+sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);
+@sysvar::VTS::M12_SupInt::RefVoltage = 12;
+@sysvar::VTS::M12_Out2::Active = 1;
+
+</code>
+      </caplinline>
+      <wait>
+        <title>Wait for power supply initialization complete</title>
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title />
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgVoltage|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>12.5</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgVoltage|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>11.5</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>0.001</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.1</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+    </ts>
+    <ts>
+      <title>3.1 Color Definition</title>
+      <caplinline>
+        <title>Set Pin4 input inactive at the beginning</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>1</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Long press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>breakpoint</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const />
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>900</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Day mode Mode0</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>3.06</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>2.94</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>9</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <eq>
+              <const>50</const>
+            </eq>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>9</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <eq>
+              <const>50</const>
+            </eq>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>9</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+      <statecheck>
+        <title>Check if it's under Mode0</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.5</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.5</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.5</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <set>
+        <title>PosLmpSts=0 @ Day Mode</title>
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|PosLmpSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <const>0</const>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <caplinline>
+        <title>Short press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+</code>
+      </caplinline>
+      <wait>
+        <title>press for 32 ms</title>
+        <time>
+          <value>
+            <const>32</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Day mode Mode1</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>3.06</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>2.94</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>9</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <eq>
+              <const>50</const>
+            </eq>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>9</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <eq>
+              <const>50</const>
+            </eq>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>9</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+      <caplinline>
+        <title>Short press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <wait>
+        <title>press for 100 ms</title>
+        <time>
+          <value>
+            <const>100</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Day mode Mode2</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>97.92</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>94.08</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>20.04</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>19.6</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <caplinline>
+        <title>Short press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <wait>
+        <title>press for 200 ms</title>
+        <time>
+          <value>
+            <const>200</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Day mode Mode3</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>32.64</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>31.36</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>10</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+      <caplinline>
+        <title>Short press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <wait>
+        <title>press for 300 ms</title>
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Day mode Mode1</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>3.06</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>2.94</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>10</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+      <set>
+        <title>PosLmpSts=1 @ Night mode</title>
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|PosLmpSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <const>1</const>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <caplinline>
+        <title>Short press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <wait>
+        <title>press for 400 ms</title>
+        <time>
+          <value>
+            <const>400</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Night mode Mode4</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>2.04</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>1.96</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>76.5</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>73.5</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+      <caplinline>
+        <title>Short press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <wait>
+        <title>press for 500 ms</title>
+        <time>
+          <value>
+            <const>500</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Night mode Mode5</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>73.44</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>70.56</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>15.3</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>14.7</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <caplinline>
+        <title>Short press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <wait>
+        <title>press for 600 ms</title>
+        <time>
+          <value>
+            <const>600</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Night mode Mode6</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>24.48</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>23.52</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>76.5</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>73.5</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+      <caplinline>
+        <title>Short press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <wait>
+        <title>press for 700 ms</title>
+        <time>
+          <value>
+            <const>700</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if it's under Night mode Mode4</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>2.04</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>1.96</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>190</const>
+            </ge>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMFreq|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>210</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>76.5</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|PWMDC|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>73.5</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+    </ts>
+    <ts>
+      <title>3.2 Shut Down Status</title>
+      <report>
+        <text>Test the situation of switch off by time</text>
+      </report>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS2|661|False|END_OF_OBJECT_FrameData|SystemPowerMode|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>OFF</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <set>
+        <title>Close all the doors</title>
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RRDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RLDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|PassengerDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|DriverDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <wait>
+        <title>Keep all doors closed for 1s</title>
+        <time>
+          <value>
+            <const>1</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <set>
+        <title>Open RRDoorSts</title>
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RRDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Open</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>20</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if ambient light be off within 20s</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <set>
+        <title>Close RRDoorSts</title>
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RRDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <report>
+        <text>Test the situation of switch off by lock signal</text>
+      </report>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|PassengerDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Open</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <wait>
+        <title>wait for ambient light be lighten</title>
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS1|165|False|END_OF_OBJECT_FrameData|RKEDoorLockCmd|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>RKE door lock</valuetable_entry>
+            </source>
+          </assignment>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS1|165|False|END_OF_OBJECT_FrameData|PKEDoorLockCmd|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>No Action</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if ambient light be off</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|PassengerDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|DriverDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Open</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <wait>
+        <title>wait for ambient light be lighten</title>
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS1|165|False|END_OF_OBJECT_FrameData|RKEDoorLockCmd|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>No Action</valuetable_entry>
+            </source>
+          </assignment>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|PEPS|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|PEPS1|165|False|END_OF_OBJECT_FrameData|PKEDoorLockCmd|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>PKE door Lock</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if ambient light be off</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|DriverDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <report>
+        <text>Test the situation of switch off by power shut down</text>
+      </report>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RLDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Open</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <wait>
+        <title>wait for ambient light be lighten</title>
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Shut power supply down</title>
+        <code>@sysvar::VTS::M12_Sup1::RefVoltage = 0;</code>
+      </caplinline>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if ambient light be off</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RLDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <report>
+        <text>Test the situation of switch off by mode 0</text>
+      </report>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RRDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Open</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+      <wait>
+        <title>wait for ambient light be lighten</title>
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Long press on pin4 one time</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 0;</code>
+      </caplinline>
+      <wait>
+        <title>press for 810 ms</title>
+        <time>
+          <value>
+            <const>810</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplinline>
+        <title>Release pin4</title>
+        <code>@sysvar::VTS::M9_Ch4::DigitalOutput = 1;</code>
+      </caplinline>
+      <statecheck>
+        <title>Check if ambient light be off</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|Avg|VTS::M9_Ch3|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <set>
+        <title />
+        <in>
+          <assignment>
+            <dbobject>DBSignal_BEGIN_OF_OBJECT|1|NodeOrFrameData_BEGIN_OF_OBJECT|1|1|CAN|1|_____CF_C_Matrix|BCM|END_OF_OBJECT_NodeOrFrameData|FrameData_BEGIN_OF_OBJECT|1|255|255|0|0|BCM1|793|False|END_OF_OBJECT_FrameData|RRDoorSts|1|END_OF_OBJECT_|</dbobject>
+            <source>
+              <valuetable_entry>Closed</valuetable_entry>
+            </source>
+          </assignment>
+        </in>
+      </set>
+    </ts>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <caplfunction>
+    <name>_ttg_fct_tt_1_0</name>
+  </caplfunction>
+  <testsequence>
+    <title>Power supply initialization</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_1_0_0</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>3.2 Shut Down Status</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_1_0_1</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>3.3 Luminance definition</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_1_0_2</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>3.4.1 Color Changing Switch</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_1_0_3</name>
+    </caplfunction>
+  </testsequence>
+  <testsequence>
+    <title>3.5.1 Switch on Ambient light by door open signal</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_1_0_4</name>
+    </caplfunction>
+  </testsequence>
+</testtree>

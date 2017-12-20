@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <caplfunction>
+    <name>_ttg_fct_tt_2_0</name>
+  </caplfunction>
+  <testcase>
+    <title>POWERON ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_2_0_0</name>
+    </caplfunction>
+  </testcase>
+</testtree>

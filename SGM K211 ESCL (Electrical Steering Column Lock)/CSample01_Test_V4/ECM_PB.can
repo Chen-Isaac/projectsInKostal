@@ -1,0 +1,276 @@
+/*@!Encoding:936*/
+includes
+{
+#include "Table_xofy.cin" 
+}
+
+variables
+{
+#if 0  
+    message  PPEI_Powertrain_Config_Data  WheelPowerConfigMsg;
+#endif  
+#if 1  
+  dword LFM_32b_TstCaseID_ECM;
+   msTimer ECM_Timer_10ms;
+
+  char CAPL_LFM_8b_EngSpdStat_x = 0;
+  char CAPL_LFM_8b_EngSpdStat_y = 10;
+  char LFM_XY_Signal_Send_Index_ECM=0;
+  char LFM_XY_Signal_Send_Ongoing_ECM=0;
+#endif
+}
+
+on preStart
+{
+   //ILControlInit(); //deleted by Isaac
+}
+
+
+on start
+{ //this part is added by Isaac
+  ILDisableMsg("DTC_Triggered_772");
+  ILDisableMsg("ETEI_Engine_Torque_Capability");
+  ILDisableMsg("ETEI_Engine_Torque_Status");
+  ILDisableMsg("ETEI_Engine_General_Status");
+  ILDisableMsg("PPEI_Altern_Fuel_Syst_Stat_PB");
+  ILDisableMsg("PPEI_Diesel_Exhaust_Gen_Stat_1");
+  ILDisableMsg("PPEI_Driver_Intnd_Axle_Torq_Stat");
+  ILDisableMsg("PPEI_Drv_Pref_Mode_Switch_Status");
+  ILDisableMsg("PPEI_Drvr_Perform_Feedback_Stat");
+  ILDisableMsg("PPEI_Engine_Environmental_Status"); 
+  ILDisableMsg("PPEI_Engine_Fuel_Status");
+  ILDisableMsg("PPEI_Engine_General_Status_2");
+  ILDisableMsg("PPEI_Engine_General_Status_3");
+  ILDisableMsg("PPEI_Engine_General_Status_4");
+  ILDisableMsg("PPEI_Engine_General_Status_5");
+  ILDisableMsg("PPEI_Engine_General_Status_6");
+  ILDisableMsg("PPEI_Engine_Torque_Status_2");
+  ILDisableMsg("PPEI_Engine_Torque_Status_3");
+  ILDisableMsg("PPEI_Fuel_System_Request");
+  ILDisableMsg("PPEI_Fuel_System_Request_3");
+  ILDisableMsg("PPEI_Hybrid_General_Status_3_PB");
+  ILDisableMsg("PPEI_IBS_Battery_Status_3");
+  ILDisableMsg("PPEI_IBS_Battery_Status_4");
+  ILDisableMsg("PPEI_IBS_Battery_Status_5");
+  ILDisableMsg("PPEI_IBS_Battery_Status_6");
+  ILDisableMsg("PPEI_Powertrain_Config_Data_2");
+  ILDisableMsg("PPEI_Powertrain_HVAC_PTC_Gen_Sta");
+  ILDisableMsg("PPEI_Powertrain_Immobilizer_Data");
+  ILDisableMsg("PPEI_Propulsion_Sys_Gen_Status");
+  ILDisableMsg("PPEI_Secondary_Axle_General_Info");
+  ILDisableMsg("PPEI_Torque_Request_Status");
+  ILDisableMsg("PPEI_Trans_General_Status_1");
+  ILDisableMsg("PPEI_Trans_General_Status_2");
+  ILDisableMsg("PPEI_Trans_General_Status_3");
+  ILDisableMsg("PPEI_Vehicle_Speed_and_Distance");
+  ILDisableMsg("Prfrmnc_Trctn_Cntrl_Eng_Stat_PB");
+  ILDisableMsg("PTEI_Axle_Torque_Command");
+  ILDisableMsg("PTEI_Brake_Apply_Status");
+  ILDisableMsg("PTEI_Crankshaft_Torque_Status_PB");
+  ILDisableMsg("PTEI_Engine_Common_Use_1");
+  ILDisableMsg("PTEI_Engine_General_Status_3_PB");
+  ILDisableMsg("PTEI_Engine_Torque_Status");
+  ILDisableMsg("PTEI_Engine_Torque_Status_2");
+  ILDisableMsg("PTEI_Transfer_Case_Supplemental");
+  ILDisableMsg("PPEI_Propulsion_Gen_Stat_1_PB");
+  ILDisableMsg("PTEI_Transmission_Torque_Request"); 
+  ILDisableMsg("PPEI_Propulsion_Gen_Stat_1_HS");
+  ILDisableMsg("PPEI_Powertrain_Config_Data"); 
+  ILDisableMsg("PPEI_Altern_Fuel_Syst_Stat_HS");
+  ILDisableMsg("General_Information_For_EMT_2"); 
+  ILDisableMsg("PTEI_Crankshaft_Torque_Status_HS");
+  ILDisableMsg("PTEI_Engine_General_Status_3_HS");
+}
+
+on timer ECM_Timer_10ms
+{
+  setTimer(ECM_Timer_10ms,10);
+
+   if(0x01 == LFM_XY_Signal_Send_Ongoing_ECM)
+  {
+    if(0x01 == xofy_NTC_Table[CAPL_LFM_8b_EngSpdStat_x][LFM_XY_Signal_Send_Index_ECM])
+    {
+      /* set signal to invalid */
+      ILSetSignal(EngSpdStat,3);
+    }
+    else
+    {
+      /* set signal to valid */
+      ILSetSignal(EngSpdStat,0);
+    }
+    
+    LFM_XY_Signal_Send_Index_ECM++;
+    if(LFM_XY_Signal_Send_Index_ECM>=10)
+    {
+      LFM_XY_Signal_Send_Index_ECM=0x00;
+    }
+  }  
+}
+
+ on envVar SimuSW
+{
+  if(@SimuSW == 1)
+  {
+    CAPL_LFM_8b_EngSpdStat_x = @LFM_1Byte_EngSpdStat_x;
+    CAPL_LFM_8b_EngSpdStat_y = @LFM_1Byte_EngSpdStat_y;
+    
+    ILControlStart();
+    
+   ILDisableMsg("DTC_Triggered_772");
+   ILDisableMsg("ETEI_Engine_Torque_Capability");
+   ILDisableMsg("ETEI_Engine_Torque_Status");
+   ILDisableMsg("ETEI_Engine_General_Status");
+   ILDisableMsg("PPEI_Altern_Fuel_Syst_Stat_PB");
+   ILDisableMsg("PPEI_Diesel_Exhaust_Gen_Stat_1");
+   ILDisableMsg("PPEI_Driver_Intnd_Axle_Torq_Stat");
+   ILDisableMsg("PPEI_Drv_Pref_Mode_Switch_Status");
+   ILDisableMsg("PPEI_Drvr_Perform_Feedback_Stat");
+   ILDisableMsg("PPEI_Engine_Environmental_Status"); 
+    
+     ILDisableMsg("PPEI_Engine_Fuel_Status");
+     
+     ILDisableMsg("PPEI_Engine_General_Status_2");
+     ILDisableMsg("PPEI_Engine_General_Status_3");
+        ILDisableMsg("PPEI_Engine_General_Status_4");
+     ILDisableMsg("PPEI_Engine_General_Status_5");
+     ILDisableMsg("PPEI_Engine_General_Status_6");
+     ILDisableMsg("PPEI_Engine_Torque_Status_2");
+        ILDisableMsg("PPEI_Engine_Torque_Status_3");
+     ILDisableMsg("PPEI_Fuel_System_Request");
+     ILDisableMsg("PPEI_Fuel_System_Request_3");
+     ILDisableMsg("PPEI_Hybrid_General_Status_3_PB");
+         ILDisableMsg("PPEI_IBS_Battery_Status_3");
+     ILDisableMsg("PPEI_IBS_Battery_Status_4");
+         ILDisableMsg("PPEI_IBS_Battery_Status_5");
+     ILDisableMsg("PPEI_IBS_Battery_Status_6");
+       //  ILDisableMsg("PPEI_Powertrain_Config_Data");
+     ILDisableMsg("PPEI_Powertrain_Config_Data_2");
+     ILDisableMsg("PPEI_Powertrain_HVAC_PTC_Gen_Sta");
+         ILDisableMsg("PPEI_Powertrain_Immobilizer_Data");
+ 
+         ILDisableMsg("PPEI_Propulsion_Sys_Gen_Status");
+     ILDisableMsg("PPEI_Secondary_Axle_General_Info");
+     ILDisableMsg("PPEI_Torque_Request_Status");
+     ILDisableMsg("PPEI_Trans_General_Status_1");
+     ILDisableMsg("PPEI_Trans_General_Status_2");
+     ILDisableMsg("PPEI_Trans_General_Status_3");
+    ILDisableMsg("PPEI_Vehicle_Speed_and_Distance");
+     ILDisableMsg("Prfrmnc_Trctn_Cntrl_Eng_Stat_PB");
+     ILDisableMsg("PTEI_Axle_Torque_Command");
+     ILDisableMsg("PTEI_Brake_Apply_Status");
+   ILDisableMsg("PTEI_Crankshaft_Torque_Status_PB");
+     ILDisableMsg("PTEI_Engine_Common_Use_1");
+     ILDisableMsg("PTEI_Engine_General_Status_3_PB");
+     ILDisableMsg("PTEI_Engine_Torque_Status");
+    ILDisableMsg("PTEI_Engine_Torque_Status_2");
+     ILDisableMsg("PTEI_Transfer_Case_Supplemental");
+     ILDisableMsg("PPEI_Propulsion_Gen_Stat_1_PB");
+ 
+#if 1
+  ILDisableMsg("PTEI_Transmission_Torque_Request"); 
+  ILDisableMsg("PPEI_Propulsion_Gen_Stat_1_HS");
+  ILDisableMsg("PPEI_Powertrain_Config_Data"); 
+  ILDisableMsg("PPEI_Altern_Fuel_Syst_Stat_HS");
+  ILDisableMsg("General_Information_For_EMT_2"); 
+  ILDisableMsg("PTEI_Crankshaft_Torque_Status_HS");
+  ILDisableMsg("PTEI_Engine_General_Status_3_HS"); 
+#endif    
+   //ILDisableMsg("PPEI_Powertrain_Config_Data");
+       @WDRDef = 2210;
+   //setTimer(OS1000ms,1000);
+   // WheelPowerConfigMsg.WhlDistPrRevDrvn =@WDRDef;
+   // WheelPowerConfigMsg.WhlDistPrRevNDrvn=@WDRDef;
+ 
+  }
+    else{
+    ILControlStop();
+  }
+}
+ 
+  
+on envVar LFM_Butt_Tst_Start
+{
+#if 1
+
+   if(@LFM_Butt_Tst_Start == 1)
+  {
+    LFM_32b_TstCaseID_ECM = @LFM_TST_VAR_3Byte;
+    
+    /*SWIT_Update_1001*/
+    if(LFM_32b_TstCaseID_ECM == 0x1001)
+    {
+      //write("start LFM_32b_TstCaseID_ECM= %x" ,LFM_32b_TstCaseID_ECM);
+      /* 0xC9 message */
+      ILDisableMsg("PPEI_Engine_General_Status_1");
+    }
+  }
+#endif
+}
+
+on envVar LFM_Butt_Tst_End
+{
+#if 1  
+   if(@LFM_Butt_Tst_End == 1)
+  {
+    /* If the latest test case is SWIT_Update_1001*/
+    if(LFM_32b_TstCaseID_ECM == 0x1001)
+    {
+      /* 0xC9 message */
+      ILEnableMsg("PPEI_Engine_General_Status_1");
+    }
+    LFM_32b_TstCaseID_ECM = 0;
+    //write("end LFM_32b_TstCaseID_ECM = %x" ,LFM_32b_TstCaseID_ECM);
+  }
+#endif
+}
+
+on envVar LFM_Butt_xy_Tst_Start
+{
+#if 1  
+   if((@LFM_Butt_xy_Tst_Start == 1) && (@SimuSW == 1))
+  {
+    if(@LFM_1Byte_EngSpdStat_x <= 0x00)
+    {
+      CAPL_LFM_8b_EngSpdStat_x = 0x00;
+      @LFM_1Byte_EngSpdStat_x = 0x00;
+      /* set signal to valid */
+      ILSetSignal(EngSpdStat,0);
+    }
+    else if(@LFM_1Byte_EngSpdStat_x >= @LFM_1Byte_EngSpdStat_y)
+    {
+      @LFM_1Byte_EngSpdStat_x = @LFM_1Byte_EngSpdStat_y;
+      CAPL_LFM_8b_EngSpdStat_x = @LFM_1Byte_EngSpdStat_y;
+      /* set signal to invalid */
+      ILSetSignal(EngSpdStat,3);
+    }
+    else
+    {
+      CAPL_LFM_8b_EngSpdStat_x = @LFM_1Byte_EngSpdStat_x;
+      CAPL_LFM_8b_EngSpdStat_y = @LFM_1Byte_EngSpdStat_y;
+      LFM_XY_Signal_Send_Index_ECM = 0;
+      LFM_XY_Signal_Send_Ongoing_ECM = 0x01;
+      setTimer(ECM_Timer_10ms,10);
+    }
+  }
+#endif
+}
+
+on envVar LFM_Butt_xy_Tst_End
+{
+#if 1  
+   if(@LFM_Butt_xy_Tst_End == 1)
+  {
+    CAPL_LFM_8b_EngSpdStat_x = 0x00;
+    @LFM_1Byte_EngSpdStat_x = 0x00;
+    
+    LFM_XY_Signal_Send_Index_ECM = 0;
+    LFM_XY_Signal_Send_Ongoing_ECM = 0x00;
+    
+    /* set signal to valid */
+    ILSetSignal(EngSpdStat,0); 
+    cancelTimer(ECM_Timer_10ms);
+  }
+#endif
+}
+
+

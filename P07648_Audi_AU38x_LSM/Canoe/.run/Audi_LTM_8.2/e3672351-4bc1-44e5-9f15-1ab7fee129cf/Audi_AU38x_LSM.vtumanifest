@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <FileFormatVersion>1</FileFormatVersion>
+  <TestUnitName>Audi_AU38x_LSM</TestUnitName>
+  <TsoProject>D:\Isaac\P07648_Audi_AU38x_LSM\Audi_AU38x_LSM.vtsoproj</TsoProject>
+  <TsoProjectRelative>.\..\Audi_AU38x_LSM.vtsoproj</TsoProjectRelative>
+  <EditableSources>false</EditableSources>
+  <BuildInfo>
+    <CaplCompiler>8.5.98.0</CaplCompiler>
+    <MinRequiredCANoeVersion>8.2.41</MinRequiredCANoeVersion>
+    <TsoVersion>2.0.50.0</TsoVersion>
+    <NetApiVersion></NetApiVersion>
+  </BuildInfo>
+  <NetTypeLibGenerator>
+    <NamespaceGeneration>NoNamespace</NamespaceGeneration>
+    <NetTypeLibs />
+  </NetTypeLibGenerator>
+  <VariantProperties />
+  <Sources>
+    <CaplFiles>
+      <CaplFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.can" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.cbf" /&gt;</Binary>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\basicFunctionTest.can.export.xml" /&gt;</ExportTable>
+      </CaplFile>
+    </CaplFiles>
+    <CaplIncludeFiles />
+    <NetFiles />
+    <NetBinaries />
+    <VttFiles>
+      <VttFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM.vtt" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM.vxtx" /&gt;</Binary>
+        <CaplFile>
+          <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM.vxtx.can" /&gt;</Source>
+          <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Audi_AU38x_LSM.vxtx.cbf" /&gt;</Binary>
+        </CaplFile>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\Audi_AU38x_LSM.vtt.export.xml" /&gt;</ExportTable>
+      </VttFile>
+    </VttFiles>
+    <ParameterFiles />
+    <WaveformFiles />
+    <WaveformBinaries />
+    <CaplDlls />
+  </Sources>
+  <TestSysVar>
+    <Source></Source>
+  </TestSysVar>
+  <ExternalReferences />
+  <SutEnvironment>
+    <Networks>
+      <Network>
+        <Name>LIN</Name>
+        <ChannelType>LIN</ChannelType>
+        <Databases>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Canoe\DOC01877370-0000_MLBevo_Konzern_MLBevo_BCM1_LIN1_KMatrix_V8.13.00F_20161110_FB.ldf" /&gt;</DatabaseFile>
+            <DatabaseName>DOC018773700000_MLBevo_Konzern_M</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\P07648_Audi_AU38x_LSM\Canoe\DOC01877370-0000_MLBevo_Konzern_MLBevo_BCM1_LIN1_KMatrix_V8.13.00F_20161110_FB.ldf*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Canoe\VW_DiagEnv.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>VW_DiagEnv</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\P07648_Audi_AU38x_LSM\Canoe\VW_DiagEnv.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Canoe\SinalPannelEnv.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>SinalPannelEnv</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\P07648_Audi_AU38x_LSM\Canoe\SinalPannelEnv.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+        </Databases>
+      </Network>
+    </Networks>
+    <UseAllNetworks>false</UseAllNetworks>
+  </SutEnvironment>
+  <TUProperties>
+    <Caption></Caption>
+    <Description></Description>
+    <Version></Version>
+    <TestDesigners>
+      <Columns />
+      <TestDesignerEntries />
+    </TestDesigners>
+    <TUInfos />
+  </TUProperties>
+  <NodeLayerDlls>
+    <NodeLayerDll>
+      <Path>CANstress_NL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>FRStressNL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>J1939TestServiceLibraryNL.dll</Path>
+    </NodeLayerDll>
+  </NodeLayerDlls>
+  <UserFiles />
+  <TetEntries>
+    <TetEntry>
+      <Type>vtt</Type>
+      <Identifier>Audi_AU38x_LSM.vtt</Identifier>
+    </TetEntry>
+  </TetEntries>
+</Manifest>

@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Kostia>
+  <Sequencer>
+    <UserSequences>
+      <UserSequence name="Change to SleepMode 2">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia ChangeMode">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Mode>Sleep2</Mode>
+            <Permanent>0</Permanent>
+            <Password>KOSTAL</Password>
+            <FillCharacter>0xff</FillCharacter>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Change to Normal Mode">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia ChangeMode">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Mode>Normal</Mode>
+            <Permanent>0</Permanent>
+            <Password>KOSTAL</Password>
+            <FillCharacter>0xff</FillCharacter>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Reboot Hall ICs">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>07-03-A2-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>500</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>07-03-A2-01-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Change to Calibration Mode">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>03-80-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="RBR Start Cyclic (full data)">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia Login">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>100</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>5</RepeatsOnFailure>
+            <Password>KOSTAL</Password>
+            <FillCharacter>0x5f</FillCharacter>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>100</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>2</FailStep>
+            <NextStep>2</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteRBRInit</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>08-00-03-FF-FF-FF-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>100</DelayAfter>
+            <StepIndex>2</StepIndex>
+            <FailStep>2</FailStep>
+            <NextStep>2</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteRBRStart</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>09-02-03-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Read Hallsensor Revision">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>07-03-A6-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>07-03-A6-01-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="RBR Snapshot (full data)">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia Login">
+            <Enabled>1</Enabled>
+            <DelayBefore>100</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Password>KOSTAL</Password>
+            <FillCharacter>0x5f</FillCharacter>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>100</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>2</FailStep>
+            <NextStep>2</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteRBRInit</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>08-00-03-FF-FF-FF-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>100</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>2</StepIndex>
+            <FailStep>3</FailStep>
+            <NextStep>3</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteRBRStart</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>09-03-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Change to TestMode (permanent)">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia ChangeMode">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Mode>Test</Mode>
+            <Permanent>1</Permanent>
+            <Password>MODUWE</Password>
+            <FillCharacter>0xff</FillCharacter>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Write Variant Volvo">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>0D-01-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>05-00-26-06-56-A9-6A-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Write Variant Crystal">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>0D-01-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>05-00-26-06-43-BC-3B-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Write Variant Geely">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>0D-01-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>05-00-26-06-47-B8-7B-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="MagSensDrv Start cyclic RBR">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteRBRInit</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>08-12-34-00-00-02-00-FF</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteRBRStart</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>09-01-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Deaktivate Kostia">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia Login">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Password>KOSTAL</Password>
+            <FillCharacter>0x5f</FillCharacter>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteUserType</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>07-01-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Clear All IFM Entries">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteEraseErrorMem</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>06-00-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+        <Device transmitId="0" receiveId="0" enabled="1" />
+        <Device transmitId="0" receiveId="0" enabled="1" />
+      </UserSequence>
+      <UserSequence name="Clear All DTCs">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteEraseErrorMem</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>06-00-00-02-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+        <Device transmitId="0" receiveId="0" enabled="1" />
+        <Device transmitId="0" receiveId="0" enabled="1" />
+      </UserSequence>
+      <UserSequence name="Hard Reset">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteReset</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>0C-52-45-53-45-54-4D-45</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="Soft Reset">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="SysLayer">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <OpenChannel>0</OpenChannel>
+            <CloseChannel>0</CloseChannel>
+            <ReadId>0x0</ReadId>
+            <WriteId>0x733</WriteId>
+            <WriteData>02-11-03-00-00-00-00-00</WriteData>
+            <Timeout>0</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="RBR Stop">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteRBRStop</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>09-00-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+      <UserSequence name="SyncBuffer">
+        <Device transmitId="62c" receiveId="62d" enabled="1">
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>0</StepIndex>
+            <FailStep>1</FailStep>
+            <NextStep>1</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteSyncBuffers</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>0F-00-00-00-00-00-00-00</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+          <Step Type="Kostia">
+            <Enabled>1</Enabled>
+            <DelayBefore>0</DelayBefore>
+            <DelayAfter>0</DelayAfter>
+            <StepIndex>1</StepIndex>
+            <FailStep>0</FailStep>
+            <NextStep>0</NextStep>
+            <RepeatsOnFailure>0</RepeatsOnFailure>
+            <Direction>Write</Direction>
+            <WriteCommand>WriteLogin</WriteCommand>
+            <ReadCommand>ReadUserType</ReadCommand>
+            <outData>01-4B-4F-53-54-41-4C-5F</outData>
+            <Timeout>1000</Timeout>
+          </Step>
+        </Device>
+      </UserSequence>
+    </UserSequences>
+    <LogoutSequence>
+      <Device transmitId="62c" receiveId="62d" enabled="1">
+        <Step Type="Kostia">
+          <Enabled>1</Enabled>
+          <DelayBefore>0</DelayBefore>
+          <DelayAfter>200</DelayAfter>
+          <StepIndex>0</StepIndex>
+          <FailStep>0</FailStep>
+          <NextStep>0</NextStep>
+          <RepeatsOnFailure>0</RepeatsOnFailure>
+          <Direction>Write</Direction>
+          <WriteCommand>WriteLogout</WriteCommand>
+          <ReadCommand>ReadUserType</ReadCommand>
+          <outData>01-00-00-00-00-00-00-00</outData>
+          <Timeout>200</Timeout>
+        </Step>
+      </Device>
+    </LogoutSequence>
+    <Reset>
+      <Device transmitId="62c" receiveId="62d" enabled="1">
+        <Step Type="Kostia">
+          <Enabled>1</Enabled>
+          <DelayBefore>0</DelayBefore>
+          <DelayAfter>0</DelayAfter>
+          <StepIndex>0</StepIndex>
+          <FailStep>1</FailStep>
+          <NextStep>1</NextStep>
+          <RepeatsOnFailure>0</RepeatsOnFailure>
+          <Direction>Write</Direction>
+          <WriteCommand>WriteLogin</WriteCommand>
+          <ReadCommand>ReadUserType</ReadCommand>
+          <outData>01-4B-4F-53-54-41-4C-5F</outData>
+          <Timeout>1000</Timeout>
+        </Step>
+        <Step Type="Kostia">
+          <Enabled>1</Enabled>
+          <DelayBefore>0</DelayBefore>
+          <DelayAfter>0</DelayAfter>
+          <StepIndex>1</StepIndex>
+          <FailStep>0</FailStep>
+          <NextStep>0</NextStep>
+          <RepeatsOnFailure>0</RepeatsOnFailure>
+          <Direction>Write</Direction>
+          <WriteCommand>WriteUserType</WriteCommand>
+          <ReadCommand>ReadUserType</ReadCommand>
+          <outData>0C-52-45-53-45-54-4D-45</outData>
+          <Timeout>1000</Timeout>
+        </Step>
+      </Device>
+    </Reset>
+    <LoginSequence>
+      <Device transmitId="62c" receiveId="62d" enabled="1">
+        <Step Type="SysLayer">
+          <Enabled>1</Enabled>
+          <DelayBefore>0</DelayBefore>
+          <DelayAfter>0</DelayAfter>
+          <StepIndex>0</StepIndex>
+          <FailStep>1</FailStep>
+          <NextStep>1</NextStep>
+          <RepeatsOnFailure>5</RepeatsOnFailure>
+          <Direction>Write</Direction>
+          <OpenChannel>0</OpenChannel>
+          <CloseChannel>0</CloseChannel>
+          <ReadId>0x0</ReadId>
+          <WriteId>0x520</WriteId>
+          <WriteData>20-40-00-01-00-00-00-00</WriteData>
+          <Timeout>1000</Timeout>
+        </Step>
+        <Step Type="Kostia">
+          <Enabled>1</Enabled>
+          <DelayBefore>0</DelayBefore>
+          <DelayAfter>0</DelayAfter>
+          <StepIndex>1</StepIndex>
+          <FailStep>1</FailStep>
+          <NextStep>1</NextStep>
+          <RepeatsOnFailure>0</RepeatsOnFailure>
+          <Direction>Write</Direction>
+          <WriteCommand>WriteLogin</WriteCommand>
+          <ReadCommand>ReadUserType</ReadCommand>
+          <outData>01-4B-4F-53-54-41-4C-5F</outData>
+          <Timeout>1000</Timeout>
+        </Step>
+      </Device>
+    </LoginSequence>
+  </Sequencer>
+  <Config>
+    <Hardware>
+      <SysLayer>
+        <SysCAN>
+          <Name>Vector(CAN) #1</Name>
+          <Channel>1</Channel>
+          <Baudrate>500000</Baudrate>
+          <Settings>Vector Channel 1</Settings>
+          <sjw>1</sjw>
+          <tseg1>8</tseg1>
+          <tseg2>7</tseg2>
+          <sam>1</sam>
+        </SysCAN>
+      </SysLayer>
+    </Hardware>
+    <KostiaTestPanel />
+    <Kostia>
+      <SinglePageTracker>1</SinglePageTracker>
+      <ReceiveAfterEcho>0</ReceiveAfterEcho>
+      <WriteMemoryFastEnabled>0</WriteMemoryFastEnabled>
+    </Kostia>
+    <PcfManager>
+      <ConsiderUsageTypeColumn>0</ConsiderUsageTypeColumn>
+    </PcfManager>
+    <Bookmarks>
+      <Bookmark Path="[NVRAM|SHW_Variants1]" Index="4" Flag="FlagBlue" Enable="1" Comment="Bookmark" />
+    </Bookmarks>
+    <PageDescription>
+  <Linear Accessibility="ReadWriteable" Addressing="Linear" Page="PageLinear" RequiresSyncBuffers="0" />
+  <Eeprom Accessibility="ReadWriteable" Addressing="Linear" Page="PageEeprom" RequiresSyncBuffers="0" />
+  <Ram Accessibility="ReadWriteable" Addressing="Linear" Page="PageRam" RequiresSyncBuffers="0" />
+  <Flash Accessibility="ReadWriteable" Addressing="Linear" Page="PageFlash" RequiresSyncBuffers="0" />
+  <FlashEE Accessibility="ReadWriteable" Addressing="Linear" Page="PageFlashEE" RequiresSyncBuffers="0" />
+  <IO Accessibility="ReadWriteable" Addressing="Block" Page="PageIO" RequiresSyncBuffers="0" />
+  <Sensor Accessibility="Readable" Addressing="Block" Page="PageSensor" RequiresSyncBuffers="0" />
+  <Actuator Accessibility="Writable" Addressing="Block" Page="PageActuator" RequiresSyncBuffers="0" />
+  <Version Accessibility="ReadWriteable" Addressing="Block" Page="PageVersion" RequiresSyncBuffers="0" />
+  <Function Accessibility="ReadWriteable" Addressing="Block" Page="52" RequiresSyncBuffers="0" />
+  <MagSensDrv Accessibility="ReadWriteable" Addressing="Linear" Page="53" RequiresSyncBuffers="0" />
+</PageDescription>
+  </Config>
+  <AccessRights>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</AccessRights>
+  <Plugins>
+    <AutoLogin>
+      <SequenceEntry>
+        <TransmitID>0</TransmitID>
+        <ReceiveID>0</ReceiveID>
+        <KostiaPage>Linear</KostiaPage>
+        <Access>Read</Access>
+        <LoginSequenceType>Login</LoginSequenceType>
+        <LoginSequenceName>
+        </LoginSequenceName>
+        <LogoutSequenceType>None</LogoutSequenceType>
+        <LogoutSequenceName>
+        </LogoutSequenceName>
+      </SequenceEntry>
+    </AutoLogin>
+    <SequenceLauncher minSize="16" maxSize="32" appearance="List" showIconsInListMode="0" configPanelIsExpanded="0" sequencePanelIsExpanded="1">
+      <SequenceIcon Deaktivate_x0020_Kostia="SystemOff" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon RBR_x0020_Stop="Chip" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon Change_x0020_to_x0020_SleepMode_x0020_2="Mode1_Sleep" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon RBR_x0020_Start_x0020_Cyclic_x0020__x0028_full_x0020_data_x0029_="Chip" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon Read_x0020_Hallsensor_x0020_Revision="Chip" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon SyncBuffer="SyncBuffers" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon Soft_x0020_Reset="Chip" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon RBR_x0020_Snapshot_x0020__x0028_full_x0020_data_x0029_="Chip" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon Reboot_x0020_Hall_x0020_ICs="Chip" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon Change_x0020_to_x0020_TestMode_x0020__x0028_permanent_x0029_="Mode3_Test" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon Change_x0020_to_x0020_Normal_x0020_Mode="Mode0_Normal" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon MagSensDrv_x0020_Start_x0020_cyclic_x0020_RBR="Chip" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <SequenceIcon Change_x0020_to_x0020_Calibration_x0020_Mode="Chip" visible="1" cycle="0" interval="0" pathRelation="absolute" />
+      <DisplayButtonText>1</DisplayButtonText>
+      <ImageTextRelation>TextAboveImage</ImageTextRelation>
+    </SequenceLauncher>
+  </Plugins>
+  <Structure />
+</Kostia>

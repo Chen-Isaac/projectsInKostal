@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <tf>
+      <title>Setup&amp;Product Initialization</title>
+      <capltestcase>
+        <title />
+        <name>powerOn</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <name>readSwVer</name>
+      </capltestcase>
+    </tf>
+    <tf>
+      <title>switch operation</title>
+      <capltestcaselist>
+        <title />
+        <name>autoLightBtnImp</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>1</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
+      <capltestcase>
+        <title />
+        <name>autoLightBtnRelateSigImpOnLight</name>
+      </capltestcase>
+      <capltestcaselist>
+        <title />
+        <name>allWeatherLightBtnImp</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>1</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
+      <capltestcase>
+        <title />
+        <name>allWeatherLightBtnRelateSigImpOnLight</name>
+      </capltestcase>
+      <capltestcaselist>
+        <title />
+        <name>rearFogLightBtnImp</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>1</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
+      <capltestcase>
+        <title />
+        <name>rearFogLightBtnRelateSigImpOnLight</name>
+      </capltestcase>
+    </tf>
+    <tf>
+      <title>Power off</title>
+      <capltestcase>
+        <title />
+        <name>powerOff</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <name>try</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <name>disableLTMe_01</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <name>enableLTMe_01</name>
+      </capltestcase>
+    </tf>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

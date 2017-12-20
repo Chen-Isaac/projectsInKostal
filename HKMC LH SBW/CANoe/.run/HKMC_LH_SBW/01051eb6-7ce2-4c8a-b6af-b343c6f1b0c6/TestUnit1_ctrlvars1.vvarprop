@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectVariantPropertyModel>
+  <FileFormatVersion>3</FileFormatVersion>
+  <ProjectVariantProperties>
+    <VariantProperties>
+      <VariantProperty>
+        <Name>TestLevel</Name>
+        <Info></Info>
+        <ValueType>Integer</ValueType>
+        <Modifiable>true</Modifiable>
+        <TUStartValueRef>54ed91d5-5c7c-4923-aa66-29bf78666b06</TUStartValueRef>
+        <PreDefinedValues>
+          <PreDefinedValue>
+            <PersistencyGuid>54ed91d5-5c7c-4923-aa66-29bf78666b06</PersistencyGuid>
+            <IntegerValue>0</IntegerValue>
+            <DoubleValue>NaN</DoubleValue>
+            <StringValue></StringValue>
+            <DependentOnValues />
+            <ImplyingValues />
+            <ParameterFileDependencies />
+            <IsHexValue>false</IsHexValue>
+            <IsRawValue>false</IsRawValue>
+          </PreDefinedValue>
+        </PreDefinedValues>
+        <PossibleValues>
+          <PossibleValue>
+            <IntegerValue>0</IntegerValue>
+            <DoubleValue>NaN</DoubleValue>
+            <StringValue></StringValue>
+            <IsHexValue>false</IsHexValue>
+            <IsRawValue>true</IsRawValue>
+          </PossibleValue>
+          <PossibleValue>
+            <IntegerValue>1</IntegerValue>
+            <DoubleValue>NaN</DoubleValue>
+            <StringValue></StringValue>
+            <IsHexValue>false</IsHexValue>
+            <IsRawValue>true</IsRawValue>
+          </PossibleValue>
+        </PossibleValues>
+        <ValueTable>
+          <RestrictValuesToValueTable>true</RestrictValuesToValueTable>
+          <ValueTableEntries>
+            <ValueTableEntry>
+              <IntValue>0</IntValue>
+              <StrValue>Full</StrValue>
+              <IsHexValue>false</IsHexValue>
+            </ValueTableEntry>
+            <ValueTableEntry>
+              <IntValue>1</IntValue>
+              <StrValue>Reduced</StrValue>
+              <IsHexValue>false</IsHexValue>
+            </ValueTableEntry>
+          </ValueTableEntries>
+        </ValueTable>
+      </VariantProperty>
+    </VariantProperties>
+    <ModifiableParameters />
+  </ProjectVariantProperties>
+</ProjectVariantPropertyModel>

@@ -1,0 +1,1275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Project>
+    <SerializableDictionaryOfStringObject />
+  </Project>
+  <WindowManagement>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>DocContainerSizes</string>
+        </key>
+        <value type="System.Collections.Generic.List`1[System.Drawing.Size]">
+          <ArrayOfSize>
+            <Size>
+              <Width>1499</Width>
+              <Height>808</Height>
+            </Size>
+          </ArrayOfSize>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>ActiveDocumentIndex</string>
+        </key>
+        <value type="System.Int32">
+          <int>0</int>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>DocumentLayout</string>
+        </key>
+        <value type="Vector.ITE.WindowManagement.DocInfoList">
+          <ArrayOfDocumentInfo>
+            <DocumentInfo>
+              <PositionInContainer>0</PositionInContainer>
+              <ContainerIndex>0</ContainerIndex>
+              <DocType>TTTestModule</DocType>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="HKMC FE SBW\HKMC FE SBW.vtt" /&gt;</SerializedBasedFileName>
+              <ContextGUID>sp13ud6prirg</ContextGUID>
+              <ContextGUIDForGUI>sp13ud6prirg</ContextGUIDForGUI>
+            </DocumentInfo>
+            <DocumentInfo>
+              <PositionInContainer>1</PositionInContainer>
+              <ContainerIndex>0</ContainerIndex>
+              <DocType>CAPLIncludeFile</DocType>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\Library\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
+              <ContextGUID />
+              <ContextGUIDForGUI />
+            </DocumentInfo>
+            <DocumentInfo>
+              <PositionInContainer>2</PositionInContainer>
+              <ContainerIndex>0</ContainerIndex>
+              <DocType>CAPLFile</DocType>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="HKMC FE SBW\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
+              <ContextGUID>sp13ud6prirg</ContextGUID>
+              <ContextGUIDForGUI>sp13ud6prirg</ContextGUIDForGUI>
+            </DocumentInfo>
+          </ArrayOfDocumentInfo>
+        </value>
+      </item>
+      <item>
+        <key type="System.String">
+          <string>ViewSettings</string>
+        </key>
+        <value type="Vector.ITE.ViewManagement.ViewManagementServiceProvider+ViewSettingsDictionary">
+          <ViewSettingsDictionary>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>ProjectView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">HKMC FE SBW project/ProjectRoot</anyType>
+                        <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d13p1:type="q2:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">HKMC FE SBW project/ProjectRoot/Test Units/HKMC FE SBW</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">HKMC FE SBW project/ProjectRoot/Test Units/HKMC FE SBW/basicFunctionTest.can</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>27</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>ProjectView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>LibraryView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">HKMC FE SBW project/_1/Library</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">HKMC FE SBW project/_1/Library/Library/KostalSoftwareTestLibrary.cin</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>29</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>LibraryView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>HomeDirectoryView</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">HKMC FE SBW project/HKMC FE SBW project</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType>
+                        <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d13p1:type="q1:string" xmlns:d13p1="http://www.w3.org/2001/XMLSchema-instance">HKMC FE SBW project/HKMC FE SBW project</anyType>
+                      </ArrayOfAnyType>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_Focused</string>
+                    </key>
+                    <value type="System.UInt32">
+                      <unsignedInt>33</unsignedInt>
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>HomeDirectoryView_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>SymbolExplorer</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>State</string>
+                    </key>
+                    <value type="System.String">
+                      <string>1
+HistoryBegin
+1 0
+HistoryEnd
+FiltersBegin
+Begin
+3 0 -1
+12
+CANdb1
+( 2 ( 0 ) 0)
+CGW
+( 2 ( 0 ) 0)
+ChecksumCalc
+( 2 ( 0 ) 0)
+HS2_CAN
+ ( 2 ( 0 ) 0 ) 
+KTAppl
+ ( 0 ) 
+KTAppl_AddOn
+ ( 0 ) 
+KTAppl_LocalFun
+ ( 0 ) 
+KTV_E60Red_EPROM
+( 2 ( 0 ) 0)
+KT_E60Red
+ ( 0 ) 
+KT_E90
+ ( 0 ) 
+Kostia
+ ( 2 ( 0 ) 0 ) 
+Networks
+( 0)
+SymbSelHeaderMgrBegin
+1 9
+0 1 200 0 0
+9 1 100 0 0
+1 1 100 0 0
+14 0 100 0 0
+15 1 80 0 0
+2 0 100 0 0
+3 0 75 1 1
+5 1 75 1 1
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 -1
+0
+SymbSelHeaderMgrBegin
+1 4
+0 1 200 0 0
+10 1 75 0 0
+11 1 100 0 0
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 -1
+0
+SymbSelHeaderMgrBegin
+1 3
+0 1 200 0 0
+7 0 100 0 0
+6 1 200 0 0
+SymbSelHeaderMgrEnd
+End
+Begin
+3 0 -1
+0
+SymbSelHeaderMgrBegin
+1 2
+0 1 200 0 0
+13 1 75 0 0
+SymbSelHeaderMgrEnd
+End
+
+FiltersEnd
+0 0</string>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+            <item>
+              <key type="Vector.ITE.ViewInterfaces.EnumViewType">
+                <EnumViewType>TraceItemExplorer</EnumViewType>
+              </key>
+              <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.String,System.Object]">
+                <SerializableDictionaryOfStringObject>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Expanded</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Selected</string>
+                    </key>
+                    <value type="System.Collections.ArrayList">
+                      <ArrayOfAnyType />
+                    </value>
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_Focused</string>
+                    </key>
+                    <value type="null" />
+                  </item>
+                  <item>
+                    <key type="System.String">
+                      <string>TraceItems_TopIndex</string>
+                    </key>
+                    <value type="System.Int32">
+                      <int>0</int>
+                    </value>
+                  </item>
+                </SerializableDictionaryOfStringObject>
+              </value>
+            </item>
+          </ViewSettingsDictionary>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </WindowManagement>
+  <DocumentManagement>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>DocSettings</string>
+        </key>
+        <value type="Vector.ITE.DocumentManagement.DocumentPool.DocSettingList">
+          <ArrayOfDocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2017-12-20T01:22:59.3065541Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>EditorSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.TtEditorSettings">
+                    <TtEditorSettings>
+                      <SplitterSettingsTet>
+                        <SplitPosition>150</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsTet>
+                      <SplitterSettingsPv>
+                        <SplitPosition>250</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsPv>
+                      <SplitterSettingsLv>
+                        <SplitPosition>185</SplitPosition>
+                        <Expanded>true</Expanded>
+                      </SplitterSettingsLv>
+                      <ActiveView>2</ActiveView>
+                    </TtEditorSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>ParameterViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.ParameterView.TtParameterViewSettings">
+                    <TtParameterViewSettings>
+                      <CellSizes>
+                        <item>
+                          <key type="System.String">
+                            <string>2</string>
+                          </key>
+                          <value type="System.Int32[]">
+                            <ArrayOfInt>
+                              <int>15</int>
+                              <int>15</int>
+                            </ArrayOfInt>
+                          </value>
+                        </item>
+                        <item>
+                          <key type="System.String">
+                            <string>3</string>
+                          </key>
+                          <value type="System.Int32[]">
+                            <ArrayOfInt>
+                              <int>15</int>
+                              <int>15</int>
+                              <int>15</int>
+                            </ArrayOfInt>
+                          </value>
+                        </item>
+                      </CellSizes>
+                    </TtParameterViewSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>TestExecutionTreeSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.TestExecutionTree.TtTetSettings">
+                    <TtTetSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>87</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                    </TtTetSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>LibraryViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.LibraryView.TtLvSettings">
+                    <TtLvSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>75</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                    </TtLvSettings>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CommandViewSettings</string>
+                  </key>
+                  <value type="Vector.ITE.TestTable.Editor.CommandView.TtCvSettings">
+                    <TtCvSettings>
+                      <TreeListSettings>
+                        <TreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>300</Width>
+                            <VisibleIndex>0</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                          <TtTreeListColumnSettings>
+                            <Width>300</Width>
+                            <VisibleIndex>1</VisibleIndex>
+                          </TtTreeListColumnSettings>
+                        </TreeListColumnSettings>
+                      </TreeListSettings>
+                      <RootNodeId>:0</RootNodeId>
+                      <MruList>
+                        <TtCustomPopupListItemData>
+                          <ItemText>CAPL Inline</ItemText>
+                          <ImageIndex>176</ImageIndex>
+                          <ModelElementName>caplinline</ModelElementName>
+                          <CheckHandle />
+                          <SignatureName />
+                          <ClassName />
+                          <DataTypeList />
+                        </TtCustomPopupListItemData>
+                      </MruList>
+                    </TtCvSettings>
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="HKMC FE SBW\HKMC FE SBW.vtt" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2017-12-20T01:22:59.3865485Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>RelativeSplitterPosClassicMode</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>100</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>VerticalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>Outlining</string>
+                  </key>
+                  <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.Int32,System.Boolean]">
+                    <SerializableDictionaryOfInt32Boolean>
+                      <item>
+                        <key type="System.Int32">
+                          <int>-1</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>19</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2305</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2610</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>3468</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>4907</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6008</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6522</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>6711</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>7678</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>8111</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>9411</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>10704</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>13745</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>15648</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>18287</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>20100</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>20632</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>21515</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>23375</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>25433</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>26336</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>28034</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>29100</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>30780</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>33652</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>35332</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>38729</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>40606</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>44103</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>45446</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>46951</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>48429</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>51043</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>55339</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>58444</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>60221</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>60918</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>62534</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>65707</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>66816</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>69805</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>71473</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>73340</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>74632</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>75646</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>76501</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                    </SerializableDictionaryOfInt32Boolean>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPosNavigator</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>494</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_TopIndex</string>
+                  </key>
+                  <value type="System.Int32">
+                    <int>17</int>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Focused</string>
+                  </key>
+                  <value type="System.String">
+                    <string>vtSysPwrSupInit(char pwrConnectWay[]): int</string>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Selected</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">vtSysPwrSupInit(char pwrConnectWay[]): int</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Expanded</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Functions</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CNCVirtualGroups</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.CAPL.Navigator.Model.SerializedNodeList">
+                    <ArrayOfSerializedNode />
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\Library\KostalSoftwareTestLibrary.cin" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+            <DocumentSettingsBase d7p1:type="DocumentSettings" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
+              <LastTouched>2017-12-20T01:22:59.4065471Z</LastTouched>
+              <Settings>
+                <item>
+                  <key type="System.String">
+                    <string>RelativeSplitterPosClassicMode</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>100</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>VerticalSplitterPos</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>0</SplitterPos>
+                      <Enabled>false</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>Outlining</string>
+                  </key>
+                  <value type="Vector.ITE.Utilities.XmlSerialization.SerializableDictionary`2[System.Int32,System.Boolean]">
+                    <SerializableDictionaryOfInt32Boolean>
+                      <item>
+                        <key type="System.Int32">
+                          <int>-1</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>19</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>96</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>112</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>509</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>943</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1060</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1177</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1260</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1345</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1436</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1523</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>1858</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2097</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2409</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2783</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>2988</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>3247</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>3584</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                      <item>
+                        <key type="System.Int32">
+                          <int>3791</int>
+                        </key>
+                        <value type="System.Boolean">
+                          <boolean>true</boolean>
+                        </value>
+                      </item>
+                    </SerializableDictionaryOfInt32Boolean>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>HorizontalSplitterPosNavigator</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.Common.PersistentItems.PersistentSplitterPos">
+                    <PersistentSplitterPos>
+                      <SplitterPos>170</SplitterPos>
+                      <Enabled>true</Enabled>
+                    </PersistentSplitterPos>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_TopIndex</string>
+                  </key>
+                  <value type="System.Int32">
+                    <int>0</int>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Focused</string>
+                  </key>
+                  <value type="System.String">
+                    <string>testIndicatorControlFunctionStateChart(int stepRouteNum3, int stepRouteNum8): void</string>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Selected</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">testIndicatorControlFunctionStateChart(int stepRouteNum3, int stepRouteNum8): void</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CaplNavigator_Expanded</string>
+                  </key>
+                  <value type="System.Collections.ArrayList">
+                    <ArrayOfAnyType>
+                      <anyType xmlns:q1="http://www.w3.org/2001/XMLSchema" d7p1:type="q1:string">Includes</anyType>
+                      <anyType xmlns:q2="http://www.w3.org/2001/XMLSchema" d7p1:type="q2:string">Test Cases</anyType>
+                    </ArrayOfAnyType>
+                  </value>
+                </item>
+                <item>
+                  <key type="System.String">
+                    <string>CNCVirtualGroups</string>
+                  </key>
+                  <value type="Vector.ITE.Languages.CAPL.Navigator.Model.SerializedNodeList">
+                    <ArrayOfSerializedNode />
+                  </value>
+                </item>
+              </Settings>
+              <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="HKMC FE SBW\basicFunctionTest.can" /&gt;</SerializedBasedFileName>
+            </DocumentSettingsBase>
+          </ArrayOfDocumentSettingsBase>
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </DocumentManagement>
+  <BookmarkService>
+    <SerializableDictionaryOfStringObject />
+  </BookmarkService>
+  <SearchAndReplace>
+    <SerializableDictionaryOfStringObject />
+  </SearchAndReplace>
+  <FunctionExplorer>
+    <SerializableDictionaryOfStringObject />
+  </FunctionExplorer>
+  <TempFileRepository>
+    <SerializableDictionaryOfStringObject />
+  </TempFileRepository>
+  <TestTableEditor>
+    <SerializableDictionaryOfStringObject>
+      <item>
+        <key type="System.String">
+          <string>TtRUList</string>
+        </key>
+        <value type="System.Collections.Generic.List`1[System.String]">
+          <ArrayOfString />
+        </value>
+      </item>
+    </SerializableDictionaryOfStringObject>
+  </TestTableEditor>
+  <TestSequenceDiagram>
+    <SerializableDictionaryOfStringObject />
+  </TestSequenceDiagram>
+  <LanguagesCommon>
+    <SerializableDictionaryOfStringObject />
+  </LanguagesCommon>
+  <InterfaceFunctionExplorer>
+    <SerializableDictionaryOfStringObject />
+  </InterfaceFunctionExplorer>
+  <ITETester>
+    <SerializableDictionaryOfStringObject />
+  </ITETester>
+  <MeasurePerformance>
+    <SerializableDictionaryOfStringObject />
+  </MeasurePerformance>
+  <TraceItems>
+    <SerializableDictionaryOfStringObject />
+  </TraceItems>
+  <IntelliSymbolManagement>
+    <SerializableDictionaryOfStringObject />
+  </IntelliSymbolManagement>
+  <PrintDialog>
+    <SerializableDictionaryOfStringObject />
+  </PrintDialog>
+</Settings>

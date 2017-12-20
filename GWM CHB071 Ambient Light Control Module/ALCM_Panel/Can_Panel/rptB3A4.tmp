@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2017-06-19 18:17:42" timestamp="   5.817402" verdicts="2_basic">
+  <testunit starttime="2017-06-19 18:17:42" timestamp="   5.817402">
+    <testsequence starttime="2017-06-19 18:17:42" timestamp="   5.817402">
+      <command timestamp="   5.817402" name="CAPL Inline">
+        <title>Initialize VT system,make VT internal power supply voltage output equals 12V</title>
+        <result timestamp="   6.417402" result="pass"/>
+      </command>
+      <command timestamp="   6.417402" name="Wait">
+        <title>Wait for power supply initialization complete</title>
+        <teststep timestamp="   6.717402" level="2" type="user" ident="1" result="na">Waited for 300.000 ms</teststep>
+        <result timestamp="   6.717402" result="pass"/>
+      </command>
+      <command timestamp="   6.717402" name="Check">
+        <title>Check</title>
+        <teststep timestamp="   6.717402" level="2" type="user" ident="1" result="pass">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgVoltage&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>12.5</cell>
+              <cell>11.9400616473891</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgVoltage&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>11.5</cell>
+              <cell>11.9400616473891</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgCurrent&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>0.001</cell>
+              <cell>0.015632</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgCurrent&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.1</cell>
+              <cell>0.015632</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="   6.717402" result="pass"/>
+      </command>
+      <command timestamp="   6.717402" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="   6.817402" level="2" type="user" ident="1" result="na">Waited for 100.000 ms</teststep>
+        <result timestamp="   6.817402" result="pass"/>
+      </command>
+      <command timestamp="   6.817402" name="CAPL Inline">
+        <title>Set Pin4 input inactive at the beginning and Pin1~3 connect with loads</title>
+        <result timestamp="   6.817402" result="pass"/>
+      </command>
+      <command timestamp="   6.817402" name="CANoe Standard Service">
+        <title>testValidateTesterConfirmation</title>
+        <teststep timestamp="   6.817402" level="2" type="user" ident="" result="na">Execute testValidateTesterConfirmation(&quot;for 3.5.2 debug&quot;, &quot;&quot;, 1)</teststep>
+        <teststep timestamp="  13.754529" level="0" type="user" ident="" result="pass">Question/Text: for 3.5.2 debug\nTester confirmed with &apos;Yes&apos;.</teststep>
+        <result timestamp="  13.754529" result="pass"/>
+      </command>
+      <command timestamp="  13.754529" name="CAPL Inline">
+        <title>CAPL Inline</title>
+        <teststep timestamp="  13.754529" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message HUT8 - successfully.</teststep>
+        <teststep timestamp="  13.754529" level="0" type="user" ident="" result="na">timestamp1=13701275135</teststep>
+        <result timestamp="  13.754529" result="pass"/>
+      </command>
+      <command timestamp="  13.754529" name="Set">
+        <title>Set</title>
+        <teststep timestamp="  13.754529" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;SystemPowerMode&apos;</cell>
+              <cell>=</cell>
+              <cell>2 (ON)</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+              <cell>=</cell>
+              <cell>10</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;PosLmpSts&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (OFF)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  13.754529" result="pass"/>
+      </command>

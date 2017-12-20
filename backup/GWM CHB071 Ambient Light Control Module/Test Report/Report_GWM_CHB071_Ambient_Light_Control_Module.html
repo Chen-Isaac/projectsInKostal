@@ -1,0 +1,1203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>GWM CHB071 Ambient Light Control Module</title>
+    <style type="text/css">
+      
+       
+      
+      @media screen
+      {
+        body
+        {
+          background-color: rgb(255, 255, 255);
+          font-family:      arial, verdana, trebuchet, officina, sans-serif;
+        }
+      }
+  
+      
+      @media print
+      {
+        
+        body
+        {
+          background-color: rgb(255, 255, 255);
+          font-family:      arial, verdana, trebuchet, officina, sans-serif;
+        }
+        
+        
+        a
+        {
+          text-decoration: none;
+        }
+        
+        
+        .HeadingTable, .SubHeadingTable, .GroupHeadingTable , .GroupEndTable
+        {
+          border-width: 2px;
+          border-style: solid;
+          border-color: rgb(150,150,150);
+        }
+        
+        .ResultBlockHeading
+        {
+          border-width: 1px;
+          border-style: solid;
+          border-color: rgb(150,150,150);
+        }
+        
+        table.ResultTable, table.OverviewTable, table.CheckStatisticsTable
+        {
+          border-collapse: collapse;
+        }
+        
+        td.DefaultCell, td.DefineCell, td.NumberCell, td.NumberCellPositiveResult, td.NumberCellNegativeResult, 
+        td.NumberCellErrorResult, td.NumberCellInconclusiveResult, td.NumberCellNoneResult, td.NumberCellNoColor,
+        td.PositiveResultCell, td.NegativeResultCell, td.WarningCell, td.NoneResultCell, td.InconclusiveResultCell,
+        td.ErrorResultCell, th.TableHeadingCell
+        {
+          border-width: 1px;
+          border-style: solid;
+          border-color: rgb(150,150,150);
+        }
+        
+        .PatternSeparator
+        {
+          
+          border-style: none;
+        }
+        
+        .PositiveResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .NegativeResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .NoneResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .InconclusiveResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .ErrorResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+
+        
+        .TestcaseHeadingDefaultResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .TestcaseHeadingPositiveResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        .TestcaseHeadingNegativeResult
+        {
+          
+          border-bottom: 2px solid;
+        }
+        
+        table.ScreenOnly, a.Undecorated, .LinkCell
+        {
+          display: none;
+        }
+      }
+      
+      a.Undecorated:hover 
+      {
+        color:red;
+      }
+      a.Undecorated
+      { 
+        text-decoration: none; 
+      }
+      
+      .NavStyle
+      {
+        background-color: rgb(220, 221, 222);
+      }
+      
+      td.LinkCell, td.UpCell
+      {
+        
+        width:              1px;
+        white-space:        nowrap;
+      }
+
+      
+      table
+      {
+        margin-bottom:    10px;
+        vertical-align:   top; 
+        border:           0;
+        border-spacing:   1px;
+        padding:          2px;
+      }
+      table.ScreenOnly
+      {
+        vertical-align: top; 
+        margin-bottom:  10px;
+      }
+      .NoMarginBottom
+      {
+        margin-bottom:    0px;
+      }
+      .HeadingTable
+      {
+        width:            100%;
+        text-align:       center;
+        margin-top:       15px;
+        margin-bottom:    30px;
+        margin-left:      auto;
+        margin-right:     auto;
+        background-color: rgb(220, 221, 222);
+      }
+      
+      .SubHeadingTable
+      {
+        width:            100%;
+        text-align:       center;
+        margin-top:       15px;
+        margin-bottom:    25px;
+        background-color: rgb(220, 221, 222);
+      }
+      
+      .GroupHeadingTable, .GroupEndTable
+      {
+        width:            100%;
+        text-align:       center;
+        margin-top:       15px;
+        padding-right:    20px;
+        background-color: rgb(220, 221, 222);
+      }
+      
+      .DefaultTable
+      {
+        padding:        0px;
+        border-spacing: 0px;
+      }
+      
+      .CheckStatisticsTable
+      {
+        margin-bottom: 8px;
+        padding-right:  20px;
+      }
+  
+      .OverviewTable
+      {
+        text-align:     left;
+      }
+      
+      .OverviewResultTable
+      {
+        width:          100%;
+        margin-bottom:  0px;
+        border-spacing: 0px;
+        padding:        0px;
+        text-align:     center;
+      }
+      
+      .ResultTable
+      {
+        width:          100%;
+        text-align:     left;
+        padding-right:  20px;
+      }
+      
+      .ResultTableInner
+      {
+        width:          100%;
+        text-align:     left;
+        padding-right:  0px;
+      }
+  
+      table.ResultTable td, table.ChildLinkTable td
+      {
+        vertical-align: top;
+      }
+      .ChildLinkTable
+      {
+        width:          1px;
+        text-align:     left;
+      }
+      .InfoTable
+      {
+        text-align:     left;
+        padding-right:  0px;
+        margin-bottom:  0px;
+        border-spacing: 0px;
+      }
+      .InfoTableExpand
+      {
+        width:          100%;
+        text-align:     left;
+        padding-right:  0px;
+        margin-bottom:  0px;
+        border-spacing: 0px;
+      }
+      .OverallResultTable
+      {
+        width:         50%;
+        text-align:    center;
+        margin-bottom: 20px;
+        margin-left:   auto;
+        margin-right:  auto;
+        font-weight:   bold;
+      }
+      
+      .TableHeadingCell
+      {
+        background-color: rgb(179, 179, 179);
+        font-family:      arial, verdana, trebuchet, officina, sans-serif;
+        font-weight:      bold;
+        text-align:       center;
+      }
+  
+      .CellNoColor
+      {
+        text-align:     left;
+        vertical-align: top;
+      }   
+      
+      .DefineCell
+      {
+        background-color: rgb(179, 179, 179);
+        text-align:       left;
+      }
+      
+      .DefaultCell, .DefaultCellBold
+      {
+        background-color: rgb(229, 229, 229);
+        text-align:       left;
+      }
+      
+      .DefaultCellBold
+      {
+        font-weight:      bold;
+      }
+        
+      .NumberCell
+      {
+        background-color: rgb(229, 229, 229);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellNegativeResult
+      {
+        background-color: rgb(240, 0, 0);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellPositiveResult
+      {
+        background-color: rgb(25, 165, 88);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellNoneResult
+      {
+        background-color: rgb(105, 105, 105);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellInconclusiveResult
+      {
+        background-color: rgb(255, 165, 0);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellErrorResult
+      {
+        background-color: rgb(205, 0, 0);
+        text-align:       center;
+        min-width:        50px;
+      }
+      
+      .NumberCellNoColor
+      {        
+        text-align: center;
+      }
+      
+      .PositiveResultCell
+      {
+        background-color: rgb(25, 165, 88);
+      }
+    
+      .NegativeResultCell
+      {
+        background-color: rgb(240, 0, 0);
+      }
+      
+      .NoneResultCell
+      {
+        background-color: rgb(105, 105, 105);
+      }
+      
+      .InconclusiveResultCell
+      {
+        background-color: rgb(255, 165, 0);
+      }
+      
+      .ErrorResultCell
+      {
+        background-color: rgb(205, 0, 0);
+        white-space:        nowrap;
+      }
+
+      .WarningCell
+      {
+        background-color: rgb(255, 255, 0);
+      }
+
+      .TestcaseHeadingDefaultResult
+      {
+        background-color: rgb(179, 179, 179);
+      }
+      .TestcaseHeadingPositiveResult
+      {
+        background-color: rgb(25, 165, 88);
+      }      
+      .TestcaseHeadingNegativeResult
+      {
+        background-color: rgb(240, 0, 0);
+      }      
+      .TestcaseHeadingNoneResult
+      {
+        background-color: rgb(105, 105, 105);
+      }
+      .TestcaseHeadingInconclusiveResult
+      {
+        background-color: rgb(255, 165, 0);
+      }
+      .TestcaseHeadingErrorResult
+      {
+        background-color: rgb(205, 0, 0);
+      }
+      
+      .PatternSeparator
+      {
+        height: 0.2em;
+      }
+      
+      .NegativeResult
+      {
+        background-color: rgb(240, 0, 0);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      .PositiveResult
+      {
+        background-color: rgb(25, 165, 88);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      .NoneResult
+      {
+        background-color: rgb(105, 105, 105);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      .InconclusiveResult
+      {
+        background-color: rgb(255, 165, 0);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      .ErrorResult
+      {
+        background-color: rgb(205, 0, 0);
+        text-align:       center;
+        font-weight:      bold;
+      }
+      
+      
+      
+      .Heading1
+      {
+        font-family: arial, sans-serif;
+        font-weight: bold;
+        font-size:   26px;
+      }
+      
+      .Heading2
+      {
+        font-family: arial, sans-serif;
+        font-weight: bold;
+        font-size:   20px;
+      }
+      
+      .Heading3
+      {
+        font-family:   arial, sans-serif;
+        font-weight:   bold;
+        font-size:     18px;
+        margin-bottom: 20px;
+        margin-top:    20px;
+      }
+      
+      .Heading4
+      {
+        font-family:   arial, sans-serif;
+        font-weight:   bold;
+        font-size:     16px;
+        margin-top:    10px;
+        margin-bottom: 10px;
+      }
+      
+      
+      img
+      {
+        Margin-bottom: 10px;
+        Margin-right:  10px;
+      }
+      
+      
+      p
+      {
+        Margin-bottom: 20px;
+      }
+      
+      
+      .DefaultTableBackground
+      {
+        background-color: rgb(229, 229, 229);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .NegativeResultBackground
+      {
+        background-color: rgb(240, 0, 0);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .PositiveResultBackground
+      {
+        background-color: rgb(25, 165, 88);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .WarningResultBackground
+      {
+        background-color: rgb(255, 255, 0);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .NoneResultBackground
+      {
+        background-color: rgb(105, 105, 105);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .InconclusiveResultBackground
+      {
+        background-color: rgb(255, 165, 0);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .ErrorResultBackground
+      {
+        background-color: rgb(205, 0, 0);
+        border-spacing:   0px;
+        padding:          0px;
+      }
+      
+      .TestGroupHeadingBackground
+      {
+        background-color: rgb(179, 179, 179);
+      }
+    
+      
+      .Indentation
+      {
+        margin-left:  20px;
+      }
+    </style>
+    <script type="text/javascript">
+      var EXPANDED = '[−]';
+      var COLLAPSED = '[+]';
+      var VISIBLE = 'Visible';
+      var HIDDEN = 'Hidden';
+      var NONE = 'none';
+      var BLOCK = '';
+      function getDivId(id) { return 'div_' + id; }
+      function getLinkId(id) { return 'lnk_' + id; }
+      function getTableId(id) { return 'tbl_' + id; }
+      function getTbl2Id(id) { return 'tbl_t' + id; }
+      
+      
+      function switchText(oldText) { return oldText == COLLAPSED ? EXPANDED : COLLAPSED ; }
+      function getStyleFromText(linkText) { return linkText == COLLAPSED ? HIDDEN : VISIBLE; }
+      
+      function getElements(tagName, elementId)
+      {
+        this.elements = [];
+        var index = 0;
+        var elm = document.getElementsByTagName(tagName);
+        var len = elm.length;
+        for (var i = 0; i < len; i++) 
+        {
+          var id = elm[i].id;
+          if (id && id.indexOf(elementId) == 0)
+          {
+            this.elements[index] = elm[i];
+            index++;
+          }
+        }
+        return this.elements;
+      }
+      function matchElements(tagName, matchId)
+      {
+        this.elements = [];
+        var index = 0;
+        var elm = document.getElementsByTagName(tagName);
+        for (var i = 0; i < elm.length; i++) 
+        {
+          var id = elm[i].id;
+          var tc = id.replace(/s[0-9]+\./, "");
+          if (tc && tc == matchId)
+          {
+            this.elements[index] = elm[i];
+            index++;
+          }
+        }
+        return this.elements;  
+      }
+      function onoff(elm, style)
+      {
+        if(elm.style.display == NONE)
+        {
+          if(style == null || style == VISIBLE)
+            elm.style.display = BLOCK;
+        }
+        else
+        {
+          if(style == null || style == HIDDEN)
+            elm.style.display = NONE;
+        }
+      }
+      function switchTagStyle(tag, id, style)
+      {
+        var divs = getElements(tag, id);
+        for(var i = 0; i < divs.length; i++)
+          onoff(divs[i], style);
+      }
+      function switchRowStyle(tbl, style)
+      {
+        var rows = tbl.rows.length;
+        for(var rowIndex=0; rowIndex < rows; rowIndex++)
+        {
+          var row = tbl.rows[rowIndex];
+          if (row.id != "on")
+            onoff(row, style);
+        }
+      }
+      function switchTableRowStyle(tableId, style)
+      {
+        var tables = getElements('table', tableId);
+        for(var i = 0; i < tables.length; i++)
+          switchRowStyle(tables[i], style);
+      }
+      function switchLinkText(linkId, newText)
+      {
+        var link = getElements('a', linkId);
+        var len = link.length;
+        for(var i = 0; i < len; i++)
+        {
+          var lnk = link[i];
+          if(newText == null)
+          {
+            var oldText = lnk.text;
+            newText = switchText(oldText)
+          }
+          lnk.text = newText;
+        }
+      }
+      function switchTag(tag, id, text)
+      {
+        var style = getStyleFromText(text);
+        switchTagStyle(tag, id, style);
+      }
+      function switchTable(id)
+      {
+        switchLinkText(getTableId(id));
+        switchTableRowStyle(getTableId(id));
+      }
+      function switchDiv(id, linkText)
+      {
+        var text = switchText(linkText);
+        switchLinkText(getLinkId(id), text);
+        switchTag('div', getDivId(id), text);
+      }      
+      function switchAll(id, linkText)
+      {
+        var text = switchText(linkText);
+        switchLinkText(getLinkId(id), text);
+        switchTag('div', getDivId(id), text);
+        var style = getStyleFromText(text);
+        switchTableRowStyle(getTbl2Id(id), style);
+      }
+      function showTable(id)
+      {
+        var tableId = getTableId(id);
+        switchLinkText(tableId, EXPANDED);
+        switchTableRowStyle(tableId, VISIBLE);
+      }
+      function hideTable(id)
+      {
+        var tableId = getTableId(id);
+        switchTableRowStyle(tableId, HIDDEN);
+        switchLinkText(tableId, COLLAPSED);
+      }
+      function showDiv(id)
+      {
+        switchLinkText(getLinkId(id), EXPANDED);
+        switchTag('div', getDivId(id), EXPANDED);
+      }
+      function showTC(id)
+      {
+        var divId = getDivId(id);
+        var elms = matchElements('div', divId); 
+        if(elms != null && elms.length > 0)
+        {
+          id = elms[0].id.replace(getDivId(''), '');
+          showDiv(id);
+        }
+      }
+      
+    </script>
+  </head>
+  <body>
+    <a name="TOP"></a>
+    <table class="HeadingTable">
+      <tr>
+        <td>
+          <big class="Heading1">Report: GWM CHB071 Ambient Light Control Module</big>
+        </td>
+      </tr>
+    </table>
+    <center>
+      <table class="OverallResultTable">
+        <tr>
+          <td class="NegativeResult">Test failed</td>
+        </tr>
+      </table>
+    </center>
+    <a name="GeneralTestInfo"></a>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <div class="Heading2">General Test Information</div>
+        </td>
+      </tr>
+    </table>
+    <div class="Indentation">
+      <div class="Heading4">Tester</div>
+      <div class="Indentation">
+        <table>
+          <tr>
+            <td class="CellNoColor">Windows Login Name: </td>
+            <td class="CellNoColor">chen106</td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading4">Test Setup</div>
+      <div class="Indentation">
+        <table>
+          <tr>
+            <td class="CellNoColor">Version: </td>
+            <td class="CellNoColor">CANoe.LIN 8.5.107 (SP5)</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Configuration: </td>
+            <td class="CellNoColor">D:\Isaac\GWM CHB071 Ambient Light Control Module\ALCM_Panel\Can_Panel\CanPanel.cfg</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Configuration Comment: </td>
+            <td class="CellNoColor"></td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Test Configuration: </td>
+            <td class="CellNoColor">GWM CHB071 Ambient Light Control Module</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Windows Computer Name: </td>
+            <td class="CellNoColor">CN150449</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module CANOEILNLVECTOR: </td>
+            <td class="CellNoColor">CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLVECTOR.DLL</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module OSEKNM01: </td>
+            <td class="CellNoColor">OSEK-NM Vector Informatik GmbH 1.6.65 2016-03-14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\OSEKNM01.DLL</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module CANstress_NL: </td>
+            <td class="CellNoColor">CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module FRStressNL: </td>
+            <td class="CellNoColor">FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Nodelayer Module J1939TestServiceLibraryNL: </td>
+            <td class="CellNoColor">J1939 Test Service Library for CANoe, Version 8.5.107, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading4">Hardware</div>
+      <div class="Indentation">
+        <div class="Heading4">CAN Channel Interfaces</div>
+        <div class="Indentation">
+          <table>
+            <tr>
+              <th class="TableHeadingCell">Channel</th>
+              <th class="TableHeadingCell">Device</th>
+              <th class="TableHeadingCell">Serial number</th>
+              <th class="TableHeadingCell">Driver DLL version</th>
+              <th class="TableHeadingCell">Driver version</th>
+            </tr>
+            <tr>
+              <td class="NumberCell">1</td>
+              <td class="NumberCell">VN1630</td>
+              <td class="NumberCell">501043</td>
+              <td class="NumberCell">9.2.22</td>
+              <td class="NumberCell">8.9.22</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="Indentation">
+        <div class="Heading4">VT-System</div>
+        <div class="Indentation">
+          <table>
+            <tr>
+              <th class="TableHeadingCell">Device</th>
+              <th class="TableHeadingCell">Serial number</th>
+              <th class="TableHeadingCell">Firmware version</th>
+              <th class="TableHeadingCell">Hardware version</th>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT8012</td>
+              <td class="NumberCell">1031</td>
+              <td class="NumberCell">0.0.0</td>
+              <td class="NumberCell">0x10</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT1004A</td>
+              <td class="NumberCell">452</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT1004A</td>
+              <td class="NumberCell">450</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT1004A</td>
+              <td class="NumberCell">448</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT1004A</td>
+              <td class="NumberCell">449</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2004A</td>
+              <td class="NumberCell">331</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2004A</td>
+              <td class="NumberCell">348</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2004A</td>
+              <td class="NumberCell">329</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2004A</td>
+              <td class="NumberCell">339</td>
+              <td class="NumberCell">2.1.0</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2516A</td>
+              <td class="NumberCell">174</td>
+              <td class="NumberCell">2.1.2</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2516A</td>
+              <td class="NumberCell">234</td>
+              <td class="NumberCell">2.1.2</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT2516A</td>
+              <td class="NumberCell">210</td>
+              <td class="NumberCell">2.1.2</td>
+              <td class="NumberCell">0x0</td>
+            </tr>
+            <tr>
+              <td class="NumberCell">VT7001A</td>
+              <td class="NumberCell">267</td>
+              <td class="NumberCell">2.0.5</td>
+              <td class="NumberCell">0x10</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <p><b>Measurement stop forced. Test is incomplete!</b></p>
+    </div>
+    <a name="TestOverview"></a>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <div class="Heading2">Test Overview</div>
+        </td>
+      </tr>
+    </table>
+    <div class="Indentation">
+      <table class="DefaultTable">
+        <tr>
+          <td style="padding-right: 0.5em;" class="CellNoColor">Test begin: </td>
+          <td style="padding-right: 0.5em;" class="CellNoColor">2016-11-23 11:27:20</td>
+          <td class="CellNoColor">(logging timestamp    1.919974)</td>
+        </tr>
+        <tr>
+          <td style="padding-right: 0.5em;" class="CellNoColor">Test end: </td>
+          <td style="padding-right: 0.5em;" class="CellNoColor">2016-11-23 11:27:23</td>
+          <td class="CellNoColor" nowrap>(logging timestamp    4.795995)</td>
+        </tr>
+      </table>
+      <div class="Heading4">Statistics</div>
+      <div class="Indentation">
+        <table class="OverviewTable">
+          <tr>
+            <td class="DefineCell">Executed test cases </td>
+            <td class="NumberCell" width="60">0</td>
+            <td class="DefaultCell"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="Heading4">Test Results</div>
+      <div class="Indentation">
+        <table class="OverviewTable">
+          <tr>
+            <td class="DefineCell">1</td>
+            <td class="DefineCell">
+              <b>
+                <a href="#i__42444864_8">GWM CHB071 Ambient Light Control Module</a>
+              </b>
+            </td>
+            <td class="NegativeResultCell">fail</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <a name="TestModuleInfo"></a>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <div class="Heading2">Test Configuration Information</div>
+        </td>
+      </tr>
+    </table>
+    <a name="i__42444864_1"></a>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <big class="Heading2">Test Case Details</big>
+        </td>
+      </tr>
+    </table>
+    <table class="GroupHeadingTable">
+      <tr height="20px"></tr>
+      <tr>
+        <td class="LinkCell">
+          <a class="Undecorated" id="lnk_1" href="javascript:switchAll('1',document.all['lnk_1'].text)">[−]</a>
+        </td>
+        <td>
+          <big class="Heading3">
+            <a name="i__42444864_8">1 Test Unit: GWM CHB071 Ambient Light Control Module</a>
+          </big>
+        </td>
+      </tr>
+      <tr height="20px"></tr>
+    </table>
+    <div id="div_1">
+      <div class="Heading4">General Information</div>
+      <div class="Indentation">
+        <table>
+          <tr>
+            <td class="CellNoColor">Name: </td>
+            <td class="CellNoColor">GWM CHB071 Ambient Light Control Module</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Description: </td>
+            <td class="CellNoColor"></td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Version: </td>
+            <td class="CellNoColor"></td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">File: </td>
+            <td class="CellNoColor">D:\Isaac\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtuexe</td>
+          </tr>
+          <tr>
+            <td class="CellNoColor">Last modification: </td>
+            <td class="CellNoColor">2016-11-23, 11:24:12</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <a name="i__42444864_14"></a>
+    <table class="GroupEndTable">
+      <tr>
+        <td class="LinkCell">
+          <a class="Undecorated" id="lnk_1.s0" href="javascript:switchAll('1.s0',document.all['lnk_1.s0'].text)">[−]</a>
+        </td>
+        <td>Start of Test Sequence: Power supply initialization</td>
+      </tr>
+    </table>
+    <div class="Indentation" id="div_1.s0">
+      <div class="Indentation">
+        <table class="DefaultTable">
+          <tr>
+            <td style="padding-right: 0.5em;" class="CellNoColor">Test sequence begin: </td>
+            <td style="padding-right: 0.5em;" class="CellNoColor">2016-11-23 11:27:20</td>
+            <td class="CellNoColor">(logging timestamp    1.919974)</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 0.5em;" class="CellNoColor">Test sequence end: </td>
+            <td style="padding-right: 0.5em;" class="CellNoColor">2016-11-23 11:27:23</td>
+            <td class="CellNoColor" nowrap>(logging timestamp    4.795995)</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="Indentation" id="div_1.s0">
+      <table class="TestGroupHeadingBackground">
+        <tr>
+          <td>
+            <big class="Heading3">Main Part of Test Sequence</big>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="Indentation">
+      <div class="Indentation" id="div_1.s0">
+        <table class="ScreenOnly">
+          <tbody>
+            <tr>
+              <td>
+                <a class="Undecorated" href="javascript:showTable('1.s0_')">[expand test steps]</a>
+              </td>
+              <td width="2px"></td>
+              <td>
+                <a class="Undecorated" href="javascript:hideTable('1.s0_')">[collapse test steps]</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="Indentation">
+        <table class="ResultTable" id="tbl_t1.s0">
+          <tr>
+            <th class="TableHeadingCell" width="1px">Timestamp</th>
+            <th class="TableHeadingCell" width="1px">Test Step</th>
+            <th class="TableHeadingCell" width="auto">Description</th>
+            <th class="TableHeadingCell" width="1px">Result</th>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="PositiveResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">1. Initialize VT system,make VT internal power supply voltage output equals 12V: Passed</big>
+            </td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="PositiveResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">2. Wait for power supply initialization complete: Passed</big>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell">   2.819974</td>
+            <td class="NumberCell">1</td>
+            <td class="DefaultCell">Waited for 300.000 ms</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="NegativeResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">3. Check: Failed</big>
+            </td>
+          </tr>
+          <tr id="i__42444864_77">
+            <td style="text-indent: 20px;" class="DefineCell">   2.819974</td>
+            <td class="NumberCell">1</td>
+            <td class="DefaultCell">
+              <table class="NoMarginBottom">
+                <tbody>
+                  <tr>
+                    <td>
+                      <a class="Undecorated" id="tbl_1.s0_i__42444864_86" href="javascript:switchTable('1.s0_i__42444864_86')">[−]</a>
+                    </td>
+                    <td>Check of expected values</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="InfoTableExpand" id="tbl_1.s0_i__42444864_86">
+                <tr>
+                  <td class="DefineCell" style="text-indent: 0px;">Symbol</td>
+                  <td class="DefineCell">Op.</td>
+                  <td class="DefineCell">Reference Value</td>
+                  <td class="DefineCell">Actual</td>
+                  <td class="DefineCell" width="1px">Result</td>
+                </tr>
+                <tr>
+                  <td class="DefaultCell" style="text-indent: 0px;">System variable 'M12_Out2::AvgVoltage'</td>
+                  <td class="DefaultCell">&lt;=</td>
+                  <td class="DefaultCell">12.5</td>
+                  <td class="DefaultCell">11.9473860896634</td>
+                  <td class="PositiveResultCell">pass</td>
+                </tr>
+                <tr>
+                  <td class="DefaultCell" style="text-indent: 0px;">System variable 'M12_Out2::AvgVoltage'</td>
+                  <td class="DefaultCell">&gt;=</td>
+                  <td class="DefaultCell">11.5</td>
+                  <td class="DefaultCell">11.9473860896634</td>
+                  <td class="PositiveResultCell">pass</td>
+                </tr>
+                <tr>
+                  <td class="DefaultCell" style="text-indent: 0px;">System variable 'M12_Out2::AvgCurrent'</td>
+                  <td class="DefaultCell">&gt;=</td>
+                  <td class="DefaultCell">0.001</td>
+                  <td class="DefaultCell">0.000902</td>
+                  <td class="NegativeResultCell">fail</td>
+                </tr>
+                <tr>
+                  <td class="DefaultCell" style="text-indent: 0px;">System variable 'M12_Out2::AvgCurrent'</td>
+                  <td class="DefaultCell">&lt;=</td>
+                  <td class="DefaultCell">0.1</td>
+                  <td class="DefaultCell">0.000902</td>
+                  <td class="PositiveResultCell">pass</td>
+                </tr>
+              </table>
+            </td>
+            <td class="NegativeResultCell">fail</td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="PositiveResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">4. Wait: Passed</big>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell">   2.919974</td>
+            <td class="NumberCell">1</td>
+            <td class="DefaultCell">Waited for 100.000 ms</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="PositiveResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">5. Set Pin4 input inactive at the beginning and Pin1~3 connect with loads: Passed</big>
+            </td>
+          </tr>
+          <tr>
+            <td class="PatternSeparator" colspan="4"></td>
+          </tr>
+          <tr class="NegativeResultBackground">
+            <td style="text-indent: 20px;" class="ResultBlockHeading" colspan="4">
+              <big class="Heading4">6. testValidateTesterConfirmation: Failed</big>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-indent: 20px;" class="DefineCell">   2.919974</td>
+            <td class="NumberCell"></td>
+            <td class="DefaultCell">Execute testValidateTesterConfirmation("for 3.5.2 debug", "", 1)</td>
+            <td class="DefaultCell">-</td>
+          </tr>
+          <tr id="i__42444864_326">
+            <td style="text-indent: 20px;" class="DefineCell">   4.795995</td>
+            <td class="NumberCell"></td>
+            <td class="DefaultCell">Measurement stop forced. Test is incomplete!</td>
+            <td class="NegativeResultCell">fail</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="Indentation" id="div_1.s0"></div>
+    <table class="GroupEndTable">
+      <tr>
+        <td>End of Test Sequence: Power supply initialization</td>
+      </tr>
+    </table>
+    <table class="GroupEndTable">
+      <tr>
+        <td>End of Test Unit: GWM CHB071 Ambient Light Control Module</td>
+      </tr>
+    </table>
+    <table class="SubHeadingTable">
+      <tr>
+        <td>
+          <div class="Heading2">End of Report</div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

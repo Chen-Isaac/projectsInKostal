@@ -1,0 +1,4822 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2016-09-20 18:10:01" timestamp="   3.816939">
+  <testunit starttime="2016-09-20 18:10:01" timestamp="   3.816939">
+    <testsequence starttime="2016-09-20 18:10:01" timestamp="   3.816939">
+      <command timestamp="   3.816939" name="CAPL Inline">
+        <title>Initialize VT system,make VT internal power supply voltage output equals 12V</title>
+        <result timestamp="   4.416939" result="pass"/>
+      </command>
+      <command timestamp="   4.416939" name="Wait">
+        <title>Wait for power supply initialization complete</title>
+        <teststep timestamp="   4.716939" level="2" type="user" ident="1" result="pass">Waited for 300.000 ms</teststep>
+        <result timestamp="   4.716939" result="pass"/>
+      </command>
+      <command timestamp="   4.716939" name="Check">
+        <title>Check</title>
+        <teststep timestamp="   4.716939" level="2" type="user" ident="1" result="pass">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgVoltage&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>12.5</cell>
+              <cell>11.9449446089053</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgVoltage&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>11.5</cell>
+              <cell>11.9449446089053</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgCurrent&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>0.001</cell>
+              <cell>0.014445</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgCurrent&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.1</cell>
+              <cell>0.014445</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="   4.716939" result="pass"/>
+      </command>
+      <title>Power supply initialization</title>
+      <seqend endtime="2016-09-20 18:10:01" endtimestamp="   4.716939" />
+    </testsequence>
+    <skippedsequence starttime="2016-09-20 18:10:01" timestamp="   4.716939">
+      <title>3.2 Shut Down Status</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-09-20 18:10:01" timestamp="   4.716939">
+      <title>3.3 Luminance definition</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-09-20 18:10:01" timestamp="   4.716939">
+      <title>3.4.1 Color Changing Switch</title>
+    </skippedsequence>
+    <testsequence starttime="2016-09-20 18:10:01" timestamp="   4.716939">
+      <command timestamp="   4.716939" name="CAPL Inline">
+        <title>Set Pin4 input inactive at the beginning and Pin1~3 connect with loads</title>
+        <result timestamp="   4.716939" result="pass"/>
+      </command>
+      <command timestamp="   4.716939" name="Report">
+        <title>Report</title>
+        <teststep timestamp="   4.716939" level="2" type="user" ident="" result="na">TEST:When IGN is OFF and initial power on,once received door open status signal is actived,ALCM will change to default color mode and luminance in 1s by dimming directly.Factory default color is blue and default luminance is 50</teststep>
+        <result timestamp="   4.716939" result="pass"/>
+      </command>
+      <command timestamp="   4.716939" name="Set">
+        <title>Set IGN OFF , PosLmpSts inactive &amp;&amp; Open driver door</title>
+        <teststep timestamp="   4.716939" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;SystemPowerMode&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (OFF)</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;DriverDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>1 (Open)</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;PosLmpSts&apos;</cell>
+              <cell>=</cell>
+              <cell>0</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="   4.716939" result="pass"/>
+      </command>
+      <command timestamp="   4.716939" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="   6.716939" level="2" type="user" ident="1" result="pass">Waited for 2.000 s</teststep>
+        <result timestamp="   6.716939" result="pass"/>
+      </command>
+      <command timestamp="   6.716939" name="CANoe Standard Service">
+        <title>testValidateTesterConfirmation</title>
+        <teststep timestamp="   6.716939" level="2" type="user" ident="" result="pass">Execute testValidateTesterConfirmation(&quot;check if it\&apos;s mode2,if not,make it mode2&quot;, &quot;&quot;, 1)</teststep>
+        <teststep timestamp="  22.763020" level="2" type="user" ident="" result="pass">Question/Text: check if it&apos;s mode2,if not,make it mode2\nTester confirmed with &apos;Yes&apos;.</teststep>
+        <result timestamp="  22.763020" result="pass"/>
+      </command>
+      <command timestamp="  22.763020" name="Check">
+        <title>Check if it&apos;s under Day mode Mode2</title>
+        <teststep timestamp="  22.763020" level="0" type="user" ident="1" result="fail">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>200.001</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>200.001</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>97.92</cell>
+              <cell>96.75</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>94.08</cell>
+              <cell>96.75</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>200.001</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>200.001</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>20.4</cell>
+              <cell>20.71</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>19.6</cell>
+              <cell>20.71</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  22.763020" result="fail"/>
+      </command>
+      <command timestamp="  22.763020" name="Report">
+        <title>Report</title>
+        <teststep timestamp="  22.763020" level="2" type="user" ident="" result="na">TEST:When Power mode is OFF,ALCM will ignore DrivingModeReq and ALCMLightLvlSet signal.</teststep>
+        <result timestamp="  22.763020" result="pass"/>
+      </command>
+      <command timestamp="  22.763020" name="For">
+        <title>For i=0..10, increment=1</title>
+        <command timestamp="  22.763020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  22.763020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>0 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  22.763020" result="pass"/>
+        </command>
+        <command timestamp="  22.763020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  22.863020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  22.863020" result="pass"/>
+        </command>
+        <command timestamp="  22.863020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  22.863020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  22.863020" result="fail"/>
+        </command>
+        <command timestamp="  22.863020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  22.863020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>1 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  22.863020" result="pass"/>
+        </command>
+        <command timestamp="  22.863020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  22.963020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  22.963020" result="pass"/>
+        </command>
+        <command timestamp="  22.963020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  22.963020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  22.963020" result="fail"/>
+        </command>
+        <command timestamp="  22.963020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  22.963020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>2 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  22.963020" result="pass"/>
+        </command>
+        <command timestamp="  22.963020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.063020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.063020" result="pass"/>
+        </command>
+        <command timestamp="  23.063020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.063020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.994</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.994</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.063020" result="fail"/>
+        </command>
+        <command timestamp="  23.063020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.063020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>3 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.063020" result="pass"/>
+        </command>
+        <command timestamp="  23.063020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.163020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.163020" result="pass"/>
+        </command>
+        <command timestamp="  23.163020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.163020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.998</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.998</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.163020" result="fail"/>
+        </command>
+        <command timestamp="  23.163020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.163020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>4 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.163020" result="pass"/>
+        </command>
+        <command timestamp="  23.163020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.263020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.263020" result="pass"/>
+        </command>
+        <command timestamp="  23.263020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.263020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.998</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.998</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.263020" result="fail"/>
+        </command>
+        <command timestamp="  23.263020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.263020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>5 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.263020" result="pass"/>
+        </command>
+        <command timestamp="  23.263020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.363020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.363020" result="pass"/>
+        </command>
+        <command timestamp="  23.363020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.363020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.363020" result="fail"/>
+        </command>
+        <command timestamp="  23.363020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.363020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>6 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.363020" result="pass"/>
+        </command>
+        <command timestamp="  23.363020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.463020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.463020" result="pass"/>
+        </command>
+        <command timestamp="  23.463020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.463020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.998</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.998</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.463020" result="fail"/>
+        </command>
+        <command timestamp="  23.463020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.463020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>7 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.463020" result="pass"/>
+        </command>
+        <command timestamp="  23.463020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.563020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.563020" result="pass"/>
+        </command>
+        <command timestamp="  23.563020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.563020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.563020" result="fail"/>
+        </command>
+        <command timestamp="  23.563020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.563020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>8 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.563020" result="pass"/>
+        </command>
+        <command timestamp="  23.563020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.663020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.663020" result="pass"/>
+        </command>
+        <command timestamp="  23.663020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.663020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.996</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.996</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.663020" result="fail"/>
+        </command>
+        <command timestamp="  23.663020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.663020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>9 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.663020" result="pass"/>
+        </command>
+        <command timestamp="  23.663020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.763020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.763020" result="pass"/>
+        </command>
+        <command timestamp="  23.763020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.763020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.006</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.006</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.763020" result="fail"/>
+        </command>
+        <command timestamp="  23.763020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.763020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+                <cell>=</cell>
+                <cell>10 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.763020" result="pass"/>
+        </command>
+        <command timestamp="  23.763020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.863020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.863020" result="pass"/>
+        </command>
+        <command timestamp="  23.863020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.863020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.036</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.863020" result="fail"/>
+        </command>
+        <result timestamp="  23.863020" result="na"/>
+      </command>
+      <command timestamp="  23.863020" name="Set">
+        <title>Reset ALCMLightLvlSet=0</title>
+        <teststep timestamp="  23.863020" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+              <cell>=</cell>
+              <cell>0</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  23.863020" result="pass"/>
+      </command>
+      <command timestamp="  23.863020" name="For">
+        <title>For i=0..15, increment=1</title>
+        <command timestamp="  23.863020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.863020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>0 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.863020" result="pass"/>
+        </command>
+        <command timestamp="  23.863020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  23.963020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  23.963020" result="pass"/>
+        </command>
+        <command timestamp="  23.963020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  23.963020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.996</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.996</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.963020" result="fail"/>
+        </command>
+        <command timestamp="  23.963020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  23.963020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>1 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  23.963020" result="pass"/>
+        </command>
+        <command timestamp="  23.963020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.063020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.063020" result="pass"/>
+        </command>
+        <command timestamp="  24.063020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.063020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.004</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.004</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.063020" result="fail"/>
+        </command>
+        <command timestamp="  24.063020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.063020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>2 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.063020" result="pass"/>
+        </command>
+        <command timestamp="  24.063020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.163020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.163020" result="pass"/>
+        </command>
+        <command timestamp="  24.163020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.163020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.997</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.997</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.163020" result="fail"/>
+        </command>
+        <command timestamp="  24.163020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.163020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>3 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.163020" result="pass"/>
+        </command>
+        <command timestamp="  24.163020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.263020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.263020" result="pass"/>
+        </command>
+        <command timestamp="  24.263020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.263020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.263020" result="fail"/>
+        </command>
+        <command timestamp="  24.263020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.263020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>4 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.263020" result="pass"/>
+        </command>
+        <command timestamp="  24.263020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.363020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.363020" result="pass"/>
+        </command>
+        <command timestamp="  24.363020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.363020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.363020" result="fail"/>
+        </command>
+        <command timestamp="  24.363020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.363020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>5 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.363020" result="pass"/>
+        </command>
+        <command timestamp="  24.363020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.463020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.463020" result="pass"/>
+        </command>
+        <command timestamp="  24.463020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.463020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.003</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.003</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.463020" result="fail"/>
+        </command>
+        <command timestamp="  24.463020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.463020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>6 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.463020" result="pass"/>
+        </command>
+        <command timestamp="  24.463020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.563020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.563020" result="pass"/>
+        </command>
+        <command timestamp="  24.563020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.563020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.003</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.003</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.563020" result="fail"/>
+        </command>
+        <command timestamp="  24.563020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.563020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>7 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.563020" result="pass"/>
+        </command>
+        <command timestamp="  24.563020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.663020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.663020" result="pass"/>
+        </command>
+        <command timestamp="  24.663020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.663020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.003</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.003</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.663020" result="fail"/>
+        </command>
+        <command timestamp="  24.663020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.663020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>8 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.663020" result="pass"/>
+        </command>
+        <command timestamp="  24.663020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.763020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.763020" result="pass"/>
+        </command>
+        <command timestamp="  24.763020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.763020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.763020" result="fail"/>
+        </command>
+        <command timestamp="  24.763020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.763020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>9 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.763020" result="pass"/>
+        </command>
+        <command timestamp="  24.763020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.863020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.863020" result="pass"/>
+        </command>
+        <command timestamp="  24.863020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.863020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.996</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.996</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.863020" result="fail"/>
+        </command>
+        <command timestamp="  24.863020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.863020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>10 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.863020" result="pass"/>
+        </command>
+        <command timestamp="  24.863020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  24.963020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  24.963020" result="pass"/>
+        </command>
+        <command timestamp="  24.963020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  24.963020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.003</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.003</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.963020" result="fail"/>
+        </command>
+        <command timestamp="  24.963020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  24.963020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>11 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  24.963020" result="pass"/>
+        </command>
+        <command timestamp="  24.963020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  25.063020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  25.063020" result="pass"/>
+        </command>
+        <command timestamp="  25.063020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  25.063020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.008</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.008</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.063020" result="fail"/>
+        </command>
+        <command timestamp="  25.063020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  25.063020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>12 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.063020" result="pass"/>
+        </command>
+        <command timestamp="  25.063020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  25.163020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  25.163020" result="pass"/>
+        </command>
+        <command timestamp="  25.163020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  25.163020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.004</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.004</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.163020" result="fail"/>
+        </command>
+        <command timestamp="  25.163020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  25.163020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>13 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.163020" result="pass"/>
+        </command>
+        <command timestamp="  25.163020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  25.263020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  25.263020" result="pass"/>
+        </command>
+        <command timestamp="  25.263020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  25.263020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.75</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>199.999</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.71</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.71</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.263020" result="fail"/>
+        </command>
+        <command timestamp="  25.263020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  25.263020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>14 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.263020" result="pass"/>
+        </command>
+        <command timestamp="  25.263020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  25.363020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  25.363020" result="pass"/>
+        </command>
+        <command timestamp="  25.363020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  25.363020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.002</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.002</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.363020" result="fail"/>
+        </command>
+        <command timestamp="  25.363020" name="Set">
+          <title>Set</title>
+          <teststep timestamp="  25.363020" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+                <cell>=</cell>
+                <cell>15 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.363020" result="pass"/>
+        </command>
+        <command timestamp="  25.363020" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp="  25.463020" level="2" type="user" ident="1" result="pass">Waited for 100.000 ms</teststep>
+          <result timestamp="  25.463020" result="pass"/>
+        </command>
+        <command timestamp="  25.463020" name="Check">
+          <title>@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal</title>
+          <teststep timestamp="  25.463020" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>97.92</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>94.08</cell>
+                <cell>96.74</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>20.4</cell>
+                <cell>20.72</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>19.6</cell>
+                <cell>20.72</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp="  25.463020" result="fail"/>
+        </command>
+        <result timestamp="  25.463020" result="na"/>
+      </command>
+      <command timestamp="  25.463020" name="Set">
+        <title>Reset DrivingModeReq=0</title>
+        <teststep timestamp="  25.463020" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;DrivingModeReq&apos;</cell>
+              <cell>=</cell>
+              <cell>0</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  25.463020" result="pass"/>
+      </command>
+      <command timestamp="  25.463020" name="Report">
+        <title>Report</title>
+        <teststep timestamp="  25.463020" level="2" type="user" ident="" result="na">Once received PosLmpStsl is active,ALCM will change color mode from day mode to night mode in 1s</teststep>
+        <result timestamp="  25.463020" result="pass"/>
+      </command>
+      <command timestamp="  25.463020" name="Set">
+        <title>Set</title>
+        <teststep timestamp="  25.463020" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;PosLmpSts&apos;</cell>
+              <cell>=</cell>
+              <cell>1 (ON)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  25.463020" result="pass"/>
+      </command>
+      <command timestamp="  25.463020" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="  30.463020" level="2" type="user" ident="1" result="pass">Waited for 5.000 s</teststep>
+        <result timestamp="  30.463020" result="pass"/>
+      </command>
+      <command timestamp="  30.463020" name="Check">
+        <title>Check if it&apos;s under night mode Mode3</title>
+        <teststep timestamp="  30.463020" level="0" type="user" ident="1" result="fail">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>0</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>97.92</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>94.08</cell>
+              <cell>0</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>0</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>20.4</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>19.6</cell>
+              <cell>0</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  30.463020" result="fail"/>
+      </command>
+      <command timestamp="  30.463020" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="  45.463020" level="2" type="user" ident="1" result="pass">Waited for 15.000 s</teststep>
+        <result timestamp="  45.463020" result="pass"/>
+      </command>
+      <command timestamp="  45.463020" name="Check">
+        <title>Check if it will switched off by time (20s)</title>
+        <teststep timestamp="  45.463020" level="2" type="user" ident="1" result="pass">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  45.463020" result="pass"/>
+      </command>
+      <command timestamp="  45.463020" name="Set">
+        <title>Close driver door</title>
+        <teststep timestamp="  45.463020" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;DriverDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (Closed)</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;PosLmpSts&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (OFF)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  45.463020" result="pass"/>
+      </command>
+      <command timestamp="  45.463020" name="Report">
+        <title>Report</title>
+        <teststep timestamp="  45.463020" level="2" type="user" ident="" result="na">TEST:When IGN is OFF,if there is any other color output (except mode0) during last shut down,once received door open status and ALCM will change to last saved value and luminance in 1s</teststep>
+        <result timestamp="  45.463020" result="pass"/>
+      </command>
+      <command timestamp="  45.463020" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="  46.463020" level="2" type="user" ident="1" result="pass">Waited for 1.000 s</teststep>
+        <result timestamp="  46.463020" result="pass"/>
+      </command>
+      <command timestamp="  46.463020" name="Set">
+        <title>Open passenger door</title>
+        <teststep timestamp="  46.463020" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;PassengerDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>1 (Open)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  46.463020" result="pass"/>
+      </command>
+      <command timestamp="  46.463020" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="  48.463020" level="2" type="user" ident="1" result="pass">Waited for 2.000 s</teststep>
+        <result timestamp="  48.463020" result="pass"/>
+      </command>
+      <command timestamp="  48.463020" name="Check">
+        <title>@IGN OFF,check if ALCM will switch on last saved colour and luminance</title>
+        <teststep timestamp="  48.463020" level="0" type="user" ident="1" result="fail">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>200.001</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>200.001</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>97.92</cell>
+              <cell>96.75</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>94.08</cell>
+              <cell>96.75</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>200.006</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>200.006</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>20.4</cell>
+              <cell>20.71</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>19.6</cell>
+              <cell>20.71</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  48.463020" result="fail"/>
+      </command>
+      <command timestamp="  48.463020" name="Set">
+        <title>Set</title>
+        <teststep timestamp="  48.463020" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;ALCMLightLvlSet&apos;</cell>
+              <cell>=</cell>
+              <cell>10</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;SystemPowerMode&apos;</cell>
+              <cell>=</cell>
+              <cell>2 (ON)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  48.463020" result="pass"/>
+      </command>
+      <command timestamp="  48.463020" name="Set">
+        <title>Set</title>
+        <teststep timestamp="  48.463020" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;PassengerDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (Closed)</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;RLDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>1 (Open)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  48.463020" result="pass"/>
+      </command>
+      <command timestamp="  48.463020" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="  49.463020" level="2" type="user" ident="1" result="pass">Waited for 1.000 s</teststep>
+        <result timestamp="  49.463020" result="pass"/>
+      </command>
+      <command timestamp="  49.463020" name="CAPL Inline">
+        <title>Short press on pin4 one time</title>
+        <result timestamp="  49.463020" result="pass"/>
+      </command>
+      <command timestamp="  49.463020" name="Wait">
+        <title>press for 50 ms</title>
+        <teststep timestamp="  49.513020" level="2" type="user" ident="1" result="pass">Waited for 50.000 ms</teststep>
+        <result timestamp="  49.513020" result="pass"/>
+      </command>
+      <command timestamp="  49.513020" name="CAPL Inline">
+        <title>Release pin4</title>
+        <result timestamp="  49.513020" result="pass"/>
+      </command>
+      <command timestamp="  49.513020" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="  51.513020" level="2" type="user" ident="1" result="pass">Waited for 2.000 s</teststep>
+        <result timestamp="  51.513020" result="pass"/>
+      </command>
+      <command timestamp="  51.513020" name="Check">
+        <title>@IGN ON,check if ALCM will switch on mode 1</title>
+        <teststep timestamp="  51.513020" level="0" type="user" ident="1" result="fail">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>200</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>200</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>3.06</cell>
+              <cell>3.83</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>2.94</cell>
+              <cell>3.83</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>11</cell>
+              <cell>12.038</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  51.513020" result="fail"/>
+      </command>
+      <command timestamp="  51.513020" name="CANoe Standard Service">
+        <title>testValidateTesterConfirmation</title>
+        <teststep timestamp="  51.513020" level="2" type="user" ident="" result="pass">Execute testValidateTesterConfirmation(&quot;check&quot;, &quot;&quot;, 1)</teststep>
+        <teststep timestamp="  55.334158" level="2" type="user" ident="" result="pass">Question/Text: check\nTester confirmed with &apos;Yes&apos;.</teststep>
+        <result timestamp="  55.334158" result="pass"/>
+      </command>
+      <command timestamp="  55.334158" name="Set">
+        <title>Set</title>
+        <teststep timestamp="  55.334158" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;SystemPowerMode&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (OFF)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  55.334158" result="pass"/>
+      </command>
+      <command timestamp="  55.334158" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="  76.334158" level="2" type="user" ident="1" result="pass">Waited for 21.000 s</teststep>
+        <result timestamp="  76.334158" result="pass"/>
+      </command>
+      <command timestamp="  76.334158" name="Check">
+        <title>Check if it will switched off by time (20s)</title>
+        <teststep timestamp="  76.334158" level="2" type="user" ident="1" result="pass">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.04</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.046</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  76.334158" result="pass"/>
+      </command>
+      <command timestamp="  76.334158" name="CANoe Standard Service">
+        <title>testValidateTesterConfirmation</title>
+        <teststep timestamp="  76.334158" level="2" type="user" ident="" result="pass">Execute testValidateTesterConfirmation(&quot;check if output=0&quot;, &quot;&quot;, 1)</teststep>
+        <teststep timestamp="  85.901026" level="2" type="user" ident="" result="pass">Question/Text: check if output=0\nTester confirmed with &apos;Yes&apos;.</teststep>
+        <result timestamp="  85.901026" result="pass"/>
+      </command>
+      <command timestamp="  85.901026" name="Set">
+        <title>Set</title>
+        <teststep timestamp="  85.901026" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;RLDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (Closed)</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;RRDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>1 (Open)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  85.901026" result="pass"/>
+      </command>
+      <command timestamp="  85.901026" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="  87.901026" level="2" type="user" ident="1" result="pass">Waited for 2.000 s</teststep>
+        <result timestamp="  87.901026" result="pass"/>
+      </command>
+      <command timestamp="  87.901026" name="Check">
+        <title>@IGN OFF,check if ALCM will switch on last saved colour and luminance</title>
+        <teststep timestamp="  87.901026" level="0" type="user" ident="1" result="fail">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>200</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>200</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>3.06</cell>
+              <cell>3.83</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>2.94</cell>
+              <cell>3.83</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>11</cell>
+              <cell>12.038</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  87.901026" result="fail"/>
+      </command>
+      <command timestamp="  87.901026" name="Report">
+        <title>Report</title>
+        <teststep timestamp="  87.901026" level="2" type="user" ident="" result="na">TEST:If all doors are closed and any doors are open again,then the time 20s will be recalculated from door open</teststep>
+        <result timestamp="  87.901026" result="pass"/>
+      </command>
+      <command timestamp="  87.901026" name="Wait">
+        <title>Make it lighten for 10s</title>
+        <teststep timestamp="  97.901026" level="2" type="user" ident="1" result="pass">Waited for 10.000 s</teststep>
+        <result timestamp="  97.901026" result="pass"/>
+      </command>
+      <command timestamp="  97.901026" name="Set">
+        <title>Set</title>
+        <teststep timestamp="  97.901026" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;RRDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (Closed)</cell>
+            </row>
+            <row level="0">
+              <cell>CAN signal &apos;RLDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>1 (Open)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="  97.901026" result="pass"/>
+      </command>
+      <command timestamp="  97.901026" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp=" 115.901026" level="2" type="user" ident="1" result="pass">Waited for 18.000 s</teststep>
+        <result timestamp=" 115.901026" result="pass"/>
+      </command>
+      <command timestamp=" 115.901026" name="Check">
+        <title>@IGN OFF,check if the time 20s will be recalculated after door open</title>
+        <teststep timestamp=" 115.901026" level="0" type="user" ident="1" result="fail">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>199.999</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>199.999</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>3.06</cell>
+              <cell>3.83</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>2.94</cell>
+              <cell>3.83</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>11</cell>
+              <cell>12.038</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp=" 115.901026" result="fail"/>
+      </command>
+      <command timestamp=" 115.901026" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp=" 118.901026" level="2" type="user" ident="1" result="pass">Waited for 3.000 s</teststep>
+        <result timestamp=" 118.901026" result="pass"/>
+      </command>
+      <command timestamp=" 118.901026" name="Check">
+        <title>Check if it will be switched off after the latest door open 20s</title>
+        <teststep timestamp=" 118.901026" level="2" type="user" ident="1" result="pass">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.042</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.144</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp=" 118.901026" result="pass"/>
+      </command>
+      <command timestamp=" 118.901026" name="Set">
+        <title>Set</title>
+        <teststep timestamp=" 118.901026" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;RLDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>0 (Closed)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp=" 118.901026" result="pass"/>
+      </command>
+      <command timestamp=" 118.901026" name="Report">
+        <title>Report</title>
+        <teststep timestamp=" 118.901026" level="2" type="user" ident="" result="na">TEST:If received ACC or IGN ON signal during light 20s,ambient light will be continuously switched on</teststep>
+        <result timestamp=" 118.901026" result="pass"/>
+      </command>
+      <command timestamp=" 118.901026" name="Report">
+        <title>Report</title>
+        <teststep timestamp=" 118.901026" level="2" type="user" ident="" result="na">TEST:If received ACC or IGN ON signal after 20s,ambient light will be shutted down and switched on last saved color and luminance in 1s</teststep>
+        <result timestamp=" 118.901026" result="pass"/>
+      </command>
+      <command timestamp=" 118.901026" name="Set">
+        <title>Set</title>
+        <teststep timestamp=" 118.901026" level="2" type="user" ident="1" result="na">
+          <tabularinfo expand="true">
+            <description>Stimulation of values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Assigned</cell>
+            </heading>
+            <row level="0">
+              <cell>CAN signal &apos;DriverDoorSts&apos;</cell>
+              <cell>=</cell>
+              <cell>1 (Open)</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp=" 118.901026" result="pass"/>
+      </command>
+      <command timestamp=" 118.901026" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp=" 120.901026" level="2" type="user" ident="1" result="pass">Waited for 2.000 s</teststep>
+        <result timestamp=" 120.901026" result="pass"/>
+      </command>
+      <command timestamp=" 120.901026" name="Check">
+        <title>@IGN OFF,check if ambient light be switched on</title>
+        <teststep timestamp=" 120.901026" level="0" type="user" ident="1" result="fail">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>190</cell>
+              <cell>200.003</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>210</cell>
+              <cell>200.003</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>3.06</cell>
+              <cell>3.83</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>2.94</cell>
+              <cell>3.83</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.2</cell>
+              <cell>0.038</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+              <cell>==</cell>
+              <cell>0</cell>
+              <cell>0</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>11</cell>
+              <cell>12.036</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp=" 120.901026" result="fail"/>
+      </command>
+      <command timestamp=" 120.901026" name="For">
+        <title>For i=1..2, increment=1</title>
+        <command timestamp=" 120.901026" name="Set">
+          <title>Set</title>
+          <teststep timestamp=" 120.901026" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;SystemPowerMode&apos;</cell>
+                <cell>=</cell>
+                <cell>1 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp=" 120.901026" result="pass"/>
+        </command>
+        <command timestamp=" 120.901026" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp=" 122.901026" level="2" type="user" ident="1" result="pass">Waited for 2.000 s</teststep>
+          <result timestamp=" 122.901026" result="pass"/>
+        </command>
+        <command timestamp=" 122.901026" name="CANoe Standard Service">
+          <title>testValidateTesterConfirmation</title>
+          <teststep timestamp=" 122.901026" level="2" type="user" ident="" result="pass">Execute testValidateTesterConfirmation(&quot;lighten?&quot;, &quot;&quot;, 1)</teststep>
+          <teststep timestamp=" 175.239660" level="2" type="user" ident="" result="pass">Question/Text: lighten?\nTester confirmed with &apos;Yes&apos;.</teststep>
+          <result timestamp=" 175.239660" result="pass"/>
+        </command>
+        <command timestamp=" 175.239660" name="Check">
+          <title>Check if ALCM will switch on last saved colour and luminance</title>
+          <teststep timestamp=" 175.239660" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>3.06</cell>
+                <cell>3.83</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>2.94</cell>
+                <cell>3.83</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>11</cell>
+                <cell>12.038</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp=" 175.239660" result="fail"/>
+        </command>
+        <command timestamp=" 175.239660" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp=" 205.239660" level="2" type="user" ident="1" result="pass">Waited for 30.000 s</teststep>
+          <result timestamp=" 205.239660" result="pass"/>
+        </command>
+        <command timestamp=" 205.239660" name="Check">
+          <title>@ACC/ON,check if ambient light will be continuously switched on</title>
+          <teststep timestamp=" 205.239660" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>200.001</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>3.06</cell>
+                <cell>3.83</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>2.94</cell>
+                <cell>3.83</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>11</cell>
+                <cell>12.036</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp=" 205.239660" result="fail"/>
+        </command>
+        <command timestamp=" 205.239660" name="Set">
+          <title>Set</title>
+          <teststep timestamp=" 205.239660" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;SystemPowerMode&apos;</cell>
+                <cell>=</cell>
+                <cell>0 (OFF)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp=" 205.239660" result="pass"/>
+        </command>
+        <command timestamp=" 205.239660" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp=" 226.239660" level="2" type="user" ident="1" result="pass">Waited for 21.000 s</teststep>
+          <result timestamp=" 226.239660" result="pass"/>
+        </command>
+        <command timestamp=" 226.239660" name="Check">
+          <title>Check if it will switched off by time (20s)</title>
+          <teststep timestamp=" 226.239660" level="2" type="user" ident="1" result="pass">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.042</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.046</cell>
+                <cell>pass</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp=" 226.239660" result="pass"/>
+        </command>
+        <command timestamp=" 226.239660" name="Set">
+          <title>Set</title>
+          <teststep timestamp=" 226.239660" level="2" type="user" ident="1" result="na">
+            <tabularinfo expand="true">
+              <description>Stimulation of values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Assigned</cell>
+              </heading>
+              <row level="0">
+                <cell>CAN signal &apos;SystemPowerMode&apos;</cell>
+                <cell>=</cell>
+                <cell>2 (i)</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp=" 226.239660" result="pass"/>
+        </command>
+        <command timestamp=" 226.239660" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp=" 228.239660" level="2" type="user" ident="1" result="pass">Waited for 2.000 s</teststep>
+          <result timestamp=" 228.239660" result="pass"/>
+        </command>
+        <command timestamp=" 228.239660" name="CANoe Standard Service">
+          <title>testValidateTesterConfirmation</title>
+          <teststep timestamp=" 228.239660" level="2" type="user" ident="" result="pass">Execute testValidateTesterConfirmation(&quot;lighten?&quot;, &quot;&quot;, 1)</teststep>
+          <teststep timestamp=" 284.183114" level="2" type="user" ident="" result="pass">Question/Text: lighten?\nTester confirmed with &apos;Yes&apos;.</teststep>
+          <result timestamp=" 284.183114" result="pass"/>
+        </command>
+        <command timestamp=" 284.183114" name="Check">
+          <title>Check if ALCM will switch on last saved colour and luminance</title>
+          <teststep timestamp=" 284.183114" level="0" type="user" ident="1" result="fail">
+            <tabularinfo expand="true">
+              <description>Check of expected values</description>
+              <heading>
+                <cell>Symbol</cell>
+                <cell>Op.</cell>
+                <cell>Reference Value</cell>
+                <cell>Actual</cell>
+                <cell>Result</cell>
+              </heading>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>190</cell>
+                <cell>0</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMFreq&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>210</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>3.06</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch3::PWMDC&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>2.94</cell>
+                <cell>0</cell>
+                <cell>fail</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch2::Avg&apos;</cell>
+                <cell>&lt;=</cell>
+                <cell>0.2</cell>
+                <cell>0.038</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::PWMFreq&apos;</cell>
+                <cell>==</cell>
+                <cell>0</cell>
+                <cell>0</cell>
+                <cell>pass</cell>
+              </row>
+              <row level="0">
+                <cell>System variable &apos;M9_Ch1::Avg&apos;</cell>
+                <cell>&gt;=</cell>
+                <cell>11</cell>
+                <cell>0.038</cell>
+                <cell>fail</cell>
+              </row>
+            </tabularinfo>
+          </teststep>
+          <result timestamp=" 284.183114" result="fail"/>
+        </command>
+        <command timestamp=" 284.183114" name="Wait">
+          <title>Wait</title>
+          <teststep timestamp=" 286.925125" level="0" type="user" ident="" result="fail">Measurement stop forced. Test is incomplete!</teststep>
+<!-- Measurement stop forced. Test is incomplete! -->
+          <result timestamp=" 286.925125" result="fail"/>
+        </command>
+        <result timestamp=" 286.925125" result="fail"/>
+      </command>
+      <title>3.5.1 Switch on Ambient light by door open signal</title>
+      <seqend endtime="2016-09-20 18:14:44" endtimestamp=" 286.925125" />
+    </testsequence>
+    <verdict time="2016-09-20 18:14:44" timestamp=" 286.925125" endtime="2016-09-20 18:14:44" endtimestamp=" 286.925125" result="fail" />
+    <title>GWM CHB071 Ambient Light Control Module</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>GWM CHB071 Ambient Light Control Module</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2016-09-20, 17:41:00</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2016-09-20 18:14:44" timestamp=" 286.925125" endtime="2016-09-20 18:14:44" endtimestamp=" 286.925125" result="fail" />
+  <title>GWM CHB071 Ambient Light Control Module</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>chen106</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 8.5.62 (SP2)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\ALCM_Panel\Can_Panel\CanPanel.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>GWM CHB071 Ambient Light Control Module</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLVECTOR</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.8 (Apr 16 2015 17:08:36) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLVECTOR.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module OSEKNM01</name>
+      <description>OSEK-NM Vector Informatik GmbH 1.6.55 2014-07-14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\OSEKNM01.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.13, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 8.5.62, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="channel">
+          <name>Channel</name>
+          <description>1</description>
+        </xinfo>
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VN1630</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>501043</description>
+        </xinfo>
+        <xinfo key="driverdllversion">
+          <name>Driver DLL version</name>
+          <description>9.2.22</description>
+        </xinfo>
+        <xinfo key="driverversion">
+          <name>Driver version</name>
+          <description>8.9.22</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT8012</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>1031</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>0.0.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>452</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>450</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>448</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>449</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>331</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>348</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>329</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>339</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>174</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>234</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>210</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT7001A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>267</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.0.5</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <extendedinfo type="html"><![CDATA[<b>Measurement stop forced. Test is incomplete!</b>]]></extendedinfo>
+</testreport>
+<!--footprint="578f8485214e78cea0696a11f39614ac" version="1"-->

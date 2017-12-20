@@ -1,0 +1,540 @@
+/*@!Encoding:936*/
+includes
+{
+}
+
+variables
+{
+int respOk;
+  message USDT_Req_to_ESCL_HS msgSend;
+}
+
+export void setInvertedIgn (int status) {
+  if (status == 1) {
+    //  invertedIgn == high
+    @sysvar::VTS::M9_Ch1::RelayGnd = 0;
+    testWaitForTimeout(500);
+    @sysvar::VTS::M9_Ch1::RelayVBatt = 1;
+    testStep("Inverted Ign status","set Inverted Ign = High");
+  }
+  else {
+    @sysvar::VTS::M9_Ch1::RelayVBatt = 0;
+    testWaitForTimeout(500);
+    @sysvar::VTS::M9_Ch1::RelayGnd = 1;
+    testStep("Inverted Ign status","set Inverted Ign = Low");
+  }
+}
+
+export void setCommEnableWakeup (int status) {
+  if (status == 1) {
+    //  commEnableWakeUp == high
+    @sysvar::VTS::M9_Ch2::RelayGnd = 0;
+    testWaitForTimeout(500);
+    @sysvar::VTS::M9_Ch2::RelayVBatt = 1;
+    testStep("CommEnableWakeup status","set CommEnableWakeup = High");
+  }
+  else {
+    @sysvar::VTS::M9_Ch2::RelayVBatt = 0;
+    testWaitForTimeout(500);
+    @sysvar::VTS::M9_Ch2::RelayGnd = 1;
+    testStep("CommEnableWakeup status","set CommEnableWakeup = Low");
+  }
+}
+
+export void setSystemPowerMode (int status) {
+  //status = 0:off 1:ACC 2:RUN 3:Crank
+  $SysPwrMd = status;
+  if (status == 2 || status == 3 )  
+    setInvertedIgn(0);
+  else
+    setInvertedIgn(1);
+}
+
+export void setPwrMdWithoutSignal (int sysPwrMdStatus) {
+  testDisableMsg(PPEI_Platform_General_Status);
+  switch(sysPwrMdStatus) {
+    case 0://off
+      setInvertedIgn(1);
+      testWaitForTimeout(200);
+      $EngRunAtv = 0;
+      testStep("EngRunAtv","InvertedIgn = High,$EngRunAtv = False,so sysPwrMd should be OFF");
+      break;
+    case 1://ACC
+      setInvertedIgn(1);
+      testWaitForTimeout(200);
+      $EngRunAtv = 1;
+      testStep("EngRunAtv","InvertedIgn = High,$EngRunAtv = True,so sysPwrMd should be ACC");
+      break;
+    case 2://RUN
+    case 3://CRANK
+      setInvertedIgn(0);
+      testStep("EngRunAtv","InvertedIgn = Low,so sysPwrMd should be RUN or Crank");
+      break;
+  } 
+}
+
+export qword sendDiagCheckResp (message* msgSend, dbMsg* msgRecDb, int checkByteNumFromBeginning, qword byteContent) {//input byteContent followed by trace 
+  message* msgRec;
+  struct result {
+    qword msgRecContent;
+    int respOk;
+  };
+  struct result res;
+  output(msgSend);
+  testStep("Diagnostic Request","Send diagnostic request: 0x%llX",swapQWord(msgSend.qword(0)));
+  if (testWaitForMessage(msgRecDb,5000) == 1) {
+    testGetWaitEventMsgData(msgRec);
+    res.msgRecContent = swapQWord(msgRec.qword(0));//same sequence as trace
+    if ((res.msgRecContent & (0xffffffffffffffffll << ((8-checkByteNumFromBeginning)*8))) == (byteContent << ((8-checkByteNumFromBeginning)*8))) {
+      testStepPass("Diagnostic Response","Get positive response:0x%llX",res.msgRecContent);
+      res.respOk = 1;
+      respOk = 1;
+    }
+    else {
+      testStepFail("Diagnostic Response","Get negative response:0x%llX",res.msgRecContent);
+      res.respOk = 0;
+      respOk = 0;
+    }
+  }  
+  else {
+    testStepFail("Diagnostic Response","No response");
+    res.msgRecContent = 0;
+    res.respOk = 0;
+    respOk = 0;
+  }
+  return res.msgRecContent;//same sequence as trace
+}
+
+export int enterKostia (void) {
+  qword msgRec;
+  int enterKostiaOk;
+  msgSend.qword(0) = 0x00000000ff0b3b03ll;//Write KMEF = 0xFF,Kostia module is only enable when KMEF is 0xFF.
+  sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,3,0x027b0bll);
+  msgSend.qword(0) = 0x00000000000b1a02ll;//Read KMEF
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,4,0x035a0bffll);
+  if (respOk) {
+    testStepPass("check KMEF","Write KMEF = 0xff successfully.");
+    msgSend.qword(0) = 0x4553454d4bfcae07ll;//Kostia module enable service
+    sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,3,0x02eefcll);
+    msgSend.qword(0) = 0x004c4154534f4b01ll;//Login request
+    sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,8,0x014b4f5354414c00ll);
+    if (respOk)
+      enterKostiaOk = 1;
+    else
+      enterKostiaOk = 0;
+  }
+  else {
+    testStepFail("check KMEF","Write KMEF = 0x%x failled.",(int)((msgRec & 0x000000ff00000000ll) >> 32));
+    enterKostiaOk = 0;
+  }
+  return enterKostiaOk;
+}
+
+export void readAsciiFromDiagResp (qword msgRec,int beginByteIndex,int checkByteCount,char testStepStatus[]) {
+  char respContent[100];
+  int i;
+  for (i = beginByteIndex;i < checkByteCount;i++) {
+    respContent[i - beginByteIndex] = ((msgRec & (0xff00000000000000ll >> (i * 8))) >> ((7 - i) * 8));
+  }
+  respContent[checkByteCount] = 0;
+  testStep(testStepStatus,"%s",respContent);  
+}
+
+export void readVersion (void) {
+  qword msgRec;
+  msgSend.qword(0) = 0x0000000c07400004ll;//read software version label
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,1,0x04);
+  if (respOk)
+    readAsciiFromDiagResp(msgRec,1,7,"software version label");
+  msgSend.qword(0) = 0x0000000c07500004ll;//read co MCU SW Version
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,1,0x04);
+  if (respOk)
+    readAsciiFromDiagResp(msgRec,1,7,"Co MCU SW Version");
+}
+
+export void exitKostia (int mecValue,word keyToSeed) {
+  qword msgRec;
+  msgSend.qword(0) = 0x01ll;//Diagnostic End
+  sendDiagCheckResp(msgSend,USDT_Resp_From_ESCL_HS,8,0x0100000000000000ll);
+  @sysvar::VTS::M12_SupInt::RefVoltage = 0;//shut down the power supply
+  testWaitForTimeout(1000);
+  @sysvar::VTS::M12_SupInt::RefVoltage = 12.6;//restart the power supply
+  testWaitForTimeout(14000);
+  enterSecurityAccess(mecValue,keyToSeed);
+  msgSend.qword(0) = 0x00000000000b3b03ll;//Write KMEF = 0x00,KMEF must be programmed to 0x00 after hardware test finished
+  sendDiagCheckResp(msgSend,USDT_Resp_From_ESCL_HS,3,0x027b0bll);
+  msgSend.qword(0) = 0x00000000000b1a02ll;//Read KMEF
+  msgRec = sendDiagCheckResp(msgSend,USDT_Resp_From_ESCL_HS,4,0x035a0b00ll);
+  if (respOk) 
+    testStepPass("check KMEF","Write KMEF = 0x00 successfully.");
+  else 
+    testStepFail("check KMEF","Write KMEF = 0x%x failled.",(int)((msgRec & 0x000000ff00000000ll) >> 32));
+}
+
+export testcase sysRs627 (float volt) {
+  @sysvar::VTS::M12_SupInt::RefVoltage = 0;
+  testWaitForTimeout(2000);
+  @sysvar::VTS::M12_SupInt::RefVoltage = volt;
+  if (testWaitForMessage(ESCL_Status,2000)) {
+    testStep("Volt set","Volt = %3.2fv",@VTS::M12_Out2::AvgVoltage);
+    testStepPass("ESCL serial comm status","The message ESCL_Status was transmitting.");
+  }
+  else {
+    testStep("Volt set","Volt = %3.2fv",@VTS::M12_Out2::AvgVoltage);
+    testStepFail("ESCL serial comm status","The message ESCL_Status didn't occur.");
+  }
+  @sysvar::VTS::M12_SupInt::RefVoltage = 12.6;
+  testWaitForTimeout(1000);
+}
+
+export testcase sysRs628 (float volt) {
+  @sysvar::VTS::M12_SupInt::RefVoltage = 0;
+  testWaitForTimeout(5000);
+  @sysvar::VTS::M12_SupInt::RefVoltage = volt;
+  if (!testWaitForMessage(ESCL_Status,10000)) {
+    testStep("Volt set","Volt = %3.2fv",@VTS::M12_Out2::AvgVoltage);
+    testStepPass("ESCL serial comm status","The serial communication is diabled.");
+  }
+  else {
+    testStep("Volt set","Volt = %3.2fv",@VTS::M12_Out2::AvgVoltage);
+    testStepFail("ESCL serial comm status","The serial communication is still available.");
+  }
+  testValidateTesterConfirmation("a","b",1);
+  @sysvar::VTS::M12_SupInt::RefVoltage = 12.6;
+  testWaitForTimeout(1000);
+}
+
+export testcase sysRs642 (int sysPwrMdStatus) {
+  setPwrMdWithoutSignal(0);//off
+  if (testWaitForMessage(ESCL_Unlock_Password_Request,2000) == 0)
+    testStepPass("Unlock password request","Unlock password request didn't occur when SysPwrMd keep off.");
+  else
+    testStepFail("Unlock password request","Unlock password request occurred when SysPwrMd keep off.");
+  testWaitForTimeout(500);
+  setPwrMdWithoutSignal(sysPwrMdStatus);
+  if (testWaitForMessage(ESCL_Unlock_Password_Request,2000) == 1)
+    testStepPass("Unlock password request","Unlock password request occurs %5.2fms after SysPwrMd changed.",testGetLastWaitElapsedTimeNS()/1000000);
+  else
+    testStepFail("Unlock password request","Unlock password request didn't occur after SysPwrMd changed.");
+  setPwrMdWithoutSignal(0);//off
+  testEnableMsg(PPEI_Platform_General_Status);
+  testWaitForTimeout(100);
+}
+
+export testcase sysRs660 (int sysPwrMdStatus) {
+  testValidateTesterConfirmation("","Make sure it's lock status at intial.",1); 
+  $SysPwrMd = 0;//off
+  testStep("SysPwrMd","SysPwrMd = 0");
+  /*$EngSpd = 16383;
+  @WhlGrndVlctyLftDrvn = 511;
+  @WhlGrndVlctyRtDrvn = 511;
+  @WhlGrndVlctyLftNnDrvn = 511;
+  @WhlGrndVlctyRtNnDrvn = 511;
+ 
+  @WhlGrndVlctyLftDrvnV = 0;//valid
+  @WhlGrndVlctyRtDrvnV = 0;//valid
+  @WhlGrndVlctyLftNnDrvnV = 0;//valid
+  @WhlGrndVlctyRtNnDrvnV = 0;//valid*/
+  if (testWaitForMessage(ESCL_Unlock_Password_Request,1000) == 0)
+    testStepPass("Unlock password request","Unlock password request didn't occur when SysPwrMd keep off.");
+  else
+    testStepFail("Unlock password request","Unlock password request occurred when SysPwrMd keep off.");
+  testWaitForTimeout(500);
+  $SysPwrMd = sysPwrMdStatus;
+  testStep("SysPwrMd","SysPwrMd = %1.0f",sysPwrMdStatus);
+  if (testWaitForMessage(ESCL_Unlock_Password_Request,1000)== 1)
+    testStepPass("Unlock password request","Unlock password request occurs %5.2fms after SysPwrMd changed.",testGetLastWaitElapsedTimeNS()/1000000);
+  else
+    testStepFail("Unlock password request","Unlock password request didn't occur after SysPwrMd changed.");
+  if (testWaitForMessage(Vehicle_Steering_Column_Lock_Pas,1000)== 1) {
+    if (!$Vehicle_Steering_Column_Lock_Pas::VehSecStrgColLckPwdV)
+      testStepPass("Receive fixed password from VTD","The fixed password is 0x%x and it's valid.",$Vehicle_Steering_Column_Lock_Pas::VehSecStrgColLckPwd);
+    else
+      testStepFail("Receive fixed password from VTD","The fixed password is 0x%x but it's invalid.",$Vehicle_Steering_Column_Lock_Pas::VehSecStrgColLckPwd);
+  }
+  else
+    testStepFail("Receive fixed password from VTD","The fixed password wasn't received after SysPwrMd changed.");
+  if (testWaitForMessage(ESCL_Authentication_Result,1000)== 1) {
+    if ($ESCL_AuthResult)
+      testStepPass("Authentication Result","Authentication Result is true.");//$ESCL_AuthResult?"true":"false"
+    else
+      testStepFail("Authentication Result","Authentication Result is false.");
+  }
+  else
+    testStepFail("Authentication Result","Authentication Result didn't occur after SysPwrMd changed.");
+  if (testWaitForSignalMatch(ClmnLckStat,1,2000)) {//1:unlock
+    if (testGetLastWaitElapsedTimeNS()/1000000 <= 200)
+      testStepPass("check ESCL Unlock Function","ESCL Unlock occurred after %5.2fms, within 200ms",testGetLastWaitElapsedTimeNS()/1000000);
+    else
+      testStepFail("check ESCL Unlock Function","ESCL Unlock occurred after %5.2fms, out of 200ms",testGetLastWaitElapsedTimeNS()/1000000);
+  }  
+  else
+    testStepFail("check ESCL Lock Function","ESCL status error,ClmnLckStat = %1.0f.",$ClmnLckStat);
+}
+
+export testcase sysRs759_checkDoorOnly (int sysPwrMdStatus, int engSpdStatVal) {
+  testValidateTesterConfirmation("","Make sure it's unlock status at intial.",1); 
+  $DDAjrSwAtv = 0;
+  $SysPwrMd = sysPwrMdStatus;
+  testWaitForTimeout(100);
+  testStep("System power mode","System power mode = %1.0f",$SysPwrMd);
+  testStep("Door status","Set driver door open switch inactive. $DDAjrSwAtv = %1.0f",$DDAjrSwAtv);
+  @WhlGrndVlctyLftDrvn = 511;
+  @WhlGrndVlctyRtDrvn = 511;
+  @WhlGrndVlctyLftNnDrvn = 511;
+  @WhlGrndVlctyRtNnDrvn = 511;
+ 
+  @WhlGrndVlctyLftDrvnV = 0;//valid
+  @WhlGrndVlctyRtDrvnV = 0;//valid
+  @WhlGrndVlctyLftNnDrvnV = 0;//valid
+  @WhlGrndVlctyRtNnDrvnV = 0;//valid
+  switch (random(5)) {
+    case 1: @WhlGrndVlctyLftDrvnV = 1; break;
+    case 2: @WhlGrndVlctyRtDrvnV = 1; break;
+    case 3: @WhlGrndVlctyLftNnDrvnV = 1; break;
+    case 4: @WhlGrndVlctyRtNnDrvnV = 1; break;
+    default: ; break;
+  }
+  $EngSpd = 16383;//Engine Speed < K_ESCL_Lock_Engine_Speed_Limit
+  $EngSpdStat = engSpdStatVal;//0:normal operation;1:degraded operation
+  $EngRunAtv = 1;//0:false
+  $SysPwrMd = 0;//OFF
+  testWaitForTimeout(200);
+  testStep("Wheel ground velocity status","$WhlGrndVlctyLftDrvn = %2.0f,$WhlGrndVlctyRtDrvn = %2.0f,$WhlGrndVlctyLftNnDrvn = %2.0f,$WhlGrndVlctyRtNnDrvn = %2.0f.",$WhlGrndVlctyLftDrvn,$WhlGrndVlctyRtDrvn,$WhlGrndVlctyLftNnDrvn,$WhlGrndVlctyRtNnDrvn);
+  testStep("Wheel ground velocity validity","$WhlGrndVlctyLftDrvnV = %1.0f,$WhlGrndVlctyRtDrvnV = %1.0f,$WhlGrndVlctyLftNnDrvnV = %1.0f,$WhlGrndVlctyRtNnDrvnV = %1.0f",$WhlGrndVlctyLftDrvnV,$WhlGrndVlctyRtDrvnV,$WhlGrndVlctyLftNnDrvnV,$WhlGrndVlctyRtNnDrvnV);
+  testStep("Other signal status","$EngSpd = %2.0f,$EngSpdStat = %1.0f,$EngRunAtv = %1.0f,$SysPwrMd = %1.0f",$EngSpd,$EngSpdStat,$EngRunAtv,$SysPwrMd);
+  if (!testWaitForSignalMatch(ClmnLckStat,0,2000)) {
+    //$DrDoorOpenSwAct = 1;//true
+    $DDAjrSwAtv = 1;
+    testStep("Door status","Set driver door open switch active. $DDAjrSwAtv = 1");
+    if (!testWaitForSignalMatch(ClmnLckStat,0,2000)) //0:lock
+      testStepPass("check ESCL Lock Function","ESCL Lock won't occur only by changing $DDAjrSwAtv");
+    else
+      testStepFail("check ESCL Lock Function","ESCL Lock can occur only by changing $DDAjrSwAtv.");
+  }
+  else
+    testStepFail("check ESCL Lock Function","ESCL Lock occurred when condition is not fully met,$DDAjrSwAtv = %1.0f.",$DDAjrSwAtv);
+}
+
+export testcase sysRs759 (int sysPwrMdStatus, int engSpdStatVal) {
+  testValidateTesterConfirmation("","Make sure it's unlock status at intial.",1); 
+  $DDAjrSwAtv = 0;
+  //$DrDoorOpenSwAct = 0;//this signal include in a message which cycle time =0;
+  //$DrDoorOpenSwActV = 0;//valid
+  //testStep("Door validity status","Set driver door open switch validity false. $DrDoorOpenSwActV = 0");
+  $SysPwrMd = sysPwrMdStatus;
+  testWaitForTimeout(100);
+  testStep("System power mode","System power mode = %1.0f",$SysPwrMd);
+  testStep("Door status","Set driver door open switch inactive. $DDAjrSwAtv = %1.0f",$DDAjrSwAtv);
+  @WhlGrndVlctyLftDrvn = random(3);
+  @WhlGrndVlctyRtDrvn = random(3);
+  @WhlGrndVlctyLftNnDrvn = random(3);
+  @WhlGrndVlctyRtNnDrvn = random(3);
+ 
+  @WhlGrndVlctyLftDrvnV = 0;//valid
+  @WhlGrndVlctyRtDrvnV = 0;//valid
+  @WhlGrndVlctyLftNnDrvnV = 0;//valid
+  @WhlGrndVlctyRtNnDrvnV = 0;//valid
+  switch (random(5)) {
+    case 1: @WhlGrndVlctyLftDrvnV = 1; break;
+    case 2: @WhlGrndVlctyRtDrvnV = 1; break;
+    case 3: @WhlGrndVlctyLftNnDrvnV = 1; break;
+    case 4: @WhlGrndVlctyRtNnDrvnV = 1; break;
+    default: ; break;
+  }
+  $EngSpd = 0;//Engine Speed < K_ESCL_Lock_Engine_Speed_Limit
+  $EngSpdStat = engSpdStatVal;//0:normal operation;1:degraded operation
+  $EngRunAtv = 0;//0:false
+  $SysPwrMd = 0;//OFF
+  testWaitForTimeout(200);
+  testStep("Wheel ground velocity status","$WhlGrndVlctyLftDrvn = %2.0f,$WhlGrndVlctyRtDrvn = %2.0f,$WhlGrndVlctyLftNnDrvn = %2.0f,$WhlGrndVlctyRtNnDrvn = %2.0f.",$WhlGrndVlctyLftDrvn,$WhlGrndVlctyRtDrvn,$WhlGrndVlctyLftNnDrvn,$WhlGrndVlctyRtNnDrvn);
+  testStep("Wheel ground velocity validity","$WhlGrndVlctyLftDrvnV = %1.0f,$WhlGrndVlctyRtDrvnV = %1.0f,$WhlGrndVlctyLftNnDrvnV = %1.0f,$WhlGrndVlctyRtNnDrvnV = %1.0f",$WhlGrndVlctyLftDrvnV,$WhlGrndVlctyRtDrvnV,$WhlGrndVlctyLftNnDrvnV,$WhlGrndVlctyRtNnDrvnV);
+  testStep("Other signal status","$EngSpd = %2.0f,$EngSpdStat = %1.0f,$EngRunAtv = %1.0f,$SysPwrMd = %1.0f",$EngSpd,$EngSpdStat,$EngRunAtv,$SysPwrMd);
+  if (!testWaitForSignalMatch(ClmnLckStat,0,2000)) {
+    //$DrDoorOpenSwAct = 1;//true
+    $DDAjrSwAtv = 1;
+    testWaitForSignalMatch(DDAjrSwAtv,1,2000);
+    testStep("Door status","Set driver door open switch active. $DDAjrSwAtv = %1.0f",$DDAjrSwAtv);
+    if (testWaitForSignalMatch(ClmnLckStat,0,2000)) {//0:lock
+      if (testGetLastWaitElapsedTimeNS()/1000000 <= 200)
+        testStepPass("check ESCL Lock Function","ESCL Lock occurred after %5.2fms, within 200ms",testGetLastWaitElapsedTimeNS()/1000000);
+      else
+        testStepFail("check ESCL Lock Function","ESCL Lock occurred after %5.2fms, out of 200ms",testGetLastWaitElapsedTimeNS()/1000000);
+    }
+    else
+      testStepFail("check ESCL Lock Function","ESCL status error,ClmnLckStat = %1.0f,$DDAjrSwAtv = %1.0f.",$ClmnLckStat,$DDAjrSwAtv);
+  }
+  else
+    testStepFail("check ESCL Lock Function","ESCL Lock occurred when condition is not fully met,$DDAjrSwAtv = %1.0f.",$DDAjrSwAtv);
+}
+
+export testcase sysRs845 (int sysPwrMdStatus) {
+  testValidateTesterConfirmation("","Make sure it's lock status at intial.",1);
+  $RemStrtSt = 0;
+  $SysPwrMd = sysPwrMdStatus;
+  $EngRunAtv = 1;
+}
+
+export void updateMECAtAssemblyMode (int mecValue) {
+  qword msgRec;
+  byte mec;
+  message* messageRec;
+  msgSend.qword(0) = 0x0000000000A03B03ll + ((qword)mecValue << 24);
+  sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,4,0x037F3B78);
+  if (testWaitForMessage(USDT_Resp_From_ESCL_HS,1000)) {//wait for second frame of received message
+    testGetWaitEventMsgData(messageRec);
+    msgRec = swapQWord(messageRec.qword(0));
+    if (msgRec == 0x027BA0AAAAAAAAAAll) 
+      testStepPass("Diagnostic Response","Get positive response:0x%llX",msgRec);
+    else 
+      testStepFail("Diagnostic Response","Get negative response:0x%llX",msgRec);
+  }
+  msgSend.qword(0) = 0x0000000000A01A02ll;
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,3,0x035AA0);
+  mec = (msgRec & 0xff00000000ll)>>32;
+  if (mec == mecValue)
+    testStep("mec write status","mec write successfully.");
+  else
+    testStep("mec write status","mec write failed.");
+}
+
+export void writeSecCode (dword secCode) {
+  byte flag;
+  securityAccessDeviceControl(0x40,secCode);
+  flag = readSecurityCodeStatusFlags ();
+  if ((flag & 0x02) == 0x02) 
+    testStepPass("security code write status","security code write successfully.");
+  else
+    testStepFail("security code write status","security code write failed.");
+}
+
+export void relearnUnlockPassword (int mecValue,dword secCode,word keyToSeed,int sysPwrMdStatus) {
+  qword msgRec;
+  byte flag;
+  testWaitForTimeout(10000);//make sure enter security code input allowed phase
+  enterSecurityAccess(mecValue,keyToSeed);
+  $SysPwrMd = 2;//Run
+  testWaitForTimeout(500);
+  testStep("SysPwrMd","SysPwrMd = %1.0f",$SysPwrMd);
+  flag = readSecurityCodeStatusFlags();
+  if ((flag & 0x15) != 0x00)
+    testStepFail("read security code status flag","flag = 0x%x,not enter the security code input allowed phase",flag);
+  else {
+    testStepPass("read security code status flag","flag = 0x%x,Tool Learn Delay Active = false,Security Code Lockout Active = false,Security Code Accepted = false,enter the security code input allowed",flag);
+    securityAccessDeviceControl(0x80,secCode);//input old security code
+    flag = readSecurityCodeStatusFlags();
+    if ((flag & 0x15) != 0x10)
+      testStepFail("read security code status flag","flag = 0x%x,not enter tool learn delay phase",flag);
+    else {
+      testStepPass("read security code status flag","flag = 0x%x,Tool Learn Delay Active = true,Security Code Lockout Active = false,Security Code Accepted = false,enter tool learn delay phase",flag);
+      testWaitForTimeout(600000);//wait 10 minutes;
+      testStep("Waiting","Waiting %5.2fs for entering security access allowed phase",testGetLastWaitElapsedTimeNS()/1000000000);
+      flag = readSecurityCodeStatusFlags();
+      if ((flag & 0x15) != 0x01)
+        testStepFail("read security code status flag","flag = 0x%x,not enter security access allowed phase",flag);
+      else {
+        testStepPass("read security code status flag","flag = 0x%x,Tool Learn Delay Active = false,Security Code Lockout Active = false,Security Code Accepted = true,enter security access allowed phase",flag);
+        $SysPwrMd = 0;//off
+        testWaitForTimeout(500);
+        testStep("SysPwrMd","SysPwrMd = %1.0f",$SysPwrMd);
+        testValidateTesterConfirmation("","Input new unlock password on the panel",1);
+        $SysPwrMd = sysPwrMdStatus;
+        testStep("SysPwrMd","SysPwrMd = %d",sysPwrMdStatus);
+        testWaitForTimeout(500);
+        testStep("Relearn new unlock password","New unlock password is 0x%x",(int)$Vehicle_Steering_Column_Lock_Pas::VehSecStrgColLckPwd);
+      }
+    }
+  }
+}
+
+export void enterSecurityAccess (byte mecValue,word keyToSeed) {
+  qword msgRec;
+  msgSend.qword(0) = 0x0000000000031002ll;
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,2,0x0150ll);
+  msgSend.qword(0) = 0x0000000000012702ll;
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,3,0x046701ll);//If Seed1 and Seed2 are 0, ESCL is in unlocked state now.
+  if (mecValue) {//assembly mode
+    if ((msgRec & 0xffffffffff000000ll) != 0x0467010000000000ll) {//send if Seed1 or Seed2 is not 0, 
+      msgSend.qword(0) = 0x000000ddee022702ll;//Kostia module enable flag
+      sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,3,0x026702ll);
+    }
+  }
+  else {//normal mode
+    msgSend.qword(0) = 0x0000000000022704ll + (((qword)(swapWord(keyToSeed)))<<24);
+    sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,3,0x026702ll);
+  }
+}
+
+export void securityAccessDeviceControl (byte controlByte,dword secCode) {
+  qword msgRec;
+  msgSend.qword(0) = 0x00000000407eae07ll + (((qword)controlByte)<<24) + (((qword)(swapDWord(secCode)))<<32);
+  sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,3,0x02ee7ell);
+}
+
+export byte readSecurityCodeStatusFlags (void) {
+  qword msgRec;
+  msgSend.qword(0) = 0x00000000d4902203ll;
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,4,0x046290d4ll);
+  return (byte)((msgRec<<32)>>56);
+}
+
+export byte readMECValue (void) {
+  qword msgRec;
+  byte mec;
+  msgSend.qword(0) = 0x0000000000A01A02ll;
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,3,0x035AA0);
+  mec = (msgRec & 0xff00000000ll)>>32;
+  return mec;
+}
+
+export byte checkSecurityAccessStateAfterInitialPowerApply (void) {
+  qword msgRec;
+  byte mec;
+  byte flag;
+  mec = readMECValue();
+  testStep("Read MEC value","MEC = %d",mec);
+  flag = readSecurityCodeStatusFlags();
+  if (!mec) {//normal mode
+    if ((flag & 0x1d) == 0x04)
+      testStepPass("read security code status flag","flag = 0x%x,Tool Learn Delay Active = false,Security Code Accepted = false,enter security lockout active phase under normal mode",flag);
+    else 
+      testStepFail("read security code status flag","flag = 0x%x is not correct",flag);
+  }
+  else {//assembly mode
+    if ((flag & 0x1d) == 0x09)
+      testStepPass("read security code status flag","flag = 0x%x,Tool Learn Delay Active = false,Security Code Accepted = true,enter security access allowed phase under assembly mode",flag);
+    else 
+      testStepFail("read security code status flag","flag = 0x%x is not correct",flag);  
+  }
+  return mec;
+}
+
+export void changeNormalModeToAssemblyMode (void) {
+  qword msgRec;
+  msgSend.qword(0) = 0x00000000047b0005ll;//write MEC_Value_Cleared = 0x00
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,1,0x05);
+  msgSend.qword(0) = 0x000000fe047a0005ll;//write MEC_Value = 0xfe
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,1,0x05);
+  testWaitForTimeout(1000);
+  msgSend.qword(0) = 0x00000001017a0004ll;//read MEC_Value
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,2,0x04fe);
+  msgSend.qword(0) = 0x00000001017b0004ll;//read MEC_Value_Cleared
+  msgRec = sendDiagCheckResp (msgSend,USDT_Resp_From_ESCL_HS,2,0x0400);
+}
+
+export testcase testInit (word keyToSeed) {
+  //after power on
+  byte mecValue;
+  setInvertedIgn(1);
+  testWaitForTimeout(100);
+  setCommEnableWakeup(1);
+  mecValue = checkSecurityAccessStateAfterInitialPowerApply();
+  testWaitForTimeout(12000);//GMLAN 27 01 can only be actived 10s after power on
+  enterSecurityAccess(mecValue,keyToSeed);
+  enterKostia();
+  if (!mecValue)
+    changeNormalModeToAssemblyMode();
+  readVersion();
+  exitKostia(0xfe,keyToSeed);
+  testValidateTesterConfirmation("Press wheel vel simu on the panel","",1);
+}

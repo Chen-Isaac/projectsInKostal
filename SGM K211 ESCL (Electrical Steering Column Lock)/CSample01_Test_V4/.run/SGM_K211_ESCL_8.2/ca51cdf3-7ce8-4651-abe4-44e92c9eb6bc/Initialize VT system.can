@@ -1,0 +1,27 @@
+/*@!Encoding:936*/
+includes
+{
+}
+
+variables
+{
+
+}
+
+export void initVTSystem (void)
+{
+  sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);//Interconnection settings mode:supint,internal power supply connects to both I1 & I2.
+  sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);//M12_SupInt:Output:Ref Voltage mode = constant
+  @sysvar::VTS::M12_Out2::Active = 1;//M12_Out2:OUT2 pin connects to I2;
+  @sysvar::VTS::M12_SupInt::RefVoltage = 12.6;
+  testWaitForTimeout(500);
+ 
+  if (testWaitForSignalInRange(sysvar::VTS::M12_Out2::AvgVoltage,12.4,12.8,500)!=1)
+     testStepFail("VBAT1 voltage status","Voltage maybe out of range,VBAT1 = %4.2fV",@VTS::M12_Out2::AvgVoltage);
+  else
+     testStepPass("VBAT1 voltage status","Voltage is in the range of [11.8V~12.2V],VBAT1 = %4.2fV",@VTS::M12_Out2::AvgVoltage);
+  if (testWaitForSignalInRange(sysvar::VTS::M12_Out2::AvgCurrent,0.002,0.2,500)!=1)
+     testStepFail("VBAT1 current status","Current maybe out of range,VBAT1 current = %6.3fmA",@VTS::M12_Out2::AvgCurrent*1000);
+  else
+     testStepPass("VBAT1 current status","Current is in the range of [2mA~200mA],VBAT1 current = %6.3fmA",@VTS::M12_Out2::AvgCurrent*1000);
+}

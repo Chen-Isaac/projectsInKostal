@@ -1,0 +1,23 @@
+Encoding: iso-8859-1
+Detected dtd version 8.1.102
+VCANdelaPersistorImpl::GetFileVersion: DTD version '8.1.102' detected
+Loading 'C:\Users\chen106\Desktop\CSample01_Test_V4\P07103_ESCL_SGM211.80.cdd'...
+  dtd version: file 8.1.102, program 8.2.106
+Document supports the languages (en-US)
+Document contains the uptodate languages (en-US)
+Template: Qualifier : GMW3110_A4400_1_0, SaveNo : 60, Label : 1.0.3
+  template data loaded
+  variant 'CommonDiagnostics' loaded
+Start loading requirement data model
+End loading requirement data model
+Document version: 1.32
+Done loading.
+Checking consistency of document. This may take a while, please be patient...
+Skipping consistency check of document, it was consistent when last saved.
+Checking service prefixes in base variant 'CommonDiagnostics' ... OK
+ComParamMan: Unidentified ComParam TransportProtocol
+ComParamMan: Overwriting existing ComParam 'DIAG_ADDR' with parameter 'BroadcastAddress'
+ComParamMan: Unidentified ComParam ReqCanIdObd
+ComParamMan: Unidentified ComParam ReqCanIdObdPhys
+ComParamMan: Unidentified ComParam ResCanIdObd
+Document is consistent.

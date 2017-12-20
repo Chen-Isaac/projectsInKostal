@@ -1,0 +1,524 @@
+VERSION "HIPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYNNNNNNNNNN/4/%%%/4/'%**4NNN///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: SAS_FaultManager
+VAL_TABLE_ WT_KostiaCAN_LoginState 2 "Kostia logged out" 1 "Kostia logged in" 0 "Kostia login state unknown" ;
+VAL_TABLE_ Status 4 "Dienst_fehlerhaft" 3 "Dienst_timeout" 2 "Dienst_beendet" 1 "Dienst_starten" ;
+VAL_TABLE_ envKTATaskReady 1 "TaskReady" 0 "TaskRunning" ;
+VAL_TABLE_ KTA_Taskaufruf 1 "zyklisch" 0 "einmalig" ;
+VAL_TABLE_ KTA_Entscheidung 1 "io" 0 "nicht_io" ;
+VAL_TABLE_ KT_Pages 13 "OHC" 50 "WD_Reason" 49 "ROM_Segment_2" 48 "ROM_Segment_1" 12 "Version" 11 "Aktoren" 10 "Sensoren" 4 "I_O" 3 "ROM_FLASH" 2 "RAM" 1 "EEPROM" 0 "Linear" ;
+VAL_TABLE_ KT_FSP_Delay 1 "Delay" 0 "kein_Delay" ;
+VAL_TABLE_ KTResp_IstModus 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+VAL_TABLE_ KTReq_SollModus 5 "DiagnoseModus" 4 "FlashModus" 3 "TestModus" 2 "SleepModus2" 1 "SleepModus1" 0 "Normal_Modus" ;
+
+
+
+
+EV_ envKTA_IFM_Logout: 0 [0|0] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_IFM_Login: 0 [0|0] "" 0 2 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_AO_FaultFrequency_9_Raw: 0 [0|0] "" 0 3 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_8_Raw: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_7_Raw: 0 [0|0] "" 0 5 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_6_Raw: 0 [0|0] "" 0 6 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_5_Raw: 0 [0|0] "" 0 7 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_4_Raw: 0 [0|0] "" 0 8 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_3_Raw: 0 [0|0] "" 0 9 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_2_Raw: 0 [0|0] "" 0 10 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_14_Raw: 0 [0|0] "" 0 11 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_13_Raw: 0 [0|0] "" 0 12 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_12_Raw: 0 [0|0] "" 0 13 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_11_Raw: 0 [0|0] "" 0 14 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_10_Raw: 0 [0|0] "" 0 15 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_1_Raw: 0 [0|0] "" 0 16 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_0_Raw: 0 [0|0] "" 0 17 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_9_Raw: 0 [0|0] "" 0 18 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_8_Raw: 0 [0|0] "" 0 19 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_7_Raw: 0 [0|0] "" 0 20 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_6_Raw: 0 [0|0] "" 0 21 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_5_Raw: 0 [0|0] "" 0 22 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_4_Raw: 0 [0|0] "" 0 23 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_3_Raw: 0 [0|0] "" 0 24 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_2_Raw: 0 [0|0] "" 0 25 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_14_Raw: 0 [0|0] "" 0 26 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_13_Raw: 0 [0|0] "" 0 27 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_12_Raw: 0 [0|0] "" 0 28 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_11_Raw: 0 [0|0] "" 0 29 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_10_Raw: 0 [0|0] "" 0 30 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_1_Raw: 0 [0|0] "" 0 31 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_0_Raw: 0 [0|0] "" 0 32 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_9_Raw: 0 [0|0] "" 0 33 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_8_Raw: 0 [0|0] "" 0 34 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_7_Raw: 0 [0|0] "" 0 35 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_6_Raw: 0 [0|0] "" 0 36 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_5_Raw: 0 [0|0] "" 0 37 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_4_Raw: 0 [0|0] "" 0 38 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_3_Raw: 0 [0|0] "" 0 39 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_2_Raw: 0 [0|0] "" 0 40 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_14_Raw: 0 [0|0] "" 0 41 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_13_Raw: 0 [0|0] "" 0 42 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_12_Raw: 0 [0|0] "" 0 43 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_11_Raw: 0 [0|0] "" 0 44 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_10_Raw: 0 [0|0] "" 0 45 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_1_Raw: 0 [0|0] "" 0 46 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_0_Raw: 0 [0|0] "" 0 47 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_IfmVersion: 0 [0|0] "" 0 48 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envVar_ReadIfmVersion: 0 [0|0] "" 0 49 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envVar_DisplayEnv2Voltage_9: 1 [0|0] "" 0 50 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_8: 1 [0|0] "" 0 51 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_7: 1 [0|0] "" 0 52 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_6: 1 [0|0] "" 0 53 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_5: 1 [0|0] "" 0 54 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_4: 1 [0|0] "" 0 55 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_3: 1 [0|0] "" 0 56 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_2: 1 [0|0] "" 0 57 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_1: 1 [0|0] "" 0 58 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_14: 1 [0|0] "" 0 59 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_13: 1 [0|0] "" 0 60 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_12: 1 [0|0] "" 0 61 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_11: 1 [0|0] "" 0 62 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_10: 1 [0|0] "" 0 63 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2Voltage_0: 1 [0|0] "" 0 64 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_14: 1 [0|0] "" 0 65 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_13: 1 [0|0] "" 0 66 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_12: 1 [0|0] "" 0 67 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_11: 1 [0|0] "" 0 68 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_10: 1 [0|0] "" 0 69 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_9: 1 [0|0] "" 0 70 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_8: 1 [0|0] "" 0 71 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_7: 1 [0|0] "" 0 72 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_6: 1 [0|0] "" 0 73 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_5: 1 [0|0] "" 0 74 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_4: 1 [0|0] "" 0 75 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_3: 1 [0|0] "" 0 76 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_2: 1 [0|0] "" 0 77 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_1: 1 [0|0] "" 0 78 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1Voltage_0: 1 [0|25.5] "" 0 79 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_14: 0 [0|0] "" 0 80 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_13: 0 [0|0] "" 0 81 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_12: 0 [0|0] "" 0 82 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_11: 0 [0|0] "" 0 83 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_10: 0 [0|0] "" 0 84 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_9: 0 [0|0] "" 0 85 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_8: 0 [0|0] "" 0 86 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_7: 0 [0|0] "" 0 87 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_6: 0 [0|0] "" 0 88 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_5: 0 [0|0] "" 0 89 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_4: 0 [0|0] "" 0 90 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_3: 0 [0|0] "" 0 91 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_2: 0 [0|0] "" 0 92 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_1: 0 [0|0] "" 0 93 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv2OpTime_0: 0 [0|0] "" 0 94 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_14: 0 [0|0] "" 0 95 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_13: 0 [0|0] "" 0 96 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_12: 0 [0|0] "" 0 97 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_11: 0 [0|0] "" 0 98 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_10: 0 [0|0] "" 0 99 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_9: 0 [0|0] "" 0 100 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_8: 0 [0|0] "" 0 101 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_7: 0 [0|0] "" 0 102 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_6: 0 [0|0] "" 0 103 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_5: 0 [0|0] "" 0 104 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_4: 0 [0|0] "" 0 105 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_3: 0 [0|0] "" 0 106 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_2: 0 [0|0] "" 0 107 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_1: 0 [0|0] "" 0 108 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayEnv1OpTime_0: 0 [0|0] "" 0 109 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_6: 0 [0|0] "" 0 110 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_5: 0 [0|0] "" 0 111 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_4: 0 [0|0] "" 0 112 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_3: 0 [0|0] "" 0 113 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_2: 0 [0|0] "" 0 114 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_14: 0 [0|0] "" 0 115 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_13: 0 [0|0] "" 0 116 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_12: 0 [0|0] "" 0 117 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_11: 0 [0|0] "" 0 118 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_10: 0 [0|0] "" 0 119 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_9: 0 [0|0] "" 0 120 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_8: 0 [0|0] "" 0 121 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_7: 0 [0|0] "" 0 122 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_1: 0 [0|0] "" 0 123 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_14: 0 [0|0] "" 0 124 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_13: 0 [0|0] "" 0 125 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_12: 0 [0|0] "" 0 126 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_11: 0 [0|0] "" 0 127 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_10: 0 [0|0] "" 0 128 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_9: 0 [0|0] "" 0 129 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_8: 0 [0|0] "" 0 130 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_7: 0 [0|0] "" 0 131 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_6: 0 [0|0] "" 0 132 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_5: 0 [0|0] "" 0 133 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_4: 0 [0|0] "" 0 134 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_3: 0 [0|0] "" 0 135 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_2: 0 [0|0] "" 0 136 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_1: 0 [0|0] "" 0 137 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultCode_0: 0 [0|0] "" 0 138 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_14: 0 [0|0] "" 0 139 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_13: 0 [0|0] "" 0 140 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_12: 0 [0|0] "" 0 141 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_11: 0 [0|0] "" 0 142 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_10: 0 [0|0] "" 0 143 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_9: 0 [0|0] "" 0 144 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_8: 0 [0|0] "" 0 145 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_7: 0 [0|0] "" 0 146 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_6: 0 [0|0] "" 0 147 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_5: 0 [0|0] "" 0 148 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_4: 0 [0|0] "" 0 149 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_3: 0 [0|0] "" 0 150 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_2: 0 [0|0] "" 0 151 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_1: 0 [0|0] "" 0 152 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultIndex_0: 0 [0|0] "" 0 153 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_CycleTime: 0 [1|74] "" 1 154 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_ReadCyclic: 0 [0|0] "" 0 155 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ env_KostiaCAN_LIO_TimeStamp: 0 [0|0] "" 0 156 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ env_KostiaCAN_LoginState: 0 [0|0] "" 0 157 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKTA_AO_FaultFrequency_14: 0 [0|0] "" 0 158 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_13: 0 [0|0] "" 0 159 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_12: 0 [0|0] "" 0 160 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_11: 0 [0|0] "" 0 161 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_10: 0 [0|0] "" 0 162 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_9: 0 [0|0] "" 0 163 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_8: 0 [0|0] "" 0 164 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_7: 0 [0|0] "" 0 165 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_6: 0 [0|0] "" 0 166 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_5: 0 [0|0] "" 0 167 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_4: 0 [0|0] "" 0 168 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_3: 0 [0|0] "" 0 169 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_2: 0 [0|0] "" 0 170 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_1: 0 [0|0] "" 0 171 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultFrequency_0: 0 [0|0] "" 0 172 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm14: 0 [0|0] "" 0 173 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm13: 0 [0|0] "" 0 174 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm12: 0 [0|0] "" 0 175 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm11: 0 [0|0] "" 0 176 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm10: 0 [0|0] "" 0 177 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm9: 0 [0|0] "" 0 178 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm8: 0 [0|0] "" 0 179 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm7: 0 [0|0] "" 0 180 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm6: 0 [0|0] "" 0 181 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm5: 0 [0|0] "" 0 182 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm4: 0 [0|0] "" 0 183 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm3: 0 [0|0] "" 0 184 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm2: 0 [0|0] "" 0 185 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm1: 0 [0|0] "" 0 186 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultDeletedAlarm0: 0 [0|0] "" 0 187 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_ClearFaults_DelaySW: 0 [0|1] "" 0 188 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_NoFaultText: 0 [0|0] "" 0 189 DUMMY_NODE_VECTOR8003 Vector__XXX;
+
+EV_ envKTA_AO_FaultAlarm14: 0 [-1365|16777215] "" 0 190 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm12: 0 [-1365|16777215] "" 0 191 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm13: 0 [-1365|16777215] "" 0 192 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm11: 0 [-1365|16777215] "" 0 193 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm10: 0 [-1365|16777215] "" 0 194 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm9: 0 [-1365|16777215] "" 0 195 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm8: 0 [-1365|16777215] "" 0 196 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm7: 0 [-1365|16777215] "" 0 197 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm6: 0 [-1365|16777215] "" 0 198 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm5: 0 [-1365|16777215] "" 0 199 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm4: 0 [-1365|16777215] "" 0 200 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm3: 0 [-1365|16777215] "" 0 201 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm2: 0 [-1365|16777215] "" 0 202 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm1: 0 [-1365|16777215] "" 0 203 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FaultAlarm0: 0 [-1365|16777215] "" 0 204 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_0: 0 [0|0] "" 0 205 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envVar_DisplayFaultId_0: 0 [0|0] "" 0 206 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_14: 0 [0|0] "" 0 207 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_13: 0 [0|0] "" 0 208 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_11: 0 [0|0] "" 0 209 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_12: 0 [0|0] "" 0 210 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_10: 0 [0|0] "" 0 211 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_9: 0 [0|0] "" 0 212 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_8: 0 [0|0] "" 0 213 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_7: 0 [0|0] "" 0 214 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_6: 0 [0|0] "" 0 215 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_5: 0 [0|0] "" 0 216 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_4: 0 [0|0] "" 0 217 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_3: 0 [0|0] "" 0 218 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_2: 0 [0|0] "" 0 219 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_FaultsName_1: 0 [0|0] "" 0 220 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_IFM_AO_ReadFaultNo: 0 [0|1] "" 0 221 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_FailureText: 0 [0|0] "" 0 222 DUMMY_NODE_VECTOR8003 Vector__XXX;
+
+EV_ envKTA_AO_Display4: 0 [0|0] "" 0 223 DUMMY_NODE_VECTOR8003 Vector__XXX;
+
+EV_ envKTA_AO_Display3: 0 [0|0] "" 0 224 DUMMY_NODE_VECTOR8003 Vector__XXX;
+
+EV_ envKTA_AO_Display2: 0 [0|0] "" 0 225 DUMMY_NODE_VECTOR8003 Vector__XXX;
+
+EV_ envKTA_AO_Display1: 0 [0|0] "" 0 226 DUMMY_NODE_VECTOR8003 Vector__XXX;
+
+EV_ envKTA_IFM_AO_ReadFaults: 0 [0|1] "" 0 227 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_IFM_AO_ClearFaults: 0 [0|1] "" 0 228 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO_Display_Faults: 0 [0|0] "" 0 229 DUMMY_NODE_VECTOR8003  SAS_FaultManager;
+
+EV_ envKTA_AO1: 0 [0|0] "" 0 230 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+
+EV_ envKTA_AO2: 0 [0|0] "" 0 231 DUMMY_NODE_VECTOR3  SAS_FaultManager;
+ENVVAR_DATA_ envKTA_AO2: 0;
+
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+VAL_ env_KostiaCAN_LoginState 2 "Kostia logged out" 1 "Kostia logged in" 0 "Kostia login state unknown" ;
+

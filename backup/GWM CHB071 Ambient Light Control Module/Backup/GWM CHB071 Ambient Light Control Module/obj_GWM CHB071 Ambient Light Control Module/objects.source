@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TempFileMetainfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel">
+  <FileFormatVersion xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">1</FileFormatVersion>
+  <TempFileMetainfo xmlns:d2p1="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel.Entities" z:Id="2">
+    <_p z:Ref="1" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    <d2p1:FileSources z:Id="3">
+      <Content z:Id="4" z:Size="8" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">
+        <d2p1:FileSource z:Id="5" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="6">2.0.36.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="7">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2016-09-19T16:45:49.5246225+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>327</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="8">3cpo1h2tctbh-TSV</d2p1:PersistencyKey>
+          <d2p1:Crc>3015546</d2p1:Crc>
+          <d2p1:SourceFile z:Id="9">C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="10" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-09-19T16:45:53.6946225+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>4608</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="11">3cpo1h2tctbh#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="12">
+            <_p z:Ref="10" i:nil="true" />
+            <d2p1:FullFilePath z:Id="13">C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\obj_GWM CHB071 Ambient Light Control Module\3cpo1h2tctbh-TSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-09-19T16:45:49.5246225+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="14" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="15">.vvarprop</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2016-09-19T11:18:41.2409413+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="16">TU_Indep=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Id="17"></d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="18" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="15" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-09-19T11:18:41.2389413+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="19">ge0leqevhj9p=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="17" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="20" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-09-20T17:40:59.7347425+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>54</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="21">ge0leqevhj9p~3-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="22">
+            <Content z:Id="23" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="24">
+                <_p z:Ref="22" i:nil="true" />
+                <d2p1:FullFilePath z:Id="25">C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2016-09-20T17:40:39.7487413+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="20" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="26" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="27">2.0.36.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="28">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2016-09-20T11:36:52.3426962+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>236988</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="29">svcb8uh84mpd-CSV</d2p1:PersistencyKey>
+          <d2p1:Crc>1928135463</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="30" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="27" i:nil="true" />
+          <d2p1:Extension z:Ref="28" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-09-20T11:37:14.9815642+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>471552</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="31">svcb8uh84mpd#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="32">
+            <_p z:Ref="30" i:nil="true" />
+            <d2p1:FullFilePath z:Id="33">C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\obj_GWM CHB071 Ambient Light Control Module\svcb8uh84mpd-CSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-09-20T11:36:52.3426962+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="34" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="17" i:nil="true" />
+          <d2p1:Extension z:Ref="28" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-09-19T11:18:41.3669413+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>-1</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="35">rr2skjhugdf0#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription i:nil="true" />
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="36" z:Size="0" />
+        </d2p1:FileSource>
+      </Content>
+      <_p z:Ref="2" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    </d2p1:FileSources>
+  </TempFileMetainfo>
+</TempFileMetainfo>

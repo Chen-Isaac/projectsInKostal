@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <testsequence name="attempt" comment="" signature="testsequence attempt(signal sig, char str[])" file="C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\training attempt\training attempt.can">
+    <parameter name="sig" type="signal" raw_type="signal" />
+    <parameter name="str" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>54</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testsequence>
+</tclibrary>

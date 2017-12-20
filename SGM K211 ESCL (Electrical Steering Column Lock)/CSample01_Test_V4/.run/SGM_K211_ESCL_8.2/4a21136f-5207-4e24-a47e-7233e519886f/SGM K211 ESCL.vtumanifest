@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <FileFormatVersion>1</FileFormatVersion>
+  <TestUnitName>SGM K211 ESCL</TestUnitName>
+  <TsoProject>D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL.vtsoproj</TsoProject>
+  <TsoProjectRelative>.\..\SGM K211 ESCL.vtsoproj</TsoProjectRelative>
+  <EditableSources>false</EditableSources>
+  <BuildInfo>
+    <CaplCompiler>8.5.98.0</CaplCompiler>
+    <MinRequiredCANoeVersion>8.2.41</MinRequiredCANoeVersion>
+    <TsoVersion>2.0.50.0</TsoVersion>
+    <NetApiVersion></NetApiVersion>
+  </BuildInfo>
+  <NetTypeLibGenerator>
+    <NamespaceGeneration>NoNamespace</NamespaceGeneration>
+    <NetTypeLibs />
+  </NetTypeLibGenerator>
+  <VariantProperties />
+  <Sources>
+    <CaplFiles>
+      <CaplFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Basic product function setting.can" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="Basic product function setting.cbf" /&gt;</Binary>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\Basic product function setting.can.export.xml" /&gt;</ExportTable>
+      </CaplFile>
+    </CaplFiles>
+    <CaplIncludeFiles />
+    <NetFiles />
+    <NetBinaries />
+    <VttFiles>
+      <VttFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="SGM K211 ESCL.vtt" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="SGM K211 ESCL.vxtx" /&gt;</Binary>
+        <CaplFile>
+          <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="SGM K211 ESCL.vxtx.can" /&gt;</Source>
+          <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="SGM K211 ESCL.vxtx.cbf" /&gt;</Binary>
+        </CaplFile>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\SGM K211 ESCL.vtt.export.xml" /&gt;</ExportTable>
+      </VttFile>
+    </VttFiles>
+    <ParameterFiles>
+      <ParameterFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="SGM K211 ESCL.vparam" /&gt;</Source>
+      </ParameterFile>
+    </ParameterFiles>
+    <WaveformFiles />
+    <WaveformBinaries />
+    <CaplDlls />
+  </Sources>
+  <TestSysVar>
+    <Source></Source>
+  </TestSysVar>
+  <ExternalReferences />
+  <SutEnvironment>
+    <Networks>
+      <Network>
+        <Name>CAN</Name>
+        <ChannelType>CAN</ChannelType>
+        <Databases>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\ESCLTestEnv.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>ESCLTestEnv</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\ESCLTestEnv.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\CLEA17.2.0_1cb.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>PB</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\CLEA17.2.0_1cb.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\ESCL PIN Control Env.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>ESCLPINControlEnv</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\ESCL PIN Control Env.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+        </Databases>
+      </Network>
+    </Networks>
+    <UseAllNetworks>false</UseAllNetworks>
+  </SutEnvironment>
+  <TUProperties>
+    <Caption></Caption>
+    <Description></Description>
+    <Version></Version>
+    <TestDesigners>
+      <Columns />
+      <TestDesignerEntries />
+    </TestDesigners>
+    <TUInfos />
+  </TUProperties>
+  <NodeLayerDlls>
+    <NodeLayerDll>
+      <Path>CANstress_NL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>FRStressNL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>J1939TestServiceLibraryNL.dll</Path>
+    </NodeLayerDll>
+  </NodeLayerDlls>
+  <UserFiles />
+  <TetEntries>
+    <TetEntry>
+      <Type>vtt</Type>
+      <Identifier>SGM K211 ESCL.vtt</Identifier>
+    </TetEntry>
+  </TetEntries>
+</Manifest>

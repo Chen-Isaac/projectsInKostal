@@ -1,0 +1,118 @@
+/*@!Encoding:936*/
+includes
+{
+  #include "D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin"
+}
+
+variables
+{
+  
+}
+
+export testcase powerOn (void) {
+  stateMachine("powerOn",routeNum,noParaPick);
+}
+
+export testcase powerOff (void) {
+  stateMachine("powerOff",routeNum,noParaPick);
+}
+
+export testcase readSwVer (void) {
+  stateMachine("readSwVer",routeNum,noParaPick);
+}
+
+export testcase autoLightBtnImp (char value_Bel_LTM_Auto[]) {
+  char paraPick[1][2][100]={{"value_Bel_LTM_Auto",""}};
+  strncpy(paraPick[0][1],value_Bel_LTM_Auto,elCount(paraPick[0][1]));
+  stateMachine("autoLightBtnImp",routeNum,paraPick); 
+}
+
+export testcase autoLightBtnRelateSigImpOnLight (void) {
+  stateMachine("autoLightBtnRelateSigImpOnLight",routeNum,noParaPick);
+}
+
+export testcase allWeatherLightBtnImp (char value_Bel_LTM_Nebellicht[]) {
+  char paraPick[1][2][100]={{"value_Bel_LTM_Nebellicht",""}};
+  strncpy(paraPick[0][1],value_Bel_LTM_Nebellicht,elCount(paraPick[0][1]));
+  stateMachine("allWeatherLightBtnImp",routeNum,paraPick); 
+}
+
+export testcase allWeatherLightBtnRelateSigImpOnLight (void) {
+  stateMachine("allWeatherLightBtnRelateSigImpOnLight",routeNum,noParaPick);
+}
+
+export testcase rearFogLightBtnImp (char value_Bel_LTM_Nebelschlusslicht[]) {
+  char paraPick[1][2][100]={{"value_Bel_LTM_Nebelschlusslicht",""}};
+  strncpy(paraPick[0][1],value_Bel_LTM_Nebelschlusslicht,elCount(paraPick[0][1]));
+  stateMachine("rearFogLightBtnImp",routeNum,paraPick); 
+}
+
+export testcase rearFogLightBtnRelateSigImpOnLight (void) {
+  stateMachine("rearFogLightBtnRelateSigImpOnLight",routeNum,noParaPick);
+}
+
+export testcase tryLin (void) {
+  linmessage MasterReq sendDiag;
+  linmessage SlaveResp recDiag;
+  //linChangeSchedTable(4);
+  sendDiag.rtr = 1;
+  output(sendDiag);
+  sendDiag.rtr = 0;
+  sendDiag.qword(0) = 0xffffff036222031dll;
+  output(sendDiag);
+  testWaitForMessage(0x3c,1000);
+  //linChangeSchedTable(5);
+  recDiag.rtr = 1;
+  output(recDiag);
+  recDiag.rtr = 0;
+  if (testWaitForMessage(0x3d,5000) == 1) 
+    testGetWaitEventMsgData(recDiag); 
+  recDiag.rtr = 1;
+  output(recDiag);
+  recDiag.rtr = 0;
+  if (testWaitForMessage(0x3d,5000) == 1) 
+    testGetWaitEventMsgData(recDiag);  
+  recDiag.rtr = 1;
+  output(recDiag);
+  recDiag.rtr = 0;
+  if (testWaitForMessage(0x3d,5000) == 1) 
+    testGetWaitEventMsgData(recDiag);  
+  testStep("","%llx",recDiag.qword(0));
+  testWaitForTimeout(100);
+  //linChangeSchedTable(1);
+  
+  
+}
+
+export testcase try (void) {
+  long i;
+  /*byte recLinMsg[100];
+  int byteNum,i;
+  byteNum = sendLinUdsDiagChkResp("Read SW_Version",recLinMsg);
+  testStep("","byte number = %d",i);
+  for (i=0;i<10;i++) {
+    testStep("","recLinMsg[i]=%x",recLinMsg[i]);
+    
+  }*/
+  i=vtsSetThreshold1_8("VTS::M9_VT2516",1.1);
+  
+  testStep("","%d",i);
+}
+
+export testcase disableLTMe_01 (void) {
+  //testDisableMsg(LTMe_01);
+  
+  linDeactivateSlot(1,4);
+  linDeactivateSlot(1,10);
+  linDeactivateSlot(1,16);
+  
+}
+
+export testcase enableLTMe_01 (void) {
+  //testEnableMsg(LTMe_01); 
+  
+  linActivateSlot(1,4);
+  linActivateSlot(1,10);
+  linActivateSlot(1,16);
+}
+

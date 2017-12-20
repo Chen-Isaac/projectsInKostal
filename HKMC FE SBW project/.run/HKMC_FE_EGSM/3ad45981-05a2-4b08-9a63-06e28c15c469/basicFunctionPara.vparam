@@ -1,0 +1,171 @@
+Vector Parameter	1.0
+
+ScalarListSingleRecord
+
+Name	Type	Info	Values
+list::aaa	String		a
+			aa
+			aaa
+
+
+ScalarSingleRecord
+
+Name	Type	Info	Value
+parameter::aaa	String		a
+parameter::bbb	String		b
+
+
+ScalarListMultiRecord
+
+Name	Type	Info	Values
+SelectorType	String		ignValueLevel	button
+DefaultSelector
+VarListWithSel	String		0	P
+			1	R
+				N
+				D
+				PRelease
+				P&R
+				P&N
+				P&D
+				P&PRelease
+				R&N
+				R&D
+				R&PRelease
+				N&D
+				N&PRelease
+				D&PRelease
+
+
+ScalarMultiRecord
+
+Name	Type	Info	Value
+SelectorType	String		p	r
+DefaultSelector
+para_sel_str	Integer		5	2
+
+
+ScalarListMultiRecord
+
+Name	Type	Info	Values
+SelectorType	String		P	R	N	D	PRelease
+DefaultSelector	P
+list_sel_int	Integer		1	10	100	1	0
+			1	1	1	1	0
+			10	20	30	40	50
+
+
+ScalarMultiRecord
+
+Name	Type	Info	Value
+SelectorType	Integer		0	1
+DefaultSelector
+para_sel_string	Auto		P	R
+para_sel_int	Integer		2	3
+
+
+StructListSingleRecord
+
+StructName	struListTry
+ParameterName		inttry	float_try
+Type		Integer	Float
+Info			
+Values		2	0.6
+		3	0.7
+
+
+StructSingleRecord
+
+StructName	stru_try
+ParameterName		intint	floatfloat	str	datadata
+Type		Integer	Float	String	Data
+Info					
+Value		1	0.5	sdfasdf	23 23 33
+
+
+ScalarListSingleRecord
+
+Name	Type	Info	Values
+ignValueLevel	String		0
+			1
+
+pressButton	String		P
+			R
+			N
+			D
+			PRelease
+			P&R
+			P&N
+			P&D
+			P&PRelease
+			R&N
+			R&D
+			R&PRelease
+			N&D
+			N&PRelease
+			D&PRelease
+
+decideBySignalBool	Integer		0
+			1
+
+indicatorStatus	String		P
+			R
+			N
+			D
+			No
+
+setOnMode	Integer	0:by IGN ON 1://by Welcome counter is not equal to zero	0
+			1
+
+setClearMode	Integer	0:enter sleep state 1:enter silence state 2:RKE Lock Command == Lock while IGN OFF 3:SMKRKE Command == Lock Event while IGN OFF	0
+			1
+
+drvDrSwSigValNotOpen	Auto		0
+			2
+
+fromIgnOnModeToInitModeToSilenceModeToSleepRouteNo	Integer		0
+			1
+			2
+
+drvDrSwSigVal	String		0
+			1
+			2
+
+throughNParkToSilenceBool	Integer		0
+			1
+
+fromSilenceModeToSleepModeWayNo	Integer		0
+			1
+
+fromInitModeToSleepMode::msWaitTimeForWelcomeFunctionCount	String		0
+			20000
+			0
+
+fromInitModeToSleepMode::routeNo	Integer		0
+			0
+			0
+			1
+			1
+			1
+
+accLev	String		0
+			1
+
+testRheostatLevelRow1_2::detentVal	String		0
+			0
+			1
+			1
+
+detentVal	String		0
+			1
+
+testRheostatLevelRow7_16::ignValueLevel	String		0
+			0
+			1
+			1
+
+testRheostatLevelRow10_11::detentVal	String		0
+			0
+			1
+			1
+

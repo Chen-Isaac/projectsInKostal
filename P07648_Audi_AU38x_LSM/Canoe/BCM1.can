@@ -1,0 +1,813 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  /* const macro */
+  const char FALSE = 0;
+  const char TRUE = 1;
+  const STD_ON = 1;
+  const STD_OFF = 0;
+
+  /*use to enable the sync of the signal in Master and the Slave*/
+  const int defaultScheduleTabIndx = 1;
+  char SyncFlag = STD_OFF;
+
+  /*****************************************************************
+  * Sleep Wake-up test
+  *****************************************************************/
+  /* configuration parameter for sleep wake-up test */
+  const AUTORUN = STD_OFF;
+  const SleepWakeupintervalFrom = 1;   //shall larger than zero
+  const SleepWakeupintervalTo = 10;
+  const SleepWakeupintervalStep = 1;
+  const WakeupDel = 100;              //time between wakeup command and the next head
+  const TestPid = LTMs_01.id;
+  const testloop = 1;
+
+  /* parameter declaration */
+  /* timer declaration */
+  msTimer t1;
+  timer t2;
+  /* internal parameters */
+  long SleepWakeupinterval;
+  byte TestRun = 0;
+  long testCnt = 0;
+  byte errorCntFlg = 0;
+  byte errorCnt = 0;
+
+  /****************************************************************
+  *  VW Identification Diag Panel
+  ****************************************************************/
+  char DiagSetTargetName [100] = "E1_LTM";
+  struct DefaultIdentData 
+  {
+    char VWSparePartNumber [12];
+    char VWSwVersionNumber [5];
+    char VWHwNumber [12];
+    char VWHwVersionNumber [4];
+    char VWSerialNumber [21];
+    char VWSystemName [14];
+    char VWFazitString [24];
+    char VWCodingValues [16];
+  };
+  struct DefaultIdentData MyDefaultIdentData =
+  {
+    VWSparePartNumber = "4B0941531",
+    VWSwVersionNumber = "X001",
+    VWHwNumber = "4B0941531",
+    VWHwVersionNumber = "X01",
+    VWSerialNumber = "2017-04-20 001",
+    VWSystemName = "E1 - LTM",
+    VWFazitString = " ",
+    VWCodingValues = "Not Supported"
+  };
+  const int VWSparePartNumberSize = 11;
+  const int VWSwVersionNumberSize = 4;
+  const int VWHwNumberSize = 11;
+  const int VWHwVersionNumberSize = 3;
+  const int VWSerialNumberSize = 20;
+  const int VWSystemNameSize = 13;
+  const int VWFazitStringSize = 23;
+  const int VWCodingValuesSize = 16;
+
+  // store a busy Diagflag here.
+  int gDiagBusy = 0;
+  int gSideSelection = 0;
+  //timer
+  timer releaseDiagFlag;
+  mstimer ReadAllIdentData;
+  
+  //Laufvariable
+  int ReadIdentJobIndex;
+  const int TimeoutDiagResponse = 1;//Konstante fuer TimeoutDiagResponse = 1sek
+}
+
+on envVar Env_MasterSimulate
+{
+    SyncFlag = getValue(this);
+	  if(SyncFlag == FALSE)
+    {
+      write("Sync between PM and SP is OFF!");
+    }
+    else
+    {
+      write("Sync between PM and SP is ON!");
+    }
+}
+
+on linMessage LTMs_01
+{
+  byte temp;
+  byte Autolicht_old = 0;
+  byte Nebelicht_old = 0;
+  byte Nebelschlusslicht_old = 0;
+  byte NebellichtStatus = 0;
+  byte NebelschlusslichtStatus = 0;
+  byte AutoStatus = 0;
+  byte AutolichtStatus = 0;
+  byte StandlichtStatus = 0;
+  
+  if(SyncFlag == TRUE)
+  {
+    if ((0 == Nebelicht_old)
+      && (this.LTM_Nebellicht == 1))
+    {
+      NebellichtStatus ^= 0x01;
+    }
+    Nebelicht_old = this.LTM_Nebellicht;
+    if ((0 == Nebelschlusslicht_old)
+      && (this.LTM_Nebelschlusslicht ==1))
+    {
+      NebelschlusslichtStatus ^= 0x01;
+    }
+    Nebelschlusslicht_old = this.LTM_Nebelschlusslicht;
+    if ((0 == Autolicht_old)
+      && (this.LTM_Autolicht ==1))
+    {
+      AutoStatus++;
+      if (AutoStatus == 4)
+      {
+        AutoStatus = 0;
+      }
+      AutolichtStatus = AutoStatus&0x01;
+      StandlichtStatus = (AutoStatus&0x02)>>1;
+    }
+    Autolicht_old = this.LTM_Autolicht;
+    
+    setsignal(Bel_LTM_Nebellicht,NebellichtStatus);
+    setsignal(Bel_LTM_Nebelschlusslicht,NebelschlusslichtStatus);
+    setsignal(Bel_LTM_Auto,AutolichtStatus);
+    setSignal(Bel_LTM_Standlicht,StandlichtStatus);    
+  }
+  
+  if (TestRun == 1)
+  {
+    SleepWakeupinterval += SleepWakeupintervalStep;
+    /* check the end of one test loop */
+    if (SleepWakeupinterval <= SleepWakeupintervalTo)
+    {
+      linSendSleepModFrm(0, 1 , TestPid);
+    }
+    else
+    {
+      testCnt--;
+      /* loop end? */
+      if (testCnt != 0)
+      {
+        /* init for another loop */
+        SleepWakeupinterval = SleepWakeupintervalFrom;
+        linSendSleepModFrm(0, 1 , TestPid);
+      }else{
+        /* end the test */
+        TestRun = 0;
+        linSendSleepModFrm(1, 0 , 0xff);
+        cancelTimer(t1);
+        write("errorCnt = %ld",errorCnt);
+        errorCntFlg = 0;
+        errorCnt = 0;
+      }
+    }
+  }
+  
+}
+
+on preStart
+{
+  linChangeSchedtable(defaultScheduleTabIndx); //Starte mit Applikativen ScheduleTable mit ID defaultScheduleTabIndx auf
+}
+
+on start
+{
+  if( 0 != DiagSetTarget(DiagSetTargetName))  write( "Error setting target!"); //DiagnoseSet laden bzw. Fehler ausgeben
+  if (AUTORUN == STD_ON)
+  {
+    setTimer(t2,1);
+  }
+}
+
+on timer t2
+{
+  cancelTimer(t2);
+  /* init */
+  testCnt = testloop;
+  SleepWakeupinterval = SleepWakeupintervalFrom;
+  TestRun = 1;
+  linSetWakeupParams(WakeupDel, 1);
+  /* send GoToSleep */
+  linSendSleepModFrm(0, 1 , TestPid);
+}
+
+on linSleepModeEvent
+{
+  if (TestRun == 1)
+  {
+    setTimer(t1,SleepWakeupinterval);
+  }
+}
+
+on timer t1
+{
+  cancelTimer(t1);
+  linSendWakeup(1, 1);
+}
+
+/* 
+ * VW Identification diag function 
+ */
+
+on envVar envClearIdentData_disp
+{
+  char sDefaultParamData [30]= "";
+
+  if(!getValue(this)) return; /*  */
+
+  putvalue (envRspVWApplSWVersionNr, sDefaultParamData);
+  putvalue (envRspVWCodingValues, sDefaultParamData);
+  putvalue (envRspVWFazitString, sDefaultParamData);
+  putvalue (envRspVWHardwareNumber, sDefaultParamData);
+  putvalue (envRspVWHardwareVersionNumber, sDefaultParamData);
+  putvalue (envRspVWSerialNumber, sDefaultParamData);
+  putvalue (envRspVWSparePartNumber, sDefaultParamData);
+  putvalue (envRspVWSystemName, sDefaultParamData);
+
+  putvalue (envRqVWApplSWVersionNr, sDefaultParamData);
+  putvalue (envRqVWCodingValues, sDefaultParamData);
+  putvalue (envRqVWFazitString, sDefaultParamData);
+  putvalue (envRqVWHardwareNumber, sDefaultParamData);
+  putvalue (envRqVWHardwareVersionNumber, sDefaultParamData);
+  putvalue (envRqVWSerialNumber, sDefaultParamData);
+  putvalue (envRqVWSparePartNumber, sDefaultParamData);
+  putvalue (envRqVWSystemName, sDefaultParamData);
+}
+
+on envVar envLoadDefaultValue
+{
+  if(!getValue(this)) return;
+  
+  putvalue (envRqVWApplSWVersionNr, MyDefaultIdentData.VWSwVersionNumber);
+  putvalue (envRqVWCodingValues, MyDefaultIdentData.VWCodingValues);
+  putvalue (envRqVWFazitString, MyDefaultIdentData.VWFazitString);
+  putvalue (envRqVWHardwareNumber, MyDefaultIdentData.VWHwNumber);
+  putvalue (envRqVWHardwareVersionNumber, MyDefaultIdentData.VWHwVersionNumber);
+  putvalue (envRqVWSerialNumber, MyDefaultIdentData.VWSerialNumber);
+  putvalue (envRqVWSparePartNumber, MyDefaultIdentData.VWSparePartNumber);
+  putvalue (envRqVWSystemName, MyDefaultIdentData.VWSystemName);
+}
+
+on envVar envCarryIdentData
+{
+  char RqBuffer[30];
+  char RspBuffer[30];
+  if(!getValue(this)) return; //Reaktion nur beim Lösen des Buttons
+
+  getValue(envRspVWSparePartNumber,RspBuffer );
+  putvalue(envRqVWSparePartNumber,RspBuffer);
+
+  getValue(envRspVWHardwareVersionNumber,RspBuffer );
+  putvalue(envRqVWHardwareVersionNumber,RspBuffer);
+
+  getValue(envRspVWSerialNumber,RspBuffer );
+  putvalue(envRqVWSerialNumber,RspBuffer);
+
+  putvalue(envRqVWApplSWVersionNr,"NotSupported");
+  putvalue(envRqVWCodingValues,"NotSupported");
+  putvalue(envRqVWFazitString,"NotSupported");
+  putvalue(envRqVWSystemName,"NotSupported");
+  putvalue(envRqVWHardwareNumber,"NotSupported");
+}
+
+on envVar envReadIdentData
+{
+  
+  putvalue (envRspVWApplSWVersionNr, "");
+  putvalue (envRspVWCodingValues, "");
+  putvalue (envRspVWFazitString, "");
+  putvalue (envRspVWHardwareNumber, "");
+  putvalue (envRspVWHardwareVersionNumber, "");
+  putvalue (envRspVWSerialNumber, "");
+  putvalue (envRspVWSparePartNumber, "");
+  putvalue (envRspVWSystemName, "");
+  
+  if(!getValue(this)) return;  
+  if(gDiagBusy != 0) return; 
+
+  ReadIdentJobIndex=0;
+  gSideSelection = getValue(envSideVariant);
+  settimer (ReadAllIdentData, 100);
+}
+
+on timer ReadAllIdentData
+{
+settimer (ReadAllIdentData, 100);
+if(gDiagBusy != 0) return;
+
+ switch (ReadIdentJobIndex)
+ {
+  case 0: 
+  { 
+    diagrequest Read_VWSparePartNumber req; //Deklaration einer DiagRequestVariablen
+    SendDiagRequest(req);
+    ReadIdentJobIndex++;
+    break;
+  }
+  case 1: 
+  {
+    diagrequest Read_VWSwVersionNumber req; //Deklaration einer DiagRequestVariablen
+    SendDiagRequest(req);
+    ReadIdentJobIndex++;
+    break;
+  }  
+  case 2: 
+  {
+    diagrequest Read_VWHwNumber req; //Deklaration einer DiagRequestVariablen
+    SendDiagRequest(req);
+    ReadIdentJobIndex++;
+    break;
+  }
+  case 3: 
+  {
+    diagrequest Read_VWHwVersionNumber req; //Deklaration einer DiagRequestVariablen
+    SendDiagRequest(req);
+    ReadIdentJobIndex++;
+    break;
+  }
+  case 4: 
+  {
+    diagrequest Read_VWSerialNumber req; //Deklaration einer DiagRequestVariablen
+    SendDiagRequest(req);
+    ReadIdentJobIndex++;
+    break;
+  }
+  case 5: 
+  {
+    diagrequest Read_VWSystemName req; //Deklaration einer DiagRequestVariablen
+    SendDiagRequest(req);
+    ReadIdentJobIndex++;
+    break;
+  }
+  case 6: 
+  {
+    diagrequest Read_VWFazitString req; //Deklaration einer DiagRequestVariablen
+    SendDiagRequest(req);
+    ReadIdentJobIndex++;
+    break;
+  }
+
+  case 7: 
+  {
+    diagrequest Read_VWCodingValues req; //Deklaration einer DiagRequestVariablen
+    SendDiagRequest(req);
+    ReadIdentJobIndex++;
+    break;
+  }
+
+  Default: 
+  {
+    ReadIdentJobIndex = 0;
+    canceltimer (ReadAllIdentData);
+    break;
+  }
+ }
+}
+
+
+on timer releaseDiagFlag
+{
+  write("DiagnoseResponseTimeout");
+  gDiagBusy = 0;
+}
+
+on diagResponse Read_VWSparePartNumber
+{
+cancelTimer (releaseDiagFlag);
+gDiagBusy = 0;
+
+If(this.IsNegativeResponse ())
+ {
+ putvalue (envRspVWSparePartNumber, "Not Supportted");
+ }
+
+If (this.IsPositiveResponse ())
+ {
+ byte RespParamData [30];
+ char sRespParamData [30]= "";
+
+ this.GetParameterRaw("Data",RespParamData, 11);
+
+ sRespParamData [0] = RespParamData [0];
+ sRespParamData [1] = RespParamData [1];
+ sRespParamData [2] = RespParamData [2];
+ sRespParamData [3] = RespParamData [3];
+ sRespParamData [4] = RespParamData [4];
+ sRespParamData [5] = RespParamData [5];
+ sRespParamData [6] = RespParamData [6];
+ sRespParamData [7] = RespParamData [7];
+ sRespParamData [8] = RespParamData [8];
+ sRespParamData [9] = RespParamData [9];
+ sRespParamData [10] = RespParamData [10];
+
+ putvalue (envRspVWSparePartNumber, sRespParamData);
+ }
+}
+
+on diagResponse Read_VWSwVersionNumber
+{
+  cancelTimer (releaseDiagFlag);
+  gDiagBusy = 0;
+
+  If(this.IsNegativeResponse ())
+  {
+  putvalue (envRspVWApplSWVersionNr, "Not Supportted");
+  }
+
+  If (this.IsPositiveResponse ())
+  {
+  byte RespParamData [30];
+  char sRespParamData [30]= "";
+
+  this.GetParameterRaw("Data",RespParamData, 4);
+
+  sRespParamData [0] = RespParamData [0];
+  sRespParamData [1] = RespParamData [1];
+  sRespParamData [2] = RespParamData [2];
+  sRespParamData [3] = RespParamData [3];
+
+  putvalue (envRspVWApplSWVersionNr, sRespParamData);
+  }
+}
+
+on diagResponse Read_VWHwNumber
+{
+cancelTimer (releaseDiagFlag);
+gDiagBusy = 0;
+
+If(this.IsNegativeResponse ())
+ {
+ putvalue (envRspVWHardwareNumber, "Not Supportted");
+ }
+
+If (this.IsPositiveResponse ())
+ {
+ byte RespParamData [30];
+ char sRespParamData [30]= "";
+
+ this.GetParameterRaw("Data",RespParamData, 11);
+
+ sRespParamData [0] = RespParamData [0];
+ sRespParamData [1] = RespParamData [1];
+ sRespParamData [2] = RespParamData [2];
+ sRespParamData [3] = RespParamData [3];
+ sRespParamData [4] = RespParamData [4];
+ sRespParamData [5] = RespParamData [5];
+ sRespParamData [6] = RespParamData [6];
+ sRespParamData [7] = RespParamData [7];
+ sRespParamData [8] = RespParamData [8];
+ sRespParamData [9] = RespParamData [9];
+ sRespParamData [10] = RespParamData [10];
+
+putvalue (envRspVWHardwareNumber, sRespParamData);
+ }
+}
+
+on diagResponse Read_VWHwVersionNumber
+{
+cancelTimer (releaseDiagFlag);
+gDiagBusy = 0;
+
+If(this.IsNegativeResponse ())
+ {
+ putvalue (envRspVWHardwareVersionNumber, "Not Supportted");
+ }
+
+If (this.IsPositiveResponse ())
+ {
+ byte RespParamData [30];
+ char sRespParamData [30]= "";
+
+ this.GetParameterRaw("Data",RespParamData, 3);
+
+ sRespParamData [0] = RespParamData [0];
+ sRespParamData [1] = RespParamData [1];
+ sRespParamData [2] = RespParamData [2];
+
+ putvalue (envRspVWHardwareVersionNumber, sRespParamData);
+ }
+}
+
+on diagResponse Read_VWSerialNumber
+{
+cancelTimer (releaseDiagFlag);
+gDiagBusy = 0;
+
+If(this.IsNegativeResponse ())
+ {
+ putvalue (envRspVWSerialNumber, "Not Supportted");
+ }
+
+If (this.IsPositiveResponse ())
+ {
+ byte RespParamData [30];
+ char sRespParamData [30]= "";
+
+ this.GetParameterRaw("Data",RespParamData, 20);
+
+ sRespParamData [0] = RespParamData [0];
+ sRespParamData [1] = RespParamData [1];
+ sRespParamData [2] = RespParamData [2];
+ sRespParamData [3] = RespParamData [3];
+ sRespParamData [4] = RespParamData [4];
+ sRespParamData [5] = RespParamData [5];
+ sRespParamData [6] = RespParamData [6];
+ sRespParamData [7] = RespParamData [7];
+ sRespParamData [8] = RespParamData [8];
+ sRespParamData [9] = RespParamData [9];
+ sRespParamData [10] = RespParamData [10];
+ sRespParamData [11] = RespParamData [11];
+ sRespParamData [12] = RespParamData [12];
+ sRespParamData [13] = RespParamData [13];
+ sRespParamData [14] = RespParamData [14];
+ sRespParamData [15] = RespParamData [15];
+ sRespParamData [16] = RespParamData [16];
+ sRespParamData [17] = RespParamData [17];
+ sRespParamData [18] = RespParamData [18];
+ sRespParamData [19] = RespParamData [19];
+
+ putvalue (envRspVWSerialNumber, sRespParamData);
+ }
+}
+
+on diagResponse Read_VWSystemName
+{
+cancelTimer (releaseDiagFlag);
+gDiagBusy = 0;
+
+If(this.IsNegativeResponse ())
+ {
+ putvalue (envRspVWSystemName, "Not Supportted");
+ }
+
+If (this.IsPositiveResponse ())
+ {
+ byte RespParamData [30];
+ char sRespParamData [30] = "";
+
+ this.GetParameterRaw("Data",RespParamData, 13);
+
+ sRespParamData [0] = RespParamData [0];
+ sRespParamData [1] = RespParamData [1];
+ sRespParamData [2] = RespParamData [2];
+ sRespParamData [3] = RespParamData [3];
+ sRespParamData [4] = RespParamData [4];
+ sRespParamData [5] = RespParamData [5];
+ sRespParamData [6] = RespParamData [6];
+ sRespParamData [7] = RespParamData [7];
+ sRespParamData [8] = RespParamData [8];
+ sRespParamData [9] = RespParamData [9];
+ sRespParamData [10] = RespParamData [10];
+ sRespParamData [11] = RespParamData [11];
+ sRespParamData [12] = RespParamData [12];
+
+ putvalue (envRspVWSystemName, sRespParamData);
+ }
+}
+
+on diagResponse Read_VWCodingValues
+{
+cancelTimer (releaseDiagFlag);
+gDiagBusy = 0;
+
+If(this.IsNegativeResponse ())
+ {
+ putvalue (envRspVWCodingValues, "Not Supportted");
+ }
+
+If (this.IsPositiveResponse ())
+ {
+ byte RespParamData [30];
+ char sRespParamData [30]= "";
+
+ this.GetParameterRaw("Data",RespParamData, 3);
+
+ sRespParamData [0] = RespParamData [0];
+ sRespParamData [1] = RespParamData [1];
+ sRespParamData [2] = RespParamData [2];
+
+ putvalue (envRspVWCodingValues, sRespParamData);
+ }
+}
+
+on diagResponse Read_VWFazitString
+{
+cancelTimer (releaseDiagFlag);
+gDiagBusy = 0;
+
+If(this.IsNegativeResponse ())
+ {
+ putvalue (envRspVWFazitString, "Not Supportted");
+ }
+
+If (this.IsPositiveResponse ())
+ {
+ byte RespParamData [30];
+ char sRespParamData [30]= "";
+
+ this.GetParameterRaw("Data",RespParamData, 23);
+
+ sRespParamData [0] = RespParamData [0];
+ sRespParamData [1] = RespParamData [1];
+ sRespParamData [2] = RespParamData [2];
+ sRespParamData [3] = RespParamData [3];
+ sRespParamData [4] = RespParamData [4];
+ sRespParamData [5] = RespParamData [5];
+ sRespParamData [6] = RespParamData [6];
+ sRespParamData [7] = RespParamData [7];
+ sRespParamData [8] = RespParamData [8];
+ sRespParamData [9] = RespParamData [9];
+ sRespParamData [10] = RespParamData [10];
+ sRespParamData [11] = RespParamData [11];
+ sRespParamData [12] = RespParamData [12];
+ sRespParamData [13] = RespParamData [13];
+ sRespParamData [14] = RespParamData [14];
+ sRespParamData [15] = RespParamData [15];
+ sRespParamData [16] = RespParamData [16];
+ sRespParamData [17] = RespParamData [17];
+ sRespParamData [18] = RespParamData [18];
+ sRespParamData [19] = RespParamData [19];
+ sRespParamData [20] = RespParamData [20];
+ sRespParamData [21] = RespParamData [21];
+ sRespParamData [22] = RespParamData [22];
+
+ putvalue (envRspVWFazitString, sRespParamData);
+ }
+}
+
+on envVar envWriteIdentData
+{
+diagrequest Write_SystemIdentification req; //Deklaration einer DiagRequestVariablen
+
+// ---------------------------------------------------
+// Variablen für CRC Bildung
+// ---------------------------------------------------
+const dword length = 38;
+byte bCRCbuffer[length];
+
+//-----------------
+byte RqParamData [30]; 
+char sRqParamData [30]= "";
+
+  
+int i,j;
+
+if(!getValue(this)) return; //Reaktion nur beim Lösen des Buttons
+if(gDiagBusy != 0) return;
+
+gSideSelection = getvalue(envSideVariant);
+diagSetParameter(req,"SideVariant", gSideSelection);
+
+getvalue(envRqVWSerialNumber,sRqParamData);
+for (j = 0; j < VWSerialNumberSize; j++) 
+{
+  if (sRqParamData[j] == 0x00)
+  {
+    sRqParamData[j] = 0x20;
+    sRqParamData[j+1] = 0x00;
+  }
+  RqParamData[j] = sRqParamData[j];
+}
+DiagSetParameterRaw (req,"VWSlaveSerialNumber", RqParamData, VWSerialNumberSize);
+
+getvalue(envRqVWSparePartNumber,sRqParamData);
+for (j = 0; j < VWSparePartNumberSize; j++)
+{
+  if (sRqParamData[j] == 0x00)
+  {
+    sRqParamData[j] = 0x20;
+    sRqParamData[j+1] = 0x00;
+  }
+  RqParamData[j] = sRqParamData[j];
+}
+DiagSetParameterRaw (req,"VWSlaveSparePartNumber", RqParamData, VWSparePartNumberSize);
+
+getvalue(envRqVWHardwareVersionNumber,sRqParamData);
+for (j = 0; j < VWHwVersionNumberSize; j++)
+{
+  if (sRqParamData[j] == 0x00)
+  {
+    sRqParamData[j] = 0x20;
+    sRqParamData[j+1] = 0x00;
+  }
+  RqParamData[j] = sRqParamData[j];
+}
+DiagSetParameterRaw (req,"VWSlaveHardwareVersionNumber", RqParamData, VWHwVersionNumberSize);
+
+
+for (j = 0; j < length; j++) bCRCbuffer[j] = DiagGetPrimitiveByte (req,j);
+CalculateXorCRC(bCRCbuffer,length);
+DiagSetParameter (req,"CRC",getvalue(envRqCRC)); 
+ 
+SendDiagRequest(req);
+}
+
+on diagResponse Write_SystemIdentification
+{
+  cancelTimer (releaseDiagFlag);
+  gDiagBusy = 0;
+
+  If(this.IsNegativeResponse ())
+  {
+  }
+
+  If (this.IsPositiveResponse ())
+  {
+  }
+}
+
+SendDiagRequest(diagrequest * req)
+{
+
+  gDiagBusy = 1;
+  settimer (releaseDiagFlag, TimeoutDiagResponse);
+
+  DiagSendRequest(req);
+}
+CalculateXorCRC (byte buffer [], dword length)
+{
+dword count;	// Lokale Zählvariable
+byte  crc;  // Berechneter Wert der ApplikationsCRC
+		       
+crc = 0x00;		// CRC mit Anfangswert initialisieren
+
+for (count = 0; count<length; count++)
+	{
+	crc = (crc^buffer[count]);
+    }
+
+putvalue (envRqCRC,crc); // Ermittelter ApplikationsCRC für einen Request
+}
+
+on signal LTMe_01::DI_KL_58xd
+{
+  if (this.raw < 254)
+  {
+    putValue(Env_KL_58xd,2);
+  }
+}
+
+on signal LTMe_01::DI_KL_58xt
+{
+  if (this.raw <= 100)
+  {
+    putValue(Env_KL_58xt,2);
+  }
+}
+
+on envVar Env_KL_58xd
+{
+  if (getvalue(this) == 0)
+  {
+    setSignal(LTMe_01::DI_KL_58xd, 254);
+  }
+  else if (getvalue(this) == 1)
+  {
+    setSignal(LTMe_01::DI_KL_58xd, 255);
+  }
+}
+
+on envVar Env_KL_58xt
+{
+  if (getvalue(this) == 0)
+  {
+    setSignal(LTMe_01::DI_KL_58xt, 126);
+  }
+  else if (getvalue(this) == 1)
+  {
+    setSignal(LTMe_01::DI_KL_58xt, 127);
+  }
+}
+
+on envVar Env_KL_58xs
+{
+  if (getvalue(this) == 0)
+  {
+    setSignal(LTMe_01::DI_KL_58xs, 126);
+  }
+  else if (getvalue(this) == 1)
+  {
+    setSignal(LTMe_01::DI_KL_58xs, 127);
+  }
+}
+on envVar Env_Gotosleep
+{
+    if(!getValue(this)) return;
+    linSendSleepModFrm(0,1,0XFF);
+}
+
+on envVar Env_WakeUp
+{
+    if(!getValue(this)) return;
+    linSendWakeup();
+}

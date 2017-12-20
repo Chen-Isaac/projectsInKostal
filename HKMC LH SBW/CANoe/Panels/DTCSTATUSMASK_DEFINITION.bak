@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl0" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl0</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">845,256</Property>
+      <Property Name="BackColor">0,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Yes</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,255</Property>
+      <Property Name="BackColor">0,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Server is requesting warning Indicator to be active</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">362,255</Property>
+      <Property Name="BackColor">0,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">0</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl3</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,255</Property>
+      <Property Name="BackColor">0,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">warningIndicatorRequested</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl4</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,255</Property>
+      <Property Name="BackColor">0,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">7</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl5</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">845,233</Property>
+      <Property Name="BackColor">255,0,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Yes</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl6</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,232</Property>
+      <Property Name="BackColor">255,0,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">DTC has not completed this operation cycle</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl7</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">362,232</Property>
+      <Property Name="BackColor">255,0,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">1</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl8</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,232</Property>
+      <Property Name="BackColor">255,0,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">testNotCompletedThisOperationCycle</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl9</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,232</Property>
+      <Property Name="BackColor">255,0,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">6</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl10" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl10</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">845,210</Property>
+      <Property Name="BackColor">255,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Yes</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl11" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl11</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,209</Property>
+      <Property Name="BackColor">255,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">DTC test failed at least once since code clear</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl12" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl12</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">362,209</Property>
+      <Property Name="BackColor">255,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">0</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl13" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl13</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,209</Property>
+      <Property Name="BackColor">255,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">testFailedSinceLastClear</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl14" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl14</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,209</Property>
+      <Property Name="BackColor">255,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">5</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl15" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl15</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">845,189</Property>
+      <Property Name="BackColor">128,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Yes</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl16" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl16</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,188</Property>
+      <Property Name="BackColor">128,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">DTC test has not been com-pleted since last clear</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl17" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl17</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">362,188</Property>
+      <Property Name="BackColor">128,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">1</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl18" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl18</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,188</Property>
+      <Property Name="BackColor">128,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">testNotCompletedSinceLastClear</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl19" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl19</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,188</Property>
+      <Property Name="BackColor">128,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">4</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl20" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl20</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">844,165</Property>
+      <Property Name="BackColor">128,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Yes</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl21" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl21</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,164</Property>
+      <Property Name="BackColor">128,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">DTC is confirmed at the time of the request</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl22" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl22</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">361,164</Property>
+      <Property Name="BackColor">128,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">0</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl23" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl23</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,164</Property>
+      <Property Name="BackColor">128,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">confirmedDTC</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl24" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl24</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,160</Property>
+      <Property Name="BackColor">128,255,128</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">3</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl25" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl25</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">845,142</Property>
+      <Property Name="BackColor">255,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Yes</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl26" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl26</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,141</Property>
+      <Property Name="BackColor">255,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">DTC failed on the current or previous cycle</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl27" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl27</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">362,141</Property>
+      <Property Name="BackColor">255,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">0</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl28" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl28</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,141</Property>
+      <Property Name="BackColor">255,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">pendingDTC</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl29" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl29</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,141</Property>
+      <Property Name="BackColor">255,128,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">2</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl30" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl30</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">845,118</Property>
+      <Property Name="BackColor">128,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Yes</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl31" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl31</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,117</Property>
+      <Property Name="BackColor">128,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">DTC  failed on the current operation cycle</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl32" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl32</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">362,117</Property>
+      <Property Name="BackColor">128,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">0</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl33" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl33</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,117</Property>
+      <Property Name="BackColor">128,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">testFailedThisOperationCycle</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl34" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl34</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,117</Property>
+      <Property Name="BackColor">128,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">1</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl35" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl35</Property>
+      <Property Name="Size">285,24</Property>
+      <Property Name="Location">32,32</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 14pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">None</Property>
+      <Property Name="Text">Definition of DTCStatusMask</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl36" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl36</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">845,96</Property>
+      <Property Name="BackColor">255,128,0</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Yes</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl37" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl37</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,95</Property>
+      <Property Name="BackColor">255,128,0</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">DTC is failed at the time of the request</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl38" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl38</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">362,95</Property>
+      <Property Name="BackColor">255,128,0</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">0</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl39" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl39</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,95</Property>
+      <Property Name="BackColor">255,128,0</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">testFailed</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl40" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl40</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,95</Property>
+      <Property Name="BackColor">255,128,0</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">0</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl41" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl41</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">845,71</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 11pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Supported</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl42" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl42</Property>
+      <Property Name="Size">370,25</Property>
+      <Property Name="Location">472,71</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 11pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Description</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl43" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl43</Property>
+      <Property Name="Size">110,25</Property>
+      <Property Name="Location">362,71</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 11pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Default Value</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl44" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl44</Property>
+      <Property Name="Size">280,25</Property>
+      <Property Name="Location">80,71</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 11pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">statusOfDTC: bit field name</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl45" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl45</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">30,71</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Microsoft Sans Serif, 11pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Bit#</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Property Name="Panel">Panel</Property>
+    <Property Name="Size">1015,345</Property>
+    <Property Name="BackColor">255,255,255</Property>
+  </Object>
+</Panel>

@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>VTS INIT</title>
+      <comment>
+        <title>Initialize VT system,make power supply voltage output equals 12V, current not over 30A.</title>
+      </comment>
+      <caplinline>
+        <title />
+        <active>true</active>
+        <code>sysvar::VTS::M12_VT7001.SetInterconnectionMode(1);
+sysvar::VTS::M12_Sup1.SetRefVoltageMode(1);
+//sysvar::VTS::M12_Sup1.SetRefVoltageMode(mode, 1);
+@sysvar::VTS::M12_Sup1::RefVoltage = 1;
+sysvar::VTS::M12_Sup1.SetMaxCurrentMode(1);
+// sysvar::VTS::M12_Sup1.SetMaxCurrentMode(mode, 1);
+@sysvar::VTS::M12_Sup1::MaxCurrent = 2.5;
+sysvar::VTS::M12_Out1.ResetMinMax();
+sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(4);
+@sysvar::VTS::M12_Out1::Active = 1;</code>
+      </caplinline>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title />
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <lt>
+              <const>0.2</const>
+            </lt>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgVoltage|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>11.5</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+      <comment>
+        <title>3.1.1 电动窗电机驱动</title>
+      </comment>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>当车窗升降电机在自动下降过程中，操作相应的手动上升或下降档，该车窗升降电机将立即停止?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Ready to manually lift up</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>当车窗升降电机在手动下降过程中，操作相应的自动下降档，该车窗升降电机将往自动下降方向运动?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Ready to manually lift down</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>当车窗上升到顶部发送堵转时，该车窗升降电机将立即停止?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Locked roter situation happens in the top</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <if>
+        <title />
+        <compare>
+          <value>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+          </value>
+          <gt>
+            <const>12</const>
+          </gt>
+        </compare>
+        <wait>
+          <title />
+          <time>
+            <value>
+              <const>1</const>
+            </value>
+            <unit>s</unit>
+          </time>
+        </wait>
+        <statecheck>
+          <title>Check if the product output has been shutted down.</title>
+          <expected>
+            <compare>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+              <le>
+                <const>0.2</const>
+              </le>
+            </compare>
+          </expected>
+        </statecheck>
+        <canoestandardservice>
+          <title />
+          <name>testValidateTesterConfirmation</name>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>当车窗下降到底部并发送堵转时，该车窗升降电机将立即停止?</const>
+            </value>
+          </param>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>Locked roter situation</const>
+            </value>
+          </param>
+          <param>
+            <type>long</type>
+            <value>
+              <const>1</const>
+            </value>
+          </param>
+        </canoestandardservice>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            </value>
+            <gt>
+              <const>12</const>
+            </gt>
+          </compare>
+          <wait>
+            <title />
+            <time>
+              <value>
+                <const>1</const>
+              </value>
+              <unit>s</unit>
+            </time>
+          </wait>
+          <statecheck>
+            <title>Check if the product output has been shutted down.</title>
+            <expected>
+              <compare>
+                <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+                <le>
+                  <const>0.2</const>
+                </le>
+              </compare>
+            </expected>
+          </statecheck>
+        </if>
+      </if>
+      <comment>
+        <title>3.1.4 超时保护</title>
+      </comment>
+      <canoestandardservice>
+        <title>
+        </title>
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Cut down the connection of power window</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Make only power resistor connect with the product output</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Ready to press the lift up button, once you start pressing it,press the ok button on the popup.</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Keep the button pressed for 10s</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>10</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if the product output has been shutted down.</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Stop pressing</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Stop pressing the button</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Ready to press the lift down button, once you start pressing it,press the ok button on the popup.</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Keep the button pressed for 10s</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>10</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if the product output has been shutted down.</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Stop pressing</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Stop pressing the button</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+    </ts>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

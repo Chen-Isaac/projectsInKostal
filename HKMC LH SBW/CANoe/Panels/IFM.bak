@@ -1,0 +1,2649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="IFM">
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl0" Children="Controls">
+      <Property Name="Name">TextBoxControl0</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,560</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_14:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_14</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls">
+      <Property Name="Name">TextBoxControl1</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,520</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_12:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_12</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls">
+      <Property Name="Name">TextBoxControl2</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,540</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_13:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_13</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl3" Children="Controls">
+      <Property Name="Name">TextBoxControl3</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,500</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_11:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_11</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl4" Children="Controls">
+      <Property Name="Name">TextBoxControl4</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,440</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_8:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_8</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl5" Children="Controls">
+      <Property Name="Name">TextBoxControl5</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,480</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_10:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_10</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl6" Children="Controls">
+      <Property Name="Name">TextBoxControl6</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,460</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_9:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_9</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl7" Children="Controls">
+      <Property Name="Name">TextBoxControl7</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,420</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_7:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_7</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl8" Children="Controls">
+      <Property Name="Name">TextBoxControl8</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,400</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_6:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_6</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl9" Children="Controls">
+      <Property Name="Name">TextBoxControl9</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,380</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_5:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl10" Children="Controls">
+      <Property Name="Name">TextBoxControl10</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,360</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_4:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_4</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl11" Children="Controls">
+      <Property Name="Name">TextBoxControl11</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,340</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_3:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_3</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl12" Children="Controls">
+      <Property Name="Name">TextBoxControl12</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,320</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_2:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_2</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl13" Children="Controls">
+      <Property Name="Name">TextBoxControl13</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,300</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_1:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl14" Children="Controls">
+      <Property Name="Name">TextBoxControl14</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,280</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv2Voltage_0:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2Voltage_0</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl15" Children="Controls">
+      <Property Name="Name">TextBoxControl15</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,560</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_14:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_14</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl16" Children="Controls">
+      <Property Name="Name">TextBoxControl16</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,520</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_12:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_12</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl17" Children="Controls">
+      <Property Name="Name">TextBoxControl17</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,540</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_13:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_13</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl18" Children="Controls">
+      <Property Name="Name">TextBoxControl18</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,500</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_11:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_11</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl19" Children="Controls">
+      <Property Name="Name">TextBoxControl19</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,440</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_8:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_8</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl20" Children="Controls">
+      <Property Name="Name">TextBoxControl20</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,480</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_10:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_10</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl21" Children="Controls">
+      <Property Name="Name">TextBoxControl21</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,460</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_9:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_9</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl22" Children="Controls">
+      <Property Name="Name">TextBoxControl22</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,420</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_7:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_7</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl23" Children="Controls">
+      <Property Name="Name">TextBoxControl23</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,400</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_6:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_6</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl24" Children="Controls">
+      <Property Name="Name">TextBoxControl24</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,380</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_5:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl25" Children="Controls">
+      <Property Name="Name">TextBoxControl25</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,360</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_4:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_4</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl26" Children="Controls">
+      <Property Name="Name">TextBoxControl26</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,340</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_3:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_3</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl27" Children="Controls">
+      <Property Name="Name">TextBoxControl27</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,320</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_2:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_2</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl28" Children="Controls">
+      <Property Name="Name">TextBoxControl28</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,300</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_1:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl29" Children="Controls">
+      <Property Name="Name">TextBoxControl29</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,280</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Double</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envVar_DisplayEnv1Voltage_0:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1Voltage_0</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl30" ControlName="EnvVar:envVar_DisplayEnv1OpTime_13" Children="Controls">
+      <Property Name="Name">HexEditorControl30</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,540</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl31" ControlName="EnvVar:envVar_DisplayEnv1OpTime_14" Children="Controls">
+      <Property Name="Name">HexEditorControl31</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,560</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_14</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl32" ControlName="EnvVar:envVar_DisplayEnv1OpTime_12" Children="Controls">
+      <Property Name="Name">HexEditorControl32</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,520</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl33" ControlName="EnvVar:envVar_DisplayEnv1OpTime_11" Children="Controls">
+      <Property Name="Name">HexEditorControl33</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,500</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_11</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl34" ControlName="EnvVar:envVar_DisplayEnv1OpTime_7" Children="Controls">
+      <Property Name="Name">HexEditorControl34</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,420</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl35" ControlName="EnvVar:envVar_DisplayEnv1OpTime_6" Children="Controls">
+      <Property Name="Name">HexEditorControl35</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,400</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl36" ControlName="EnvVar:envVar_DisplayEnv1OpTime_5" Children="Controls">
+      <Property Name="Name">HexEditorControl36</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,380</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl37" ControlName="EnvVar:envVar_DisplayEnv1OpTime_10" Children="Controls">
+      <Property Name="Name">HexEditorControl37</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,480</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl38" ControlName="EnvVar:envVar_DisplayEnv1OpTime_9" Children="Controls">
+      <Property Name="Name">HexEditorControl38</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,460</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl39" ControlName="EnvVar:envVar_DisplayEnv1OpTime_8" Children="Controls">
+      <Property Name="Name">HexEditorControl39</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,440</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl40" ControlName="EnvVar:envVar_DisplayEnv1OpTime_4" Children="Controls">
+      <Property Name="Name">HexEditorControl40</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,360</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl41" ControlName="EnvVar:envVar_DisplayEnv1OpTime_3" Children="Controls">
+      <Property Name="Name">HexEditorControl41</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,340</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl42" ControlName="EnvVar:envVar_DisplayEnv1OpTime_2" Children="Controls">
+      <Property Name="Name">HexEditorControl42</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,320</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl43" ControlName="EnvVar:envVar_DisplayEnv1OpTime_1" Children="Controls">
+      <Property Name="Name">HexEditorControl43</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,300</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl44" ControlName="EnvVar:envKTA_AO_FaultTimestamp_0" Children="Controls">
+      <Property Name="Name">HexEditorControl44</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,280</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv2OpTime_0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl45" ControlName="EnvVar:envVar_DisplayEnv1OpTime_13" Children="Controls">
+      <Property Name="Name">HexEditorControl45</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,540</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl46" ControlName="EnvVar:envVar_DisplayEnv1OpTime_14" Children="Controls">
+      <Property Name="Name">HexEditorControl46</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,560</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_14</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl47" ControlName="EnvVar:envVar_DisplayEnv1OpTime_12" Children="Controls">
+      <Property Name="Name">HexEditorControl47</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,520</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl48" ControlName="EnvVar:envVar_DisplayEnv1OpTime_11" Children="Controls">
+      <Property Name="Name">HexEditorControl48</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,500</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_11</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl49" ControlName="EnvVar:envVar_DisplayEnv1OpTime_7" Children="Controls">
+      <Property Name="Name">HexEditorControl49</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,420</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl50" ControlName="EnvVar:envVar_DisplayEnv1OpTime_6" Children="Controls">
+      <Property Name="Name">HexEditorControl50</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,400</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl51" ControlName="EnvVar:envVar_DisplayEnv1OpTime_5" Children="Controls">
+      <Property Name="Name">HexEditorControl51</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,380</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl52" ControlName="EnvVar:envVar_DisplayEnv1OpTime_10" Children="Controls">
+      <Property Name="Name">HexEditorControl52</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,480</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl53" ControlName="EnvVar:envVar_DisplayEnv1OpTime_9" Children="Controls">
+      <Property Name="Name">HexEditorControl53</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,460</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl54" ControlName="EnvVar:envVar_DisplayEnv1OpTime_8" Children="Controls">
+      <Property Name="Name">HexEditorControl54</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,440</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl55" ControlName="EnvVar:envVar_DisplayEnv1OpTime_4" Children="Controls">
+      <Property Name="Name">HexEditorControl55</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,360</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl56" ControlName="EnvVar:envVar_DisplayEnv1OpTime_3" Children="Controls">
+      <Property Name="Name">HexEditorControl56</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,340</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl57" ControlName="EnvVar:envVar_DisplayEnv1OpTime_2" Children="Controls">
+      <Property Name="Name">HexEditorControl57</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,320</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl58" ControlName="EnvVar:envVar_DisplayEnv1OpTime_1" Children="Controls">
+      <Property Name="Name">HexEditorControl58</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,300</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl59" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl59</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">835,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Voltage [V]</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl60" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl60</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">740,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Operation Time</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl61" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl61</Property>
+      <Property Name="Size">70,20</Property>
+      <Property Name="Location">670,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Voltage [V]</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl62" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl62</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Operation Time</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl63" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl63</Property>
+      <Property Name="Size">165,20</Property>
+      <Property Name="Location">740,240</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Second Environment Data</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl64" ControlName="EnvVar:envKTA_AO_Display_FaultsID_14" Children="Controls">
+      <Property Name="Name">HexEditorControl64</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,560</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_14</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl65" ControlName="EnvVar:envKTA_AO_Display_FaultsID_13" Children="Controls">
+      <Property Name="Name">HexEditorControl65</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,540</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl66" ControlName="EnvVar:envKTA_AO_Display_FaultsID_12" Children="Controls">
+      <Property Name="Name">HexEditorControl66</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,520</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl67" ControlName="EnvVar:envKTA_AO_Display_FaultsID_11" Children="Controls">
+      <Property Name="Name">HexEditorControl67</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,500</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_11</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl68" ControlName="EnvVar:envKTA_AO_Display_FaultsID_10" Children="Controls">
+      <Property Name="Name">HexEditorControl68</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,480</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl69" ControlName="EnvVar:envKTA_AO_Display_FaultsID_9" Children="Controls">
+      <Property Name="Name">HexEditorControl69</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,460</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl70" ControlName="EnvVar:envKTA_AO_Display_FaultsID_8" Children="Controls">
+      <Property Name="Name">HexEditorControl70</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,440</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl71" ControlName="EnvVar:envKTA_AO_Display_FaultsID_7" Children="Controls">
+      <Property Name="Name">HexEditorControl71</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,420</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl72" ControlName="EnvVar:envKTA_AO_Display_FaultsID_6" Children="Controls">
+      <Property Name="Name">HexEditorControl72</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,400</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl73" ControlName="EnvVar:envKTA_AO_Display_FaultsID_5" Children="Controls">
+      <Property Name="Name">HexEditorControl73</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,380</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl74" ControlName="EnvVar:envKTA_AO_Display_FaultsID_4" Children="Controls">
+      <Property Name="Name">HexEditorControl74</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,360</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl75" ControlName="EnvVar:envKTA_AO_Display_FaultsID_3" Children="Controls">
+      <Property Name="Name">HexEditorControl75</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,340</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl76" ControlName="EnvVar:envKTA_AO_Display_FaultsID_2" Children="Controls">
+      <Property Name="Name">HexEditorControl76</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,320</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl77" ControlName="EnvVar:envKTA_AO_Display_FaultsID_1" Children="Controls">
+      <Property Name="Name">HexEditorControl77</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,300</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl78" ControlName="EnvVar:envKTA_AO_Display_FaultsID_0" Children="Controls">
+      <Property Name="Name">HexEditorControl78</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,280</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">6</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultCode_0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl79" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl79</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">135,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Fault Code</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl80" Children="Controls">
+      <Property Name="Name">TextBoxControl80</Property>
+      <Property Name="Size">36,22</Property>
+      <Property Name="Location">853,208</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Center</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Decimal</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Courier New, 9pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_CycleTime:</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_CycleTime</Property>
+      <Property Name="ReadOnlyControl">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl81" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl81</Property>
+      <Property Name="Size">15,20</Property>
+      <Property Name="Location">896,209</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">None</Property>
+      <Property Name="Text">s</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl82" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl82</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">755,210</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">None</Property>
+      <Property Name="Text">read cyclic every</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl83" ControlName="envKTA_ReadCyclic">
+      <Property Name="Name">SwitchControl83</Property>
+      <Property Name="Size">33,40</Property>
+      <Property Name="Location">725,195</Property>
+      <Property Name="Activation">Left</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_ReadCyclic</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI84">
+      <Property Name="Name">SwitchControlBSI84</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,562</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm14</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI85">
+      <Property Name="Name">SwitchControlBSI85</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,542</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm13</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI86">
+      <Property Name="Name">SwitchControlBSI86</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,522</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm12</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI87">
+      <Property Name="Name">SwitchControlBSI87</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,502</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm11</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI88">
+      <Property Name="Name">SwitchControlBSI88</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,482</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm10</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI89">
+      <Property Name="Name">SwitchControlBSI89</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,462</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm9</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI90">
+      <Property Name="Name">SwitchControlBSI90</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,442</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm8</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI91">
+      <Property Name="Name">SwitchControlBSI91</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,422</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm7</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI92">
+      <Property Name="Name">SwitchControlBSI92</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,402</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm6</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI93">
+      <Property Name="Name">SwitchControlBSI93</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,382</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm5</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI94">
+      <Property Name="Name">SwitchControlBSI94</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">27,360</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm4</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI95">
+      <Property Name="Name">SwitchControlBSI95</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">27,340</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm3</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI96">
+      <Property Name="Name">SwitchControlBSI96</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">27,322</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm2</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI97">
+      <Property Name="Name">SwitchControlBSI97</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">27,300</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm1</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI98">
+      <Property Name="Name">SwitchControlBSI98</Property>
+      <Property Name="Size">15,16</Property>
+      <Property Name="Location">28,282</Property>
+      <Property Name="ImageFile">..\bmp\FaultState.bmp</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultAlarm0</Property>
+      <Property Name="TransparentColor">3,2,1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="StateCnt">4</Property>
+      <Property Name="Activation">LeftRight</Property>
+      <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl99" Children="Controls">
+      <Property Name="Name">TextBoxControl99</Property>
+      <Property Name="Size">225,22</Property>
+      <Property Name="Location">398,144</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Left</Property>
+      <Property Name="BoxBorderStyle">Fixed3D</Property>
+      <Property Name="ValueDisplay">Text</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Verdana, 8pt</Property>
+      <Property Name="AlarmUpperFont">Courier New, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="AlarmLowerFont">Courier New, 9pt</Property>
+      <Property Name="BoxBackColor">255,255,255</Property>
+      <Property Name="SymbolConfiguration" />
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl100" Children="Controls">
+      <Property Name="Name">ComboBoxControl100</Property>
+      <Property Name="Size">200,55</Property>
+      <Property Name="Location">188,144</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;env_KostiaCAN_LoginState</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl101" ControlName="EnvVar:envKTA_Sync" Children="Controls">
+      <Property Name="Name">ButtonControl101</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">128,144</Property>
+      <Property Name="Font">Verdana, 8pt</Property>
+      <Property Name="Text">Sync</Property>
+      <Property Name="SymbolConfiguration" />
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl102" ControlName="EnvVar:envKTA_Logout" Children="Controls">
+      <Property Name="Name">ButtonControl102</Property>
+      <Property Name="Size">58,25</Property>
+      <Property Name="Location">73,144</Property>
+      <Property Name="Font">Verdana, 8pt</Property>
+      <Property Name="Text">Logout</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_IFM_Logout</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl103" ControlName="EnvVar:envKTA_Login" Children="Controls">
+      <Property Name="Name">ButtonControl103</Property>
+      <Property Name="Size">50,25</Property>
+      <Property Name="Location">18,144</Property>
+      <Property Name="Font">Verdana, 8pt</Property>
+      <Property Name="Text">Login</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_IFM_Login</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl104" ControlName="EnvVar:envKTA_AO_FaultTimestamp_0" Children="Controls">
+      <Property Name="Name">HexEditorControl104</Property>
+      <Property Name="Size">95,20</Property>
+      <Property Name="Location">575,280</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">30</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayEnv1OpTime_0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl105" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl105</Property>
+      <Property Name="Size">165,20</Property>
+      <Property Name="Location">575,240</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">First Environment Data</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl106" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_14" Children="Controls">
+      <Property Name="Name">HexEditorControl106</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,560</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_14</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl107" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_13" Children="Controls">
+      <Property Name="Name">HexEditorControl107</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,540</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl108" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_12" Children="Controls">
+      <Property Name="Name">HexEditorControl108</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,520</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl109" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_11" Children="Controls">
+      <Property Name="Name">HexEditorControl109</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,500</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_11</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl110" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_10" Children="Controls">
+      <Property Name="Name">HexEditorControl110</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,480</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl111" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_9" Children="Controls">
+      <Property Name="Name">HexEditorControl111</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,460</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl112" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_8" Children="Controls">
+      <Property Name="Name">HexEditorControl112</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,440</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl113" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_7" Children="Controls">
+      <Property Name="Name">HexEditorControl113</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,420</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl114" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_6" Children="Controls">
+      <Property Name="Name">HexEditorControl114</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,400</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl115" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_5" Children="Controls">
+      <Property Name="Name">HexEditorControl115</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,380</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl116" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_4" Children="Controls">
+      <Property Name="Name">HexEditorControl116</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,360</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl117" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_3" Children="Controls">
+      <Property Name="Name">HexEditorControl117</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,340</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl118" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_2" Children="Controls">
+      <Property Name="Name">HexEditorControl118</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,320</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl119" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_1" Children="Controls">
+      <Property Name="Name">HexEditorControl119</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,300</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl120" ControlName="EnvVar:envKTA_AO_Display_FaultsDesc_0" Children="Controls">
+      <Property Name="Name">HexEditorControl120</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,280</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">100</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultId_0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl121" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl121</Property>
+      <Property Name="Size">65,20</Property>
+      <Property Name="Location">510,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Fault ID</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl122" ControlName="EnvVar:envKTA_AO_Display_FaultsName_14" Children="Controls">
+      <Property Name="Name">HexEditorControl122</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,560</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_14</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl123" ControlName="EnvVar:envKTA_AO_Display_FaultsName_13" Children="Controls">
+      <Property Name="Name">HexEditorControl123</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,540</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl124" ControlName="EnvVar:envKTA_AO_Display_FaultsName_12" Children="Controls">
+      <Property Name="Name">HexEditorControl124</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,520</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl125" ControlName="EnvVar:envKTA_AO_Display_FaultsName_11" Children="Controls">
+      <Property Name="Name">HexEditorControl125</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,500</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_11</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl126" ControlName="EnvVar:envKTA_AO_Display_FaultsName_10" Children="Controls">
+      <Property Name="Name">HexEditorControl126</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,480</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl127" ControlName="EnvVar:envKTA_AO_Display_FaultsName_9" Children="Controls">
+      <Property Name="Name">HexEditorControl127</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,460</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl128" ControlName="EnvVar:envKTA_AO_Display_FaultsName_8" Children="Controls">
+      <Property Name="Name">HexEditorControl128</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,440</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl129" ControlName="EnvVar:envKTA_AO_Display_FaultsName_7" Children="Controls">
+      <Property Name="Name">HexEditorControl129</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,420</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl130" ControlName="EnvVar:envKTA_AO_Display_FaultsName_6" Children="Controls">
+      <Property Name="Name">HexEditorControl130</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,400</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl131" ControlName="EnvVar:envKTA_AO_Display_FaultsName_5" Children="Controls">
+      <Property Name="Name">HexEditorControl131</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,380</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl132" ControlName="EnvVar:envKTA_AO_Display_FaultsName_4" Children="Controls">
+      <Property Name="Name">HexEditorControl132</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,360</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl133" ControlName="EnvVar:envKTA_AO_Display_FaultsName_3" Children="Controls">
+      <Property Name="Name">HexEditorControl133</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,340</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl134" ControlName="EnvVar:envKTA_AO_Display_FaultsName_2" Children="Controls">
+      <Property Name="Name">HexEditorControl134</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,320</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl135" ControlName="EnvVar:envKTA_AO_Display_FaultsName_1" Children="Controls">
+      <Property Name="Name">HexEditorControl135</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,300</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl136" ControlName="EnvVar:envKTA_AO_Display_FaultsName_0" Children="Controls">
+      <Property Name="Name">HexEditorControl136</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,280</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">127</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display_FaultsName_0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl137" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl137</Property>
+      <Property Name="Size">310,20</Property>
+      <Property Name="Location">200,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> Name</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl138" ControlName="EnvVar:envKTA_AO_FaultFrequency_14" Children="Controls">
+      <Property Name="Name">HexEditorControl138</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,560</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_14</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl139" ControlName="EnvVar:envKTA_AO_FaultFrequency_13" Children="Controls">
+      <Property Name="Name">HexEditorControl139</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,540</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl140" ControlName="EnvVar:envKTA_AO_FaultFrequency_12" Children="Controls">
+      <Property Name="Name">HexEditorControl140</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,520</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl141" ControlName="EnvVar:envKTA_AO_FaultFrequency_11" Children="Controls">
+      <Property Name="Name">HexEditorControl141</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,500</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_11</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl142" ControlName="EnvVar:envKTA_AO_FaultFrequency_10" Children="Controls">
+      <Property Name="Name">HexEditorControl142</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,480</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl143" ControlName="EnvVar:envKTA_AO_FaultFrequency_9" Children="Controls">
+      <Property Name="Name">HexEditorControl143</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,460</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl144" ControlName="EnvVar:envKTA_AO_FaultFrequency_8" Children="Controls">
+      <Property Name="Name">HexEditorControl144</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,440</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl145" ControlName="EnvVar:envKTA_AO_FaultFrequency_7" Children="Controls">
+      <Property Name="Name">HexEditorControl145</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,420</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl146" ControlName="EnvVar:envKTA_AO_FaultFrequency_6" Children="Controls">
+      <Property Name="Name">HexEditorControl146</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,400</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl147" ControlName="EnvVar:envKTA_AO_FaultFrequency_5" Children="Controls">
+      <Property Name="Name">HexEditorControl147</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,380</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl148" ControlName="EnvVar:envKTA_AO_FaultFrequency_4" Children="Controls">
+      <Property Name="Name">HexEditorControl148</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,360</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl149" ControlName="EnvVar:envKTA_AO_FaultFrequency_3" Children="Controls">
+      <Property Name="Name">HexEditorControl149</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,340</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl150" ControlName="EnvVar:envKTA_AO_FaultFrequency_2" Children="Controls">
+      <Property Name="Name">HexEditorControl150</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,320</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl151" ControlName="EnvVar:envKTA_AO_FaultFrequency_1" Children="Controls">
+      <Property Name="Name">HexEditorControl151</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,300</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl152" ControlName="EnvVar:envKTA_AO_FaultFrequency_0" Children="Controls">
+      <Property Name="Name">HexEditorControl152</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,280</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_FaultFrequency_0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl153" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl153</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">94,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Cnt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl154" ControlName="EnvVar:envKTA_AO_Display_FaultsID_14" Children="Controls">
+      <Property Name="Name">HexEditorControl154</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,560</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_14</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl155" ControlName="EnvVar:envKTA_AO_Display_FaultsID_13" Children="Controls">
+      <Property Name="Name">HexEditorControl155</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,540</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl156" ControlName="EnvVar:envKTA_AO_Display_FaultsID_12" Children="Controls">
+      <Property Name="Name">HexEditorControl156</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,520</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl157" ControlName="EnvVar:envKTA_AO_Display_FaultsID_11" Children="Controls">
+      <Property Name="Name">HexEditorControl157</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,500</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_11</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl158" ControlName="EnvVar:envKTA_AO_Display_FaultsID_10" Children="Controls">
+      <Property Name="Name">HexEditorControl158</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,480</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl159" ControlName="EnvVar:envKTA_AO_Display_FaultsID_9" Children="Controls">
+      <Property Name="Name">HexEditorControl159</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,460</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl160" ControlName="EnvVar:envKTA_AO_Display_FaultsID_8" Children="Controls">
+      <Property Name="Name">HexEditorControl160</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,440</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl161" ControlName="EnvVar:envKTA_AO_Display_FaultsID_7" Children="Controls">
+      <Property Name="Name">HexEditorControl161</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,420</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl162" ControlName="EnvVar:envKTA_AO_Display_FaultsID_6" Children="Controls">
+      <Property Name="Name">HexEditorControl162</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,400</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl163" ControlName="EnvVar:envKTA_AO_Display_FaultsID_5" Children="Controls">
+      <Property Name="Name">HexEditorControl163</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,380</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl164" ControlName="EnvVar:envKTA_AO_Display_FaultsID_4" Children="Controls">
+      <Property Name="Name">HexEditorControl164</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,360</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl165" ControlName="EnvVar:envKTA_AO_Display_FaultsID_3" Children="Controls">
+      <Property Name="Name">HexEditorControl165</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,340</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl166" ControlName="EnvVar:envKTA_AO_Display_FaultsID_2" Children="Controls">
+      <Property Name="Name">HexEditorControl166</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,320</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl167" ControlName="EnvVar:envKTA_AO_Display_FaultsID_1" Children="Controls">
+      <Property Name="Name">HexEditorControl167</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,300</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl168" ControlName="EnvVar:envKTA_AO_Display_FaultsID_0" Children="Controls">
+      <Property Name="Name">HexEditorControl168</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,280</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">5</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envVar_DisplayFaultIndex_0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl169" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl169</Property>
+      <Property Name="Size">40,20</Property>
+      <Property Name="Location">54,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">Index</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl170" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl170</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,560</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl171" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl171</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,540</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl172" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl172</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,520</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl173" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl173</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,500</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl174" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl174</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,480</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl175" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl175</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,460</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl176" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl176</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,440</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl177" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl177</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,420</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl178" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl178</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,400</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl179" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl179</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,380</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl180" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl180</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,360</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl181" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl181</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,340</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl182" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl182</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,320</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl183" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl183</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,300</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl184" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl184</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,280</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text"> </Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl185" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl185</Property>
+      <Property Name="Size">34,20</Property>
+      <Property Name="Location">18,260</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">Fixed3D</Property>
+      <Property Name="Text">State</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl186" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl186</Property>
+      <Property Name="Size">115,20</Property>
+      <Property Name="Location">304,207</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopCenter</Property>
+      <Property Name="BorderStyle">None</Property>
+      <Property Name="Text">Delay (after clear)</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl187">
+      <Property Name="Name">SwitchControl187</Property>
+      <Property Name="Size">33,40</Property>
+      <Property Name="Location">273,193</Property>
+      <Property Name="Activation">Left</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_ClearFaults_DelaySW</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl188" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl188</Property>
+      <Property Name="Size">60,20</Property>
+      <Property Name="Location">564,211</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Arial Narrow, 9pt, style=Bold</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">None</Property>
+      <Property Name="Text"># of Faults:</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl189" Children="Controls">
+      <Property Name="Name">ButtonControl189</Property>
+      <Property Name="Size">125,20</Property>
+      <Property Name="Location">433,208</Property>
+      <Property Name="Font">Verdana, 8pt</Property>
+      <Property Name="Text">Read No. of Faults</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_IFM_AO_ReadFaultNo</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl190" Children="Controls">
+      <Property Name="Name">ButtonControl190</Property>
+      <Property Name="Size">133,20</Property>
+      <Property Name="Location">20,208</Property>
+      <Property Name="Font">Verdana, 8pt</Property>
+      <Property Name="Text">Read Fault Manager</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_IFM_AO_ReadFaults</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl191" ControlName="EnvVar:envKTA_FehlerspLoeschen" Children="Controls">
+      <Property Name="Name">ButtonControl191</Property>
+      <Property Name="Size">113,20</Property>
+      <Property Name="Location">150,208</Property>
+      <Property Name="Font">Verdana, 8pt</Property>
+      <Property Name="Text">Clear Fault Mem</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_IFM_AO_ClearFaults</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl192" Children="Controls">
+      <Property Name="Name">HexEditorControl192</Property>
+      <Property Name="Size">45,20</Property>
+      <Property Name="Location">628,211</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Courier New, 9pt</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+      <Property Name="ColumnCount">20</Property>
+      <Property Name="ViewLayout">OnlyTextfield</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_NoFaultText</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl193" ControlName="EnvVar:envKTA_Display_Z4" Children="Controls">
+      <Property Name="Name">TextBoxControl193</Property>
+      <Property Name="Size">895,15</Property>
+      <Property Name="Location">20,65</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Left</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="ValueDisplay">Text</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_AO_Display4:</Property>
+      <Property Name="AlarmLowerFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="BoxBackColor">136,208,180</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display4</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl194" ControlName="EnvVar:envKTA_Display_Z3" Children="Controls">
+      <Property Name="Name">TextBoxControl194</Property>
+      <Property Name="Size">895,15</Property>
+      <Property Name="Location">20,50</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Left</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="ValueDisplay">Text</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_AO_Display3:</Property>
+      <Property Name="AlarmLowerFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="BoxBackColor">136,208,180</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display3</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl195" ControlName="EnvVar:envKTA_Display_Z2" Children="Controls">
+      <Property Name="Name">TextBoxControl195</Property>
+      <Property Name="Size">895,15</Property>
+      <Property Name="Location">20,35</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Left</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="ValueDisplay">Text</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_AO_Display2:</Property>
+      <Property Name="AlarmLowerFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="BoxBackColor">136,208,180</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display2</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl196" ControlName="EnvVar:envKTA_Display_Z1" Children="Controls">
+      <Property Name="Name">TextBoxControl196</Property>
+      <Property Name="Size">895,15</Property>
+      <Property Name="Location">20,20</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">0,0,0</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Left</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="ValueDisplay">Text</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKTA_AO_Display1:</Property>
+      <Property Name="AlarmLowerFont">Microsoft Sans Serif, 9pt</Property>
+      <Property Name="BoxBackColor">136,208,180</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKTA_AO_Display1</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl197" ControlName="ElemST" Children="Controls">
+      <Property Name="Name">StaticTextControl197</Property>
+      <Property Name="Size">530,14</Property>
+      <Property Name="Location">20,80</Property>
+      <Property Name="BackColor">255,255,255</Property>
+      <Property Name="Font">Verdana, 8pt</Property>
+      <Property Name="TextAlign">TopLeft</Property>
+      <Property Name="BorderStyle">None</Property>
+      <Property Name="Text">Kostia Message</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl198" ControlName="EnvVar:envKT2A_FehlerText" Children="Controls">
+      <Property Name="Name">TextBoxControl198</Property>
+      <Property Name="Size">895,17</Property>
+      <Property Name="Location">20,95</Property>
+      <Property Name="AlarmUpperTextColor">0,0,0</Property>
+      <Property Name="BoxForeColor">255,255,255</Property>
+      <Property Name="ValueDecimalPlaces">2</Property>
+      <Property Name="AlarmLowerBkgColor">0,0,255</Property>
+      <Property Name="BoxTextAlign">Left</Property>
+      <Property Name="BoxBorderStyle">None</Property>
+      <Property Name="ValueDisplay">Text</Property>
+      <Property Name="AlarmUpperBkgColor">255,0,0</Property>
+      <Property Name="AlarmLowerTextColor">0,0,0</Property>
+      <Property Name="BoxFont">Verdana, 8pt, style=Bold</Property>
+      <Property Name="AlarmUpperFont">Verdana, 8pt, style=Bold</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">envKT2A_FehlerText:</Property>
+      <Property Name="AlarmLowerFont">Verdana, 8pt, style=Bold</Property>
+      <Property Name="BoxBackColor">0,128,128</Property>
+      <Property Name="SymbolConfiguration">1;1;;;;envKT2A_FehlerText</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl199" ControlName="ElemFrame" Children="Controls">
+      <Property Name="Name">GroupBoxControl199</Property>
+      <Property Name="Size">915,410</Property>
+      <Property Name="Location">10,180</Property>
+      <Property Name="Font">Verdana, 8pt, style=Bold</Property>
+      <Property Name="Text">SAS Fault Manager</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl200" ControlName="ElemFrame" Children="Controls">
+      <Property Name="Name">GroupBoxControl200</Property>
+      <Property Name="Size">915,55</Property>
+      <Property Name="Location">10,125</Property>
+      <Property Name="Font">Verdana, 8pt, style=Bold</Property>
+      <Property Name="Text">Kostia (CAN)</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=7.2.36.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl201" ControlName="ElemFrame" Children="Controls">
+      <Property Name="Name">GroupBoxControl201</Property>
+      <Property Name="Size">915,115</Property>
+      <Property Name="Location">10,5</Property>
+      <Property Name="Font">Verdana, 8pt, style=Bold</Property>
+      <Property Name="Text">Display</Property>
+      <Property Name="ForeColor">0,0,0</Property>
+    </Object>
+    <Property Name="Panel">Panel</Property>
+    <Property Name="Size">934,596</Property>
+    <Property Name="BackColor">255,255,255</Property>
+  </Object>
+</Panel>

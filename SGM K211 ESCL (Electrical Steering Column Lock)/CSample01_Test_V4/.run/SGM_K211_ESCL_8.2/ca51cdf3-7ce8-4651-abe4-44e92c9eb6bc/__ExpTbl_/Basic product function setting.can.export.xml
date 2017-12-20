@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <function name="setInvertedIgn" comment="" signature="void setInvertedIgn(int status)" file="C:\Users\chen106\Desktop\K211 ESCL\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="status" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>78</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setCommEnableWakeup" comment="" signature="void setCommEnableWakeup(int status)" file="C:\Users\chen106\Desktop\K211 ESCL\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="status" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>536</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setSystemPowerMode" comment="" signature="void setSystemPowerMode(int status)" file="C:\Users\chen106\Desktop\K211 ESCL\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="status" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1020</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <testcase name="case1" comment="" signature="testcase case1()" file="C:\Users\chen106\Desktop\K211 ESCL\SGM K211 ESCL\Basic product function setting.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1220</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+</tclibrary>

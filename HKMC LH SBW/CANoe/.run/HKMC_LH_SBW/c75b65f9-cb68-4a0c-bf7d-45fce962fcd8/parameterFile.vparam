@@ -1,0 +1,16 @@
+Vector Parameter	1.0
+
+ScalarListSingleRecord
+
+Name	Type	Info	Values
+pgLed::plRunningLed	Auto		1
+			10
+
+Group	pgCycleTimes
+
+ScalarSingleRecord
+
+Name	Type	Info	Value
+pgLed::pMinCycleTime	Auto		199
+pgLed::pMaxCycleTime	Auto		201
+

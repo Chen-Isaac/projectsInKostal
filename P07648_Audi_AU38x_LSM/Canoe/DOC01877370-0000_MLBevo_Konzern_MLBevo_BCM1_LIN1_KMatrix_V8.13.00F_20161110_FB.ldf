@@ -1,0 +1,1188 @@
+/* ***********************************************************************/
+/*                                                                       */
+/*  LIN DESCRIPTION FILE                                                 */
+/*                                                                       */
+/*  Date:          10.11.2016                                            */
+/*  Project:       MLBevo_Konzern                                        */
+/*  Version:       V8.13.00F                                             */
+/*                                                                       */
+/*  Network:       BCM1_LIN1                                             */
+/*  Slave(s):      LDS                 Lichtschalter                     */
+/*                 RLFSI               Regen-, Licht-,                   */
+/*                                     FeuchtesensorInnen                */
+/*                 SWP                 Scheibenwaschpumpe                */
+/*                 WWS                 Steuerger? f? Wischermotor      */
+/*  Master:        BCM1                Body Control Modul 1              */
+/*                                                                       */
+/*  Ersteller:     Fabian Br?l(I/EE-821) AUDI AG                        */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*  SYSTEMPARAMETER                                                      */
+/*                                                                       */
+/*  Spannungsversorgung:       BCM1                Kl.30                 */
+/*                             LDS                 Kl.30                 */
+/*                             RLFSI               Kl.30                 */
+/*                             SWP                 Kl.30                 */
+/*                             WWS                 Kl.30                 */
+/*                                                                       */
+/*  Sleep / WakeUp:            BCM1                Ja, CAN aktiv         */
+/*                             LDS                 Ja, bei Betaetigung   */
+/*                             RLFSI               Ja, Wenn Regen        */
+/*                                                 erkannt im RLS        */
+/*                                                 Zustand "Verglasung   */
+/*                                                 offen"                */
+/*                             SWP                 Nein                  */
+/*                             WWS                 Nein                  */
+/*                                                                       */
+/*  Diagnoseklasse:            BCM1                4                     */
+/*                             LDS                 2                     */
+/*                             RLFSI               2                     */
+/*                             SWP                 2F                    */
+/*                             WWS                 2F                    */
+/*                                                                       */
+/*  ScheduleTable:             ST1                                       */
+/*                             ST2                                       */
+/*                             DiagRequest                               */
+/*                             DiagResponse                              */
+/*                             FlashRequest                              */
+/*                             FlashResponse                             */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*  AENDERUNGSHISTORIE                                                   */
+/*                                                                       */
+/*  29.04.2011 V8.01E                                                    */
+/*             - Erstversion fuer AU736 (aus Vernetzungsdatenbank)       */
+/*             (basiert auf D4_BCM1_V05_02-04-2008.ldf)                  */
+/*             - Aenderungen zu D4_BCM1_V05_02-04-2008.ldf               */
+/*                                                                       */
+/*             - Frame LDSs_01 von 6 auf 7 Byte erweitert                */
+/*                                                                       */
+/*             - Signal neu:                                             */
+/*             LDS_Stellgroesse_LWR; SRA_Sequenz_Status; WWS_DebugData   */
+/*             - Slavename geaendert:                                    */
+/*             RLS in RLF                                                */
+/*  14.06.2011 V8.01F                                                    */
+/*             - Master "BCM1_LIN1" geaendert in "BCM1"                  */
+/*             V8.01F                                                    */
+/*             - separate Diagnose-Schedule eingefuegt                   */
+/*  21.10.2011 V8.02F                                                    */
+/*             - RLF in RLFSI geaendert                                  */
+/*             V8.02F                                                    */
+/*             - Signal LDS_Stellgroesse_LWR entfernt, da keine          */
+/*             Halogenscheinwerfer                                       */
+/*  20.02.2012 V8.03E                                                    */
+/*             - Master_Zaehler,LDS_Zaehler und RLS_Zaehler in _BZ       */
+/*             umbenannt                                                 */
+/*             V8.03E                                                    */
+/*             - Schedulename in ST1 umbenannt                           */
+/*  06.03.2012 V8.03.01E                                                 */
+/*             - Wischer_NotlaufAktiv und WWS_LokalAktiv eingefuegt      */
+/*  09.03.2012 V8.03F                                                    */
+/*                                                                       */
+/*  02.08.2012 V8.04E                                                    */
+/*             - Wischer_Produktionsmodus;                               */
+/*             Wischer_Produktionsmodus_Status eingefuegt                */
+/*  03.08.2012 V8.04F                                                    */
+/*                                                                       */
+/*  24.01.2013 - Neue Signale eingef?t                                  */
+/*             RLS_Vorfeldhelligkeit_Boost; WWS_Produktionsmodus;        */
+/*             WWS_Produktionsmodus_Status                               */
+/*             V8.05.01E                                                 */
+/*                                                                       */
+/*  31.01.2013 V8.05F                                                    */
+/*                                                                       */
+/*  29.05.2013 - Flash-Schedule eingef?t                                */
+/*              (WWS)                                                    */
+/*             - Neue Signale eingef?t                                  */
+/*             LDS_LKS, LDS_SideView, LDS_SWA, Bel_LDS_SWA               */
+/*             V8.06.00E                                                 */
+/*                                                                       */
+/*  21.06.2013 V8.06.00F                                                 */
+/*             - Final-Release IS6                                       */
+/*  20.11.2013 V8.07.00E (Entwurf)                                       */
+/*             - SoSe (Sonnensensor-Frame eingefuegt) wird im RLFSI      */
+/*             integriert                                                */
+/*             V8.07.00E (Entwurf)                                       */
+/*             - SWP Steuergeraet zugefuegt                              */
+/*  02.12.2013 V8.07.01E                                                 */
+/*             - NASG-Knoten in SWP umbenannt                            */
+/*  11.12.2013 V8.07F                                                    */
+/*                                                                       */
+/*  24.04.2014 V8.08.00E                                                 */
+/*             -Schedule-Table eingefuegt (Gen2)                         */
+/*                                                                       */
+/*             - Signal LKS_LED_an eingefuegt                            */
+/*                                                                       */
+/*             - Signale ersetzt: DI_KL_58st durch DI_KL_58xt            */
+/*                                                                       */
+/*             - Signale ersetzt: DI_KL_58d durch DI_KL_58xd             */
+/*                                                                       */
+/*             - Neue LTM Signale (Gen2) eingefuegt                      */
+/*  05.05.2014 V8.08.01E                                                 */
+/*             - Bitpositionen in den Frames LTMs_01 und LTMe_01         */
+/*             angepasst                                                 */
+/*  12.05.2014 V8.08F                                                    */
+/*             -  Signal: Winterstellung_Wischer Empf?ger WWS entfernt  */
+/*  21.05.2014 V8.08.01F                                                 */
+/*             - Zusammenfuehrung von Gen1 und Gen2 LDFs                 */
+/*  25.09.2014 V8.09.00E                                                 */
+/*             -  Signal: Winterstellung_Wischer Empfaenger RLFSI        */
+/*             entfernt                                                  */
+/*  29.10.2014 V8.09.01E                                                 */
+/*             - Signal eingefuegt: LTM_Vatiante                         */
+/*  04.11.2014 V8.09F                                                    */
+/*                                                                       */
+/*  20.04.2015 V8.10.00E                                                 */
+/*             -                                                         */
+/*  27.05.2015 V8.10F                                                    */
+/*             - Final Release 22/15                                     */
+/*  01.07.2015 V8.11.00E                                                 */
+/*             - Klemme_15 von LDSe_01entfernt und in LTMe_01 eingefuegt */
+/*  22.09.2015 - Neuer Knoten zugefuegt: SWS (Sichtweitensensor)         */
+/*                                                                       */
+/*  03.11.2015 V8.11F                                                    */
+/*             - Release 45/15                                           */
+/*  11.12.2015 V8.11.01F                                                 */
+/*             - Signal Encoding angepasst: LTM_Vatiante                 */
+/*  20.01.2016 V.811.02E                                                 */
+/*             - WWS Enpfang des SWP_DWP_Aktiv zugefuegt                 */
+/*  15.02.2016 V8.11.02F                                                 */
+/*             - Sonderrelease 07/16                                     */
+/*  12.05.2016 V8.12.00E                                                 */
+/*             - SWS Entfall                                             */
+/*  24.05.2016 V8.12.00F                                                 */
+/*             - Release KW22/16                                         */
+/*  24.10.2016 V8.13.00E                                                 */
+/*             Keine ?derungen                                          */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*    HINWEIS:                                                           */
+/*    Die derzeit verwendete bzw. im ldf eingetragene product_id ist NUR */
+/*  default zur Vollstaendigkeit eingetragen. Diese muss eigenstaendig   */
+/*  vom Lieferanten wie folgt angepasst, zur Verfuegung gestellt werden: */
+/*    - "SupplierID" ist vom Lieferanten beim LIN Konsortium zu          */
+/*  organisieren                                                         */
+/*    - "FunctionID" ist vom Lieferanten zu verwalten                    */
+/*    - "VariantID" ist vom Lieferanten zu verwalten                     */
+/*       Bei jeder Aenderung ist dieser Index zu inkrementieren          */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*   Bildung der CRC-8:                                                  */
+/*   "C2" - Polynom:  P(X) = X^8 + X^5 + X^3 + X^2 + X + 1 = 0x97        */
+/*                                                                       */
+/*   Die CRC-8 auf LIN wird ueber saemtliche Datenbytes (0 bis n-1) des  */
+/*  LIN-Frames (ausser CRC-8-Feld) gebildet. Zusaetzlich flie? die      */
+/*  Protected ID des LIN-Frames als Datenbyte n in die CRC-8-Berechnung  */
+/*  mit ein.                                                             */
+/*   Die Umkonfiguration der Frame ID wirkt sich auf die                 */
+/*  CRC-8-Berechnung aus.                                                */
+/*                                                                       */
+/* ***********************************************************************/
+
+LIN_description_file;
+LIN_protocol_version = "2.0";
+LIN_language_version = "2.0";
+LIN_speed = 19.2 kbps;
+
+Nodes {
+  Master: BCM1, 10 ms, 0.1 ms ;
+  Slaves: LDS, RLFSI, SWP, WWS ;
+}
+
+Signals {
+  Aussentemp_gef: 8, 254, BCM1, RLFSI, SWP, WWS ;
+  BCM1_Anf_STGL_DWP: 1, 0, BCM1, SWP ;
+  BCM1_Anf_STGL_Heizung: 1, 0, BCM1, SWP ;
+  BCM1_Status_EM_Heizung: 3, 0, BCM1, SWP ;
+  BCM1_Status_FT_BFT: 1, 0, BCM1, SWP ;
+  BCM1_Status_SAD_Verdeck: 1, 0, BCM1, SWP ;
+  BCM1_Status_Waschwasser: 1, 0, BCM1, SWP ;
+  Bel_LDS_Auto: 1, 0, BCM1, LDS ;
+  Bel_LDS_Fahrlicht: 1, 0, BCM1, LDS ;
+  Bel_LDS_Nebellicht: 1, 0, BCM1, LDS ;
+  Bel_LDS_Nebelschlusslicht: 1, 0, BCM1, LDS ;
+  Bel_LDS_Standlicht: 1, 0, BCM1, LDS ;
+  Bel_LDS_SWA: 1, 0, BCM1, LDS ;
+  Bel_LTM_Auto: 1, 0, BCM1, LDS ;
+  Bel_LTM_Fahrlicht: 1, 0, BCM1, LDS ;
+  Bel_LTM_LKS: 1, 0, BCM1, LDS ;
+  Bel_LTM_Nebellicht: 1, 0, BCM1, LDS ;
+  Bel_LTM_Nebelschlusslicht: 1, 0, BCM1, LDS ;
+  Bel_LTM_PDC: 2, 0, BCM1, LDS ;
+  Bel_LTM_Standlicht: 1, 0, BCM1, LDS ;
+  Bel_LTM_SWA: 1, 0, BCM1, LDS ;
+  Bel_LTM_Tagfahrlicht: 1, 0, BCM1, LDS ;
+  Deaktivierung_RS: 1, 0, BCM1, RLFSI, WWS ;
+  DI_KL_58xd: 8, 254, BCM1, LDS ;
+  DI_KL_58xs: 7, 126, BCM1, LDS ;
+  DI_KL_58xt: 7, 126, BCM1, LDS ;
+  Empfindlichkeit_LS: 3, 3, BCM1, RLFSI, WWS ;
+  Empfindlichkeit_RS: 3, 3, BCM1, RLFSI, WWS ;
+  ESP_v_Signal_8Bit: 8, 254, BCM1, RLFSI, SWP, WWS ;
+  Fronthaube_geoeffnet: 1, 0, BCM1, RLFSI, SWP, WWS ;
+  FS_Luftfeuchte_rel: 8, 0, RLFSI, BCM1 ;
+  FS_ResponseError: 1, 0, RLFSI, BCM1 ;
+  FS_Taupunkt: 10, 0, RLFSI, BCM1 ;
+  FS_Temp_Scheibe: 10, 0, RLFSI, BCM1 ;
+  FS_Temp_Sensor: 8, 0, RLFSI, BCM1 ;
+  Klemme_15: 1, 0, BCM1, LDS, RLFSI, SWP, WWS ;
+  Klemme_X: 1, 0, BCM1, RLFSI, SWP, WWS ;
+  LDS_BZ: 4, 0, LDS, BCM1 ;
+  LDS_Error: 1, 0, LDS, BCM1 ;
+  LDS_HUD: 1, 0, LDS, BCM1 ;
+  LDS_HUD_Eyeboxposition: 6, 0, LDS, BCM1 ;
+  LDS_HUD_Eyeboxposition_Status: 2, 0, LDS, BCM1 ;
+  LDS_LKS: 2, 2, LDS, BCM1 ;
+  LDS_Lokalaktiv: 1, 0, LDS, BCM1 ;
+  LDS_Nebellicht: 1, 0, LDS, BCM1 ;
+  LDS_Nebelschlusslicht: 1, 0, LDS, BCM1 ;
+  LDS_NightVision: 1, 0, LDS, BCM1 ;
+  LDS_Qualifizierungsbit: 1, 0, LDS, BCM1 ;
+  LDS_ResponseError: 1, 0, LDS, BCM1 ;
+  LDS_Schalterstellung: 8, 0, LDS, BCM1 ;
+  LDS_SideView: 2, 2, LDS, BCM1 ;
+  LDS_Stellgroesse_Kl_58s: 7, 126, LDS, BCM1 ;
+  LDS_SWA: 2, 2, LDS, BCM1 ;
+  LKS_LED_an: 1, 0, BCM1, LDS ;
+  LS_Autobahnfahrlicht: 1, 0, RLFSI, BCM1 ;
+  LS_Dunkel: 1, 0, RLFSI, BCM1 ;
+  LS_Error: 1, 0, RLFSI, BCM1 ;
+  LS_Helligkeit_FW: 10, 1022, RLFSI, BCM1 ;
+  LS_Helligkeit_IR: 8, 254, RLFSI, BCM1 ;
+  LS_Licht_ein: 1, 0, RLFSI, BCM1 ;
+  LS_Licht_ein_invers: 1, 1, RLFSI, BCM1 ;
+  LTM_01_BZ: 4, 0, LDS, BCM1 ;
+  LTM_01_CRC: 8, 0, LDS, BCM1 ;
+  LTM_Autolicht: 2, 0, LDS, BCM1 ;
+  LTM_Beruehrung: 2, 0, LDS, BCM1 ;
+  LTM_Dimmpoti: 7, 125, LDS, BCM1 ;
+  LTM_Fahrlicht: 2, 2, LDS, BCM1 ;
+  LTM_HUD: 2, 2, LDS, BCM1 ;
+  LTM_Licht_Aus: 2, 2, LDS, BCM1 ;
+  LTM_LKS: 2, 2, LDS, BCM1 ;
+  LTM_Lokalaktiv: 1, 0, LDS, BCM1 ;
+  LTM_Nebellicht: 2, 0, LDS, BCM1 ;
+  LTM_Nebelschlusslicht: 2, 0, LDS, BCM1 ;
+  LTM_NightVision: 2, 2, LDS, BCM1 ;
+  LTM_PDC: 2, 2, LDS, BCM1 ;
+  LTM_ResponseError: 1, 0, LDS, BCM1 ;
+  LTM_SideView: 2, 2, LDS, BCM1 ;
+  LTM_Standlicht: 2, 2, LDS, BCM1 ;
+  LTM_StatusLichttastenmodul: 2, 2, LDS, BCM1 ;
+  LTM_SWA: 2, 2, LDS, BCM1 ;
+  LTM_Variante: 2, 0, LDS, BCM1 ;
+  Master_BZ: 4, 0, BCM1, RLFSI, WWS ;
+  RLS_BZ: 4, 0, RLFSI, BCM1, WWS ;
+  RLS_Qualifizierungsbit: 1, 0, RLFSI, BCM1 ;
+  RLS_ResponseError: 1, 0, RLFSI, BCM1, WWS ;
+  RLS_Vorfeldhelligkeit_Boost: 4, 15, RLFSI, BCM1 ;
+  RS_AdaptierungError: 1, 0, RLFSI, BCM1, WWS ;
+  RS_Error: 1, 0, RLFSI, BCM1, WWS ;
+  RS_Regenfahrlicht: 1, 0, RLFSI, BCM1 ;
+  RS_Regenmenge: 4, 14, RLFSI, BCM1 ;
+  RS_Schwall: 1, 0, RLFSI, BCM1, WWS ;
+  RS_Verglasung_schliessen: 1, 0, RLFSI, BCM1 ;
+  RS_versParklage_Wischer: 1, 0, RLFSI, BCM1, WWS ;
+  RS_Wischergeschwindigkeit: 3, 0, RLFSI, BCM1, SWP, WWS ;
+  Servicestellung_Wischer: 1, 0, BCM1, RLFSI, SWP, WWS ;
+  SMLS_alt: 1, 1, BCM1, RLFSI, WWS ;
+  SoSe_SunInt_2D_Li: 8, 254, RLFSI, BCM1 ;
+  SoSe_SunInt_2D_Re: 8, 254, RLFSI, BCM1 ;
+  SRA_Sequenz_Status: 1, 0, BCM1, WWS ;
+  Suchbel_LDS: 1, 0, BCM1, LDS ;
+  SWP_def: 1, 0, SWP, BCM1 ;
+  SWP_DWP_Aktiv: 1, 0, SWP, BCM1, WWS ;
+  SWP_DWP_Error_Block: 1, 0, SWP, BCM1 ;
+  SWP_DWP_Error_KS: 1, 0, SWP, BCM1 ;
+  SWP_DWP_Error_OL: 1, 0, SWP, BCM1 ;
+  SWP_DWP_Error_UEL: 1, 0, SWP, BCM1 ;
+  SWP_DWP_ErrorGueltigkeit: 1, 0, SWP, BCM1 ;
+  SWP_DWP_PWM_OWL: 8, 254, SWP, BCM1 ;
+  SWP_DWP_PWM_UWL: 8, 254, SWP, BCM1 ;
+  SWP_HZG_Aktiv: 1, 0, SWP, BCM1 ;
+  SWP_HZG_Error_KS: 1, 0, SWP, BCM1 ;
+  SWP_HZG_Error_OL: 1, 0, SWP, BCM1 ;
+  SWP_HZG_ErrorGueltigkeit: 1, 0, SWP, BCM1 ;
+  SWP_HZG_PWM: 8, 254, SWP, BCM1 ;
+  SWP_LokalAktiv: 1, 0, SWP, BCM1 ;
+  SWP_ResponseError: 1, 0, SWP, BCM1 ;
+  Verglasung_offen: 1, 0, BCM1, RLFSI, WWS ;
+  Wendelage_oben_Wischer: 1, 0, BCM1, RLFSI, WWS ;
+  Wendelage_unten_Wischer: 1, 0, BCM1, RLFSI, WWS ;
+  WH_Frontwaschen: 1, 0, BCM1, RLFSI, SWP, WWS ;
+  WH_Intervall: 1, 0, BCM1, RLFSI, SWP, WWS ;
+  WH_Intervallstufen: 4, 0, BCM1, RLFSI, SWP, WWS ;
+  WH_Tippwischen: 1, 0, BCM1, RLFSI, SWP, WWS ;
+  WH_WischerStufe1: 1, 0, BCM1, RLFSI, SWP, WWS ;
+  WH_WischerStufe2: 1, 0, BCM1, RLFSI, SWP, WWS ;
+  Wischer1_Error: 1, 0, WWS, BCM1 ;
+  Wischer1_ErrorGueltigkeit: 1, 0, WWS, BCM1 ;
+  Wischer1_Ueberlast: 1, 0, WWS, BCM1 ;
+  Wischer1_Wischgeschwindigkeit: 6, 62, WWS, BCM1, SWP ;
+  Wischer2_Error: 1, 0, WWS, BCM1 ;
+  Wischer2_ErrorGueltigkeit: 1, 0, WWS, BCM1 ;
+  Wischer2_Ueberlast: 1, 0, WWS, BCM1 ;
+  Wischer_aktiv: 1, 0, WWS, BCM1, RLFSI, SWP ;
+  Wischer_NotlaufAktiv: 1, 0, WWS, BCM1 ;
+  Wischer_Parklage: 1, 0, WWS, BCM1, RLFSI, SWP ;
+  Wischer_ResponseError: 1, 0, WWS, BCM1 ;
+  Wischer_Servicestellung: 1, 0, WWS, BCM1, SWP ;
+  Wischer_Wendelage: 1, 0, WWS, BCM1, RLFSI, SWP ;
+  Wischzykluszaehler: 16, 0, WWS, BCM1 ;
+  WWS_DebugData: 2, 0, WWS, BCM1 ;
+  WWS_LokalAktiv: 1, 0, WWS, BCM1 ;
+  WWS_Position_Wischerarm: 8, 254, WWS, BCM1, SWP ;
+  WWS_Produktionsmodus: 1, 0, BCM1, SWP, WWS ;
+  WWS_Produktionsmodus_Status: 1, 0, WWS, BCM1, SWP ;
+  word0: 16, 0, LDS, BCM1 ;
+  word1: 13, 0, LDS, BCM1 ;
+  word2: 16, 0, LDS, BCM1 ;
+  word3: 16, 0, LDS, BCM1 ;
+  word4: 16, 0, LDS, BCM1 ;
+  word5: 13, 0, LDS, BCM1 ;
+  word7: 16, 0, LDS, BCM1 ;
+  word6: 16, 0, LDS, BCM1 ;
+  approach_flag: 1, 0, LDS, BCM1 ;
+  touch_flag: 1, 0, LDS, BCM1 ;
+}
+
+Diagnostic_signals {
+  MasterReqB0: 8, 0 ;
+  MasterReqB1: 8, 0 ;
+  MasterReqB2: 8, 0 ;
+  MasterReqB3: 8, 0 ;
+  MasterReqB4: 8, 0 ;
+  MasterReqB5: 8, 0 ;
+  MasterReqB6: 8, 0 ;
+  MasterReqB7: 8, 0 ;
+  SlaveRespB0: 8, 0 ;
+  SlaveRespB1: 8, 0 ;
+  SlaveRespB2: 8, 0 ;
+  SlaveRespB3: 8, 0 ;
+  SlaveRespB4: 8, 0 ;
+  SlaveRespB5: 8, 0 ;
+  SlaveRespB6: 8, 0 ;
+  SlaveRespB7: 8, 0 ;
+}
+
+
+Frames {
+  BCM1_LIN1_01: 49, BCM1, 8 {
+    Master_BZ, 0 ;
+    Klemme_15, 4 ;
+    Klemme_X, 5 ;
+    Verglasung_offen, 6 ;
+    Fronthaube_geoeffnet, 7 ;
+    WH_Intervallstufen, 8 ;
+    WH_Tippwischen, 12 ;
+    WH_Intervall, 13 ;
+    WH_WischerStufe1, 14 ;
+    WH_WischerStufe2, 15 ;
+    WH_Frontwaschen, 16 ;
+    Servicestellung_Wischer, 17 ;
+    Wendelage_unten_Wischer, 19 ;
+    Wendelage_oben_Wischer, 20 ;
+    SMLS_alt, 21 ;
+    SRA_Sequenz_Status, 23 ;
+    WWS_Produktionsmodus, 24 ;
+    ESP_v_Signal_8Bit, 32 ;
+    Aussentemp_gef, 40 ;
+    Empfindlichkeit_LS, 48 ;
+    Deaktivierung_RS, 51 ;
+    Empfindlichkeit_RS, 52 ;
+    BCM1_Status_EM_Heizung, 56 ;
+    BCM1_Status_FT_BFT, 59 ;
+    BCM1_Status_SAD_Verdeck, 60 ;
+    BCM1_Status_Waschwasser, 61 ;
+    BCM1_Anf_STGL_DWP, 62 ;
+    BCM1_Anf_STGL_Heizung, 63 ;
+  }
+  FSs_01: 41, RLFSI, 8 {
+    FS_Taupunkt, 0 ;
+    FS_ResponseError, 15 ;
+    FS_Temp_Scheibe, 16 ;
+    FS_Temp_Sensor, 32 ;
+    FS_Luftfeuchte_rel, 40 ;
+  }
+  LDSe_01: 12, BCM1, 6 {
+    Bel_LDS_Auto, 0 ;
+    Bel_LDS_Standlicht, 1 ;
+    Bel_LDS_Fahrlicht, 2 ;
+    Bel_LDS_SWA, 4 ;
+    Bel_LDS_Nebellicht, 8 ;
+    Bel_LDS_Nebelschlusslicht, 9 ;
+    LKS_LED_an, 10 ;
+    DI_KL_58xd, 16 ;
+    DI_KL_58xt, 24 ;
+    Suchbel_LDS, 31 ;
+    DI_KL_58xs, 32 ;
+  }
+  LDSs_01: 11, LDS, 6 {
+    LDS_BZ, 0 ;
+    LDS_Error, 4 ;
+    LDS_ResponseError, 5 ;
+    LDS_Qualifizierungsbit, 6 ;
+    LDS_Lokalaktiv, 7 ;
+    LDS_Schalterstellung, 8 ;
+    LDS_Nebellicht, 16 ;
+    LDS_Nebelschlusslicht, 17 ;
+    LDS_NightVision, 18 ;
+    LDS_HUD, 19 ;
+    LDS_SideView, 20 ;
+    LDS_LKS, 22 ;
+    LDS_Stellgroesse_Kl_58s, 24 ;
+    LDS_HUD_Eyeboxposition, 32 ;
+    LDS_HUD_Eyeboxposition_Status, 38 ;
+    LDS_SWA, 40 ;
+  }
+  LTMe_01: 14, BCM1, 8 {
+    Bel_LTM_Auto, 0 ;
+    Bel_LTM_Standlicht, 1 ;
+    Bel_LTM_Fahrlicht, 2 ;
+    Bel_LTM_Tagfahrlicht, 3 ;
+    Bel_LTM_Nebellicht, 8 ;
+    Bel_LTM_Nebelschlusslicht, 9 ;
+    Bel_LTM_SWA, 10 ;
+    Bel_LTM_LKS, 11 ;
+    Bel_LTM_PDC, 12 ;
+    DI_KL_58xd, 16 ;
+    DI_KL_58xt, 24 ;
+    Klemme_15, 31 ;
+    DI_KL_58xs, 32 ;
+  }
+  LTMs_01: 13, LDS, 8 {
+    LTM_01_CRC, 0 ;
+    LTM_01_BZ, 8 ;
+    LTM_ResponseError, 12 ;
+    LTM_Lokalaktiv, 13 ;
+    LTM_StatusLichttastenmodul, 14 ;
+    LTM_Autolicht, 16 ;
+    LTM_Standlicht, 18 ;
+    LTM_Fahrlicht, 20 ;
+    LTM_Beruehrung, 22 ;
+    LTM_Nebellicht, 24 ;
+    LTM_Nebelschlusslicht, 26 ;
+    LTM_SWA, 28 ;
+    LTM_LKS, 30 ;
+    LTM_PDC, 32 ;
+    LTM_NightVision, 34 ;
+    LTM_SideView, 36 ;
+    LTM_HUD, 38 ;
+    LTM_Dimmpoti, 40 ;
+    LTM_Licht_Aus, 48 ;
+    LTM_Variante, 50 ;
+  }
+  RLSs_01: 35, RLFSI, 8 {
+    RLS_BZ, 0 ;
+    RLS_Qualifizierungsbit, 4 ;
+    RS_Wischergeschwindigkeit, 5 ;
+    RS_Schwall, 8 ;
+    RS_Verglasung_schliessen, 9 ;
+    RS_versParklage_Wischer, 10 ;
+    LS_Licht_ein, 11 ;
+    LS_Licht_ein_invers, 12 ;
+    LS_Dunkel, 13 ;
+    LS_Autobahnfahrlicht, 14 ;
+    RS_Regenfahrlicht, 15 ;
+    RS_AdaptierungError, 16 ;
+    RS_Error, 17 ;
+    LS_Error, 18 ;
+    RLS_ResponseError, 19 ;
+    RLS_Vorfeldhelligkeit_Boost, 20 ;
+    LS_Helligkeit_IR, 24 ;
+    LS_Helligkeit_FW, 32 ;
+    RS_Regenmenge, 44 ;
+  }
+  SoSes_01: 48, RLFSI, 8 {
+    SoSe_SunInt_2D_Li, 0 ;
+    SoSe_SunInt_2D_Re, 8 ;
+  }
+  SWPs_01: 51, SWP, 8 {
+    SWP_ResponseError, 7 ;
+    SWP_DWP_PWM_OWL, 8 ;
+    SWP_DWP_PWM_UWL, 16 ;
+    SWP_DWP_Aktiv, 24 ;
+    SWP_DWP_Error_OL, 25 ;
+    SWP_DWP_Error_KS, 26 ;
+    SWP_DWP_Error_UEL, 27 ;
+    SWP_DWP_Error_Block, 28 ;
+    SWP_DWP_ErrorGueltigkeit, 31 ;
+    SWP_HZG_PWM, 32 ;
+    SWP_HZG_Aktiv, 40 ;
+    SWP_HZG_Error_OL, 41 ;
+    SWP_HZG_Error_KS, 42 ;
+    SWP_HZG_ErrorGueltigkeit, 47 ;
+    SWP_LokalAktiv, 48 ;
+    SWP_def, 55 ;
+  }
+  WWSs_01: 50, WWS, 6 {
+    Wischer_aktiv, 0 ;
+    Wischer_NotlaufAktiv, 1 ;
+    Wischer_Wendelage, 2 ;
+    Wischer_Parklage, 3 ;
+    Wischer_Servicestellung, 4 ;
+    WWS_Produktionsmodus_Status, 5 ;
+    Wischzykluszaehler, 8 ;
+    Wischer1_Error, 24 ;
+    Wischer1_Ueberlast, 25 ;
+    Wischer1_ErrorGueltigkeit, 26 ;
+    Wischer2_Error, 27 ;
+    Wischer2_Ueberlast, 28 ;
+    Wischer2_ErrorGueltigkeit, 29 ;
+    WWS_LokalAktiv, 30 ;
+    Wischer_ResponseError, 31 ;
+    Wischer1_Wischgeschwindigkeit, 32 ;
+    WWS_DebugData, 38 ;
+    WWS_Position_Wischerarm, 40 ;
+  }
+  CapS_Debug: 0, LDS, 8 {
+    word0, 0 ;
+    word1, 16 ;
+    word2, 32 ;
+    word3, 48 ;
+    touch_flag, 31 ;
+  }
+  CapS_Debug2: 1, LDS, 8 {
+    word4, 0 ;
+    word5, 16 ;
+    word7, 48 ;
+    word6, 32 ;
+    approach_flag, 31 ;
+  }
+}
+
+
+
+Diagnostic_frames {
+  MasterReq: 0x3c {
+    MasterReqB0, 0 ;
+    MasterReqB1, 8 ;
+    MasterReqB2, 16 ;
+    MasterReqB3, 24 ;
+    MasterReqB4, 32 ;
+    MasterReqB5, 40 ;
+    MasterReqB6, 48 ;
+    MasterReqB7, 56 ;
+  }
+  SlaveResp: 0x3d {
+    SlaveRespB0, 0 ;
+    SlaveRespB1, 8 ;
+    SlaveRespB2, 16 ;
+    SlaveRespB3, 24 ;
+    SlaveRespB4, 32 ;
+    SlaveRespB5, 40 ;
+    SlaveRespB6, 48 ;
+    SlaveRespB7, 56 ;
+  }
+}
+
+Node_attributes {
+  LDS{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0x1D ;
+    product_id = 0x56, 0x0, 0 ;
+    response_error = LDS_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      LDSe_01 = 0x100C ;
+      LDSs_01 = 0x100B ;
+      LTMe_01 = 0x100E ;
+      LTMs_01 = 0x100D ;
+      CapS_Debug = 0x0 ;
+      CapS_Debug2 = 0x0 ;
+      BCM1_LIN1_01 = 0x0 ;
+    }
+  }
+  RLFSI{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0x2 ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = RLS_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      BCM1_LIN1_01 = 0x1031 ;
+      FSs_01 = 0x2029 ;
+      RLSs_01 = 0x1023 ;
+      SoSes_01 = 0x1030 ;
+      WWSs_01 = 0x1032 ;
+      LTMe_01 = 0x0 ;
+    }
+  }
+  SWP{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0x1B ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = SWP_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      BCM1_LIN1_01 = 0x1031 ;
+      RLSs_01 = 0x1023 ;
+      SWPs_01 = 0x1033 ;
+      WWSs_01 = 0x1032 ;
+      LTMe_01 = 0x0 ;
+    }
+  }
+  WWS{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0xB ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = Wischer_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      BCM1_LIN1_01 = 0x1031 ;
+      RLSs_01 = 0x1023 ;
+      WWSs_01 = 0x1032 ;
+      LTMe_01 = 0x0 ;
+      SWPs_01 = 0x0 ;
+    }
+  }
+}
+
+Schedule_tables {
+ ST1 {
+    BCM1_LIN1_01 delay 10 ms ;
+    WWSs_01 delay 10 ms ;
+    LDSs_01 delay 10 ms ;
+    RLSs_01 delay 10 ms ;
+    LDSe_01 delay 10 ms ;
+    FSs_01 delay 10 ms ;
+    BCM1_LIN1_01 delay 10 ms ;
+    WWSs_01 delay 10 ms ;
+    LDSs_01 delay 10 ms ;
+    RLSs_01 delay 10 ms ;
+    LDSe_01 delay 10 ms ;
+    SoSes_01 delay 10 ms ;
+    BCM1_LIN1_01 delay 10 ms ;
+    WWSs_01 delay 10 ms ;
+    LDSs_01 delay 10 ms ;
+    RLSs_01 delay 10 ms ;
+    LDSe_01 delay 10 ms ;
+    SWPs_01 delay 10 ms ;
+  }
+ ST2 {
+    BCM1_LIN1_01 delay 10 ms ;
+    WWSs_01 delay 10 ms ;
+    LTMs_01 delay 10 ms ;
+    RLSs_01 delay 10 ms ;
+    LTMe_01 delay 10 ms ;
+    FSs_01 delay 10 ms ;
+    BCM1_LIN1_01 delay 10 ms ;
+    WWSs_01 delay 10 ms ;
+    LTMs_01 delay 10 ms ;
+    RLSs_01 delay 10 ms ;
+    LTMe_01 delay 10 ms ;
+    SoSes_01 delay 10 ms ;
+    BCM1_LIN1_01 delay 10 ms ;
+    WWSs_01 delay 10 ms ;
+    LTMs_01 delay 10 ms ;
+    RLSs_01 delay 10 ms ;
+    LTMe_01 delay 10 ms ;
+    SWPs_01 delay 10 ms ;
+  }
+ DiagRequest {
+    MasterReq delay 10 ms ;
+  }
+ DiagResponse {
+    SlaveResp delay 10 ms ;
+  }
+ FlashRequest {
+    MasterReq delay 10 ms ;
+  }
+ FlashResponse {
+    SlaveResp delay 10 ms ;
+  }
+ LTM_test {
+    LTMs_01 delay 10 ms ;
+  }
+ CapS_Debug {
+    LTMe_01 delay 10 ms ;
+    LTMs_01 delay 10 ms ;
+    CapS_Debug delay 10 ms ;
+    CapS_Debug2 delay 10 ms ;
+  }
+ recieve_test {
+    LTMe_01 delay 10 ms ;
+    LTMs_01 delay 10 ms ;
+  }
+}
+
+
+Signal_encoding_types {
+  Aussentemp_gef_encoding {
+    physical_value, 0, 252, 0.5, -50, "Unit_DegreCelsi" ;
+    logical_value, 253, "nicht verbaut" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  BCM1_Anf_STGL_DWP_encoding {
+    logical_value, 0, "Stellgliedtest_DWP_nicht_angefordert" ;
+    logical_value, 1, "Stellgliedtest_DWP_aktiv_angefordert" ;
+  }
+  BCM1_Anf_STGL_Heizung_encoding {
+    logical_value, 0, "Stellgliedtest_HZG_nicht_angefordert" ;
+    logical_value, 1, "Stellgliedtest_HZG_aktiv_angefordert" ;
+  }
+  BCM1_Status_EM_Heizung_encoding {
+    physical_value, 0, 7, 14.28572, 0, "Unit_PerCent" ;
+  }
+  BCM1_Status_FT_BFT_encoding {
+    logical_value, 0, "FT_UND_BFT_geschlossen" ;
+    logical_value, 1, "FT_ODER_BFT_geoeffnet" ;
+  }
+  BCM1_Status_SAD_Verdeck_encoding {
+    logical_value, 0, "Verdeck_SAD_geschlossen" ;
+    logical_value, 1, "Verdeck_SAD_geoeffnet" ;
+  }
+  BCM1_Status_Waschwasser_encoding {
+    logical_value, 0, "Fuellstandswarnung_Waschwasser_inaktiv" ;
+    logical_value, 1, "Fuellstandswarnung_Waschwasser_aktiv" ;
+  }
+  Bel_LTM_PDC_encoding {
+    logical_value, 0, "Aus" ;
+    logical_value, 1, "Ein" ;
+    logical_value, 2, "Blinken" ;
+  }
+  CapS_SINT16 {
+    physical_value, 0, 0, 1, -32768 ;
+  }
+  DI_KL_58xd_encoding {
+    physical_value, 0, 253, 1, 0 ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  Deaktivierung_RS_encoding {
+    logical_value, 0, "normal" ;
+    logical_value, 1, "deaktiv" ;
+  }
+  ESP_v_Signal_8Bit_encoding {
+    physical_value, 0, 253, 2.56, 0, "Unit_KiloMeterPerHour" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  Empfindlichkeit_LS_encoding {
+    logical_value, 0, "-45%" ;
+    logical_value, 1, "-30%" ;
+    logical_value, 2, "-15%" ;
+    logical_value, 3, "normal" ;
+    logical_value, 4, "+20%" ;
+    logical_value, 5, "+40%" ;
+    logical_value, 6, "+60%" ;
+  }
+  Empfindlichkeit_RS_encoding {
+    logical_value, 0, "am unempfindlichsten" ;
+    logical_value, 1, "unempfindlicher" ;
+    logical_value, 2, "unempfindlich" ;
+    logical_value, 3, "normal" ;
+    logical_value, 4, "empfindlich" ;
+    logical_value, 5, "empfindlicher" ;
+    logical_value, 6, "am empfindlichsten" ;
+  }
+  FS_Luftfeuchte_rel_encoding {
+    physical_value, 1, 201, 0.5, -0.5, "Unit_PerCent" ;
+    logical_value, 0, "nicht verfuegbar" ;
+    logical_value, 255, "Fehler" ;
+  }
+  FS_Taupunkt_encoding {
+    physical_value, 1, 1000, 0.1, -39.6, "Unit_DegreCelsi" ;
+    logical_value, 0, "nicht verfuegbar" ;
+    logical_value, 1023, "Fehler" ;
+  }
+  FS_Temp_Scheibe_encoding {
+    physical_value, 1, 1000, 0.1, -39.6, "Unit_DegreCelsi" ;
+    logical_value, 0, "nicht verfuegbar" ;
+    logical_value, 1023, "Fehler" ;
+  }
+  FS_Temp_Sensor_encoding {
+    physical_value, 1, 254, 0.5, -40, "Unit_DegreCelsi" ;
+    logical_value, 0, "nicht verfuegbar" ;
+    logical_value, 255, "Fehler" ;
+  }
+  Fronthaube_geoeffnet_encoding {
+    logical_value, 0, "geschlossen" ;
+    logical_value, 1, "geoeffnet" ;
+  }
+  LDS_HUD_Eyeboxposition_Status_encoding {
+    logical_value, 0, "Position_gueltig_keine_Aenderung" ;
+    logical_value, 1, "Drehung_im_Uhrzeigersinn" ;
+    logical_value, 2, "Drehung_entgegen_dem_Uhrzeigersinn" ;
+    logical_value, 3, "Position_ungueltig" ;
+  }
+  LDS_HUD_Eyeboxposition_encoding {
+    physical_value, 0, 63, 1, 0, "Unit_None" ;
+  }
+  LDS_LKS_encoding {
+    logical_value, 0, "Taste_nicht_betaetigt" ;
+    logical_value, 1, "Taste_betaetigt" ;
+    logical_value, 2, "INIT_Taste_Nicht_Verbaut" ;
+  }
+  LDS_SWA_encoding {
+    logical_value, 0, "nicht_betaetigt" ;
+    logical_value, 1, "betaetigt" ;
+    logical_value, 2, "Init_oder_nicht_bestueckt" ;
+  }
+  LDS_Schalterstellung_encoding {
+    logical_value, 0, "Init" ;
+    logical_value, 1, "Schalterstellung 0" ;
+    logical_value, 2, "Auto" ;
+    logical_value, 4, "Standlicht" ;
+    logical_value, 8, "Fahrlicht" ;
+  }
+  LDS_SideView_encoding {
+    logical_value, 0, "Taste_nicht_betaetigt" ;
+    logical_value, 1, "Taste_betaetigt" ;
+    logical_value, 2, "INIT_Taste_nicht_Verbaut" ;
+  }
+  LDS_Stellgroesse_Kl_58s_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+    logical_value, 125, "nicht verbaut" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Fehler" ;
+  }
+  LS_Dunkel_encoding {
+    logical_value, 0, "Hell" ;
+    logical_value, 1, "Dunkel" ;
+  }
+  LS_Helligkeit_FW_encoding {
+    physical_value, 0, 1021, 6, 0, "Unit_Lux" ;
+    logical_value, 1022, "Init" ;
+    logical_value, 1023, "Fehler" ;
+  }
+  LS_Helligkeit_IR_encoding {
+    physical_value, 0, 253, 400, 0, "Unit_Lux" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  LTM_Beruehrung_encoding {
+    logical_value, 0, "Beruehrung_inaktiv" ;
+    logical_value, 1, "Beruehrung_aktiv" ;
+    logical_value, 2, "Beruehrungssensor_nicht_verbaut" ;
+  }
+  LTM_Dimmpoti_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+    logical_value, 125, "nicht_verbaut" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Fehler" ;
+  }
+  LTM_StatusLichttastenmodul_encoding {
+    logical_value, 0, "Lichttastenmodul_betriebsbereit" ;
+    logical_value, 2, "Init" ;
+    logical_value, 3, "Fehler_oder_defekt" ;
+  }
+  LTM_Variante_encoding {
+    logical_value, 0, "Ein_Tasten_Bedienung" ;
+    logical_value, 1, "Drei_Tasten_Bedienung" ;
+    logical_value, 2, "Variante_3" ;
+    logical_value, 3, "Variante_4" ;
+  }
+  RLS_Vorfeldhelligkeit_Boost_encoding {
+    logical_value, 0, "groesser_24413_Lux" ;
+    logical_value, 1, "bis_24413_Lux" ;
+    logical_value, 2, "bis_22193_Lux" ;
+    logical_value, 3, "bis_20176_Lux" ;
+    logical_value, 4, "bis_18342_Lux" ;
+    logical_value, 5, "bis_16647_Lux" ;
+    logical_value, 6, "bis_15158_Lux" ;
+    logical_value, 7, "bis_13780_Lux" ;
+    logical_value, 8, "bis_12527_Lux" ;
+    logical_value, 9, "bis_11388_Lux" ;
+    logical_value, 10, "bis_10353_Lux" ;
+    logical_value, 11, "bis_9412_Lux" ;
+    logical_value, 12, "bis_8556_Lux" ;
+    logical_value, 13, "bis_7778_Lux" ;
+    logical_value, 14, "bis_7071_Lux" ;
+    logical_value, 15, "bis_6428_Lux" ;
+  }
+  RS_Regenmenge_encoding {
+    physical_value, 0, 10, 10, 0, "Unit_PerCent" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Fehler" ;
+  }
+  RS_Verglasung_schliessen_encoding {
+    logical_value, 0, "Verglasung nicht schliessen" ;
+    logical_value, 1, "Verglasung schliessen" ;
+  }
+  RS_Wischergeschwindigkeit_encoding {
+    logical_value, 0, "kein Wischen" ;
+    logical_value, 1, "42 Huebe/min" ;
+    logical_value, 2, "45 Huebe/min" ;
+    logical_value, 3, "48 Huebe/min" ;
+    logical_value, 4, "51 Huebe/min" ;
+    logical_value, 5, "54 Huebe/min" ;
+    logical_value, 6, "57 Huebe/min" ;
+    logical_value, 7, "60 Huebe/min" ;
+  }
+  SC_100Prozent_7Bit_Init {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Fehler" ;
+  }
+  SC_Aus_Ein {
+    logical_value, 0, "Aus" ;
+    logical_value, 1, "Ein" ;
+  }
+  SC_BZ {
+    physical_value, 0, 15, 1, 0 ;
+  }
+  SC_Betaetigung {
+    logical_value, 0, "nicht_betaetigt" ;
+    logical_value, 1, "betaetigt" ;
+  }
+  SC_CRC {
+    physical_value, 0, 255, 1, 0 ;
+  }
+  SC_Fehler {
+    logical_value, 0, "kein_Fehler" ;
+    logical_value, 1, "Fehler" ;
+  }
+  SC_Fehler_Gueltigkeit {
+    logical_value, 0, "Fehler_passiv__Fehlerpfad_nicht_durchlaufen" ;
+    logical_value, 1, "Fehler_gueltig__Fehlerpfad_durchlaufen" ;
+  }
+  SC_LED_AusEin {
+    logical_value, 0, "LED_aus" ;
+    logical_value, 1, "LED_ein" ;
+  }
+  SC_Lokalaktiv_2 {
+    logical_value, 0, "war_nicht_lokal_aktiv" ;
+    logical_value, 1, "war_lokal_aktiv" ;
+  }
+  SC_Taster_betaetigt_2 {
+    logical_value, 0, "Taste_unbetaetigt" ;
+    logical_value, 1, "Taste_betaetigt" ;
+    logical_value, 2, "Taste_nicht_verbaut" ;
+  }
+  SC_Veraltet_Bit {
+    logical_value, 0, "aktuell" ;
+    logical_value, 1, "veraltet" ;
+  }
+  SC_inaktiv_aktiv {
+    logical_value, 0, "inaktiv" ;
+    logical_value, 1, "aktiv" ;
+  }
+  SC_normal_Fehler {
+    logical_value, 0, "normal" ;
+    logical_value, 1, "Fehler" ;
+  }
+  SC_ungueltig_gueltig {
+    logical_value, 0, "ungueltig" ;
+    logical_value, 1, "gueltig" ;
+  }
+  SWP_DWP_Aktiv_encoding {
+    logical_value, 0, "DWP_Ansteuerung_Inaktiv" ;
+    logical_value, 1, "DWP_Ansteuerung_Aktiv" ;
+  }
+  SWP_DWP_Error_Block_encoding {
+    logical_value, 0, "DWP_Diagnose_Block_Inaktiv" ;
+    logical_value, 1, "DWP_Diagnose_Block_Aktiv" ;
+  }
+  SWP_DWP_Error_KS_encoding {
+    logical_value, 0, "DWP_Diagnose_KS_Inaktiv" ;
+    logical_value, 1, "DWP_Diagnose_KS_Aktiv" ;
+  }
+  SWP_DWP_Error_OL_encoding {
+    logical_value, 0, "DWP_Diagnose_OL_Inaktiv" ;
+    logical_value, 1, "DWP_Diagnose_OL_Aktiv" ;
+  }
+  SWP_DWP_Error_UEL_encoding {
+    logical_value, 0, "DWP_Diagnose_UEL_Inaktiv" ;
+    logical_value, 1, "DWP_Diagnose_UEL_Aktiv" ;
+  }
+  SWP_DWP_PWM_OWL_encoding {
+    physical_value, 0, 200, 1, -100, "Unit_PerCent" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  SWP_DWP_PWM_UWL_encoding {
+    physical_value, 0, 200, 1, -100, "Unit_PerCent" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  SWP_HZG_Aktiv_encoding {
+    logical_value, 0, "Heizung_nicht_aktiv" ;
+    logical_value, 1, "Heizung_aktiv" ;
+  }
+  SWP_HZG_Error_KS_encoding {
+    logical_value, 0, "HZG_Diagnose_KS_Inaktiv" ;
+    logical_value, 1, "HZG_Diagnose_KS_Aktiv" ;
+  }
+  SWP_HZG_Error_OL_encoding {
+    logical_value, 0, "HZG_Diagnose_OL_Inaktiv" ;
+    logical_value, 1, "HZG_Diagnose_OL_Aktiv" ;
+  }
+  SWP_HZG_PWM_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  SWP_LokalAktiv_encoding {
+    logical_value, 0, "SWP_lokal_Sleep" ;
+    logical_value, 1, "SWP_lokal_Awake" ;
+  }
+  SWP_def_encoding {
+    logical_value, 0, "SWP_Error_inaktiv" ;
+    logical_value, 1, "SWP_Error_aktiv" ;
+  }
+  SoSe_SunInt_2D_Li_encoding {
+    physical_value, 0, 240, 5, 0, "Unit_WattPerMeterSquar" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  SoSe_SunInt_2D_Re_encoding {
+    physical_value, 0, 240, 5, 0, "Unit_WattPerMeterSquar" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  U15 {
+    physical_value, 0, 0, 1, -4096 ;
+  }
+  Verglasung_offen_encoding {
+    logical_value, 0, "geschlossen" ;
+    logical_value, 1, "geoeffnet" ;
+  }
+  WH_Frontwaschen_encoding {
+    logical_value, 0, "aus" ;
+    logical_value, 1, "Wischerhebel in Stellung Wisch Wasch vorne" ;
+  }
+  WH_Intervall_encoding {
+    logical_value, 0, "aus" ;
+    logical_value, 1, "Wischerhebel in Stellung Intervall" ;
+  }
+  WH_Intervallstufen_encoding {
+    logical_value, 0, "Init / Default" ;
+    logical_value, 1, "Intervallstufe 1" ;
+    logical_value, 5, "Intervallstufe 2" ;
+    logical_value, 9, "Intervallstufe 3" ;
+    logical_value, 13, "Intervallstufe 4" ;
+    logical_value, 15, "Fehler" ;
+  }
+  WH_WischerStufe1_encoding {
+    logical_value, 0, "aus" ;
+    logical_value, 1, "Wischerhebel in Stufe Wischen 1" ;
+  }
+  WH_WischerStufe2_encoding {
+    logical_value, 0, "aus" ;
+    logical_value, 1, "Wischerhebel in Stufe Wischen 2" ;
+  }
+  WWS_LokalAktiv_encoding {
+    logical_value, 0, "WWS_nicht_lokal_aktiv" ;
+    logical_value, 1, "WWS_lokal_aktiv" ;
+  }
+  WWS_Position_Wischerarm_encoding {
+    physical_value, 0, 250, 0.5, 0, "Unit_DegreOfArc" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Fehler" ;
+  }
+  WWS_Produktionsmodus_Status_encoding {
+    logical_value, 0, "Produktionsmodus inaktiv" ;
+    logical_value, 1, "Produktionsmodus aktiv" ;
+  }
+  WWS_Produktionsmodus_encoding {
+    logical_value, 0, "Produktionsmodus wird seitens Master-SG (BCM) nicht angefordert" ;
+    logical_value, 1, "Produktionsmodus wird seitens Master-SG (BCM) angefordert" ;
+  }
+  Wischer1_Wischgeschwindigkeit_encoding {
+    physical_value, 1, 61, 1, 9, "Unit_MinutInver" ;
+    logical_value, 0, "0 U/min" ;
+    logical_value, 62, "Init" ;
+    logical_value, 63, "Fehler" ;
+  }
+  Wischer_NotlaufAktiv_encoding {
+    logical_value, 0, "Notlauf_inaktiv" ;
+    logical_value, 1, "Notlaufl_aktiv" ;
+  }
+  Wischzykluszaehler_encoding {
+    physical_value, 0, 65534, 100, 0, "Unit_None" ;
+    logical_value, 65535, "Fehler" ;
+  }
+}
+
+Signal_representation {
+  Aussentemp_gef_encoding: Aussentemp_gef ;
+  BCM1_Anf_STGL_DWP_encoding: BCM1_Anf_STGL_DWP ;
+  BCM1_Anf_STGL_Heizung_encoding: BCM1_Anf_STGL_Heizung ;
+  BCM1_Status_EM_Heizung_encoding: BCM1_Status_EM_Heizung ;
+  BCM1_Status_FT_BFT_encoding: BCM1_Status_FT_BFT ;
+  BCM1_Status_SAD_Verdeck_encoding: BCM1_Status_SAD_Verdeck ;
+  BCM1_Status_Waschwasser_encoding: BCM1_Status_Waschwasser ;
+  Bel_LTM_PDC_encoding: Bel_LTM_PDC ;
+  CapS_SINT16: word0, word2, word3, word4, word7, word6 ;
+  DI_KL_58xd_encoding: DI_KL_58xd ;
+  Deaktivierung_RS_encoding: Deaktivierung_RS ;
+  ESP_v_Signal_8Bit_encoding: ESP_v_Signal_8Bit ;
+  Empfindlichkeit_LS_encoding: Empfindlichkeit_LS ;
+  Empfindlichkeit_RS_encoding: Empfindlichkeit_RS ;
+  FS_Luftfeuchte_rel_encoding: FS_Luftfeuchte_rel ;
+  FS_Taupunkt_encoding: FS_Taupunkt ;
+  FS_Temp_Scheibe_encoding: FS_Temp_Scheibe ;
+  FS_Temp_Sensor_encoding: FS_Temp_Sensor ;
+  Fronthaube_geoeffnet_encoding: Fronthaube_geoeffnet ;
+  LDS_HUD_Eyeboxposition_Status_encoding: LDS_HUD_Eyeboxposition_Status ;
+  LDS_HUD_Eyeboxposition_encoding: LDS_HUD_Eyeboxposition ;
+  LDS_LKS_encoding: LDS_LKS ;
+  LDS_SWA_encoding: LDS_SWA ;
+  LDS_Schalterstellung_encoding: LDS_Schalterstellung ;
+  LDS_SideView_encoding: LDS_SideView ;
+  LDS_Stellgroesse_Kl_58s_encoding: LDS_Stellgroesse_Kl_58s ;
+  LS_Dunkel_encoding: LS_Dunkel ;
+  LS_Helligkeit_FW_encoding: LS_Helligkeit_FW ;
+  LS_Helligkeit_IR_encoding: LS_Helligkeit_IR ;
+  LTM_Beruehrung_encoding: LTM_Beruehrung ;
+  LTM_Dimmpoti_encoding: LTM_Dimmpoti ;
+  LTM_StatusLichttastenmodul_encoding: LTM_StatusLichttastenmodul ;
+  LTM_Variante_encoding: LTM_Variante ;
+  RLS_Vorfeldhelligkeit_Boost_encoding: RLS_Vorfeldhelligkeit_Boost ;
+  RS_Regenmenge_encoding: RS_Regenmenge ;
+  RS_Verglasung_schliessen_encoding: RS_Verglasung_schliessen ;
+  RS_Wischergeschwindigkeit_encoding: RS_Wischergeschwindigkeit ;
+  SC_100Prozent_7Bit_Init: DI_KL_58xs, DI_KL_58xt ;
+  SC_Aus_Ein: Bel_LDS_Auto, Bel_LDS_Fahrlicht, Bel_LDS_Nebellicht, Bel_LDS_Nebelschlusslicht, Bel_LDS_Standlicht, Bel_LDS_SWA, Bel_LTM_Auto, Bel_LTM_Fahrlicht, Bel_LTM_LKS, Bel_LTM_Nebellicht, Bel_LTM_Nebelschlusslicht, Bel_LTM_Standlicht, Bel_LTM_SWA, Bel_LTM_Tagfahrlicht, Klemme_15, Klemme_X, LS_Autobahnfahrlicht, LS_Licht_ein, LS_Licht_ein_invers, RS_Regenfahrlicht, RS_Schwall, RS_versParklage_Wischer, Servicestellung_Wischer, SRA_Sequenz_Status, Suchbel_LDS, Wendelage_oben_Wischer, Wendelage_unten_Wischer, WH_Tippwischen ;
+  SC_BZ: LDS_BZ, LTM_01_BZ, Master_BZ, RLS_BZ ;
+  SC_Betaetigung: LDS_HUD, LDS_Nebellicht, LDS_Nebelschlusslicht, LDS_NightVision ;
+  SC_CRC: LTM_01_CRC ;
+  SC_Fehler: SWP_ResponseError ;
+  SC_Fehler_Gueltigkeit: SWP_DWP_ErrorGueltigkeit, SWP_HZG_ErrorGueltigkeit, Wischer1_ErrorGueltigkeit, Wischer2_ErrorGueltigkeit ;
+  SC_LED_AusEin: LKS_LED_an ;
+  SC_Lokalaktiv_2: LDS_Lokalaktiv, LTM_Lokalaktiv ;
+  SC_Taster_betaetigt_2: LTM_Autolicht, LTM_Fahrlicht, LTM_HUD, LTM_Licht_Aus, LTM_LKS, LTM_Nebellicht, LTM_Nebelschlusslicht, LTM_NightVision, LTM_PDC, LTM_SideView, LTM_Standlicht, LTM_SWA ;
+  SC_Veraltet_Bit: SMLS_alt ;
+  SC_inaktiv_aktiv: Wischer_aktiv, Wischer_Parklage, Wischer_Servicestellung, Wischer_Wendelage ;
+  SC_normal_Fehler: FS_ResponseError, LDS_Error, LDS_ResponseError, LS_Error, LTM_ResponseError, RLS_ResponseError, RS_AdaptierungError, RS_Error, Wischer1_Error, Wischer1_Ueberlast, Wischer2_Error, Wischer2_Ueberlast, Wischer_ResponseError ;
+  SC_ungueltig_gueltig: LDS_Qualifizierungsbit, RLS_Qualifizierungsbit ;
+  SWP_DWP_Aktiv_encoding: SWP_DWP_Aktiv ;
+  SWP_DWP_Error_Block_encoding: SWP_DWP_Error_Block ;
+  SWP_DWP_Error_KS_encoding: SWP_DWP_Error_KS ;
+  SWP_DWP_Error_OL_encoding: SWP_DWP_Error_OL ;
+  SWP_DWP_Error_UEL_encoding: SWP_DWP_Error_UEL ;
+  SWP_DWP_PWM_OWL_encoding: SWP_DWP_PWM_OWL ;
+  SWP_DWP_PWM_UWL_encoding: SWP_DWP_PWM_UWL ;
+  SWP_HZG_Aktiv_encoding: SWP_HZG_Aktiv ;
+  SWP_HZG_Error_KS_encoding: SWP_HZG_Error_KS ;
+  SWP_HZG_Error_OL_encoding: SWP_HZG_Error_OL ;
+  SWP_HZG_PWM_encoding: SWP_HZG_PWM ;
+  SWP_LokalAktiv_encoding: SWP_LokalAktiv ;
+  SWP_def_encoding: SWP_def ;
+  SoSe_SunInt_2D_Li_encoding: SoSe_SunInt_2D_Li ;
+  SoSe_SunInt_2D_Re_encoding: SoSe_SunInt_2D_Re ;
+  U15: word1, word5 ;
+  Verglasung_offen_encoding: Verglasung_offen ;
+  WH_Frontwaschen_encoding: WH_Frontwaschen ;
+  WH_Intervall_encoding: WH_Intervall ;
+  WH_Intervallstufen_encoding: WH_Intervallstufen ;
+  WH_WischerStufe1_encoding: WH_WischerStufe1 ;
+  WH_WischerStufe2_encoding: WH_WischerStufe2 ;
+  WWS_LokalAktiv_encoding: WWS_LokalAktiv ;
+  WWS_Position_Wischerarm_encoding: WWS_Position_Wischerarm ;
+  WWS_Produktionsmodus_Status_encoding: WWS_Produktionsmodus_Status ;
+  WWS_Produktionsmodus_encoding: WWS_Produktionsmodus ;
+  Wischer1_Wischgeschwindigkeit_encoding: Wischer1_Wischgeschwindigkeit ;
+  Wischer_NotlaufAktiv_encoding: Wischer_NotlaufAktiv ;
+  Wischzykluszaehler_encoding: Wischzykluszaehler ;
+}

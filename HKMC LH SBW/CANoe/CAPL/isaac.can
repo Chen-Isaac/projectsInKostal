@@ -1,0 +1,17 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+on key 't'
+{
+  ILDisableMsg("TCU12");
+  write("hello");
+}
+
+

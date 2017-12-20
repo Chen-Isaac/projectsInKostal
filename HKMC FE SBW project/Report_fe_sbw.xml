@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2017-12-13 15:03:05" timestamp=" 127.293417" verdicts="5_extended">
+  <testunit starttime="2017-12-13 15:03:05" timestamp=" 127.293417">
+    <testcase starttime="2017-12-13 15:03:05" timestamp=" 127.293417">
+      <teststep timestamp=" 127.893417" level="0" type="user" ident="Call function" result="pass">At step 1, call function:vtSysPwrSupInit success, function return value = 0.</teststep>
+      <teststep timestamp=" 127.893417" level="0" type="user" ident="set VBAT voltage status" result="na">set VBAT voltage = 12.00V.</teststep>
+      <teststep timestamp=" 128.893417" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+      <teststep timestamp=" 128.893417" level="0" type="user" ident="Call function" result="pass">At step 2, call function:vtSysPwrSupVoltSet success, function return value = 0.</teststep>
+      <teststep timestamp=" 128.893417" level="0" type="user" ident="get VBAT voltage status" result="pass">VBAT = 11.93V,in the range [11.80V~12.20V],</teststep>
+      <teststep timestamp=" 128.893417" level="0" type="user" ident="Call function" result="pass">At step 3, call function:vtSysPwrSupVoltGet success, function return value = 0.</teststep>
+      <teststep timestamp=" 128.893417" level="0" type="user" ident="get VBAT current status" result="pass">VBAT current = 25.431mA,in the range [ 0.100mA~100.000mA],</teststep>
+      <teststep timestamp=" 128.893417" level="0" type="user" ident="Call function" result="pass">At step 4, call function:vtSysPwrSupCurrGet success, function return value = 0.</teststep>
+      <verdict time="2017-12-13 15:03:06" timestamp=" 127.893417" endtime="2017-12-13 15:03:07" endtimestamp=" 128.893417" result="pass" />
+      <title>poweron ()</title>
+    </testcase>
+    <testcase starttime="2017-12-13 15:03:07" timestamp=" 128.893417">
+      <teststep timestamp=" 128.893417" level="0" type="user" ident="VT outputs analog value for product input pin" result="na">For pin IGN:Module9 channel6 generates analog voltage: voltage = 11.0V</teststep>
+      <teststep timestamp=" 128.893417" level="0" type="user" ident="Call function" result="pass">At step 1, call function:chRamVoltDOSet success, function return value = 0.</teststep>
+      <teststep timestamp=" 129.393417" level="0" type="user" ident="Wait" result="na">Wait for 500ms.</teststep>
+      <teststep timestamp=" 129.393417" level="0" type="user" ident="Call function" result="pass">At step 2, call function:wait success, function return value = 0.</teststep>
+      <teststep timestamp=" 129.393417" level="0" type="user" ident="get VBAT current status" result="pass">VBAT current = 26.554mA,in the range [ 1.000mA~100.000mA],</teststep>
+      <teststep timestamp=" 129.393417" level="0" type="user" ident="Call function" result="pass">At step 3, call function:vtSysPwrSupCurrGet success, function return value = 0.</teststep>
+      <verdict time="2017-12-13 15:03:07" timestamp=" 128.893417" endtime="2017-12-13 15:03:07" endtimestamp=" 129.393417" result="pass" />
+      <title>productinit ()</title>
+    </testcase>
+    <testcaselist>
+      <testcase starttime="2017-12-13 15:03:07" timestamp=" 129.393417">
+        <teststep timestamp=" 129.393417" level="0" type="user" ident="Kostia Services" result="na">Start to send Login-Request service request.</teststep>
+        <teststep timestamp=" 129.395842" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1580 (0x62C) Elapsed time=2.42495ms (max=1000ms)</teststep>
+        <teststep timestamp=" 129.395842" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x14B4F5354414C5F</teststep>
+        <teststep timestamp=" 129.403430" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1581 (0x62D) Elapsed time=7.58822ms (max=5000ms)</teststep>
+        <teststep timestamp=" 129.403430" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x14B4F5354414C5F.</teststep>
+        <teststep timestamp=" 129.403430" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sendCanKostiaDiagChkResp success, function return value = 7.</teststep>
+        <teststep timestamp=" 129.403430" level="0" type="user" ident="Decode Response as ASCII" result="na">Login-Request: KOSTAL.</teststep>
+        <teststep timestamp=" 129.403430" level="0" type="user" ident="Call function" result="pass">At step 2, call function:decodeAsciiFromRecDiag success, function return value = 0.</teststep>
+        <verdict time="2017-12-13 15:03:07" timestamp=" 129.403430" endtime="2017-12-13 15:03:07" endtimestamp=" 129.403430" result="pass" />
+        <title>readkostia (command=Login-Request)</title>
+      </testcase>
+      <testcase starttime="2017-12-13 15:03:07" timestamp=" 129.403430">
+        <teststep timestamp=" 129.403430" level="0" type="user" ident="Kostia Services" result="na">Start to send Read VM_SW_Internal service request.</teststep>
+        <teststep timestamp=" 129.404810" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1580 (0x62C) Elapsed time=1.38001ms (max=1000ms)</teststep>
+        <teststep timestamp=" 129.404810" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x40012060C000000</teststep>
+        <teststep timestamp=" 129.413446" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1581 (0x62D) Elapsed time=8.63626ms (max=5000ms)</teststep>
+        <teststep timestamp=" 129.413446" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x45A4556305F3000.</teststep>
+        <teststep timestamp=" 129.413446" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sendCanKostiaDiagChkResp success, function return value = 7.</teststep>
+        <teststep timestamp=" 129.413446" level="0" type="user" ident="Decode Response as ASCII" result="na">Read VM_SW_Internal: ZEV0_0.</teststep>
+        <teststep timestamp=" 129.413446" level="0" type="user" ident="Call function" result="pass">At step 2, call function:decodeAsciiFromRecDiag success, function return value = 0.</teststep>
+        <verdict time="2017-12-13 15:03:07" timestamp=" 129.413446" endtime="2017-12-13 15:03:07" endtimestamp=" 129.413446" result="pass" />
+        <title>readkostia (command=Read VM_SW_Internal)</title>
+      </testcase>
+      <testcase starttime="2017-12-13 15:03:07" timestamp=" 129.413446">
+        <teststep timestamp=" 129.413446" level="0" type="user" ident="Kostia Services" result="na">Start to send Read VM_SW_External service request.</teststep>
+        <teststep timestamp=" 129.414750" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1580 (0x62C) Elapsed time=1.30401ms (max=1000ms)</teststep>
+        <teststep timestamp=" 129.414750" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x4000C060C000000</teststep>
+        <teststep timestamp=" 129.423453" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1581 (0x62D) Elapsed time=8.70225ms (max=5000ms)</teststep>
+        <teststep timestamp=" 129.423453" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x42020412E303000.</teststep>
+        <teststep timestamp=" 129.423453" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sendCanKostiaDiagChkResp success, function return value = 7.</teststep>
+        <teststep timestamp=" 129.423453" level="0" type="user" ident="Decode Response as ASCII" result="na">Read VM_SW_External:   A.00.</teststep>
+        <teststep timestamp=" 129.423453" level="0" type="user" ident="Call function" result="pass">At step 2, call function:decodeAsciiFromRecDiag success, function return value = 0.</teststep>
+        <verdict time="2017-12-13 15:03:07" timestamp=" 129.423453" endtime="2017-12-13 15:03:07" endtimestamp=" 129.423453" result="pass" />
+        <title>readkostia (command=Read VM_SW_External)</title>
+      </testcase>
+      <title>readkostia</title>
+    </testcaselist>
+    <verdict time="2017-12-13 15:03:06" timestamp=" 127.893417" endtime="2017-12-13 15:03:07" endtimestamp=" 129.423453" result="pass" />
+    <title>Checksw</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>Checksw</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>C:\Users\liu082\Desktop\wudi\Checksw\Checksw.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2017-12-13, 14:54:07</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2017-12-13 15:03:06" timestamp=" 127.893417" endtime="2017-12-13 15:03:07" endtimestamp=" 129.423453" result="pass" />
+  <title>fe-sbw</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>liu082</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 8.5.112 (SP6)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>D:\Isaac\HKMC FE SBW project\HKMC_FE_EGSM.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>fe-sbw</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANoeILNLVector</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANoeILNLVector.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLDEFAULT</name>
+      <description>CANoe Interaction Layer NL (Default) Version 3.16.30 (Mar 17 2016 15:53:01) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLDEFAULT.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 8.5.112, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="channel">
+          <name>Channel</name>
+          <description>1</description>
+        </xinfo>
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VN1630</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>501043</description>
+        </xinfo>
+        <xinfo key="driverdllversion">
+          <name>Driver DLL version</name>
+          <description>9.2.22</description>
+        </xinfo>
+        <xinfo key="driverversion">
+          <name>Driver version</name>
+          <description>8.9.22</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT8012</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>1031</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>0.0.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>452</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>450</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>448</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>449</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>331</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>348</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>329</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>339</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>174</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>234</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>210</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT7001A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>267</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.0.5</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+</testreport>
+<!--footprint="787fac6eec40e2b5f5654333c692f0f9" version="1"-->

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>VTS INIT</title>
+      <caplinline>
+        <title />
+        <code>sysvar::VTS::M12_VT7001.SetInterconnectionMode(1);
+sysvar::VTS::M12_Sup1.SetRefVoltageMode(1);
+//sysvar::VTS::M12_Sup1.SetRefVoltageMode(mode, 1);
+@sysvar::VTS::M12_Sup1::RefVoltage = 1;
+sysvar::VTS::M12_Sup1.SetMaxCurrentMode(1);
+// sysvar::VTS::M12_Sup1.SetMaxCurrentMode(mode, 1);
+@sysvar::VTS::M12_Sup1::MaxCurrent = 2.5;
+sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(4);
+@sysvar::VTS::M12_Out1::Active = 1;</code>
+      </caplinline>
+      <comment>
+        <title>Initialize VT system,make power supply voltage output equals 12V, current not over 30A.</title>
+      </comment>
+    </ts>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

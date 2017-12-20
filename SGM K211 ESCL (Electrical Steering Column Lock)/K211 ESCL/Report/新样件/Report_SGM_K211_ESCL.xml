@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2017-02-15 14:08:01" timestamp="   1.497850" verdicts="5_extended">
+  <testunit starttime="2017-02-15 14:08:01" timestamp="   1.497850">
+    <testsequence starttime="2017-02-15 14:08:01" timestamp="   1.497850">
+      <teststep timestamp="   2.597850" level="1" type="auto" ident="Resume reason" result="na">Immediately resumed on setup of wait condition.</teststep>
+      <teststep timestamp="   2.597850" level="0" type="user" ident="VBAT1 voltage status" result="pass">Voltage is in the range of [11.8V~12.2V],VBAT1 = 12.50V</teststep>
+      <teststep timestamp="   2.597850" level="1" type="auto" ident="Resume reason" result="na">Immediately resumed on setup of wait condition.</teststep>
+      <teststep timestamp="   2.597850" level="0" type="user" ident="VBAT1 current status" result="pass">Current is in the range of [2mA~200mA],VBAT1 current = 49.108mA</teststep>
+      <teststep timestamp="   3.097850" level="0" type="user" ident="Inverted Ign status" result="na">set Inverted Ign = High</teststep>
+      <command timestamp="   3.097850" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="   3.197850" level="2" type="user" ident="1" result="na">Waited for 100.000 ms</teststep>
+        <result timestamp="   3.197850" result="na"/>
+      </command>
+      <teststep timestamp="   3.697850" level="0" type="user" ident="CommEnableWakeup status" result="na">set CommEnableWakeup = High</teststep>
+      <teststep timestamp="   3.697850" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x227010000000000</teststep>
+      <teststep timestamp="   3.709827" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=11.9763ms (max=500ms)</teststep>
+      <teststep timestamp="   3.709827" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x467010000AAAAAA</teststep>
+      <teststep timestamp="   3.709827" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x33B0BFF00000000</teststep>
+      <teststep timestamp="   3.719819" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=9.99183ms (max=500ms)</teststep>
+      <teststep timestamp="   3.719819" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x27B0BAAAAAAAAAA</teststep>
+      <teststep timestamp="   3.719819" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x21A0B0000000000</teststep>
+      <teststep timestamp="   3.729830" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=10.0118ms (max=500ms)</teststep>
+      <teststep timestamp="   3.729830" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x35A0BFFAAAAAAAA</teststep>
+      <teststep timestamp="   3.729830" level="0" type="user" ident="check KMEF" result="pass">Write KMEF = 0xff successfully.</teststep>
+      <teststep timestamp="   3.729830" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x7AEFC4B4D455345</teststep>
+      <teststep timestamp="   3.739822" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=9.99183ms (max=500ms)</teststep>
+      <teststep timestamp="   3.739822" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x2EEFCAAAAAAAAAA</teststep>
+      <teststep timestamp="   3.739822" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x14B4F5354414C00</teststep>
+      <teststep timestamp="   3.747326" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=7.50393ms (max=500ms)</teststep>
+      <teststep timestamp="   3.747326" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x14B4F5354414C00</teststep>
+      <teststep timestamp="   3.747326" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x40040070C000000</teststep>
+      <teststep timestamp="   3.757328" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=10.002ms (max=500ms)</teststep>
+      <teststep timestamp="   3.757328" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x44D315730390000</teststep>
+      <teststep timestamp="   3.757328" level="0" type="user" ident="software version label" result="na">M1W09</teststep>
+      <teststep timestamp="   3.757328" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x40050070C000000</teststep>
+      <teststep timestamp="   3.777328" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=20ms (max=500ms)</teststep>
+      <teststep timestamp="   3.777328" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x431535730390000</teststep>
+      <teststep timestamp="   3.777328" level="0" type="user" ident="Co MCU SW Version" result="na">1SW09</teststep>
+      <teststep timestamp="   3.777328" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x33B0B0000000000</teststep>
+      <teststep timestamp="   3.787350" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=10.022ms (max=500ms)</teststep>
+      <teststep timestamp="   3.787350" level="0" type="user" ident="Diagnostic Response" result="fail">Get negative response:0x70B0000000000</teststep>
+      <teststep timestamp="   3.787350" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x21A0B0000000000</teststep>
+      <teststep timestamp="   3.797342" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1628 (0x65C) Elapsed time=9.99196ms (max=500ms)</teststep>
+      <teststep timestamp="   3.797342" level="0" type="user" ident="Diagnostic Response" result="fail">Get negative response:0x30B0000000000</teststep>
+      <teststep timestamp="   3.797342" level="0" type="user" ident="check KMEF" result="fail">Write KMEF = 0x0 failled.</teststep>
+      <command timestamp="   3.797342" name="CANoe Standard Service">
+        <title>testValidateTesterConfirmation</title>
+        <teststep timestamp="   3.797342" level="2" type="user" ident="" result="na">Execute testValidateTesterConfirmation(&quot;Press wheel vel simu on the panel&quot;, &quot;&quot;, 1)</teststep>
+        <teststep timestamp="   7.739598" level="0" type="user" ident="" result="pass">Question/Text: Press wheel vel simu on the panel\nTester confirmed with &apos;Yes&apos;.</teststep>
+        <result timestamp="   7.739598" result="pass"/>
+      </command>
+      <title>Test preparation:Power supply initialization</title>
+      <seqend endtime="2017-02-15 14:08:07" endtimestamp="   7.739598" />
+    </testsequence>
+    <skippedfixture starttime="2017-02-15 14:08:07" timestamp="   7.739598">
+      <title>5.4.6 System Operating Voltage</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-02-15 14:08:07" timestamp="   7.739598">
+      <title>5.5.11 Wake up / Sleep Strategy</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-02-15 14:08:07" timestamp="   7.739598">
+      <title>5.5.4.2 ESCL Unlock Password Request Function</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-02-15 14:08:07" timestamp="   7.739598">
+      <title>5.5.5.2 ESCL Lock Function</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-02-15 14:08:07" timestamp="   7.739598">
+      <title>5.5.6 Warnings Management</title>
+    </skippedfixture>
+    <skippedsequence starttime="2017-02-15 14:08:07" timestamp="   7.739598">
+      <title>try</title>
+    </skippedsequence>
+    <verdict time="2017-02-15 14:08:03" timestamp="   3.787350" endtime="2017-02-15 14:08:07" endtimestamp="   7.739598" result="fail" />
+    <title>SGM K211 ESCL</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>SGM K211 ESCL</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>C:\Users\chen106\Desktop\CSample01_Test_V4\SGM K211 ESCL\SGM K211 ESCL.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2017-02-15, 14:07:51</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2017-02-15 14:08:03" timestamp="   3.787350" endtime="2017-02-15 14:08:07" endtimestamp="   7.739598" result="fail" />
+  <title>SGM K211 ESCL</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>chen106</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 8.5.112 (SP6)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>C:\Users\chen106\Desktop\CSample01_Test_V4\SGM_K211_ESCL_8.2.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>SGM K211 ESCL</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANoeILNLVector</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANoeILNLVector.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLDEFAULT</name>
+      <description>CANoe Interaction Layer NL (Default) Version 3.16.30 (Mar 17 2016 15:53:01) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLDEFAULT.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 8.5.112, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="channel">
+          <name>Channel</name>
+          <description>1</description>
+        </xinfo>
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VN1630</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>501043</description>
+        </xinfo>
+        <xinfo key="driverdllversion">
+          <name>Driver DLL version</name>
+          <description>9.2.22</description>
+        </xinfo>
+        <xinfo key="driverversion">
+          <name>Driver version</name>
+          <description>8.9.22</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT8012</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>1031</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>0.0.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>452</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>450</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>448</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>449</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>331</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>348</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>329</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>339</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>174</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>234</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>210</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT7001A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>267</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.0.5</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+</testreport>
+<!--footprint="73e869922feb763d32d3645ed11fd995" version="1"-->

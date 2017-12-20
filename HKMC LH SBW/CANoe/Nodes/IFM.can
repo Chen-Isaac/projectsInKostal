@@ -1,0 +1,1032 @@
+/*@!Encoding:1252*/
+variables
+{
+// ############################################################################
+// $HeadURL: http://debesvn001/kostal/lk_ae/Jaguar/X152/P05074_GSM/Appl/branches/GV8.1/Tools/CANoe/Nodes/FaultManager.can $
+// $Id: FaultManager.can 103771 2013-06-12 08:59:07Z schlag02 $
+//
+// Change History
+// --------------
+//
+// Index 0000 - ma01:
+// **********************
+// - Take over from Ford SCM V36xICA
+//
+// ############################################################################
+
+
+// =================================================
+//  Messages
+// =================================================
+    message KOSTIA_REQ msgKostiaReq;
+
+	/*Timer Stuff*/
+	mstimer t_GetErrorTimer;
+    timer   t_ReadCyclic;                       // Timer for cyclic reading of failure memory
+    timer   t_CyclicLogin;                      // Timer for cyclic LOGIN request
+
+	const T_GETERROR_TIMEOUT			= 300;  // ms
+    int   p_CycleTime                   = 1;    // set to 1 by default
+    int   p_CyclicLogin                 = 290;  // 290 s -> 4min 50s
+
+
+	const MSG_LOGIN 					= 0; 
+	const MSG_CLEAR_FAULT_MANAGER 		= 1;
+	const MSG_READ_FAULT_MANAGER 		= 2;
+	const MSG_READ_FAULT_NO		 		= 3;
+  const MSG_LOGOUT                    = 4;
+  const MSG_READ_IFM_VERSION          = 5;
+
+	//Message IDs
+	const MSG_RSP_LOGIN 				= 0x01;
+	const MSG_RSP_READ_MEM 				= 0x04;
+	const MSG_RSP_CLEARMEM 				= 0x06;
+
+	const FAULT_MANAGER_MAXFAULTS 		= 94;
+	int d_Task_Manager;
+	int d_Task_Counter;	
+  int d_Faults_Read;
+
+	//Task management stuff
+	const TASK_CLEAR_FAULT_MANAGER 		= 1;
+	const TASK_READ_FAULT_MANAGER 		= 2;
+	const TASK_READ_FAULT_NO	 		= 3;
+	const TASK_READ_IFM_VERSION	 		= 4;
+
+	char Fault_Buffer[200];
+	char Display_Buffer[200];
+	char Display_Buffer1[200];
+	char Display_Buffer2[200];
+
+
+	char c_FaultName[30000];
+	const FAULTNAMEBUFFERLEN	= 300;
+	const FAULTNAMELEN	= 100;
+	const FAULTDESCLEN	= 300;
+	const STARTSTRINGSIZE	= 25;
+
+    char KT_FehlerText[13][105] = {
+                                 "???",
+                                 "ADRESS_MISMATCH - The requested address is not valid",
+                                 "UNKNOWN_FUNCTION - The function is unknown or not implemented",
+                                 "INVALID_REQUEST - The request is not consistent",
+                                 "ERASE - Verification error Flash/EEPROM clear",
+                                 "PROGRAM - Verification error Flash/EEPROM write",
+                                 "INVALID_LOGIN - The login is not valid",
+                                 "INVALID_MODE - The mode is not valid",
+                                 "MODE_ERROR - The mode can not be set currently",
+                                 "INVALID_PAGE - The requested page is not valid",
+                                 "COM_ERROR - Request was broadcasted by the Master while other request is still active in the Slave.",
+                                 "LOGIN_REQUIRED - A login is required for this request",
+                                 "BUSY - The module is currently busy"
+                                };
+
+    const byte  bNoOfFramesPerEntry = 3;
+    byte        bReadNoOfFaults     = 0;
+    byte        bNumberOfFaults     = 0;
+    const word  wNoErrorEntry       = 0xFFFF;
+    const byte  bNoFaultState       = 0xFF;
+    word        wErrorCode          = 0xFFFF;
+    float       fVoltageDivFactor   = 10.0;
+
+    char        cStartLineOfErrorCodeEnum[25]   = "empty fault entry marker";
+    char        cEndLineOfErrorCodeEnum[15]     = "} IFM_Fault_T;";
+    char        cIFM_App_Config_FileName[23]    = "IFM_App_Config.h";
+}
+
+//int ReadinFaultFile (int d_FaultNo, int d_FaultDisplayNo, byte b_FailureState, int d_OccurenceCnt, int d_Index)
+int ReadinFaultFile (int d_FaultNo, int d_FaultDisplayNo, byte b_FailureState, char envVariable[])
+{
+
+	int d_Return = 1;
+
+	char c_FaultName[FAULTNAMELEN];
+	char c_FaultDescription[FAULTDESCLEN];
+	char c_FaultID[20];
+  char c_OccurenceID[20];
+  char c_IndexID[20];
+
+	dword dwFileHandle;
+	char c_FileName[20];
+	char c_Buffer[300];
+	long l_length;
+	long l_result;
+
+	char c_Temp[FAULTNAMELEN];
+	char c_Temp2[FAULTDESCLEN];
+	int i, k, j;
+	int d_startfound;
+	int d_endfound;
+	int d_foundFaultNo;
+	long l_FaultNo;
+
+	int d_FaultDesStartFlag;
+  
+  char sTmp[33];
+  char sTmp_Raw[33];
+  char c_temp[100];
+  long result;
+  
+	//write("d_FaultNo=%d,d_FaultDisplayNo=%d,b_FailureState=%d",d_FaultNo,d_FaultDisplayNo,b_FailureState);
+  //write("In KOSTIA_RESP ErrorCode = %s", ErrorCode);
+	//Init stuff ///// based on bug with vector stuff
+	d_startfound = 0;
+	d_endfound = 0;
+	d_foundFaultNo = 0;
+	d_FaultDesStartFlag = 0;
+	l_FaultNo = 0;
+	snprintf(c_FaultName, elcount(c_FaultName), "");
+	snprintf(c_FaultDescription, elcount(c_FaultDescription), "");
+	snprintf(c_FaultID, elcount(c_FaultID), "");
+	snprintf(c_Buffer, elcount(c_Buffer), "");
+	//////////////
+
+	//Prepare Failure state for display
+	if(b_FailureState == 0x20) //Failure is history
+		b_FailureState = 2;
+	else if(b_FailureState == 0x60)  ///Failure is active
+		b_FailureState = 1;
+
+	//Open FaultManager File///////////////
+	snprintf(c_FileName, elcount(c_FileName), "IFM_list.txt");
+	dwFileHandle = openFileRead(c_FileName, 0);			//open file
+
+	if((dwFileHandle != 1)) /* && (d_FaultDisplayNo < FAULT_MANAGER_MAXFAULTS))*/ //File opening was successful!
+	{
+	    //1st find the start of the table///////////////////////////
+		//snprintf(c_Temp, elcount(c_Temp), "Fault Classes");		//Start of Table on following line
+		snprintf(c_Temp, elcount(c_Temp), "CANoe Start");		//Start of Table on following line
+	  
+		l_length = fileGetString(c_Buffer, 300, dwFileHandle);	//get line
+		while((l_length != 0) && (d_startfound == 0))	//keep going until error, EOF or until d_startfound is put to zero
+		{ 
+			i = 0;
+			while((c_Buffer[i] != '\n') && (d_startfound == 0))
+			{
+				if(c_Buffer[i] == c_Temp[0])
+				{
+					d_startfound = 1;
+					j = 0;
+					while((j < STARTSTRINGSIZE) && (d_startfound == 1))
+					{
+						if((c_Buffer[i] != c_Temp[j]) || (c_Buffer[i] == '\n')) //jump out
+              /* Start comment*/
+							//d_startfound = 0;
+              /* End comment*/
+						i++;
+						j++;				
+					}//end of while((j < 13) && (d_startfound == 1))
+				}	//end of if(c_Buffer[i] == c_Temp[0])
+				i++;
+			}//end of for(i = 0; i < l_length; i++)
+			l_length = fileGetString(c_Buffer, 300, dwFileHandle);	//get line
+      
+		}//end of while (l_length != 0)
+     	///////////Found the start of the table/////////////////////////////////////////////////////////////////////////\
+  
+    	/////Second phase is to go to the fault number line///////////////////////////////////////////////////
+		snprintf(c_Temp, elcount(c_Temp), "FMLastErrorKind");		//End of Table 
+		if((d_startfound == 1) && (l_length != 0))	//have we found the start without reaching the end?
+		{
+			//Start the search into the file
+			while((d_foundFaultNo == 0) && (d_endfound == 0) && (l_length != 0)/* && (j < (FAULTNAMEBUFFERLEN - FAULTNAMELEN-1))*/)
+			{
+				i = 0;
+				k = 0;
+				d_endfound = 0;
+				while((c_Buffer[i] != ',') && (c_Buffer[i] != '\n') &&(i < (FAULTNAMELEN-1)))
+				{
+					
+					/////Look to make sure we don't hit the end////////////
+					if(c_Buffer[i] == c_Temp[k])
+					{
+						if(k >13)
+						{
+							d_endfound = 1;
+							d_Return = 2;  //we have an issue
+						}	
+						k++;
+					}
+					else if(k < 14)
+					{
+						d_endfound = 0;
+						k = 0;
+					}
+					/////End of looking for the end//////////////////////////
+
+					////See if we the line is commented before we hit the comma!!!///////////////////////
+					if((c_Buffer[i+1] == '*') &&(c_Buffer[i] == '/'))
+					{
+						i = FAULTNAMELEN;
+						l_FaultNo--;
+					}
+					//copy into  fault buffer
+					if(d_FaultDisplayNo == l_FaultNo)
+					{
+						d_foundFaultNo = 1;
+						c_FaultName[i] = c_Buffer[i];
+            //write("In c_FaultName[i] = %s", c_FaultName);
+					}
+					i++;
+
+				}//end of while(c_Buffer[i] != ',')			
+	            ////////////////////End of find fault No ////////////////////
+
+	            //////////////////Copy to Fault Description Buffer//////////////////////
+				/////////Looks like we can get the desc. now?/////////////
+				if((d_foundFaultNo == 1) && (i < FAULTNAMELEN))
+				{
+                    c_FaultName[i] = 0;/*add 0 to the string c_FaultName, so it could have an end*/
+
+                    k = 0;
+					while((d_endfound == 0) && (i < (FAULTNAMELEN + FAULTDESCLEN-1)) && (k < (FAULTDESCLEN-1)))
+					{
+						if((c_Buffer[i] == '*') && (c_Buffer[i+1] == '/'))
+						{
+							i  = FAULTNAMELEN + FAULTDESCLEN;
+						}
+						else if((c_Buffer[i+1] == '*') && (c_Buffer[i] == '/'))
+						{
+							i++;
+							d_FaultDesStartFlag = 1;				
+						}
+						else if(d_FaultDesStartFlag == 1)
+						{
+							// we are in the desc. zone///////////
+							c_FaultDescription[k] = c_Buffer[i];
+							//c_Temp2[k] = c_FaultDescription[k];
+							k++;
+						}
+						
+						i++;
+					}//end of while((d_endfound == 0) && (i < (FAULTNAMELEN + FAULTDESCLEN-1)))
+
+                    c_FaultDescription[k] = 0;	/*add 0 to the string c_FaultDescription, so it could have an end*/	
+ 
+
+				}//end of if(i < FAULTNAMELEN)
+
+		////////////////////////////////////////////////////////////////////////
+				l_FaultNo++;	//Increment to the next fault			
+				l_length = fileGetString(c_Buffer, 300, dwFileHandle);	//get line
+			}//end of while(d_endfound == 0)
+
+		}//end of if((d_startfound == 1) && (l_length != 0))
+	////////////////////////////////////////////////////////////////////////
+    /* Start */
+    d_startfound = 0;
+    /* End */
+		l_result = fileClose(dwFileHandle);
+
+		snprintf(c_FaultID, elcount(c_FaultID), "%d", d_FaultNo);
+    //putValue( sTmp, c_FaultID );
+    
+    PutValue(envVariable, c_FaultName);
+    
+	}//end of if dwFileHandle
+	else
+		d_Return = 0;
+
+return d_Return;
+
+
+}
+
+on message KOSTIA_RESP
+{
+	byte b_Msg_ID;
+	char c_temp[100];
+    char sTmp[33];
+    char sTmp_Raw[33];
+	int  d_Result = 0;
+    int  d_GetValue;
+    byte b_FailureStateDisp;
+    byte b_FailureStateTemp;
+  
+  int d_FaultDispPos;
+  long result;
+  
+  CancelTimer( t_GetErrorTimer);
+
+	b_Msg_ID = this.byte(0);
+
+	if(b_Msg_ID  != 0)          /* Was msg rejected ? */
+	{
+		if(d_Task_Manager >= 0) /* we have a request to process then */
+		{		
+			d_Task_Counter++;
+
+			switch(b_Msg_ID)
+			{
+				case MSG_RSP_LOGIN:
+                /********************************************/
+                /*        Response on Login or Logout       */
+                /********************************************/
+
+                    if (this.byte(1) > 0)
+                    {
+                      /* Login */
+					            snprintf(Display_Buffer, elcount(Display_Buffer), "We have Logged in");
+                      putvalue(env_KostiaCAN_LoginState,0x01);
+                    }
+                    else
+                    {
+                        /* Logout */
+                        snprintf(Display_Buffer, elcount(Display_Buffer), "We have Logged off" );
+                        putvalue(env_KostiaCAN_LoginState,0x02);
+                    }
+					putvalue( envKTA_AO_Display1, Display_Buffer);
+                    putValue( envKT2A_FehlerText, "O.K." );
+					break;
+
+				case MSG_RSP_CLEARMEM:
+                /********************************************/
+                /*       Response on Clear Fault Memory     */
+                /********************************************/
+
+                    d_GetValue = getValue(envKTA_AO_ClearFaults_DelaySW);
+
+                    if(d_GetValue == 1) 
+                    {
+                        //Then there is a delay
+                        snprintf(Display_Buffer1, elcount(Display_Buffer1), "The fault memory was cleared and no fault will be set until Logout or reset");
+                    }
+                    else
+                    {
+					    snprintf( Display_Buffer1, elcount(Display_Buffer1), "The fault memory was cleared");
+                    }
+                	putvalue( envKTA_AO_Display2, Display_Buffer1);					
+                    putValue( envKT2A_FehlerText, "O.K." );
+                    InitializeDisplay();
+					break;
+			
+				case MSG_RSP_READ_MEM:
+                /********************************************/
+                /*          Response on Read Memory         */
+                /********************************************/
+
+					if(d_Task_Manager == TASK_READ_FAULT_MANAGER)
+					{
+                    /********************************************/
+                    /*   Response on read out of Fault Manager  */
+                    /********************************************/
+
+                        if ((d_Task_Counter + 1) % bNoOfFramesPerEntry == 2)
+                        {
+                            /* First Frame of FM entry */
+                            wErrorCode = ((this.byte(2) << 8) + this.byte(3));
+
+                            if (wErrorCode != wNoErrorEntry)   
+                            {
+                                /* Valid FM entry */
+                                /* Increment Number of read faults */
+                                d_Faults_Read++;
+                                snprintf(Display_Buffer2, elcount(Display_Buffer2), "Number of read faults = %d", (d_Faults_Read));
+    	    	                    putvalue(envKTA_AO_Display3, Display_Buffer2);
+
+                                /* Fault Index */
+                                snprintf( sTmp_Raw, elcount(sTmp), "envVar_DisplayFaultIndex_%d_Raw", (d_Task_Counter + 1) / bNoOfFramesPerEntry);
+                                snprintf( sTmp, elcount(sTmp), "envVar_DisplayFaultIndex_%d", (d_Task_Counter + 1) / bNoOfFramesPerEntry);
+                                putValue( sTmp_Raw, this.byte(1) );
+                                snprintf( c_temp, elcount(c_temp), "0x%X", this.byte(1));
+                                putValue( sTmp, c_temp );
+
+                                /* Fault Code */
+                                snprintf( sTmp_Raw, elcount(sTmp), "envVar_DisplayFaultCode_%d_Raw", (d_Task_Counter + 1) / bNoOfFramesPerEntry);
+                                snprintf( sTmp, elcount(sTmp), "envVar_DisplayFaultCode_%d", (d_Task_Counter + 1) / bNoOfFramesPerEntry);
+                                putValue( sTmp_Raw, wErrorCode);
+                                snprintf( c_temp, elcount(c_temp), "0x%.4X", wErrorCode);
+                                putValue( sTmp, c_temp );
+                                snprintf( sTmp, elcount(sTmp), "envKTA_AO_Display_FaultsName_%d", (d_Task_Counter + 1) / bNoOfFramesPerEntry);
+                                //GetFaultInfo(c_temp, sTmp);
+                                 
+                                /* Start */
+                                d_FaultDispPos = strtol(c_temp, result);
+                             
+                                d_Result = ReadinFaultFile(This.BYTE(1),result, This.BYTE(2), sTmp);
+
+                    						snprintf(Display_Buffer, elcount(Fault_Buffer), "The fault memory is being read");
+                    						putvalue(envKTA_AO_Display2, Display_Buffer1);
+                                /* End */
+                              
+                                /* Occurence Counter */
+                                snprintf( sTmp_Raw, elcount(sTmp), "envKTA_AO_FaultFrequency_%d_Raw", (d_Task_Counter + 1) / bNoOfFramesPerEntry);
+                                snprintf( sTmp, elcount(sTmp), "envKTA_AO_FaultFrequency_%d", (d_Task_Counter + 1) / bNoOfFramesPerEntry);
+                                putValue( sTmp_Raw, this.byte(4));
+                                snprintf( c_temp, elcount(c_temp), "0x%X", this.byte(4));
+                                putValue( sTmp, c_temp );
+
+                                /* Fault State */
+                                DisplayFaultAlarm(this.byte(5), (d_Task_Counter / bNoOfFramesPerEntry));
+
+                                /* Fault Id */
+                                snprintf( sTmp, elcount(sTmp), "envVar_DisplayFaultId_%d", (d_Task_Counter + 1) / bNoOfFramesPerEntry);
+                                snprintf( c_temp, elcount(c_temp), "0x%.4X", (this.byte(6)<<8 | this.byte(7)));
+                                putValue( sTmp, c_temp );
+                              
+                            }
+                            else
+                            {
+                                /* Empty FM entry */
+                                DisplayFaultAlarm(bNoFaultState, (d_Task_Counter / bNoOfFramesPerEntry));
+                            }
+                        }
+//                        else if ((d_Task_Counter + 1) % bNoOfFramesPerEntry == 0)
+//                        {
+//                            /* Second Frame of FM entry */
+//
+//                            if (wErrorCode != wNoErrorEntry)
+//                            {
+//                                /* Environment Data 1 Operation Time */
+//                                snprintf( sTmp, elcount(sTmp), "envVar_DisplayEnv1OpTime_%d", ((d_Task_Counter + 1) / bNoOfFramesPerEntry) -1);
+//                                snprintf( c_temp, elcount(c_temp), "0x%.8X", ((this.byte(2) << 24) + (this.byte(3) << 16) + (this.byte(4) << 8) + this.byte(5)));
+//                                putValue( sTmp, c_temp );
+//
+//                                /* Environment Data 1 Voltage */
+//                                snprintf( sTmp, elcount(sTmp), "envVar_DisplayEnv1Voltage_%d", ((d_Task_Counter + 1) / bNoOfFramesPerEntry) -1);
+//                                putValue( sTmp, ((float) (this.byte(6))) / fVoltageDivFactor );
+//                            }
+//                        }
+//                        else if ((d_Task_Counter + 1) % bNoOfFramesPerEntry == 1)
+//                        {
+//                            /* Third Frame of FM entry */
+//
+//                            if (wErrorCode != wNoErrorEntry)
+//                            {
+//                                /* Environment Data 2 Operation Time */
+//                                snprintf( sTmp, elcount(sTmp), "envVar_DisplayEnv2OpTime_%d", ((d_Task_Counter + 1) / bNoOfFramesPerEntry)-1);
+//                                snprintf( c_temp, elcount(c_temp), "0x%.8X", ((this.byte(2) << 24) + (this.byte(3) << 16) + (this.byte(4) << 8) + this.byte(5)));
+//                                putValue( sTmp, c_temp );
+//
+//                                /* Environment Data 2 Voltage */
+//                                snprintf( sTmp, elcount(sTmp), "envVar_DisplayEnv2Voltage_%d", ((d_Task_Counter + 1) / bNoOfFramesPerEntry) -1);
+//                                putValue( sTmp, ((float) (this.byte(6))) / fVoltageDivFactor );
+//                            }
+//
+//                            wErrorCode = 0xFFFF;
+//                        }
+//            /* Start */
+//            snprintf(c_temp, elcount(c_temp), "%sFault_ID %d: %X %X %X ", Fault_Buffer, (d_Task_Counter-2),This.BYTE(1), This.BYTE(2), This.BYTE(3));
+//						snprintf(Fault_Buffer, elcount(Fault_Buffer), "%s", c_temp);
+//						putvalue(envKTA_AO_Display_Faults, Fault_Buffer);
+//
+//						d_Result = ReadinFaultFile(This.BYTE(1),(d_Task_Counter-2), This.BYTE(2));
+//
+//						snprintf(Display_Buffer, elcount(Fault_Buffer), "The fault memory is being read");
+//						putvalue(envKTA_AO_Display2, Display_Buffer1);
+//            /* End */
+					}
+
+					else if(d_Task_Manager == TASK_READ_FAULT_NO)	
+					{
+                    /********************************************/
+                    /* Response on read out of number of Faults */
+                    /********************************************/
+
+                        bNumberOfFaults = this.byte(1);
+						snprintf(c_temp, elcount(c_temp), "Number of Faults = %d",bNumberOfFaults);
+						putvalue(envKTA_AO_Display4, c_temp);
+					
+						snprintf(c_temp, elcount(c_temp), "%d",this.byte(1));
+						putvalue(envKTA_AO_NoFaultText, c_temp);
+
+            putValue( envKT2A_FehlerText, "O.K." );
+
+					}
+
+					else if(d_Task_Manager == TASK_READ_IFM_VERSION)	
+					{
+                        snprintf(c_temp, elcount(c_temp), "Version: 0x%.2X%.2X",this.byte(2), this.byte(1));
+                        putvalue(envVar_IfmVersion, c_temp);
+                    }
+					break;
+
+				default:
+					break;
+			}
+			TaskList();
+		}
+	}
+
+
+	else if (d_Task_Manager > 0) //we must Init and reject
+	{
+        if ((d_Task_Manager == TASK_READ_FAULT_MANAGER) && (this.byte(1) == 0x03))
+        {
+            putValue( envKT2A_FehlerText, "O.K." );
+        }
+        else
+        {
+            char sTemp[30];
+
+            if (this.byte(1) < elcount( KT_FehlerText ) )
+            {
+                putValue(envKT2A_FehlerText, KT_FehlerText[this.byte(1)]);
+            }
+            else
+            {
+                snprintf( sTemp, elcount(sTemp), "unknown error 0x%.2X", this.byte(1) );
+                putValue( envKT2A_FehlerText, sTemp );
+            }
+        }
+
+        KTA_AddOn_Init();
+	}
+}
+
+on start
+{
+  putValue(envKTA_AO_Display1, "");
+  putValue(envKTA_AO_Display2, "");
+  putValue(envKTA_AO_Display3, "");
+  putValue(envKTA_AO_Display4, "");
+  putValue(envKTA_AO_NoFaultText, "");
+  
+  InitializeDisplay();
+  
+	KTA_AddOn_Init();
+  ShowVersionInfo();
+}
+
+on envVar envKTA_IFM_AO_ClearFaults
+{
+	if((GetValue(this) == 1) && (d_Task_Manager == 0))
+	{
+        putValue(envKTA_AO_Display3, "");
+        putValue(envKTA_AO_Display4, "");
+        putValue(envKTA_AO_NoFaultText, "");
+        
+		d_Task_Counter = 0;                             /* Set Task counter to 0 */
+		d_Task_Manager = TASK_CLEAR_FAULT_MANAGER;	    /* Set Task Manager State to TASK_CLEAR_FAULT_MANAGER */	
+        TaskList(); 
+	}
+}
+
+on envVar envKTA_IFM_AO_ReadFaults
+{
+	if((GetValue(this) == 1) && (d_Task_Manager == 0))
+	{
+        if(bReadNoOfFaults == 0)
+        {
+            /* First of all, read number of faults */
+            bReadNoOfFaults = 1;
+            PutValue(envKTA_IFM_AO_ReadFaultNo, 1);
+            PutValue(envKTA_IFM_AO_ReadFaults,0);
+        }
+        else
+        {
+            bReadNoOfFaults = 0;
+            PutValue(envKTA_IFM_AO_ReadFaultNo, 0);
+            PutValue(envKTA_IFM_AO_ReadFaults,0);
+
+    		d_Task_Counter = 0;                         /* Set Task counter to 0 */
+            d_Faults_Read  = 0;	                        /* Set no of read faults to 0 */	
+    		d_Task_Manager = TASK_READ_FAULT_MANAGER;   /* Set Task Manager State to TASK_READ_FAULT_MANAGER */	
+        
+            putValue( envKT2A_FehlerText, "" );
+    		InitializeDisplay();
+            TaskList(); 
+        }
+	}
+}
+
+Kostia_Msg (int d_MSG_Index)
+{   
+    CancelTimer( t_GetErrorTimer);
+    SetTimer   ( t_GetErrorTimer, T_GETERROR_TIMEOUT );
+
+	msgKostiaReq.byte(0) = 0x00;
+	msgKostiaReq.byte(1) = 0x00;
+	msgKostiaReq.byte(2) = 0x00;
+	msgKostiaReq.byte(3) = 0x00;
+	msgKostiaReq.byte(4) = 0x00;
+	msgKostiaReq.byte(5) = 0x00;
+	msgKostiaReq.byte(6) = 0x00;
+	msgKostiaReq.byte(7) = 0x00;
+
+	switch(d_MSG_Index)
+	{
+
+		case MSG_LOGIN:
+            /* Login Message */
+			msgKostiaReq.byte(0) = 0x01;
+			msgKostiaReq.byte(1) = 0x4b;
+			msgKostiaReq.byte(2) = 0x4f;
+			msgKostiaReq.byte(3) = 0x53;
+			msgKostiaReq.byte(4) = 0x54;
+			msgKostiaReq.byte(5) = 0x41;
+			msgKostiaReq.byte(6) = 0x4c;
+			msgKostiaReq.byte(7) = 0x5f;
+
+			output(msgKostiaReq);
+			break;
+		
+		case MSG_CLEAR_FAULT_MANAGER:
+            /* Clear Fault Memory Message */
+			msgKostiaReq.byte(0) = 0x06;
+            msgKostiaReq.byte(3) = GetValue(envKTA_AO_ClearFaults_DelaySW);
+
+			output(msgKostiaReq);
+			break;		
+		
+		case MSG_READ_FAULT_MANAGER:
+            /* Read Fault Memory MEssage */
+			msgKostiaReq.byte(0) = 0x04;
+			msgKostiaReq.byte(1) = (d_Task_Counter / bNoOfFramesPerEntry);
+			msgKostiaReq.byte(2) = d_Task_Counter % bNoOfFramesPerEntry;
+			msgKostiaReq.byte(3) = 0x07;
+			msgKostiaReq.byte(4) = 0x33;
+
+			output(msgKostiaReq);
+			break;
+	
+		case MSG_READ_FAULT_NO:
+            /* Read number of Faults Message */
+			msgKostiaReq.byte(0) = 0x04;
+			msgKostiaReq.byte(1) = 0x00;
+			msgKostiaReq.byte(2) = 0x00;
+			msgKostiaReq.byte(3) = 0x07;
+			msgKostiaReq.byte(4) = 0x40;
+
+			output(msgKostiaReq);
+            break;
+		
+        case MSG_LOGOUT:
+            /* Logut Message */
+            msgKostiaReq.byte(0) = 0x01;
+
+            output(msgKostiaReq);
+            break;
+
+        case MSG_READ_IFM_VERSION:
+            /* REad IFM version */
+			msgKostiaReq.byte(0) = 0x04;
+			msgKostiaReq.byte(1) = 0x00;
+			msgKostiaReq.byte(2) = 0x9F;
+			msgKostiaReq.byte(3) = 0x02;
+			msgKostiaReq.byte(4) = 0x0C;
+
+            output(msgKostiaReq);
+            break;
+
+		default:
+			break;
+	}
+}
+
+TaskList ()
+{
+    switch(d_Task_Manager)
+	{
+
+		case TASK_CLEAR_FAULT_MANAGER:
+            /* Clear the FM */
+			switch(d_Task_Counter)
+			{
+				case 0:	
+					Kostia_Msg(MSG_CLEAR_FAULT_MANAGER); /* Send Kostia Message to clear FM */
+					break;	
+                case 1:
+					KTA_AddOn_Init();
+				default:
+					break;
+			}
+			break;
+	
+		case TASK_READ_FAULT_MANAGER:
+            /* Read out the FM */
+			if(d_Task_Counter < FAULT_MANAGER_MAXFAULTS * bNoOfFramesPerEntry)    
+			{   
+				Kostia_Msg(MSG_READ_FAULT_MANAGER);	
+			}
+            else if (d_Task_Counter >= (FAULT_MANAGER_MAXFAULTS * bNoOfFramesPerEntry))  
+            {
+                putValue( envKT2A_FehlerText, "O.K." );
+				KTA_AddOn_Init();
+			}
+			break;		
+	
+		case TASK_READ_FAULT_NO:
+            /* Read no of Faults */
+			switch(d_Task_Counter)
+			{
+				case 0:		
+					Kostia_Msg(MSG_READ_FAULT_NO); /* Send Kostia Message to read no of faults */
+					break;	
+                case 1:
+					KTA_AddOn_Init();
+                    if(bReadNoOfFaults == 1)
+                    {
+                        PutValue(envKTA_IFM_AO_ReadFaults, 1);
+                    }
+					break;
+				default:
+					break;	
+			}
+			break;
+
+		case TASK_READ_IFM_VERSION:
+            /* Read out the IFM version */
+			switch(d_Task_Counter)
+			{
+				case 0:	
+					Kostia_Msg(MSG_READ_IFM_VERSION); /* Send Kostia Message to clear FM */
+					break;	
+                case 1:
+					KTA_AddOn_Init();
+				default:
+					break;
+			}
+			break;
+
+		default:
+			break;
+	}
+}
+
+KTA_AddOn_Init ()
+{
+	d_Task_Counter = 0;
+	d_Task_Manager = 0;
+	putValue(envKTA_IFM_Login, 0);
+	snprintf(Fault_Buffer, elcount(Fault_Buffer), "");	
+	canceltimer(t_GetErrorTimer);
+
+}
+
+on envVar envKTA_IFM_AO_ReadFaultNo
+{
+	if((GetValue(this) == 1) && (d_Task_Manager == 0))
+	{
+		d_Task_Counter = 0;                         /* Set Task counter to 0 */
+		d_Task_Manager = TASK_READ_FAULT_NO;	    /* Set Task Manager State to TASK_READ_FAULT_NO */	
+        TaskList(); 
+	}
+}
+
+on preStart
+{
+
+}
+
+DisplayFaultAlarm (int d_State, int d_AlarmNo)
+{
+    char sFaultActiveName[30];
+
+    snprintf( sFaultActiveName, elcount(sFaultActiveName), "envKTA_AO_FaultAlarm%d", d_AlarmNo );
+
+    if (d_State == 0)
+    {
+       // der Fehler ist nicht mehr aktiv
+       putValue( sFaultActiveName, 2 );
+    }
+    else if (d_State == 1)
+    {
+        // der Fehler ist aktiv
+        putValue( sFaultActiveName, 1 );
+    }
+    else if (d_State == bNoFaultState)
+    {
+        // der Fehler wurde gelöscht
+        putValue( sFaultActiveName, 0 );
+    }
+}
+
+
+InitializeDisplay ()
+{
+	int i;
+	char sEnvName[40];
+	char sEmpty[2];
+
+	snprintf( sEmpty, elcount(sEmpty), "");
+
+	for(i = 0; i < FAULT_MANAGER_MAXFAULTS; i++)
+	{
+		DisplayFaultAlarm(bNoFaultState, i);	//Clear the alarm states
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayFaultCode_%d", i );
+        putValue( sEnvName, sEmpty );
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayFaultCode_%d_Raw", i );
+        putValue( sEnvName, 0x0000 );
+        snprintf( sEnvName, elcount(sEnvName), "envKTA_AO_FaultFrequency_%d", i );
+        putValue( sEnvName, sEmpty );
+        snprintf( sEnvName, elcount(sEnvName), "envKTA_AO_FaultFrequency_%d_Raw", i );
+        putValue( sEnvName, 0x00);
+        snprintf( sEnvName, elcount(sEnvName), "envKTA_AO_Display_FaultsName_%d", i );
+        putValue( sEnvName, sEmpty );
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayFaultId_%d", i );
+        putValue( sEnvName, sEmpty );
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayFaultIndex_%d", i );
+        putValue( sEnvName, sEmpty );
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayFaultIndex_%d_Raw", i );
+        putValue( sEnvName, 0x00 );
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayEnv1OpTime_%d", i );
+        putValue( sEnvName, sEmpty );
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayEnv2OpTime_%d", i );
+        putValue( sEnvName, sEmpty );
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayEnv1Voltage_%d", i );
+        putValue( sEnvName, 0.0 );
+        snprintf( sEnvName, elcount(sEnvName), "envVar_DisplayEnv2Voltage_%d", i );
+        putValue( sEnvName, 0.0 );
+	}//end of for i
+
+	DisplayFaultAlarm(bNoFaultState, 0);
+	putValue(envVar_DisplayFaultCode_0, "");
+	putValue(envKTA_AO_Display_FaultsName_0, "");
+	putValue(envVar_DisplayFaultId_0, "");
+	putValue(envVar_DisplayFaultIndex_0, "");
+	putValue(envVar_DisplayEnv1OpTime_0, "");
+	putValue(envVar_DisplayEnv2OpTime_0, "");
+	putValue(envVar_DisplayEnv1Voltage_0, 0.0);
+	putValue(envVar_DisplayEnv2Voltage_0, 0.0);
+  putValue(envKTA_AO_Display2, "");
+  
+}
+
+on timer t_GetErrorTimer
+{
+    // Timeout in den FehlerText eintragen, damit andere Funktionen hierauf reagieren können
+    putValue( envKT2A_FehlerText, "Timeout" );
+
+	KTA_AddOn_Init();  //If we timeout then we want to be able to press the buttons again
+}
+
+ShowVersionInfo ()
+{
+    /*
+     * Read in the version information file and show the 
+     * configuration version in the write window
+     */
+
+    DWord dwFileHandle;
+    char sTemp[128];
+
+  //  setFilePath("C:\\Projekte\\VOO\\CMA\\P06353_GSM\\Appl\\Tools\\CANoe", 0);
+
+//    snprintf( sTemp, elcount(sTemp), "FD_SCM_V36xICA_ConfigVersionInfo.txt" );
+
+    /* Open file */
+	//dwFileHandle = openFileRead(sTemp, 0);
+    if (dwFileHandle == 0)
+    {
+        //write( "VERSION: File (%s) is not available!", sTemp );
+    }
+    else
+    {
+        if (fileGetStringSZ( sTemp, elcount(sTemp), dwFileHandle ) > 0)
+        {
+            write( "VERSION: %s", sTemp );
+        }
+        else
+        {
+            write( "VERSION: empty file for version information" );
+        }
+        fileClose( dwFileHandle );
+    }
+}
+
+GetFaultInfo(char ErrorCode[], char envVariable[])
+{
+	char    cBuffer[500];
+    char    cBuffer2[500];
+	long    l_length;
+	byte    bStartFound;
+    byte    bErrorCodeFound;
+    int     i, j;
+	dword   dwFileHandle;
+  char c_FileName[20];
+  char c_temp[100];
+  char c_Temp[FAULTNAMELEN];
+
+	snprintf(cBuffer, elcount(cBuffer), "");
+
+	/*************************************************/
+    /************* Open IFM_App_Config.h *************/
+	/*************************************************/
+
+  //  setFilePath("\\IFM",0);
+  //setFilePath("D:\\Projects\\HKMC\\LH\\SBW\\Appl\\Tools\\CANoe\\IFM_list.txt",0);
+
+	//dwFileHandle = openFileRead(IFM_list.txt, 0);		/* Open file for read access */
+  snprintf(c_FileName, elcount(c_FileName), "IFM_list.txt");
+	dwFileHandle = openFileRead(c_FileName, 0);			//open file
+
+	if(dwFileHandle != 0)                                           /* File opening was successful */
+	{
+    snprintf(c_Temp, elcount(c_Temp), "CANoe Start");		//Start of Table on following line
+    l_length = fileGetStringSZ(cBuffer, 300, dwFileHandle);     /* Read in the first line */
+
+		while ((l_length != 0) && (bStartFound == 0))	      
+		{
+            if(strstr(cBuffer, cStartLineOfErrorCodeEnum) != -1)
+            {
+                /* String was found */
+                bStartFound = 1;
+            }
+            else
+            {
+                /* Read in the next line */
+			    l_length = fileGetStringSZ(cBuffer, 300, dwFileHandle);
+            }
+		}
+
+        /* Now we should be inside the enum */
+
+        while ((l_length != 0) && (strstr(cBuffer, cEndLineOfErrorCodeEnum) == -1))
+        {
+            /* still inside the enum */
+            if(strstr(cBuffer, ErrorCode) != -1)
+            {
+                /* Error Code was found, next line contains the Error description */
+                l_length = fileGetStringSZ(cBuffer, 300, dwFileHandle);
+
+                /* Remove Space chars from buffer */
+                j=0;
+                for (i=0; i<elcount(cBuffer); i++)
+                {
+                    if(cBuffer[i] == 0x20)
+                    {   
+                        /* do not copy space chars */                     
+                    }
+                    else
+                    {
+                        cBuffer2[j] = cBuffer[i];
+                        j++;
+                    }
+                }
+                PutValue(envVariable, cBuffer2);
+                
+                //PutValue(envKTA_AO_Display_FaultsName_0, cBuffer2);
+            }            
+            l_length = fileGetStringSZ(cBuffer, 300, dwFileHandle);
+        }
+    }
+  else write("File open failed!!!!");
+   
+    fileClose(dwFileHandle);
+}
+
+on envVar envKTA_ReadCyclic
+{
+    if (GetValue(this) == 1)
+    {
+// ######################## START of cyclic reading ########################
+        Kostia_Msg(MSG_LOGIN);
+        KTA_AddOn_Init();
+        p_CycleTime = GetValue(envKTA_CycleTime);       // get cycle time
+        SetTimer(t_ReadCyclic, p_CycleTime);            // Start cycle time timer
+        SetTimer(t_CyclicLogin, p_CyclicLogin);         // Start timer for cyclic LOGIN request
+    }
+    else
+    {
+// ########################## END of cyclic reading ########################
+
+        CancelTimer(t_ReadCyclic);                      // Cancel this timer
+        CancelTimer(t_CyclicLogin);                     // Cancel this timer
+        Kostia_Msg(MSG_LOGOUT);                         // perform LOGOUT
+        KTA_AddOn_Init();
+    }
+}
+
+on timer t_ReadCyclic
+{
+    PutValue(envKTA_IFM_AO_ReadFaults,1);
+    SetTimer(t_ReadCyclic, p_CycleTime);
+}
+
+on timer t_CyclicLogin
+{
+    CancelTimer(t_ReadCyclic);                  // to avoid access violation
+    Kostia_Msg(MSG_LOGIN);                      // required because after 5 min an automatic KOSTIA LOGOUT is performed by the GSM
+    
+    KTA_AddOn_Init();
+    write("Cyclic LOGIN transmitted");          
+
+    SetTimer(t_ReadCyclic, p_CycleTime);        // restart cyclic timer
+    SetTimer(t_CyclicLogin, p_CyclicLogin);     // next LOGIN in 290 seconds
+}
+
+on envVar envVar_ReadIfmVersion
+{
+	if((GetValue(this) == 1) && (d_Task_Manager == 0))
+	{
+        putValue(envVar_IfmVersion, "");
+
+		d_Task_Counter = 0;                         /* Set Task counter to 0 */
+		d_Task_Manager = TASK_READ_IFM_VERSION;	    /* Set Task Manager State to TASK_READ_IFM_VERSION */	
+        TaskList(); 
+    }
+}
+
+
+on envVar envKTA_IFM_Login
+{
+	  CancelTimer(t_ReadCyclic);                  // to avoid access violation
+    Kostia_Msg(MSG_LOGIN);    
+}
+
+on envVar envKTA_IFM_Logout
+{
+	  CancelTimer(t_ReadCyclic);                  // to avoid access violation
+    Kostia_Msg(MSG_LOGOUT);    
+}

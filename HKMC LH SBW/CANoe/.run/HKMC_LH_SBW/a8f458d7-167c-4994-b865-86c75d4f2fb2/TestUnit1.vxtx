@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <caplfunction>
+    <name>_ttg_fct_tt_6_0</name>
+  </caplfunction>
+  <testcase>
+    <title>Test Case</title>
+    <caplfunction>
+      <name>_ttg_fct_tc_6_0_0</name>
+    </caplfunction>
+  </testcase>
+</testtree>

@@ -1,0 +1,24 @@
+/*@!Encoding:936*/
+
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+on envVar Wakeup
+{
+  linSendWakeup();
+}
+
+on envVar GotoSleep
+{
+  linSendSleepModFrm(0,1,0XFF);
+}
+
+
+  

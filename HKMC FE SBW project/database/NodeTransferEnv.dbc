@@ -1,0 +1,240 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+VAL_TABLE_ VT_envCGW2_SMK_RKE_cmd 6 "Two Step Unlock Warning" 5 "Panic Stop" 4 "Panic" 3 "Trunk(or Tail Gate)" 2 "Unlock" 1 "Lock" 0 "None" ;
+VAL_TABLE_ Vt_EvRdy 1 "EV Drivable" 0 "None" ;
+VAL_TABLE_ VT_envCGW1_LightSwState 3 "AutoLight Sw On" 2 "HeadLamp Low Sw On" 1 "Tail Sw On" 0 "Light Sw Off" ;
+VAL_TABLE_ VT_envVCU_GarSelDisp 15 "Fault" 14 "Intermediate Position" 9 "Not Display at Cluster" 7 "R" 6 "N" 5 "D" 1 "B" 0 "P" ;
+VAL_TABLE_ VT_envEVCP2_DetentOut 1 "Detent On" 0 "Detent Off" ;
+VAL_TABLE_ VT_envEVCP2_RheostatLevel 21 "Step 21" 20 "Step 20" 19 "Step 19" 18 "Step 18" 17 "Step 17" 16 "Step 16" 15 "Step 15" 14 "Step 14" 13 "Step 13" 12 "Step 12" 11 "Step 11" 10 "Step 10" 9 "Step 9" 8 "Step 8" 7 "Step 7" 6 "Step 6" 5 "Step 5" 4 "Step 4" 3 "Step 3" 2 "Step 2" 1 "Step 1" 0 "Reversed" ;
+VAL_TABLE_ VT_envCGW1_RKECmd 7 "Reserved" 6 "Reserved" 5 "Truck(Or Tail Gate)" 4 "Panic Stop" 3 "Panic" 2 "Unlock" 1 "Lock" 0 "None" ;
+VAL_TABLE_ VT_envCGW1_IGNSw 7 "B_CAN_Timeout" 4 "Start" 3 "IGN" 2 "ACC" 1 "Key In" 0 "Key Off" ;
+
+
+
+
+EV_ envCGW2_IntTailAct: 0 [0|0] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCGW2_SMK_RKE: 0 [0|0] "" 0 2 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envVcu_EvRdy: 0 [0|0] "" 0 3 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCGW1_DrvDrSw: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCGW1_LightSwState: 0 [0|0] "" 0 5 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envVCU_GarSelDisp: 0 [0|0] "" 0 6 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envEVCP2_DetentOut: 0 [0|0] "" 0 7 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envEVCP2_RheostatLevel: 0 [0|0] "" 0 8 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCGW1_RKECmd: 0 [0|0] "" 0 9 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCGW1_IGNSw: 0 [0|0] "" 0 10 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "FrameGatewayNetwork" ENUM  "None","HS1_CAN","HS2_CAN","HS3_CAN","MS1_CAN";
+BA_DEF_ BO_  "FrameGateway_LC1" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayLC1_HS3" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayMS1" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayHS3" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayHS2" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayHS1" HEX 0 1407;
+BA_DEF_ BO_  "NetworkInitialization" ENUM  "No","Yes";
+BA_DEF_ BO_  "FrameGatewayCanId" HEX 0 1407;
+BA_DEF_ BO_  "EventRateOfChange" INT 10 10000;
+BA_DEF_ BO_  "ConfiguredTransmitter" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 10000;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 100;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 100000;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "FixedPeriodic","Event","EnabledPeriodic","NotUsed","NotUsed","EventPeriodic","NotUsed","NotUsed","NoMsgSendType";
+BA_DEF_ SG_  "ContentDependant" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigStartValue" INT 0 1000000000;
+BA_DEF_ SG_  "UsedOnPgmDBC" ENUM  "No","Yes";
+BA_DEF_ SG_  "CrossOver_LIN" ENUM  "No","Yes";
+BA_DEF_ SG_  "CrossOver_InfoCAN" ENUM  "No","Yes";
+BA_DEF_ SG_  "WakeupSignal" ENUM  "No","Yes";
+BA_DEF_ SG_  "FMC_SIG_SSPEC" STRING ;
+BA_DEF_ SG_  "GenSigMissingSourceValue" INT 0 1000000000;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 100000;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","vector_leerstring","OnChange","vector_leerstring","IfActive","vector_leerstring","NoSigSendType";
+BA_DEF_ BO_  "Mulitplexer" ENUM  "No","Yes";
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "TpApplType" STRING ;
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "TpTxIndex" INT 0 255;
+BA_DEF_ BO_  "NetworkInitializationCommand" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "NmMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BU_  "Terminator" ENUM  "No","Yes";
+BA_DEF_ BU_  "NodeWakeUpTime" INT 0 1000;
+BA_DEF_ BU_  "NodeStartUpTime" INT 0 1000;
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 128 255;
+BA_DEF_ BU_  "NmAsrNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "PowerType" ENUM  "Switched","Latched","Sleep","vector_leerstring","vector_leerstring";
+BA_DEF_ BU_  "DiagNode" ENUM  "GGDS","GDS","NONE";
+BA_DEF_ BU_  "EOL_SB_Flash" ENUM  "GGDS","GDS","NONE","vector_leerstring";
+BA_DEF_ BU_  "NetworkInitializationUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmStationAddress" INT 0 255;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NosPackage" ENUM  "None","I3_1","I3_2","1.0.1","RP","EuCD","Volcano";
+BA_DEF_ BU_  "LIN_Master" ENUM  "No","Yes";
+BA_DEF_ BU_  "PackageID" STRING ;
+BA_DEF_ BU_  "GatewayECU" ENUM  "No","Yes";
+BA_DEF_  "StarNetworkGwType" ENUM  "0=NotDefined","1=HS1","2=HS2","3=HS3","4=HS4","5=HS5","6=MS1";
+BA_DEF_  "CMDB_Version" STRING ;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_  "NetworkSpeed" ENUM  "500kBits/s","125kBit/s";
+BA_DEF_  "NmAsrMessageCount" INT 128 128;
+BA_DEF_  "NmAsrBaseAddress" HEX 1408 1408;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "VersionDay" INT 1 31;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "VersionNumber" INT 0 10000;
+BA_DEF_  "VersionMonth" INT 1 12;
+BA_DEF_  "VersionYear" INT 2000 3000;
+BA_DEF_  "NmBaseAddress" HEX 1280 1280;
+BA_DEF_  "NmMessageCount" INT 0 128;
+BA_DEF_ SG_  "GenSigTimeoutTime_TCU" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_TCS" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_SMK" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_LVR" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_GWAY" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_EMS" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_CLU" INT 0 100000;
+BA_DEF_DEF_  "NodeLayerModules" "CANoeILNLFord.dll";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "FrameGatewayNetwork" "None";
+BA_DEF_DEF_  "FrameGateway_LC1" 0;
+BA_DEF_DEF_  "FrameGatewayLC1_HS3" 0;
+BA_DEF_DEF_  "FrameGatewayMS1" 0;
+BA_DEF_DEF_  "FrameGatewayHS3" 0;
+BA_DEF_DEF_  "FrameGatewayHS2" 0;
+BA_DEF_DEF_  "FrameGatewayHS1" 0;
+BA_DEF_DEF_  "NetworkInitialization" "Yes";
+BA_DEF_DEF_  "FrameGatewayCanId" 0;
+BA_DEF_DEF_  "EventRateOfChange" 10000;
+BA_DEF_DEF_  "ConfiguredTransmitter" "No";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 1;
+BA_DEF_DEF_  "GenMsgDelayTime" 20;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "ContentDependant" "No";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "UsedOnPgmDBC" "Yes";
+BA_DEF_DEF_  "CrossOver_LIN" "No";
+BA_DEF_DEF_  "CrossOver_InfoCAN" "No";
+BA_DEF_DEF_  "WakeupSignal" "No";
+BA_DEF_DEF_  "FMC_SIG_SSPEC" "Unknown";
+BA_DEF_DEF_  "GenSigMissingSourceValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "Mulitplexer" "No";
+BA_DEF_DEF_  "NmAsrMessage" "No";
+BA_DEF_DEF_  "TpApplType" "";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "NetworkInitializationCommand" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "Terminator" "No";
+BA_DEF_DEF_  "NodeWakeUpTime" 10;
+BA_DEF_DEF_  "NodeStartUpTime" 250;
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 128;
+BA_DEF_DEF_  "NmAsrNode" "No";
+BA_DEF_DEF_  "PowerType" "Switched";
+BA_DEF_DEF_  "DiagNode" "GGDS";
+BA_DEF_DEF_  "EOL_SB_Flash" "GGDS";
+BA_DEF_DEF_  "NetworkInitializationUsed" "No";
+BA_DEF_DEF_  "NmNode" "No";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "NosPackage" "I3_1";
+BA_DEF_DEF_  "LIN_Master" "No";
+BA_DEF_DEF_  "PackageID" "08.05.00.00.71.xx.xx.rr.00.00";
+BA_DEF_DEF_  "GatewayECU" "No";
+BA_DEF_DEF_  "StarNetworkGwType" "0=NotDefined";
+BA_DEF_DEF_  "CMDB_Version" "v11.01";
+BA_DEF_DEF_  "NmType" "Ford-OSEK";
+BA_DEF_DEF_  "NetworkSpeed" "500kBits/s";
+BA_DEF_DEF_  "NmAsrMessageCount" 128;
+BA_DEF_DEF_  "NmAsrBaseAddress" 1408;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "VersionDay" 1;
+BA_DEF_DEF_  "Manufacturer" "Ford";
+BA_DEF_DEF_  "VersionNumber" 1;
+BA_DEF_DEF_  "VersionMonth" 1;
+BA_DEF_DEF_  "VersionYear" 2011;
+BA_DEF_DEF_  "NmBaseAddress" 1280;
+BA_DEF_DEF_  "NmMessageCount" 128;
+BA_DEF_DEF_  "GenSigTimeoutTime_TCU" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_TCS" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_SMK" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_LVR" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_GWAY" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_EMS" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_CLU" 0;
+BA_ "StarNetworkGwType" 2;
+BA_ "CMDB_Version" "v13.16Draft";
+BA_ "VersionDay" 26;
+BA_ "Manufacturer" "Ford";
+BA_ "VersionNumber" 16;
+BA_ "VersionMonth" 9;
+BA_ "VersionYear" 2013;
+BA_ "BusType" "CAN";
+BA_ "DBName" "HS2_CAN";
+VAL_ envCGW2_IntTailAct 1 "On" 0 "Off" ;
+VAL_ envCGW2_SMK_RKE 6 "Two Step Unlock Warning" 5 "Panic Stop" 4 "Panic" 3 "Trunk(or Tail Gate)" 2 "Unlock" 1 "Lock" 0 "None" ;
+VAL_ envVcu_EvRdy 1 "EV Drivable" 0 "None" ;
+VAL_ envCGW1_DrvDrSw 3 "B-CAN Timeout" 1 "Open" 0 "Close" ;
+VAL_ envCGW1_LightSwState 3 "AutoLight Sw On" 2 "HeadLamp Low Sw On" 1 "Tail Sw On" 0 "Light Sw Off" ;
+VAL_ envVCU_GarSelDisp 15 "Fault" 14 "Intermediate Position" 9 "Not Display at Cluster" 7 "R" 6 "N" 5 "D" 1 "B" 0 "P" ;
+VAL_ envEVCP2_DetentOut 1 "Detent On" 0 "Detent Off" ;
+VAL_ envEVCP2_RheostatLevel 21 "Step 21" 20 "Step 20" 19 "Step 19" 18 "Step 18" 17 "Step 17" 16 "Step 16" 15 "Step 15" 14 "Step 14" 13 "Step 13" 12 "Step 12" 11 "Step 11" 10 "Step 10" 9 "Step 9" 8 "Step 8" 7 "Step 7" 6 "Step 6" 5 "Step 5" 4 "Step 4" 3 "Step 3" 2 "Step 2" 1 "Step 1" 0 "Reversed" ;
+VAL_ envCGW1_RKECmd 7 "Reserved" 6 "Reserved" 5 "Truck(Or Tail Gate)" 4 "Panic Stop" 3 "Panic" 2 "Unlock" 1 "Lock" 0 "None" ;
+VAL_ envCGW1_IGNSw 7 "B_CAN_Timeout" 4 "Start" 3 "IGN" 2 "ACC" 1 "Key In" 0 "Key Off" ;
+

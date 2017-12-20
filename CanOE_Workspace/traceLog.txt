@@ -1,0 +1,26 @@
+[08:47:55]	Device 'BasicDiagnosticsEcu' is offline.
+[08:47:55]	Data elements imported.
+[08:50:21]	Device 'BasicDiagnosticsEcu' is offline.
+[08:50:21]	Data elements imported.
+[14:44:49]	Device 'BasicDiagnosticsEcu' is offline.
+[14:44:49]	Data elements imported.
+[15:34:53]	Device 'BasicDiagnosticsEcu' is offline.
+[15:34:53]	Data elements imported.
+[15:42:02]	Device 'BasicDiagnosticsEcu' is offline.
+[15:42:02]	Data elements imported.
+[09:13:12]	Device 'BasicDiagnosticsEcu' is offline.
+[09:13:12]	Data elements imported.
+[17:50:33]	Device 'BasicDiagnosticsEcu' is offline.
+[17:50:33]	Data elements imported.
+[14:21:19]	Device 'BasicDiagnosticsEcu' is offline.
+[14:21:19]	Data elements imported.
+[18:08:37]	Device 'BasicDiagnosticsEcu' is offline.
+[18:08:37]	Data elements imported.
+[10:36:34]	Device 'BasicDiagnosticsEcu' is offline.
+[10:36:34]	Data elements imported.
+[16:04:03]	Device 'BasicDiagnosticsEcu' is offline.
+[16:04:03]	Data elements imported.
+[16:29:07]	Device 'BasicDiagnosticsEcu' is offline.
+[16:29:07]	Data elements imported.
+[16:30:40]	Device 'BasicDiagnosticsEcu' is offline.
+[16:30:40]	Data elements imported.

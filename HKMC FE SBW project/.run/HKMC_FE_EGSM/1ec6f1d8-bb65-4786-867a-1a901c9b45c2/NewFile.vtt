@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <capltestcase>
+      <title />
+      <name>poweron</name>
+    </capltestcase>
+    <capltestcase>
+      <title />
+      <name>productinit</name>
+    </capltestcase>
+    <capltestcaselist>
+      <title />
+      <name>pwminput</name>
+      <combinatorics>sequential</combinatorics>
+      <structlistparameter />
+      <param>
+        <type>char[]</type>
+        <valuelist>
+          <value>
+            <const>P</const>
+          </value>
+          <value>
+            <const>R</const>
+          </value>
+          <value>
+            <const>N</const>
+          </value>
+          <value>
+            <const>D</const>
+          </value>
+          <value>
+            <const>No</const>
+          </value>
+        </valuelist>
+      </param>
+      <param>
+        <type>char[]</type>
+        <valuelist>
+          <value>
+            <const>确认是否P</const>
+          </value>
+          <value>
+            <const>确认是否R</const>
+          </value>
+          <value>
+            <const>确认是否N</const>
+          </value>
+          <value>
+            <const>确认是否D</const>
+          </value>
+          <value>
+            <const>确认是否No</const>
+          </value>
+        </valuelist>
+      </param>
+    </capltestcaselist>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

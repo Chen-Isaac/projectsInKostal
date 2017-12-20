@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SignalDescriptionFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.hilnormung.de/stimulusgeneration/stimulusfile SignalDescriptionFormat.xsd" version="1" xmlns="http://www.hilnormung.de/stimulusgeneration/stimulusfile">
+	<SignalDescriptionSet>
+		<SignalDescription name="stimulationCurve" id="ID_SIGNAL_stimulationCurve">
+			<SegmentSignalDescription>
+				<RampSegment>
+					<Duration xsi:type="ConstSymbol">
+						<Value>0.1</Value>
+					</Duration>
+					<Start xsi:type="ConstSymbol">
+						<Value>2</Value>
+					</Start>
+					<Stop xsi:type="ConstSymbol">
+						<Value>3</Value>
+					</Stop>
+				</RampSegment>
+				<RampSegment>
+					<Duration xsi:type="ConstSymbol">
+						<Value>0.1</Value>
+					</Duration>
+					<Start xsi:type="ConstSymbol">
+						<Value>3</Value>
+					</Start>
+					<Stop xsi:type="ConstSymbol">
+						<Value>4</Value>
+					</Stop>
+				</RampSegment>
+				<RampSegment>
+					<Duration xsi:type="ConstSymbol">
+						<Value>0.1</Value>
+					</Duration>
+					<Start xsi:type="ConstSymbol">
+						<Value>4</Value>
+					</Start>
+					<Stop xsi:type="ConstSymbol">
+						<Value>3</Value>
+					</Stop>
+				</RampSegment>
+				<RampSegment>
+					<Duration xsi:type="ConstSymbol">
+						<Value>0.1</Value>
+					</Duration>
+					<Start xsi:type="ConstSymbol">
+						<Value>3</Value>
+					</Start>
+					<Stop xsi:type="ConstSymbol">
+						<Value>4</Value>
+					</Stop>
+				</RampSegment>
+				<RampSegment>
+					<Duration xsi:type="ConstSymbol">
+						<Value>0.2</Value>
+					</Duration>
+					<Start xsi:type="ConstSymbol">
+						<Value>4</Value>
+					</Start>
+					<Stop xsi:type="ConstSymbol">
+						<Value>4</Value>
+					</Stop>
+				</RampSegment>
+				<RampSegment>
+					<Duration xsi:type="ConstSymbol">
+						<Value>0.1</Value>
+					</Duration>
+					<Start xsi:type="ConstSymbol">
+						<Value>4</Value>
+					</Start>
+					<Stop xsi:type="ConstSymbol">
+						<Value>5</Value>
+					</Stop>
+				</RampSegment>
+				<RampSegment>
+					<Duration xsi:type="ConstSymbol">
+						<Value>0.05</Value>
+					</Duration>
+					<Start xsi:type="ConstSymbol">
+						<Value>5</Value>
+					</Start>
+					<Stop xsi:type="ConstSymbol">
+						<Value>6</Value>
+					</Stop>
+				</RampSegment>
+				<SineSegment>
+					<Duration xsi:type="ConstSymbol">
+						<Value>1.05</Value>
+					</Duration>
+					<Phase xsi:type="ConstSymbol">
+						<Value>0</Value>
+					</Phase>
+					<Amplitude xsi:type="ConstSymbol">
+						<Value>1</Value>
+					</Amplitude>
+					<Period xsi:type="ConstSymbol">
+						<Value>0.15</Value>
+					</Period>
+					<Offset xsi:type="ConstSymbol">
+						<Value>6</Value>
+					</Offset>
+				</SineSegment>
+			</SegmentSignalDescription>
+		</SignalDescription>
+	</SignalDescriptionSet>
+</SignalDescriptionFile>

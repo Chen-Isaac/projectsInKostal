@@ -1,0 +1,25 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+export testsequence attempt (signal* sig, char str[])
+{
+  
+}
+
+export long tf_FrmStatusCycleTimeIncremented (long increment)
+{
+   return CGW1.GenMsgCycleTime + increment;
+}
+
+export int shit (long increment)
+{
+   return increment;
+}

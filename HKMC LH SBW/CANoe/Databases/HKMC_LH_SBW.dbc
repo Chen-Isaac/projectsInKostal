@@ -1,0 +1,635 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: TCU ESC LVR Tester EMS CGW
+
+
+BO_ 1363 CGW2: 8 CGW
+ SG_ CF_Gway_RRDrSw : 23|1@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_RLDrSw : 24|1@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 902 WHL_SPD11: 8 ESC
+ SG_ WHL_SPD_FL : 0|14@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 2015 Func_diareq: 8 Tester
+ SG_ DiagRequest_Func : 0|64@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 1982 EGSM_resp: 8 LVR
+ SG_ DiagResponse : 0|64@1+ (1,0) [0|0] "%"  Tester
+
+BO_ 1974 EGSM_diareq: 8 Tester
+ SG_ DiagRequest : 0|64@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 1581 Kostia_Response: 8 LVR
+ SG_ KostiaResp : 0|64@1+ (1,0) [0|0] "%"  Tester
+
+BO_ 790 EMS11: 8 EMS
+ SG_ VS : 48|8@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 1282 TCU14: 4 TCU
+ SG_ CF_Tcu_GSel_BlinkReq : 5|1@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 275 TCU13: 8 TCU
+ SG_ CF_Tcu_PRelReq : 29|1@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 274 TCU12: 8 TCU
+ SG_ VS_TCU : 16|8@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 273 TCU11: 8 TCU
+ SG_ G_SEL_DISP : 8|4@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 1580 Kostia_Request: 8 Tester
+ SG_ KostiaReq : 0|64@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 608 EMS16: 8 EMS
+ SG_ ENG_STAT : 28|3@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 1104 CGW_CP2: 8 CGW
+ SG_ CF_Gway_RheostatLevel : 27|5@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_DetentOut : 24|1@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 1345 CGW1: 8 CGW
+ SG_ CF_Gway_DrvSeatBeltSw : 10|2@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_AstSeatBeltSw : 14|2@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_PassiveAccessLock : 45|2@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_LightSwState : 38|2@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_AstDrSw : 35|1@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_RKECmd : 3|3@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_IGNSw : 0|3@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_DrvKeyLockSw : 6|1@1+ (1,0) [0|0] "%"  LVR
+ SG_ CF_Gway_DrvDrSw : 8|2@1+ (1,0) [0|0] "%"  LVR
+
+BO_ 852 LVR11: 7 LVR
+ SG_ CF_Lvr_WarnSnd : 16|1@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_UlkButStat : 18|2@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_ShtLkStat : 24|4@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_ShfErrInf : 28|20@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_PRelStat : 4|1@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_PosInf : 8|4@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_PosCpl : 12|4@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_PNStat : 20|2@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_NWStatus : 7|1@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_NFnStat : 6|1@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_GearInf : 0|4@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_CS : 52|4@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_BkeAct : 5|1@1+ (1,0) [0|0] "%"  Tester
+ SG_ CF_Lvr_AC : 48|4@1+ (1,0) [0|0] "%"  Tester
+
+
+
+BA_DEF_ BO_  "DiagConnection" INT 0 100;
+BA_DEF_ BU_  "ECU_Id" HEX 0 255;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "SourceId" HEX 0 255;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "Baudrate" INT 0 1000000;
+BA_DEF_  "BusOffRecoveryTime" INT 0 65535;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "VersionNumber" INT 0 65535;
+BA_DEF_  "SamplePointMin" FLOAT 0 100;
+BA_DEF_  "SamplePointMax" FLOAT 0 100;
+BA_DEF_  "SyncJumpWidthMin" INT 0 255;
+BA_DEF_  "SyncJumpWidthMax" INT 0 255;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 100000;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 100000;
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "MessageSubnet" ENUM  "BB","PB","CB","Body","HS","Powertrain","Chassis","Spare","PE","CC";
+BA_DEF_ BO_  "TpTxIndex" INT 0 99;
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ SG_  "GenSigStartValue" INT 0 65535;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_  "PacketOrder" INT 0 65535;
+BA_DEF_ SG_  "SignalLongName" STRING ;
+BA_DEF_ SG_  "SignalType" STRING ;
+BA_DEF_ SG_  "GenSigDeltaValue" INT 0 65535;
+BA_DEF_ SG_  "GenSigSendTopBottom" ENUM  "None","SendAtTop","SendAtBottom","SendAtTopBottom";
+BA_DEF_ SG_  "GenSigSendOnInit" ENUM  "Not Initialized","Application","Handler";
+BA_DEF_ SG_  "VNSigDiagnostic" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigSLHS_VNHVEM" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigSLHSSharedDiagnostic" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigAllNodes" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigInfotainment" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigIntermediate" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigParkedVehicle" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigPrimaryTriggering" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigSLHS_VNReq" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmAsrNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_ BU_  "NmAsrCanMsgCycleOffset" INT 0 65535;
+BA_DEF_ BU_  "NmAsrCanMsgReducedTime" INT 0 65535;
+BA_DEF_  "NmAsrMessageCount" INT 0 256;
+BA_DEF_  "NmAsrBaseAddress" HEX 0 2032;
+BA_DEF_  "NmAsrTimeoutTime" INT 0 65535;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 0 65535;
+BA_DEF_  "NmAsrRepeatMessageTime" INT 0 65525;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NoMsgSendType";
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagUUDTResponse" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "NotUsed","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepeition","NoSigSendType";
+BA_DEF_REL_ BU_SG_REL_  "GenSigTimeoutMsg" HEX 0 2032;
+BA_DEF_REL_ BU_SG_REL_  "GenSigTimeoutTime" INT 0 15000;
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvResp" ENUM  "None","Notify App","Substitute Default";
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvRespSubValue" INT 0 65535;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVBitResp" ENUM  "No","Yes";
+BA_DEF_REL_ BU_SG_REL_  "GenSigVBitRespComment" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVDAFailResp" ENUM  "No","Yes";
+BA_DEF_REL_ BU_SG_REL_  "GenSigRxStartValue" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvRespComment" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVDAFailComment" STRING ;
+BA_DEF_DEF_  "DiagConnection" 0;
+BA_DEF_DEF_  "ECU_Id" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "SourceId" 0;
+BA_DEF_DEF_  "NmType" "HSCAN";
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "Baudrate" 500000;
+BA_DEF_DEF_  "BusOffRecoveryTime" 160;
+BA_DEF_DEF_  "Manufacturer" "GM";
+BA_DEF_DEF_  "VersionNumber" 0;
+BA_DEF_DEF_  "SamplePointMin" 81.25;
+BA_DEF_DEF_  "SamplePointMax" 80;
+BA_DEF_DEF_  "SyncJumpWidthMin" 4;
+BA_DEF_DEF_  "SyncJumpWidthMax" 3;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "MessageSubnet" "Body";
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "PacketOrder" 0;
+BA_DEF_DEF_  "SignalLongName" "";
+BA_DEF_DEF_  "SignalType" "";
+BA_DEF_DEF_  "GenSigDeltaValue" 0;
+BA_DEF_DEF_  "GenSigSendTopBottom" "None";
+BA_DEF_DEF_  "GenSigSendOnInit" "Not Initialized";
+BA_DEF_DEF_  "VNSigDiagnostic" "No";
+BA_DEF_DEF_  "VNSigSLHS_VNHVEM" "No";
+BA_DEF_DEF_  "VNSigSLHSSharedDiagnostic" "No";
+BA_DEF_DEF_  "VNSigAllNodes" "No";
+BA_DEF_DEF_  "VNSigInfotainment" "No";
+BA_DEF_DEF_  "VNSigIntermediate" "No";
+BA_DEF_DEF_  "VNSigParkedVehicle" "No";
+BA_DEF_DEF_  "VNSigPrimaryTriggering" "No";
+BA_DEF_DEF_  "VNSigSLHS_VNReq" "No";
+BA_DEF_DEF_  "NmAsrNode" "Yes";
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 0;
+BA_DEF_DEF_  "NmAsrCanMsgCycleOffset" 0;
+BA_DEF_DEF_  "NmAsrCanMsgReducedTime" 0;
+BA_DEF_DEF_  "NmAsrMessageCount" 22;
+BA_DEF_DEF_  "NmAsrBaseAddress" 0;
+BA_DEF_DEF_  "NmAsrTimeoutTime" 0;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 0;
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 0;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmAsrMessage" "No";
+BA_DEF_DEF_  "DiagUUDTResponse" "No";
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_REL_ "GenSigTimeoutMsg" 0;
+BA_DEF_DEF_REL_ "GenSigTimeoutTime" 0;
+BA_DEF_DEF_REL_ "GenSigSuprvResp" "None";
+BA_DEF_DEF_REL_ "GenSigSuprvRespSubValue" 0;
+BA_DEF_DEF_REL_ "GenSigVBitResp" "No";
+BA_DEF_DEF_REL_ "GenSigVBitRespComment" "";
+BA_DEF_DEF_REL_ "GenSigVDAFailResp" "No";
+BA_DEF_DEF_REL_ "GenSigRxStartValue" "";
+BA_DEF_DEF_REL_ "GenSigSuprvRespComment" "";
+BA_DEF_DEF_REL_ "GenSigVDAFailComment" "";
+BA_ "NmType" "NmAsr";
+BA_ "NmAsrMessageCount" 128;
+BA_ "NmAsrBaseAddress" 1568;
+BA_ "NmAsrTimeoutTime" 4000;
+BA_ "NmAsrWaitBusSleepTime" 4000;
+BA_ "NmAsrRepeatMessageTime" 1500;
+BA_ "NmAsrCanMsgCycleTime" 640;
+BA_ "Baudrate" 500000;
+BA_ "Manufacturer" "Vector";
+BA_ "VersionNumber" 1;
+BA_ "SamplePointMin" 78.5;
+BA_ "SamplePointMax" 83.4;
+BA_ "SyncJumpWidthMin" 3;
+BA_ "SyncJumpWidthMax" 4;
+BA_ "BusType" "CAN";
+BA_ "DBName" "PB";
+BA_ "ECU_Id" BU_ LVR 64;
+BA_ "ILUsed" BU_ LVR 1;
+BA_ "NmAsrNode" BU_ LVR 1;
+BA_ "NmAsrNodeIdentifier" BU_ LVR 64;
+BA_ "NmAsrCanMsgCycleOffset" BU_ LVR 0;
+BA_ "NmAsrCanMsgReducedTime" BU_ LVR 320;
+BA_ "SourceId" BU_ LVR 64;
+BA_ "ECU_Id" BU_ Tester 24;
+BA_ "ILUsed" BU_ Tester 1;
+BA_ "NmAsrNode" BU_ Tester 1;
+BA_ "NmAsrNodeIdentifier" BU_ Tester 24;
+BA_ "NmAsrCanMsgCycleOffset" BU_ Tester 20;
+BA_ "NmAsrCanMsgReducedTime" BU_ Tester 340;
+BA_ "SourceId" BU_ Tester 24;
+BA_ "ECU_Id" BU_ EMS 187;
+BA_ "ILUsed" BU_ EMS 1;
+BA_ "NmAsrNode" BU_ EMS 1;
+BA_ "NmAsrNodeIdentifier" BU_ EMS 187;
+BA_ "NmAsrCanMsgCycleOffset" BU_ EMS 30;
+BA_ "NmAsrCanMsgReducedTime" BU_ EMS 350;
+BA_ "SourceId" BU_ EMS 187;
+BA_ "ECU_Id" BU_ CGW 69;
+BA_ "ILUsed" BU_ CGW 1;
+BA_ "NmAsrNode" BU_ CGW 1;
+BA_ "NmAsrNodeIdentifier" BU_ CGW 69;
+BA_ "NmAsrCanMsgCycleOffset" BU_ CGW 120;
+BA_ "NmAsrCanMsgReducedTime" BU_ CGW 440;
+BA_ "SourceId" BU_ CGW 69;
+BA_ "GenMsgILSupport" BO_ 1363 1;
+BA_ "GenMsgCycleTime" BO_ 1363 200;
+BA_ "GenMsgDelayTime" BO_ 1363 0;
+BA_ "DiagRequest" BO_ 1363 0;
+BA_ "DiagResponse" BO_ 1363 0;
+BA_ "DiagState" BO_ 1363 0;
+BA_ "MessageSubnet" BO_ 1363 6;
+BA_ "TpTxIndex" BO_ 1363 0;
+BA_ "GenMsgSendType" BO_ 1363 0;
+BA_ "NmAsrMessage" BO_ 1363 0;
+BA_ "DiagUUDTResponse" BO_ 1363 0;
+BA_ "GenMsgILSupport" BO_ 902 1;
+BA_ "GenMsgCycleTime" BO_ 902 20;
+BA_ "GenMsgDelayTime" BO_ 902 0;
+BA_ "DiagRequest" BO_ 902 0;
+BA_ "DiagResponse" BO_ 902 0;
+BA_ "DiagState" BO_ 902 0;
+BA_ "MessageSubnet" BO_ 902 6;
+BA_ "TpTxIndex" BO_ 902 0;
+BA_ "GenMsgSendType" BO_ 902 0;
+BA_ "NmAsrMessage" BO_ 902 0;
+BA_ "DiagUUDTResponse" BO_ 902 0;
+BA_ "DiagConnection" BO_ 2015 1;
+BA_ "DiagUUDTResponse" BO_ 2015 0;
+BA_ "NmAsrMessage" BO_ 2015 0;
+BA_ "TpTxIndex" BO_ 2015 0;
+BA_ "MessageSubnet" BO_ 2015 1;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "DiagRequest" BO_ 2015 0;
+BA_ "GenMsgDelayTime" BO_ 2015 0;
+BA_ "GenMsgILSupport" BO_ 2015 0;
+BA_ "DiagConnection" BO_ 1982 1;
+BA_ "NmAsrMessage" BO_ 1982 0;
+BA_ "TpTxIndex" BO_ 1982 0;
+BA_ "MessageSubnet" BO_ 1982 1;
+BA_ "DiagState" BO_ 1982 0;
+BA_ "DiagResponse" BO_ 1982 1;
+BA_ "DiagRequest" BO_ 1982 0;
+BA_ "GenMsgDelayTime" BO_ 1982 0;
+BA_ "DiagConnection" BO_ 1974 1;
+BA_ "DiagUUDTResponse" BO_ 1974 0;
+BA_ "NmAsrMessage" BO_ 1974 0;
+BA_ "TpTxIndex" BO_ 1974 0;
+BA_ "MessageSubnet" BO_ 1974 1;
+BA_ "DiagState" BO_ 1974 0;
+BA_ "DiagResponse" BO_ 1974 0;
+BA_ "DiagRequest" BO_ 1974 1;
+BA_ "GenMsgDelayTime" BO_ 1974 0;
+BA_ "GenMsgILSupport" BO_ 1974 0;
+BA_ "DiagUUDTResponse" BO_ 1581 0;
+BA_ "NmAsrMessage" BO_ 1581 0;
+BA_ "TpTxIndex" BO_ 1581 0;
+BA_ "MessageSubnet" BO_ 1581 6;
+BA_ "DiagState" BO_ 1581 0;
+BA_ "DiagResponse" BO_ 1581 0;
+BA_ "DiagRequest" BO_ 1581 0;
+BA_ "GenMsgDelayTime" BO_ 1581 0;
+BA_ "GenMsgILSupport" BO_ 1581 0;
+BA_ "GenMsgILSupport" BO_ 790 1;
+BA_ "GenMsgCycleTime" BO_ 790 10;
+BA_ "GenMsgDelayTime" BO_ 790 0;
+BA_ "DiagRequest" BO_ 790 0;
+BA_ "DiagResponse" BO_ 790 0;
+BA_ "DiagState" BO_ 790 0;
+BA_ "MessageSubnet" BO_ 790 6;
+BA_ "TpTxIndex" BO_ 790 0;
+BA_ "GenMsgSendType" BO_ 790 0;
+BA_ "NmAsrMessage" BO_ 790 0;
+BA_ "DiagUUDTResponse" BO_ 790 0;
+BA_ "GenMsgILSupport" BO_ 1282 1;
+BA_ "GenMsgCycleTime" BO_ 1282 100;
+BA_ "GenMsgDelayTime" BO_ 1282 0;
+BA_ "DiagRequest" BO_ 1282 0;
+BA_ "DiagResponse" BO_ 1282 0;
+BA_ "DiagState" BO_ 1282 0;
+BA_ "MessageSubnet" BO_ 1282 6;
+BA_ "TpTxIndex" BO_ 1282 0;
+BA_ "GenMsgSendType" BO_ 1282 0;
+BA_ "NmAsrMessage" BO_ 1282 0;
+BA_ "DiagUUDTResponse" BO_ 1282 0;
+BA_ "GenMsgILSupport" BO_ 275 1;
+BA_ "GenMsgCycleTime" BO_ 275 10;
+BA_ "GenMsgDelayTime" BO_ 275 0;
+BA_ "DiagRequest" BO_ 275 0;
+BA_ "DiagResponse" BO_ 275 0;
+BA_ "DiagState" BO_ 275 0;
+BA_ "MessageSubnet" BO_ 275 6;
+BA_ "TpTxIndex" BO_ 275 0;
+BA_ "GenMsgSendType" BO_ 275 0;
+BA_ "NmAsrMessage" BO_ 275 0;
+BA_ "DiagUUDTResponse" BO_ 275 0;
+BA_ "GenMsgILSupport" BO_ 274 1;
+BA_ "GenMsgCycleTime" BO_ 274 10;
+BA_ "GenMsgDelayTime" BO_ 274 0;
+BA_ "DiagRequest" BO_ 274 0;
+BA_ "DiagResponse" BO_ 274 0;
+BA_ "DiagState" BO_ 274 0;
+BA_ "MessageSubnet" BO_ 274 6;
+BA_ "TpTxIndex" BO_ 274 0;
+BA_ "GenMsgSendType" BO_ 274 0;
+BA_ "NmAsrMessage" BO_ 274 0;
+BA_ "DiagUUDTResponse" BO_ 274 0;
+BA_ "GenMsgILSupport" BO_ 273 1;
+BA_ "GenMsgCycleTime" BO_ 273 10;
+BA_ "GenMsgDelayTime" BO_ 273 0;
+BA_ "DiagRequest" BO_ 273 0;
+BA_ "DiagResponse" BO_ 273 0;
+BA_ "DiagState" BO_ 273 0;
+BA_ "MessageSubnet" BO_ 273 6;
+BA_ "TpTxIndex" BO_ 273 0;
+BA_ "GenMsgSendType" BO_ 273 0;
+BA_ "NmAsrMessage" BO_ 273 0;
+BA_ "DiagUUDTResponse" BO_ 273 0;
+BA_ "GenMsgILSupport" BO_ 1580 0;
+BA_ "GenMsgDelayTime" BO_ 1580 0;
+BA_ "DiagRequest" BO_ 1580 0;
+BA_ "DiagResponse" BO_ 1580 0;
+BA_ "MessageSubnet" BO_ 1580 6;
+BA_ "TpTxIndex" BO_ 1580 0;
+BA_ "NmAsrMessage" BO_ 1580 0;
+BA_ "DiagUUDTResponse" BO_ 1580 0;
+BA_ "GenMsgILSupport" BO_ 608 1;
+BA_ "GenMsgCycleTime" BO_ 608 10;
+BA_ "GenMsgDelayTime" BO_ 608 0;
+BA_ "DiagRequest" BO_ 608 0;
+BA_ "DiagResponse" BO_ 608 0;
+BA_ "DiagState" BO_ 608 0;
+BA_ "MessageSubnet" BO_ 608 6;
+BA_ "TpTxIndex" BO_ 608 0;
+BA_ "GenMsgSendType" BO_ 608 0;
+BA_ "NmAsrMessage" BO_ 608 0;
+BA_ "DiagUUDTResponse" BO_ 608 0;
+BA_ "GenMsgILSupport" BO_ 1104 1;
+BA_ "GenMsgCycleTime" BO_ 1104 20;
+BA_ "GenMsgDelayTime" BO_ 1104 0;
+BA_ "DiagRequest" BO_ 1104 0;
+BA_ "DiagResponse" BO_ 1104 0;
+BA_ "DiagState" BO_ 1104 0;
+BA_ "MessageSubnet" BO_ 1104 6;
+BA_ "TpTxIndex" BO_ 1104 0;
+BA_ "GenMsgSendType" BO_ 1104 0;
+BA_ "NmAsrMessage" BO_ 1104 0;
+BA_ "DiagUUDTResponse" BO_ 1104 0;
+BA_ "GenMsgILSupport" BO_ 1345 1;
+BA_ "GenMsgCycleTime" BO_ 1345 100;
+BA_ "GenMsgDelayTime" BO_ 1345 0;
+BA_ "DiagRequest" BO_ 1345 0;
+BA_ "DiagResponse" BO_ 1345 0;
+BA_ "DiagState" BO_ 1345 0;
+BA_ "MessageSubnet" BO_ 1345 6;
+BA_ "TpTxIndex" BO_ 1345 0;
+BA_ "GenMsgSendType" BO_ 1345 0;
+BA_ "NmAsrMessage" BO_ 1345 0;
+BA_ "DiagUUDTResponse" BO_ 1345 0;
+BA_ "MessageSubnet" BO_ 852 6;
+BA_ "GenMsgILSupport" BO_ 852 1;
+BA_ "NmAsrMessage" BO_ 852 0;
+BA_ "DiagRequest" BO_ 852 0;
+BA_ "DiagResponse" BO_ 852 0;
+BA_ "DiagState" BO_ 852 0;
+BA_ "TpTxIndex" BO_ 852 0;
+BA_ "DiagUUDTResponse" BO_ 852 0;
+BA_ "GenMsgDelayTime" BO_ 852 0;
+BA_ "GenMsgCycleTime" BO_ 852 10;
+BA_ "GenMsgSendType" BO_ 852 0;
+BA_ "GenSigStartValue" SG_ 1363 CF_Gway_RRDrSw 0;
+BA_ "SignalType" SG_ 1363 CF_Gway_RRDrSw "UNM";
+BA_ "GenSigSendOnInit" SG_ 1363 CF_Gway_RRDrSw 0;
+BA_ "GenSigSendType" SG_ 1363 CF_Gway_RRDrSw 7;
+BA_ "GenSigStartValue" SG_ 1363 CF_Gway_RLDrSw 0;
+BA_ "SignalType" SG_ 1363 CF_Gway_RLDrSw "UNM";
+BA_ "GenSigSendOnInit" SG_ 1363 CF_Gway_RLDrSw 0;
+BA_ "GenSigSendType" SG_ 1363 CF_Gway_RLDrSw 7;
+BA_ "GenSigStartValue" SG_ 902 WHL_SPD_FL 0;
+BA_ "SignalType" SG_ 902 WHL_SPD_FL "UNM";
+BA_ "GenSigSendOnInit" SG_ 902 WHL_SPD_FL 0;
+BA_ "GenSigSendType" SG_ 902 WHL_SPD_FL 7;
+BA_ "GenSigSendType" SG_ 2015 DiagRequest_Func 7;
+BA_ "GenSigSendOnInit" SG_ 2015 DiagRequest_Func 0;
+BA_ "SignalType" SG_ 2015 DiagRequest_Func "UNM";
+BA_ "GenSigStartValue" SG_ 2015 DiagRequest_Func 0;
+BA_ "GenSigSendType" SG_ 1982 DiagResponse 7;
+BA_ "GenSigSendOnInit" SG_ 1982 DiagResponse 0;
+BA_ "SignalType" SG_ 1982 DiagResponse "UNM";
+BA_ "GenSigStartValue" SG_ 1982 DiagResponse 0;
+BA_ "GenSigSendType" SG_ 1974 DiagRequest 7;
+BA_ "GenSigSendOnInit" SG_ 1974 DiagRequest 0;
+BA_ "SignalType" SG_ 1974 DiagRequest "UNM";
+BA_ "GenSigStartValue" SG_ 1974 DiagRequest 0;
+BA_ "GenSigSendType" SG_ 1581 KostiaResp 7;
+BA_ "GenSigSendOnInit" SG_ 1581 KostiaResp 0;
+BA_ "SignalType" SG_ 1581 KostiaResp "UNM";
+BA_ "GenSigStartValue" SG_ 1581 KostiaResp 0;
+BA_ "GenSigStartValue" SG_ 790 VS 0;
+BA_ "SignalType" SG_ 790 VS "UNM";
+BA_ "GenSigSendOnInit" SG_ 790 VS 0;
+BA_ "GenSigSendType" SG_ 790 VS 7;
+BA_ "GenSigStartValue" SG_ 1282 CF_Tcu_GSel_BlinkReq 0;
+BA_ "SignalType" SG_ 1282 CF_Tcu_GSel_BlinkReq "UNM";
+BA_ "GenSigSendOnInit" SG_ 1282 CF_Tcu_GSel_BlinkReq 0;
+BA_ "GenSigSendType" SG_ 1282 CF_Tcu_GSel_BlinkReq 7;
+BA_ "GenSigStartValue" SG_ 275 CF_Tcu_PRelReq 0;
+BA_ "SignalType" SG_ 275 CF_Tcu_PRelReq "UNM";
+BA_ "GenSigSendOnInit" SG_ 275 CF_Tcu_PRelReq 0;
+BA_ "GenSigSendType" SG_ 275 CF_Tcu_PRelReq 7;
+BA_ "GenSigStartValue" SG_ 274 VS_TCU 0;
+BA_ "SignalType" SG_ 274 VS_TCU "UNM";
+BA_ "GenSigSendOnInit" SG_ 274 VS_TCU 0;
+BA_ "GenSigSendType" SG_ 274 VS_TCU 7;
+BA_ "GenSigStartValue" SG_ 273 G_SEL_DISP 0;
+BA_ "SignalType" SG_ 273 G_SEL_DISP "UNM";
+BA_ "GenSigSendOnInit" SG_ 273 G_SEL_DISP 0;
+BA_ "GenSigSendType" SG_ 273 G_SEL_DISP 7;
+BA_ "GenSigSendType" SG_ 1580 KostiaReq 7;
+BA_ "GenSigSendOnInit" SG_ 1580 KostiaReq 0;
+BA_ "SignalType" SG_ 1580 KostiaReq "UNM";
+BA_ "GenSigStartValue" SG_ 1580 KostiaReq 0;
+BA_ "GenSigStartValue" SG_ 608 ENG_STAT 0;
+BA_ "SignalType" SG_ 608 ENG_STAT "UNM";
+BA_ "GenSigSendOnInit" SG_ 608 ENG_STAT 0;
+BA_ "GenSigSendType" SG_ 608 ENG_STAT 7;
+BA_ "GenSigStartValue" SG_ 1104 CF_Gway_RheostatLevel 0;
+BA_ "SignalType" SG_ 1104 CF_Gway_RheostatLevel "UNM";
+BA_ "GenSigSendOnInit" SG_ 1104 CF_Gway_RheostatLevel 0;
+BA_ "GenSigSendType" SG_ 1104 CF_Gway_RheostatLevel 7;
+BA_ "GenSigStartValue" SG_ 1104 CF_Gway_DetentOut 0;
+BA_ "SignalType" SG_ 1104 CF_Gway_DetentOut "UNM";
+BA_ "GenSigSendOnInit" SG_ 1104 CF_Gway_DetentOut 0;
+BA_ "GenSigSendType" SG_ 1104 CF_Gway_DetentOut 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_DrvSeatBeltSw 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_DrvSeatBeltSw "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_DrvSeatBeltSw 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_DrvSeatBeltSw 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_AstSeatBeltSw 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_AstSeatBeltSw "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_AstSeatBeltSw 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_AstSeatBeltSw 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_PassiveAccessLock 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_PassiveAccessLock "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_PassiveAccessLock 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_PassiveAccessLock 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_LightSwState 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_LightSwState "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_LightSwState 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_LightSwState 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_AstDrSw 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_AstDrSw "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_AstDrSw 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_AstDrSw 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_RKECmd 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_RKECmd "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_RKECmd 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_RKECmd 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_IGNSw 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_IGNSw "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_IGNSw 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_IGNSw 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_DrvKeyLockSw 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_DrvKeyLockSw "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_DrvKeyLockSw 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_DrvKeyLockSw 7;
+BA_ "GenSigStartValue" SG_ 1345 CF_Gway_DrvDrSw 0;
+BA_ "SignalType" SG_ 1345 CF_Gway_DrvDrSw "UNM";
+BA_ "GenSigSendOnInit" SG_ 1345 CF_Gway_DrvDrSw 0;
+BA_ "GenSigSendType" SG_ 1345 CF_Gway_DrvDrSw 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_WarnSnd 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_WarnSnd "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_WarnSnd 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_WarnSnd 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_UlkButStat 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_UlkButStat "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_UlkButStat 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_UlkButStat 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_ShtLkStat 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_ShtLkStat "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_ShtLkStat 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_ShtLkStat 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_ShfErrInf 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_ShfErrInf "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_ShfErrInf 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_ShfErrInf 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_PRelStat 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_PRelStat "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_PRelStat 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_PRelStat 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_PosInf 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_PosInf "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_PosInf 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_PosInf 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_PosCpl 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_PosCpl "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_PosCpl 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_PosCpl 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_PNStat 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_PNStat "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_PNStat 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_PNStat 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_NWStatus 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_NWStatus "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_NWStatus 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_NWStatus 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_NFnStat 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_NFnStat "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_NFnStat 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_NFnStat 7;
+BA_ "SignalType" SG_ 852 CF_Lvr_GearInf "UNM";
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_GearInf 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_GearInf 7;
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_GearInf 0;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_CS 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_CS "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_CS 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_CS 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_BkeAct 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_BkeAct "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_BkeAct 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_BkeAct 7;
+BA_ "GenSigStartValue" SG_ 852 CF_Lvr_AC 0;
+BA_ "SignalType" SG_ 852 CF_Lvr_AC "UNM";
+BA_ "GenSigSendOnInit" SG_ 852 CF_Lvr_AC 0;
+BA_ "GenSigSendType" SG_ 852 CF_Lvr_AC 7;
+VAL_ 1363 CF_Gway_RRDrSw 1 "Open" 0 "Close" ;
+VAL_ 1363 CF_Gway_RLDrSw 1 "Open" 0 "Close" ;
+VAL_ 1282 CF_Tcu_GSel_BlinkReq 1 "Request lamp blinking" 0 "No blink" ;
+VAL_ 275 CF_Tcu_PRelReq 1 "E-shifter Parking Release" 0 "No Request" ;
+VAL_ 273 G_SEL_DISP 15 "Fault" 14 "Intermediate Position" 12 "Paddle shift (D-position)" 11 "Sub-Rom communication Error" 10 "Sub-Rom communication" 9 "Not Display at Cluster" 8 "D" 7 "R" 6 "N" 5 "D" 4 "DS Mode" 3 "3" 2 "2" 1 "L" 0 "P" ;
+VAL_ 608 ENG_STAT 7 "Fault" 3 "Running" 2 "Stalled" 1 "Cranking" 0 "Engine Stop" ;
+VAL_ 1104 CF_Gway_RheostatLevel 21 "Step 21" 20 "Step 20" 19 "Step 19" 18 "Step 18" 17 "Step 17" 16 "Step 16" 15 "Step 15" 14 "Step 14" 13 "Step 13" 12 "Step 12" 11 "Step 11" 10 "Step 10" 9 "Step 9" 8 "Step 8" 7 "Step 7" 6 "Step 6" 5 "Step 5" 4 "Step 4" 3 "Step 3" 2 "Step 2" 1 "Step 1" ;
+VAL_ 1104 CF_Gway_DetentOut 1 "ON(Daytime Max)" 0 "OFF(Night Max)" ;
+VAL_ 1345 CF_Gway_DrvSeatBeltSw 3 "B-CAN TimeOut" 1 "Belted" 0 "Unbelted" ;
+VAL_ 1345 CF_Gway_AstSeatBeltSw 2 "B-CAN TimeOut" 1 "Belted" 0 "Unbelted" ;
+VAL_ 1345 CF_Gway_PassiveAccessLock 2 "PassiveTrunkLock" 1 "Lock" 0 "None" ;
+VAL_ 1345 CF_Gway_LightSwState 3 "AutoLight Sw On" 2 "HeadLamp Low Sw On" 1 "Tail Sw ON" 0 "Light Sw OFF" ;
+VAL_ 1345 CF_Gway_AstDrSw 1 "Open" 0 "Close " ;
+VAL_ 1345 CF_Gway_RKECmd 5 "Trunk(or Tail Gate)" 4 "Panic Stop" 3 "Panic" 2 "Unlock" 1 "Lock" 0 "None" ;
+VAL_ 1345 CF_Gway_IGNSw 7 "B-CAN TimeOut" 4 "Start" 3 "IGN" 2 "ACC" 1 "Key In" 0 "Key Off" ;
+VAL_ 1345 CF_Gway_DrvKeyLockSw 1 "Lock" 0 "Off" ;
+VAL_ 1345 CF_Gway_DrvDrSw 2 "B-CAN Timeout" 1 "Open" 0 "Colse" ;
+VAL_ 852 CF_Lvr_WarnSnd 1 "Warning sound is activated" 0 "Warning sound  is not activated" ;
+VAL_ 852 CF_Lvr_UlkButStat 3 "Fault" 2 "Safety button ON" 1 "Safety button OFF" 0 "Not supported" ;
+VAL_ 852 CF_Lvr_PRelStat 1 "Parking released" 0 "Parking not released" ;
+VAL_ 852 CF_Lvr_PosInf 15 "Fault" 12 "M-" 11 "M+" 10 "M" 9 "Nd" 8 "Nr" 7 "D" 6 "N-D" 5 "N" 4 "R-N" 3 "R" 2 "P-R" 1 "P" 0 "Initial value" ;
+VAL_ 852 CF_Lvr_PNStat 3 "No Display" 2 "Not Park Status" 1 "Park Status" 0 "Initial Value" ;
+VAL_ 852 CF_Lvr_NWStatus 1 "Function is activated" 0 "Function is not activated" ;
+VAL_ 852 CF_Lvr_NFnStat 1 "N Park is actived" 0 "N Park is not actived" ;
+VAL_ 852 CF_Lvr_GearInf 9 "Initial value" 6 "PRA sensor Not P position" 3 "Indicator and PRA sensor fault" 0 "PRA sersor P position" ;
+VAL_ 852 CF_Lvr_BkeAct 1 "Brake pedal is activated" 0 "Brake pedal is not activated" ;
+

@@ -1,0 +1,644 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+#if 0  
+     message  PPEI_Driven_Whl_Rotational_Stat  WheelDrvMsg;
+     message  PPEI_NonDrivn_Whl_Rotationl_Stat  WheelDrvNMsg;
+      message  Whl_Rotational_Stat_CheckVal_PB  CheckMsg;
+      message Wheel_Pulses_PB  WheelPulseMsg;
+     message PPEI_Powertrain_Config_Data  WheelPowerConfigMsg;  
+#endif  
+     message  Driven_Wheel_Grnd_Velocity_HS   DrvGndSpdMsg348;
+    message  NonDriven_Wheel_Grnd_Velocity_HS  NonDrvGndSpdMsg34A;
+    message   Wheel_Ground_Velocity_Check_Data WhlGndSpdChkMsg34B;
+ 
+     byte   SeqNumber;
+  
+     byte temp8;
+     word temp16;
+     dword temp32;
+  
+     byte WPR[2];
+     word  WDR[2];
+     byte  TS_RES;
+  
+     word  PCnt[4];
+     word  PCntPre[4];
+     word  DelePCnt[4];
+  
+     word  Tstm[4];
+     word  TstmPre[4];
+     dword  DeleTstm[4];
+  
+     byte  RCCnt[4];
+     byte  RCCntPre[4];
+     byte  DeleRCCnt[4];
+  
+    byte  Expect[4];
+     byte  CheckVal[4];
+    msTimer   OSSpdTimer;
+    msTimer   OS1000msTimer;
+  
+#if 1  
+    dword LFM_32b_TstCaseID_EBCM;
+    dword LFM_32b_RandomNumber;
+    msTimer LFM_x348_msTimer;
+    msTimer LFM_x34A_msTimer;
+    msTimer LFM_x34B_msTimer;
+#endif  
+} 
+
+on message ESCL_Status
+{
+    if(this.DIR == Rx)
+    {
+        if(this.ClmnLckStat == 0)
+        {
+             @ColumState = 0;
+             @OperateResult = 0;
+        }
+        else if(this.ClmnLckStat == 1)
+        {
+             @ColumState = 1;
+             @OperateResult = 0;
+        }
+        else if((this.ClmnLckStat == 2)||
+                (this.ClmnLckStat == 3))  
+        {
+             @OperateResult = 1;
+        }
+        else  
+        {
+          
+        }
+      
+    }
+}
+
+on message ESCL_Authentication_Result
+{
+   if(this.ESCL_AuthResult == 0)
+  {
+     @AuthenResult = 0;
+  }
+  else if(this.ESCL_AuthResult == 1)
+  {
+     @AuthenResult = 1;
+  }
+  else
+  {
+     @AuthenResult = 0;
+  }
+}
+
+on message PPEI_Platform_General_Status
+{
+    if(this.SysPwrMd == 0)
+    {
+        @AuthenResult = 0;
+    }
+}
+
+on preStart
+{
+   ILControlInit(); //prevent the IL autostart function,so we can define the speed message 0x348,0x34A,0x034B transmition by ourselves
+  
+}
+
+on start
+{
+  @OptionNewSpd = 1;
+}
+on timer OSSpdTimer
+{  
+    if(@OptionNewSpd == 1)
+    {
+        setTimer(OSSpdTimer,50);
+        LFM_Update_SpeedFrame_Signal();
+#if 1
+      /*SWIT_Update_1002*/
+      if(LFM_32b_TstCaseID_EBCM == 0x1002)
+      {
+        /*not send 0x34B message*/
+        output(DrvGndSpdMsg348);
+        output(NonDrvGndSpdMsg34A);
+      }
+      else
+      {
+        /* random number: from 0 to 5 */
+        LFM_32b_RandomNumber = random(6);
+        /*write("1. EBCM LFM_32b_RandomNumber= %d" ,LFM_32b_RandomNumber);*/        
+        switch(LFM_32b_RandomNumber)
+        {
+          case 0:
+          {
+            output(DrvGndSpdMsg348);
+            setTimer(LFM_x34A_msTimer,1);
+            setTimer(LFM_x34B_msTimer,2);
+            break;
+          }
+          case 1:
+          {
+            output(DrvGndSpdMsg348);
+            setTimer(LFM_x34B_msTimer,1);
+            setTimer(LFM_x34A_msTimer,2);
+            break;
+          }
+          case 2:
+          {
+            output(NonDrvGndSpdMsg34A);
+            setTimer(LFM_x348_msTimer,1);
+            setTimer(LFM_x34B_msTimer,2);
+            break;
+          }
+          case 3:
+          {
+            output(NonDrvGndSpdMsg34A);           
+            setTimer(LFM_x34B_msTimer,1);
+            setTimer(LFM_x348_msTimer,2);
+            break;
+          }
+          case 4:
+          {
+            output(WhlGndSpdChkMsg34B);
+            setTimer(LFM_x348_msTimer,1);
+            setTimer(LFM_x34A_msTimer,2);
+            break;
+          }         
+          default:
+          {
+            output(WhlGndSpdChkMsg34B);
+            setTimer(LFM_x34A_msTimer,1);
+            setTimer(LFM_x348_msTimer,2);            
+            break;
+          }          
+        }               
+      }
+#endif      
+    }
+    else
+    {
+        setTimer(OSSpdTimer,10);
+#if 0      
+        output(WheelDrvMsg);
+        output(WheelDrvNMsg);
+        output(CheckMsg);
+#endif      
+    }
+}
+
+on timer LFM_x348_msTimer
+{
+  output(DrvGndSpdMsg348);
+  /*write("LFM_x348_msTimer is over");*/
+}
+
+on timer LFM_x34A_msTimer
+{
+  output(NonDrvGndSpdMsg34A);
+  /*write("LFM_x34A_msTimer is over");*/
+}
+
+on timer LFM_x34B_msTimer
+{
+  output(WhlGndSpdChkMsg34B);
+  /*write("LFM_x34B_msTimer is over");*/
+}
+
+on timer OS1000msTimer
+{
+   
+     if(@OptionNewSpd == 0)
+    {
+       setTimer(OS1000msTimer,1000);
+#if 0      
+        output(WheelPulseMsg);
+        output(WheelPowerConfigMsg);
+#endif      
+     // write("test");
+    }
+ }
+
+/* This function is called for update speed frame signal values.
+ * Speed frame include CAN frames:0x348,0x34A,0x034B;
+ */
+void LFM_Update_SpeedFrame_Signal(void)
+{
+      SeqNumber++;
+      SeqNumber&= 0x03;
+      DrvGndSpdMsg348.WhlGrndVlctyDrvnSeqNum = SeqNumber;
+      NonDrvGndSpdMsg34A.WhlGrndVlctyNnDrvnSeqNum = SeqNumber;
+      
+      WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnSeqNum = SeqNumber;
+      WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnSeqNum = SeqNumber;
+
+#if 1
+      /*SWIT_Update_0306*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0306)
+      {
+        /*0,1,3,3,0,...*/
+        if(SeqNumber == 2)
+        {
+          DrvGndSpdMsg348.WhlGrndVlctyDrvnSeqNum = 3;
+        }        
+      }
+
+      /*SWIT_Update_0307*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0307)
+      {
+        /* 0,2,2,3,0,...*/
+        if(SeqNumber == 1)
+        {
+          NonDrvGndSpdMsg34A.WhlGrndVlctyNnDrvnSeqNum = 2;
+        }        
+      }
+
+      /*SWIT_Update_0308*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0308)
+      {
+         /* 0,2,2,3,0,...*/
+        if(SeqNumber == 1)
+        {
+          WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnSeqNum = 2;
+        }
+        /*0,1,3,3,0,...*/
+        if(SeqNumber == 2)
+        {
+          WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnSeqNum = 3;
+        }      
+      }
+#endif
+      
+      
+      temp16 = (word)(DrvGndSpdMsg348.WhlGrndVlctyLftDrvnV <<14)+  (word)(DrvGndSpdMsg348.WhlGrndVlctyLftDrvn)
+                     + (word)(DrvGndSpdMsg348.WhlGrndVlctyDrvnSeqNum);
+      temp16 ^= 0xFFFF;
+      temp16++;
+      WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnLftPv  = temp16;
+#if 1
+      /*SWIT_Update_0309, SWIT_Update_0310*/
+      if((LFM_32b_TstCaseID_EBCM == 0x0309) || (LFM_32b_TstCaseID_EBCM == 0x0310))
+      {
+        WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnLftPv = (temp16 + 1) & 0x7FFF;
+      }
+
+      /*SWIT_Update_0311*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0311)
+      {      
+        WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnLftPv = (temp16 + 0x7FFE) & 0x7FFF;
+      }      
+#endif
+      
+      
+      temp16 = (word)(DrvGndSpdMsg348.WhlGrndVlctyRtDrvnV <<14)+  (word)(DrvGndSpdMsg348.WhlGrndVlctyRtDrvn)
+               + (word)(DrvGndSpdMsg348.WhlGrndVlctyDrvnSeqNum);
+      temp16 ^= 0xFFFF;
+      temp16++;
+      WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnRtPv  = temp16;
+#if 1
+      /*SWIT_Update_0310*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0310)
+      {      
+        WhlGndSpdChkMsg34B.WhlGrndVlctyCDDrvnRtPv = (temp16 + 2) & 0x7FFF;
+      }
+#endif
+      
+      temp16 = (word)(NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvnV <<14)+  (word)(NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn)
+               + (word)(NonDrvGndSpdMsg34A.WhlGrndVlctyNnDrvnSeqNum);
+      temp16 ^= 0xFFFF;
+      temp16++;
+      WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnLftPv  = temp16;
+
+#if 1
+      /*SWIT_Update_0312*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0312)
+      {      
+        WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnLftPv = (temp16 + 0x7FFE) & 0x7FFF;
+      }
+#endif
+      
+      temp16 = (word)(NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvnV <<14)+  (word)(NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn)
+               + (word)(NonDrvGndSpdMsg34A.WhlGrndVlctyNnDrvnSeqNum);
+      temp16 ^= 0xFFFF;
+      temp16++;
+      WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnRtPv  = temp16;
+      
+#if 1
+      /*SWIT_Update_0311*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0311)
+      {      
+        WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnRtPv = (temp16 + 0x7FFF) & 0x7FFF;
+      }
+
+      /*SWIT_Update_0313*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0313)
+      {      
+       WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnLftPv = (temp16 + 0x7FFF) & 0x7FFF;
+       WhlGndSpdChkMsg34B.WhlGrndVlctyCDNnDrvnRtPv = (temp16 + 1) & 0x7FFF;
+      }
+#endif      
+
+}
+
+
+on envVar OptionNewSpd
+{
+  if(@OptionNewSpd == 1)
+  {
+      SetControlVisibility("ESCLSpeedSimu", "SpeedParm", 0);
+  }
+  else
+  {
+      SetControlVisibility("ESCLSpeedSimu", "SpeedParm", 1);
+  }
+  
+}
+
+on envVar SimuSW
+{
+  if(@SimuSW == 1)
+  {
+#if 0 
+     WheelPulseMsg.WhlPlsPerRevDrvn = 48;
+     WheelPulseMsg.WhlPlsPerRevNonDrvn = 48;
+     WheelPulseMsg.WhlRotStatTmstmpRes = 500;
+#endif    
+
+      @LftDrvSpeed = 0;
+      @RtDrvSpeed= 0;
+      @LftNDrvSpeed= 0;
+      @RtNDrvSpeed= 0;
+  
+      @TstmDef = 10000;
+      @TS_RESDef = 500;
+      @WPRRef = 48;
+      if(@OptionNewSpd == 1)
+      {
+          SeqNumber=0x03;
+          setTimer(OSSpdTimer,50);
+         //SpeedParm1.Visible = 0;
+      }
+      else
+      {
+          setTimer(OSSpdTimer,10);
+          setTimer(OS1000msTimer,1000);
+      }
+  }
+  else
+  {
+     cancelTimer(OSSpdTimer);
+     cancelTimer(OS1000msTimer);
+  }
+ 
+}
+
+on envVar LFM_Butt_Tst_Start
+{
+#if 1  
+   if(@LFM_Butt_Tst_Start == 1)
+  {
+    LFM_32b_TstCaseID_EBCM = @LFM_TST_VAR_3Byte;
+    //write("EBCM LFM_32b_TstCaseID_EBCM= %x" ,LFM_32b_TstCaseID_EBCM);
+  }
+#endif
+}
+
+on envVar LFM_Butt_Tst_End
+{
+#if 1  
+   if(@LFM_Butt_Tst_End == 1)
+  {
+    @LFM_TST_VAR_3Byte = 0;
+    LFM_32b_TstCaseID_EBCM = 0;
+    //write("EBCM end = %x" ,LFM_32b_TstCaseID_EBCM);
+  }
+#endif
+}
+
+on message Driven_Wheel_Grnd_Velocity_HS
+{
+    word u16Temp;  
+    if((this.DIR == Tx)&&(@OptionNewSpd == 1))
+    {
+       u16Temp = (word)(@LftDrvSpeed);
+       u16Temp = (word)(u16Temp <<5);
+       DrvGndSpdMsg348.WhlGrndVlctyLftDrvn = u16Temp;
+       u16Temp = (word)(@RtDrvSpeed);
+       u16Temp = (word)(u16Temp <<5);
+       DrvGndSpdMsg348.WhlGrndVlctyRtDrvn  = u16Temp;
+#if 1
+      /*SWIT_Update_0314*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0314)
+      {
+      /*driven right:0x01, left=3km/h=0x60*/
+      DrvGndSpdMsg348.WhlGrndVlctyRtDrvn = 0x01;
+      DrvGndSpdMsg348.WhlGrndVlctyLftDrvn = 0x60;        
+      }      
+
+      /*SWIT_Update_0315*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0315)
+      {
+      /*driven right:0x3FFF, left=0*/
+      DrvGndSpdMsg348.WhlGrndVlctyRtDrvn = 0x3FFF;
+      DrvGndSpdMsg348.WhlGrndVlctyLftDrvn = 0x00;
+      }
+
+      /*SWIT_Update_0406*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0406)
+      {      
+      /*driven right:0x3FFF, left=0*/
+      DrvGndSpdMsg348.WhlGrndVlctyRtDrvn = 0x3FFF;
+      DrvGndSpdMsg348.WhlGrndVlctyLftDrvn = 0x00;
+      }
+
+      /*SWIT_Update_0407*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0407)
+      {      
+      /*driven right:0x3FFF, left=0*/
+      DrvGndSpdMsg348.WhlGrndVlctyRtDrvn = 0x3FFF;
+      DrvGndSpdMsg348.WhlGrndVlctyLftDrvn = 0x00;
+      }
+
+      /*SWIT_Update_0408*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0408)
+      { 
+      /*driven right:0x3FFF, left=3km/h=0x60*/
+      DrvGndSpdMsg348.WhlGrndVlctyRtDrvn = 0x3FFF;
+      DrvGndSpdMsg348.WhlGrndVlctyLftDrvn = 0x60;        
+      }
+
+      /*SWIT_Update_0409*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0409)
+      { 
+        DrvGndSpdMsg348.WhlGrndVlctyRtDrvn = 0x3FFF;
+        DrvGndSpdMsg348.WhlGrndVlctyLftDrvn = 0x5F;
+      }
+#endif
+    }
+}
+on message NonDriven_Wheel_Grnd_Velocity_HS
+{
+    word u16Temp;  
+    if((this.DIR == Tx)&&(@OptionNewSpd == 1))
+    {
+       u16Temp = (word)(@LftNDrvSpeed);
+       u16Temp = (word)(u16Temp <<5);
+       NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn = u16Temp;
+       u16Temp = (word)(@RtNDrvSpeed);
+       u16Temp = (word)(u16Temp <<5);
+       NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn  = u16Temp;
+#if 1
+      /*SWIT_Update_0314*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0314)
+      {
+      /*non-driven right:0x5F, left=0*/
+      NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn = 0x5F;
+      NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn = 0x00;        
+      }
+
+      /*SWIT_Update_0315*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0315)
+      {
+      /*non-driven right:0x60, left=0*/
+      NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn = 0x60;
+      NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn = 0x00;
+      }
+
+      /*SWIT_Update_0406*/
+       if(LFM_32b_TstCaseID_EBCM == 0x0406)
+      {
+      /*non-driven right:0x60, left=0*/
+      NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn = 0x60;     
+      NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn = 0x00;
+      }
+      
+       /*SWIT_Update_0407*/      
+       if(LFM_32b_TstCaseID_EBCM == 0x0407)
+      {
+        NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn = 0x5F;
+        NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn = 0x00;        
+      }
+      
+      /*SWIT_Update_0408*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0408)
+      {
+        NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn = 0x00;
+        NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn = 0x00;        
+      }
+
+      /*SWIT_Update_0409*/
+      if(LFM_32b_TstCaseID_EBCM == 0x0409)
+      {
+        NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvn = 0x00;
+        NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvn = 0x00;        
+      }      
+#endif
+    }
+}
+
+
+on envVar SpdValidity1
+{
+   if(@OptionNewSpd == 1)
+    {
+   DrvGndSpdMsg348.WhlGrndVlctyLftDrvnV = @SpdValidity1;
+      }
+    else{
+#if 0      
+      WheelDrvMsg.WRSLDWhlDistVal = @SpdValidity1;
+#endif      
+    }
+}
+on envVar SpdValidity2
+{
+    if(@OptionNewSpd == 1)
+    {
+        DrvGndSpdMsg348.WhlGrndVlctyRtDrvnV = @SpdValidity2;
+    }
+    else
+    {
+#if 0      
+        WheelDrvMsg.WRSRDWhlDistVal = @SpdValidity2;
+#endif        
+    }
+}
+on envVar SpdValidity3
+{
+    if(@OptionNewSpd == 1)
+    {
+    NonDrvGndSpdMsg34A.WhlGrndVlctyLftNnDrvnV =@SpdValidity3;
+    }
+    else{
+#if 0      
+  WheelDrvNMsg.WRSLNDWhlDistVal = @SpdValidity3;
+#endif        
+    }
+}
+on envVar SpdValidity4
+{
+    if(@OptionNewSpd == 1)
+    {
+   NonDrvGndSpdMsg34A.WhlGrndVlctyRtNnDrvnV= @SpdValidity4;
+      }
+    else{
+#if 0      
+     WheelDrvNMsg.WRSRNDWhlDistVal = @SpdValidity4;
+#endif        
+    }
+}
+
+
+on envVar LftDrvSpeed
+{
+  if(@OptionNewSpd == 1)
+  {
+       @LftDrvSpeedDisp = @LftDrvSpeed;
+  }
+  else
+  {
+       @LftDrvSpeedDisp = (@LftDrvSpeed * 3600*@WDRDef)/(@TstmDef*@TS_RESDef*@WPRRef/500);
+  }   
+  //write("Test  :  %X", temp8);
+}
+
+
+on envVar RtDrvSpeed
+{
+  if(@OptionNewSpd == 1)
+  {
+       @RtDrvSpeedDisp = @RtDrvSpeed;
+  }
+  else
+  { 
+       @RtDrvSpeedDisp = (@RtDrvSpeed * 3600 *@WDRDef)/(@TstmDef*@TS_RESDef*@WPRRef/500);
+  }
+}
+on envVar LftNDrvSpeed
+{
+  if(@OptionNewSpd == 1)
+  {
+       @LftNDrvSpeedDisp = @LftNDrvSpeed;
+  }
+  else
+  { 
+       @LftNDrvSpeedDisp = (@LftNDrvSpeed * 3600 *@WDRDef)/(@TstmDef*@TS_RESDef*@WPRRef/500);
+  }
+}
+on envVar RtNDrvSpeed
+{
+  if(@OptionNewSpd == 1)
+  {
+       @RtNDrvSpeedDisp = @RtNDrvSpeed;
+  }
+  else
+  { 
+     @RtNDrvSpeedDisp = (@RtNDrvSpeed * 3600 *@WDRDef)/(@TstmDef*@TS_RESDef*@WPRRef/500);
+  }
+}
+
+

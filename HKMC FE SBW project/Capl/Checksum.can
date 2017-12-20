@@ -1,0 +1,341 @@
+includes
+{
+  
+}
+
+variables
+{
+  char CANOE_Init = 0;
+  char CANE_Init_Cnt = 2;
+  char LastValueRollingCounter = 0;
+  double LastMsgTimeStamp;
+  float MaxInterTime;
+  float MinInterTime;
+  char InitReq_ChecksumValidation = 0;
+  char InitReq_RollingCounterValidation = 0;
+  char InitReq_IntervalTimeValidation = 0;
+  char MessageBuff[8];
+}
+
+on envVar envValidationErrorClear
+{
+  int ButtonPressed;
+  
+  ButtonPressed = getvalue(envValidationErrorClear);
+  
+  if( ButtonPressed == 1 ) {
+    InitReq_ChecksumValidation = 1;
+    InitReq_RollingCounterValidation = 1;
+  }
+}
+
+on envVar envIntervalTimeSummayClear
+{
+  int ButtonPressed;
+  
+  ButtonPressed = getvalue(envIntervalTimeSummayClear);
+  
+  if( ButtonPressed == 1 ) {
+    InitReq_IntervalTimeValidation = 1;
+  }
+}
+
+on message LVR1
+{
+  char index;
+  char ChkSumVar;
+  float CurrentMsgTimeStamp;
+  float tempVal;
+  char CurrRollingCounter;
+  char CurrChecksum;
+  
+  CurrentMsgTimeStamp = This.time;
+  CurrRollingCounter = this.CF_But_AC;
+  CurrChecksum = this.CF_But_CS;
+  
+   // Initialization
+  if( CANOE_Init == 0 ) {
+    RollingCounterValidation_Init();
+    // Synchronous Rolling Counter when CANOE startup
+    if( CurrRollingCounter == 0 ) {
+      LastValueRollingCounter = 15;
+    } else {
+      LastValueRollingCounter = CurrRollingCounter - 1;
+    }
+    ChecksumValidation_Init();
+    IntervalTimer_Init();
+    
+  }
+  
+  // Checksum Init Request
+  if( InitReq_ChecksumValidation ) {
+    InitReq_ChecksumValidation = 0;
+    ChecksumValidation_Init();
+  }
+  
+  // Rolling Counter Init Request
+  if( InitReq_RollingCounterValidation ) {
+    InitReq_RollingCounterValidation = 0;
+    // Synchronous Rolling Counter when CANOE startup
+    if( CurrRollingCounter == 0 ) {
+      LastValueRollingCounter = 15;
+    } else {
+      LastValueRollingCounter = CurrRollingCounter - 1;
+    }
+    RollingCounterValidation_Init();
+  }
+  
+  // IntervalTime Init Request
+  if( InitReq_IntervalTimeValidation ) {
+    InitReq_IntervalTimeValidation = 0;
+    IntervalTimer_Init();
+  }
+  
+  // Checksum Judgement
+  ChkSumVar = 0;
+  for(index=0;index<8;index++) {
+    MessageBuff[index] = this.Byte(index);
+  }
+  
+  ChkSumVar = ChecksumSimulation();
+  
+  //if( @envChecksumIndication != 2 ) {
+    if( ChkSumVar == CurrChecksum ) {
+      putvalue(envChecksumValidation, "OK");
+      putvalue(envChecksumIndication, 1);
+    } else {
+      write("AC = %X",this.CF_But_AC);
+      write("CS = %X",this.CF_But_CS);
+      write("ChkSumVar = %X", ChkSumVar);
+      write("");
+      putvalue(envChecksumValidation, "Checksum Error");
+      putvalue(envChecksumIndication, 2);
+    }
+  //}
+  
+  // RollingCounter Judgement
+  if( getvalue(envRollingCounterIndication) != 2 ) {
+    if( CurrRollingCounter < 16 ) {
+      if( LastValueRollingCounter == 15 ) {
+        if( CurrRollingCounter == 0 ) {
+          LastValueRollingCounter = 0;
+          putvalue(envRollingCounterIndication, 1);
+          putvalue(envRollingCounterValidation, "OK");
+        } else {
+          LastValueRollingCounter = 255;
+          putvalue(envRollingCounterIndication, 2);
+          putvalue(envRollingCounterValidation, "Rolling Counter Error");
+        }
+      } else if( LastValueRollingCounter < 15 ) {
+        if( (LastValueRollingCounter+1) == CurrRollingCounter ) {
+          LastValueRollingCounter += 1;
+          putvalue(envRollingCounterIndication, 1);
+          putvalue(envRollingCounterValidation, "OK");
+        } else {
+          LastValueRollingCounter = 255;
+          putvalue(envRollingCounterIndication, 2);
+          putvalue(envRollingCounterValidation, "Rolling Counter Error");
+        }
+      } else {
+        LastValueRollingCounter = 255;
+        putvalue(envRollingCounterIndication, 2);
+        putvalue(envRollingCounterValidation, "Rolling Counter Error");
+      }
+    } else {
+      LastValueRollingCounter = 255;
+      putvalue(envRollingCounterIndication, 2);
+      putvalue(envRollingCounterValidation, "Rolling Counter Error");
+    }
+  }
+ 
+  // Shift Lever Indication Judgement
+//  if( this.EGSM_DriveMod == 0 ) {  /* Automative Mode */
+//    if( this.EGSM_LeverPosition == 0 ) {  /* Center */
+//      putvalue(evnShiftLeverIndication,0);
+//      
+//    } else if( this.EGSM_LeverPosition == 1 ) {  /* Up */
+//      putvalue(evnShiftLeverIndication,1);
+//
+//    } else if( this.EGSM_LeverPosition == 2 ) {  /* Down */
+//      putvalue(evnShiftLeverIndication,2);
+//      
+//    } else {
+//      putvalue(evnShiftLeverIndication,0);
+//    }
+//  } else if( this.EGSM_DriveMod == 1 ) {  /* Manual Mode */
+//    if( this.EGSM_LeverPosition == 0 ) {  /* Center */
+//      putvalue(evnShiftLeverIndication,3);
+//      
+//    } else if( this.EGSM_LeverPosition == 1 ) {  /* Up */
+//      putvalue(evnShiftLeverIndication,4);
+//
+//    } else if( this.EGSM_LeverPosition == 2 ) {  /* Down */
+//      putvalue(evnShiftLeverIndication,5);
+//      
+//    } else {
+//      putvalue(evnShiftLeverIndication,0);
+//    }
+//  } else {
+//    putvalue(evnShiftLeverIndication,0);
+//  }
+
+  
+  // Shift Lever Indication Judgement
+//  if( this.EGSM_ParkReq == 0 ) {
+//    putvalue(evnParkIndication,1);
+//  } else if( this.EGSM_ParkReq == 1 ) {
+//    putvalue(evnParkIndication,0);
+//  } else {
+//    putvalue(evnParkIndication,0);
+//  }
+  
+  
+  // Message Interval Summary
+  if( CANE_Init_Cnt == 0 ) {
+    tempVal = CurrentMsgTimeStamp - LastMsgTimeStamp;
+    
+    if(tempVal < 10000) {
+      if( tempVal > MaxInterTime ) {
+        MaxInterTime = tempVal;
+      }
+
+      if( tempVal < MinInterTime ) {
+        MinInterTime = tempVal;
+      }
+    }
+    
+    putvalue( evnIntervalTimeMin, MinInterTime );
+    putvalue( envIntervalTimeMax, MaxInterTime );
+  } else {
+    CANE_Init_Cnt--; 
+  }
+  
+  LastMsgTimeStamp = CurrentMsgTimeStamp;
+  CANOE_Init = 1;
+}
+
+//on message VCU1
+//{
+//	if( this.CF_Vcu_GarSelDisp == 0 ) {
+//    putvalue( evnIndication_P, 1 );
+//    putvalue( evnIndication_B, 0 );
+//    putvalue( evnIndication_R, 0 );
+//    putvalue( evnIndication_N, 0 );
+//    putvalue( evnIndication_D, 0 );
+//    putvalue( evnIndication_PRelease, 0 );
+//
+//  } else if( this.CF_Vcu_GarSelDisp == 1 ) {
+//    putvalue( evnIndication_P, 0 );
+//    putvalue( evnIndication_B, 1 );
+//    putvalue( evnIndication_R, 0 );
+//    putvalue( evnIndication_N, 0 );
+//    putvalue( evnIndication_D, 0 );
+//    putvalue( evnIndication_PRelease, 0 );
+//    
+//  } else if( this.CF_Vcu_GarSelDisp == 5 ) {
+//    putvalue( evnIndication_P, 0 );
+//    putvalue( evnIndication_B, 0 );
+//    putvalue( evnIndication_R, 0 );
+//    putvalue( evnIndication_N, 0 );
+//    putvalue( evnIndication_D, 1 );
+//    putvalue( evnIndication_PRelease, 0 );
+//    
+//  } else if( this.CF_Vcu_GarSelDisp == 6 ) {
+//    putvalue( evnIndication_P, 0 );
+//    putvalue( evnIndication_B, 0 );
+//    putvalue( evnIndication_R, 0 );
+//    putvalue( evnIndication_N, 1 );
+//    putvalue( evnIndication_D, 0 );
+//    putvalue( evnIndication_PRelease, 0 );
+//    
+//  } else if( this.CF_Vcu_GarSelDisp == 7 ) {
+//    putvalue( evnIndication_P, 0 );
+//    putvalue( evnIndication_B, 0 );
+//    putvalue( evnIndication_R, 1 );
+//    putvalue( evnIndication_N, 0 );
+//    putvalue( evnIndication_D, 0 );
+//    putvalue( evnIndication_PRelease, 0 );
+//    
+//  } else {
+//    putvalue( evnIndication_P, 0 );
+//    putvalue( evnIndication_B, 0 );
+//    putvalue( evnIndication_R, 0 );
+//    putvalue( evnIndication_N, 0 );
+//    putvalue( evnIndication_D, 0 );
+//    putvalue( evnIndication_PRelease, 0 );
+//    
+//  }
+//  
+//}
+
+void IlluminationSimulator(void)
+{
+
+}
+
+char ChecksumSimulation(void)
+{
+  char tmpVal;
+  char tmpChar;
+	int LB_Checksum = 0;
+  int MB_Checksum = 0;
+  char ind;
+  
+  LB_Checksum = 0x00;
+  MB_Checksum = 0x00;
+  
+  for( ind=0; ind<8; ind++ ) {
+    tmpChar = MessageBuff[ind] & 0x0F;
+    LB_Checksum = ( LB_Checksum + tmpChar ) & 0x0F ;
+    //write( "LB_Checksum = %X", LB_Checksum );
+  }
+
+  for( ind=0; ind<7; ind++) {
+    tmpChar = ( MessageBuff[ind] & 0xF0 ) >> 4;
+    MB_Checksum = ( MB_Checksum + tmpChar ) & 0x0F;
+    //write( "MB_Checksum = %X", MB_Checksum );
+  }
+  
+  tmpVal = ( 0x10 - ( ( LB_Checksum + MB_Checksum ) & 0x0F ) ) & 0x0F;
+  
+  return tmpVal;
+}
+
+void RollingCounterValidation_Init(void)
+{
+  putvalue(envRollingCounterIndication, 0);
+  putvalue(envRollingCounterValidation, "");
+  
+}
+
+void ChecksumValidation_Init(void)
+{
+
+  putvalue(envChecksumValidation, "");
+  putvalue(envChecksumIndication, 0);
+  
+}
+
+char GetLSB( char varByte )
+{
+	char tmpVal;
+  
+  tmpVal = varByte & 0x0F;
+  
+  return tmpVal;
+}
+
+char GetMSB( char varByte )
+{
+	char tmpVal;
+  
+  tmpVal = varByte / 0x10;
+  
+  return tmpVal;
+}
+
+void IntervalTimer_Init(void)
+{
+    MaxInterTime = 0;
+    MinInterTime = 65535;
+}

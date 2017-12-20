@@ -1,0 +1,329 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: CGW TESTER LVR VCU
+VAL_TABLE_ Vt_SMKRKEcmd 2 "Unlock" 1 "Lock" ;
+VAL_TABLE_ Vt_ExtTailAct 2 "B_CAN Timeout" 1 "On" 0 "Off" ;
+VAL_TABLE_ Vt_RKECmd 5 "Truck(Or Tail Gate)" 4 "Panic Stop" 3 "Panic" 2 "Unlock" 1 "Lock" 0 "None" ;
+VAL_TABLE_ Vt_AvTail 1 "On" 0 "Off" ;
+VAL_TABLE_ Vt_RheostatLvl 9 "Step 9" 8 "Step 8" 7 "Step 7" 6 "Step 6" 5 "Step 5" 4 "Step 4" 3 "Step 3" 2 "Step 2" 1 "Step 1" 0 "Reversed" ;
+VAL_TABLE_ Vt_DetentOut 1 "Detent On" 0 "Detent Off" ;
+VAL_TABLE_ Vt_IGNSw 7 "B-CAN Time-out" 4 "Start" 3 "IGN" 2 "ACC" 1 "Key In" 0 "Key Off" ;
+VAL_TABLE_ Vt_Lvr_Wrn 6 "Button Stuck Failure" 2 "P Release Button Failure" 1 "Gear Button Failure" 0 "Warning Off" ;
+
+
+BO_ 1363 CGW2: 7 CGW
+ SG_ CF_Gway_IntTailAct : 25|1@1+ (1,0) [0|0] ""  LVR
+ SG_ CF_Gway_SMKRKECmd : 51|3@1+ (1,0) [0|0] ""  LVR
+
+BO_ 1104 EV_CP2: 3 CGW
+ SG_ CF_GWAY_Detentout : 18|1@1+ (1,0) [0|0] ""  LVR
+ SG_ CF_Clu_RheostatLevel : 9|5@1+ (1,0) [0|0] ""  LVR
+
+BO_ 1345 CGW1: 8 CGW
+ SG_ CF_Gway_DrvDrSw : 8|2@1+ (1,0) [0|3] ""  LVR
+ SG_ CF_Gway_LightSwState : 38|2@1+ (1,0) [0|0] ""  LVR
+ SG_ CF_Gway_RKECmd : 3|3@1+ (1,0) [0|0] ""  LVR
+ SG_ CF_Gway_IGNSw : 0|3@1+ (1,0) [0|7] ""  LVR
+
+BO_ 1581 Kostia_Response: 8 LVR
+ SG_ KostiaResp : 0|64@1+ (1,0) [0|1.84467440737096E+019] ""  TESTER
+
+BO_ 1580 Kostia_Request: 8 TESTER
+ SG_ KostiaReq : 0|64@1+ (1,0) [0|1.84467440737096E+019] ""  LVR
+
+BO_ 2015 Func_diareq: 8 TESTER
+ SG_ DiagRequest_Func_Sig : 0|64@1+ (1,0) [0|1.844674407371E+019] ""  LVR
+
+BO_ 1982 EGSM_resp: 8 LVR
+ SG_ DiagResponse_Sig : 0|64@1+ (1,0) [0|1.844674407371E+019] ""  TESTER
+
+BO_ 1974 EGSM_diareq: 8 TESTER
+ SG_ DiagRequest_Sig : 0|64@1+ (1,0) [0|1.844674407371E+019] ""  LVR
+
+BO_ 852 LVR1: 8 LVR
+ SG_ CF_Lvr_Wrn : 48|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ CF_Lvr_UnLkButStatus_Reversed : 24|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_UnLockButtonStatus : 8|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_UnitStatus : 32|4@1+ (1,0) [0|15] ""  VCU
+ SG_ CF_Lvr_RButtonStatus_Reversed : 18|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_RButtonStatus : 2|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_PRelButStatus_Reversed : 26|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_PRelStat : 10|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_PButtonStatus_Reversed : 16|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_PButtonStatus : 0|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_NButtonStatus_Reversed : 20|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_NButtonStatus : 4|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_IndicatorStatus : 40|8@1+ (1,0) [0|255] ""  VCU
+ SG_ CF_Lvr_DButtonStatus_Reversed : 22|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_Lvr_DButtonStatus : 6|2@1+ (1,0) [0|3] ""  VCU
+ SG_ CF_But_CS : 60|4@1+ (1,0) [0|15] ""  VCU
+ SG_ CF_But_AC : 56|4@1+ (1,0) [0|15] ""  VCU
+
+BO_ 512 VCU1: 8 VCU
+ SG_ CF_Vcu_EvRdy : 45|1@1+ (1,0) [0|0] ""  LVR
+ SG_ CF_Vcu_GarSelDisp : 11|4@1+ (1,0) [0|15] ""  LVR
+
+
+
+CM_ BU_ TESTER "Instrument Cluster";
+CM_ BU_ LVR "Gear Shift Lever";
+CM_ BU_ VCU "Transmission Control Unit";
+CM_ BO_ 1363 "Transmitted by TCU, including TCU states";
+CM_ BO_ 1104 "Transmitted by TCU, including TCU states";
+CM_ BO_ 1345 "Transmitted by TCU, including TCU states";
+CM_ SG_ 1345 CF_Gway_DrvDrSw "driver door switch";
+CM_ BO_ 512 "Transmitted by TCU, including TCU states";
+BA_DEF_ BO_  "MsgType" ENUM  "Application","NM ","NMH","TP2.0","ISO-TP ","BAP","EID";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "FrameGatewayNetwork" ENUM  "None","HS1_CAN","HS2_CAN","HS3_CAN","MS1_CAN";
+BA_DEF_ BO_  "FrameGateway_LC1" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayLC1_HS3" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayMS1" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayHS3" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayHS2" HEX 0 1407;
+BA_DEF_ BO_  "FrameGatewayHS1" HEX 0 1407;
+BA_DEF_ BO_  "NetworkInitialization" ENUM  "No","Yes";
+BA_DEF_ BO_  "FrameGatewayCanId" HEX 0 1407;
+BA_DEF_ BO_  "EventRateOfChange" INT 10 10000;
+BA_DEF_ BO_  "ConfiguredTransmitter" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 10000;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 100;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 100000;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "FixedPeriodic","Event","EnabledPeriodic","NotUsed","NotUsed","EventPeriodic","NotUsed","NotUsed","NoMsgSendType";
+BA_DEF_ SG_  "ContentDependant" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigStartValue" INT 0 1000000000;
+BA_DEF_ SG_  "UsedOnPgmDBC" ENUM  "No","Yes";
+BA_DEF_ SG_  "CrossOver_LIN" ENUM  "No","Yes";
+BA_DEF_ SG_  "CrossOver_InfoCAN" ENUM  "No","Yes";
+BA_DEF_ SG_  "WakeupSignal" ENUM  "No","Yes";
+BA_DEF_ SG_  "FMC_SIG_SSPEC" STRING ;
+BA_DEF_ SG_  "GenSigMissingSourceValue" INT 0 1000000000;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 100000;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","vector_leerstring","OnChange","vector_leerstring","IfActive","vector_leerstring","NoSigSendType";
+BA_DEF_ BO_  "Mulitplexer" ENUM  "No","Yes";
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "TpApplType" STRING ;
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "TpTxIndex" INT 0 255;
+BA_DEF_ BO_  "NetworkInitializationCommand" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "NmMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BU_  "Terminator" ENUM  "No","Yes";
+BA_DEF_ BU_  "NodeWakeUpTime" INT 0 1000;
+BA_DEF_ BU_  "NodeStartUpTime" INT 0 1000;
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 128 255;
+BA_DEF_ BU_  "NmAsrNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "PowerType" ENUM  "Switched","Latched","Sleep","vector_leerstring","vector_leerstring";
+BA_DEF_ BU_  "DiagNode" ENUM  "GGDS","GDS","NONE";
+BA_DEF_ BU_  "EOL_SB_Flash" ENUM  "GGDS","GDS","NONE","vector_leerstring";
+BA_DEF_ BU_  "NetworkInitializationUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmStationAddress" INT 0 255;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NosPackage" ENUM  "None","I3_1","I3_2","1.0.1","RP","EuCD","Volcano";
+BA_DEF_ BU_  "LIN_Master" ENUM  "No","Yes";
+BA_DEF_ BU_  "PackageID" STRING ;
+BA_DEF_ BU_  "GatewayECU" ENUM  "No","Yes";
+BA_DEF_  "StarNetworkGwType" ENUM  "0=NotDefined","1=HS1","2=HS2","3=HS3","4=HS4","5=HS5","6=MS1";
+BA_DEF_  "CMDB_Version" STRING ;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_  "NetworkSpeed" ENUM  "500kBits/s","125kBit/s";
+BA_DEF_  "NmAsrMessageCount" INT 128 128;
+BA_DEF_  "NmAsrBaseAddress" HEX 1664 1664;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "VersionDay" INT 1 31;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "VersionNumber" INT 0 10000;
+BA_DEF_  "VersionMonth" INT 1 12;
+BA_DEF_  "VersionYear" INT 2000 3000;
+BA_DEF_  "NmBaseAddress" HEX 1536 1536;
+BA_DEF_  "NmMessageCount" INT 0 128;
+BA_DEF_ SG_  "GenSigTimeoutTime_TCU" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_TCS" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_SMK" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_LVR" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_GWAY" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_EMS" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeoutTime_CLU" INT 0 100000;
+BA_DEF_DEF_  "MsgType" "Application";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "FrameGatewayNetwork" "None";
+BA_DEF_DEF_  "FrameGateway_LC1" 0;
+BA_DEF_DEF_  "FrameGatewayLC1_HS3" 0;
+BA_DEF_DEF_  "FrameGatewayMS1" 0;
+BA_DEF_DEF_  "FrameGatewayHS3" 0;
+BA_DEF_DEF_  "FrameGatewayHS2" 0;
+BA_DEF_DEF_  "FrameGatewayHS1" 0;
+BA_DEF_DEF_  "NetworkInitialization" "Yes";
+BA_DEF_DEF_  "FrameGatewayCanId" 0;
+BA_DEF_DEF_  "EventRateOfChange" 10000;
+BA_DEF_DEF_  "ConfiguredTransmitter" "No";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 1;
+BA_DEF_DEF_  "GenMsgDelayTime" 20;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "ContentDependant" "No";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "UsedOnPgmDBC" "Yes";
+BA_DEF_DEF_  "CrossOver_LIN" "No";
+BA_DEF_DEF_  "CrossOver_InfoCAN" "No";
+BA_DEF_DEF_  "WakeupSignal" "No";
+BA_DEF_DEF_  "FMC_SIG_SSPEC" "Unknown";
+BA_DEF_DEF_  "GenSigMissingSourceValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "Mulitplexer" "No";
+BA_DEF_DEF_  "NmAsrMessage" "No";
+BA_DEF_DEF_  "TpApplType" "";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "NetworkInitializationCommand" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "Terminator" "No";
+BA_DEF_DEF_  "NodeWakeUpTime" 10;
+BA_DEF_DEF_  "NodeStartUpTime" 250;
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 128;
+BA_DEF_DEF_  "NmAsrNode" "No";
+BA_DEF_DEF_  "PowerType" "Switched";
+BA_DEF_DEF_  "DiagNode" "GGDS";
+BA_DEF_DEF_  "EOL_SB_Flash" "GGDS";
+BA_DEF_DEF_  "NetworkInitializationUsed" "No";
+BA_DEF_DEF_  "NmNode" "No";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "NosPackage" "I3_1";
+BA_DEF_DEF_  "LIN_Master" "No";
+BA_DEF_DEF_  "PackageID" "08.05.00.00.71.xx.xx.rr.00.00";
+BA_DEF_DEF_  "GatewayECU" "No";
+BA_DEF_DEF_  "StarNetworkGwType" "0=NotDefined";
+BA_DEF_DEF_  "CMDB_Version" "v11.01";
+BA_DEF_DEF_  "NmType" "Ford-OSEK";
+BA_DEF_DEF_  "NetworkSpeed" "500kBits/s";
+BA_DEF_DEF_  "NmAsrMessageCount" 128;
+BA_DEF_DEF_  "NmAsrBaseAddress" 1664;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "VersionDay" 1;
+BA_DEF_DEF_  "Manufacturer" "Ford";
+BA_DEF_DEF_  "VersionNumber" 1;
+BA_DEF_DEF_  "VersionMonth" 1;
+BA_DEF_DEF_  "VersionYear" 2011;
+BA_DEF_DEF_  "NmBaseAddress" 1536;
+BA_DEF_DEF_  "NmMessageCount" 128;
+BA_DEF_DEF_  "GenSigTimeoutTime_TCU" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_TCS" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_SMK" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_LVR" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_GWAY" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_EMS" 0;
+BA_DEF_DEF_  "GenSigTimeoutTime_CLU" 0;
+BA_ "BusType" "CAN";
+BA_ "VersionYear" 2013;
+BA_ "VersionMonth" 9;
+BA_ "VersionNumber" 16;
+BA_ "Manufacturer" "Ford";
+BA_ "VersionDay" 26;
+BA_ "CMDB_Version" "0x300";
+BA_ "StarNetworkGwType" 2;
+BA_ "DBName" "HS2_CAN";
+BA_ "NmStationAddress" BU_ CGW 2;
+BA_ "NmStationAddress" BU_ TESTER 1;
+BA_ "NmStationAddress" BU_ LVR 4;
+BA_ "NmStationAddress" BU_ VCU 7;
+BA_ "GenMsgDelayTime" BO_ 1363 0;
+BA_ "GenMsgCycleTime" BO_ 1363 100;
+BA_ "GenMsgSendType" BO_ 1363 5;
+BA_ "GenMsgSendType" BO_ 1104 5;
+BA_ "GenMsgCycleTime" BO_ 1104 20;
+BA_ "GenMsgDelayTime" BO_ 1104 0;
+BA_ "GenMsgSendType" BO_ 1345 5;
+BA_ "GenMsgCycleTime" BO_ 1345 100;
+BA_ "GenMsgDelayTime" BO_ 1345 0;
+BA_ "GenMsgILSupport" BO_ 1581 0;
+BA_ "GenMsgDelayTime" BO_ 1581 0;
+BA_ "GenMsgDelayTime" BO_ 1580 0;
+BA_ "GenMsgILSupport" BO_ 2015 0;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "GenMsgNrOfRepetition" BO_ 2015 0;
+BA_ "GenMsgDelayTime" BO_ 2015 0;
+BA_ "MsgType" BO_ 2015 4;
+BA_ "GenMsgILSupport" BO_ 1982 0;
+BA_ "DiagResponse" BO_ 1982 1;
+BA_ "MsgType" BO_ 1982 4;
+BA_ "GenMsgILSupport" BO_ 1974 0;
+BA_ "DiagRequest" BO_ 1974 1;
+BA_ "MsgType" BO_ 1974 4;
+BA_ "NetworkInitialization" BO_ 852 0;
+BA_ "GenMsgCycleTime" BO_ 852 10;
+BA_ "GenMsgDelayTime" BO_ 852 0;
+BA_ "GenMsgSendType" BO_ 852 5;
+BA_ "GenMsgDelayTime" BO_ 512 0;
+BA_ "GenMsgCycleTime" BO_ 512 10;
+BA_ "GenMsgSendType" BO_ 512 5;
+BA_ "GenSigSendType" SG_ 1363 CF_Gway_IntTailAct 0;
+BA_ "GenSigSendType" SG_ 1363 CF_Gway_SMKRKECmd 1;
+BA_ "GenSigStartValue" SG_ 512 CF_Vcu_GarSelDisp 9;
+VAL_ 1104 CF_GWAY_Detentout 1 "Detent On" 0 "Detent Off" ;
+VAL_ 1104 CF_Clu_RheostatLevel 21 "Step 21 (Detent)" 20 "Step 20 (Reset Value)" 19 "Step 19" 18 "Step 18" 17 "Step 17" 16 "Step 16" 15 "Step 15" 14 "Step 14" 13 "Step 13" 12 "Step 12" 11 "Step 11" 10 "Step 10" 9 "Step 9" 8 "Step 8" 7 "Step 7" 6 "Step 6" 5 "Step 5" 4 "Step 4" 3 "Step 3" 2 "Step 2" 1 "Step 1" 0 "Reversed" ;
+VAL_ 1345 CF_Gway_DrvDrSw 2 "B-CAN Timeout" 1 "Open" 0 "Closed" ;
+VAL_ 1345 CF_Gway_LightSwState 3 "AutoLight Sw On" 0 "Light Sw Off" 2 "HeadLamp Low Sw On" 1 "Tail Sw On" ;
+VAL_ 1345 CF_Gway_RKECmd 5 "Truck(Or Tail Gate)" 4 "Panic Stop" 3 "Panic" 2 "Unlock" 1 "Lock" 0 "None" ;
+VAL_ 1345 CF_Gway_IGNSw 4 "Start" 3 "IGN" 2 "ACC" 1 "Key In" 0 "Key Off" ;
+VAL_ 852 CF_Lvr_Wrn 6 "Button Stuck Failure" 2 "P Release Button Failure" 1 "Gear Button Failure" 0 "Warning Off" ;
+VAL_ 852 CF_Lvr_UnLkButStatus_Reversed 3 "Initial" 2 "Button ON" 1 "Button OFF" 0 "Fault" ;
+VAL_ 852 CF_Lvr_UnLockButtonStatus 3 "Fault" 2 "Button OFF" 1 "Button ON" 0 "Initial" ;
+VAL_ 852 CF_Lvr_UnitStatus 2 "Fault withfunction degrade" 1 "Fault without function degrade" 0 "Normal" ;
+VAL_ 852 CF_Lvr_RButtonStatus_Reversed 3 "Initial" 2 "Button ON" 1 "Button OFF" 0 "Fault" ;
+VAL_ 852 CF_Lvr_RButtonStatus 3 "Fault" 2 "Button OFF" 1 "Button ON" 0 "Initial" ;
+VAL_ 852 CF_Lvr_PRelButStatus_Reversed 3 "Initial" 2 "Button ON" 1 "Button OFF" 0 "Fault" ;
+VAL_ 852 CF_Lvr_PRelStat 3 "Fault" 2 "Button OFF" 1 "Button ON" 0 "Initial" ;
+VAL_ 852 CF_Lvr_PButtonStatus_Reversed 3 "Initial" 2 "Button ON" 1 "Button OFF" 0 "Fault" ;
+VAL_ 852 CF_Lvr_PButtonStatus 3 "Fault" 2 "Button OFF" 1 "Button ON" 0 "Initial" ;
+VAL_ 852 CF_Lvr_NButtonStatus_Reversed 3 "Initial" 2 "Button ON" 1 "Button OFF" 0 "Fault" ;
+VAL_ 852 CF_Lvr_NButtonStatus 3 "Fault" 2 "Button OFF" 1 "Button ON" 0 "Initial" ;
+VAL_ 852 CF_Lvr_IndicatorStatus 255 "lighting fault" 5 "B lighted" 4 "D lighted" 3 "N lighted" 2 "R lighted" 1 "P lighted" 0 "All light OFF" ;
+VAL_ 852 CF_Lvr_DButtonStatus_Reversed 3 "Initial" 2 "Button ON" 1 "Button OFF" 0 "Fault" ;
+VAL_ 852 CF_Lvr_DButtonStatus 3 "Fault" 2 "Button OFF" 1 "Button ON" 0 "Initial" ;
+VAL_ 512 CF_Vcu_GarSelDisp 15 "Fault" 14 "Intermediate Position" 9 "Not Display at Cluster" 7 "R" 6 "N" 5 "D" 1 "B" 0 "P" ;
+

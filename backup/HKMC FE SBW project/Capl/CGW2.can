@@ -1,0 +1,37 @@
+variables
+{
+  msTimer timCGW2_Transmitter;
+  message CGW2 msgCGW2;
+}
+
+
+
+on envVar envCGW2_AvTail
+{
+	msgCGW2.CF_Gway_AvTail = @envCGW2_AvTail;
+}
+
+on envVar envCGW2_ExtTailAct
+{
+	msgCGW2.CF_Gway_ExtTailAct = @envCGW2_ExtTailAct;
+}
+
+on envVar envCGW2_SMKRKECmd
+{
+	msgCGW2.CF_Gway_SMKRKECmd = @envCGW2_SMKRKECmd;
+}
+
+on timer timCGW2_Transmitter
+{
+	settimer( timCGW2_Transmitter, 10 );
+  
+  if( @envCGW2TxEnable == 1 ) {
+    output( msgCGW2 );
+  }
+}
+
+on start
+{
+	settimer( timCGW2_Transmitter, 100 );
+  @envCGW2TxEnable = 1;
+}

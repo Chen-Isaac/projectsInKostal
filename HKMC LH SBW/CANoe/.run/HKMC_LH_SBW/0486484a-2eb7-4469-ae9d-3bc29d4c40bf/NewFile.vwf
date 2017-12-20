@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<WaveformEditor version="1.1" xmlns="http://www.vector-informatik.de/TSO/WaveformEditor">
+  <Waveform name="stimulationCurve" id="0971efc2-b0fc-433d-a93a-15d5503fda5b">
+    <Properties type="DiscreteInteger" yValueMin="0" yValueMax="11" comment="" samplingRate="0" linearInterpolation="true" yValueUnit="" />
+    <Segments>
+      <Segment type="Ramp" id="6e9bcb0b-4f89-4f1f-bfd4-f428063e9ac4" linearInterpolation="True">
+        <Duration>100</Duration>
+        <Start>2</Start>
+        <Stop>3</Stop>
+      </Segment>
+      <Segment type="Ramp" id="9bb53592-20f0-41eb-afc0-8957b5468fe6" linearInterpolation="True">
+        <Duration>100</Duration>
+        <Start>3</Start>
+        <Stop>4</Stop>
+      </Segment>
+      <Segment type="Ramp" id="87b8df1f-8455-46a9-b4c7-52433933a063" linearInterpolation="True">
+        <Duration>100</Duration>
+        <Start>4</Start>
+        <Stop>3</Stop>
+      </Segment>
+      <Segment type="Ramp" id="a6d8bbc4-4094-42bd-b0de-1b9664a45860" linearInterpolation="True">
+        <Duration>100</Duration>
+        <Start>3</Start>
+        <Stop>4</Stop>
+      </Segment>
+      <Segment type="Ramp" id="f033e75c-6525-410a-b39e-b8486ece0c4c" linearInterpolation="True">
+        <Duration>200</Duration>
+        <Start>4</Start>
+        <Stop>4</Stop>
+      </Segment>
+      <Segment type="Ramp" id="69deff75-c41b-438d-8a99-89dcbfe73d2b" linearInterpolation="True">
+        <Duration>100</Duration>
+        <Start>4</Start>
+        <Stop>5</Stop>
+      </Segment>
+      <Segment type="Ramp" id="71c5ca43-c728-4704-b5a7-d4085a40268d" linearInterpolation="True">
+        <Duration>50</Duration>
+        <Start>5</Start>
+        <Stop>6</Stop>
+      </Segment>
+      <Segment type="Sine" id="e955d828-af5f-45cb-be97-b3f487c03e58" linearInterpolation="True">
+        <Duration>1050</Duration>
+        <Start>6</Start>
+        <Stop>6</Stop>
+        <Amplitude>1</Amplitude>
+        <Period>150</Period>
+        <Phase>0</Phase>
+        <Offset>0</Offset>
+      </Segment>
+    </Segments>
+  </Waveform>
+</WaveformEditor>

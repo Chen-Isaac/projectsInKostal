@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <function name="press_pin4_ms_wait_s_for_active" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <parameter name="press_time" type="int64" raw_type="int" />
+    <parameter name="wait_for_active_s" type="int64" raw_type="int" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[1]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+  <function name="switch_off_by_time_ms" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <parameter name="wait_for_switch_off" type="int64" raw_type="int" />
+    <parameter name="need_close_door_or_not" type="int64" raw_type="int" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[2]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+  <function name="switch_on_by_door_open_signal_when_ign_off" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <parameter name="PosLmpSts_value" type="int64" raw_type="int" />
+    <parameter name="door_open_signal" type="signal" raw_type="signal" />
+    <parameter name="color_mode" type="int64" raw_type="int" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[3]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+  <function name="check_color_mode_when_ALCMLightLvlSet_actived" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <parameter name="color_mode" type="int64" raw_type="int" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[4]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+  <function name="check_color_mode_when_ALCMLightLvlSet_inactived" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <parameter name="color_mode" type="int64" raw_type="int" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[5]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+  <function name="switch_off_by_locked_signal" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[6]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+  <function name="change_color_mode_by_pin4_then_decide_power_mode" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <parameter name="color_mode" type="int64" raw_type="int" />
+    <parameter name="system_power_mode_next" type="int64" raw_type="int" />
+    <parameter name="light_level" type="int64" raw_type="int" />
+    <parameter name="pos_lamp_sts" type="int64" raw_type="int" />
+    <parameter name="driving_mode" type="int64" raw_type="int" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[7]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+  <function name="enter_mode0_by_pin4_then_decide_power_mode" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <parameter name="system_power_mode_next" type="int64" raw_type="int" />
+    <parameter name="light_level" type="int64" raw_type="int" />
+    <parameter name="pos_lamp_sts" type="int64" raw_type="int" />
+    <parameter name="driving_mode" type="int64" raw_type="int" />
+    <parameter name="light_level_next" type="int64" raw_type="int" />
+    <parameter name="pos_lamp_sts_next" type="int64" raw_type="int" />
+    <parameter name="driving_mode_next" type="int64" raw_type="int" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[8]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+  <function name="check_color_mode_when_DrivingModeReq_actived" comment="" signature="" file="C:\Users\chen106\Desktop\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt">
+    <parameter name="color_should_be" type="string" raw_type="string" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[9]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+</tclibrary>

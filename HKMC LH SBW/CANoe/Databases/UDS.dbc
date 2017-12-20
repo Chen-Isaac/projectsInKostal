@@ -1,0 +1,663 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: UDS TCU ESC LVR Tester EMS CGW
+VAL_TABLE_ Service_22_Supplier_PID 11 "TCU Parking Release Request" 10 "TM Switch State" 9 "Vehicle Door State" 8 "Brake State" 7 "Unlock Button State" 6 "P Release Button State" 5 "P Button State" 4 "PRA Position" 3 "Knob Display" 2 "Lever Position" 1 "Bttery Power State" 0 "PID Support" ;
+VAL_TABLE_ Service_22_Supplier_DID 1 "Description for the value '0x1'" 0 "0x0104" ;
+VAL_TABLE_ Service_22_DID 7 "ProgrammingDate" 6 "SystemSupplierECUSwVersionNo" 5 "SystemSupplierECUHwVersionNo" 4 "VehicleMfdECUHardwareNo" 3 "ECUManufacturingDate" 2 "SystemSupplierIdentifier" 1 "VehicleMfdECUSoftwareVersionNo" 0 "VehicleMfdSparePartNo" ;
+
+
+
+
+EV_ udsPNL_IPT_ExtDataRecNo: 0 [0|0] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_RepDTCExtData_ByDTCNo: 0 [0|0] "" 0 2 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_FSMShortTrmAdj_BYTE5: 0 [0|0] "" 0 3 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_PRAShortTrmAdj_BYTE5: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_WriteDataBy_ID: 0 [0|0] "" 0 5 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_ReadScaling_DID: 0 [0|0] "" 0 6 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_QuiCurrDiagMode_Start: 0 [0|0] "" 0 7 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ShortTrmAdj_SleepMode: 0 [0|0] "" 0 8 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_RetCtrToECU_SleepMode: 0 [0|0] "" 0 9 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ShortTrmAdj_PRACtr: 0 [0|0] "" 0 10 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_RetCtrToECU_PRACtr: 0 [0|0] "" 0 11 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_ExtDTC_Number: 0 [0|0] "" 0 12 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_Suppress_Type: 0 [0|0] "" 0 13 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_DiagStop_Indicator: 0 [0|0] "" 0 14 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_ST_ReadDTC_MaskBIT7: 0 [0|0] "" 2 15 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_ST_ReadDTC_MaskBIT6: 0 [0|0] "" 2 16 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_ST_ReadDTC_MaskBIT5: 0 [0|0] "" 2 17 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_ST_ReadDTC_MaskBIT4: 0 [0|0] "" 2 18 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_ST_ReadDTC_MaskBIT3: 0 [0|0] "" 2 19 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_ST_ReadDTC_MaskBIT2: 0 [0|0] "" 2 20 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_ST_ReadDTC_MaskBIT1: 0 [0|0] "" 2 21 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_ST_ReadDTC_MaskBIT0: 0 [0|0] "" 2 22 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ReadExtDatRecByDTCNo: 0 [0|0] "" 0 23 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ReadSupportedDTC: 0 [0|0] "" 0 24 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ReadDTCByStsMask: 0 [0|0] "" 0 25 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Routine_Other: 0 [0|0] "" 0 26 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC13_Extend: 0 [0|0] "" 0 27 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC12_Extend: 0 [0|0] "" 0 28 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC11_Extend: 0 [0|0] "" 0 29 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC10_Extend: 0 [0|0] "" 0 30 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC9_Extend: 0 [0|0] "" 0 31 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC8_Extend: 0 [0|0] "" 0 32 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC7_Extend: 0 [0|0] "" 0 33 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC6_Extend: 0 [0|0] "" 0 34 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC5_Extend: 0 [0|0] "" 0 35 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC4_Extend: 0 [0|0] "" 0 36 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC3_Extend: 0 [0|0] "" 0 37 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC2_Extend: 0 [0|0] "" 0 38 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC1_Extend: 0 [0|0] "" 0 39 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_Extend: 0 [0|0] "" 0 40 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_Extend: 0 [0|0] "" 0 41 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_Extend: 0 [0|0] "" 0 42 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_Extend: 0 [0|0] "" 0 43 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_Extend: 0 [0|0] "" 0 44 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_Extend: 0 [0|0] "" 0 45 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_Extend: 0 [0|0] "" 0 46 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_Extend: 0 [0|0] "" 0 47 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_Extend: 0 [0|0] "" 0 48 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_Extend: 0 [0|0] "" 0 49 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_Extend: 0 [0|0] "" 0 50 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_Extend: 0 [0|0] "" 0 51 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_Extend: 0 [0|0] "" 0 52 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_MaskBit7: 0 [0|0] "" 0 53 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_MaskBit6: 0 [0|0] "" 0 54 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_MaskBit5: 0 [0|0] "" 0 55 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_MaskBit4: 0 [0|0] "" 0 56 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_MaskBit3: 0 [0|0] "" 0 57 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_MaskBit2: 0 [0|0] "" 0 58 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_MaskBit1: 0 [0|0] "" 0 59 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13_MaskBit0: 0 [0|0] "" 0 60 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_MaskBit2: 0 [0|0] "" 0 61 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_MaskBit7: 0 [0|0] "" 0 62 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_MaskBit6: 0 [0|0] "" 0 63 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_MaskBit5: 0 [0|0] "" 0 64 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_MaskBit4: 0 [0|0] "" 0 65 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_MaskBit3: 0 [0|0] "" 0 66 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_MaskBit1: 0 [0|0] "" 0 67 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12_MaskBit0: 0 [0|0] "" 0 68 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_MaskBit7: 0 [0|0] "" 0 69 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_MaskBit6: 0 [0|0] "" 0 70 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_MaskBit5: 0 [0|0] "" 0 71 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_MaskBit4: 0 [0|0] "" 0 72 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_MaskBit3: 0 [0|0] "" 0 73 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_MaskBit2: 0 [0|0] "" 0 74 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_MaskBit1: 0 [0|0] "" 0 75 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11_MaskBit0: 0 [0|0] "" 0 76 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_MaskBit7: 0 [0|0] "" 0 77 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_MaskBit6: 0 [0|0] "" 0 78 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_MaskBit5: 0 [0|0] "" 0 79 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_MaskBit4: 0 [0|0] "" 0 80 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_MaskBit3: 0 [0|0] "" 0 81 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_MaskBit2: 0 [0|0] "" 0 82 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_MaskBit1: 0 [0|0] "" 0 83 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10_MaskBit0: 0 [0|0] "" 0 84 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_MaskBit7: 0 [0|0] "" 0 85 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_MaskBit6: 0 [0|0] "" 0 86 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_MaskBit5: 0 [0|0] "" 0 87 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_MaskBit4: 0 [0|0] "" 0 88 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_MaskBit3: 0 [0|0] "" 0 89 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_MaskBit2: 0 [0|0] "" 0 90 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_MaskBit1: 0 [0|0] "" 0 91 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9_MaskBit0: 0 [0|0] "" 0 92 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_MaskBit7: 0 [0|0] "" 0 93 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_MaskBit6: 0 [0|0] "" 0 94 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_MaskBit5: 0 [0|0] "" 0 95 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_MaskBit4: 0 [0|0] "" 0 96 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_MaskBit3: 0 [0|0] "" 0 97 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_MaskBit2: 0 [0|0] "" 0 98 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_MaskBit1: 0 [0|0] "" 0 99 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8_MaskBit0: 0 [0|0] "" 0 100 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_MaskBit7: 0 [0|0] "" 0 101 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_MaskBit6: 0 [0|0] "" 0 102 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_MaskBit5: 0 [0|0] "" 0 103 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_MaskBit4: 0 [0|0] "" 0 104 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_MaskBit3: 0 [0|0] "" 0 105 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_MaskBit2: 0 [0|0] "" 0 106 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_MaskBit1: 0 [0|0] "" 0 107 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7_MaskBit0: 0 [0|0] "" 0 108 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_MaskBit7: 0 [0|0] "" 0 109 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_MaskBit6: 0 [0|0] "" 0 110 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_MaskBit5: 0 [0|0] "" 0 111 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_MaskBit4: 0 [0|0] "" 0 112 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_MaskBit2: 0 [0|0] "" 0 113 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_MaskBit3: 0 [0|0] "" 0 114 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_MaskBit1: 0 [0|0] "" 0 115 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6_MaskBit0: 0 [0|0] "" 0 116 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_MaskBit7: 0 [0|0] "" 0 117 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_MaskBit6: 0 [0|0] "" 0 118 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_MaskBit5: 0 [0|0] "" 0 119 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_MaskBit4: 0 [0|0] "" 0 120 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_MaskBit3: 0 [0|0] "" 0 121 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_MaskBit2: 0 [0|0] "" 0 122 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_MaskBit1: 0 [0|0] "" 0 123 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5_MaskBit0: 0 [0|0] "" 0 124 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_MaskBit7: 0 [0|0] "" 0 125 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_MaskBit6: 0 [0|0] "" 0 126 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_MaskBit5: 0 [0|0] "" 0 127 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_MaskBit4: 0 [0|0] "" 0 128 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_MaskBit3: 0 [0|0] "" 0 129 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_MaskBit2: 0 [0|0] "" 0 130 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_MaskBit1: 0 [0|0] "" 0 131 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4_MaskBit0: 0 [0|0] "" 0 132 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_MaskBit7: 0 [0|0] "" 0 133 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_MaskBit6: 0 [0|0] "" 0 134 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_MaskBit5: 0 [0|0] "" 0 135 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_MaskBit4: 0 [0|0] "" 0 136 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_MaskBit3: 0 [0|0] "" 0 137 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_MaskBit2: 0 [0|0] "" 0 138 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_MaskBit1: 0 [0|0] "" 0 139 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3_MaskBit0: 0 [0|0] "" 0 140 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_MaskBit7: 0 [0|0] "" 0 141 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_MaskBit6: 0 [0|0] "" 0 142 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_MaskBit5: 0 [0|0] "" 0 143 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_MaskBit4: 0 [0|0] "" 0 144 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_MaskBit3: 0 [0|0] "" 0 145 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_MaskBit2: 0 [0|0] "" 0 146 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_MaskBit1: 0 [0|0] "" 0 147 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2_MaskBit0: 0 [0|0] "" 0 148 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_MaskBit7: 0 [0|0] "" 0 149 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_MaskBit6: 0 [0|0] "" 0 150 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_MaskBit5: 0 [0|0] "" 0 151 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_MaskBit4: 0 [0|0] "" 0 152 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_MaskBit3: 0 [0|0] "" 0 153 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_MaskBit2: 0 [0|0] "" 0 154 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_MaskBit1: 0 [0|0] "" 0 155 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1_MaskBit0: 0 [0|0] "" 0 156 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC13: 0 [0|0] "" 0 157 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC12: 0 [0|0] "" 0 158 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC11: 0 [0|0] "" 0 159 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC10: 0 [0|0] "" 0 160 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC9: 0 [0|0] "" 0 161 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC8: 0 [0|0] "" 0 162 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC7: 0 [0|0] "" 0 163 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC6: 0 [0|0] "" 0 164 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC5: 0 [0|0] "" 0 165 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC4: 0 [0|0] "" 0 166 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC3: 0 [0|0] "" 0 167 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC2: 0 [0|0] "" 0 168 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_DTC1: 0 [0|0] "" 0 169 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_IPT_Security_KEY3: 0 [0|0] "" 0 170 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_Security_KEY2: 0 [0|0] "" 0 171 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_Security_KEY1: 0 [0|0] "" 0 172 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IPT_Security_KEY0: 0 [0|0] "" 0 173 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_Security_SEED3: 0 [0|0] "" 0 174 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_Security_SEED2: 0 [0|0] "" 0 175 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_Security_SEED0: 0 [0|0] "" 0 176 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_Security_SEED1: 0 [0|0] "" 0 177 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_SW_EnablePNL: 0 [0|0] "" 0 178 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Comm_DRX_DTX_RespOFF: 0 [0|0] "" 0 179 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Comm_DRX_DTX_RespON: 0 [0|0] "" 0 180 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_RESP_OFF: 0 [0|0] "" 0 181 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_RESP_ON: 0 [0|0] "" 0 182 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Session_ExtDiagMode: 0 [0|0] "" 0 183 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Session_ECUProgramm: 0 [0|0] "" 0 184 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_IND_ErrorCode: 0 [0|0] "" 0 185 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_FLG_SuppressType: 0 [0|0] "" 0 186 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_FLG_AddressType: 0 [0|0] "" 0 187 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_ReadDTC_Number: 0 [0|0] "" 0 188 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_OPT_WriteDiDData: 0 [0|0] "" 0 189 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_ReadSuppDiDsResult: 0 [0|0] "" 0 190 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_ReadScalDatDiDsResult: 0 [0|0] "" 0 191 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_OPT_ReadCustDiDsResult: 0 [0|0] "" 0 192 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ udsPNL_IND_Error: 0 [0|0] "" 0 193 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_FLG_TesterPresent: 0 [0|0] "" 0 194 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ReadScalingDataDiDs: 0 [0|0] "" 0 195 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_WriteDiDs: 0 [0|0] "" 0 196 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ReadSuppDiDs: 0 [0|0] "" 0 197 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ReadCustDiDs: 0 [0|0] "" 0 198 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Security_Send: 0 [0|0] "" 0 199 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Security_Request: 0 [0|0] "" 0 200 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_RoutineStart: 0 [0|0] "" 0 201 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_SEL_RoutineControl: 0 [0|0] "" 65280 202 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC_OFF: 0 [0|0] "" 0 203 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_DTC_ON: 0 [0|0] "" 0 204 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Comm_DRX_DTX: 0 [0|0] "" 0 205 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Comm_ERX_ETX: 0 [0|0] "" 0 206 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ClearDTC_Chassic: 0 [0|0] "" 0 207 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_ClearDTC_All: 0 [0|0] "" 0 208 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Reset_Software: 0 [0|0] "" 0 209 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Reset_Hardware: 0 [0|0] "" 0 210 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_SleepMode_Start: 0 [0|1] "" 0 211 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_SEL_ReadSuppPiDs: 0 [0|15] "" 0 212 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_SEL_ReadSuppDiDs: 0 [0|15] "" 0 213 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_SEL_ReadCustDiDs: 0 [0|0] "" 260 214 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Session_Extend: 0 [0|1] "" 0 215 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Session_Programm: 0 [0|1] "" 0 216 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ udsPNL_CMD_Session_Default: 0 [0|1] "" 0 217 DUMMY_NODE_VECTOR0 Vector__XXX;
+ENVVAR_DATA_ udsPNL_OPT_DTC13_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC12_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC11_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC10_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC9_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC8_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC7_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC6_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC5_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC4_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC3_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC2_Extend: 0;
+ENVVAR_DATA_ udsPNL_OPT_DTC1_Extend: 0;
+
+BA_DEF_ SG_  "GenSigSendType" ENUM  "NotUsed","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepeition","NoSigSendType";
+BA_DEF_ SG_  "VNSigSLHS_VNReq" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigPrimaryTriggering" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigParkedVehicle" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigIntermediate" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigInfotainment" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigAllNodes" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigSLHSSharedDiagnostic" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigSLHS_VNHVEM" ENUM  "No","Yes";
+BA_DEF_ SG_  "VNSigDiagnostic" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigSendOnInit" ENUM  "Not Initialized","Application","Handler";
+BA_DEF_ SG_  "GenSigSendTopBottom" ENUM  "None","SendAtTop","SendAtBottom","SendAtTopBottom";
+BA_DEF_ SG_  "GenSigDeltaValue" INT 0 65535;
+BA_DEF_ SG_  "SignalType" STRING ;
+BA_DEF_ SG_  "SignalLongName" STRING ;
+BA_DEF_ SG_  "PacketOrder" INT 0 65535;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_  "GenSigStartValue" INT 0 65535;
+BA_DEF_ BO_  "DiagUUDTResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","NoMsgSendType";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BO_  "TpTxIndex" INT 0 99;
+BA_DEF_ BO_  "MessageSubnet" ENUM  "BB","PB","CB","Body","HS","Powertrain","Chassis","Spare","PE","CC";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 100000;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagConnection" INT 0 100;
+BA_DEF_ BU_  "NmAsrCanMsgReducedTime" INT 0 65535;
+BA_DEF_ BU_  "NmAsrCanMsgCycleOffset" INT 0 65535;
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_ BU_  "NmAsrNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "SourceId" HEX 0 255;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "ECU_Id" HEX 0 255;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 0 65535;
+BA_DEF_  "NmAsrRepeatMessageTime" INT 0 65525;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 0 65535;
+BA_DEF_  "NmAsrTimeoutTime" INT 0 65535;
+BA_DEF_  "NmAsrBaseAddress" HEX 0 2032;
+BA_DEF_  "NmAsrMessageCount" INT 0 256;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "SyncJumpWidthMax" INT 0 255;
+BA_DEF_  "SyncJumpWidthMin" INT 0 255;
+BA_DEF_  "SamplePointMax" FLOAT 0 100;
+BA_DEF_  "SamplePointMin" FLOAT 0 100;
+BA_DEF_  "VersionNumber" INT 0 65535;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "BusOffRecoveryTime" INT 0 65535;
+BA_DEF_  "Baudrate" INT 0 1000000;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVDAFailComment" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvRespComment" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigRxStartValue" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVDAFailResp" ENUM  "No","Yes";
+BA_DEF_REL_ BU_SG_REL_  "GenSigVBitRespComment" STRING ;
+BA_DEF_REL_ BU_SG_REL_  "GenSigVBitResp" ENUM  "No","Yes";
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvRespSubValue" INT 0 65535;
+BA_DEF_REL_ BU_SG_REL_  "GenSigSuprvResp" ENUM  "None","Notify App","Substitute Default";
+BA_DEF_REL_ BU_SG_REL_  "GenSigTimeoutTime" INT 0 15000;
+BA_DEF_REL_ BU_SG_REL_  "GenSigTimeoutMsg" HEX 0 2032;
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "VNSigSLHS_VNReq" "No";
+BA_DEF_DEF_  "VNSigPrimaryTriggering" "No";
+BA_DEF_DEF_  "VNSigParkedVehicle" "No";
+BA_DEF_DEF_  "VNSigIntermediate" "No";
+BA_DEF_DEF_  "VNSigInfotainment" "No";
+BA_DEF_DEF_  "VNSigAllNodes" "No";
+BA_DEF_DEF_  "VNSigSLHSSharedDiagnostic" "No";
+BA_DEF_DEF_  "VNSigSLHS_VNHVEM" "No";
+BA_DEF_DEF_  "VNSigDiagnostic" "No";
+BA_DEF_DEF_  "GenSigSendOnInit" "Not Initialized";
+BA_DEF_DEF_  "GenSigSendTopBottom" "None";
+BA_DEF_DEF_  "GenSigDeltaValue" 0;
+BA_DEF_DEF_  "SignalType" "";
+BA_DEF_DEF_  "SignalLongName" "";
+BA_DEF_DEF_  "PacketOrder" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "DiagUUDTResponse" "No";
+BA_DEF_DEF_  "NmAsrMessage" "No";
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "MessageSubnet" "Body";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "DiagConnection" 0;
+BA_DEF_DEF_  "NmAsrCanMsgReducedTime" 0;
+BA_DEF_DEF_  "NmAsrCanMsgCycleOffset" 0;
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 0;
+BA_DEF_DEF_  "NmAsrNode" "Yes";
+BA_DEF_DEF_  "SourceId" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "ECU_Id" 0;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 0;
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 0;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 0;
+BA_DEF_DEF_  "NmAsrTimeoutTime" 0;
+BA_DEF_DEF_  "NmAsrBaseAddress" 0;
+BA_DEF_DEF_  "NmAsrMessageCount" 22;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "SyncJumpWidthMax" 3;
+BA_DEF_DEF_  "SyncJumpWidthMin" 4;
+BA_DEF_DEF_  "SamplePointMax" 80;
+BA_DEF_DEF_  "SamplePointMin" 81.25;
+BA_DEF_DEF_  "VersionNumber" 0;
+BA_DEF_DEF_  "Manufacturer" "GM";
+BA_DEF_DEF_  "BusOffRecoveryTime" 160;
+BA_DEF_DEF_  "Baudrate" 500000;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "NmType" "HSCAN";
+BA_DEF_DEF_REL_ "GenSigVDAFailComment" "";
+BA_DEF_DEF_REL_ "GenSigSuprvRespComment" "";
+BA_DEF_DEF_REL_ "GenSigRxStartValue" "";
+BA_DEF_DEF_REL_ "GenSigVDAFailResp" "No";
+BA_DEF_DEF_REL_ "GenSigVBitRespComment" "";
+BA_DEF_DEF_REL_ "GenSigVBitResp" "No";
+BA_DEF_DEF_REL_ "GenSigSuprvRespSubValue" 0;
+BA_DEF_DEF_REL_ "GenSigSuprvResp" "None";
+BA_DEF_DEF_REL_ "GenSigTimeoutTime" 0;
+BA_DEF_DEF_REL_ "GenSigTimeoutMsg" 0;
+BA_ "DBName" "UDS";
+BA_ "ECU_Id" BU_ UDS 25;
+BA_ "ILUsed" BU_ UDS 1;
+BA_ "SourceId" BU_ UDS 25;
+BA_ "NmAsrNode" BU_ UDS 1;
+BA_ "NmAsrNodeIdentifier" BU_ UDS 25;
+BA_ "NmAsrCanMsgCycleOffset" BU_ UDS 20;
+BA_ "NmAsrCanMsgReducedTime" BU_ UDS 340;
+BA_ "ECU_Id" BU_ LVR 64;
+BA_ "ILUsed" BU_ LVR 1;
+BA_ "SourceId" BU_ LVR 64;
+BA_ "NmAsrNode" BU_ LVR 1;
+BA_ "NmAsrNodeIdentifier" BU_ LVR 64;
+BA_ "NmAsrCanMsgCycleOffset" BU_ LVR 0;
+BA_ "NmAsrCanMsgReducedTime" BU_ LVR 320;
+BA_ "ECU_Id" BU_ Tester 24;
+BA_ "ILUsed" BU_ Tester 1;
+BA_ "SourceId" BU_ Tester 24;
+BA_ "NmAsrNode" BU_ Tester 1;
+BA_ "NmAsrNodeIdentifier" BU_ Tester 24;
+BA_ "NmAsrCanMsgCycleOffset" BU_ Tester 20;
+BA_ "NmAsrCanMsgReducedTime" BU_ Tester 340;
+BA_ "ECU_Id" BU_ EMS 187;
+BA_ "ILUsed" BU_ EMS 1;
+BA_ "SourceId" BU_ EMS 187;
+BA_ "NmAsrNode" BU_ EMS 1;
+BA_ "NmAsrNodeIdentifier" BU_ EMS 187;
+BA_ "NmAsrCanMsgCycleOffset" BU_ EMS 30;
+BA_ "NmAsrCanMsgReducedTime" BU_ EMS 350;
+BA_ "ECU_Id" BU_ CGW 69;
+BA_ "ILUsed" BU_ CGW 1;
+BA_ "SourceId" BU_ CGW 69;
+BA_ "NmAsrNode" BU_ CGW 1;
+BA_ "NmAsrNodeIdentifier" BU_ CGW 69;
+BA_ "NmAsrCanMsgCycleOffset" BU_ CGW 120;
+BA_ "NmAsrCanMsgReducedTime" BU_ CGW 440;
+VAL_ udsPNL_SEL_RoutineControl 65281 "Check Programming Dependencies" 65280 "Erase Memory" ;
+VAL_ udsPNL_SEL_ReadSuppPiDs 11 "TCU Parking Release Request" 10 "TM Switch State" 9 "Vehicle Door State" 8 "Brake State" 7 "Unlock Button State" 6 "P Release Button State" 5 "P Button State" 4 "PRA Position" 3 "Knob Display" 2 "Lever Position" 1 "Bttery Power State" 0 "PID Support" ;
+VAL_ udsPNL_SEL_ReadSuppDiDs 0 "0x0104" ;
+VAL_ udsPNL_SEL_ReadCustDiDs 260 "0104: Supplier DID" 61849 "F199: ProgrammingDate" 61845 "F195: SystemSupECUSwVersionNo" 61843 "F193: SystemSupECUHwVersionNo" 61841 "F191: VehicleMfdECUHardwareNo" 61835 "F18B: ECUManufacturingDate" 61834 "F18A: SystemSupplierIdentifier" 61833 "F189: VehicleMfdECUSwVersionNo" 61831 "F187: VehicleMfdSparePartNo" ;
+

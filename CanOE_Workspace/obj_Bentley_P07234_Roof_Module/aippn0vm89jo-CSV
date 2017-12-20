@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="">
+    <namespace name="DiVa" comment="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SystemCondition" comment="" bitcount="8" isSigned="true" encoding="0" type="string" />
+    </namespace>
+    <namespace name="_Statistics" comment="">
+      <namespace name="LIN1" comment="Bus Statistic Variables for Channel LIN1">
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="BaudRateDevMaster" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="Busload" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" maxValue="100" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="ms" name="InitTimeMaster" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="ms" name="FrameCycleTime" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="bit/s" name="BaudRateMaster" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="SleepCommands" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="ErrorsResp" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="fr/s" name="FrameRate" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="Frames" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="ErrorsBus" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="Wakeups" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="us" name="WakeupsDuration" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="ToleranceHeader" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="ms" name="DurationHeader" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="ErrorsRespDetected" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="ToleranceResp" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="us" name="RespSpace" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="ms" name="DurationResp" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="DiagNoResps" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="BusloadAvg" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" maxValue="100" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="BusloadMin" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" maxValue="100" />
+        <variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="BusloadMax" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" maxValue="100" />
+      </namespace>
+    </namespace>
+    <variable anlyzLocal="2" readOnly="true" valueSequence="false" unit="" name="iniParaCfgPath" comment="" bitcount="64" isSigned="true" encoding="0" type="string" startValue="D:\\Isaac\\CanOE_Workspace\\cfg\\paraCfg.ini" />
+    <variable anlyzLocal="2" readOnly="true" valueSequence="false" unit="" name="iniTestStepCfgPath" comment="" bitcount="64" isSigned="true" encoding="0" type="string" startValue="D:\\Isaac\\CanOE_Workspace\\cfg\\testStepCfg.ini" />
+  </namespace>
+</systemvariables>

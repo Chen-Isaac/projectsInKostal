@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="Panel1" Children="Controls" ControlName="Mag 3D Hall Sensor">
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl4" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.ProgressBarControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ProgressBarControl2" Children="Controls" ControlName="Progress Bar 2">
+        <Property Name="Name">ProgressBarControl2</Property>
+        <Property Name="Size">139, 28</Property>
+        <Property Name="Location">144, 42</Property>
+        <Property Name="OriginValue">0</Property>
+        <Property Name="DecimalPlaces">0</Property>
+        <Property Name="ValueSize">38, 28</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;envReadDataFlashProgress;1;;;-1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl14" Children="Controls" ControlName="Button 5">
+        <Property Name="Name">ButtonControl14</Property>
+        <Property Name="Size">127, 26</Property>
+        <Property Name="Location">6, 44</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">Read Data Flash</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;envReadDataFlash;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl4</Property>
+      <Property Name="Size">294, 96</Property>
+      <Property Name="Location">309, 201</Property>
+      <Property Name="Font">Microsoft Sans Serif, 14.25pt, style=Bold</Property>
+      <Property Name="Text">Read Data Flash</Property>
+      <Property Name="TabIndex">21</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl11" Children="Controls" ControlName="Button 4">
+      <Property Name="Name">ButtonControl11</Property>
+      <Property Name="Size">78, 36</Property>
+      <Property Name="Location">514, 53</Property>
+      <Property Name="Text">Reset</Property>
+      <Property Name="ForeColor">Red</Property>
+      <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;envKostiaReset;1;;;-1</Property>
+      <Property Name="TabIndex">19</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl12" Children="Controls" ControlName="Button 2">
+        <Property Name="Name">ButtonControl12</Property>
+        <Property Name="Size">127, 26</Property>
+        <Property Name="Location">6, 58</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">Calibration Mode</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;envKostiaCalibModeReq;1;;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl5" Children="Controls" ControlName="Button 2">
+        <Property Name="Name">ButtonControl5</Property>
+        <Property Name="Size">127, 26</Property>
+        <Property Name="Location">144, 28</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">Sleep Mode</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;envKostiaModeSleep2Req;1;;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl4" Children="Controls" ControlName="Button 2">
+        <Property Name="Name">ButtonControl4</Property>
+        <Property Name="Size">127, 26</Property>
+        <Property Name="Location">6, 28</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">Normal Mode</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;envKostiaModeNormalReq;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl3</Property>
+      <Property Name="Size">294, 97</Property>
+      <Property Name="Location">309, 97</Property>
+      <Property Name="Font">Microsoft Sans Serif, 14.25pt, style=Bold</Property>
+      <Property Name="Text">Mode Change</Property>
+      <Property Name="TabIndex">17</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl2" Children="Controls" ControlName="Button">
+      <Property Name="Name">ButtonControl2</Property>
+      <Property Name="Size">78, 36</Property>
+      <Property Name="Location">430, 53</Property>
+      <Property Name="Text">Deactivate Kostia</Property>
+      <Property Name="ForeColor">Red</Property>
+      <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;envKostiaDeactivate;1;;;-1</Property>
+      <Property Name="TabIndex">15</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl28" Children="Controls" ControlName="ButtonControl28">
+      <Property Name="Name">ButtonControl28</Property>
+      <Property Name="Size">78, 32</Property>
+      <Property Name="Location">514, 12</Property>
+      <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+      <Property Name="Text">Logout</Property>
+      <Property Name="ForeColor">Red</Property>
+      <Property Name="UseTransparentColor">False</Property>
+      <Property Name="SymbolConfiguration">2;1;Kostia;;;envKostiaLogoutRequest;1</Property>
+      <Property Name="TabIndex">8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="GroupBoxControl2">
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl13" Children="Controls" ControlName="Button">
+        <Property Name="Name">ButtonControl13</Property>
+        <Property Name="Size">182, 47</Property>
+        <Property Name="Location">6, 148</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">Finish Calibration and Save Snapshot Data</Property>
+        <Property Name="ForeColor">LimeGreen</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;EnvRbr_SaveRBRSnapshot;1;;;-1</Property>
+        <Property Name="TabIndex">17</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ProgressBarControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ProgressBarControl1" Children="Controls" ControlName="Progress Bar">
+        <Property Name="Name">ProgressBarControl1</Property>
+        <Property Name="Size">76, 24</Property>
+        <Property Name="Location">194, 160</Property>
+        <Property Name="OriginValue">0</Property>
+        <Property Name="DecimalPlaces">0</Property>
+        <Property Name="ValueSize">38, 28</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;EnvRbr_SaveRBRSnapshot_Progress;2;;;-1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl7" Children="Controls" ControlName="Button 3">
+        <Property Name="Name">ButtonControl7</Property>
+        <Property Name="Size">127, 26</Property>
+        <Property Name="Location">6, 116</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">Store at NVRAM</Property>
+        <Property Name="ForeColor">LimeGreen</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;envKostiaStoreCalibNvram;1;;;-1</Property>
+        <Property Name="TabIndex">15</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl20" Children="Controls" ControlName="ButtonControl20">
+        <Property Name="Name">ButtonControl20</Property>
+        <Property Name="Size">127, 30</Property>
+        <Property Name="Location">6, 80</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">Decalibration</Property>
+        <Property Name="ForeColor">Red</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;EnvMag3DPosDet_DeCalibRequest;1;;;-1</Property>
+        <Property Name="TabIndex">14</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl10" Children="Controls" ControlName="ButtonControl10">
+        <Property Name="Name">ButtonControl10</Property>
+        <Property Name="Size">44, 27</Property>
+        <Property Name="Location">243, 28</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">F</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">2;1;Kostia;;;EnvMag3DPosDet_CalibRequestMMin;1</Property>
+        <Property Name="TabIndex">13</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl8" Children="Controls" ControlName="ButtonControl8">
+        <Property Name="Name">ButtonControl8</Property>
+        <Property Name="Size">44, 27</Property>
+        <Property Name="Location">243, 123</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">B</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">4;1;CAN_KOSTIA;;;EnvMag3DPosDet_CalibRequestN;1;;;-1</Property>
+        <Property Name="TabIndex">11</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl6" Children="Controls" ControlName="ButtonControl6">
+        <Property Name="Name">ButtonControl6</Property>
+        <Property Name="Size">44, 27</Property>
+        <Property Name="Location">243, 58</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">NF</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">2;1;Kostia;;;EnvMag3DPosDet_CalibRequestB;1</Property>
+        <Property Name="TabIndex">9</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl3" Children="Controls" ControlName="ButtonControl3">
+        <Property Name="Name">ButtonControl3</Property>
+        <Property Name="Size">44, 27</Property>
+        <Property Name="Location">243, 91</Property>
+        <Property Name="Font">Microsoft Sans Serif, 9.75pt</Property>
+        <Property Name="Text">NB</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">2;1;Kostia;;;EnvMag3DPosDet_CalibRequestF;1</Property>
+        <Property Name="TabIndex">6</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls" ControlName="TextBoxControl2">
+        <Property Name="Name">TextBoxControl2</Property>
+        <Property Name="Size">127, 29</Property>
+        <Property Name="Location">6, 36</Property>
+        <Property Name="AlarmUpperTextColor">ControlText</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">ControlText</Property>
+        <Property Name="BoxFont">Microsoft Sans Serif, 14.25pt, style=Bold</Property>
+        <Property Name="AlarmUpperFont">Microsoft Sans Serif, 14.25pt, style=Bold</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Hide</Property>
+        <Property Name="TextFont">Microsoft Sans Serif, 14.25pt, style=Bold</Property>
+        <Property Name="DescriptionText">EnvMag3DPosDet_CalibPositionText:</Property>
+        <Property Name="AlarmLowerFont">Microsoft Sans Serif, 14.25pt, style=Bold</Property>
+        <Property Name="DescriptionSize">349, 37</Property>
+        <Property Name="SymbolConfiguration">2;1;Kostia;;;EnvMag3DPosDet_CalibPositionText;4</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">294, 200</Property>
+      <Property Name="Location">9, 97</Property>
+      <Property Name="Font">Microsoft Sans Serif, 14.25pt, style=Bold</Property>
+      <Property Name="Text">Mag3D Position Calibration</Property>
+      <Property Name="TabIndex">12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="ButtonControl1">
+      <Property Name="Name">ButtonControl1</Property>
+      <Property Name="Size">78, 32</Property>
+      <Property Name="Location">430, 12</Property>
+      <Property Name="Font">Microsoft Sans Serif, 12pt, style=Bold</Property>
+      <Property Name="Text">Login</Property>
+      <Property Name="ForeColor">LimeGreen</Property>
+      <Property Name="UseTransparentColor">False</Property>
+      <Property Name="SymbolConfiguration">2;1;Kostia;;;envKostiaLoginRequest;1</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="StaticTextControl2">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">100, 13</Property>
+      <Property Name="Location">758, 568</Property>
+      <Property Name="Text">Description</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="GroupBoxControl1">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl3" Children="Controls" ControlName="TextBoxControl3">
+        <Property Name="Name">TextBoxControl3</Property>
+        <Property Name="Size">409, 24</Property>
+        <Property Name="Location">6, 55</Property>
+        <Property Name="AlarmUpperTextColor">ControlText</Property>
+        <Property Name="BoxForeColor">Black</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="BoxTextAlign">Center</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">ControlText</Property>
+        <Property Name="BoxFont">Calibri, 14.25pt</Property>
+        <Property Name="AlarmUpperFont">Calibri, 14.25pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Hide</Property>
+        <Property Name="TextFont">Calibri, 15.75pt, style=Bold</Property>
+        <Property Name="DescriptionText">envKostiaTextWindow1:</Property>
+        <Property Name="AlarmLowerFont">Calibri, 14.25pt</Property>
+        <Property Name="BoxBorderStyle">None</Property>
+        <Property Name="BoxBackColor">White</Property>
+        <Property Name="DescriptionSize">228, 31</Property>
+        <Property Name="SymbolConfiguration">2;1;Kostia;;;envKostiaTextWindow2;4</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.98.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="TextBoxControl1">
+        <Property Name="Name">TextBoxControl1</Property>
+        <Property Name="Size">409, 26</Property>
+        <Property Name="Location">6, 32</Property>
+        <Property Name="AlarmUpperTextColor">ControlText</Property>
+        <Property Name="BoxForeColor">Red</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="BoxTextAlign">Center</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">ControlText</Property>
+        <Property Name="BoxFont">Calibri, 15.75pt, style=Bold</Property>
+        <Property Name="AlarmUpperFont">Calibri, 15.75pt, style=Bold</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="DisplayLabel">Hide</Property>
+        <Property Name="TextFont">Calibri, 15.75pt, style=Bold</Property>
+        <Property Name="DescriptionText">envKostiaTextWindow1:</Property>
+        <Property Name="AlarmLowerFont">Calibri, 15.75pt, style=Bold</Property>
+        <Property Name="BoxBorderStyle">None</Property>
+        <Property Name="BoxBackColor">White</Property>
+        <Property Name="DescriptionSize">228, 36</Property>
+        <Property Name="SymbolConfiguration">2;1;Kostia;;;envKostiaTextWindow1;4</Property>
+        <Property Name="TabIndex">0</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">421, 88</Property>
+      <Property Name="Location">3, 3</Property>
+      <Property Name="Font">Calibri, 15.75pt, style=Bold</Property>
+      <Property Name="Text">Kostia Message Window</Property>
+      <Property Name="TabIndex">14</Property>
+    </Object>
+    <Property Name="Name">Panel1</Property>
+    <Property Name="Size">631, 303</Property>
+  </Object>
+</Panel>

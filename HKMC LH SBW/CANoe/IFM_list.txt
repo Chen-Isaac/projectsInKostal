@@ -1,0 +1,112 @@
+/*-----------------------------------------------------------CANoe Start(do not change!)-------------------------------------------------------------*/													
+    SBW_ERROR_INIT = 0,                                         /*   0                : -                                                            */													
+/*----- Illumination --------------------------------------------------------------------------------------------------------------------------------*/													
+    P LED Readback Error,                                       /*   1 Illumination   :                                                              */													
+    R LED Readback Error,                                       /*   2 Illumination   :                                                              */													
+    N LED Readback Error,                                       /*   3 Illumination   :                                                              */													
+    D LED Readback Error,                                       /*   4 Illumination   :                                                              */													
+    ILM_CRC_Incorrect,                                          /*   5 Illumination   :                                                              */													
+/*----- PWM Mgr -------------------------------------------------------------------------------------------------------------------------------------*/													
+    PWM input failure,                                          /*   6 PWM Mgr        :                                                              */													
+/*----- System Check --------------------------------------------------------------------------------------------------------------------------------*/													
+    SYS_Failure_UnknownWakeupReason,                            /*   7 System Check   :                                                              */													
+    SYS_Failure_ROM_Main,                                       /*   8 System Check   :                                                              */													
+    SYS_Failure_RAM_Main,                                       /*   9 System Check   :                                                              */													
+    SYS_Failure_CoreTest_Main,                                  /*  10 System Check   :                                                              */													
+    SYS_Failure_WD_Main,                                        /*  11 System Check   :                                                              */													
+    SYS_Failure_AD_Diag,                                        /*  12 System Check   :                                                              */													
+    SYS_Stack_Overflow_Reset_Main,                              /*  13 System Check   :                                                              */													
+    SYS_Stack_Check_Warning_Main,                               /*  14 System Check   :                                                              */													
+    SYS_SVariableCorrupted_Main,                                /*  15 System Check   :                                                              */													
+    SYS_Task_Timeslot_SYS5MS,                                   /*  16 System Check   :                                                              */													
+    SYS_Task_Timeslot_SYS10MS,                                  /*  17 System Check   :                                                              */													
+    SYS_Task_Timeslot_ILL10MS,                                  /*  18 System Check   :                                                              */													
+/*----- SBC -----------------------------------------------------------------------------------------------------------------------------------------*/													
+    SYS_SBC_DEVELOPMENT_MODE,                                   /*  19 SBC            :                                                              */													
+    SYS_SBC_VS_UV,                                              /*  20 SBC            :                                                              */													
+    SYS_SBC_TPW,                                                /*  21 SBC            :                                                              */													
+    SYS_SBC_SPI_FAIL,                                           /*  22 SBC            :                                                              */													
+    SYS_SBC_SPI_COM_FAIL,                                       /*  23 SBC            :                                                              */													
+    SYS_SBC_VCAN_UV,                                            /*  24 SBC            :                                                              */													
+    SYS_SBC_CAN_FAIL_TSD,                                       /*  25 SBC            :                                                              */													
+    SYS_SBC_CAN_FAIL_TXD_DOM,                                   /*  26 SBC            :                                                              */													
+    SYS_SBC_CAN_FAIL_BUS_DOM,                                   /*  27 SBC            :                                                              */													
+    SYS_SBC_VSHS_OV,                                            /*  28 SBC            :                                                              */													
+    SYS_SBC_VSHS_UV,                                            /*  29 SBC            :                                                              */													
+    SYS_SBC_TSD1,                                               /*  30 SBC            :                                                              */													
+    SYS_SBC_TSD2,                                               /*  31 SBC            :                                                              */													
+    SYS_SBC_HS1_OC_OT,                                          /*  32 SBC            :                                                              */													
+    SYS_SBC_HS1_OL,                                             /*  33 SBC            :                                                              */													
+    SYS_SBC_VCC1_OV,                                            /*  34 SBC            :                                                              */													
+    SYS_SBC_VCC1_UV,                                            /*  35 SBC            :                                                              */													
+    SYS_SBC_VCC1_WARN,                                          /*  36 SBC            :                                                              */													
+    SYS_SBC_VCC1_UV_FS,                                         /*  37 SBC            :                                                              */													
+    SYS_SBC_VCC1_SC,                                            /*  38 SBC            :                                                              */													
+    SYS_FAILURE_UNUSED_INTERRUPT,                               /*  39 SBC            :                                                              */													
+/*----- PRA -----------------------------------------------------------------------------------------------------------------------------------------*/													
+    SYS_PRA_Motor_Open_Load_Detection,                          /*  40 PRA            :                                                              */													
+    SYS_PRA_Motor_Over_Voltage,                                 /*  41 PRA            :                                                              */													
+    SYS_PRA_Motor_Under_Voltage,                                /*  42 PRA            :                                                              */													
+    SYS_PRA_Motor_Over_Temperature,                             /*  43 PRA            :                                                              */													
+    SYS_PRA_Motor_Current_Limittion_HalfBridge_1,               /*  44 PRA            :                                                              */													
+    SYS_PRA_Motor_Current_Limittion_HalfBridge_2,               /*  45 PRA            :                                                              */													
+    SYS_PRA_Sensor_Fault,                                       /*  46 PRA            :                                                              */													
+    SYS_PRA_Sensor_Range_Error,                                 /*  47 PRA            :                                                              */													
+    SYS_PRA_TM_Switch_Fault,                                    /*  48 PRA            :                                                              */													
+/*----- VariantMgr ----------------------------------------------------------------------------------------------------------------------------------*/													
+    VarM_VariantsStorageCorrupted,                              /*  49 VariantMgr     :                                                              */													
+/*----- VersMgr -------------------------------------------------------------------------------------------------------------------------------------*/													
+    VersM_SWIndexMainEepIncompatible,                           /*  50 VersMgr        :                                                              */													
+    VersM_SWIndexMainFblIncompatible,                           /*  51 VersMgr        :                                                              */													
+    VersM_SWIndexMainCoreIncompatible,                          /*  52 VersMgr        :                                                              */													
+/*----- Volt ----------------------------------------------------------------------------------------------------------------------------------------*/													
+    Volt_Vbat_UnderVoltage,                                     /*  53 Volt           :                                                              */													
+    Volt_Vbat_OverVoltage,                                      /*  54 Volt           :                                                              */													
+    Volt_Diag_UnderVoltage,                                     /*  55 Volt           :                                                              */													
+    Volt_Diag_OverVoltage,                                      /*  56 Volt           :                                                              */													
+    Volt_KL30_UnderVoltage,                                     /*  57 Volt           :                                                              */													
+    VoltMgr_CRC_Incorrect,                                      /*  58 Volt           :                                                              */													
+    VoltMgr_Startup_Timeout_EEPROM,                             /*  59 Volt           :                                                              */													
+    PwrSigDet_CRC_Incorrect,                                    /*  60 Volt           :                                                              */													
+    AD_convert_Error,                                           /*  61 Volt           :                                                              */													
+/*----- NVM -----------------------------------------------------------------------------------------------------------------------------------------*/													
+    NVMRAM_TIMEOUT_ERROR,                                       /*  62 NVM            : NVM RAM when boot failed or error happened                   */													
+/*----- NvMMgr --------------------------------------------------------------------------------------------------------------------------------------*/													
+    NVMRAM_Inconsistent,                                        /*  63 NvMMgr         : Block is inconsistent                                        */													
+/*----- Mag3D_CH1 -----------------------------------------------------------------------------------------------------------------------------------*/													
+    CH1_VERTICAL_2_LANE,                                        /*  64 Mag3D_CH1      :                                                              */													
+    CH1_PARALLEL_2_LANE,                                        /*  65 Mag3D_CH1      :                                                              */													
+    CH1_VERTICAL_2_LANE_TRANS,                                  /*  66 Mag3D_CH1      :                                                              */													
+    CH1_PARALLEL_2_LANE_TRANS,                                  /*  67 Mag3D_CH1      :                                                              */													
+    CH1_HW_SENSOR,                                              /*  68 Mag3D_CH1      :                                                              */													
+    CH1_SAFE_RAM,                                               /*  69 Mag3D_CH1      :                                                              */													
+    CH1_NOT_CALIBRATED,                                         /*  70 Mag3D_CH1      :                                                              */													
+    CH1_PARAMS_FAULTY,                                          /*  71 Mag3D_CH1      :                                                              */													
+    CH1_MAG_FIELD_OUT_OF_RANGE,                                 /*  72 Mag3D_CH1      :                                                              */													
+    CH1_DIVISION_BY_ZERO,                                       /*  73 Mag3D_CH1      :                                                              */													
+/*----- Mag3D_CH2 -----------------------------------------------------------------------------------------------------------------------------------*/													
+    CH2_VERTICAL_2_LANE,                                        /*  74 Mag3D_CH2      :                                                              */													
+    CH2_PARALLEL_2_LANE,                                        /*  75 Mag3D_CH2      :                                                              */													
+    CH2_VERTICAL_2_LANE_TRANS,                                  /*  76 Mag3D_CH2      :                                                              */													
+    CH2_PARALLEL_2_LANE_TRANS,                                  /*  77 Mag3D_CH2      :                                                              */													
+    CH2_HW_SENSOR,                                              /*  78 Mag3D_CH2      :                                                              */													
+    CH2_SAFE_RAM,                                               /*  79 Mag3D_CH2      :                                                              */													
+    CH2_NOT_CALIBRATED,                                         /*  80 Mag3D_CH2      :                                                              */													
+    CH2_PARAMS_FAULTY,                                          /*  81 Mag3D_CH2      :                                                              */													
+    CH2_MAG_FIELD_OUT_OF_RANGE,                                 /*  82 Mag3D_CH2      :                                                              */													
+    CH2_DIVISION_BY_ZERO,                                       /*  83 Mag3D_CH2      :                                                              */													
+/*----- BusComm -------------------------------------------------------------------------------------------------------------------------------------*/													
+    Bus_Off,                                                    /*  84 BusComm        :                                                              */													
+    VS_TCU_Timeout,                                             /*  85 BusComm        :                                                              */													
+    PREL_Timeout,                                               /*  86 BusComm        :                                                              */													
+    G_SEL_DISP_Timeout,                                         /*  87 BusComm        :                                                              */													
+    VS_TCU_Invalid_Signal,                                      /*  88 BusComm        :                                                              */													
+    G_SEL_DISP_Invalid_Signal,                                  /*  89 BusComm        :                                                              */													
+/*----- SwitchPosDet --------------------------------------------------------------------------------------------------------------------------------*/													
+    Park_Switch_Fault,                                          /*  90 SwitchPosDet   :                                                              */													
+    PRel_Switch_Fault,                                          /*  91 SwitchPosDet   :                                                              */													
+    Unlock_Switch_Fault,                                        /*  92 SwitchPosDet   :                                                              */													
+/*----- LevPosDet -----------------------------------------------------------------------------------------------------------------------------------*/													
+    Shift_Lever_Error,                                          /*  93 LevPosDet      :                                                              */													
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/													
+    FMLastErrorKind                                             /*  94                : CAUTION MUST ALWAYS BE THE LAST ENTRY, SO KEEP IT AS IT IS ! */													

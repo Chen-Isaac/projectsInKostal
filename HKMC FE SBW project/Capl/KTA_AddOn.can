@@ -1,0 +1,940 @@
+variables
+{
+
+	/*Timer Stuff*/
+	mstimer t_GetErrorTimer;
+	const T_GETERROR_TIMEOUT			= 300; //ms
+
+
+	const MSG_LOGIN 					= 0; 
+	const MSG_CLEAR_FAULT_MANAGER 		= 1;
+	const MSG_READ_FAULT_MANAGER 		= 2;
+	const MSG_READ_FAULT_NO		 		= 3;
+
+	//Message IDs
+	const MSG_RSP_LOGIN 				= 0x01;
+	const MSG_RSP_READ_MEM 				= 0x04;
+	const MSG_RSP_CLEARMEM 				= 0x06;
+
+	const FAULT_MANAGER_MAXFAULTS 		= 20;
+
+	message KostiaReq KostiaReq_Msg;
+
+
+	int d_Task_Manager;
+	int d_Task_Counter;	
+
+	//Task management stuff
+	const TASK_CLEAR_FAULT_MANAGER 		= 1;
+	const TASK_READ_FAULT_MANAGER 		= 2;
+	const TASK_READ_FAULT_NO	 		= 3;
+
+	char Fault_Buffer[200];
+	char Display_Buffer[200];
+	char Display_Buffer1[200];
+	char Display_Buffer2[200];
+
+
+	//char c_FaultName[30000];
+	const FAULTNAMEBUFFERLEN	= 300;
+	const FAULTNAMELEN	= 100;
+	const FAULTDESCLEN	= 200;
+	const STARTSTRINGSIZE	= 11;
+//	char c_FaultDescription[30000];
+	//long d_totalFaults;
+}
+
+on message KostiaResp	
+{
+
+	byte b_Msg_ID;
+	char c_temp[100];
+	int d_Result = 0;
+
+	b_Msg_ID = This.BYTE(0);
+
+	if(b_Msg_ID  != 0)  /* Was msg rejected ? */
+	{
+		if(d_Task_Manager > 0) //we have a request to process then
+		{		
+			d_Task_Counter++;
+
+			switch(b_Msg_ID)
+			{
+				case MSG_RSP_LOGIN:
+					snprintf(Display_Buffer, elcount(Fault_Buffer), "We have Logged in");
+					putvalue(envKTA_AO_Display1, Display_Buffer);
+					break;
+
+				case MSG_RSP_CLEARMEM:
+					snprintf(Display_Buffer, elcount(Fault_Buffer), "The fault memory was cleared");
+					putvalue(envKTA_AO_Display2, Display_Buffer1);					
+					break;
+			
+				case MSG_RSP_READ_MEM:
+					if(d_Task_Manager == TASK_READ_FAULT_MANAGER)
+					{
+						snprintf(c_temp, elcount(c_temp), "%sFault_ID %d: %X %X %X ", Fault_Buffer, (d_Task_Counter-2),This.BYTE(1), This.BYTE(2), This.BYTE(3));
+						snprintf(Fault_Buffer, elcount(Fault_Buffer), "%s", c_temp);
+						putvalue(envKTA_AO_Display_Faults, Fault_Buffer);
+
+						d_Result = ReadinFaultFile(This.BYTE(1),(d_Task_Counter-2), This.BYTE(2));
+
+						snprintf(Display_Buffer, elcount(Fault_Buffer), "The fault memory is being read");
+						putvalue(envKTA_AO_Display2, Display_Buffer1);
+					}//end of if(d_Task_Manager == TASK_READ_FAULT_MANAGER)	
+					else if(d_Task_Manager == TASK_READ_FAULT_NO)	
+					{
+						snprintf(c_temp, elcount(c_temp), "Number of Faults = %d",This.BYTE(1));
+						putvalue(envKTA_AO_Display4, c_temp);
+					
+						snprintf(c_temp, elcount(c_temp), "%d",This.BYTE(1));
+						putvalue(envKTA_AO_NoFaultText, c_temp);
+
+					}//end of else if(d_Task_Manager == TASK_READ_FAULT_NO)
+
+					break;
+
+				default:
+					break;
+
+			}//end switch b_Msg_ID
+
+			TaskList();
+
+
+		}//end of if(d_Task_Manager > 0) //we have a request to process then
+	}// end of if(b_Msg_ID  != 0)  /* Was msg rejected ? */
+	else //we must Init and reject
+	{
+		if((d_Task_Manager == TASK_READ_FAULT_MANAGER) && (d_Task_Counter == 1)) //check to see if there where any errors or not
+		{
+			snprintf(Fault_Buffer, elcount(Fault_Buffer), "");
+			putvalue(envKTA_AO_Display_Faults, Fault_Buffer);
+		}
+		KTA_AddOn_Init();
+	}
+}
+
+on start
+{
+	KTA_AddOn_Init();
+}
+
+on envVar envKTA_AO_ClearFaults
+{
+
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_AO_ClearFaults);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_CLEAR_FAULT_MANAGER;
+		settimer(t_GetErrorTimer, T_GETERROR_TIMEOUT);
+		InitializeDisplay();
+		TaskList();
+
+	
+
+	}
+}
+
+on envVar envKTA_AO_ReadFaults
+{
+
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_AO_ReadFaults);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		settimer(t_GetErrorTimer, T_GETERROR_TIMEOUT);
+
+		d_Task_Manager = TASK_READ_FAULT_MANAGER;
+		InitializeDisplay();
+		TaskList();
+
+	}
+}
+
+Kostia_Msg (int d_MSG_Index)
+{
+
+	KostiaReq_Msg.byte(0) = 0x00;
+	KostiaReq_Msg.byte(1) = 0x00;
+	KostiaReq_Msg.byte(2) = 0x00;
+	KostiaReq_Msg.byte(3) = 0x00;
+	KostiaReq_Msg.byte(4) = 0x00;
+	KostiaReq_Msg.byte(5) = 0x00;
+	KostiaReq_Msg.byte(6) = 0x00;
+	KostiaReq_Msg.byte(7) = 0x00;
+
+	switch(d_MSG_Index)
+	{
+
+		case MSG_LOGIN:
+			KostiaReq_Msg.byte(0) = 0x01;
+			KostiaReq_Msg.byte(1) = 0x4b;
+			KostiaReq_Msg.byte(2) = 0x4f;
+			KostiaReq_Msg.byte(3) = 0x53;
+			KostiaReq_Msg.byte(4) = 0x54;
+			KostiaReq_Msg.byte(5) = 0x41;
+			KostiaReq_Msg.byte(6) = 0x4c;
+			KostiaReq_Msg.byte(7) = 0x5f;
+
+			output(KostiaReq_Msg);
+
+			/*Just call the env up to login why recreate it*/
+//			putValue(envKTA_Login, 1);
+//			putValue(envKTA_Login, 0);
+			break;
+		
+		case MSG_CLEAR_FAULT_MANAGER:
+			KostiaReq_Msg.byte(0) = 0x06;
+			output(KostiaReq_Msg);
+			break;		
+		
+		case MSG_READ_FAULT_MANAGER:
+			KostiaReq_Msg.byte(0) = 0x04;
+			KostiaReq_Msg.byte(1) = (d_Task_Counter-1);
+			KostiaReq_Msg.byte(2) = 0x00;
+			KostiaReq_Msg.byte(3) = 0x07;
+			KostiaReq_Msg.byte(4) = 0x41;
+
+			output(KostiaReq_Msg);
+			break;
+	
+		case MSG_READ_FAULT_NO:
+			KostiaReq_Msg.byte(0) = 0x04;
+			KostiaReq_Msg.byte(1) = 0x00;
+			KostiaReq_Msg.byte(2) = 0x00;
+			KostiaReq_Msg.byte(3) = 0x07;
+			KostiaReq_Msg.byte(4) = 0x40;
+
+			output(KostiaReq_Msg);
+		
+		default:
+			break;
+	}//end of switch(d_MSG_Index)
+
+}
+
+TaskList ()
+{
+
+//write("Addon was called!");
+	switch(d_Task_Manager)
+	{
+
+		case TASK_CLEAR_FAULT_MANAGER:
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					KTA_AddOn_Init();
+					Kostia_Msg(MSG_CLEAR_FAULT_MANAGER);
+					break;	
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+	
+		case TASK_READ_FAULT_MANAGER:
+			if(d_Task_Counter == 0)
+			{
+				Kostia_Msg(MSG_LOGIN);
+			} //end of if(d_Task_Counter == 0)
+			else if(d_Task_Counter < FAULT_MANAGER_MAXFAULTS)
+			{
+				Kostia_Msg(MSG_READ_FAULT_MANAGER);	
+
+			}//end else if(d_Task_Counter < FAULT_MANAGER_MAXFAULTS)
+			else 
+			{
+				KTA_AddOn_Init();
+
+			}//end of else
+			break;		
+	
+		case TASK_READ_FAULT_NO:
+
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_READ_FAULT_NO);
+					break;	
+  				case 2:
+					KTA_AddOn_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+
+		default:
+			break;
+	}// end of switch d_Task_Manager
+
+}
+
+KTA_AddOn_Init ()
+{
+	d_Task_Counter = 0;
+	d_Task_Manager = 0;
+	putValue(envKTA_Login, 0);
+	snprintf(Fault_Buffer, elcount(Fault_Buffer), "");
+	//putvalue(envKTA_AO_Display_Faults, Fault_Buffer;
+	
+	canceltimer(t_GetErrorTimer);
+
+}
+
+on envVar envKTA_AO_ReadFaultNo
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_AO_ReadFaultNo);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+		
+		settimer(t_GetErrorTimer, T_GETERROR_TIMEOUT);
+
+		d_Task_Manager = TASK_READ_FAULT_NO;
+		TaskList();
+
+	}
+
+
+}
+
+int ReadinFaultFile (int d_FaultNo, int d_FaultDisplayNo, byte b_FailureState)
+{
+
+	int d_Return = 1;
+
+	char c_FaultName[FAULTNAMELEN];
+	char c_FaultDescription[FAULTDESCLEN];
+	char c_FaultID[20];
+
+	dword dwFileHandle;
+	char c_FileName[20];
+	char c_Buffer[300];
+	long l_length;
+	long l_result;
+
+	char c_Temp[FAULTNAMELEN];
+	char c_Temp2[FAULTDESCLEN];
+	int i, k, j;
+	int d_startfound;
+	int d_endfound;
+	int d_foundFaultNo;
+	long l_FaultNo;
+
+	int d_FaultDesStartFlag;
+
+	//write("d_FaultNo=%d,d_FaultDisplayNo=%d,b_FailureState=%d",d_FaultNo,d_FaultDisplayNo,b_FailureState);
+	//Init stuff ///// based on bug with vector stuff
+	d_startfound = 0;
+	d_endfound = 0;
+	d_foundFaultNo = 0;
+	d_FaultDesStartFlag = 0;
+	l_FaultNo = 0;
+	snprintf(c_FaultName, elcount(c_FaultName), "");
+	snprintf(c_FaultDescription, elcount(c_FaultDescription), "");
+	snprintf(c_FaultID, elcount(c_FaultID), "");
+	snprintf(c_Buffer, elcount(c_Buffer), "");
+	//////////////
+
+	//Prepare Failure state for display
+	if(b_FailureState == 0x20) //Failure is history
+		b_FailureState = 2;
+	else if(b_FailureState == 0x60)  ///Failure is active
+		b_FailureState = 1;
+
+	//Open FaultManager File///////////////
+	snprintf(c_FileName, elcount(c_FileName), "FaultList.txt");
+	dwFileHandle = openFileRead(c_FileName, 0);			//open file
+
+	if((dwFileHandle != 1) && (d_FaultDisplayNo < FAULT_MANAGER_MAXFAULTS))//File opening was successful!
+	{
+	    //1st find the start of the table///////////////////////////
+		//snprintf(c_Temp, elcount(c_Temp), "Fault Classes");		//Start of Table on following line
+		snprintf(c_Temp, elcount(c_Temp), "CANoe Start");		//Start of Table on following line
+	
+		l_length = fileGetString(c_Buffer, 300, dwFileHandle);	//get line
+		while((l_length != 0) && (d_startfound == 0))	//keep going until error, EOF or until d_startfound is put to zero
+		{
+			i = 0;
+			while((c_Buffer[i] != '\n') && (d_startfound == 0))
+			{
+				if(c_Buffer[i] == c_Temp[0])
+				{
+					d_startfound = 1;
+					j = 0;
+					while((j < STARTSTRINGSIZE) && (d_startfound == 1))
+					{
+						if((c_Buffer[i] != c_Temp[j]) || (c_Buffer[i] == '\n')) //jump out
+							d_startfound = 0;
+						i++;
+						j++;				
+					}//end of while((j < 13) && (d_startfound == 1))
+				}	//end of if(c_Buffer[i] == c_Temp[0])
+				i++;
+			}//end of for(i = 0; i < l_length; i++)
+			l_length = fileGetString(c_Buffer, 300, dwFileHandle);	//get line
+		}//end of while (l_length != 0)
+     	///////////Found the start of the table/////////////////////////////////////////////////////////////////////////\
+  
+    	/////Second phase is to go to the fault number line///////////////////////////////////////////////////
+		snprintf(c_Temp, elcount(c_Temp), "FMLastErrorKind");		//End of Table 
+		if((d_startfound == 1) && (l_length != 0))	//have we found the start without reaching the end?
+		{
+			//Start the search into the file
+			while((d_foundFaultNo == 0) && (d_endfound == 0) && (l_length != 0)/* && (j < (FAULTNAMEBUFFERLEN - FAULTNAMELEN-1))*/)
+			{
+				i = 0;
+				k = 0;
+				d_endfound = 0;
+				while((c_Buffer[i] != ',') && (c_Buffer[i] != '\n') &&(i < (FAULTNAMELEN-1)))
+				{
+					
+					/////Look to make sure we don't hit the end////////////
+					if(c_Buffer[i] == c_Temp[k])
+					{
+						if(k >13)
+						{
+							d_endfound = 1;
+							d_Return = 2;  //we have an issue
+						}	
+						k++;
+					}
+					else if(k < 14)
+					{
+						d_endfound = 0;
+						k = 0;
+					}
+					/////End of looking for the end//////////////////////////
+
+					////See if we the line is commented before we hit the comma!!!///////////////////////
+					if((c_Buffer[i+1] == '*') &&(c_Buffer[i] == '/'))
+					{
+						i = FAULTNAMELEN;
+						l_FaultNo--;
+					}
+					//copy into  fault buffer
+					if(d_FaultNo == l_FaultNo)
+					{
+						d_foundFaultNo = 1;
+						c_FaultName[i] = c_Buffer[i];
+
+					}
+					i++;
+
+				}//end of while(c_Buffer[i] != ',')			
+	            ////////////////////End of find fault No ////////////////////
+
+	            //////////////////Copy to Fault Description Buffer//////////////////////
+				/////////Looks like we can get the desc. now?/////////////
+				if((d_foundFaultNo == 1) && (i < FAULTNAMELEN))
+				{
+
+                    c_FaultName[i] = 0;/*add 0 to the string c_FaultName, so it could have an end*/
+
+
+
+                    k = 0;
+					while((d_endfound == 0) && (i < (FAULTNAMELEN + FAULTDESCLEN-1)) && (k < (FAULTDESCLEN-1)))
+					{
+						if((c_Buffer[i] == '*') && (c_Buffer[i+1] == '/'))
+						{
+							i  = FAULTNAMELEN + FAULTDESCLEN;
+						}
+						else if((c_Buffer[i+1] == '*') && (c_Buffer[i] == '/'))
+						{
+							i++;
+							d_FaultDesStartFlag = 1;				
+						}
+						else if(d_FaultDesStartFlag == 1)
+						{
+							// we are in the desc. zone///////////
+							c_FaultDescription[k] = c_Buffer[i];
+							//c_Temp2[k] = c_FaultDescription[k];
+							k++;
+						}
+						
+						i++;
+					}//end of while((d_endfound == 0) && (i < (FAULTNAMELEN + FAULTDESCLEN-1)))
+
+                    c_FaultDescription[k] = 0;	/*add 0 to the string c_FaultDescription, so it could have an end*/	
+ 
+
+				}//end of if(i < FAULTNAMELEN)
+
+		////////////////////////////////////////////////////////////////////////
+				l_FaultNo++;	//Increment to the next fault			
+				l_length = fileGetString(c_Buffer, 300, dwFileHandle);	//get line
+			}//end of while(d_endfound == 0)
+
+		}//end of if((d_startfound == 1) && (l_length != 0))
+	////////////////////////////////////////////////////////////////////////
+
+		l_result = fileClose(dwFileHandle);
+
+		snprintf(c_FaultID, elcount(c_FaultID), "%d", d_FaultNo);
+
+		///////Display Fault///////////////////
+		DisplayFaultAlarm(b_FailureState, d_FaultDisplayNo);
+
+		switch(d_FaultDisplayNo)
+		{
+			case 0:
+				putValue(envKTA_AO_Display_FaultsID_0, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_0, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_0, c_FaultDescription);
+				break;
+			case 1:			
+				putValue(envKTA_AO_Display_FaultsID_1, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_1, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_1, c_FaultDescription);
+				break;
+			case 2:
+				putValue(envKTA_AO_Display_FaultsID_2, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_2, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_2, c_FaultDescription);
+				break;
+			case 3:
+				putValue(envKTA_AO_Display_FaultsID_3, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_3, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_3, c_FaultDescription);
+				break;
+			case 4:
+				putValue(envKTA_AO_Display_FaultsID_4, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_4, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_4, c_FaultDescription);
+				break;
+			case 5:
+				putValue(envKTA_AO_Display_FaultsID_5, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_5, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_5, c_FaultDescription);
+				break;
+			case 6:
+				putValue(envKTA_AO_Display_FaultsID_6, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_6, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_6, c_FaultDescription);
+				break;
+			case 7:
+				putValue(envKTA_AO_Display_FaultsID_7, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_7, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_7, c_FaultDescription);
+				break;
+			case 8:
+				putValue(envKTA_AO_Display_FaultsID_8, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_8, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_8, c_FaultDescription);
+				break;
+			case 9:
+				putValue(envKTA_AO_Display_FaultsID_9, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_9, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_9, c_FaultDescription);
+				break;
+			case 10:
+				putValue(envKTA_AO_Display_FaultsID_10, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_10, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_10, c_FaultDescription);
+				break;
+			case 11:
+				putValue(envKTA_AO_Display_FaultsID_11, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_11, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_11, c_FaultDescription);
+				break;
+			case 12:
+				putValue(envKTA_AO_Display_FaultsID_12, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_12, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_12, c_FaultDescription);
+				break;
+			case 13:
+				putValue(envKTA_AO_Display_FaultsID_13, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_13, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_13, c_FaultDescription);
+				break;
+			case 14:
+				putValue(envKTA_AO_Display_FaultsID_14, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_14, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_14, c_FaultDescription);
+				break;
+			case 15:
+				putValue(envKTA_AO_Display_FaultsID_15, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_15, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_15, c_FaultDescription);
+				break;
+			case 16:
+				putValue(envKTA_AO_Display_FaultsID_16, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_16, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_16, c_FaultDescription);
+				break;
+			case 17:
+				putValue(envKTA_AO_Display_FaultsID_17, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_17, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_17, c_FaultDescription);
+				break;
+			case 18:
+				putValue(envKTA_AO_Display_FaultsID_18, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_18, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_18, c_FaultDescription);
+				break;
+			case 19:
+				putValue(envKTA_AO_Display_FaultsID_19, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_19, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_19, c_FaultDescription);
+				break;
+
+			default:
+				break;
+
+		}//end of switch(d_FaultDisplayNo)
+
+	}//end of if dwFileHandle
+	else
+		d_Return = 0;
+
+return d_Return;
+
+
+}
+
+on preStart
+{
+	int test;
+//	test = ReadinFaultFile(1,0);
+	//if(test != 1)
+//		write("test = %d", test);
+}
+
+DisplayFaultAlarm (int d_State, int d_AlarmNo)
+{
+	switch(d_AlarmNo)
+	{
+		case 0:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm0, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm0, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm0, 0);
+			break;
+		case 1:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm1, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm1, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm1, 0);
+			break;	
+		case 2:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm2, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm2, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm2, 0);
+			break;	
+		case 3:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm3, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm3, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm3, 0);
+			break;	
+		case 4:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm4, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm4, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm4, 0);
+			break;	
+		case 5:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm5, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm5, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm5, 0);
+			break;	
+		case 6:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm6, -2);
+			else if(d_State == 1) //Fault is ctive			
+				putValue(envKTA_AO_FaultAlarm6, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm6, 0);
+			break;	
+		case 7:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm7, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm7, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm7, 0);
+			break;	
+		case 8:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm8, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm8, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm8, 0);
+			break;	
+		case 9:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm9, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm9, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm9, 0);
+			break;	
+			
+		case 10:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm10, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm10, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm10, 0);
+			break;	
+		case 11:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm11, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm11, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm11, 0);
+			break;	
+		case 12:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm12, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm12, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm12, 0);
+			break;	
+		case 13:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm13, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm13, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm13, 0);
+			break;	
+		case 14:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm14, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm14, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm14, 0);
+			break;	
+		case 15:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm15, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm15, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm15, 0);
+			break;	
+		case 16:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm16, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm16, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm16, 0);			
+			break;	
+		case 17:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm17, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm17, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm17, 0);
+			break;	
+		case 18:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm18, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm18, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm18, 0);
+			break;	
+		case 19:
+			if(d_State == 2)	//Fault is history
+				putValue(envKTA_AO_FaultAlarm19, -2);
+			else if(d_State == 1) //Fault is Active			
+				putValue(envKTA_AO_FaultAlarm19, 2);
+			else if(d_State == 0) //Fault is cleared			
+				putValue(envKTA_AO_FaultAlarm19, 0);
+			break;	
+
+
+
+		default:	
+			break;
+
+	}//end of switch(d_AlarmNo)
+
+
+}
+
+InitializeDisplay ()
+{
+
+	int i;
+	char c_FaultName[FAULTNAMELEN];
+	char c_FaultDescription[FAULTDESCLEN];
+	char c_FaultID[20];
+
+    snprintf(c_FaultName, elcount(c_FaultName), "");
+	snprintf(c_FaultDescription, elcount(c_FaultDescription), "");
+	snprintf(c_FaultID, elcount(c_FaultID), "");
+
+	for(i = 0; i < 20; i++)
+	{
+		DisplayFaultAlarm(0, i);	//Clear the alarm states
+	
+		switch(i)		//Clear out the text
+		{
+			case 0:
+				putValue(envKTA_AO_Display_FaultsID_0, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_0, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_0, c_FaultDescription);
+				break;
+			case 1:			
+				putValue(envKTA_AO_Display_FaultsID_1, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_1, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_1, c_FaultDescription);
+				break;
+			case 2:
+				putValue(envKTA_AO_Display_FaultsID_2, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_2, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_2, c_FaultDescription);
+				break;
+			case 3:
+				putValue(envKTA_AO_Display_FaultsID_3, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_3, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_3, c_FaultDescription);
+				break;
+			case 4:
+				putValue(envKTA_AO_Display_FaultsID_4, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_4, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_4, c_FaultDescription);
+				break;
+			case 5:
+				putValue(envKTA_AO_Display_FaultsID_5, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_5, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_5, c_FaultDescription);
+				break;
+			case 6:
+				putValue(envKTA_AO_Display_FaultsID_6, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_6, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_6, c_FaultDescription);
+				break;
+			case 7:
+				putValue(envKTA_AO_Display_FaultsID_7, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_7, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_7, c_FaultDescription);
+				break;
+			case 8:
+				putValue(envKTA_AO_Display_FaultsID_8, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_8, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_8, c_FaultDescription);
+				break;
+			case 9:
+				putValue(envKTA_AO_Display_FaultsID_9, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_9, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_9, c_FaultDescription);
+				break;
+			case 10:
+				putValue(envKTA_AO_Display_FaultsID_10, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_10, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_10, c_FaultDescription);
+				break;
+			case 11:
+				putValue(envKTA_AO_Display_FaultsID_11, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_11, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_11, c_FaultDescription);
+				break;
+			case 12:
+				putValue(envKTA_AO_Display_FaultsID_12, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_12, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_12, c_FaultDescription);
+				break;
+			case 13:
+				putValue(envKTA_AO_Display_FaultsID_13, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_13, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_13, c_FaultDescription);
+				break;
+			case 14:
+				putValue(envKTA_AO_Display_FaultsID_14, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_14, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_14, c_FaultDescription);
+				break;
+			case 15:
+				putValue(envKTA_AO_Display_FaultsID_15, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_15, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_15, c_FaultDescription);
+				break;
+			case 16:
+				putValue(envKTA_AO_Display_FaultsID_16, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_16, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_16, c_FaultDescription);
+				break;
+			case 17:
+				putValue(envKTA_AO_Display_FaultsID_17, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_17, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_17, c_FaultDescription);
+				break;
+			case 18:
+				putValue(envKTA_AO_Display_FaultsID_18, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_18, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_18, c_FaultDescription);
+				break;
+			case 19:
+				putValue(envKTA_AO_Display_FaultsID_19, c_FaultID);
+				putValue(envKTA_AO_Display_FaultsName_19, c_FaultName);
+				putValue(envKTA_AO_Display_FaultsDesc_19, c_FaultDescription);
+				break;
+
+			default:
+				break;
+
+		}//end of switch(d_FaultDisplayNo)	
+	}//end of for i
+
+	putValue(envKTA_AO_FaultAlarm0, 0);
+	putValue(envKTA_AO_Display_FaultsID_0, "");
+	putValue(envKTA_AO_Display_FaultsName_0, "");
+	putValue(envKTA_AO_Display_FaultsDesc_0, "");
+
+}
+
+on timer t_GetErrorTimer
+{
+
+	KTA_AddOn_Init();  //If we timeout then we want to be able to press the buttons again
+}
+

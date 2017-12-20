@@ -1,0 +1,3309 @@
+﻿/* !Encoding: 65001  */
+// Generated with version 2.0.16.0
+variables
+{
+  // global general purpose buffers
+  char _ttg_B[2000];
+  char _ttg_BC[2000];
+  char _ttg_BR[2000];
+  long _ttg_verdict;
+  long _ttg_Re;
+  long _ttg_TestActionFailCnt;
+  long _ttg_TestStepInitOk;
+  int64 _ttg_I64;
+  double _ttg_Double;
+  dword _ttg_gBusContextNew = 0;
+  dword _ttg_gBusContextOld = 0;
+  int64 _ttg_gBusContextOk = 0;
+  // FlexRay configuration
+  FRConfiguration _ttg_gFRConfiguration;
+  long _ttg_gFRNumberOfStaticSlots[32];
+  long _ttg_gFRPayloadLengthStatic[32];
+  // globals for user defined variables
+  int64 _ttg_var_i_1_0_4_7;
+  int64 _ttg_var_i_1_0_4_9;
+  int64 _ttg_var_i_1_0_4_48;
+  // global declarations
+}
+void _fct_Wait(char step[], int64 timeInNs, int64 unitInNs, char valueSymbol[])
+{
+  char b[400];
+  if(unitInNs == 1LL)
+  {
+    if(valueSymbol[0] == 0)
+      snprintf(b, elcount(b), "%I64d ns", timeInNs);
+    else
+      snprintf(b, elcount(b), "%I64d (%s) ns", timeInNs, valueSymbol);
+  }
+  else if(unitInNs == 1000LL)
+  {
+    if(valueSymbol[0] == 0)
+      snprintf(b, elcount(b), "%.3f us", (1.0 * timeInNs) / unitInNs);
+    else
+      snprintf(b, elcount(b), "%.3f (%s) us", (1.0 * timeInNs) / unitInNs, valueSymbol);
+  }
+  else if(unitInNs == 1000000LL)
+  {
+    if(valueSymbol[0] == 0)
+      snprintf(b, elcount(b), "%.3f ms", (1.0 * timeInNs) / unitInNs);
+    else
+      snprintf(b, elcount(b), "%.3f (%s) ms", (1.0 * timeInNs) / unitInNs, valueSymbol);
+  }
+  else if(unitInNs == 1000000000LL)
+  {
+    if(valueSymbol[0] == 0)
+      snprintf(b, elcount(b), "%.3f s", (1.0 * timeInNs) / unitInNs);
+    else
+      snprintf(b, elcount(b), "%.3f (%s) s", (1.0 * timeInNs) / unitInNs, valueSymbol);
+  }
+  if(timeInNs > 0)
+  {
+    if(0 == testWaitForTimeoutNS(timeInNs))
+      testStepPass(2, step, "Waited for %s", b);
+    else
+      testStepFail(0, step, "Waited for %s", b);
+  }
+  else if(timeInNs  == 0)
+  {
+    // do not wait
+    testStepPass(2, step, "Waited for %s", b);
+  }
+  else
+  {
+    testStepFail(0, step, "Unable to wait for %s. Please check input parameter.", b);
+  }
+}
+
+void _fct_CommandVerdict(long verdict)
+{
+  if(_ttg_verdict == 1) // failed
+    return; // setting verdict from 'failed' to 'pass' is not possible
+  _ttg_verdict = verdict;
+}
+
+int _fct_TcDoBOF()
+{
+  return TestGetVerdictLastTestCase()==1 && !testIsBreakOnFailDeactivated();
+}
+
+int _fct_TsDoBOF()
+{
+  return TestGetVerdictLastTestSequence()==1 && !testIsBreakOnFailDeactivated();
+}
+
+int _fct_LoopIsBlocking()
+{ 
+  // works for nested loops, too
+  dword timeLoopNow, timeLoopOld, cntTimeEqual;
+  timeLoopNow = timeNow();
+  if(timeLoopNow > timeLoopOld)
+  {
+    cntTimeEqual = 0;
+  }
+  else
+  {
+    ++cntTimeEqual;
+    if(cntTimeEqual >= 1000)
+    {
+      // busy loop detected
+      testStepFail(0, "", "Blocking loop detected. Aborted after 1000 cycles have been performed at the same time.");
+      return 1;
+    }
+  }
+  timeLoopOld = timeLoopNow;
+  return 0;
+}
+
+void _fct_CallTsTc(char function[], dword fType, dword isExported, char title[])
+{
+  CreateTTEIFFunction(function, fType, isExported);
+  CallInterfaceFunction(title);
+}
+
+void _fct_TestControlStructEnd(long count)
+{
+  // call TestControlStructEnd count times to close report scope in nested ifs
+  long i;
+  for(i = 0; i < count; ++i)
+    TestControlStructEnd(_ttg_verdict);
+}
+
+void _fct_IfTableHead(char inCondition[], int bCondition)
+{
+  char localBuf[2048];
+
+  snprintf(localBuf, elCount(localBuf), "Condition %s: ", inCondition);
+  if(bCondition)
+  {
+    strncat(localBuf, "true", elCount(localBuf));
+  }
+  else
+  {
+    strncat(localBuf, "false", elCount(localBuf));
+  }
+
+  _fct_TiTableHeadExpectedEx(localBuf);
+}
+
+int _fct_DoElseIf(int bDone)
+{
+  if(bDone)
+  {
+    testStep(0, "", "Previous condition matched, skipping block.");
+    return 0;
+  }
+  return 1;
+}
+
+int _fct_DoElse(int bDone)
+{
+  if(bDone)
+  {
+    testStep(0, "", "Previous condition matched, skipping block.");
+    return 0;
+  }
+  else
+  {
+    testStep(0, "", "No condition matched, executing 'else' block.");
+    return 1;
+  }
+}
+void _fct_TiTableHeadInit()
+{
+  _ttg_TestActionFailCnt = 0;
+}
+
+void _fct_TiTableHeadAssignment()
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable("Stimulation of values");
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Symbol");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Assigned");
+  testInfoHeadingEnd(_ttg_Re);
+}
+
+
+void _fct_TiTableFunctionCallReturnValue(char callSig[])
+{
+  char localBuf[256];
+  _fct_TiTableHeadInit();
+  snprintf(localBuf, elCount(localBuf), "Function call: %s", callSig);
+  _ttg_Re = testInfoTable(localBuf);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Symbol");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Return Value");
+  testInfoHeadingEnd(_ttg_Re);
+}
+
+void _fct_TiTableWaveformStimulus()
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable("Stimulation of values with waveform curves");
+   testInfoHeadingBegin(_ttg_Re, 0);
+   _fct_TiCell("Symbol");
+   _fct_TiCell("Stimulated with curve");
+   testInfoHeadingEnd(_ttg_Re);
+}
+
+void _fct_TiTableHeadSetVariables()
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable("Setting variable values");
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Variable");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Assigned");
+  testInfoHeadingEnd(_ttg_Re);
+}
+void _fct_TiTableHeadReport(char userText[])
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable(userText);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Symbol");
+  _fct_TiCell("Value");
+  testInfoHeadingEnd(_ttg_Re);
+}
+void _fct_TiTableHeadSend(char msgDesc[])
+{
+  char b[200];
+  _fct_TiTableHeadInit();
+  snprintf(b, elcount(b), "Send %s", msgDesc);
+  _ttg_Re = testInfoTable(b);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Signal/Byte");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Assigned");
+  testInfoHeadingEnd(_ttg_Re);
+}
+
+void _fct_TiTableHeadExpected()
+{
+  _fct_TiTableHeadExpectedEx("Check of expected values");
+}
+
+void _fct_TiTableHeadExpectedEx(char title[])
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable(title);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Symbol");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Reference Value");
+  _fct_TiCell("Actual");
+  _fct_TiCell("Result");
+  testInfoHeadingEnd(_ttg_Re);
+}
+void _fct_TiTableHeadResponse(char msgDesc[], int numReceived)
+{
+  char b[200];
+  _fct_TiTableHeadInit();
+  if (numReceived == -1)
+    snprintf(b, elcount(b), "Response of %s", msgDesc); // maybe received after x MS?
+  else
+    snprintf(b, elcount(b), "Response of %s (received %d times)", msgDesc, numReceived);
+  _ttg_Re = testInfoTable(b);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Signal/Byte");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Reference Value");
+  if (numReceived == -1)
+    _fct_TiCell("Actual");
+  else
+    _fct_TiCell("Last Received");
+  _fct_TiCell("Result");
+  testInfoHeadingEnd(_ttg_Re);
+}
+
+void _fct_TiCell(char text[])
+{
+  testInfoCell(_ttg_Re, text);
+}
+
+void _fct_TiCellResult(long condition)
+{
+  if(condition)
+    _fct_TiCell("pass");
+  else
+  {
+    _fct_TiCell("fail");
+    ++_ttg_TestActionFailCnt;
+  }
+}
+
+void _fct_TiCellResultTrueFalse(long condition)
+{
+  if(condition)
+    _fct_TiCell("true");
+  else
+  {
+    _fct_TiCell("false");
+    ++_ttg_TestActionFailCnt;
+  }
+}
+
+void _fct_TiCell(int64 value)
+{
+  _fct_TiIntCell(value);
+}
+void _fct_TiIntCell(int64 value)
+{
+  snprintf(_ttg_BR, elcount(_ttg_BR), "%I64d", value);
+  _fct_TiCell(_ttg_BR);
+}
+
+void _fct_TiCell(double value)
+{
+  _fct_TiFloatCell(value);
+}
+void _fct_TiFloatCell(double value)
+{
+  snprintf(_ttg_BR, elcount(_ttg_BR), "%.15g", value);
+  _fct_TiCell(_ttg_BR);
+}
+
+void _fct_TiRow(long indent, char firstCellContent[])
+{
+  testInfoRow(_ttg_Re, indent, firstCellContent);
+}
+
+void _fct_TiWriteByteX(int64 idx, char valueSymbol[], char nameOut[])
+{
+  if(valueSymbol[0] == 0)
+    snprintf(nameOut, elcount(nameOut), "Byte[%I64d]", idx);
+  else
+    snprintf(nameOut, elcount(nameOut), "Byte[%I64d (%s)]", idx, valueSymbol);
+}
+
+void _fct_TiTableEvaluation(char stepIdentifier[])
+{
+  if(_ttg_TestActionFailCnt > 0)
+  {
+    testStepFail(0, stepIdentifier, _ttg_Re);
+  }
+  else
+  {
+    testStepPass(2, stepIdentifier, _ttg_Re);
+  }
+}
+
+void _fct_TiTableEnd(char step[])
+{
+  testStep(2, step, _ttg_Re);
+}
+
+
+// report a byte stream
+void _fct_TiCell_Bytes( long handle, BYTE rawBytes[], long count)
+{
+  char byteDigits[17];
+  char byteDump[ 32 * 3 + 15]; // Only print up to 32 bytes in the first step -> also in "min..." below!
+  long max;
+  long i;
+  long p;
+  strncpy( byteDigits, "0123456789ABCDEF", 17); // Do explicit copy to prevent "initialized only once" warning
+
+  p = snprintf( byteDump, elcount( byteDump), "[%d] ", count);
+  max = _min( 32, count);
+  for( i = 0; i < max; ++i)
+  {
+    byteDump[p++] = byteDigits[rawBytes[i] >> 4];
+    byteDump[p++] = byteDigits[rawBytes[i] & 0xF];
+    byteDump[p++] = ' ';
+  }
+  if( max < count)
+  {
+    byteDump[p++] = '.';
+    byteDump[p++] = '.';
+    byteDump[p++] = '.';
+  }
+  byteDump[--p] = 0;
+
+  testInfoCell( handle, byteDump);
+}
+
+void _fct_SetBusContext(char bus[], int saveOldBusContext)
+{
+  _ttg_gBusContextOk = 1;
+  _ttg_gBusContextNew = GetBusNameContext(bus);
+  if(_ttg_gBusContextNew == 0)
+  {
+    _ttg_gBusContextOk = 0;
+    testStepFail("", "Error: Cannot determine context for bus: %s", bus);
+    _ttg_gBusContextOld = 0;
+    return;
+  }
+  if(saveOldBusContext == 1)
+  {
+    _ttg_gBusContextOld = SetBusContext(_ttg_gBusContextNew);
+  }
+  else
+  {
+    SetBusContext(_ttg_gBusContextNew);
+  }
+}
+
+void _fct_ResetBusContext()
+{
+  if(_ttg_gBusContextOld > 0)
+  {
+    SetBusContext(_ttg_gBusContextNew);
+  }
+}
+
+int _fct_BusContextOk()
+{
+  return _ttg_gBusContextOk;
+}
+
+// _fct_EnsureSymbolName(SysVarFloat)
+_fct_EnsureSymbolName(sysvarFloat * sym, char nameIn[], char nameOut[])
+{
+  if(strlen(nameIn) == 0)
+  {
+    snprintf(nameOut, elcount(nameOut), "System variable '%s'", sym.Name );
+  }
+  else { strncpy(nameOut, nameIn, elCount(nameOut)); }
+}
+
+// _fct_TiNameOpValue(Float)
+_fct_TiNameOpValue(long indent, char nameIn[], char op[], float valueIn, char dstNameIn[])
+{
+  
+  _fct_TiRow(indent, nameIn);
+  _fct_TiCell(op);
+  if (strlen(dstNameIn) == 0)
+  {
+    snprintf(_ttg_B, elCount(_ttg_B), "%.15g", valueIn);
+  }
+  else
+  {
+    snprintf(_ttg_B, elCount(_ttg_B), "%.15g (%s)", valueIn, dstNameIn);
+  }
+  _fct_TiCell(_ttg_B);
+
+}
+
+// _fct_TiValueCell(SysVarFloat)
+_fct_TiValueCell(sysvarFloat * valueIn)
+{
+  _fct_TiCell(@valueIn);
+}
+
+// _fct_ChckRep(SysVarFloat,Float)
+_fct_ChckRep(long indent, sysvarFloat * lSym, char lName[], char operator[], float rSym, char rName[])
+{
+  char symLNameBuf[256];
+  _fct_EnsureSymbolName(lSym,lName,symLNameBuf);
+  _fct_TiNameOpValue(indent, symLNameBuf, operator, rSym, rName);
+  _fct_TiValueCell(lSym);
+}
+
+// _fct_EnsureSymbolName(Signal)
+_fct_EnsureSymbolName(signal * sym, char nameIn[], char nameOut[])
+{
+  if(strlen(nameIn) == 0)
+  {
+    long i, len, pos;
+    strncpy(nameOut, sym.name, elcount(nameOut));
+    len = strlen(nameOut);
+    // find last separator ':'
+    pos = 0;
+    for(i = len; i > 0; --i)
+    {
+	    if(nameOut[i] == ':')
+	    {
+	      pos = i;
+        break;
+      }
+    }
+    if(pos > 0 && pos != len)
+    {
+      char sigNameOnly[200];
+      substr_cpy_off(sigNameOnly, 0, sym.name, pos+1, -1, elcount(sigNameOnly));
+      snprintf(nameOut, elcount(nameOut), "Signal '%s'", sigNameOnly);
+    }
+  }
+  else { strncpy(nameOut, nameIn, elCount(nameOut)); }
+}
+
+// _fct_TiNameOpValue(Int64)
+_fct_TiNameOpValue(long indent, char nameIn[], char op[], int64 valueIn, char dstNameIn[])
+{
+  
+  _fct_TiRow(indent, nameIn);
+  _fct_TiCell(op);
+  if (strlen(dstNameIn) == 0)
+  {
+    snprintf(_ttg_B, elCount(_ttg_B), "%I64d", valueIn);
+  }
+  else
+  {
+    snprintf(_ttg_B, elCount(_ttg_B), "%I64d (%s)", valueIn, dstNameIn);
+  }
+  _fct_TiCell(_ttg_B);
+
+}
+
+// _fct_Set(Signal,Int64)
+_fct_Set(signal * dst, char dstName[], int64 src, char srcName[])
+{
+  char symDstBuf[256];
+  _fct_EnsureSymbolName(dst,dstName,symDstBuf);
+  $dst.phys = src;
+  if(0 == getSignalTime(dst))
+  {
+    snprintf(_ttg_B, elcount(_ttg_B), "%s not online yet", symDstBuf);
+    strncpy(symDstBuf, _ttg_B, elcount(symDstBuf));
+  }
+  _fct_TiNameOpValue(0, symDstBuf, "=", src, srcName);
+}
+
+// _fct_ChckRep(SysVarFloat,Int64)
+_fct_ChckRep(long indent, sysvarFloat * lSym, char lName[], char operator[], int64 rSym, char rName[])
+{
+  char symLNameBuf[256];
+  _fct_EnsureSymbolName(lSym,lName,symLNameBuf);
+  _fct_TiNameOpValue(indent, symLNameBuf, operator, rSym, rName);
+  _fct_TiValueCell(lSym);
+}
+
+// Test Tree
+void _ttg_fct_tt_1_0()
+{
+  // Init FlexRay configuration
+}
+// _ttg_#_1_0
+// Power supply initialization
+void _ttg_fct_ts_1_0_0()
+{
+  _fct_CallTsTc("_ttg_ts_ts_1_0_0",3, 0,"Power supply initialization");
+}
+// _ttg_#_1_0_0
+// 3.2 Shut Down Status
+void _ttg_fct_ts_1_0_1()
+{
+  _fct_CallTsTc("_ttg_ts_ts_1_0_1",3, 0,"3.2 Shut Down Status");
+}
+// _ttg_#_1_0_1
+// 3.3 Luminance definition
+void _ttg_fct_ts_1_0_2()
+{
+  _fct_CallTsTc("_ttg_ts_ts_1_0_2",3, 0,"3.3 Luminance definition");
+}
+// _ttg_#_1_0_2
+// 3.4.1 Color Changing Switch
+void _ttg_fct_ts_1_0_3()
+{
+  _fct_CallTsTc("_ttg_ts_ts_1_0_3",3, 0,"3.4.1 Color Changing Switch");
+}
+// _ttg_#_1_0_3
+// 3.5.1 Switch on Ambient light by door open signal
+void _ttg_fct_ts_1_0_4()
+{
+  _fct_CallTsTc("_ttg_ts_ts_1_0_4",3, 0,"3.5.1 Switch on Ambient light by door open signal");
+}
+// _ttg_#_1_0_4
+// Power supply initialization
+testsequence _ttg_ts_ts_1_0_0()
+{
+  TestCommandBegin("CAPL Inline", "Initialize VT system,make VT internal power supply voltage output equals 12V");
+  {
+    _ttg_fct_caplinline_1_0_0_1();
+  }
+  // _ttg_!_1_0_0_1
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "Wait for power supply initialization complete");
+  {
+    _fct_Wait("1", (int64)(300LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_0_2
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M12_Out2::AvgVoltage, "System variable \'M12_Out2::AvgVoltage\'", "<=", 12.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M12_Out2::AvgVoltage, 12.5, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M12_Out2::AvgVoltage, "System variable \'M12_Out2::AvgVoltage\'", ">=", 11.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M12_Out2::AvgVoltage, 11.5, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M12_Out2::AvgCurrent, "System variable \'M12_Out2::AvgCurrent\'", ">=", 0.001, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M12_Out2::AvgCurrent, 0.001, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M12_Out2::AvgCurrent, "System variable \'M12_Out2::AvgCurrent\'", "<=", 0.1, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M12_Out2::AvgCurrent, 0.1, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_0_3
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CANoe Standard Service", "testValidateTesterConfirmation");
+  {
+    testStepPass(2, "", "Execute testValidateTesterConfirmation(\"check signal\", \"\", 1)");
+    testValidateTesterConfirmation("check signal", "", 1LL);
+  }
+  // _ttg_!_1_0_0_4
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+}
+// _ttg_#_1_0_0
+// 3.2 Shut Down Status
+testsequence _ttg_ts_ts_1_0_1()
+{
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "Test the situation of switch off by time");
+  }
+  // _ttg_!_1_0_1_1
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", 0LL, "OFF");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_2
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Close all the doors");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::RLDoorSts, "CAN signal \'RLDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::PassengerDoorSts, "CAN signal \'PassengerDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_3
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "Keep all doors closed for 1s");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_1_4
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Open RRDoor");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_5
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "wait for ambient light be lighten");
+  {
+    _fct_Wait("1", (int64)(500LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_6
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode1");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 21LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 21LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 19LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 19LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 11LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 11LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_7
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(19LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_1_8
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if ambient light be off within 20s");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_9
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Close RRDoor");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_10
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "Test the situation of switch off by lock signal");
+  }
+  // _ttg_!_1_0_1_11
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::PassengerDoorSts, "CAN signal \'PassengerDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_12
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "wait for ambient light be lighten");
+  {
+    _fct_Wait("1", (int64)(500LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_13
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS1::RKEDoorLockCmd, "CAN signal \'RKEDoorLockCmd\'", 1LL, "RKE door lock");
+    _fct_Set(CAN::dbNode::PEPS::PEPS1::PKEDoorLockCmd, "CAN signal \'PKEDoorLockCmd\'", 0LL, "No Action");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_14
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(300LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_15
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if ambient light be off");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_16
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::PassengerDoorSts, "CAN signal \'PassengerDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_17
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_18
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "wait for ambient light be lighten");
+  {
+    _fct_Wait("1", (int64)(300LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_19
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode1");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 21LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 21LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 19LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 19LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 11LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 11LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_20
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS1::RKEDoorLockCmd, "CAN signal \'RKEDoorLockCmd\'", 0LL, "No Action");
+    _fct_Set(CAN::dbNode::PEPS::PEPS1::PKEDoorLockCmd, "CAN signal \'PKEDoorLockCmd\'", 1LL, "PKE door Lock");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_21
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(300LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_22
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if ambient light be off");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_23
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_24
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "Test the situation of switch off by power shut down");
+  }
+  // _ttg_!_1_0_1_25
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RLDoorSts, "CAN signal \'RLDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_26
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "wait for ambient light be lighten");
+  {
+    _fct_Wait("1", (int64)(300LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_27
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode1");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 21LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 21LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 19LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 19LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 11LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 11LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_28
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Shut power supply down");
+  {
+    _ttg_fct_caplinline_1_0_1_29();
+  }
+  // _ttg_!_1_0_1_29
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(300LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_30
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if ambient light be off");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_31
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Closed RLDoor");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RLDoorSts, "CAN signal \'RLDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_32
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "Test the situation of switch off by mode 0");
+  }
+  // _ttg_!_1_0_1_33
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_34
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "wait for ambient light be lighten");
+  {
+    _fct_Wait("1", (int64)(300LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_35
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode1");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 21LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 21LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 19LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 19LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 11LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 11LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_36
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Long press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_1_37();
+  }
+  // _ttg_!_1_0_1_37
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 810 ms");
+  {
+    _fct_Wait("1", (int64)(810LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_1_38
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_1_39();
+  }
+  // _ttg_!_1_0_1_39
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if ambient light be off");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_1_40
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_1_41
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+}
+// _ttg_#_1_0_1
+// 3.3 Luminance definition
+testsequence _ttg_ts_ts_1_0_2()
+{
+  TestCommandBegin("Set", "Open RRDoor");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_2_1
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "wait for ambient light be lighten");
+  {
+    _fct_Wait("1", (int64)(500LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_2_2
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode1");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 21LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 21LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 19LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 19LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 11LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 11LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_2_3
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::HUT::HUT8::ALCMLightLvlSet, "CAN signal \'ALCMLightLvlSet\'", 5LL, "");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_2_4
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+}
+// _ttg_#_1_0_2
+// 3.4.1 Color Changing Switch
+testsequence _ttg_ts_ts_1_0_3()
+{
+  TestCommandBegin("CAPL Inline", "Set Pin4 input inactive at the beginning");
+  {
+    _ttg_fct_caplinline_1_0_3_1();
+  }
+  // _ttg_!_1_0_3_1
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Set IGN OFF && Open driver door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", 0LL, "OFF");
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 1LL, "Open");
+    _fct_Set(CAN::dbNode::HUT::HUT8::ALCMLightLvlSet, "CAN signal \'ALCMLightLvlSet\'", 10LL, "");
+    _fct_Set(CAN::dbNode::BCM::BCM1::PosLmpSts, "CAN signal \'PosLmpSts\'", 0LL, "");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_3_2
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CANoe Standard Service", "testValidateTesterConfirmation");
+  {
+    testStepPass(2, "", "Execute testValidateTesterConfirmation(\"mode1?\", \"\", 1)");
+    testValidateTesterConfirmation("mode1?", "", 1LL);
+  }
+  // _ttg_!_1_0_3_3
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_3_4
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode1");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 3.06, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 3.06, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 2.94, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 2.94, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", ">=", 9LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 9LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "==", 50LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 50LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", ">=", 9LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 9LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMDC, "System variable \'M9_Ch1::PWMDC\'", "==", 50LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMDC, 50LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 9LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 9LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_5
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Mode0");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">", 0.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.5, ">") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<", 0.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.5, "<") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", ">", 0.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.5, ">") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_6
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(500LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_7
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Long press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_8();
+  }
+  // _ttg_!_1_0_3_8
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(900LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_9
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_10();
+  }
+  // _ttg_!_1_0_3_10
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(500LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_11
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Mode0");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.5, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.5, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.5, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_12
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CANoe Standard Service", "testValidateTesterConfirmation");
+  {
+    testStepPass(2, "", "Execute testValidateTesterConfirmation(\"fuck\", \"\", 1)");
+    testValidateTesterConfirmation("fuck", "", 1LL);
+  }
+  // _ttg_!_1_0_3_13
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "PosLmpSts=0 @ Day Mode");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::PosLmpSts, "CAN signal \'PosLmpSts\'", 0LL, "");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_3_14
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_15();
+  }
+  // _ttg_!_1_0_3_15
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 32 ms");
+  {
+    _fct_Wait("1", (int64)(32LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_16
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_17();
+  }
+  // _ttg_!_1_0_3_17
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode1");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 3.06, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 3.06, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 2.94, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 2.94, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", ">=", 9LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 9LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "==", 50LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 50LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", ">=", 9LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 9LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMDC, "System variable \'M9_Ch1::PWMDC\'", "==", 50LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMDC, 50LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 9LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 9LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_18
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_19();
+  }
+  // _ttg_!_1_0_3_19
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 100 ms");
+  {
+    _fct_Wait("1", (int64)(100LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_20
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_21();
+  }
+  // _ttg_!_1_0_3_21
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode2");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 97.92, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 97.92, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 94.08, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 94.08, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 20.04, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 20.04, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 19.6, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 19.6, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_22
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_23();
+  }
+  // _ttg_!_1_0_3_23
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 200 ms");
+  {
+    _fct_Wait("1", (int64)(200LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_24
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_25();
+  }
+  // _ttg_!_1_0_3_25
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode3");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 32.64, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 32.64, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 31.36, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 31.36, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 10LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 10LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_26
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_27();
+  }
+  // _ttg_!_1_0_3_27
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 300 ms");
+  {
+    _fct_Wait("1", (int64)(300LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_28
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_29();
+  }
+  // _ttg_!_1_0_3_29
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode1");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 3.06, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 3.06, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 2.94, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 2.94, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 10LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 10LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_30
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "PosLmpSts=1 @ Night mode");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::PosLmpSts, "CAN signal \'PosLmpSts\'", 1LL, "");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_3_31
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_32();
+  }
+  // _ttg_!_1_0_3_32
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 400 ms");
+  {
+    _fct_Wait("1", (int64)(400LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_33
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_34();
+  }
+  // _ttg_!_1_0_3_34
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Night mode Mode4");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 2.04, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 2.04, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 1.96, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 1.96, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMDC, "System variable \'M9_Ch1::PWMDC\'", "<=", 76.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMDC, 76.5, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMDC, "System variable \'M9_Ch1::PWMDC\'", ">=", 73.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMDC, 73.5, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_35
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_36();
+  }
+  // _ttg_!_1_0_3_36
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 500 ms");
+  {
+    _fct_Wait("1", (int64)(500LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_37
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_38();
+  }
+  // _ttg_!_1_0_3_38
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Night mode Mode5");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 73.44, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 73.44, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 70.56, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 70.56, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 15.3, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 15.3, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 14.7, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 14.7, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_39
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_40();
+  }
+  // _ttg_!_1_0_3_40
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 600 ms");
+  {
+    _fct_Wait("1", (int64)(600LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_41
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_42();
+  }
+  // _ttg_!_1_0_3_42
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Night mode Mode6");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 24.48, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 24.48, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 23.52, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 23.52, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMDC, "System variable \'M9_Ch1::PWMDC\'", "<=", 76.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMDC, 76.5, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMDC, "System variable \'M9_Ch1::PWMDC\'", ">=", 73.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMDC, 73.5, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_43
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_3_44();
+  }
+  // _ttg_!_1_0_3_44
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 700 ms");
+  {
+    _fct_Wait("1", (int64)(700LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_3_45
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_3_46();
+  }
+  // _ttg_!_1_0_3_46
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Night mode Mode4");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 2.04, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 2.04, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 1.96, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 1.96, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMDC, "System variable \'M9_Ch1::PWMDC\'", "<=", 76.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMDC, 76.5, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMDC, "System variable \'M9_Ch1::PWMDC\'", ">=", 73.5, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMDC, 73.5, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_3_47
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+}
+// _ttg_#_1_0_3
+// 3.5.1 Switch on Ambient light by door open signal
+testsequence _ttg_ts_ts_1_0_4()
+{
+  TestCommandBegin("CAPL Inline", "Set Pin4 input inactive at the beginning");
+  {
+    _ttg_fct_caplinline_1_0_4_1();
+  }
+  // _ttg_!_1_0_4_1
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "TEST:When IGN is OFF and initial power on,once received door open status signal is actived,ALCM will change to default color mode and luminance in 1s by dimming directly.Factory default color is blue and default luminance is 50%");
+  }
+  // _ttg_!_1_0_4_2
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Set IGN OFF , PosLmpSts inactive && Open driver door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", 0LL, "OFF");
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 1LL, "Open");
+    _fct_Set(CAN::dbNode::BCM::BCM1::PosLmpSts, "CAN signal \'PosLmpSts\'", 0LL, "");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_3
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(2LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_4
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under Day mode Mode3");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_5
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "TEST:When Power mode is OFF,ALCM will ignore DrivingModeReq and ALCMLightLvlSet signal.");
+  }
+  // _ttg_!_1_0_4_6
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestControlStructBegin("For", "For i=0..10, increment=1");
+  _ttg_verdict = -1;
+  {
+    // begin of for block
+    {
+      int64 _ttg_var_startvalue_1_0_4_7_2;
+      int64 _ttg_var_stopvalue_1_0_4_7_3;
+      int64 _ttg_var_increment_1_0_4_7_4;
+      _ttg_var_startvalue_1_0_4_7_2 = 0LL;
+      _ttg_var_stopvalue_1_0_4_7_3 = 10LL;
+      _ttg_var_increment_1_0_4_7_4 = 1LL;
+      for(_ttg_var_i_1_0_4_7 = _ttg_var_startvalue_1_0_4_7_2; (_ttg_var_increment_1_0_4_7_4<0)?(_ttg_var_i_1_0_4_7 >= _ttg_var_stopvalue_1_0_4_7_3):(_ttg_var_i_1_0_4_7 <= _ttg_var_stopvalue_1_0_4_7_3); _ttg_var_i_1_0_4_7 += _ttg_var_increment_1_0_4_7_4)
+      {
+        TestCommandBegin("Set", "");
+        {
+          _fct_TiTableHeadAssignment();
+          _fct_Set(CAN::dbNode::HUT::HUT8::ALCMLightLvlSet, "CAN signal \'ALCMLightLvlSet\'", _ttg_var_i_1_0_4_7, "i");
+          _fct_TiTableEnd("1");
+        }
+        // _ttg_!_1_0_4_7_5
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Wait", "");
+        {
+          _fct_Wait("1", (int64)(100LL * 1000000LL), 1000000, "");
+        }
+        // _ttg_!_1_0_4_7_6
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Check", "@IGN OFF,check if ALCM will keep in same status and ignore ALCMLightLvlSet signal");
+        {
+          _fct_TiTableHeadExpected();
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+          _fct_TiTableEvaluation("1");
+        }
+        // _ttg_!_1_0_4_7_7
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        if(_fct_LoopIsBlocking())
+        {
+          _fct_CommandVerdict(1);
+          break;
+        }
+      }
+    }
+    // end of for block
+  }
+  // _ttg_!_1_0_4_7
+  _fct_TestControlStructEnd(1);
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Reset ALCMLightLvlSet=0");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::HUT::HUT8::ALCMLightLvlSet, "CAN signal \'ALCMLightLvlSet\'", 0LL, "");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_8
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestControlStructBegin("For", "For i=0..15, increment=1");
+  _ttg_verdict = -1;
+  {
+    // begin of for block
+    {
+      int64 _ttg_var_startvalue_1_0_4_9_2;
+      int64 _ttg_var_stopvalue_1_0_4_9_3;
+      int64 _ttg_var_increment_1_0_4_9_4;
+      _ttg_var_startvalue_1_0_4_9_2 = 0LL;
+      _ttg_var_stopvalue_1_0_4_9_3 = 15LL;
+      _ttg_var_increment_1_0_4_9_4 = 1LL;
+      for(_ttg_var_i_1_0_4_9 = _ttg_var_startvalue_1_0_4_9_2; (_ttg_var_increment_1_0_4_9_4<0)?(_ttg_var_i_1_0_4_9 >= _ttg_var_stopvalue_1_0_4_9_3):(_ttg_var_i_1_0_4_9 <= _ttg_var_stopvalue_1_0_4_9_3); _ttg_var_i_1_0_4_9 += _ttg_var_increment_1_0_4_9_4)
+      {
+        TestCommandBegin("Set", "");
+        {
+          _fct_TiTableHeadAssignment();
+          _fct_Set(CAN::dbNode::BCM::BCM8::DrivingModeReq, "CAN signal \'DrivingModeReq\'", _ttg_var_i_1_0_4_9, "i");
+          _fct_TiTableEnd("1");
+        }
+        // _ttg_!_1_0_4_9_5
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Check", "@IGN OFF,check if ALCM will keep in same status and ignore DrivingModeReq signal");
+        {
+          _fct_TiTableHeadExpected();
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+          _fct_TiTableEvaluation("1");
+        }
+        // _ttg_!_1_0_4_9_6
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        if(_fct_LoopIsBlocking())
+        {
+          _fct_CommandVerdict(1);
+          break;
+        }
+      }
+    }
+    // end of for block
+  }
+  // _ttg_!_1_0_4_9
+  _fct_TestControlStructEnd(1);
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Reset DrivingModeReq=0");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM8::DrivingModeReq, "CAN signal \'DrivingModeReq\'", 0LL, "");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_10
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "Once received PosLmpStsl is active,ALCM will change color mode from day mode to night mode in 1s");
+  }
+  // _ttg_!_1_0_4_11
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::PosLmpSts, "CAN signal \'PosLmpSts\'", 1LL, "ON");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_12
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(5LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_13
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it's under night mode Mode3");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_14
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(15LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_15
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it will switched off by time (20s)");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_16
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Close driver door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::PosLmpSts, "CAN signal \'PosLmpSts\'", 0LL, "OFF");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_17
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "TEST:When IGN is OFF,if there is any other color output (except mode0) during last shut down,once received door open status and ALCM will change to last saved value and luminance in 1s");
+  }
+  // _ttg_!_1_0_4_18
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_19
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Open passenger door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::PassengerDoorSts, "CAN signal \'PassengerDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_20
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(2LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_21
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "@IGN OFF,check if ALCM will switch on last saved colour and luminance");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_22
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", 2LL, "ON");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_23
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Close passenger door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::PassengerDoorSts, "CAN signal \'PassengerDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::RLDoorSts, "CAN signal \'RLDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_24
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Short press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_4_25();
+  }
+  // _ttg_!_1_0_4_25
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "press for 32 ms");
+  {
+    _fct_Wait("1", (int64)(32LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_4_26
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_4_27();
+  }
+  // _ttg_!_1_0_4_27
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "@IGN ON,check if ALCM will switch on mode 2");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 21LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 21LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 19LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 19LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 11LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 11LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_28
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", 0LL, "OFF");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_29
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(20LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_30
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it will switched off by time (20s)");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_31
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_32
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(2LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_33
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "@IGN OFF,check if ALCM will switch on last saved colour and luminance");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "<=", 21LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 21LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", ">=", 19LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 19LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", ">=", 11LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 11LL, ">=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_34
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "TEST:If all doors are closed and any doors are open again,then the time 20s will be recalculated from door open");
+  }
+  // _ttg_!_1_0_4_35
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "Make it lighten for 10s");
+  {
+    _fct_Wait("1", (int64)(10LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_36
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::RLDoorSts, "CAN signal \'RLDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_37
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(18LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_38
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "@IGN OFF,check if the time 20s will be recalculated after door open");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_39
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(2LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_40
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it will be switched off after the latest door open 20s");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_41
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RLDoorSts, "CAN signal \'RLDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_42
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "TEST:If received ACC or IGN ON signal during light 20s,ambient light will be continuously switched on");
+  }
+  // _ttg_!_1_0_4_43
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "TEST:If received ACC or IGN ON signal after 20s,ambient light will be shutted down and switched on last saved color and luminance in 1s");
+  }
+  // _ttg_!_1_0_4_44
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_45
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(2LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_46
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "@IGN OFF,check if ambient light be switched on");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_47
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestControlStructBegin("For", "For i=1..2, increment=1");
+  _ttg_verdict = -1;
+  {
+    // begin of for block
+    {
+      int64 _ttg_var_startvalue_1_0_4_48_2;
+      int64 _ttg_var_stopvalue_1_0_4_48_3;
+      int64 _ttg_var_increment_1_0_4_48_4;
+      _ttg_var_startvalue_1_0_4_48_2 = 1LL;
+      _ttg_var_stopvalue_1_0_4_48_3 = 2LL;
+      _ttg_var_increment_1_0_4_48_4 = 1LL;
+      for(_ttg_var_i_1_0_4_48 = _ttg_var_startvalue_1_0_4_48_2; (_ttg_var_increment_1_0_4_48_4<0)?(_ttg_var_i_1_0_4_48 >= _ttg_var_stopvalue_1_0_4_48_3):(_ttg_var_i_1_0_4_48 <= _ttg_var_stopvalue_1_0_4_48_3); _ttg_var_i_1_0_4_48 += _ttg_var_increment_1_0_4_48_4)
+      {
+        TestCommandBegin("Set", "");
+        {
+          _fct_TiTableHeadAssignment();
+          _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", _ttg_var_i_1_0_4_48, "i");
+          _fct_TiTableEnd("1");
+        }
+        // _ttg_!_1_0_4_48_5
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Wait", "");
+        {
+          _fct_Wait("1", (int64)(2LL * 1000000000LL), 1000000000, "");
+        }
+        // _ttg_!_1_0_4_48_6
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Check", "Check if ALCM will switch on last saved colour and luminance");
+        {
+          _fct_TiTableHeadExpected();
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+          _fct_TiTableEvaluation("1");
+        }
+        // _ttg_!_1_0_4_48_7
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Wait", "");
+        {
+          _fct_Wait("1", (int64)(30LL * 1000000000LL), 1000000000, "");
+        }
+        // _ttg_!_1_0_4_48_8
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Check", "@ACC/ON,check if ambient light will be continuously switched on");
+        {
+          _fct_TiTableHeadExpected();
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMFreq, "System variable \'M9_Ch3::PWMFreq\'", "==", 0LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMFreq, 0LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::PWMDC, "System variable \'M9_Ch3::PWMDC\'", "==", 100LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::PWMDC, 100LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", ">=", 190LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 190LL, ">=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMFreq, "System variable \'M9_Ch2::PWMFreq\'", "<=", 210LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMFreq, 210LL, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", ">=", 36LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 36LL, ">=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::PWMDC, "System variable \'M9_Ch2::PWMDC\'", "<=", 38LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::PWMDC, 38LL, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::PWMFreq, "System variable \'M9_Ch1::PWMFreq\'", "==", 0LL, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::PWMFreq, 0LL, "=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+          _fct_TiTableEvaluation("1");
+        }
+        // _ttg_!_1_0_4_48_9
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Set", "");
+        {
+          _fct_TiTableHeadAssignment();
+          _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", 0LL, "OFF");
+          _fct_TiTableEnd("1");
+        }
+        // _ttg_!_1_0_4_48_10
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Wait", "");
+        {
+          _fct_Wait("1", (int64)(20LL * 1000000000LL), 1000000000, "");
+        }
+        // _ttg_!_1_0_4_48_11
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        TestCommandBegin("Check", "Check if it will switched off by time (20s)");
+        {
+          _fct_TiTableHeadExpected();
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+          _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+          _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+          _fct_TiTableEvaluation("1");
+        }
+        // _ttg_!_1_0_4_48_12
+        TestCommandEnd();
+        if(_fct_TsDoBOF() || testIsStopRequested())
+        {
+          _fct_TestControlStructEnd(1);
+          return;
+        }
+        if(_fct_LoopIsBlocking())
+        {
+          _fct_CommandVerdict(1);
+          break;
+        }
+      }
+    }
+    // end of for block
+  }
+  // _ttg_!_1_0_4_48
+  _fct_TestControlStructEnd(1);
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_49
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Report", "");
+  {
+    testStep(2, "", "TEST:When IGN is OFF,if there is no color output (color mode is MODE 0) during last shut down, once received door open status and ALCM can not switch on ambient light. ");
+  }
+  // _ttg_!_1_0_4_50
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "IGN ON");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", 2LL, "ON");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_51
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_52
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Long press on pin4 one time");
+  {
+    _ttg_fct_caplinline_1_0_4_53();
+  }
+  // _ttg_!_1_0_4_53
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(900LL * 1000000LL), 1000000, "");
+  }
+  // _ttg_!_1_0_4_54
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("CAPL Inline", "Release pin4");
+  {
+    _ttg_fct_caplinline_1_0_4_55();
+  }
+  // _ttg_!_1_0_4_55
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it will enter Mode 0 by long press pin4");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_56
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "IGN OFF");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::PEPS::PEPS2::SystemPowerMode, "CAN signal \'SystemPowerMode\'", 0LL, "OFF");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_57
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_58
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Open Driver Door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_59
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_60
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it will switched off by open door signal");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_61
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Open Passenger Door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::PassengerDoorSts, "CAN signal \'PassengerDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_62
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_63
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it will switched off by open door signal");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_64
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Open RL Door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RLDoorSts, "CAN signal \'RLDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_65
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_66
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it will switched off by open door signal");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_67
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Open RR Door");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 1LL, "Open");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_68
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Wait", "");
+  {
+    _fct_Wait("1", (int64)(1LL * 1000000000LL), 1000000000, "");
+  }
+  // _ttg_!_1_0_4_69
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Check", "Check if it will switched off by open door signal");
+  {
+    _fct_TiTableHeadExpected();
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch3::Avg, "System variable \'M9_Ch3::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch3::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch2::Avg, "System variable \'M9_Ch2::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch2::Avg, 0.2, "<=") == 1));
+    _fct_ChckRep(0, sysvarFloat::VTS::M9_Ch1::Avg, "System variable \'M9_Ch1::Avg\'", "<=", 0.2, "");
+    _fct_TiCellResult((CheckSignalMatch(sysvarFloat::VTS::M9_Ch1::Avg, 0.2, "<=") == 1));
+    _fct_TiTableEvaluation("1");
+  }
+  // _ttg_!_1_0_4_70
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+  TestCommandBegin("Set", "Close all Doors");
+  {
+    _fct_TiTableHeadAssignment();
+    _fct_Set(CAN::dbNode::BCM::BCM1::RRDoorSts, "CAN signal \'RRDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::RLDoorSts, "CAN signal \'RLDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::PassengerDoorSts, "CAN signal \'PassengerDoorSts\'", 0LL, "Closed");
+    _fct_Set(CAN::dbNode::BCM::BCM1::DriverDoorSts, "CAN signal \'DriverDoorSts\'", 0LL, "Closed");
+    _fct_TiTableEnd("1");
+  }
+  // _ttg_!_1_0_4_71
+  TestCommandEnd();
+  if(_fct_TsDoBOF() || testIsStopRequested())
+  {
+    return;
+  }
+}
+// _ttg_#_1_0_4
+void _ttg_fct_caplinline_1_0_0_1()
+{
+  {
+    sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);
+sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);
+@sysvar::VTS::M12_SupInt::RefVoltage = 12;
+@sysvar::VTS::M12_Out2::Active = 1;
+
+
+  }
+}
+// _ttg_#_1_0_0_1
+void _ttg_fct_caplinline_1_0_1_29()
+{
+  {
+    @sysvar::VTS::M12_Sup1::RefVoltage = 0;
+  }
+}
+// _ttg_#_1_0_1_29
+void _ttg_fct_caplinline_1_0_1_37()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_1_37
+void _ttg_fct_caplinline_1_0_1_39()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_1_39
+void _ttg_fct_caplinline_1_0_3_1()
+{
+  {
+    @sysvar::VTS::M9_Ch4::RelayGnd = 0;
+  }
+}
+// _ttg_#_1_0_3_1
+void _ttg_fct_caplinline_1_0_3_8()
+{
+  {
+    @sysvar::VTS::M9_Ch4::RelayGnd = 1;
+  }
+}
+// _ttg_#_1_0_3_8
+void _ttg_fct_caplinline_1_0_3_10()
+{
+  {
+    @sysvar::VTS::M9_Ch4::RelayGnd = 0;
+  }
+}
+// _ttg_#_1_0_3_10
+void _ttg_fct_caplinline_1_0_3_15()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_3_15
+void _ttg_fct_caplinline_1_0_3_17()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_3_17
+void _ttg_fct_caplinline_1_0_3_19()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_3_19
+void _ttg_fct_caplinline_1_0_3_21()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_3_21
+void _ttg_fct_caplinline_1_0_3_23()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_3_23
+void _ttg_fct_caplinline_1_0_3_25()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_3_25
+void _ttg_fct_caplinline_1_0_3_27()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_3_27
+void _ttg_fct_caplinline_1_0_3_29()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_3_29
+void _ttg_fct_caplinline_1_0_3_32()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_3_32
+void _ttg_fct_caplinline_1_0_3_34()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_3_34
+void _ttg_fct_caplinline_1_0_3_36()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_3_36
+void _ttg_fct_caplinline_1_0_3_38()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_3_38
+void _ttg_fct_caplinline_1_0_3_40()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_3_40
+void _ttg_fct_caplinline_1_0_3_42()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_3_42
+void _ttg_fct_caplinline_1_0_3_44()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_3_44
+void _ttg_fct_caplinline_1_0_3_46()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_3_46
+void _ttg_fct_caplinline_1_0_4_1()
+{
+  {
+    @sysvar::VTS::M9_Ch4::RelayGnd = 0;
+  }
+}
+// _ttg_#_1_0_4_1
+void _ttg_fct_caplinline_1_0_4_25()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 0;
+  }
+}
+// _ttg_#_1_0_4_25
+void _ttg_fct_caplinline_1_0_4_27()
+{
+  {
+    @sysvar::VTS::M9_Ch4::DigitalOutput = 1;
+  }
+}
+// _ttg_#_1_0_4_27
+void _ttg_fct_caplinline_1_0_4_53()
+{
+  {
+    @sysvar::VTS::M9_Ch4::RelayGnd = 1;
+  }
+}
+// _ttg_#_1_0_4_53
+void _ttg_fct_caplinline_1_0_4_55()
+{
+  {
+    @sysvar::VTS::M9_Ch4::RelayGnd = 0;
+  }
+}
+// _ttg_#_1_0_4_55

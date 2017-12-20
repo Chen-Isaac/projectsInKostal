@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp href="">
+  <information>
+    <title>Vector Extended Navigation Report Applet</title>
+    <vendor>Vector Informatik GmbH</vendor>
+    <offline-allowed />
+  </information>
+  <security>
+    <all-permissions />
+  </security>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se" />
+    <jar href="ExtNavigationApplet.jar" main="true" />
+  </resources>
+  <resources os="Windows" arch="x86">
+    <nativelib href="nativeLib.jar" download="eager"/>
+  </resources>
+  <applet-desc
+    name="Vector Extended Navigation Report Applet"
+    main-class="ExtNavigationApplet"
+    width="300"
+    height="300">
+  </applet-desc>
+</jnlp>

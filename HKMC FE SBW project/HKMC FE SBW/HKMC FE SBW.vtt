@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <tf>
+      <title>Setup Initialization &amp; Power On</title>
+      <active>true</active>
+      <capltestcase>
+        <title />
+        <active>true</active>
+        <name>powerOn</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <active>false</active>
+        <name>powerOff</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <name>initProduct</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <active>true</active>
+        <name>readSwVer</name>
+      </capltestcase>
+    </tf>
+    <tf>
+      <title>Button Function</title>
+      <active>true</active>
+      <capltestcaselist>
+        <title />
+        <name>buttonPressFunctionCheck</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|ignValueLevel|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|pressButton|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <tf>
+      <title>Indicator Illumination</title>
+      <active>true</active>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>testIndicatorControlFunctionStateChart</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|setOnMode|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|setClearMode|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>testHighLightIndicatorBehavior</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|indicatorStatus|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|decideBySignalBool|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>testRheostatLevelRow1_2</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|testRheostatLevelRow1_2::detentVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>testRheostatLevelRow3_4_5_6_12_13_14_15</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|ignValueLevel|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|detentVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>testRheostatLevelRow7</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>testRheostatLevelRow8_9_17_18</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|ignValueLevel|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>testRheostatLevelRow10_11</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|testRheostatLevelRow10_11::detentVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>testRheostatLevelRow16</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <name>testRheostatLevelRow1_2</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>1</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>int</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>1</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <tf>
+      <title>test operation mode</title>
+      <active>true</active>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>chkOperModeFromIgnOnToInitToSilenceToSleep</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|fromInitModeToSleepMode::routeNo|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|drvDrSwSigVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|fromInitModeToSleepMode::msWaitTimeForWelcomeFunctionCount|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <active>false</active>
+        <name>chkOperModeFromIgnOnToIgnOffToSilenceModeToSleep</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <range>
+            <min>
+              <const>0</const>
+            </min>
+            <max>
+              <const>1</const>
+            </max>
+            <inc>
+              <const>1</const>
+            </inc>
+          </range>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|drvDrSwSigVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>char[]</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|accLev|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <tf>
+      <title>debug signal</title>
+      <tc>
+        <title>$CF_Gway_DrvDrSw = close</title>
+        <active>true</active>
+        <caplinline>
+          <title />
+          <code>$CF_Gway_DrvDrSw = 0;</code>
+        </caplinline>
+      </tc>
+      <tc>
+        <title>$CF_Gway_DrvDrSw = open</title>
+        <active>true</active>
+        <caplinline>
+          <title />
+          <code>$CF_Gway_DrvDrSw = 1;</code>
+        </caplinline>
+      </tc>
+      <tc>
+        <title>$CF_Gway_DrvDrSw = b can timeout</title>
+        <active>true</active>
+        <caplinline>
+          <title />
+          <code>$CF_Gway_DrvDrSw = 2;</code>
+        </caplinline>
+      </tc>
+      <tc>
+        <title>ign on</title>
+        <caplfunction>
+          <title />
+          <name>chRamVoltDOSet</name>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>IGN</const>
+            </value>
+          </param>
+          <param>
+            <type>enum</type>
+            <value>
+              <const>1</const>
+            </value>
+          </param>
+        </caplfunction>
+        <caplinline>
+          <title />
+          <code>testEnableMsg(CGW1);</code>
+        </caplinline>
+      </tc>
+      <capltestcaselist>
+        <title />
+        <name>chkIndStat</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>P</const>
+            </value>
+            <value>
+              <const>R</const>
+            </value>
+            <value>
+              <const>N</const>
+            </value>
+            <value>
+              <const>D</const>
+            </value>
+          </valuelist>
+        </param>
+        <param>
+          <type>char[]</type>
+          <valuelist>
+            <value>
+              <const>0</const>
+            </value>
+            <value>
+              <const>1</const>
+            </value>
+          </valuelist>
+        </param>
+      </capltestcaselist>
+      <tc>
+        <title>validate function</title>
+        <caplfunction>
+          <title />
+          <name>getDataFromBinFile</name>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>D:\\Isaac\\SGM K211 ESCL (Electrical Steering Column Lock)\\AlgoH79C1.KEY</const>
+            </value>
+          </param>
+          <param>
+            <type>qword</type>
+            <value>
+              <const>0x8516</const>
+            </value>
+          </param>
+          <param>
+            <type>int</type>
+            <value>
+              <const>2</const>
+            </value>
+          </param>
+        </caplfunction>
+      </tc>
+    </tf>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

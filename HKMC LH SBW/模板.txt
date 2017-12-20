@@ -1,0 +1,17 @@
+Prepare the graph to see CF_Tcu_PRelReq,G_SEL_DISP,CF_Lvr_PNStat,CF_Lvr_PRelStat easily   CF_Lvr_BkeAct  CF_Lvr_PosInf
+ 
+
+check if SBW operate PRA to not P Position
+
+CF_Lvr_PNStat
+CF_Lvr_PRelStat
+
+³õÊ¼×¥Í¼
+capture CF_Lvr_PNStat&CF_Lvr_PRelStat
+
+testWaitForTimeout(500);
+testReportAddWindowCapture("Graphics","","Set PRA to not P position at initial","15.3.1.a Set PRA to not P position at initial.png");
+
+
+
+

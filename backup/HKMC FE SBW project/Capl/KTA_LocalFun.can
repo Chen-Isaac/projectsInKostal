@@ -1,0 +1,1880 @@
+variables
+{
+	//Timer stuff//////
+	mstimer t_CyclicMLXRawData;
+	const T_MLXRAWDATA_TIMEOUT			= 100; //ms
+	byte  b_CyclicMLXRawDataFlag		= 0;
+
+	//Timer stuff//////
+	mstimer t_CyclicADCData;
+	const T_ADCDATA_TIMEOUT	     		= 100; //ms
+	byte  b_CyclicADCDataFlag   		= 0;
+
+	const MSG_LOGIN 					= 0; 
+	const MSG_CALABSOFFSET				= 1;
+	const MSG_CALHALLOFFSET				= 2;
+	const MSG_GETRAWMLXDATA				= 3;
+	const MSG_RESETOFFSETS				= 4;
+	const MSG_RESETMODULE		 		= 5;
+	const MSG_SETABSOFFSET				= 6;
+	const MSG_SETHALLOFFSET				= 7;
+	const MSG_RESETABSOFFSET	 		= 8;
+	const MSG_READCALSTAT 		 		= 9;
+	
+	//RBR 03 defines
+	const MSG_RBR03_INIT 		 		= 10;
+	const MSG_RBR03_CONTROL				= 11;
+
+	const MSG_GETADCDATA 		 		= 12;
+
+	const MSG_RESETMODULE_0C	 		= 13;
+	const MSG_RGRBacktT_Init			= 14;
+
+    const MSG_READ_MLX1012_0            = 15;
+    const MSG_WRITE_MLX1012_0           = 16;
+
+    const MSG_READ_MLX1012_1            = 17;
+    const MSG_WRITE_MLX1012_1           = 18;
+
+	const SAS_SUBID						= 0x80;
+	const APP_SUBID						= 0x10;
+
+	//Message IDs
+	const MSG_RSP_LOGIN 				= 0x01;
+	const MSG_RSP_LOCALFUN 				= 0x07;
+
+	//Local Func ID Resposnes
+	const MSG_RSP_CALABSOFFSET 			= 0x01;
+	const MSG_RSP_CALHALLOFFSET 		= 0x02;
+	const MSG_RSP_GETRAWMLXDATA 		= 0x05;
+	const MSG_RSP_RESETOFFSETS 			= 0x06;
+	const MSG_RSP_RESETMODULE 			= 0x01;
+	const MSG_RSP_SETABSOFFSET 			= 0x00;
+	const MSG_RSP_SETHALLOFFSET 		= 0x03;
+	const MSG_RSP_RESETABSOFFSET	 	= 0x07;
+	const MSG_RSP_READSASCALSTAT 		= 0x08;
+    const MSG_RSP_READMLXDATA           = 0xA0;
+    const MSG_RSP_WRITEMLXDATA          = 0xA1;
+
+	//RBR defines
+	const MSG_RSP_RBR_INIT 	    	 	= 0x08;
+	const MSG_RSP_RBR_CONTROL		 	= 0x09;
+
+	const MSG_RSP_GETADCDATA 		 	= 0x0B;
+	
+	const MSG_RSP_RESETMODULE_0C 		= 0x0C;
+	const MSG_RSP_RGRBacktT_Init		= 0x0D;
+
+
+
+
+
+	const FAULT_MANAGER_MAXFAULTS 		= 20;
+
+	message KostiaReq KostiaReq_Msg;
+
+
+	int d_Task_Manager;
+	int d_Task_Counter;	
+
+	//Task management stuff
+	const TASK_CALABSOFFSET		 		= 1;
+	const TASK_CALHALLOFFSET	 		= 2;
+	const TASK_GETRAWMLXDATA	 		= 3;
+	const TASK_RESETOFFSETS		 		= 4;
+	const TASK_RESETMODULE		 		= 5;
+	const TASK_SETABSOFFSET		 		= 6;
+	const TASK_SETHALOFFSETS	 		= 7;
+	const TASK_RESETABSOFFSET	 		= 8;
+	const TASK_READCALSTAT 		 		= 9;
+
+
+	//RBR 03 defines
+	const TASK_RBR03_INIT 		 		= 10;
+	const TASK_RBR03_CONTROL	 		= 11;
+
+    const TASK_GETADCDATA 		 		= 12;
+
+	const TASK_RESETMODULE_0C	 		= 13;
+	const TASK_RGRBacktT_Init			= 14;
+    const TASK_SET_KOSTALMLX            = 15;
+
+    byte  MLX_DATA[2];                          /* Read Memory Data from MLX    */
+    byte  MLX_Write_Result;
+    byte  MLX_Procedure_Result;
+
+	char Fault_Buffer[200];
+	char Display_Buffer[200];
+	char Display_Buffer1[200];
+	char Display_Buffer2[200];
+
+////Setting Angles and Hall Offset Variables and const//////
+	const ABS_MAXVALUE					= 3600;
+	const HALL_MAXVALUE					= 17000;
+	int d_ABSAngle 						= 0;
+	int d_HallAngle0					= 0;
+	int d_HallAngle1					= 0;
+
+
+////RBR Page 03 Stuff/////////////
+	const RBRPAGEID_03					= 03;
+	int d_RBR_03_Control;
+	byte d_RBR_03_CRC[1];		
+	byte b_MSGCounterSaved[1];
+	byte u8MsgBuffer[8];
+	byte b_RBR_03_LatchMSG_E;
+	byte b_RBR_03_LatchCRC_E;
+	int d_RBR_03_Flag;
+
+
+///////////////////////////////////
+
+/////RBR BackTrack Page////////////
+	int d_RBR_BackTrack_Flag;
+	int d_RBR_BackTrack_Control;
+
+///////////////////////////////////
+}
+
+on message KostiaResp	
+{
+
+	byte b_Msg_ID;
+	byte b_Msg_SubID;
+	byte b_Msg_LocFunID;
+	char c_temp[100];
+	word w_MLX0, w_MLX1, w_AbsAngle, w_BackTrack;
+	byte b_CalStatus;
+	int i = 0;
+
+	b_Msg_ID = This.BYTE(0);
+	b_Msg_SubID = This.BYTE(1);
+	b_Msg_LocFunID = This.BYTE(2);
+
+	if((d_Task_Manager > 0) && (b_Msg_ID > 0)) 	//Clear Fault Buffer if there are none
+	{
+		SetFault(0);
+
+	}	
+
+
+//////////////////Now move on to parse out msg////////////
+
+    switch( d_Task_Manager )
+    {
+        case TASK_CALABSOFFSET:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+                case MSG_RSP_LOCALFUN:
+                    if(b_Msg_SubID == APP_SUBID){
+                        d_Task_Counter++;
+				        SetFault(2);
+
+                        if(b_Msg_LocFunID == MSG_RSP_CALABSOFFSET){                       
+                            snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully calibrated the ABS");
+						    putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+                        }
+
+                        TaskList();
+                    }
+                    break;
+            }
+            break;
+        case TASK_CALHALLOFFSET:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+                case MSG_RSP_LOCALFUN:
+                    if(b_Msg_SubID == APP_SUBID){
+                        d_Task_Counter++;
+				        SetFault(2);
+
+                        if(b_Msg_LocFunID == MSG_CALHALLOFFSET){                       
+                            snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully calibrated the Hall Sensors");
+					    	putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);	
+                        }
+
+                        TaskList();
+                    }
+                    break;
+            }
+            break;
+        case TASK_GETRAWMLXDATA:
+            if(b_Msg_ID  == MSG_RSP_LOGIN){
+                snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		        putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		        SetFault(2);
+		        d_Task_Counter++;
+		        TaskList();
+            }
+            else{
+                switch( d_Task_Counter ){
+                    case 1:
+                        w_MLX0 = (This.BYTE(1) << 8) | This.BYTE(0);
+    		            w_MLX1 = (This.BYTE(3) << 8) | This.BYTE(2);		
+    		            w_AbsAngle = (This.BYTE(5) << 8) | This.BYTE(4);
+
+    		            MLXRawDataDisplay(w_MLX0, w_MLX1, w_AbsAngle);
+    		            d_Task_Counter++;
+                        TaskList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            break;
+        case TASK_RESETOFFSETS:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+                case MSG_RSP_LOCALFUN:
+                    if(b_Msg_SubID == APP_SUBID){
+                        d_Task_Counter++;
+				        SetFault(2);
+
+                        if(b_Msg_LocFunID == MSG_RSP_RESETOFFSETS){
+    						snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully reset the Hall Sensors");
+	    					putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+                        }
+
+                        TaskList();
+                    }
+                    break;
+            }
+            break;
+        case TASK_RESETMODULE:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+            }
+            break;
+        case TASK_SETABSOFFSET:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+                case MSG_RSP_SETABSOFFSET:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully set ABS Angle to %d", d_ABSAngle);
+					putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+
+                    TaskList();
+                    break;
+            }
+            break;
+        case TASK_SETHALOFFSETS:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+                case MSG_RSP_SETHALLOFFSET:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully set Hall 0 and 1, %d, %d", d_HallAngle0, d_HallAngle1);
+					putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+
+                    TaskList();
+                    break;
+            }
+            break;
+        case TASK_RESETABSOFFSET:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+                case MSG_RSP_RESETABSOFFSET:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully reset ABS Angle to %d", d_ABSAngle);
+					putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);	
+
+                    TaskList();
+                    break;
+            }
+            break;
+        case TASK_READCALSTAT:
+            if(b_Msg_ID  == MSG_RSP_LOGIN){
+                snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		        putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		        SetFault(2);
+		        d_Task_Counter++;
+		        TaskList();
+            }
+            else{
+                switch( d_Task_Counter ){
+                    case 1:
+                        b_CalStatus = This.BYTE(0);
+		
+    		            SASCalStatusDisplay(b_CalStatus);
+    		            d_Task_Counter++;
+                        TaskList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            break;
+        case TASK_RBR03_INIT:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+                case MSG_RSP_RBR_INIT:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+        			snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully Init the RBR Page");
+		        	putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+
+			        if(d_RBR_03_Flag == 1) 		
+				        putvalue(envKTA_RBR03_Init_Alarm, 3);
+			        else if(d_RBR_BackTrack_Flag == 1)
+				        putvalue(envKTA_RBRBackt_Init_Alarm, 3);
+
+                    TaskList();
+                    break;
+            }
+            break;
+        case TASK_RBR03_CONTROL:
+                
+            SetFault(2);
+		    d_Task_Counter++;
+
+            if( d_RBR_03_Control == 1 ){
+                w_MLX0 = (This.BYTE(2) << 8) | This.BYTE(1);
+		        w_MLX1 = (This.BYTE(4) << 8) | This.BYTE(3);		
+		        w_AbsAngle = (This.BYTE(6) << 8) | This.BYTE(5);
+
+		        for (i = 0;i < 7;i++) 
+			        u8MsgBuffer[i] = This.BYTE(i+1);
+	                
+                RBR_03_Display (This.BYTE(7),w_MLX0,w_MLX1,w_AbsAngle, This.BYTE(0));		//let the function do all the work
+            }
+            else if( d_RBR_BackTrack_Control == 1 ){
+                w_BackTrack = (This.BYTE(0) << 8) | This.BYTE(1);
+		        w_MLX0 = (This.BYTE(2) << 8) | This.BYTE(3);
+		        w_MLX1 = (This.BYTE(4) << 8) | This.BYTE(5);		
+		        for (i = 0;i < 7;i++) 
+			       u8MsgBuffer[i] = This.BYTE(i+1);
+	            RBRBackTrackDisplay (w_MLX0,w_MLX1,w_BackTrack);		//let the function do all the work
+            }
+
+            if(b_Msg_ID == MSG_RSP_RBR_CONTROL){
+                
+
+                snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully Controlled the RBR Page");
+                putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+
+                if( d_RBR_03_Flag == 1 ){
+                    if( d_RBR_03_Control == 1 ){
+                        putvalue(envKTA_RBR03_Control_Alarm, 3);
+                    }
+                    else{
+                        putvalue(envKTA_RBR03_Control_Alarm, 0);
+                    }
+                }
+                else if( d_RBR_BackTrack_Flag == 1 ){
+                    if( d_RBR_BackTrack_Control == 1 ){
+                        putvalue(envKTA_RBR03_Control_Alarm, 3);
+                    }
+                    else{
+                        putvalue(envKTA_RBR03_Control_Alarm, 0);
+
+                        d_RBR_BackTrack_Flag = 0;
+                    }
+                }
+            }
+
+            TaskList();
+            break;
+        case TASK_GETADCDATA:
+            if(b_Msg_ID  == MSG_RSP_LOGIN){
+                snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		        putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		        SetFault(2);
+		        d_Task_Counter++;
+		        TaskList();
+            }
+            else{
+                switch( d_Task_Counter )
+                {
+                    case 1:
+                        snprintf(c_temp, elcount(c_temp), "%.2X %.2X %.2X %.2X %.2X %.2X", This.BYTE(1),This.BYTE(2),This.BYTE(3),This.BYTE(4),This.BYTE(5),This.BYTE(6));
+    		            putvalue(envKTA_LocFun_ADCData, c_temp);
+    		            d_Task_Counter++;
+    		            TaskList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            break;
+        case TASK_RGRBacktT_Init:
+            switch( b_Msg_ID ){
+                case MSG_RSP_LOGIN:
+                    SetFault(2);
+		            d_Task_Counter++;
+
+                    snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		            putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		            
+		            TaskList();
+                    break;
+            }
+            break;
+        case TASK_RESETMODULE_0C:
+            if(b_Msg_ID  == MSG_RSP_LOGIN){
+                snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		        putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		        SetFault(2);
+		        d_Task_Counter++;
+		        TaskList();
+            }
+            else{
+                switch( d_Task_Counter )
+                {
+                    case 1:
+                        putvalue(envKTA_Reset_0C_Alarm, 3);
+    		            d_Task_Counter++;
+    		            TaskList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            break;
+        case TASK_SET_KOSTALMLX:
+            if(b_Msg_ID  == MSG_RSP_LOGIN){
+                snprintf(Display_Buffer, elcount(Display_Buffer), "We are logged in");
+		        putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+		        SetFault(2);
+		        d_Task_Counter++;
+		        TaskList();
+            }
+            else{
+                switch( d_Task_Counter ){
+                    case 1:
+                        MLX_DATA[0] = this.byte(0);
+                        MLX_DATA[1] = this.byte(1);
+                        d_Task_Counter ++;
+                        break;
+                    case 2:
+                        d_Task_Counter ++;
+                        TaskList();
+                        break;
+                    case 3:
+                        MLX_Write_Result = this.byte(0);
+                        SetFault(2);
+                        if( MLX_Write_Result == 0x01 ){
+                            snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully write MLX Data 0");
+			                putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+                            d_Task_Counter ++;
+                        }
+                        else{
+                            d_Task_Counter = 9;
+                            snprintf(Display_Buffer1, elcount(Display_Buffer1), "We fail to write MLX Data 0");
+			                putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+                            MLX_Procedure_Result = 0;
+                            TaskList();
+                            
+                        }
+                        
+                        break;
+                    case 4:
+                        d_Task_Counter ++;
+                        TaskList();
+                        break;
+                    case 5:
+                        MLX_DATA[0] = this.byte(0);
+                        MLX_DATA[1] = this.byte(1);
+                        d_Task_Counter ++;
+                        break;
+                    case 6:
+                        d_Task_Counter ++;
+                        TaskList();
+                        break;
+                    case 7:
+                        MLX_Write_Result = this.byte(0);
+                        SetFault(2);
+                        if( MLX_Write_Result == 0x01 ){
+                            snprintf(Display_Buffer1, elcount(Display_Buffer1), "We successfully write MLX Data 1");
+			                putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+                            MLX_Procedure_Result = 1;
+                            d_Task_Counter ++;
+                        }
+                        else{
+                            d_Task_Counter = 9;
+                            snprintf(Display_Buffer1, elcount(Display_Buffer1), "We fail to write MLX Data 1");
+			                putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer1);
+                            MLX_Procedure_Result = 0;
+                            TaskList();
+                        }
+                        break;
+                    case 8:
+                        d_Task_Counter ++;
+                        TaskList();
+                        break;
+                }
+            }
+            break;
+            
+    }
+}
+
+on start
+{
+	snprintf(Display_Buffer, elcount(Display_Buffer), "");
+	putvalue(envKTA_LocFun_DisplayBuff1, Display_Buffer);
+	putvalue(envKTA_LocFun_DisplayBuff2, Display_Buffer);
+	putvalue(envKTA_LocFun_DisplayFaults, Display_Buffer);
+
+	putvalue(envKTA_LocFun_HallCalStatusData, 0);
+	putvalue(envKTA_LocFun_ABSCalStatusData, 0);
+
+	b_CyclicMLXRawDataFlag = 0;
+
+	KTA_LocFun_Init();
+
+	d_RBR_03_Control = 0;
+	b_MSGCounterSaved[0] = 0;
+	b_RBR_03_LatchMSG_E = 0;
+	b_RBR_03_LatchCRC_E = 0;
+
+	d_RBR_BackTrack_Flag =  0;
+	d_RBR_03_Flag = 0;
+	d_RBR_BackTrack_Control = 0;
+}
+
+Kostia_Msg (int d_MSG_Index)
+{
+
+	KostiaReq_Msg.byte(0) = 0x07;
+	KostiaReq_Msg.byte(1) = 0x00;
+	KostiaReq_Msg.byte(2) = 0x00;
+	KostiaReq_Msg.byte(3) = 0x00;
+	KostiaReq_Msg.byte(4) = 0x00;
+	KostiaReq_Msg.byte(5) = 0x00;
+	KostiaReq_Msg.byte(6) = 0x00;
+	KostiaReq_Msg.byte(7) = 0x00;
+
+	switch(d_MSG_Index)
+	{
+
+		case MSG_LOGIN:
+			/*Just call the env up to login why recreate it*/
+			putValue(envKTA_Login, 1);
+			break;
+		
+		case MSG_CALABSOFFSET:
+			KostiaReq_Msg.byte(1) = SAS_SUBID;
+			KostiaReq_Msg.byte(2) = 1;
+			output(KostiaReq_Msg);
+			break;		
+		
+		case MSG_CALHALLOFFSET:
+			KostiaReq_Msg.byte(1) = SAS_SUBID;
+			KostiaReq_Msg.byte(2) = 2;
+
+			output(KostiaReq_Msg);
+			break;
+	
+		case MSG_GETRAWMLXDATA:
+			KostiaReq_Msg.byte(1) = SAS_SUBID;
+			KostiaReq_Msg.byte(2) = 5;
+
+			output(KostiaReq_Msg);
+			break;
+
+		case MSG_RESETOFFSETS:
+			KostiaReq_Msg.byte(1) = SAS_SUBID;
+			KostiaReq_Msg.byte(2) = 6;
+
+			output(KostiaReq_Msg);
+			break;
+
+		case MSG_RESETMODULE:
+			//write("Step 3");
+			KostiaReq_Msg.byte(1) = APP_SUBID;
+			KostiaReq_Msg.byte(2) = 1;
+
+			output(KostiaReq_Msg);
+			break;
+
+		case MSG_SETABSOFFSET:
+			//write("Step 3");
+			KostiaReq_Msg.byte(1) = SAS_SUBID;
+			KostiaReq_Msg.byte(2) = 0;
+			KostiaReq_Msg.byte(3) = (d_ABSAngle & 0xFF);	//Low byte of ABS angle
+			KostiaReq_Msg.byte(4) = ((d_ABSAngle >> 8) & 0xFF);	//High byte of ABS angle
+
+			output(KostiaReq_Msg);
+			break;
+
+		case MSG_SETHALLOFFSET:
+			//write("Step 3");
+			KostiaReq_Msg.byte(1) = SAS_SUBID;
+			KostiaReq_Msg.byte(2) = 3;
+			KostiaReq_Msg.byte(3) = (d_HallAngle0 & 0xFF);	//Low byte of Hall angle 0
+			KostiaReq_Msg.byte(4) = ((d_HallAngle0 >> 8) & 0xFF);	//High byte of Hall angle 0
+			KostiaReq_Msg.byte(5) = (d_HallAngle1 & 0xFF);	//Low byte of Hall angle 1
+			KostiaReq_Msg.byte(6) = ((d_HallAngle1 >> 8) & 0xFF);	//High byte of Hall angle 1
+
+			output(KostiaReq_Msg);
+			break;
+
+		case MSG_RESETABSOFFSET:
+			//write("Step 3");
+			KostiaReq_Msg.byte(1) = SAS_SUBID;
+			KostiaReq_Msg.byte(2) = 7;
+
+			output(KostiaReq_Msg);
+			break;
+
+		case MSG_READCALSTAT:
+			//write("Step 3");
+			KostiaReq_Msg.byte(1) = SAS_SUBID;
+			KostiaReq_Msg.byte(2) = 8;
+
+			output(KostiaReq_Msg);
+			break;
+		case MSG_RBR03_INIT:
+			KostiaReq_Msg.byte(0) = 0x08;
+			KostiaReq_Msg.byte(1) = 0x12;
+			KostiaReq_Msg.byte(2) = 0x34;
+			KostiaReq_Msg.byte(3) = 0x02;
+			KostiaReq_Msg.byte(4) = RBRPAGEID_03;
+			KostiaReq_Msg.byte(5) = 0xFF;
+
+			output(KostiaReq_Msg);
+			break;
+		case MSG_RBR03_CONTROL:
+			KostiaReq_Msg.byte(0) = 0x09;
+
+			if(d_RBR_BackTrack_Flag == 1)
+				KostiaReq_Msg.byte(1) = d_RBR_BackTrack_Control;
+			else if(d_RBR_03_Flag == 1)
+				KostiaReq_Msg.byte(1) = d_RBR_03_Control;
+
+			output(KostiaReq_Msg);
+			break;
+		case MSG_GETADCDATA:
+			KostiaReq_Msg.byte(0) = 0x04;
+			KostiaReq_Msg.byte(1) = 0;
+			KostiaReq_Msg.byte(2) = 0x31;
+			KostiaReq_Msg.byte(3) = 0x07;
+			KostiaReq_Msg.byte(4) = 0x0A;
+
+			output(KostiaReq_Msg);
+			break;
+		case MSG_RESETMODULE_0C:
+			KostiaReq_Msg.byte(0) = 0x0C;
+			KostiaReq_Msg.byte(1) = 0x52;
+			KostiaReq_Msg.byte(2) = 0x45;
+			KostiaReq_Msg.byte(3) = 0x53;
+			KostiaReq_Msg.byte(4) = 0x45;
+			KostiaReq_Msg.byte(5) = 0x54;
+			KostiaReq_Msg.byte(6) = 0x4D;
+			KostiaReq_Msg.byte(7) = 0x45;
+			output(KostiaReq_Msg);
+			break;
+		case MSG_RGRBacktT_Init:
+			KostiaReq_Msg.byte(0) = 0x08;
+			KostiaReq_Msg.byte(1) = 0x00;
+			KostiaReq_Msg.byte(2) = 0x01;
+			KostiaReq_Msg.byte(3) = 0x02;
+			KostiaReq_Msg.byte(4) = 0x01;
+			KostiaReq_Msg.byte(5) = 0xFF;
+			output(KostiaReq_Msg);
+			break;
+      case MSG_READ_MLX1012_0:
+          KostiaReq_Msg.byte(0) = 0x07;
+          KostiaReq_Msg.byte(1) = 0x80;
+          KostiaReq_Msg.byte(2) = 0xA0;
+          KostiaReq_Msg.byte(3) = 0x00;
+          KostiaReq_Msg.byte(4) = 0x10;
+          KostiaReq_Msg.byte(5) = 0x12;
+          KostiaReq_Msg.byte(6) = 0x00;
+          KostiaReq_Msg.byte(6) = 0x00;
+          output(KostiaReq_Msg);
+          break;
+      case MSG_READ_MLX1012_1:
+          KostiaReq_Msg.byte(0) = 0x07;
+          KostiaReq_Msg.byte(1) = 0x80;
+          KostiaReq_Msg.byte(2) = 0xA0;
+          KostiaReq_Msg.byte(3) = 0x01;
+          KostiaReq_Msg.byte(4) = 0x10;
+          KostiaReq_Msg.byte(5) = 0x12;
+          KostiaReq_Msg.byte(6) = 0x00;
+          KostiaReq_Msg.byte(6) = 0x00;
+          output(KostiaReq_Msg);
+          break;
+      case MSG_WRITE_MLX1012_0:
+          KostiaReq_Msg.byte(0) = 0x07;
+          KostiaReq_Msg.byte(1) = 0x80;
+          KostiaReq_Msg.byte(2) = 0xA1;
+          KostiaReq_Msg.byte(3) = 0x00;
+          KostiaReq_Msg.byte(4) = 0x00;
+          KostiaReq_Msg.byte(5) = 0x12;
+          KostiaReq_Msg.byte(6) = MLX_DATA[0] | 0x40;
+          KostiaReq_Msg.byte(7) = MLX_DATA[1];
+          output(KostiaReq_Msg);
+          break;
+      case MSG_WRITE_MLX1012_1:
+          KostiaReq_Msg.byte(0) = 0x07;
+          KostiaReq_Msg.byte(1) = 0x80;
+          KostiaReq_Msg.byte(2) = 0xA1;
+          KostiaReq_Msg.byte(3) = 0x01;
+          KostiaReq_Msg.byte(4) = 0x00;
+          KostiaReq_Msg.byte(5) = 0x12;
+          KostiaReq_Msg.byte(6) = MLX_DATA[0] | 0x40;
+          KostiaReq_Msg.byte(7) = MLX_DATA[1];
+          output(KostiaReq_Msg);
+          break;
+		default:
+			break;
+	}//end of switch(d_MSG_Index)
+
+}
+
+TaskList ()
+{
+	switch(d_Task_Manager)
+	{
+
+		case TASK_CALABSOFFSET:
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_CALABSOFFSET);
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+	
+		case TASK_CALHALLOFFSET:
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_CALHALLOFFSET);
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;		
+	
+		case TASK_GETRAWMLXDATA:
+
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				///There is no 2 because it take care of in the rec. msg for the moment
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_GETRAWMLXDATA);
+					break;	
+  				case 3:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+		
+		case TASK_RESETOFFSETS:
+
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_RESETOFFSETS);
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+		
+		case TASK_RESETMODULE:
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					KTA_LocFun_Init(); //we init right away because there won't be a resposne from the module
+					Kostia_Msg(MSG_RESETMODULE);	
+					break;	
+				default:
+					break;	
+			}//end of switch(d_Task_Counter)
+			break;
+		case TASK_SETABSOFFSET:
+
+			//write("1 d_Task_Counter = %d", d_Task_Counter);
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/					
+					Kostia_Msg(MSG_SETABSOFFSET);	
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+		case TASK_SETHALOFFSETS:
+
+			//write("1 d_Task_Counter = %d", d_Task_Counter);
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_SETHALLOFFSET);	
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+
+		case TASK_RESETABSOFFSET:
+
+			//write("1 d_Task_Counter = %d", d_Task_Counter);
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_RESETABSOFFSET);	
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+		case TASK_READCALSTAT:
+
+			//write("1 d_Task_Counter = %d", d_Task_Counter);
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_READCALSTAT);	
+					break;	
+  				case 3:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+		case TASK_RBR03_INIT:
+
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_RBR03_INIT);
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+		case TASK_RBR03_CONTROL:
+
+		//	write("RBR Control");
+			switch(d_Task_Counter)
+			{
+			//	case 0:		/* First we need to log in to the ECU*/
+			//		Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 0:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_RBR03_CONTROL);
+					break;	
+  				case 1:
+					if((d_RBR_03_Flag == 1) && (d_RBR_03_Control == 0))
+					{
+						KTA_LocFun_Init();
+						d_RBR_03_Flag = 0;
+						putvalue(envKTA_RBR03_Init_Alarm, 0);
+					}
+					else if((d_RBR_BackTrack_Flag == 1) && (d_RBR_BackTrack_Control == 0))
+					{
+						KTA_LocFun_Init();
+						d_RBR_BackTrack_Flag = 0;
+						putvalue(envKTA_RBRBackt_Init_Alarm, 0);
+					}
+					break;
+
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+
+		case TASK_GETADCDATA:
+
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;				
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_GETADCDATA);
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+	
+		case TASK_RGRBacktT_Init:
+
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_RGRBacktT_Init);
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+		
+		case TASK_RESETMODULE_0C:
+
+			switch(d_Task_Counter)
+			{
+				case 0:		/* First we need to log in to the ECU*/
+					Kostia_Msg(MSG_LOGIN);
+					break;	
+				case 1:		/* Then we will need to send the request*/
+					Kostia_Msg(MSG_RESETMODULE_0C);
+					break;	
+  				case 2:
+					KTA_LocFun_Init();
+					break;
+				default:
+					break;	
+
+			}//end of switch(d_Task_Counter)
+			break;
+
+        case TASK_SET_KOSTALMLX:
+            switch(d_Task_Counter){
+                case 0:
+                    Kostia_Msg(MSG_LOGIN);
+                    break;
+                case 1:
+                    Kostia_Msg(MSG_READ_MLX1012_0);
+                    break;
+                case 3:
+                    Kostia_Msg(MSG_WRITE_MLX1012_0);
+                    break;
+                case 5:
+                    Kostia_Msg(MSG_READ_MLX1012_1);
+                    break;
+                case 7:
+                    Kostia_Msg(MSG_WRITE_MLX1012_1);
+                    break;   
+                case 9:
+                    if( MLX_Procedure_Result == 1 ){
+                        putvalue(envKTA_SetKostalMLX, 2);
+                    }else{
+                        putvalue(envKTA_SetKostalMLX, 3);
+                    }
+                    KTA_LocFun_Init();
+                    break;
+                default:
+                    break;                 
+            }
+								
+		default:
+			break;
+	}// end of switch d_Task_Manager
+
+}
+
+KTA_LocFun_Init ()
+{
+	d_Task_Counter = 0;
+
+	if(b_CyclicMLXRawDataFlag == 0) //We don't want other stuff trying to communicate to the ECU
+		d_Task_Manager = 0;
+
+	putValue(envKTA_Login, 0);
+	snprintf(Fault_Buffer, elcount(Fault_Buffer), "");
+
+
+	//putvalue(envKTA_AO_Display_Faults, Fault_Buffer);
+}
+
+on envVar envKTA_LocFun_CalABSOffsetBut
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_LocFun_CalABSOffsetBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_CALABSOFFSET;
+		TaskList();
+
+	}
+
+}
+
+on envVar envKTA_LocFun_CalAngleOffsetBut
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_LocFun_CalAngleOffsetBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_CALHALLOFFSET;
+		TaskList();
+
+	}
+
+}
+
+on envVar envKTA_LocFun_GetRawMLXBut
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_LocFun_GetRawMLXBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_GETRAWMLXDATA;
+		TaskList();
+
+	}
+
+}
+
+on envVar envKTA_LocFun_ResetAppBut
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_LocFun_ResetAppBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_RESETMODULE;
+		TaskList();
+
+	}
+
+
+
+}
+
+on envVar envKTA_LocFun_ResetSASOffsetsBut
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_LocFun_ResetSASOffsetsBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_RESETOFFSETS;
+		TaskList();
+
+	}
+
+
+}
+
+MLXRawDataDisplay (word w_RawMLX0, word w_RawMLX1, word w_ABSAngle)
+{
+//If there is a MLX error then the data will be default values//////
+//Further, the data has the addition of the Hall Offsets//////
+
+	byte b_FirstBit0 = 0;
+	byte b_FirstBit1 = 0;
+	char c_MLX0[30];
+	char c_MLX1[30];
+	char c_ABS[30];
+
+	float f_ABSAngle = 0;
+	long l_ABSAngle = 0;
+	
+	l_ABSAngle	= w_ABSAngle;
+
+	//Calculate actual angle
+	//Determine sign of Angle
+	if(l_ABSAngle > 32768)
+	{
+	//	write("Went Neg");
+		l_ABSAngle = (l_ABSAngle - 65536);
+	}
+
+	//Put into float and actual angle
+	f_ABSAngle = ((float)l_ABSAngle) / 10;
+
+	snprintf(c_MLX0, elcount(c_MLX0), "%d", w_RawMLX0);
+	putvalue(envKTA_LocFun_RawMLX0Data, c_MLX0);
+	putvalue(envKTA_LocFun_RawMLX0_Int, w_RawMLX0);
+	
+	snprintf(c_MLX1, elcount(c_MLX1), "%d", w_RawMLX1);
+	putvalue(envKTA_LocFun_RawMLX1Data, c_MLX1);
+	putvalue(envKTA_LocFun_RawMLX1_Int, w_RawMLX1);
+
+	snprintf(c_ABS, elcount(c_ABS), "%.2f", f_ABSAngle);
+	putvalue(envKTA_LocFun_ABSAngleData, c_ABS);
+	putvalue(envKTA_LocFun_ABS_Float, f_ABSAngle);
+				
+//	write("1st Bit0 = %d, 1st Bit1 = %d, MLX0 = %d,  MLX1 = %d", b_FirstBit0, b_FirstBit1, w_RawMLX0, w_RawMLX1);
+}
+
+on timer t_CyclicMLXRawData
+{
+
+
+	if(b_CyclicMLXRawDataFlag == 1)
+	{
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_GETRAWMLXDATA;
+		TaskList();
+		settimer(t_CyclicMLXRawData, T_MLXRAWDATA_TIMEOUT);
+	}
+	else
+	{
+		b_CyclicMLXRawDataFlag = 0;
+		canceltimer(t_CyclicMLXRawData);
+	}
+}
+
+on envVar envKTA_LocFun_CyclicRawMLXSW
+{
+	int SW_State;
+	SW_State = getValue(envKTA_LocFun_CyclicRawMLXSW);
+
+//	write("we are here! = %d", SW_State );
+	if((SW_State == 1) && (d_Task_Manager == 0))
+	{
+	//	write("we are here!2 = %d", SW_State );
+
+		settimer(t_CyclicMLXRawData, T_MLXRAWDATA_TIMEOUT);
+
+		b_CyclicMLXRawDataFlag = 1;
+	}
+	else
+	{
+		
+		b_CyclicMLXRawDataFlag = 0;
+		KTA_LocFun_Init();
+		canceltimer(t_CyclicMLXRawData);
+	}
+}
+
+on envVar envKTA_LocFun_SetABSOffsetBut
+{
+	int ButtonPressed;
+	float f_ABSAngle = 0;
+	float f_MinLimit = 0;
+
+	ButtonPressed = getValue(envKTA_LocFun_SetABSOffsetBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+//		write("abs reached");
+		f_ABSAngle = getValue(envKTA_LocFun_ABSAngleIn);
+
+	//	write("1 f_ABSAngle = %f", f_ABSAngle);
+
+		f_ABSAngle = f_ABSAngle * 10;//this is what we would send
+
+		f_MinLimit = -1 * ABS_MAXVALUE;
+//		write("1 f_MinLimit = %f", f_MinLimit);
+		if((f_ABSAngle > f_MinLimit)	&& (f_ABSAngle < ABS_MAXVALUE))	//Check if the request makes sense
+		{
+			d_ABSAngle = f_ABSAngle;
+
+			d_Task_Counter = 0;
+
+	//		write("d f_ABSAngle = %d", d_ABSAngle);
+			d_Task_Manager = TASK_SETABSOFFSET;
+			TaskList();
+
+		}//end of if((f_ABSAngle > f_MinLimit)	&& (f_ABSAngle < ABS_MAXVALUE))
+		else	//out of range then
+		{
+			d_ABSAngle = 0;
+			snprintf(Fault_Buffer, elcount(Fault_Buffer), "ABS is out of range (+/- 360.00");
+			putvalue(envKTA_LocFun_DisplayFaults, Fault_Buffer);
+		}
+	}
+
+
+}
+
+on envVar envKTA_LocFun_SetHallOffsetsBut
+{
+
+	int ButtonPressed;
+
+	ButtonPressed = getValue(envKTA_LocFun_SetHallOffsetsBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+	//	write("abs reached");
+		d_HallAngle0 = getValue(envKTA_LocFun_RawMLX0In);
+		d_HallAngle1 = getValue(envKTA_LocFun_RawMLX1In);
+
+//		write("1 d_HallAngle = %d. %d", d_HallAngle0, d_HallAngle1);
+
+		if( (d_HallAngle0 < HALL_MAXVALUE) && (d_HallAngle1 < HALL_MAXVALUE) )	//Check if the request makes sense
+		{
+			d_Task_Counter = 0;
+			d_Task_Manager = TASK_SETHALOFFSETS;
+			TaskList();
+
+		}//end of if((f_ABSAngle > f_MinLimit)	&& (f_ABSAngle < ABS_MAXVALUE))
+		else	//out of range then
+		{
+			d_ABSAngle = 0;
+			snprintf(Fault_Buffer, elcount(Fault_Buffer), "Hall Angle is out of range (Max = 16000)");
+			putvalue(envKTA_LocFun_DisplayFaults, Fault_Buffer);
+		}
+	}
+}
+
+on envVar envKTA_LocFun_ReadSASCalStatBut
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_LocFun_ReadSASCalStatBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_READCALSTAT;
+		TaskList();
+
+	}
+}
+
+on envVar envKTA_LocFun_ResetABSOnlyBut
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_LocFun_ResetABSOnlyBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_RESETABSOFFSET;
+		TaskList();
+
+	}
+
+}
+
+SASCalStatusDisplay (byte b_CalStatus)
+{
+	byte b_ABSCalMask = 0x04;
+	byte b_HallCalMask = 0x02;
+	byte b_ABSCal;
+	byte b_HallCal;
+
+	b_ABSCal = b_CalStatus & b_ABSCalMask;
+	b_HallCal = b_CalStatus & b_HallCalMask;
+
+
+	write ("CalStatus = %d, ABS= %d, Hall= %d", b_CalStatus, b_ABSCal,b_HallCal);
+
+	if((b_CalStatus & b_HallCalMask) > 0)
+	{
+//		write("abs = true");
+		putvalue(envKTA_LocFun_HallCalStatusData, 3);
+	}
+	else
+		putvalue(envKTA_LocFun_HallCalStatusData, 2);
+	
+	if((b_CalStatus & b_ABSCalMask) > 0)
+	{
+//		write("Hall = true");
+		putvalue(envKTA_LocFun_ABSCalStatusData, 3);
+	}
+	else 
+		putvalue(envKTA_LocFun_ABSCalStatusData, 2);
+
+}
+
+SetFault (byte b_SwitchF)
+{
+
+	if(b_SwitchF == 0)
+	{
+	//	write("resp 0");
+		snprintf(Fault_Buffer, elcount(Fault_Buffer), "");
+		putvalue(envKTA_LocFun_DisplayFaults, Fault_Buffer);
+	//	putvalue(envKTA_LocFun_FaultLight, 1);
+
+	}
+	else if(b_SwitchF == 1)
+	{
+	//	write("resp 1a");
+		snprintf(Fault_Buffer, elcount(Fault_Buffer), "We have a fault or bad condition");
+		putvalue(envKTA_LocFun_DisplayFaults, Fault_Buffer);
+		putvalue(envKTA_LocFun_FaultLight, 2);
+
+		switch(d_Task_Manager)
+		{
+
+			case TASK_RBR03_INIT:
+				putvalue(envKTA_RBR03_Init_Alarm, 2);
+				break;
+			case TASK_RBR03_CONTROL:
+				putvalue(envKTA_RBR03_Control_Alarm, 2);
+				break;
+			case TASK_RGRBacktT_Init:
+				putvalue(envKTA_RBRBackt_Init_Alarm, 2);
+				break;
+
+			default:
+				break;
+		}//end of switch(d_Task_Manager)
+
+	}
+	else if(b_SwitchF == 2)
+	{
+	//	write("resp 2");
+		snprintf(Fault_Buffer, elcount(Fault_Buffer), "");
+		putvalue(envKTA_LocFun_DisplayFaults, Fault_Buffer);
+		putvalue(envKTA_LocFun_FaultLight, 3);
+
+	}	
+
+
+}
+
+on envVar envKTA_RBR03_Init_But
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_RBR03_Init_But);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+		d_RBR_03_Flag = 1;
+
+		d_Task_Manager = TASK_RBR03_INIT;
+		TaskList();
+
+	}
+
+
+}
+
+on envVar envKTA_RBR03_Control_But
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_RBR03_Control_But);
+
+	if((ButtonPressed == 1) && ((d_Task_Manager == 0) || (d_Task_Manager == TASK_RBR03_CONTROL)))
+	{
+
+		d_Task_Manager = TASK_RBR03_CONTROL;
+		d_Task_Counter = 0;			//Reset d_Task_Counter
+		
+		if(d_RBR_03_Flag ==1)
+		{
+			if(d_RBR_03_Control == 1)
+			{
+				d_RBR_03_Control = 0;
+				//putvalue(envKTA_RBR03_Control_Alarm, 3);
+			}
+			else if(d_RBR_03_Control == 0) 
+			{
+				d_RBR_03_Control = 1;
+			
+			//	putvalue(envKTA_RBR03_Control_Alarm, 1);
+			}
+		}
+		else if(d_RBR_BackTrack_Flag ==1)
+		{
+		//	write("we are in control");
+
+			if(d_RBR_BackTrack_Control == 1)
+			{
+				d_RBR_BackTrack_Control = 0;
+				//putvalue(envKTA_RBR03_Control_Alarm, 3);
+			}
+			else if(d_RBR_03_Control == 0) 
+			{
+				d_RBR_BackTrack_Control = 1;
+			
+			//	putvalue(envKTA_RBR03_Control_Alarm, 1);
+			}
+
+		}
+		
+
+		TaskList();
+
+
+	}
+
+}
+
+RBR_03_Display (byte b_CRC, word w_RawMLX0, word w_RawMLX1, word w_ABSAngle, byte b_MSGCounter)
+{
+
+	//d_RBR_03_MSGCounter[0] = 0x0F & This.BYTE(3);	
+
+	float f_ABSAngle = 0;
+	long l_ABSAngle = 0;
+	float f_Angle = 0;
+
+	l_ABSAngle	= w_ABSAngle;
+
+	
+
+///////Calculate actual angle
+	//Determine sign of Angle
+	if(l_ABSAngle > 32768)
+	{
+	//	write("Went Neg");
+		l_ABSAngle = (l_ABSAngle - 65536);
+	}
+
+	//Put into float and actual angle
+	f_ABSAngle = ((float)l_ABSAngle) / 10;
+	putValue(envKTA_RBR03_ABS_f, f_ABSAngle);
+
+////////////////////////////////
+
+
+//////////Calculate the MLX Angles//////////////////
+	//Calculate actual angle
+	f_Angle = (((float)w_RawMLX0)*360)/16384;
+	putValue(envKTA_RBR03_MLX0_f, f_Angle);
+
+	f_Angle = (((float)w_RawMLX1)*360)/16384;
+	putValue(envKTA_RBR03_MLX1_f, f_Angle);
+////////////////////////////////////////////////////
+
+///////////MSG Counter//////////////////////////////
+	b_MSGCounterSaved[0] = b_MSGCounterSaved[0] + 1;
+	if(b_MSGCounterSaved[0] > 0x3F)
+	{
+    	b_MSGCounterSaved[0] = 0x00; /*reset the message counter to 0*/
+     }
+
+
+    if(b_RBR_03_LatchMSG_E == 0)
+    {
+        	putValue(envKTA_RBR03_MSGNO_Alarm, -2);
+    		b_RBR_03_LatchMSG_E = 1;
+    }
+    else
+    {
+         b_RBR_03_LatchMSG_E = 1;
+         if(b_MSGCounterSaved[0] != b_MSGCounter)
+         {
+             putValue(envKTA_RBR03_MSGNO_Alarm, 2);	//Display MSG Alarm as red        
+         }
+         else
+         {
+    		putValue(envKTA_RBR03_MSGNO_Alarm, -2);	//Display MSG Alarm as Green
+         }
+   
+    }
+
+	b_MSGCounterSaved[0] = b_MSGCounter;
+	putValue(envKTA_RBR03_MCountData,b_MSGCounterSaved, 1);
+//////////////////////////////////////////////////////
+
+
+//////////CRC Comparision//////////////////////////////
+
+//	write("CRC = %d, CRCCal = %d", b_CRC, d_RBR_03_CRC);
+//	write("0 = %d, 1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d",u8MsgBuffer[0],u8MsgBuffer[1],u8MsgBuffer[2],u8MsgBuffer[3],u8MsgBuffer[4],u8MsgBuffer[5]);
+
+
+
+/////////////////////////////////////////////////////
+
+
+
+
+}
+
+RBR03_CRC_Calculation ()
+{
+
+	byte crc8table[256] =
+	{
+	 0x00, 0x1D, 0x3A, 0x27, 0x74, 0x69, 0x4E, 0x53,
+	 0xE8, 0xF5, 0xD2, 0xCF, 0x9C, 0x81, 0xA6, 0xBB,
+	 0xCD, 0xD0, 0xF7, 0xEA, 0xB9, 0xA4, 0x83, 0x9E,
+	 0x25, 0x38, 0x1F, 0x02, 0x51, 0x4C, 0x6B, 0x76,
+	 0x87, 0x9A, 0xBD, 0xA0, 0xF3, 0xEE, 0xC9, 0xD4,
+	 0x6F, 0x72, 0x55, 0x48, 0x1B, 0x06, 0x21, 0x3C,
+	 0x4A, 0x57, 0x70, 0x6D, 0x3E, 0x23, 0x04, 0x19,
+	 0xA2, 0xBF, 0x98, 0x85, 0xD6, 0xCB, 0xEC, 0xF1,
+	 0x13, 0x0E, 0x29, 0x34, 0x67, 0x7A, 0x5D, 0x40,
+	 0xFB, 0xE6, 0xC1, 0xDC, 0x8F, 0x92, 0xB5, 0xA8,
+	 0xDE, 0xC3, 0xE4, 0xF9, 0xAA, 0xB7, 0x90, 0x8D,
+	 0x36, 0x2B, 0x0C, 0x11, 0x42, 0x5F, 0x78, 0x65,
+	 0x94, 0x89, 0xAE, 0xB3, 0xE0, 0xFD, 0xDA, 0xC7,
+	 0x7C, 0x61, 0x46, 0x5B, 0x08, 0x15, 0x32, 0x2F,
+	 0x59, 0x44, 0x63, 0x7E, 0x2D, 0x30, 0x17, 0x0A,
+	 0xB1, 0xAC, 0x8B, 0x96, 0xC5, 0xD8, 0xFF, 0xE2,
+	 0x26, 0x3B, 0x1C, 0x01, 0x52, 0x4F, 0x68, 0x75,
+	 0xCE, 0xD3, 0xF4, 0xE9, 0xBA, 0xA7, 0x80, 0x9D,
+	 0xEB, 0xF6, 0xD1, 0xCC, 0x9F, 0x82, 0xA5, 0xB8,
+	 0x03, 0x1E, 0x39, 0x24, 0x77, 0x6A, 0x4D, 0x50,
+	 0xA1, 0xBC, 0x9B, 0x86, 0xD5, 0xC8, 0xEF, 0xF2,
+	 0x49, 0x54, 0x73, 0x6E, 0x3D, 0x20, 0x07, 0x1A,
+	 0x6C, 0x71, 0x56, 0x4B, 0x18, 0x05, 0x22, 0x3F,
+	 0x84, 0x99, 0xBE, 0xA3, 0xF0, 0xED, 0xCA, 0xD7,
+	 0x35, 0x28, 0x0F, 0x12, 0x41, 0x5C, 0x7B, 0x66,
+	 0xDD, 0xC0, 0xE7, 0xFA, 0xA9, 0xB4, 0x93, 0x8E,
+	 0xF8, 0xE5, 0xC2, 0xDF, 0x8C, 0x91, 0xB6, 0xAB,
+	 0x10, 0x0D, 0x2A, 0x37, 0x64, 0x79, 0x5E, 0x43,
+	 0xB2, 0xAF, 0x88, 0x95, 0xC6, 0xDB, 0xFC, 0xE1,
+	 0x5A, 0x47, 0x60, 0x7D, 0x2E, 0x33, 0x14, 0x09,
+	 0x7F, 0x62, 0x45, 0x58, 0x0B, 0x16, 0x31, 0x2C,
+	 0x97, 0x8A, 0xAD, 0xB0, 0xE3, 0xFE, 0xD9, 0xC4
+	};
+
+
+
+
+	word  i;    
+	byte  crc;
+	int d_ErrorFlag = 0;
+
+	crc = 0xff;
+
+
+
+	for (i = 0;i < 6;i++) {
+
+
+		crc = crc8table[(crc ^ u8MsgBuffer[i]) & 0xFF];
+
+
+	}
+
+	d_RBR_03_CRC[0] = ~crc;
+
+	
+
+//	write("MSG CRC = %d, Cal CRC = %d", u8MsgBuffer[7], u8CRC[0]);
+
+
+
+/*	if(u8MsgBuffer[7] != u8CRC[0])
+		d_ErrorFlag = 1;	//if the CRCs don't match then set the flag
+
+	if(d_ErrorFlag == 0)
+		putValue(envKT_CRCErrorAlarm, -2);
+	else
+		putValue(envKT_CRCErrorAlarm, 2);
+
+	putValue(envKT_CRC,u8CRC, 1);*/
+}
+
+on envVar envKTA_RBR03_ResetError_But
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_RBR03_ResetError_But);
+
+	if(ButtonPressed == 1)
+	{
+		b_RBR_03_LatchMSG_E = 0;
+
+	}
+}
+
+on envVar envKTA_LocFun_GetADCBut
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_LocFun_GetADCBut);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_GETADCDATA;
+		TaskList();
+
+	}
+
+}
+
+on envVar envKTA_LocFun_CyclicADCSW
+{
+
+	int SW_State;
+	SW_State = getValue(envKTA_LocFun_CyclicADCSW);
+
+	if((SW_State == 1) && (d_Task_Manager == 0))
+	{
+
+		settimer(t_CyclicADCData, T_ADCDATA_TIMEOUT);
+
+		b_CyclicADCDataFlag = 1;
+	}
+	else
+	{
+		
+		b_CyclicADCDataFlag = 0;
+		KTA_LocFun_Init();
+		canceltimer(t_CyclicADCData);
+	}
+
+}
+
+on timer t_CyclicADCData
+{
+	if(b_CyclicADCDataFlag == 1)
+	{
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_GETADCDATA;
+		TaskList();
+		settimer(t_CyclicADCData, T_ADCDATA_TIMEOUT);
+	//	write("Timer sent and on");
+	}
+	else
+	{
+		b_CyclicADCDataFlag = 0;
+		canceltimer(t_CyclicADCData);
+	//	write("Timer sent and off");
+	}
+}
+
+on envVar envKTA_RBRBackT_Init_But
+{
+
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_RBRBackT_Init_But);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_RGRBacktT_Init;
+
+		d_RBR_BackTrack_Flag = 1;
+
+		TaskList();
+
+	}
+}
+
+on envVar envKTA_ResetAppBut_0C
+{
+	int ButtonPressed;
+	ButtonPressed = getValue(envKTA_ResetAppBut_0C);
+
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+
+		d_Task_Counter = 0;
+
+		d_Task_Manager = TASK_RESETMODULE_0C;
+		TaskList();
+
+	}
+
+}
+
+RBRBackTrackDisplay (word w_RawMLX0, word w_RawMLX1, word w_BackTrack)
+{
+//	write("we are in backtrack");
+
+//If there is a MLX error then the data will be default values//////
+//Further, the data has the addition of the Hall Offsets//////
+
+	byte b_FirstBit0 = 0;
+	byte b_FirstBit1 = 0;
+	char c_MLX0[30];
+	char c_MLX1[30];
+	char c_Backtrack[30];
+
+	float f_MLX0Angle = 0;
+	long l_MLX0Angle = 0;
+
+	float f_MLX1Angle = 0;
+	long l_MLX1Angle = 0;
+
+	float f_BackTrackAngle = 0;
+	long l_BackTrackAngle = 0;
+	
+	l_MLX0Angle = w_RawMLX0;
+	f_MLX0Angle = ((float)l_MLX0Angle) / 16384;	
+	f_MLX0Angle = f_MLX0Angle * 360;
+
+	l_MLX1Angle = w_RawMLX1;
+	f_MLX1Angle = ((float)l_MLX1Angle) / 16384;	
+	f_MLX1Angle = f_MLX1Angle * 360;
+
+	l_BackTrackAngle = w_BackTrack;
+	f_BackTrackAngle = ((float)l_BackTrackAngle) / 16384;	
+	f_BackTrackAngle = f_BackTrackAngle * 360;
+
+	snprintf(c_MLX0, elcount(c_MLX0), "%d", w_RawMLX0);
+	putvalue(envKTA_RBRBackTMLX0Data, c_MLX0);
+	putvalue(envKTA_RBRBackTMLX0Float, f_MLX0Angle);
+	
+	snprintf(c_MLX1, elcount(c_MLX1), "%d", w_RawMLX1);
+	putvalue(envKTA_RBRBackTMLX1Data, c_MLX1);
+	putvalue(envKTA_RBRBackTMLX1Float, f_MLX1Angle);
+
+	snprintf(c_Backtrack, elcount(c_Backtrack), "%d", w_BackTrack);
+	putvalue(envKTA_RBRBackTActData, c_Backtrack);
+	putvalue(envKTA_RBRBackTActFloat, f_BackTrackAngle);	
+				
+
+}
+
+on envVar envKTA_LocFun_SetMLX
+{
+    int ButtonPressed;
+    ButtonPressed = getValue(envKTA_LocFun_SetMLX);
+	if((ButtonPressed == 1) && (d_Task_Manager == 0))
+	{
+		d_Task_Counter = 0;
+        d_Task_Manager = TASK_SET_KOSTALMLX;
+		TaskList();
+	}
+
+}
+

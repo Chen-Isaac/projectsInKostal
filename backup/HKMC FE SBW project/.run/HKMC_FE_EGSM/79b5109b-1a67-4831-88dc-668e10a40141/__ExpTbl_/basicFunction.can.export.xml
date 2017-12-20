@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <enumeration name="vt7001MeasureRange" namespace="" comment="" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>507</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">all</element>
+    <element raw_value="1">_100uA_1mA</element>
+    <element raw_value="2">_1mA_10mA</element>
+    <element raw_value="3">_10mA_100mA</element>
+    <element raw_value="4">_100mA_1A</element>
+    <element raw_value="5">_1A_10A</element>
+    <element raw_value="6">_10A_100A</element>
+  </enumeration>
+  <enumeration name="currentUnit" namespace="" comment="" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>667</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">uA</element>
+    <element raw_value="1">mA</element>
+    <element raw_value="2">A</element>
+  </enumeration>
+  <enumeration name="digitalLevel" namespace="" comment="" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>58</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">Low</element>
+    <element raw_value="1">High</element>
+  </enumeration>
+  <enumeration name="demandResult" namespace="" comment="" file="D:\\Isaac\\Library\\productRelated\\productRelated.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>184</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">timeout</element>
+    <element raw_value="1">fulfillment</element>
+  </enumeration>
+  <enumeration name="determiningFactor" namespace="" comment="" file="D:\\Isaac\\Library\\productRelated\\productRelated.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>254</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">determinedBySignal</element>
+    <element raw_value="1">determinedByHardware</element>
+  </enumeration>
+  <enumeration name="stateChangeManipulate" namespace="" comment="" file="D:\\Isaac\\Library\\productRelated\\productRelated.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>346</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">init</element>
+    <element raw_value="1">byHw</element>
+    <element raw_value="2">bySig</element>
+    <element raw_value="3">byTime</element>
+    <element raw_value="4">stop</element>
+  </enumeration>
+  <enumeration name="indStat" namespace="" comment="" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1121</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">P</element>
+    <element raw_value="1">R</element>
+    <element raw_value="2">N</element>
+    <element raw_value="3">D</element>
+    <element raw_value="4">OFF</element>
+  </enumeration>
+  <function name="readSignalStatus" comment="@!Encoding:936&#xA;" signature="void readSignalStatus(signal signalToRead)" file="D:\\Isaac\\Library\\report\\report.cin">
+    <parameter name="signalToRead" type="signal" raw_type="signal" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>0</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSystemPowerSupplyInitSetting" comment="" signature="void vtSystemPowerSupplyInitSetting(vt7001Cfg vt7001Cfg)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt7001Cfg" type="unsupported" raw_type="vt7001Cfg" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1206</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSystemWithExternalPowerSupplyInitSetting" comment="" signature="void vtSystemWithExternalPowerSupplyInitSetting(vt7001Cfg vt7001Cfg)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt7001Cfg" type="unsupported" raw_type="vt7001Cfg" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2015</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSystemPowerSupplyVoltSetting" comment="" signature="void vtSystemPowerSupplyVoltSetting(vt7001Cfg vt7001Cfg, float volt)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt7001Cfg" type="unsupported" raw_type="vt7001Cfg" />
+    <parameter name="volt" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2874</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSystemExternalPowerSupplySetting" comment="" signature="void vtSystemExternalPowerSupplySetting(vt7001Cfg vt7001Cfg, float volt, float maxI, int k)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt7001Cfg" type="unsupported" raw_type="vt7001Cfg" />
+    <parameter name="volt" type="float" raw_type="float" />
+    <parameter name="maxI" type="float" raw_type="float" />
+    <parameter name="k" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>3241</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readVtSystemPowerSupplyVolt" comment="" signature="float readVtSystemPowerSupplyVolt(vt7001Cfg vt7001Cfg, float highLimitV, float lowLimitV)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <return type="float" raw_type="float" />
+    <parameter name="vt7001Cfg" type="unsupported" raw_type="vt7001Cfg" />
+    <parameter name="highLimitV" type="float" raw_type="float" />
+    <parameter name="lowLimitV" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4020</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readVtSystemPowerSupplyCurrent" comment="" signature="float readVtSystemPowerSupplyCurrent(vt7001Cfg vt7001Cfg, float highLimitA, float lowLimitA, enum vt7001MeasureRange vt7001MeasureRange, enum currentUnit currentUnit)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <return type="float" raw_type="float" />
+    <parameter name="vt7001Cfg" type="unsupported" raw_type="vt7001Cfg" />
+    <parameter name="highLimitA" type="float" raw_type="float" />
+    <parameter name="lowLimitA" type="float" raw_type="float" />
+    <parameter name="vt7001MeasureRange" type="enum vt7001MeasureRange" raw_type="vt7001MeasureRange" />
+    <parameter name="currentUnit" type="enum currentUnit" raw_type="currentUnit" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4661</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="checkProductPwmOutput" comment="" signature="void checkProductPwmOutput(vt2516Cfg vt2516Cfg, float expectedFreq, float expectedDuty)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt2516Cfg" type="unsupported" raw_type="vt2516Cfg" />
+    <parameter name="expectedFreq" type="float" raw_type="float" />
+    <parameter name="expectedDuty" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>5840</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setChannelOutputFixedVoltageAsDigitalLevel" comment="" signature="void setChannelOutputFixedVoltageAsDigitalLevel(vt2516Cfg vt2516Cfg, enum digitalLevel level)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt2516Cfg" type="unsupported" raw_type="vt2516Cfg" />
+    <parameter name="level" type="enum digitalLevel" raw_type="digitalLevel" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>6900</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setChannelOutputAnalogValue" comment="" signature="void setChannelOutputAnalogValue(vt2516Cfg vt2516Cfg, float analogValue)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt2516Cfg" type="unsupported" raw_type="vt2516Cfg" />
+    <parameter name="analogValue" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>7717</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setChannelOutputRandomVoltageAsDigitalLevel" comment="" signature="void setChannelOutputRandomVoltageAsDigitalLevel(vt2516Cfg vt2516Cfg, vLevelCfg vLevelCfg, enum digitalLevel level)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt2516Cfg" type="unsupported" raw_type="vt2516Cfg" />
+    <parameter name="vLevelCfg" type="unsupported" raw_type="vLevelCfg" />
+    <parameter name="level" type="enum digitalLevel" raw_type="digitalLevel" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>8676</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setChannelOutputPwm" comment="" signature="void setChannelOutputPwm(vt2516Cfg vt2516Cfg, pwmWaveCfg pwmWaveCfg)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="vt2516Cfg" type="unsupported" raw_type="vt2516Cfg" />
+    <parameter name="pwmWaveCfg" type="unsupported" raw_type="pwmWaveCfg" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>9048</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sendDiagCheckResp" comment="" signature="qword sendDiagCheckResp(message sendDiag, dbMessage recDiagDb, int checkByteLenFromBegin, qword correctRespContent)" file="D:\\Isaac\\Library\\Communication\\canCommunication.cin">
+    <return type="qword" raw_type="qword" />
+    <parameter name="sendDiag" type="unsupported" raw_type="message" />
+    <parameter name="recDiagDb" type="unsupported" raw_type="dbMessage" />
+    <parameter name="checkByteLenFromBegin" type="int" raw_type="int" />
+    <parameter name="correctRespContent" type="qword" raw_type="qword" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>129</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="decodeAsciiFromRecDiagThenPrint" comment="" signature="void decodeAsciiFromRecDiagThenPrint(qword recDiagContent, char reportContent[])" file="D:\\Isaac\\Library\\Communication\\canCommunication.cin">
+    <parameter name="recDiagContent" type="qword" raw_type="qword" />
+    <parameter name="reportContent" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1032</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="retrieveSubsetFromResp" comment="" signature="qword retrieveSubsetFromResp(qword recDiagContent, int offsetBytePos, int byteLen)" file="D:\\Isaac\\Library\\Communication\\canCommunication.cin">
+    <return type="qword" raw_type="qword" />
+    <parameter name="recDiagContent" type="qword" raw_type="qword" />
+    <parameter name="offsetBytePos" type="int" raw_type="int" />
+    <parameter name="byteLen" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1557</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="signalSettingAndReport" comment="" signature="void signalSettingAndReport(signal settingSignal, float value)" file="D:\\Isaac\\Library\\Communication\\canCommunication.cin">
+    <parameter name="settingSignal" type="signal" raw_type="signal" />
+    <parameter name="value" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1992</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="chkSignalUpdateResp" comment="" signature="void chkSignalUpdateResp(signal checkedSignal, specSignalUpdateResp specSignalUpdateResp)" file="D:\\Isaac\\Library\\Communication\\canCommunication.cin">
+    <parameter name="checkedSignal" type="signal" raw_type="signal" />
+    <parameter name="specSignalUpdateResp" type="unsupported" raw_type="specSignalUpdateResp" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2396</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="chkBtnPressImpactOnSpecSig" comment="" signature="void chkBtnPressImpactOnSpecSig(buttonPressOnSpecSigImpactCfg buttonPressOnSpecSigImpactCfg, signal activatedSignal, enum demandResult demandResult)" file="D:\\Isaac\\Library\\productRelated\\productRelated.cin">
+    <parameter name="buttonPressOnSpecSigImpactCfg" type="unsupported" raw_type="buttonPressOnSpecSigImpactCfg" />
+    <parameter name="activatedSignal" type="signal" raw_type="signal" />
+    <parameter name="demandResult" type="enum demandResult" raw_type="demandResult" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1028</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sigOrientTwoStatInputSetting" comment="" signature="void sigOrientTwoStatInputSetting(sigOrientTwoStatInputCfg inputCfg, signal inputSignal, enum determiningFactor dFct, enum digitalLevel level)" file="D:\\Isaac\\Library\\productRelated\\productRelated.cin">
+    <parameter name="inputCfg" type="unsupported" raw_type="sigOrientTwoStatInputCfg" />
+    <parameter name="inputSignal" type="signal" raw_type="signal" />
+    <parameter name="dFct" type="enum determiningFactor" raw_type="determiningFactor" />
+    <parameter name="level" type="enum digitalLevel" raw_type="digitalLevel" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2899</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sigOrientMultiStatInputSetting" comment="" signature="void sigOrientMultiStatInputSetting(sigOrientMultiStatInputCfg specStatInputCfg, signal inputSignal, enum determiningFactor dFct)" file="D:\\Isaac\\Library\\productRelated\\productRelated.cin">
+    <parameter name="specStatInputCfg" type="unsupported" raw_type="sigOrientMultiStatInputCfg" />
+    <parameter name="inputSignal" type="signal" raw_type="signal" />
+    <parameter name="dFct" type="enum determiningFactor" raw_type="determiningFactor" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>3655</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="stateMachine" comment="" signature="void stateMachine(enum stateChangeManipulate path[])" file="D:\\Isaac\\Library\\productRelated\\productRelated.cin">
+    <parameter name="path" type="enum stateChangeManipulate" raw_type="stateChangeManipulate[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4915</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="enterKostia" comment="" signature="void enterKostia()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2209</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="fromIgnOnModeToNWashMode" comment="" signature="void fromIgnOnModeToNWashMode()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2430</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="fromIgnOnModeToNParkMode" comment="" signature="void fromIgnOnModeToNParkMode()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2668</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="fromIgnOffModeToSilenceMode" comment="" signature="void fromIgnOffModeToSilenceMode(int drvDrSwSigVal)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="drvDrSwSigVal" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2906</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="fromSilenceModeToIgnOnMode" comment="" signature="void fromSilenceModeToIgnOnMode(int decideBySignalBool)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="decideBySignalBool" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>3239</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="fromInitModeToSilenceMode" comment="" signature="void fromInitModeToSilenceMode(int drvDrSwSigVal, int wayNo)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="drvDrSwSigVal" type="int" raw_type="int" />
+    <parameter name="wayNo" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>3445</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="fromSilenceModeToSleepMode" comment="" signature="void fromSilenceModeToSleepMode(int wayNo)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="wayNo" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4280</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="shutdownPowerAndEnterInitMode" comment="" signature="void shutdownPowerAndEnterInitMode(float volt)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="volt" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>6168</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setInput_b_ILLStatus" comment="" signature="void setInput_b_ILLStatus(int status, int setOnMode, int setClearMode)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="status" type="int" raw_type="int" />
+    <parameter name="setOnMode" type="int" raw_type="int" />
+    <parameter name="setClearMode" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>6570</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <testcase name="tryIni" comment="" signature="testcase tryIni()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>8083</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="powerOn" comment="" signature="testcase powerOn()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>8538</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="powerOff" comment="" signature="testcase powerOff()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>8783</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="initProduct" comment="" signature="testcase initProduct()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>8977</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="readSwVer" comment="" signature="testcase readSwVer()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>9236</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="oneTimeOneButtonFunctionCheck" comment="" signature="testcase oneTimeOneButtonFunctionCheck(int oneButtonPressMode, int ignValueLevel)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="oneButtonPressMode" type="int" raw_type="int" />
+    <parameter name="ignValueLevel" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>9912</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="oneTimeTwoButtonFunctionCheck" comment="" signature="testcase oneTimeTwoButtonFunctionCheck(int twoButtonPressMode, int ignValueLevel)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="twoButtonPressMode" type="int" raw_type="int" />
+    <parameter name="ignValueLevel" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>14457</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testIndicatorControlFunctionStateChart" comment="" signature="testcase testIndicatorControlFunctionStateChart(int setOnMode, int setClearMode)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="setOnMode" type="int" raw_type="int" />
+    <parameter name="setClearMode" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>36015</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testHighLightIndicatorBehavior" comment="" signature="testcase testHighLightIndicatorBehavior(enum indStat indStat, int decideBySignalBool)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="indStat" type="enum indStat" raw_type="indStat" />
+    <parameter name="decideBySignalBool" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>36376</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow1" comment="" signature="testcase testRheostatLevelRow1(int dentDecideBySignalBool)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="dentDecideBySignalBool" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>38245</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow2" comment="" signature="testcase testRheostatLevelRow2(int dentDecideBySignalBool)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="dentDecideBySignalBool" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>39114</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow3_4" comment="" signature="testcase testRheostatLevelRow3_4()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>39983</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow5_6" comment="" signature="testcase testRheostatLevelRow5_6()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>41016</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow7" comment="" signature="testcase testRheostatLevelRow7(int dentDecideBySignalBool)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="dentDecideBySignalBool" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>42051</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow8_9" comment="" signature="testcase testRheostatLevelRow8_9()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>42918</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow10" comment="" signature="testcase testRheostatLevelRow10(int dentDecideBySignalBool)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="dentDecideBySignalBool" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>43948</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow11" comment="" signature="testcase testRheostatLevelRow11(int dentDecideBySignalBool)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="dentDecideBySignalBool" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>44825</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow12_13" comment="" signature="testcase testRheostatLevelRow12_13()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>45703</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow14_15" comment="" signature="testcase testRheostatLevelRow14_15()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>46739</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow16" comment="" signature="testcase testRheostatLevelRow16(int dentDecideBySignalBool)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="dentDecideBySignalBool" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>47776</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="testRheostatLevelRow17_18" comment="" signature="testcase testRheostatLevelRow17_18()" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>48662</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="checkOperationModeChangeFromIgnOnModeToInitModeToSilenceModeToSleep" comment="" signature="testcase checkOperationModeChangeFromIgnOnModeToInitModeToSilenceModeToSleep(int routeNo, int fromSilenceModeToSleepModeWayNo)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="routeNo" type="int" raw_type="int" />
+    <parameter name="fromSilenceModeToSleepModeWayNo" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>50151</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="checkOperationModeChangeFromIgnOnModeToNWashModeToSilenceModeToSleep" comment="" signature="testcase checkOperationModeChangeFromIgnOnModeToNWashModeToSilenceModeToSleep(int drvDrSwSigVal, int throughNParkToSilenceBool, int fromSilenceModeToSleepModeWayNo)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="drvDrSwSigVal" type="int" raw_type="int" />
+    <parameter name="throughNParkToSilenceBool" type="int" raw_type="int" />
+    <parameter name="fromSilenceModeToSleepModeWayNo" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>51363</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="checkOperationModeChangeFromIgnOnModeToNParkModeToSilenceModeToSleep" comment="" signature="testcase checkOperationModeChangeFromIgnOnModeToNParkModeToSilenceModeToSleep(int drvDrSwSigVal, int fromSilenceModeToSleepModeWayNo)" file="D:\Isaac\HKMC FE SBW project\HKMC FE SBW\basicFunction.can">
+    <parameter name="drvDrSwSigVal" type="int" raw_type="int" />
+    <parameter name="fromSilenceModeToSleepModeWayNo" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>52338</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+</tclibrary>

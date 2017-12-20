@@ -1,0 +1,584 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  char CANOE_Init = 0;
+  char CANE_Init_Cnt = 2;
+  char LastValueRollingCounter = 0;
+  double LastMsgTimeStamp;
+  float MaxInterTime;
+  float MinInterTime;
+  float AvgInterTime;
+  
+//  dword MaxInterTime;
+//  dword MinInterTime;
+//  dword AvgInterTime;
+  
+  char InitReq_ChecksumValidation = 0;
+  char InitReq_RollingCounterValidation = 0;
+  char InitReq_IntervalTimeValidation = 0;
+  char MessageBuff[8];
+  
+  word ErrCounter = 0;
+  char PNStat_Init = 0;
+  char UlkButStat_Init = 0;
+  char PosInf_Init = 0;
+  char InitReq_ErrCounter = 0;
+  char PosInf_Val;
+  
+  const PNSTAT_CYCLE_TIME = 500;
+  mstimer tPnStat;
+  
+  const ULKBUTTAT_CYCLE_TIME = 500;
+  mstimer tUlkButStat;
+  
+  const POSINF_CYCLE_TIME = 500;
+  mstimer tPosInf;
+  
+      /* "CF_Lvr_GearInf" signal coding */
+      const LVR_GER_INF_PRA_P_POS  = 0x00;
+      const LVR_GER_INF_IND_PRA_FAULT  = 0x03;
+      const LVR_GER_INF_PRA_NOT_P_POS  = 0x06;
+      const LVR_GER_INF_INIT  = 0x09;
+  
+      /* "CF_Lvr_PNStat" signal coding */
+      const LVR_PNSTAT_INIT = 0x00;
+      const LVR_PNSTAT_PARK_STAT = 0x01;
+      const LVR_PNSTAT_NOT_PARK_STAT = 0x02;
+      const LVR_PNSTAT_NO_DISP = 0x03;
+  
+      /* "CF_Lvr_UlkButStat" signal coding */
+      const LVR_ULKBUTSTAT_NOTSUPPORT = 0x00;
+      const LVR_ULKBUTSTAT_SAFEBUT_OFF = 0x01;
+      const LVR_ULKBUTSTAT_SAFEBUT_ON = 0x02;
+      const LVR_ULKBUTSTAT_FAULT = 0x03;
+  
+      /* "CF_Lvr_WarnSnd" signal coding */
+      const LVR_WARNSND_NOT_ACT = 0x00;
+      const LVR_WARNSND_ACT = 0x01;
+  
+      /* "CF_Lvr_PosInf" signal coding */
+        const LVR_POS_INF_INIT  = 0x00;
+        const LVR_POS_INF_P     = 0x01;
+        const LVR_POS_INF_P_R     = 0x02;
+        const LVR_POS_INF_R     = 0x03;
+        const LVR_POS_INF_R_N     = 0x04;
+        const LVR_POS_INF_N     = 0x05;
+        const LVR_POS_INF_N_D     = 0x06;
+        const LVR_POS_INF_D     = 0x07;
+        const LVR_POS_INF_NR    = 0x08;
+        const LVR_POS_INF_ND    = 0x09;
+        const LVR_POS_INF_M     = 0x0A;
+        const LVR_POS_INF_M_P   = 0x0B;
+        const LVR_POS_INF_M_M   = 0x0C;
+        const LVR_POS_INF_ERR   = 0x0F;
+  
+       /* Reverse masks for "CF_Lvr_PosCpl" signal  */
+        const LVR_POSCPL_REVERSE_MASK_0  = 0x00;
+        const LVR_POSCPL_REVERSE_MASK_1  = 0x01;
+        const LVR_POSCPL_REVERSE_MASK_2  = 0x02;
+        const LVR_POSCPL_REVERSE_MASK_3  = 0x03;
+        const LVR_POSCPL_REVERSE_MASK_4  = 0x04;
+        const LVR_POSCPL_REVERSE_MASK_5  = 0x05;
+        const LVR_POSCPL_REVERSE_MASK_6  = 0x06;
+        const LVR_POSCPL_REVERSE_MASK_7  = 0x07;
+        const LVR_POSCPL_REVERSE_MASK_8  = 0x08;
+        const LVR_POSCPL_REVERSE_MASK_9  = 0x09;
+        const LVR_POSCPL_REVERSE_MASK_A  = 0x0A;
+        const LVR_POSCPL_REVERSE_MASK_B  = 0x0B;
+        const LVR_POSCPL_REVERSE_MASK_C  = 0x0C;
+        const LVR_POSCPL_REVERSE_MASK_D  = 0x0D;
+        const LVR_POSCPL_REVERSE_MASK_E  = 0x0E;
+        const LVR_POSCPL_REVERSE_MASK_F  = 0x0F;
+  
+        /* "CF_Lvr_ShtErrInf" signal coding */
+        const LVR_SHTERRINF_NO_ERROR = 0x000000;
+  
+        /* "CF_Lvr_ShtLkStat" signal coding */
+        const LVR_SHTLKSTAT_NO_ERROR = 0x00;
+
+}
+
+on envVar envValidationErrorClear
+{
+  int ButtonPressed;
+  
+  ButtonPressed = getvalue(envValidationErrorClear);
+  
+  if( ButtonPressed == 1 ) {
+    InitReq_ChecksumValidation = 1;
+    InitReq_RollingCounterValidation = 1;
+    InitReq_ErrCounter = 1;
+    InitReq_IntervalTimeValidation = 1;
+    ErrCounter = 0;
+  }
+}
+//on envVar envErrCounterClear
+//{
+//  int ButtonPressed;
+//  
+//  ButtonPressed = getvalue(envErrCounterClear);
+//  
+//  if( ButtonPressed == 1 ) {
+//    InitReq_ErrCounter = 1;
+//  }
+//}
+
+on envVar envIntervalTimeSummayClear
+{
+  int ButtonPressed;
+  
+  ButtonPressed = getvalue(envIntervalTimeSummayClear);
+  
+  if( ButtonPressed == 1 ) {
+    InitReq_IntervalTimeValidation = 1;
+  }
+}
+
+on start
+{
+  settimer(tPnStat, PNSTAT_CYCLE_TIME);
+  settimer(tUlkButStat, ULKBUTTAT_CYCLE_TIME);
+  settimer(tPosInf, POSINF_CYCLE_TIME);
+  write("In on start timer");
+  
+}
+
+on timer tPnStat
+{
+  canceltimer(tPnStat);
+  PNStat_Init = 1;
+  write("In On timer of PNStat");
+  write("PNStat = %X",PNStat_Init);
+}
+on timer tUlkButStat
+{
+  canceltimer(tUlkButStat);
+  UlkButStat_Init = 1;
+}
+on timer tPosInf
+{
+  canceltimer(tPosInf);
+  PosInf_Init = 1;
+  
+}
+on message LVR11
+{
+  char index;
+  char ChkSumVar;
+  float CurrentMsgTimeStamp;
+  float tempVal;
+  char CurrRollingCounter;
+  char CurrChecksum;
+  
+  char ErrConfirmed = 0;
+  char CurrNWStatus;
+  char CurrNFnStat;
+  char CurrBkeAct;
+  char CurrGearInf;
+  char CurrPNStat;
+  char CurrUlkButStat;
+  char CurrPosInf;
+  dword CurrShtErrInf;
+  char CurrWarnSnd;
+  char CurrShtLkStat;
+  
+  long tm[9];
+  
+  //CurrentMsgTimeStamp = This.time;
+  CurrentMsgTimeStamp = timeNow()/100.0;
+  CurrRollingCounter = this.CF_Lvr_AC;
+  CurrChecksum = this.CF_Lvr_CS;
+  
+  CurrNWStatus = this.CF_Lvr_NWStatus;
+  CurrNFnStat = this.CF_Lvr_NFnStat;
+  CurrBkeAct = this.CF_Lvr_BkeAct;
+  
+  CurrGearInf = this.CF_Lvr_GearInf;
+  CurrPNStat = this.CF_Lvr_PNStat;
+  CurrUlkButStat = this.CF_Lvr_UlkButStat;
+  CurrPosInf = this.CF_Lvr_PosInf;
+  CurrShtErrInf = this.CF_Lvr_ShfErrInf;
+  CurrWarnSnd = this.CF_Lvr_WarnSnd;
+  CurrShtLkStat = this.CF_Lvr_ShtLkStat;
+  
+   // Initialization
+  if( CANOE_Init == 0 ) {
+    RollingCounterValidation_Init();
+    // Synchronous Rolling Counter when CANOE startup
+    if( CurrRollingCounter == 0 ) {
+      LastValueRollingCounter = 15;
+    } else {
+      LastValueRollingCounter = CurrRollingCounter - 1;
+    }
+    ChecksumValidation_Init();
+    IntervalTimer_Init();
+    ErrCounter_Init();
+    CANOE_Init = 1;
+  }
+  
+  // Checksum Init Request
+  if( InitReq_ChecksumValidation ) {
+    InitReq_ChecksumValidation = 0;
+    ChecksumValidation_Init();
+  }
+  
+  // Rolling Counter Init Request
+  if( InitReq_RollingCounterValidation ) {
+    InitReq_RollingCounterValidation = 0;
+    // Synchronous Rolling Counter when CANOE startup
+    if( CurrRollingCounter == 0 ) {
+      LastValueRollingCounter = 15;
+    } else {
+      LastValueRollingCounter = CurrRollingCounter - 1;
+    }
+    RollingCounterValidation_Init();
+  }
+  
+  // IntervalTime Init Request
+  if( InitReq_IntervalTimeValidation ) {
+    InitReq_IntervalTimeValidation = 0;
+    IntervalTimer_Init();
+  }
+  
+   // Error Counter Init Request
+  if( InitReq_ErrCounter ) {
+    InitReq_ErrCounter = 0;
+    //ErrCounter = 0;
+    ErrCounter_Init();
+  }
+  
+  // Checksum Judgement
+  ChkSumVar = 0;
+  for(index=0;index<7;index++) {
+    MessageBuff[index] = this.Byte(index);
+  }
+  
+  ChkSumVar = ChecksumSimulation();
+  
+  //if( @envChecksumIndication != 2 ) {
+    if( ChkSumVar == CurrChecksum ) {
+      putvalue(envChecksumValidation, "OK");
+      putvalue(envChecksumIndication, 1);
+    } else {
+      write("AC = %X",this.CF_Lvr_AC);
+      write("CS = %X",this.CF_Lvr_CS);
+      write("ChkSumVar = %X", ChkSumVar);
+      write("");
+      ErrConfirmed = 1;
+      putvalue(envChecksumValidation, "Checksum Error");
+      putvalue(envChecksumIndication, 2);
+    }
+  //}
+  
+  // RollingCounter Judgement
+  if( getvalue(envRollingCounterIndication) != 2 ) {
+    if( CurrRollingCounter < 16 ) {
+      if( LastValueRollingCounter == 15 ) {
+        if( CurrRollingCounter == 0 ) {
+          LastValueRollingCounter = 0;
+          putvalue(envRollingCounterIndication, 1);
+          putvalue(envRollingCounterValidation, "OK");
+          //InitReq_RollingCounterValidation = 1;
+        } else {
+          //LastValueRollingCounter = 255;
+          LastValueRollingCounter = CurrRollingCounter;
+          putvalue(envRollingCounterIndication, 2);
+          putvalue(envRollingCounterValidation, "Rolling Counter Error");
+          ErrConfirmed = 1;
+          write("In Rolling counter error 1");
+          InitReq_RollingCounterValidation = 1;;
+        }
+      } else if( LastValueRollingCounter < 15 ) {
+        if( (LastValueRollingCounter+1) == CurrRollingCounter ) {
+          LastValueRollingCounter += 1;
+          putvalue(envRollingCounterIndication, 1);
+          putvalue(envRollingCounterValidation, "OK");
+        } else {
+          //LastValueRollingCounter = 255;
+          LastValueRollingCounter = CurrRollingCounter;
+          putvalue(envRollingCounterIndication, 2);
+          putvalue(envRollingCounterValidation, "Rolling Counter Error");
+          ErrConfirmed = 1;
+          write("In Rolling counter error 2");
+          InitReq_RollingCounterValidation = 1;;
+        }
+      } else {
+        //LastValueRollingCounter = 255;
+        LastValueRollingCounter = CurrRollingCounter;
+        putvalue(envRollingCounterIndication, 2);
+        putvalue(envRollingCounterValidation, "Rolling Counter Error");
+        ErrConfirmed = 1;
+        write("In Rolling counter error 3");
+        InitReq_RollingCounterValidation = 1;;
+      }
+    } else {
+      //LastValueRollingCounter = 255;
+      LastValueRollingCounter = CurrRollingCounter;
+      putvalue(envRollingCounterIndication, 2);
+      putvalue(envRollingCounterValidation, "Rolling Counter Error");
+      ErrConfirmed = 1;
+      write("In Rolling counter error 4");
+      InitReq_RollingCounterValidation = 1;;
+    }
+  }
+  
+  //CANOE_Init = 1;
+  
+//  // NWStatus Judgement
+//  if(CurrNWStatus == 1){
+//    ErrConfirmed = 1;
+//  }
+//  // NFnStatus Judgement
+//  if(CurrNFnStat == 1){
+//    ErrConfirmed = 1;
+//  }
+//  // BkeAct Judgement
+//  if(CurrBkeAct == 1){
+//    ErrConfirmed = 1;
+//  }
+  
+  // Gear Information error Judgement
+  if((CurrGearInf == LVR_GER_INF_PRA_P_POS) || (CurrGearInf == LVR_GER_INF_PRA_NOT_P_POS) || (CurrGearInf == LVR_GER_INF_INIT)){
+     /* do nothing */
+  }
+  else{
+    ErrConfirmed = 1;
+    write("In Gear select Information error");
+  }
+  
+  // PNStat error Judgement
+  if((PNStat_Init == 0) && (CurrPNStat == LVR_PNSTAT_INIT || CurrPNStat == LVR_PNSTAT_PARK_STAT || CurrPNStat == LVR_PNSTAT_NOT_PARK_STAT)){
+    /* do nothing */
+    //write("In PNStat not error before 500ms");
+    write("PNStat = %X", PNStat_Init);
+  }
+  else if((CurrPNStat == LVR_PNSTAT_INIT) && (PNStat_Init == 1)){
+    ErrConfirmed = 1;
+    write("In PNStat error afetr 500ms");
+  }
+  else if(CurrPNStat == LVR_PNSTAT_NO_DISP){
+    ErrConfirmed = 1;
+    write("In PNStat error");
+  }
+  
+  // Unlock Button Status error Judgement
+  if((UlkButStat_Init == 0) && (CurrUlkButStat == LVR_ULKBUTSTAT_NOTSUPPORT || CurrUlkButStat == LVR_ULKBUTSTAT_SAFEBUT_OFF || CurrUlkButStat == LVR_ULKBUTSTAT_SAFEBUT_ON)){
+    /* do nothing */
+  }
+  else if((CurrUlkButStat == LVR_ULKBUTSTAT_NOTSUPPORT) && (UlkButStat_Init == 1)){
+    ErrConfirmed = 1;
+    write("In UlkButStat error afetr 500ms");
+  }
+  else if(CurrUlkButStat == LVR_ULKBUTSTAT_FAULT){
+    ErrConfirmed = 1;
+    write("In UlkButStat error");
+  }
+  
+  // Position information error judgement
+  if((PosInf_Init == 0) && (CurrPosInf == LVR_POS_INF_INIT || CurrPosInf == LVR_POS_INF_P || CurrPosInf == LVR_POS_INF_R || CurrPosInf == LVR_POS_INF_D || CurrPosInf == LVR_POS_INF_NR || CurrPosInf == LVR_POS_INF_ND)){
+    /* do nothing */
+  }
+  else if((CurrPosInf == LVR_POS_INF_INIT) && (PosInf_Init == 1)){
+    ErrConfirmed = 1;
+    write("In PosInf error afetr 500ms");
+  }
+  else if((CurrPosInf == LVR_POS_INF_P_R) || (CurrPosInf == LVR_POS_INF_R_N) || (CurrPosInf == LVR_POS_INF_N) || (CurrPosInf == LVR_POS_INF_N_D)){
+    write("In PosInf error before reverse mask");
+    PosInf_Val = CurrPosInf;
+    PosInf_Val = Reverse_Mask(PosInf_Val);
+    if((PosInf_Val == LVR_POSCPL_REVERSE_MASK_D) || (PosInf_Val == LVR_POSCPL_REVERSE_MASK_B) || (PosInf_Val == LVR_POSCPL_REVERSE_MASK_A) || (PosInf_Val == LVR_POSCPL_REVERSE_MASK_9)){
+      ErrConfirmed = 1;
+      write("In PosInf error after reverse mask too");
+    }
+  }
+  else if((CurrPosInf == LVR_POS_INF_M) || (CurrPosInf == LVR_POS_INF_M_P) || (CurrPosInf == LVR_POS_INF_M_M) || (CurrPosInf == LVR_POS_INF_ERR)){
+    PosInf_Val = CurrPosInf;
+    PosInf_Val = Reverse_Mask(PosInf_Val);
+    if((PosInf_Val == LVR_POSCPL_REVERSE_MASK_5) || (PosInf_Val == LVR_POSCPL_REVERSE_MASK_4) || (PosInf_Val == LVR_POSCPL_REVERSE_MASK_3) || (PosInf_Val == LVR_POSCPL_REVERSE_MASK_0)){
+      ErrConfirmed = 1;
+      write("In PosInf error after reverse mask too");
+    }
+  }
+  
+  //ShtErrInf error judgement
+  if(CurrShtErrInf == LVR_SHTERRINF_NO_ERROR){
+    /* do nothing */
+  }
+  else{
+    ErrConfirmed = 1;
+    write("In ShtErrInf error");
+  }
+  
+  // Warn sound error judgement
+  if(CurrWarnSnd == LVR_WARNSND_ACT){
+    ErrConfirmed = 1;
+    write("In WarnSnd error");
+  }
+  
+  // Shift Lock status error judgement
+  if(CurrShtLkStat == LVR_SHTLKSTAT_NO_ERROR){
+    /* do nothing */
+  }
+  else{
+    ErrConfirmed = 1;
+    write("In ShtLkStat error");
+  }
+  
+  if(1 == ErrConfirmed){
+    ErrCounter++;
+    putValue(envErrCounter, ErrCounter);
+    putvalue(envErrCounterIndication, 2);
+    write("In Error Counter increament");
+    ErrConfirmed = 0;
+  }
+//  else{
+//    ErrCounter = 0;
+//  }
+  
+  // Message Interval Summary
+  if( CANE_Init_Cnt == 0 ) {
+    tempVal = CurrentMsgTimeStamp - LastMsgTimeStamp;
+    
+    if(tempVal < 10000) {
+      if( tempVal > MaxInterTime ) {
+        MaxInterTime = tempVal;
+        //MaxInterTime = _floor(MaxInterTime);
+        write(" In MaxInterTime = %f", MaxInterTime);
+        getLocalTime(tm);
+        write(" Sec = %d", tm[0]);
+        write(" Min = %d", tm[1]);
+        write(" Hr = %d", tm[2]);
+        write(" Date = %d", tm[3]);
+        write(" Month = %d", tm[4]);
+        write(" Year = %d", tm[5]);
+//        write(" In Time at this point = %x", tm[6]);
+//        write(" In Time at this point = %x", tm[7]);
+//        write(" In Time at this point = %x", tm[8]);
+      }
+
+      if( tempVal < MinInterTime ) {
+        MinInterTime = tempVal;
+        //MinInterTime = _floor(MinInterTime);
+        write(" In MinInterTime = %f", MinInterTime);
+        getLocalTime(tm);
+        write(" Sec = %d", tm[0]);
+        write(" Min = %d", tm[1]);
+        write(" Hr = %d", tm[2]);
+        write(" Date = %d", tm[3]);
+        write(" Month = %d", tm[4]);
+        write(" Year = %d", tm[5]);
+      }
+    }
+    
+    AvgInterTime = (MinInterTime+MaxInterTime)/2;
+    //AvgInterTime = _floor(AvgInterTime);
+    write(" In AvgInterTime = %f", AvgInterTime);
+     getLocalTime(tm);
+        write(" Sec = %d", tm[0]);
+        write(" Min = %d", tm[1]);
+        write(" Hr = %d", tm[2]);
+        write(" Date = %d", tm[3]);
+        write(" Month = %d", tm[4]);
+        write(" Year = %d", tm[5]);
+    
+    putvalue( evnIntervalTimeMin, MinInterTime );
+    putvalue( envIntervalTimeMax, MaxInterTime );
+    putvalue( envIntervalTimeAvg, AvgInterTime);
+  } else {
+    CANE_Init_Cnt--; 
+  }
+  
+  LastMsgTimeStamp = CurrentMsgTimeStamp;
+
+}
+
+
+
+void IlluminationSimulator(void)
+{
+
+}
+
+char ChecksumSimulation(void)
+{
+  char tmpVal;
+  char tmpChar;
+	int LB_Checksum = 0;
+  int MB_Checksum = 0;
+  char ind;
+  
+  LB_Checksum = 0x00;
+  MB_Checksum = 0x00;
+  
+  for( ind=0; ind<7; ind++ ) {
+    tmpChar = MessageBuff[ind] & 0x0F;
+    LB_Checksum = ( LB_Checksum + tmpChar ) & 0x0F ;
+    //write( "LB_Checksum = %X", LB_Checksum );
+  }
+
+  for( ind=0; ind<6; ind++) {
+    tmpChar = ( MessageBuff[ind] & 0xF0 ) >> 4;
+    MB_Checksum = ( MB_Checksum + tmpChar ) & 0x0F;
+    //write( "MB_Checksum = %X", MB_Checksum );
+  }
+  
+  tmpVal = ( 0x10 - ( ( LB_Checksum + MB_Checksum ) & 0x0F ) ) & 0x0F;
+  
+  return tmpVal;
+}
+
+void RollingCounterValidation_Init(void)
+{
+  putvalue(envRollingCounterIndication, 0);
+  putvalue(envRollingCounterValidation, "");
+}
+
+void ChecksumValidation_Init(void)
+{
+  putvalue(envChecksumValidation, "");
+  putvalue(envChecksumIndication, 0);
+}
+
+void ErrCounter_Init(void)
+{
+  putvalue(envErrCounter, 0);
+  putvalue(envErrCounterIndication, 0);
+}
+
+char GetLSB( char varByte )
+{
+	char tmpVal;
+  
+  tmpVal = varByte & 0x0F;
+  
+  return tmpVal;
+}
+
+char GetMSB( char varByte )
+{
+	char tmpVal;
+  
+  tmpVal = varByte / 0x10;
+  
+  return tmpVal;
+}
+
+char Reverse_Mask(char varReverse)
+{
+  char invmask;
+  invmask = varReverse ^ 0x0F;
+  
+  write("inverse mask = %X",invmask);
+  return invmask;
+}
+
+void IntervalTimer_Init(void)
+{
+    MaxInterTime = 0;
+    MinInterTime = 65535;
+}

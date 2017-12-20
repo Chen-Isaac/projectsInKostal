@@ -1,0 +1,579 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="AD Port">
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl24" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl24</Property>
+      <Property Name="Size">137, 23</Property>
+      <Property Name="Location">11, 415</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">LED_N</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">43, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_LEC_N;1;;;-1</Property>
+      <Property Name="TabIndex">9</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl23" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl23</Property>
+      <Property Name="Size">138, 23</Property>
+      <Property Name="Location">172, 415</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">LED_D</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">42, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_LEC_D;1;;;-1</Property>
+      <Property Name="TabIndex">8</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl22" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl22</Property>
+      <Property Name="Size">137, 23</Property>
+      <Property Name="Location">173, 383</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">LED_R</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">41, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_LEC_R;1;;;-1</Property>
+      <Property Name="TabIndex">7</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl21" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl21</Property>
+      <Property Name="Size">134, 23</Property>
+      <Property Name="Location">14, 383</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">LED_P</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">40, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_LEC_P;1;;;-1</Property>
+      <Property Name="TabIndex">6</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl16" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl16</Property>
+      <Property Name="Size">134, 23</Property>
+      <Property Name="Location">14, 478</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">Detent</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">45, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_Detent;1;;;-1</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl17" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl17</Property>
+      <Property Name="Size">136, 23</Property>
+      <Property Name="Location">174, 478</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">IGN</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">27, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_IGN;1;;;-1</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl20" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl20</Property>
+      <Property Name="Size">136, 23</Property>
+      <Property Name="Location">174, 509</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">L/RHD</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">43, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_VCC;1;;;-1</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl19" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl19</Property>
+      <Property Name="Size">136, 23</Property>
+      <Property Name="Location">174, 446</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">BAT</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">28, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_VBAT;1;;;-1</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl18" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl18</Property>
+      <Property Name="Size">134, 23</Property>
+      <Property Name="Location">14, 509</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">KL30</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">33, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_KL30;1;;;-1</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl15" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl15</Property>
+      <Property Name="Size">134, 23</Property>
+      <Property Name="Location">14, 446</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Symbolic</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionText">ACC</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+      <Property Name="DescriptionSize">30, 25</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_ACC;1;;;-1</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl4" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl10" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl10</Property>
+        <Property Name="Size">136, 23</Property>
+        <Property Name="Location">4, 19</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">D_1</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">27, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_D1;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl11" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl11</Property>
+        <Property Name="Size">136, 23</Property>
+        <Property Name="Location">4, 51</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">D_2</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">27, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_D2;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl12" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl12</Property>
+        <Property Name="Size">136, 23</Property>
+        <Property Name="Location">4, 82</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">D_3</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">27, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_D3;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl4</Property>
+      <Property Name="Size">152, 121</Property>
+      <Property Name="Location">170, 191</Property>
+      <Property Name="Text">D</Property>
+      <Property Name="TabIndex">3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl5" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl13" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl13</Property>
+        <Property Name="Size">136, 23</Property>
+        <Property Name="Location">4, 22</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">PR_1</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">33, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_PR1;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl14" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl14</Property>
+        <Property Name="Size">136, 23</Property>
+        <Property Name="Location">166, 19</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">PR_2</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">33, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_PR2;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl5</Property>
+      <Property Name="Size">314, 58</Property>
+      <Property Name="Location">8, 318</Property>
+      <Property Name="Text">P-Release</Property>
+      <Property Name="TabIndex">4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl7" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl7</Property>
+        <Property Name="Size">136, 23</Property>
+        <Property Name="Location">4, 18</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">N_1</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">27, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_N1;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl8" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl8</Property>
+        <Property Name="Size">136, 23</Property>
+        <Property Name="Location">4, 50</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">N_2</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">27, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_N2;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl9" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl9</Property>
+        <Property Name="Size">136, 23</Property>
+        <Property Name="Location">4, 81</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">N_3</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">27, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_N3;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl3</Property>
+      <Property Name="Size">154, 121</Property>
+      <Property Name="Location">8, 191</Property>
+      <Property Name="Text">N</Property>
+      <Property Name="TabIndex">4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl4" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl4</Property>
+        <Property Name="Size">134, 23</Property>
+        <Property Name="Location">6, 21</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">R_1</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">25, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_R1;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl5" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl5</Property>
+        <Property Name="Size">134, 23</Property>
+        <Property Name="Location">6, 51</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">R_2</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">25, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_R2;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl6" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl6</Property>
+        <Property Name="Size">134, 23</Property>
+        <Property Name="Location">6, 82</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">R_3</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">25, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_R3;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">154, 121</Property>
+      <Property Name="Location">170, 60</Property>
+      <Property Name="Text">R</Property>
+      <Property Name="TabIndex">3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl1</Property>
+        <Property Name="Size">134, 23</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">P_1</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">25, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_P1;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl2</Property>
+        <Property Name="Size">134, 23</Property>
+        <Property Name="Location">6, 52</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">P_2</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">25, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_P2;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl3" Children="Controls" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl3</Property>
+        <Property Name="Size">134, 23</Property>
+        <Property Name="Location">6, 83</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="ValueDisplay">Symbolic</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="BoxFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmUpperFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+        <Property Name="DisplayLabel">Left</Property>
+        <Property Name="TextFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionText">P_3</Property>
+        <Property Name="AlarmLowerFont">Microsoft YaHei, 9pt</Property>
+        <Property Name="DescriptionSize">25, 25</Property>
+        <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTAr_AD_P3;1;;;-1</Property>
+        <Property Name="TabIndex">0</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">152, 121</Property>
+      <Property Name="Location">8, 60</Property>
+      <Property Name="Text">P</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="Button">
+      <Property Name="Name">ButtonControl1</Property>
+      <Property Name="Size">152, 32</Property>
+      <Property Name="Location">8, 21</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt</Property>
+      <Property Name="Text">Read AD</Property>
+      <Property Name="SymbolConfiguration">4;1;KTAppl_LocalFun;;;envKTA_LocFun_ReadADC;1;;;-1</Property>
+      <Property Name="TabIndex">1</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">333, 548</Property>
+  </Object>
+</Panel>

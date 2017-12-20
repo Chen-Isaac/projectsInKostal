@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <capltestcase>
+      <title />
+      <name>poweron</name>
+    </capltestcase>
+    <capltestcase>
+      <title />
+      <name>productinit</name>
+    </capltestcase>
+    <capltestcaselist>
+      <title />
+      <name>readkostia</name>
+      <combinatorics>sequential</combinatorics>
+      <structlistparameter />
+      <param>
+        <type>char[]</type>
+        <valuelist>
+          <value>
+            <const>Login-Request</const>
+          </value>
+          <value>
+            <const>Read VM_SW_Internal</const>
+          </value>
+          <value>
+            <const>Read VM_SW_External</const>
+          </value>
+        </valuelist>
+      </param>
+    </capltestcaselist>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

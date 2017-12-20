@@ -1,0 +1,19 @@
+1. 如果switch case中是纯参数配置，每个case调用的函数一致，那么应该想办法把配置塞到ini中；
+
+2. 如果switch case中遇到的是不同的函数配置，有没有可能模仿1？1是不同状态的参数配置，每个状态写一行。那2能不能是不同路径的参数配置，每个路径写一行？
+
+3. 2中的选择节点如果超过1个，该怎么处理？
+
+
+4.状态机中如果某step提供的是变量，有办法吗？
+区分实参还是变量：比如变量的话，前面加标记；或者entry有它
+变量该如何被替换？
+
+char func[20][100]= {"signalSetting","sendDiagChkResp","wait","decodeAsciiFromRecDiag","vtSysPwrSupInit","vtSysWithExPwrSupInit","vtSysPwrSupVoltSet","vtSysExPwrSupSet","vtSysPwrSupVoltGet","vtSysPwrSupCurrGet","prodPwmOutChk","chFixVoltDOSet","chAOSet","chRamVoltDOSet","chPwmOutSet","btnPrsImpOnSpecSigChk","btnPrsImpOnSpecPwmChk","sigDirTwoStatInSet","sigDirMulStatInSet","specStatImpOnSigChk"};
+
+
+
+for paraNum
+轮训看里头有没有变量是其中的entry,根据-1,1判断
+如果entry里头有值，那要把cfgFuncArray[10][50][100]里头相应的参数换化成entry的值
+要获得有几个entry是变量

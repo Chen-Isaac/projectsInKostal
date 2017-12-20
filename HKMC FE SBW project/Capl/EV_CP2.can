@@ -1,0 +1,34 @@
+/*@!Encoding:936*/
+variables
+{
+  msTimer timEVCP2_Transmitter;
+  message EV_CP2 msgEVCP2;
+}
+
+
+
+on envVar envEVCP2_RheostatLevel
+{
+	msgEVCP2.CF_Clu_RheostatLevel = @envEVCP2_RheostatLevel;
+}
+
+on envVar envEVCP2_DetentOut
+{
+	msgEVCP2.CF_GWAY_Detentout = @envEVCP2_DetentOut;
+}
+
+on timer timEVCP2_Transmitter
+{
+	settimer( timEVCP2_Transmitter, 10 );
+  
+  if( @envEVCP2TxEnable == 1 ) {
+    output( msgEVCP2 );
+  }
+}
+
+on start
+{
+	/*settimer( timEVCP2_Transmitter, 20 );
+  @envEVCP2TxEnable = 1;*/ //1.deleted by Isaac 2.update the GenMsgSendType of EV_CP2 in database from EventPeriodic to FixedPeriodic
+  
+}

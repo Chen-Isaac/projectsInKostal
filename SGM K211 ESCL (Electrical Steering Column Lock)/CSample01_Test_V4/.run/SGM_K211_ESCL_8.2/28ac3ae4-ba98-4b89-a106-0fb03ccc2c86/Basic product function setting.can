@@ -1,0 +1,50 @@
+/*@!Encoding:936*/
+includes
+{
+}
+
+variables
+{
+message ESCL_Status msg;
+}
+
+export void setInvertedIgn (int status) {
+  if (status == 1) {
+    //  invertedIgn == high
+    @sysvar::VTS::M9_Ch1::RelayGnd = 0;
+    testWaitForTimeout(500);
+    @sysvar::VTS::M9_Ch1::RelayVBatt = 1;
+    testStep("Inverted Ign status","set Inverted Ign = High");
+  }
+  else {
+    @sysvar::VTS::M9_Ch1::RelayVBatt = 0;
+    testWaitForTimeout(500);
+    @sysvar::VTS::M9_Ch1::RelayGnd = 1;
+    testStep("Inverted Ign status","set Inverted Ign = Low");
+  }
+}
+
+export void setCommEnableWakeup (int status) {
+  if (status == 1) {
+    //  commEnableWakeUp == high
+    @sysvar::VTS::M9_Ch2::RelayGnd = 0;
+    testWaitForTimeout(500);
+    @sysvar::VTS::M9_Ch2::RelayVBatt = 1;
+    testStep("CommEnableWakeup status","set CommEnableWakeup = High");
+  }
+  else {
+    @sysvar::VTS::M9_Ch2::RelayVBatt = 0;
+    testWaitForTimeout(500);
+    @sysvar::VTS::M9_Ch2::RelayGnd = 1;
+    testStep("CommEnableWakeup status","set CommEnableWakeup = Low");
+  }
+}
+
+export void setSystemPowerMode (int status) {
+  //status = 0:off 1:ACC 2:RUN 3:Crank
+  $SysPwrMd = status;
+  if (status == 2 || status == 3 )  
+    setInvertedIgn(0);
+  else
+    setInvertedIgn(1);
+}

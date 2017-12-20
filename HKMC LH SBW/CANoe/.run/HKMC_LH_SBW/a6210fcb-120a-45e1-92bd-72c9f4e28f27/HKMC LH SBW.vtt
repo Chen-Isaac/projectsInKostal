@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>Power supply initialization</title>
+      <variables />
+      <caplinline>
+        <title>Initialize VT system,make VT internal power supply voltage output equals 12V</title>
+        <code>sysvar::VTS::M12_VT7001.SetInterconnectionMode(0);
+sysvar::VTS::M12_SupInt.SetRefVoltageMode(1);
+@sysvar::VTS::M12_SupInt::RefVoltage = 12;
+@sysvar::VTS::M12_Out2::Active = 1;
+@sysvar::VTS::M9_Ch1::RelayOrgComponent = 0;
+@sysvar::VTS::M9_Ch2::RelayOrgComponent = 0;
+@sysvar::VTS::M9_Ch3::RelayOrgComponent = 0;</code>
+      </caplinline>
+      <wait>
+        <title>Wait for power supply initialization complete</title>
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title />
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgVoltage|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <range>
+              <fromto>
+                <from>
+                  <const>11.5</const>
+                </from>
+                <to>
+                  <const>12.5</const>
+                </to>
+              </fromto>
+            </range>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <range>
+              <fromto>
+                <from>
+                  <const>0.001</const>
+                </from>
+                <to>
+                  <const>0.1</const>
+                </to>
+              </fromto>
+            </range>
+          </compare>
+        </expected>
+      </statecheck>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>for 3.5.2 debug</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const />
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+    </ts>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

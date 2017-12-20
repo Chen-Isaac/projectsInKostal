@@ -1,0 +1,655 @@
+/*@!Encoding:936*/
+includes
+{
+#include "Table_xofy.cin"
+}
+
+variables
+{
+  msTimer  TPWDResponse;
+  msTimer OSTimer;
+  msTimer RevertSPM;
+#if 1
+  msTimer LFM_LockDelay_msTimer_t1;
+  msTimer LFM_LockDelay_msTimer_t2;
+  msTimer LFM_LockDelay_msTimer_DoorClose;
+#endif  
+   message  Vehicle_Steering_Column_Lock_Pas PwdMsg;  
+
+  word TestPwd = 0;
+  char PwdCnt = 0;
+  char a=0;
+  
+#if 1  
+ /* name convention: CAPL_*: It has a similar name in system variable, add CAPL_ prefix to distinguish
+  */
+  dword CAPL_LFM_32b_TstCaseID_GW;
+  word LFM_16b_IncorrectUnlockPwd=0x1221;
+  char LFM_8b_IncorrectUnlockPwd_Ctrl=0;
+  char LFM_8b_IncorrectUnlockPwd_Times=0;
+
+  char CAPL_LFM_8b_SysPwrMdV_x = 0;
+  char CAPL_LFM_8b_SysPwrMdV_y = 10;
+  char LFM_XY_Signal_Send_Index_GW=0;
+  char LFM_XY_Signal_Send_Ongoing_GW=0;
+  
+  word CAPL_LFM_16b_LockDelay_t1=0x00;
+  word CAPL_LFM_16b_LockDelay_t2=0x00;
+  
+  const word LFM_16b_LockDelay_DoorClose_ms = 400; /* Unit:ms */
+#endif
+}
+
+on preStart
+{
+  //ILControlInit();//deleted by Isaac
+}
+ 
+
+on start
+{
+  //this part is added by Isaac
+  ILDisableMsg("Airbag_Impact_Data");
+  ILDisableMsg("Airbag_Impact_Data_1");
+  ILDisableMsg("Airbag_Impact_Data_2");
+  ILDisableMsg("Airbag_Impact_Data_3");
+  ILDisableMsg("Airbag_Impact_Data_4");
+  ILDisableMsg("Airbag_Impact_Data_5");
+  ILDisableMsg("Airbag_Indications");
+  ILDisableMsg("Airbag_Status");
+  ILDisableMsg("Alarm_Clock_Status_PB"); 
+  ILDisableMsg("Audio_Master_Arbitration_Command");
+  ILDisableMsg("Battery_Voltage");
+  ILDisableMsg("BluetoothTetheringPairingRsp_PB");
+  ILDisableMsg("Body_Information_2_PB");
+  ILDisableMsg("Body_Information_3_PB");
+  ILDisableMsg("Body_Information_4_PB");
+  ILDisableMsg("Body_Information_PB");
+  ILDisableMsg("BulbOutage");
+  ILDisableMsg("Chime_Active");
+  ILDisableMsg("Chlng_From_FCM_Rsp_To_ACC_PB");
+  ILDisableMsg("Climate_Control_Basic_Status_PB");
+  ILDisableMsg("Content_Theft_Sensor_Status_PB");
+  ILDisableMsg("Dimming_Information");
+  ILDisableMsg("Display_Measurement_System");
+  ILDisableMsg("Door_Lock_Command");
+  ILDisableMsg("DTC_Triggered_340");
+  ILDisableMsg("DTC_Triggered_341");
+  ILDisableMsg("DTC_Triggered_342");
+  ILDisableMsg("DTC_Triggered_355");
+  ILDisableMsg("DTC_Triggered_358");
+  ILDisableMsg("DTC_Triggered_359");
+  ILDisableMsg("DTC_Triggered_35B");
+  ILDisableMsg("DTC_Triggered_361");
+  ILDisableMsg("DTC_Triggered_380");
+  ILDisableMsg("DTC_Triggered_385");
+  ILDisableMsg("DTC_Triggered_38D");
+  ILDisableMsg("DTC_Triggered_399");
+  ILDisableMsg("DTC_Triggered_3A4");
+  ILDisableMsg("DTC_Triggered_3A8");
+  ILDisableMsg("DTC_Triggered_3AB");
+  ILDisableMsg("DTC_Triggered_3AC");
+  ILDisableMsg("DTC_Triggered_3AF");
+  ILDisableMsg("DTC_Triggered_3BA");
+  ILDisableMsg("DTC_Triggered_771");
+  ILDisableMsg("DTC_Triggered_77C");
+  ILDisableMsg("DTC_Triggered_7BC");
+  ILDisableMsg("Exterior_Lighting_PB");
+  ILDisableMsg("Fob_Status_PB");
+  ILDisableMsg("GPS_Geographical_Position");
+  ILDisableMsg("Hybrid_Information_PB");
+  ILDisableMsg("Immobilizer_Identifier_PB");
+  ILDisableMsg("Infomatics_Metadata_Request");
+  ILDisableMsg("Infomatics_Request_Payload");
+  ILDisableMsg("Infotainment_Operation_PB");
+  ILDisableMsg("Language_Selection");
+  ILDisableMsg("Node_Present_SDM");
+  ILDisableMsg("Node_Present_BCM"); 
+  ILDisableMsg("Node_Present_IPC");
+  ILDisableMsg("Node_Present_RSA");
+  ILDisableMsg("Node_Present_RSE"); 
+  ILDisableMsg("Node_Present_Radio");
+  ILDisableMsg("PPEI_Brake_Apply_Status");
+  ILDisableMsg("PPEI_Cruise_Control_Sw_Status"); 
+  ILDisableMsg("PPEI_Gateway_PB_General_Info");
+  ILDisableMsg("PPEI_IBS_Battery_Status_1");
+  ILDisableMsg("PPEI_IBS_Battery_Status_2"); 
+  ILDisableMsg("PPEI_Platform_Configuration_Data");
+  ILDisableMsg("PPEI_Platform_Eng_Cntrl_Req_2");
+  ILDisableMsg("PPEI_Platform_Eng_Cntrl_Requests"); 
+  ILDisableMsg("PPEI_Platform_Immobilizer_Data");
+  ILDisableMsg("PPEI_Platform_Trans_Requests");
+  ILDisableMsg("PPEI_VIN_Digits_10_to_17");
+  ILDisableMsg("Vehicle_State_Management_PB");
+  ILDisableMsg("Vehicle_Odometer_PB");
+  ILDisableMsg("Headlamp_Levelling_Status_PB");
+  ILDisableMsg("VIN_Digits_2_to_9_PB");
+  ILDisableMsg("Tire_Pressure_Sensors_PB");
+  ILDisableMsg("Tire_Temperature_Sensors_PB");
+  ILDisableMsg("System_Power_Mode_Backup_PB");
+  ILDisableMsg("PPEI_Steering_Wheel_Angle");
+  ILDisableMsg("Vehicle_Odometer_HS");    
+  ILDisableMsg("Body_Information_2_HS");  
+  ILDisableMsg("Exterior_Lighting_HS");  
+  ILDisableMsg("Immobilizer_Identifier_HS");  
+  ILDisableMsg("VIN_Digits_2_to_9_HS"); 
+  ILDisableMsg("Tire_Pressure_Sensors_HS"); 
+  ILDisableMsg("TPM_Display_Commands"); 
+  ILDisableMsg("TPMS_Status");
+}
+ 
+
+on envVar SimuSW
+{
+  if(@SimuSW == 1)
+  {
+    CAPL_LFM_8b_SysPwrMdV_x = @LFM_1Byte_SysPwrMdV_x;
+    CAPL_LFM_8b_SysPwrMdV_y = @LFM_1Byte_SysPwrMdV_y;
+    //write("LFM: %d,%d",CAPL_LFM_8b_SysPwrMdV_x,CAPL_LFM_8b_SysPwrMdV_y);
+   ILControlStart();
+  
+   ILDisableMsg("Airbag_Impact_Data");
+   ILDisableMsg("Airbag_Impact_Data_1");
+   ILDisableMsg("Airbag_Impact_Data_2");
+   ILDisableMsg("Airbag_Impact_Data_3");
+   ILDisableMsg("Airbag_Impact_Data_4");
+   ILDisableMsg("Airbag_Impact_Data_5");
+   ILDisableMsg("Airbag_Indications");
+   ILDisableMsg("Airbag_Status");
+   ILDisableMsg("Alarm_Clock_Status_PB"); 
+  
+  
+    ILDisableMsg("Audio_Master_Arbitration_Command");
+   ILDisableMsg("Battery_Voltage");
+   ILDisableMsg("BluetoothTetheringPairingRsp_PB");
+   ILDisableMsg("Body_Information_2_PB");
+   ILDisableMsg("Body_Information_3_PB");
+   ILDisableMsg("Body_Information_4_PB");
+   ILDisableMsg("Body_Information_PB");
+   ILDisableMsg("BulbOutage");
+   ILDisableMsg("Chime_Active");
+   ILDisableMsg("Chlng_From_FCM_Rsp_To_ACC_PB");
+  
+     ILDisableMsg("Climate_Control_Basic_Status_PB");
+   ILDisableMsg("Content_Theft_Sensor_Status_PB");
+   ILDisableMsg("Dimming_Information");
+   ILDisableMsg("Display_Measurement_System");
+   ILDisableMsg("Door_Lock_Command");
+  
+   ILDisableMsg("DTC_Triggered_340");
+   ILDisableMsg("DTC_Triggered_341");
+   ILDisableMsg("DTC_Triggered_342");
+   ILDisableMsg("DTC_Triggered_355");
+   ILDisableMsg("DTC_Triggered_358");
+     ILDisableMsg("DTC_Triggered_359");
+   ILDisableMsg("DTC_Triggered_35B");
+   ILDisableMsg("DTC_Triggered_361");
+   ILDisableMsg("DTC_Triggered_380");
+   ILDisableMsg("DTC_Triggered_385");
+     ILDisableMsg("DTC_Triggered_38D");
+   ILDisableMsg("DTC_Triggered_399");
+   ILDisableMsg("DTC_Triggered_3A4");
+   ILDisableMsg("DTC_Triggered_3A8");
+   ILDisableMsg("DTC_Triggered_3AB");
+  
+     ILDisableMsg("DTC_Triggered_3AC");
+   ILDisableMsg("DTC_Triggered_3AF");
+     ILDisableMsg("DTC_Triggered_3BA");
+   ILDisableMsg("DTC_Triggered_771");
+   ILDisableMsg("DTC_Triggered_77C");
+   ILDisableMsg("DTC_Triggered_7BC");
+  
+   ILDisableMsg("Exterior_Lighting_PB");
+   ILDisableMsg("Fob_Status_PB");
+   ILDisableMsg("GPS_Geographical_Position");
+   ILDisableMsg("Hybrid_Information_PB");
+   ILDisableMsg("Immobilizer_Identifier_PB");
+   ILDisableMsg("Infomatics_Metadata_Request");
+   ILDisableMsg("Infomatics_Request_Payload");
+   ILDisableMsg("Infotainment_Operation_PB");
+   ILDisableMsg("Language_Selection");
+   ILDisableMsg("Node_Present_SDM");
+   ILDisableMsg("Node_Present_BCM"); 
+   ILDisableMsg("Node_Present_IPC");
+   ILDisableMsg("Node_Present_RSA");
+   ILDisableMsg("Node_Present_RSE"); 
+   ILDisableMsg("Node_Present_Radio");
+  
+   ILDisableMsg("PPEI_Brake_Apply_Status");
+   ILDisableMsg("PPEI_Cruise_Control_Sw_Status"); 
+   ILDisableMsg("PPEI_Gateway_PB_General_Info");
+   ILDisableMsg("PPEI_IBS_Battery_Status_1");
+   ILDisableMsg("PPEI_IBS_Battery_Status_2"); 
+   ILDisableMsg("PPEI_Platform_Configuration_Data");
+   ILDisableMsg("PPEI_Platform_Eng_Cntrl_Req_2");
+   ILDisableMsg("PPEI_Platform_Eng_Cntrl_Requests"); 
+   ILDisableMsg("PPEI_Platform_Immobilizer_Data");
+   ILDisableMsg("PPEI_Platform_Trans_Requests");
+    
+  ILDisableMsg("PPEI_VIN_Digits_10_to_17");
+ 
+  ILDisableMsg("Vehicle_State_Management_PB");
+  ILDisableMsg("Vehicle_Odometer_PB");
+  ILDisableMsg("Headlamp_Levelling_Status_PB");
+  ILDisableMsg("VIN_Digits_2_to_9_PB");
+  ILDisableMsg("Tire_Pressure_Sensors_PB");
+  ILDisableMsg("Tire_Temperature_Sensors_PB");
+  ILDisableMsg("System_Power_Mode_Backup_PB");
+  ILDisableMsg("PPEI_Steering_Wheel_Angle");
+
+#if 1
+  ILDisableMsg("Vehicle_Odometer_HS");    
+  ILDisableMsg("Body_Information_2_HS");  
+  ILDisableMsg("Exterior_Lighting_HS");  
+  ILDisableMsg("Immobilizer_Identifier_HS");  
+  ILDisableMsg("VIN_Digits_2_to_9_HS"); 
+  ILDisableMsg("Tire_Pressure_Sensors_HS"); 
+  ILDisableMsg("TPM_Display_Commands"); 
+  ILDisableMsg("TPMS_Status");      
+#endif    
+  setTimer(OSTimer,100);
+     
+  }
+  else{
+    cancelTimer(OSTimer);
+    ILControlStop();
+  }
+}
+
+on envVar Simu_Tigger
+{
+  if(@Simu_Tigger == 1)
+  {
+      setTimer(RevertSPM,1000);
+  }
+  else
+  {
+     cancelTimer(RevertSPM);
+  }
+}
+
+on timer LFM_LockDelay_msTimer_t1
+{
+#if 0  
+  if(@LFM_1Byte_LockDelay_DrvDoor == 0x01)
+  {
+    ILSetSignal(DrDoorOpenSwAct,1); /*Door Open*/
+  }
+  if(@LFM_1Byte_LockDelay_PasDoor == 0x01)
+  {
+    ILSetSignal(PsDoorOpenSwAct,1); /*Door Open*/
+  }
+#endif  
+}
+
+on timer LFM_LockDelay_msTimer_t2
+{
+#if 0  
+  $EngSpd = 0x00; /* 0rpm */
+  $EngRunAtv = 0x00; /* inactive */
+#endif  
+}
+
+on timer LFM_LockDelay_msTimer_DoorClose
+{
+#if 0  
+  ILSetSignal(DrDoorOpenSwAct,0); /*Door close*/
+  ILSetSignal(PsDoorOpenSwAct,0); /*Door close*/
+#endif  
+}
+
+
+/* 100ms period*/
+on timer OSTimer
+{
+    setTimer(OSTimer,100);
+    /*ILSetMsgEvent(Door_Open_Switch_Status_PB);*/
+   if(0x01 == LFM_XY_Signal_Send_Ongoing_GW)
+  {
+    if(0x01 == xofy_NTC_Table[CAPL_LFM_8b_SysPwrMdV_x][LFM_XY_Signal_Send_Index_GW])
+    {
+#if 0      
+      /* set signal to invalid */
+      ILSetSignal(SysPwrMdV,1);
+#endif        
+    }
+    else
+    {
+#if 0      
+      /* set signal to valid */
+      ILSetSignal(SysPwrMdV,0);
+#endif        
+    }
+    
+    LFM_XY_Signal_Send_Index_GW++;
+    if(LFM_XY_Signal_Send_Index_GW>=10)
+    {
+      LFM_XY_Signal_Send_Index_GW=0x00;
+    }
+  }
+}
+
+on timer RevertSPM
+{  
+  setTimer(RevertSPM,1000);
+  if(a == 0)
+  {
+    ILSetSignal(SysPwrMd,0);
+    a = 1;
+  }
+  else
+  {
+    ILSetSignal(SysPwrMd,1);
+    a = 0;
+  }
+}
+
+on message ESCL_Unlock_Password_Request
+{
+  
+    setTimer(TPWDResponse,20);
+  
+}
+
+on timer TPWDResponse
+{
+  //CAPL_LFM_32b_TstCaseID_GW = @sysCAPL_LFM_32b_TstCaseID_GW;
+#if 1  
+  /*SWIT_Update_0901*/
+  if(CAPL_LFM_32b_TstCaseID_GW == 0x0901)
+  {
+    cancelTimer(TPWDResponse);
+    //write("gw 0901 execute");
+    
+    /*0:password valid, 1:password invalid*/
+    PwdMsg.VehSecStrgColLckPwdV = 0;
+    
+    /*incorrect pwd:a,b,a,b*/
+    if(LFM_8b_IncorrectUnlockPwd_Ctrl == 0)
+    {
+      LFM_8b_IncorrectUnlockPwd_Ctrl = 1;
+      LFM_16b_IncorrectUnlockPwd = 0x1221;
+    }
+    else
+    {
+      LFM_8b_IncorrectUnlockPwd_Ctrl = 0;
+      LFM_16b_IncorrectUnlockPwd = 0x1220;
+    }
+    PwdMsg.VehSecStrgColLckPwd = LFM_16b_IncorrectUnlockPwd;
+    output(PwdMsg);
+  }
+  
+  /*SWIT_Update_0902*/
+  else if(CAPL_LFM_32b_TstCaseID_GW == 0x0902)
+  {
+     cancelTimer(TPWDResponse);    
+    /*0:password valid, 1:password invalid*/
+    PwdMsg.VehSecStrgColLckPwdV = 0;
+    
+    /*incorrect pwd:a,b,b,b*/
+    LFM_8b_IncorrectUnlockPwd_Times++;
+    if(LFM_8b_IncorrectUnlockPwd_Times == 1)
+    {
+      LFM_16b_IncorrectUnlockPwd = 0x1221;
+    }
+    else
+    {
+      LFM_16b_IncorrectUnlockPwd = 0x1220;
+    }
+    
+    PwdMsg.VehSecStrgColLckPwd = LFM_16b_IncorrectUnlockPwd;
+    output(PwdMsg);
+  }
+  
+  /*SWIT_Update_0903*/
+  else if(CAPL_LFM_32b_TstCaseID_GW == 0x0903)
+  {
+    cancelTimer(TPWDResponse);
+  }
+  
+  /*SWIT_Update_0904*/
+  else if(CAPL_LFM_32b_TstCaseID_GW == 0x0904)
+  {
+     cancelTimer(TPWDResponse);    
+    /*0:password valid, 1:password invalid*/
+    PwdMsg.VehSecStrgColLckPwdV = 0;
+    
+    /*incorrect pwd:a,b,b,a*/
+    LFM_8b_IncorrectUnlockPwd_Times++;
+    if((LFM_8b_IncorrectUnlockPwd_Times == 1) || (LFM_8b_IncorrectUnlockPwd_Times == 4))
+    {
+      LFM_16b_IncorrectUnlockPwd = 0x1221;
+    }
+    else
+    {
+      LFM_16b_IncorrectUnlockPwd = 0x1220;
+    }
+    
+    PwdMsg.VehSecStrgColLckPwd = LFM_16b_IncorrectUnlockPwd;
+    output(PwdMsg);
+  }
+  
+  else
+#endif
+    
+  {
+    cancelTimer(TPWDResponse);
+    PwdMsg.VehSecStrgColLckPwd = @UnlockPassword;
+  /*TestPwd++;
+  PwdMsg.VehSecStrgColLckPwd = TestPwd;*/
+    
+    /* SWIT_Fault_0034 */
+    if(CAPL_LFM_32b_TstCaseID_GW == 0x160034)
+    {
+      /*0:password valid, 1:password invalid*/
+      PwdMsg.VehSecStrgColLckPwdV = 1;
+    }
+    else
+    {
+      /*0:password valid, 1:password valid*/
+      PwdMsg.VehSecStrgColLckPwdV = 0;      
+    }
+
+    output(PwdMsg);
+    //write("gw 0901 not execute");    
+  } 
+}
+
+on envVar LFM_Butt_Tst_Start
+{
+#if 1
+   if(@LFM_Butt_Tst_Start == 1)
+  {    
+    CAPL_LFM_32b_TstCaseID_GW = @LFM_TST_VAR_3Byte;
+    
+    LFM_16b_IncorrectUnlockPwd=0x1221;
+    LFM_8b_IncorrectUnlockPwd_Ctrl=0;
+    LFM_8b_IncorrectUnlockPwd_Times=0;
+    //write("GW CAPL_LFM_32b_TstCaseID_GW= %x" ,CAPL_LFM_32b_TstCaseID_GW);
+    
+    /*SWIT_Update_0410*/
+    if(CAPL_LFM_32b_TstCaseID_GW == 0x0410)
+    {
+      /* set remote start to active */
+      ILSetSignal(PPEI_Platform_General_Status::RemStrtSt,1);
+    }
+    
+    /*SWIT_Update_1003*/
+    if(CAPL_LFM_32b_TstCaseID_GW == 0x1003)
+    {
+      //write("start CAPL_LFM_32b_TstCaseID_GW= %x" ,CAPL_LFM_32b_TstCaseID_GW);
+      /* 0x1F1 message */
+      ILDisableMsg("PPEI_Platform_General_Status");
+    }
+  }
+#endif
+}
+
+on envVar LFM_Butt_Tst_End
+{
+#if 1  
+   if(@LFM_Butt_Tst_End == 1)
+  {
+    /* If the latest test case is SWIT_Update_0410*/
+    if(CAPL_LFM_32b_TstCaseID_GW == 0x0410)
+    {
+      /* set remote start to inactive */
+      ILSetSignal(PPEI_Platform_General_Status::RemStrtSt,0);
+    }
+    
+    /*If the latest test case is SWIT_Update_1003*/
+    if(CAPL_LFM_32b_TstCaseID_GW == 0x1003)
+    {
+      //write("end CAPL_LFM_32b_TstCaseID_GW= %x" ,CAPL_LFM_32b_TstCaseID_GW);
+      /* 0x1F1 message */
+      ILEnableMsg("PPEI_Platform_General_Status");
+    }
+    
+    CAPL_LFM_32b_TstCaseID_GW = 0;
+    //write("GW end = %x" ,CAPL_LFM_32b_TstCaseID_GW);
+  }
+#endif
+}
+
+
+on envVar LFM_Butt_xy_Tst_Start
+{
+#if 1  
+   if((@LFM_Butt_xy_Tst_Start == 1) && (@SimuSW == 1))
+  {
+    if(@LFM_1Byte_SysPwrMdV_x <= 0x00)
+    {
+      CAPL_LFM_8b_SysPwrMdV_x = 0x00;
+      @LFM_1Byte_SysPwrMdV_x = 0x00;
+#if 0      
+      /* set signal to valid */
+      ILSetSignal(SysPwrMdV,0);
+#endif        
+    }
+    else if(@LFM_1Byte_SysPwrMdV_x >= @LFM_1Byte_SysPwrMdV_y)
+    {
+      @LFM_1Byte_SysPwrMdV_x = @LFM_1Byte_SysPwrMdV_y;
+      CAPL_LFM_8b_SysPwrMdV_x = @LFM_1Byte_SysPwrMdV_y;
+#if 0      
+      /* set signal to invalid */
+      ILSetSignal(SysPwrMdV,1);
+#endif        
+    }
+    else
+    {
+      CAPL_LFM_8b_SysPwrMdV_x = @LFM_1Byte_SysPwrMdV_x;
+      CAPL_LFM_8b_SysPwrMdV_y = @LFM_1Byte_SysPwrMdV_y;
+      LFM_XY_Signal_Send_Index_GW = 0;
+      LFM_XY_Signal_Send_Ongoing_GW = 0x01;
+    }
+  }
+#endif
+}
+
+on envVar LFM_Butt_xy_Tst_End
+{
+#if 1  
+   if(@LFM_Butt_xy_Tst_End == 1)
+  {
+    CAPL_LFM_8b_SysPwrMdV_x = 0x00;
+    @LFM_1Byte_SysPwrMdV_x = 0x00;
+    
+    LFM_XY_Signal_Send_Index_GW = 0;
+    LFM_XY_Signal_Send_Ongoing_GW = 0x00;
+#if 0    
+    /* set signal to valid */
+    ILSetSignal(SysPwrMdV,0);  
+#endif      
+  }
+#endif
+}
+
+/* set test precondition for: 1.5sec lock delay */
+on envVar LFM_1Byte_LockDelay_SetPrecon
+{
+#if 1
+   if((@LFM_1Byte_LockDelay_SetPrecon == 1) && (@SimuSW == 1))
+  {
+    ILSetSignal(SysPwrMd,1); /*ACC*/
+    ILSetSignal(DrDoorOpenSwAct,0); /*Door Closed*/
+    ILSetSignal(PsDoorOpenSwAct,0); /*Door Closed*/
+    $EngSpd = 100; /*100rpm*/
+    //$EngRunAtv = 1; /* active */
+  }
+#endif
+}
+
+
+/* start test: 1.5sec lock delay */
+on envVar LFM_1Byte_LockDelay_Start
+{
+#if 1
+   if((@LFM_1Byte_LockDelay_Start == 1) && (@SimuSW == 1))
+  {
+    /* t1 and t2 value check */
+    if(@LFM_2Byte_LockDelay_t1 < 10) /* if inputvalue<10ms, set to 0 */
+    {
+      @LFM_2Byte_LockDelay_t1 = 0x00; 
+    }
+    if(@LFM_2Byte_LockDelay_t1 > 3000)
+    {
+      @LFM_2Byte_LockDelay_t1 = 3000; /* max=2*1.5sec=3sec=3000ms */
+    }
+    if(@LFM_2Byte_LockDelay_t2 < 10) /* if inputvalue<10ms, set to 0 */
+    {
+      @LFM_2Byte_LockDelay_t2 = 0x00;
+    }
+    if(@LFM_2Byte_LockDelay_t2 > 3000)
+    {
+      @LFM_2Byte_LockDelay_t2 = 3000; /* max=2*1.5sec=3sec=3000ms */
+    }
+    /* value: 0x00,10-3000 */
+    CAPL_LFM_16b_LockDelay_t1 = @LFM_2Byte_LockDelay_t1;
+    CAPL_LFM_16b_LockDelay_t2 = @LFM_2Byte_LockDelay_t2;
+    
+    ILSetSignal(SysPwrMd,0); /*OFF*/
+    
+    /* when value>0, i.e.between 10-3000, start lock delay timer t1 and t2 */
+    if(CAPL_LFM_16b_LockDelay_t1 > 0x00)
+    {
+      setTimer(LFM_LockDelay_msTimer_t1,CAPL_LFM_16b_LockDelay_t1);
+    }
+    else
+    {
+      if(@LFM_1Byte_LockDelay_DrvDoor == 0x01)
+      {
+        ILSetSignal(DrDoorOpenSwAct,1); /*Door Open*/
+      }
+      if(@LFM_1Byte_LockDelay_PasDoor == 0x01)
+      {
+        ILSetSignal(PsDoorOpenSwAct,1); /*Door Open*/
+      }
+    }
+    if(CAPL_LFM_16b_LockDelay_t2 > 0x00)
+    {
+      setTimer(LFM_LockDelay_msTimer_t2,CAPL_LFM_16b_LockDelay_t2);
+    }
+    else
+    {
+      $EngSpd = 0x00; /* 0rpm */
+      $EngRunAtv = 0x00; /* inactive */
+    }
+    
+    /* run test case 4: during 1.5 sec delay, close Door */
+    if(@LFM_1Byte_LockDelay_Case4 == 1)
+    {
+      /* when t1=0, start DoorClose timer after LFM_16b_LockDelay_DoorClose_ms */
+      if( CAPL_LFM_16b_LockDelay_t1 == 0x00)
+      {
+        setTimer(LFM_LockDelay_msTimer_DoorClose,LFM_16b_LockDelay_DoorClose_ms);
+      }
+      /* when t1 between 10-3000, start DoorClose timer after t1+LFM_16b_LockDelay_DoorClose_ms */
+      else
+      {
+        setTimer(LFM_LockDelay_msTimer_DoorClose, (CAPL_LFM_16b_LockDelay_t1+LFM_16b_LockDelay_DoorClose_ms) );
+      }      
+    } /*END:if(@LFM_1Byte_LockDelay_Case4 == 1)*/
+  } /*END: if((@LFM_1Byte_LockDelay_Start == 1) && (@SimuSW == 1))*/
+#endif
+} /*END:on envVar LFM_1Byte_LockDelay_Start*/
+

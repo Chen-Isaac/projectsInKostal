@@ -1,0 +1,174 @@
+/*@!Encoding:936*/
+includes
+{
+  #include "D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin"
+}
+
+variables
+{
+  
+}
+
+
+export void fromIgnOffModeToSilenceMode (int drvDrSwSigVal) {
+  //make welcome function counter = 0
+  signalSetting("CF_Gway_DrvDrSw",drvDrSwSigVal,1);//close or open door
+  wait(3*60*1000-200);//wait for 3mins,so welcome function counter must have already been 0 during 20s
+}
+
+export void fromSilenceModeToIgnOnMode (int decideBySignalBool) {
+  signalSetting("CF_Gway_DrvDrSw",1,1);//open door
+  chRamVoltDOSet("IGN",Active);//IGN ON
+}
+
+export testcase tryIni (void) {
+  char cfgStrArray[10][100];
+  char cfgDataArray[5];
+  char buff[100]="button";
+  char absPath[256];
+  char sigName[100]="CF_Vcu_GarSelDisp";
+  int val;
+  char cfgFuncArray[2][3][100];
+  char diagInfo[6][100];
+  int paraNum[2];
+  dword sid,rid;
+  int64 smsg,rmsg;
+  int paraPick[7]={0,0,0,0,0,0,0};
+  char para[2][2][100]={{"ignValueLevel","0"},{"button","P&R"}};
+  int num;
+  //val=getCfgStrArray("buttonPressImpactOnSpecSigCfg","P",cfgStrArray);
+  //testStep("","para=%d,%s %s %s %s",val,cfgStrArray[0],cfgStrArray[1],cfgStrArray[2],aaa.name);
+  /*getCfgDataArray("pwmWaveCfg","P",cfgDataArray);
+  testStep("","%d %d %d %d %d",cfgDataArray[0],cfgDataArray[1],cfgDataArray[2],cfgDataArray[3],cfgDataArray[4]);
+  getShortSignalNameStr(CF_But_AC,buff);
+  testStep("","%s",buff);
+  getUserFilePath("try.ini",absPath,elCount(absPath));
+  testStep("","%s",absPath);*/
+  //stateMachine("fromIgnOnModeToNWashMode");
+  wait(1);
+  //val=getCfgFuncArray ("fromIgnOnModeToNWashMode","step2",cfgFuncArray);
+  //testStep("","val=%d,%s,%s,%s,%s,%s,%s",val,cfgFuncArray[0][0],cfgFuncArray[0][1],cfgFuncArray[0][2],cfgFuncArray[1][0],cfgFuncArray[1][1],cfgFuncArray[1][2]);
+  //stateMachine("fromIgnOnModeToNWashMode",routeNum);
+  /*bbb.id = 0x62c;
+  bbb.DataLength = 8;
+  bbb.qword(0) = 0x5f4c4154534f4b01ll;//0x5f4c4154534f4b01ll;
+  output(bbb);*/
+ 
+  /*paraNum = getCfgStrArray ("Kostia Services","Login-Request",diagInfo);
+  testStep("","paraNum=%d,%s,%s,%s,%s,%s,%s",paraNum,diagInfo[0],diagInfo[1],diagInfo[2],diagInfo[3],diagInfo[4],diagInfo[5]);
+  strtoull(diagInfo[2],smsg);
+  strtoull(diagInfo[5],rmsg);
+  strtoul(diagInfo[0],sid);
+  strtoul(diagInfo[3],rid);
+  testStep("","%x,%llx,%x,%llx",sid,smsg,rid,rmsg);*/
+  
+  //rmsg=sendDiagChkResp ("Kostia Services","Login-Request"); 
+  //testStep("","%llx",rmsg);
+  //stateMachine("buttonPressFunctionCheck",routeNum,paraPick);
+  //testStep("","%s",syspar::VarListWithSel[buff][0]);
+  getCfgFuncArray("buttonPressFunctionCheck","step1",cfgFuncArray,paraNum);
+  testStep("","%s,%s,%s,%s,paraNum[0]=%d,paraNum[1]=%d",cfgFuncArray[0][0],cfgFuncArray[0][1],cfgFuncArray[1][0],cfgFuncArray[1][1],paraNum[0],paraNum[1]);
+  num = getCfgStrArray("buttonPressImpactOnSpecSigCfg","P",cfgStrArray);
+  testStep("","paraNum=%d,%s,%s,%s,%s,%s,%s",num,cfgStrArray[0],cfgStrArray[1],cfgStrArray[4],cfgStrArray[5],cfgStrArray[6],cfgStrArray[9]);
+  testEnableMsg("CGW2");
+}
+
+export testcase powerOn (void) {
+  stateMachine("powerOn",routeNum,noParaPick);
+}
+
+export testcase powerOff (void) {
+  stateMachine("powerOff",routeNum,noParaPick);
+}
+
+export testcase initProduct (void) {
+  stateMachine("initProduct",routeNum,noParaPick);
+}
+
+export testcase readSwVer (void) {
+  stateMachine("readSwVer",routeNum,noParaPick);
+}
+
+export testcase buttonPressFunctionCheck (char button[],char ignValueLevel[]) {
+  char paraPick[2][2][100]={{"button",""},{"ignValueLevel",""}};
+  strncpy(paraPick[0][1],button,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],ignValueLevel,elCount(paraPick[1][1]));
+  stateMachine("buttonPressFunctionCheck",routeNum,paraPick);
+}
+
+export testcase testIndicatorControlFunctionStateChart (int setOnMode,int setClearMode) {
+  routeNum[3] = setClearMode;
+  routeNum[8] = setOnMode;
+  stateMachine("testIndicatorControlFunctionStateChart",routeNum,noParaPick);
+}
+
+export testcase testHighLightIndicatorBehavior (char indStat[],int decideBySignalBool) {
+  char title[100];
+  sigDirMulStatInSet(indStat,(enum determiningFactor)(!decideBySignalBool));
+  specStatImpOnSigChk(indStat);
+  snprintf(title,100,"check if %s highlight indicator is lighten",indStat);
+  testValidateTesterConfirmation(title,"",1);
+}
+
+export testcase testRheostatLevelRow1_2 (int step4RouteNum, int step5RouteNum, char detentVal[]) {
+  char paraPick[1][2][100]={{"detentVal",""}};
+  strncpy(paraPick[0][1],detentVal,elCount(paraPick[0][1]));
+  routeNum[3] = step4RouteNum;
+  routeNum[4] = step5RouteNum;
+  stateMachine("testRheostatLevelRow1_2",routeNum,paraPick);
+  
+}
+
+export testcase testRheostatLevelRow3_4_5_6_12_13_14_15 (char ignValueLevel[],char detentVal[]) {
+  char paraPick[2][2][100]={{"ignValueLevel",""},{"detentVal",""}};
+  strncpy(paraPick[0][1],ignValueLevel,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],detentVal,elCount(paraPick[1][1]));
+  stateMachine("testRheostatLevelRow3_4_5_6_12_13_14_15",routeNum,paraPick);
+}
+
+export testcase testRheostatLevelRow7 (int step4RouteNum, int step5RouteNum) {
+  routeNum[3] = step4RouteNum;
+  routeNum[4] = step5RouteNum;
+  stateMachine("testRheostatLevelRow7",routeNum,noParaPick);
+}
+
+export testcase testRheostatLevelRow8_9_17_18 (char ignValueLevel[]) {
+  char paraPick[1][2][100]={{"ignValueLevel",""}};
+  strncpy(paraPick[0][1],ignValueLevel,elCount(paraPick[0][1]));
+  stateMachine("testRheostatLevelRow8_9_17_18",routeNum,paraPick);
+}
+
+export testcase testRheostatLevelRow10_11 (int step4RouteNum, int step5RouteNum, char detentVal[]) {
+  char paraPick[1][2][100]={{"detentVal",""}};
+  strncpy(paraPick[0][1],detentVal,elCount(paraPick[0][1]));
+  routeNum[3] = step4RouteNum;
+  routeNum[4] = step5RouteNum;
+  stateMachine("testRheostatLevelRow10_11",routeNum,paraPick);
+}
+
+export testcase testRheostatLevelRow16 (int step4RouteNum, int step5RouteNum) {
+  routeNum[3] = step4RouteNum;
+  routeNum[4] = step5RouteNum;
+  stateMachine("testRheostatLevelRow16",routeNum,noParaPick);
+}
+
+
+
+export testcase chkOperModeFromIgnOnToInitToSilenceToSleep (int routeNo, char drvDrSwSigVal[], char msWaitTime[]) {
+  char paraPick[2][2][100]={{"drvDrSwSigVal",""},{"msWaitTime",""}};
+  strncpy(paraPick[0][1],drvDrSwSigVal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],msWaitTime,elCount(paraPick[1][1]));
+  routeNum[10] = routeNo;
+  stateMachine("fromInitModeToSleepMode",routeNum,paraPick); 
+  
+}
+
+export testcase chkOperModeFromIgnOnToIgnOffToSilenceModeToSleep (int routeNo, char drvDrSwSigVal[], char accLev[]) {
+  char paraPick[2][2][100]={{"drvDrSwSigVal",""},{"accLev",""}};
+  strncpy(paraPick[0][1],drvDrSwSigVal,elCount(paraPick[0][1]));
+  strncpy(paraPick[1][1],accLev,elCount(paraPick[1][1]));
+  routeNum[8] = routeNo;
+  stateMachine("fromIgnOnModeToIgnOffModeToSilenceModeToSleepMode",routeNum,paraPick); 
+  
+}
+

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <caplfunction>
+    <name>_ttg_fct_tt_2_0</name>
+  </caplfunction>
+  <testsequence>
+    <title>CH035 PWM function test</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_2_0_0</name>
+    </caplfunction>
+  </testsequence>
+  <testfixture>
+    <title>VT SYSTEM POWER INIT</title>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_2_0_1</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>Test Fixture</title>
+    <testcase>
+      <title>powerOn ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_2_0_2_1</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>powerOff ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_2_0_2_2</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_2_0_2</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+</testtree>

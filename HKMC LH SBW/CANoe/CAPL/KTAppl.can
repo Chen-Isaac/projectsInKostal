@@ -1,0 +1,2882 @@
+/*@!Encoding:1252*/
+variables{
+
+// =================================================
+//  allgemeine Definitionen
+// =================================================
+   const byte aus    = 0;
+	 const byte ein    = 1;
+	 const byte nein   = 0;
+	 const byte ja     = 1;
+	 const byte false  = 0;
+	 const byte true   = 1;
+
+// =================================================
+//  Grenzdaten Kostia
+// =================================================
+   const byte MaxKTDatenLesen     = 7;
+   const byte MaxKTDatenSchreiben = 4;
+
+// =================================================
+//  Daten zur Umwandlung     
+// =================================================
+   byte puffer [MaxKTDatenLesen]; // puffer zur Umwandlung env <-> c-array
+   byte puffer1[MaxKTDatenLesen]; // puffer zur Umwandlung env <-> c-array
+   int  i                      ; // passende Laufvariable
+   byte Speicher[65536];          // Schreib und Lese-Daten 5120
+   char Text[81];                // zum zusammensetzen von Ausgabetext
+   
+// =================================================
+//  Timer für StepToNextState
+// =================================================
+	 mstimer t_stns;                                 // Zähler zur aktiven Weiterschaltung
+	 const   T_STNS = 1;                             // 1ms Zeit
+
+// =================================================
+//  Timer für zyklische Funktionsaufrufe
+// =================================================
+	 mstimer t_cycCall;                              // Zähler zur aktiven Weiterschaltung
+	 const   T_CYCCALL = 100;                        // 100ms Zeit
+
+// =================================================
+//  Timer für LoginZeitÜbrewachung
+// =================================================
+	 timer   t_LoginRefresh;                         // Zähler zur aktiven Weiterschaltung
+	 const   T_LOGINREFRESH = 120;                   // 120s Zeit
+   byte    LoginZeitFastAbgelaufen = nein;
+
+// =================================================
+//  TriLED
+// =================================================
+	 mstimer t_BlinkTriLED;                          // Zähler zum Blinken der LED
+   word LedTime;                                   // enthält die aktuelle Phasenzeit
+	 const word T_HELL   =  1001;                    // 1001ms Zeit (müssen verschieden sein)
+	 const word T_DUNKEL =  1000;                    // 1000ms Zeit
+
+   const byte LED_Login             =   0;
+   const byte LED_Logout            =   1;
+   const byte LED_Sync              =   2;
+   const byte LED_ModusWechsel      =   3;
+   const byte LED_SpeicherLesen     =   4;
+   const byte LED_SpeicherSchreiben =   5;
+   const byte LED_FSpLoeschen       =   6;
+   const byte LED_SGInit            =   7;
+   const byte LED_ResetAusloesen    =   8;
+
+   const dword LED_Mask_Login             = 1 << LED_Login;
+   const dword LED_Mask_Logout            = 1 << LED_Logout;
+   const dword LED_Mask_Sync              = 1 << LED_Sync;
+   const dword LED_Mask_ModusWechsel      = 1 << LED_ModusWechsel;
+   const dword LED_Mask_SpeicherLesen     = 1 << LED_SpeicherLesen;
+   const dword LED_Mask_SpeicherSchreiben = 1 << LED_SpeicherSchreiben;
+   const dword LED_Mask_FSpLoeschen       = 1 << LED_FSpLoeschen;
+   const dword LED_Mask_SGInit            = 1 << LED_SGInit;
+   const dword LED_Mask_ResetAusloesen    = 1 << LED_ResetAusloesen;
+
+   const byte LED_isTimer           = 255;
+
+   const byte LED_Status_Warten     =   0;
+   const byte LED_Status_Fehler     =   1;
+   const byte LED_Status_Io         =   2;
+
+// =================================================
+//  Parameter 'function' des TaskHandlers
+// =================================================
+   const byte THF_NV     = 0; // ohne Funktion
+   const byte THF_INIT   = 1; // initialisieren
+   const byte THF_ACTION = 2; // ausführen
+
+// Parameter 'CallReason' des TaskHandlers
+   const byte THR_NV              =   0; // ohne Funktion
+   const byte THR_SYS             =   1; // SystemStart
+	const byte THR_STNS            =   2; // StepToNextState
+   const byte THR_LOGIN           =   3; // SG Login
+   const byte THR_MODUSWECHSEL    =   4; // Moduswechsel
+   const byte THR_COMMODUSWECHSEL =   5; // Moduswechsel mit kompleentierten PWD
+   const byte THR_LOGOUT          =   6; // SG Logout
+   const byte THR_SYNC            =   7; // SG Sync
+   const byte THR_SP_LESEN        =   8; // SG Speicher Lesen
+   const byte THR_SP_SCHREIBEN    =   9; // SG Speicher Schreiben
+   const byte THR_FSP_LOESCHEN    =  10; // Fehlerspeicher löschen
+   const byte THR_SG_INIT         =  11; // Steuergerät initialisieren
+   const byte THR_RESET_AUSLOESEN =  12; // WatchdogReset auslösen
+   const byte THR_CYC             =  13; // zyklischer Funktionsaufruf
+   const byte THR_KT              = 250; // Antwort von Kostia
+
+   byte InTaskID; // fsm_var der task_xxx Funktionen
+
+// =================================================
+//  Verriegelung der einzelnen Jobs gegeneinander
+// =================================================
+   byte JobState;
+	 const byte JS_SILENT = 0; // es wird z.Zt. keine Aktion ausgeführt
+	 const byte JS_ACTIVE = 1; // es läuft z.Zt. Kommunikation (nicht stören)
+
+
+// =================================================
+//  Aufgaben der envx_func
+// =================================================
+   const TASK_NV               = 0; // ohne Funktion
+   const TASK_SENDEN           = 1; // Botschaft senden
+   const TASK_WARTEN           = 2; // warten auf Antwort oder Timeout
+   const TASK_AUSWERTEN        = 3; // Ergebnis darstellen
+   const TASK_FEHLERBEHANDLUNG = 4; // was tun, wenn's falsch war
+// =================================================
+
+// =================================================
+//  Status der func_xxx Abarbeitung
+// =================================================
+   const byte READY_IO    = 1; // komplett fertig ohne Fehler
+   const byte READY_ERROR = 2; // komplett fertig mit Fehler
+   const byte NOT_READY   = 3; // noch nicht fertig
+// =================================================
+
+// =================================================
+// Konstanten zur Ausgabe im WriteFenster
+// =================================================
+// write sources
+
+//	DWORD WRITE_TRACE = -3;
+//	DWORD WRITE_LOG = -2;
+//	DWORD WRITE_DEBUG = -1;
+//	DWORD WRITE_SYSTEM = 0;
+//	DWORD WRITE_CAPL = 1;
+
+  dword WRITE_KOSTIA; // wird über envKT2AiWriteKostia gesetzt
+
+// write window severities
+	DWORD WRITE_SEVERITY_SUCCESS = 0;
+	DWORD WRITE_SEVERITY_INFO = 1;
+	DWORD WRITE_SEVERITY_WARNING = 2;
+	DWORD WRITE_SEVERITY_ERROR = 3;
+
+// logging block flags
+	DWORD WRITE_NO_COMMENT = 1;
+
+
+// =================================================
+// Konstanten für's Profiling
+// =================================================
+
+	 char ProfilDatei[13] = "KTApplP.ini"; // hier werden die ProfilDaten gespeichert
+	                                       // Datei befindet sich im akt. ProjektPfad
+                                         // !!! seit CANoe 4.1 gibt es zu jedem .dbc-File auch ein
+                                         // .ini-File; CANoe sucht erst im Verzeichnis der Datenbasen und
+                                         // dann erst im Konfigurationsverzeichnis; dumm gelaufen,
+                                         // denn es gibt auch eine Datenbasis KTAppl.dbc und somit
+                                         // auch eine KTAppl.ini: die ist hier aber nicht gemeint
+                                         // KTAppl.ini => KTApplP.ini
+   const byte KTASpeicherRW    = 0;
+   const byte KTAModusWechsel  = 1;
+   const byte KTAFSpLoeschen   = 2;
+
+
+// =================================================
+//  PWD
+// =================================================
+
+   byte LogPwd  [7];
+   byte SyncPwd [6];
+   byte MwPwd   [6];
+   byte ResPwd  [7];
+   byte RbrPwd  [8];
+
+}
+
+// ====================================================================================
+//  
+// ====================================================================================
+
+on start
+{
+	ProfilInfosHolen(); // Startwerte holen
+}
+
+// ====================================================================================
+//  Information aus der ProfilDatei holen
+// ====================================================================================
+
+void ProfilInfosHolen (void)
+{
+
+	long ergebnis;
+	long defaultWert;
+  char Text[8] = "       ";
+  byte i;
+
+//--------------------------------------------------------------------------------------------
+
+	// In der ProfilDatei können Daten in section und entry unterteilt, gespeichert werden,
+	// um so nach einem Programmneustart zur Verfügung zu stehen.
+  
+	// Kostia Appl Einstellungen
+	defaultWert = 0x400;
+	ergebnis = getProfileInt("SpeicherRW", "AnfangsAdresse", defaultWert, ProfilDatei);
+	putvalue(envKTAiAnfangsAdresse, ergebnis);
+
+	defaultWert = 0x400;
+	ergebnis = getProfileInt("SpeicherRW", "EndAdresse", defaultWert, ProfilDatei);
+	putvalue(envKTAiEndAdresse, ergebnis);
+
+	defaultWert = envKTAiPage::RAM;
+	ergebnis = getProfileInt("SpeicherRW", "Page", defaultWert, ProfilDatei);
+	putvalue(envKTAiPage, ergebnis);
+
+	defaultWert = envKTAiSollModus::Normal_Mode;
+	ergebnis = getProfileInt("ModusWechsel", "SollModus", defaultWert, ProfilDatei);
+	putvalue(envKTAiSollModus, ergebnis);
+/*
+	ergebnis = getProfileString("PWD", "LogPwd"  , "KOSTAL_", Text,  elcount(Text) , "Kostia.pwd");
+  for(i=0; i< elcount(LogPwd); i++)  LogPwd[i] = Text[i];
+	ergebnis = getProfileString("PWD", "SyncPwd" , "KOSTAL_", Text,  elcount(Text) , "Kostia.pwd");
+  for(i=0; i< elcount(SyncPwd); i++) SyncPwd[i] = Text[i];
+	ergebnis = getProfileString("PWD", "MwPwd"   , "MODUWE", Text,  elcount(Text) , "Kostia.pwd");
+  for(i=0; i< elcount(MwPwd); i++)   MwPwd[i] = Text[i];
+	ergebnis = getProfileString("PWD", "ResPwd"  , "RESETME", Text,  elcount(Text) , "Kostia.pwd");
+  for(i=0; i< elcount(ResPwd); i++)  ResPwd[i] = Text[i];
+  */
+  RbrPwd[0] = 0x10;
+  RbrPwd[1] = 0x40;
+  RbrPwd[2] = 1;
+  RbrPwd[3] = 0;
+	defaultWert = 0;
+	ergebnis = getProfileInt("FSpLoeschen", "Adresse", defaultWert, ProfilDatei);
+	putvalue(envKTAiFSpAdresse, ergebnis);
+
+	defaultWert = envKTAiFSpDelay::ohne_Sperre;
+	ergebnis = getProfileInt("FSpLoeschen", "Delay", defaultWert, ProfilDatei);
+	putvalue(envKTAiFSpDelay, ergebnis);
+  //write("In ProfilInfosHolen");
+}
+
+// ====================================================================================
+//  Information in die ProfilDatei schreiben
+// ====================================================================================
+
+void ProfilInfoSetzen (byte Art)
+{
+
+	long ergebnis;
+
+//--------------------------------------------------------------------------------------------
+
+	switch (Art)
+	{
+    // ===============================================
+    //  Infos für Speicher Lesen / Speicher Schreiben
+    // ===============================================
+		case KTASpeicherRW:
+		{
+  		ergebnis = writeProfileInt("SpeicherRW", "AnfangsAdresse", getvalue(envKTAiAnfangsAdresse), ProfilDatei);
+    	if (ergebnis == 0)
+    		writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Kann Profil in %s nicht erstellen", ProfilDatei);
+
+  		ergebnis = writeProfileInt("SpeicherRW", "EndAdresse"    , getvalue(envKTAiEndAdresse)    , ProfilDatei);
+    	if (ergebnis == 0)
+    		writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Kann Profil in %s nicht erstellen", ProfilDatei);
+
+  		ergebnis = writeProfileInt("SpeicherRW", "Page"          , getvalue(envKTAiPage)          , ProfilDatei);
+    	if (ergebnis == 0)
+    		writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Kann Profil in %s nicht erstellen", ProfilDatei);
+    	break;
+		}
+    // ===============================================
+    //  Infos für Modus-Wechsel
+    // ===============================================
+		case KTAModusWechsel:
+		{
+  		ergebnis = writeProfileInt("ModusWechsel", "SollModus", getvalue(envKTAiSollModus), ProfilDatei);
+    	if (ergebnis == 0)
+    		writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Kann Profil in %s nicht erstellen", ProfilDatei);
+    	break;
+ 		}
+    // ===============================================
+    //  Infos für Fehlerspeicher Löschen
+    // ===============================================
+		case KTAFSpLoeschen:
+		{
+  		ergebnis = writeProfileInt("FSpLoeschen", "Adresse", getvalue(envKTAiFSpAdresse), ProfilDatei);
+    	if (ergebnis == 0)
+    		writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Kann Profil in %s nicht erstellen", ProfilDatei);
+  		ergebnis = writeProfileInt("FSpLoeschen", "Delay", getvalue(envKTAiFSpDelay), ProfilDatei);
+    	if (ergebnis == 0)
+    		writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Kann Profil in %s nicht erstellen", ProfilDatei);
+    	break;
+ 		}
+
+		default:
+		{
+			break;
+		}
+	}
+}
+
+// ====================================================================================
+//  zentrale Funktion, die die eintreffenden Events (Message, Timer, Enviroment)
+//  konzentriert und an die aktive Funktionalität weiterleitet
+// ====================================================================================
+
+void TaskHandler (byte function, byte MultiInfo)
+{
+                     // lokale Variablen sind in CAPL immer static
+	byte FunctionID;   // welche Funktion wird aufgerufen, wenn der TaskHandler mit funktion=THF_ACTION aufgerufen wird
+
+	byte ToCallID;
+	byte CallReason;
+
+  byte ergebnis;     // Rückgabe der func_xxx Aufrufe
+
+//--------------------------------------------------------------------------------------------
+
+	ToCallID   = MultiInfo; // wer hat aufgerufen     (THA_SYS, THA_ENV: wenn function=THF_INIT  )
+	CallReason = MultiInfo; // warum wurde aufgerufen (THR_MSG, THR_TO : wenn function=THF_ACTION)
+
+  // ===========================================================================================
+  //  merken, welche Funktion bei THF_ACTION aufgerufen werden soll bzw. zum Start der Funktion
+	//  auch jetzt schon aufgerufen wird
+  // ===========================================================================================
+	if (function == THF_INIT)
+	{
+		FunctionID = ToCallID;
+		function   = THF_ACTION; // und weiter gehts
+    InTaskID   = 0;
+    putvalue(envKTA_TaskReady, envKTA_TaskReady::TaskRunning); // die Task läuft jetzt
+	}
+
+  // ===========================================================================================
+  //  passende Funktion aufrufen
+  // ===========================================================================================
+	if (function == THF_ACTION)
+	{
+		switch (FunctionID) // welche Funktion soll aufgerufen werden
+		{
+      // =======================================
+      //  Fehler
+      // =======================================
+			case THR_NV:    // gibt es garnicht -> Fehler
+			{
+				writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: Parameter >FunctionID< hat in TaskHandler KTAppl den Wert 0 !");
+				break;
+			}
+      // =======================================
+      //  Aufgabe: Login
+      // =======================================
+			case THR_LOGIN:
+			{
+				ergebnis = func_Login(CallReason);
+				break;
+			}
+      // =======================================
+      //  Aufgabe: SG Modus umschalten
+      // =======================================
+			case THR_MODUSWECHSEL:
+			{
+        task_ModusWechsel(CallReason); // Login und Moduswechsel
+				break;
+			}
+      // =======================================
+      //  Aufgabe: Logout
+      // =======================================
+			case THR_LOGOUT:
+			{
+				ergebnis = func_Logout(CallReason);
+				break;
+			}
+      // =======================================
+      //  Aufgabe: Sync
+      // =======================================
+			case THR_SYNC:
+			{
+				ergebnis = func_Sync(CallReason);
+				break;
+			}
+      // =======================================
+      //  Aufgabe: Speicher Lesen
+      // =======================================
+			case THR_SP_LESEN:
+			{
+				task_SpeicherLesen(CallReason); // Login und Speicher lesen
+				break;
+			}
+      // =======================================
+      //  Aufgabe: Speicher Schreiben
+      // =======================================
+			case THR_SP_SCHREIBEN:
+			{
+				task_SpeicherSchreiben(CallReason); // Login und Speicher schreiben
+				break;
+			}
+      // =======================================
+      //  Aufgabe: Fehlerspeicher löschen
+      // =======================================
+			case THR_FSP_LOESCHEN:
+			{
+				task_FSpLoeschen(CallReason); // Login und FehlerSpeicher löschen
+				break;
+			}
+      // =======================================
+      //  Aufgabe: Steuergerät initialisieren
+      // =======================================
+			case THR_SG_INIT:
+			{
+				task_SGInit(CallReason); // Login und Steuergerät initialisieren
+				break;
+			}
+      // =======================================
+      //  Aufgabe: Reset auslösen
+      // =======================================
+			case THR_RESET_AUSLOESEN:
+			{
+				task_ResetAusloesen(CallReason); // Login und Reset auslösen
+				break;
+			}
+      // =======================================
+      //  Fehler
+      // =======================================
+			default:
+			{
+				writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: Parameter >FunctionID< hat in TaskHandler KTAppl den unbekannten Wert %d !", FunctionID);
+				break;
+			}
+		}
+	}
+}
+
+// ====================================================================================
+//  Kostia Dienst LOGIN anstoßen
+// ====================================================================================
+
+byte func_Login (byte reason)
+{
+	byte Task;
+  byte ergebnis; // wie weit ist die Funktion READY/NOT_READY
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_LOGIN) // Function mu?Startwerte einstellen
+	{
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+    		// Anzeigen rückset  zen
+    		z_write2Display("Login", 
+       	    	         	"=====",
+                	    	" "    ,
+                    		" "
+                   			);
+
+    		SetzeLEDsRueck();
+    		SetzeLED(LED_Login, LED_Status_Warten);
+		}
+  		Task = TASK_SENDEN; // auf senden stellen
+	}
+
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_Login den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{
+    	// Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+
+  		putvalue(envKT2A_Daten, LogPwd); // PWD festlegen, wird als LoginDaten verwendet
+  		putvalue(envKT2A_Dienst, envKT2A_Dienst::Login_Request);  // Kostia Login
+  		putvalue(envKT2A_Status, envKT2A_Status::Dienst_starten); // und los geht's
+
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+   		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{
+      		if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  			Task = TASK_AUSWERTEN;
+      		if(   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+         	   || getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+         	  )
+  			Task = TASK_FEHLERBEHANDLUNG;
+
+ 			StepToNextState ();   // nächsten case aktivieren
+      		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+      		{
+				getvalue(envKT2A_Daten, puffer);
+      			if (z_checkLog(LogPwd, puffer, 'n') == true)
+      			{
+        			z_write2Display("", "", "Successed", "");
+        			SetzeLED(LED_Login, LED_Status_Io);
+      			}
+      			else
+      			{
+        			z_write2Display("", "", "Not Successed ! ! !", "");
+        			SetzeLED(LED_Login, LED_Status_Fehler);
+      			}
+			}
+			else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+			{
+				getvalue(envKT2A_Daten, puffer);
+      			if (z_checkLog(LogPwd, puffer, 'n') != true)
+					putvalue(envKTE90_RuntimeError, "Login Not Successed!");
+			}
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_IO;
+  			break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("", "", "Failed ! ! !", "");
+      			SetzeLED(LED_Login, LED_Status_Fehler);
+			}
+			else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+				putvalue(envKTE90_RuntimeError, "Login Failed!");
+
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+			//StepToNextState ();
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_Login den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+  return (ergebnis);
+
+}
+
+// ====================================================================================
+//  über den Timer den TaskHandler erneut aufrufen
+//  (Timer, damit keine Rekursion entsteht)
+// ====================================================================================
+
+void StepToNextState (void)
+{
+	
+	canceltimer(t_stns);
+	settimer(t_stns, T_STNS); // der TimerEvent ruf dann den TaskHandler erneut auf
+
+}
+
+// ====================================================================================
+//  Timer zur Weiterschaltung des TaskHandlers
+//  (Timer, damit keine Rekursion entsteht)
+// ====================================================================================
+
+on timer t_stns
+{
+	TaskHandler(THF_ACTION, THR_STNS);
+}
+
+// ====================================================================================
+//  den TaskHandler mit einer neuen Aufgabe beschicken
+// ====================================================================================
+
+void NeueAufgabeSetzen (byte reason)
+{
+  if(JobState == JS_SILENT)
+  {
+    JobState = JS_ACTIVE; // augenblickliche Bearbeitung anzeigen
+    TaskHandler(THF_INIT, reason);
+  }
+  else
+  {
+    writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_WARNING, "Kostia Appl ist zur Zeit beschäftigt !");
+  }
+}
+
+// ======================================================================================
+//  wird von Kostia aufgerufen,wenn die Antwort eingegangen ist oder ein Timeout auftrat
+// ======================================================================================
+
+on envVar envKTAppl_Status
+{
+  if (getvalue(envKTAppl_Status) != envKTAppl_Status::Dienst_starten)
+   	TaskHandler(THF_ACTION, THR_KT); // TaskHandler mit Kostia Meldung weiterschalten
+}
+
+// ====================================================================================
+//  Aktivierung über Button auf einem Panel
+//  hier: Login durchführen
+// ====================================================================================
+
+on envVar envKTA_Login
+{
+  write("In Login");
+  if(getvalue(this) == ein)
+  {
+  	putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+    NeueAufgabeSetzen(THR_LOGIN);
+  }
+
+}
+
+// ====================================================================================
+//  Kostia Dienst Modus-Wechsel anstoßen
+// ====================================================================================
+
+byte func_ModusWechsel (byte reason)
+{
+	byte Task;
+  byte ergebnis;     // wie weit ist die Funktion READY/NOT_READY
+
+  byte AktPwd   [6]; // aktuell zu verwendendes PWD
+  byte i;            // laufender Index
+
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_MODUSWECHSEL) // Function mu?Startwerte einstellen
+	{
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+    		// Anzeigen rücksetzen
+    		z_write2Display("Modus-Wechsel",
+            		        "=============",
+                    		" "            ,
+                    		" "
+                   			);
+		}
+
+    	for (i=0; i<elcount(AktPwd); i++) // kopieren
+      		AktPwd[i] = MwPwd[i];
+//write("Decimal: %x %x %x", AktPwd[0],AktPwd[1],AktPwd[2]);
+  		Task = TASK_SENDEN; // auf senden stellen
+	}
+
+	if (reason == THR_COMMODUSWECHSEL) // Function mu?Startwerte einstellen
+	{
+    	if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+			// Anzeigen rücksetzen
+    		z_write2Display("Modus-Wechsel / Com-Wechsel",
+            		        "===========================",
+                    		"",
+                    		""
+                   			);
+		}
+    	for (i=0; i<elcount(AktPwd); i++) // kopieren und komplementieren
+      		AktPwd[i] = ~MwPwd[i];
+
+  		Task = TASK_SENDEN; // auf senden stellen
+	}
+  /* Start */
+  if(getvalue(envKTAiSollModus) == envKTAiSollModus::CalibrationMode )
+  {
+    for (i=0; i<elcount(AktPwd); i++) // kopieren
+      		AktPwd[i] = RbrPwd[i];
+  }
+  /* End */
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_ModusWechsel den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{
+  		// Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+
+  		putvalue(envKT2A_Daten     , AktPwd);                          // PWD festlegen, wird als LoginDaten verwendet
+  		putvalue(envKT2A_Dienst    , envKT2A_Dienst::Modus_Wechsel);  // Kostia Moduswechsel
+  		putvalue(envKT2A_SollModus , getValue(envKTAiSollModus));     // auf xxx umschalten
+  		putvalue(envKT2A_Status    , envKT2A_Status::Dienst_starten); // und los geht's
+
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+   		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{
+      		if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  				Task = TASK_AUSWERTEN;
+      		if (   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+         		|| getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+         		)
+  				Task = TASK_FEHLERBEHANDLUNG;
+
+			StepToNextState ();   // nächsten case aktivieren
+      		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{
+      		getvalue(envKT2A_Daten, puffer);
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			if (z_checkLog(AktPwd, puffer, 'n') == true)
+      			{
+        			z_write2Display("", "", "Successed", "");
+        			SetzeLED(LED_ModusWechsel, LED_Status_Io);
+//              /* Start */
+//        			if(getValue(envKTAiSollModus) == envKTAiSollModus::FlashMode)
+//          				z_write2Display("", "", "", "- es kann jetzt das passende FlashTool aufgerufen werden");
+//               /* End */
+      			}
+      			else
+      			{
+        			z_write2Display("", "", "Not Successed ! ! !", "");
+        			SetzeLED(LED_ModusWechsel, LED_Status_Fehler);
+      			}
+			}
+
+			Task = TASK_NV;
+     		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_IO;
+			break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("", "", "Failed ! ! !", "");
+      			SetzeLED(LED_ModusWechsel, LED_Status_Fehler);
+			}
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_ModusWechsel den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+  return (ergebnis);
+
+}
+
+// ====================================================================================
+//  Aktivierung über Button auf einem Panel
+//  hier: FlashBootLoader aktivieren
+// ====================================================================================
+
+on envVar envKTA_ModusWechsel
+{
+
+  if(getvalue(this) == ein)
+  {
+  	putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+    NeueAufgabeSetzen(THR_MODUSWECHSEL);
+  }
+
+}
+
+// ====================================================================================
+//  Aufgabe: SG Betriebsmodus wechseln
+//           setzt sich zusammen aus: Login starten
+//                                    Modus-Wechsel
+// ====================================================================================
+
+void task_ModusWechsel (byte CallReason)
+{
+  switch (InTaskID)
+  {
+    // ======================================
+    //  erst Login durchführen
+    // ======================================
+    case 0:
+    {
+      SetzeLEDsRueck();
+      func_Login(THR_LOGIN);
+      InTaskID ++;
+      // nicht StepToNextState, da nächster Event von Kostia kommt
+      break;
+    }
+    // ===========================================
+    //  wenn Login erfolgreich, dann Moduswechsel
+    // ===========================================
+    case 1:
+    {
+      if (func_Login(CallReason) == READY_IO)
+      {
+        func_ModusWechsel(THR_MODUSWECHSEL); // hier initialiseren/senden
+        
+        InTaskID ++;
+        // nicht StepToNextState, da nächster Event von Kostia kommt
+
+        // wenn es nicht der TestModus ist, dann ist jetzt die Aufgabe beendet
+        if(getValue(envKTAiSollModus) != envKTAiSollModus::TestMode)
+          InTaskID ++; // letzter case, Aufgabe beendet
+      }
+      break;
+    }
+    // ============================================
+    //  für den TestModus mu?jetzt noch das 
+    //  komplementierte PWD gesendet werden
+    // ============================================
+    case 2:
+    {
+      if (func_ModusWechsel(CallReason) == READY_IO)
+      {
+        func_ModusWechsel(THR_COMMODUSWECHSEL); // hier initialiseren/senden
+        InTaskID ++;
+        // nicht StepToNextState, da nächster Event von Kostia kommt
+      }
+      break;
+    }
+    // ============================================================
+    //  wenn erfolgreiche Antwort vom Moduswechsel mit kompl. PWD,
+    //  dann fertig mit Modus-Wechsel
+    // ============================================================
+    case 3:
+    {
+      if (func_ModusWechsel(CallReason) == READY_IO)
+      {
+        InTaskID = 0; // Aufgabe komplett fertig
+      }
+      break;
+    }
+  }
+}
+
+// ====================================================================================
+//  zwei Datenfelder miteinander vergleichen
+// ====================================================================================
+
+byte z_checkLog (byte Soll[], byte Ist[], char Mode)
+{
+  byte ergebnis;
+  byte i;
+
+//--------------------------------------------------------------------------------------------
+
+  ergebnis = true;
+
+  switch (Mode)
+  {
+    // ============
+    //  invertiert
+    // ============
+    case 'i':
+    {
+      for(i=0; i<elcount(Soll); i++)
+      {
+        if(Soll[i] != (255 - Ist[i])) // ~ geht nicht
+        {
+          ergebnis = false;
+          break;
+        }
+      }
+      break;
+    }
+    // ============
+    //  normal
+    // ============
+    case 'n':
+    {
+      for(i=0; i<elcount(Soll); i++)
+      {
+        if(Soll[i] != Ist[i])
+        {
+          ergebnis = false;
+          break;
+        }
+      }
+      break;
+    }
+    default:
+    {
+      ergebnis = false;
+      break;
+    }
+  }
+
+  return(ergebnis);
+
+}
+
+// ====================================================================================
+//  Kostia Dienst LOGOUT anstoßen
+// ====================================================================================
+
+byte func_Logout (byte reason)
+{
+	byte Task;
+  byte ergebnis; // wie weit ist die Funktion READY/NOT_READY
+  byte PWD[7]  = {0, 0, 0, 0, 0, 0, 0};  // PWD hin
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_LOGOUT) // Function mu?Startwerte einstellen
+	{
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+    		// Anzeigen rücksetzen
+    		z_write2Display("Logout",
+            		        "======",
+                    		" "     ,
+                    		" "
+                   			);
+
+    		SetzeLEDsRueck();
+    		SetzeLED(LED_Login, LED_Status_Warten); // und LoginAnzeige rücksetzen
+		}
+
+		Task = TASK_SENDEN; // auf senden stellen
+	}
+
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_Logout den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{
+  		// Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+
+  		putvalue(envKT2A_Daten, PWD); // PWD festlegen, wird als LoginDaten verwendet
+  		putvalue(envKT2A_Dienst, envKT2A_Dienst::Login_Request);  // Kostia Login
+  		putvalue(envKT2A_Status, envKT2A_Status::Dienst_starten); // und los geht's
+
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+   		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{
+      		if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  				Task = TASK_AUSWERTEN;
+      		if (   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+         		|| getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+         		)
+  				Task = TASK_FEHLERBEHANDLUNG;
+
+ 			StepToNextState ();   // nächsten case aktivieren
+      		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+      		{
+      			getvalue(envKT2A_Daten, puffer);
+      			if (z_checkLog(PWD, puffer, 'n') == true)
+      			{
+        			z_write2Display("", "", "Successed", "");
+        			SetzeLED(LED_Logout, LED_Status_Io);
+      			}
+      			else
+      			{
+        			z_write2Display("", "", "Not Successed ! ! !", "");
+        			SetzeLED(LED_Logout, LED_Status_Fehler);
+      			}
+			}
+	  		else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+			{
+				getvalue(envKT2A_Daten, puffer);
+      			if (z_checkLog(PWD, puffer, 'n') != true)
+					putvalue(envKTE90_RuntimeError, "Logout Not Successed!");
+			}
+
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_IO;
+  			break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("", "", "Fail ! ! !", "");
+      			SetzeLED(LED_Logout, LED_Status_Fehler);
+	  		}
+			else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+				putvalue(envKTE90_RuntimeError, "Logout Fail!");
+		  
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+			//StepToNextState ();
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_Logout den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+  return (ergebnis);
+
+}
+
+// ====================================================================================
+//  Aktivierung über Button auf einem Panel
+//  hier: Logout durchführen
+// ====================================================================================
+
+on envVar envKTA_Logout
+{
+
+  if(getvalue(this) == ein)
+  {
+  	putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+    NeueAufgabeSetzen(THR_LOGOUT);
+  }
+
+}
+
+// ====================================================================================
+//  Aktivierung über Button auf einem Panel
+//  hier: Sync absetzen
+// ====================================================================================
+
+on envVar envKTA_Sync
+{
+
+  if(getvalue(this) == ein)
+  {
+  	putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+    NeueAufgabeSetzen(THR_SYNC);
+  }
+
+}
+
+// ====================================================================================
+//  Kostia Dienst SYNC anstoßen
+// ====================================================================================
+
+byte func_Sync (byte reason)
+{
+	byte Task;
+  byte ergebnis; // wie weit ist die Funktion READY/NOT_READY
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_SYNC) // Function mu?Startwerte einstellen
+	{
+    // Anzeigen rücksetzen
+    z_write2Display("Synchronisation",
+                    "===============",
+                    " "              ,
+                    " "
+                   );
+
+    SetzeLED(LED_Sync, LED_Status_Warten);
+
+		Task = TASK_SENDEN; // auf senden stellen
+	}
+
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_Sync den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{
+      // Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+
+      putvalue(envKT2A_Daten, SyncPwd); // SyncKennziffern festlegen
+      putvalue(envKT2A_Dienst, envKT2A_Dienst::Sync);  // Kostia Sync
+      putvalue(envKT2A_Status, envKT2A_Status::Dienst_starten); // und los geht's
+
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+      ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{
+      if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  			Task = TASK_AUSWERTEN;
+      if(   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+         || getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+         )
+  			Task = TASK_FEHLERBEHANDLUNG;
+
+ 			StepToNextState ();   // nächsten case aktivieren
+      ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{
+      getvalue(envKT2A_Daten, puffer);
+      if (    getvalue(envKT2A_IstSyncFest) == envKT2A_IstSyncFest::LoginInOrdnung // Rückgabe Festwert
+           && z_checkLog(SyncPwd, puffer, 'n') == true                             // und Parameter i.o.
+         )
+      {
+        z_write2Display("", "", "Successed", "");
+        SetzeLED(LED_Sync, LED_Status_Io);
+      }
+      else
+      {
+        z_write2Display("", "", "Not Successed ! ! !", "");
+        if(getvalue(envKT2A_IstSyncFest) == envKT2A_IstSyncFest::LoginNichtOK)
+        {
+          z_write2Display("", "", "", "es wurde kein Login durch gefuehrt oder das Login ist abgelaufen");
+        }
+        else
+        {
+          z_write2Display("", "", "", "die Rueckgabeparameter stimmen nicht");
+        }
+        SetzeLED(LED_Sync, LED_Status_Fehler);
+      }
+
+			Task = TASK_NV;
+      JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      ergebnis = READY_IO;
+  		break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+      z_write2Display("", "", "Failed", "");
+      SetzeLED(LED_Sync, LED_Status_Fehler);
+
+			Task = TASK_NV;
+      JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      ergebnis = READY_ERROR;
+			//StepToNextState ();
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_Sync den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+  return (ergebnis);
+
+}
+
+// ====================================================================================
+//  Aktivierung durch envKTE90_SpeicherLesen
+// ====================================================================================
+
+on envVar envKT_SpeicherLesen
+{
+  	NeueAufgabeSetzen(THR_SP_LESEN);
+}
+
+// ====================================================================================
+//  Kostia Dienst Speicher Lesen anstoßen
+// ====================================================================================
+
+byte func_SpeicherLesen (byte reason)
+{
+	byte Task;
+	byte ergebnis;      // wie weit ist die Funktion READY/NOT_READY
+	dword AnfangsAdresse;
+	dword EndAdresse;
+	dword AnzDaten;
+	dword Adresse;       // laufende Adresse
+	dword i;             // Index
+	int tmpSpeicher;		// Zwischenspeicher für KTE90
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_SP_LESEN) // Function mu?Startwerte einstellen
+	{
+	    AnfangsAdresse = getvalue(envKT_AnfangsAdresse);
+		Adresse        = getvalue(envKT_AnfangsAdresse);
+		EndAdresse     = getvalue(envKT_EndAdresse);
+    
+    write("In func_SpeicherLesen AnfangsAdresse = %x", AnfangsAdresse);
+    write("In func_SpeicherLesen EndAdresse = %x", EndAdresse);
+
+    // EndAdresse mu?größer oder gleich der AnfangsAdresse sein
+    if(EndAdresse < AnfangsAdresse)
+    {
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+			z_write2Display("Memory Load",
+                      "==============",
+                      "Caution: End Address must be larger than or equal to Start Address !",
+                      " "
+                     );
+		}
+		Task = TASK_NV;
+		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+		ergebnis = READY_ERROR;
+		return (ergebnis);
+    }
+
+    // Anfangs- und Endadresse abtesten
+    if( (EndAdresse - AnfangsAdresse + 1) > elcount(Speicher) )
+    {
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+		    z_write2Display("Memory Load",
+                      "==============",
+                      "Sorry, z.Zt. koennen nicht mehr als 64k Bytes gelesen werden !",
+                      " "
+                     );
+		}
+		Task = TASK_NV;
+ 		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+	    ergebnis = READY_ERROR;
+    	return (ergebnis);
+    }
+    // Anzeigen rücksetzen
+	if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+	{
+	    z_write2Display("Memory Load",
+                    "==============",
+                    " "             ,
+                    " "
+                   );
+	}
+	Task = TASK_SENDEN; // auf senden stellen
+}
+
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_SpeicherLesen den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{ //write("In TASK_SENDEN");
+  		// Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+      //write("In TASK_SENDEN envKTAppl_Status = %x", envKTAppl_Status);
+  		putvalue(envKT2A_Dienst     , envKT2A_Dienst::Speicher_Lesen); // Kostia Speicher Lesen
+      //write("In TASK_SENDEN envKT2A_Dienst = %x", envKT2A_Dienst);
+  		putvalue(envKT2A_Adresse    , Adresse);
+      //write("In TASK_SENDEN envKT2A_Adresse = %x", envKT2A_Adresse);
+  		// --> Anzahl der restlichen Daten berechnen und auf MaxKTDatenLesen(=7) begrenzen
+  		if( ((EndAdresse - Adresse + 1) / MaxKTDatenLesen) >= 1)
+  			AnzDaten = MaxKTDatenLesen;
+  		else
+        AnzDaten = (EndAdresse - Adresse + 1) % MaxKTDatenLesen;
+       
+	    putvalue(envKT2A_AnzahlDaten, AnzDaten);
+	    putvalue(envKT2A_Page       , getvalue(envKT_Page));
+	
+  		putvalue(envKT2A_Status     , envKT2A_Status::Dienst_starten); // und los geht's
+  		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+  			putvalue(envKTE90_Status, envKTE90_Status::Dienst_starten);
+		
+  		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+  		{
+  	    	snprintf(Text, elcount(Text), "lese Adresse %X ", Adresse);
+  	    	z_write2Display("", "", Text, "");
+  		}
+  		Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+  	  ergebnis = NOT_READY;
+  		break;
+    }
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{ //write("In TASK_WARTEN");
+      	if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  			Task = TASK_AUSWERTEN;
+      	if(   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+           || getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+        	)
+  			Task = TASK_FEHLERBEHANDLUNG;
+      //write(" In TASK_WARTEN envKTAppl_Status = %X", envKTAppl_Status);
+ 		StepToNextState ();   // nächsten case aktivieren
+      	ergebnis = NOT_READY;
+		break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{     
+      		getvalue(envKT2A_Daten, puffer); // aus dem Kostia Puffer in den Applikationspuffer kopieren
+      		for(i=0; i<AnzDaten; i++)
+        		Speicher[Adresse - AnfangsAdresse + i] = puffer[i];
+
+      		Adresse = Adresse + MaxKTDatenLesen;
+
+      		// ============================
+      		//  sind alle Adressen gelesen
+      		// ============================
+      		if(Adresse > EndAdresse)
+      		{
+        	// --> ja
+            //write("In if loop Adresse > EndAdresse");
+        		i = EndAdresse - AnfangsAdresse + 1;
+				if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+				{
+        			putvalue(envKTAiDaten , Speicher, i); // in den KTApplPuffer
+	    			SetzeLED(LED_SpeicherLesen, LED_Status_Io);
+    				z_write2Display("", "", "Completed", "");
+				}
+				else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+				{
+					putvalue(envKT_Daten, Speicher, i);		// in den KTPuffer (Data)
+					putvalue(envKTE90_Status, envKTE90_Status::Dienst_beendet);	// KTE90 triggern
+
+//					putvalue(envKTE90_Daten, Speicher, i); 	// in den KTE90Puffer (Integer)
+//					if (getvalue(envKTE90_NewDataArrived) == ein)  	// Triggern, dass neue Daten
+//						putvalue(envKTE90_NewDataArrived, aus);		// angekommen sind
+//					else
+//						putvalue(envKTE90_NewDataArrived, ein);
+				}
+	  			Task = TASK_NV;
+				// putvalue(envKT_Anforderung, envKT_Anforderung::keiner);
+    	    	JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+        		ergebnis = READY_IO;
+				
+        	}
+        	else
+        	{
+	    	// --> nein, dann weiter lesen
+  				Task = TASK_SENDEN;
+        		ergebnis = NOT_READY;
+	   			StepToNextState ();   // nächsten case aktivieren
+       		}
+   			break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+    		z_write2Display("", "", "Failed  ! ! !", "");
+	    	SetzeLED(LED_SpeicherLesen, LED_Status_Fehler);
+		}
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+			putvalue(envKTE90_RuntimeError, "Lesefehler!");			
+
+		Task = TASK_NV;
+		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+		ergebnis = READY_ERROR;
+		//StepToNextState ();
+		break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_SpeicherLesen den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+  return (ergebnis);
+
+}
+
+// ====================================================================================
+//  
+// ====================================================================================
+
+on stopMeasurement
+{
+
+	ProfilInfoSetzen(KTASpeicherRW  ); // Startwerte speichern
+	ProfilInfoSetzen(KTAModusWechsel);
+	ProfilInfoSetzen(KTAFSpLoeschen);
+
+}
+
+// ====================================================================================
+//  Aktivierung über Button auf einem Panel
+//  hier: Speicher Schreiben durchführen
+// ====================================================================================
+
+on envVar envKTA_SpeicherSchreiben
+{
+	if(getvalue(this) == ein)
+	{
+		putvalue(envKT_AnfangsAdresse, getvalue(envKTAiAnfangsAdresse));
+		putvalue(envKT_EndAdresse, getvalue(envKTAiEndAdresse));
+		putvalue(envKT_Page, getvalue(envKTAiPage));
+		getvalue(envKTAiDaten, puffer);
+		putvalue(envKT_Daten, puffer, getvaluesize(envKTAiDaten));
+		putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+
+		NeueAufgabeSetzen(THR_SP_SCHREIBEN);
+	}
+}
+
+// ====================================================================================
+//  Kostia Dienst Speicher Schreiben anstoßen
+// ====================================================================================
+
+byte func_SpeicherSchreiben (byte reason)
+{
+	byte Task;
+	byte ergebnis; // wie weit ist die Funktion READY/NOT_READY
+	dword AnzDaten;
+	dword AnfangsAdresse;
+	dword EndAdresse;
+	dword Adresse;
+	dword i;
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_SP_SCHREIBEN) // Function mu?Startwerte einstellen
+	{
+    	AnfangsAdresse = getvalue(envKT_AnfangsAdresse);
+    	Adresse        = getvalue(envKT_AnfangsAdresse);
+    	EndAdresse     = getvalue(envKT_EndAdresse);
+
+    	// =================================
+    	// Anfangs- und Endadresse abtesten
+    	// =================================
+    	// EndAdresse mu?größer oder gleich der AnfangsAdresse sein
+    	if(EndAdresse < AnfangsAdresse)
+    	{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("Memory Write",
+            			        "==================",
+                	      		"Caution: End Address must be lager than Start Address !",
+                	      		" "
+                	     		);
+			}
+
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+      		return (ergebnis);
+    	}
+
+    	if( (EndAdresse - AnfangsAdresse + 1) > elcount(Speicher) )
+    	{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("Memory Write",
+                	      		"==================",
+                	      		"Sorry, no more than 64 k bytes can be written !",
+                 	     		" "
+                  		   		);
+			}
+
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+      		return (ergebnis);
+    	}
+
+    	// =================================
+    	// Anzahl der Datenbytes abtesten
+    	// =================================
+    	i = EndAdresse - AnfangsAdresse +1; // Anzahl zu sendende Daten
+    	if(getvaluesize(envKT_Daten) < i)
+    	{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("Memory Write",
+            			        "==================",
+               		       		"Caution: There is too little values entered !",
+                	      		" "
+                	     		);
+			}
+
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+      		return (ergebnis);
+    	}
+
+    	if(getvaluesize(envKT_Daten) > i)
+    	{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("Memory Write",
+                      			"==================",
+                      			"Caution: There are too many values entered !",
+                      			" "
+                     			);
+			}
+
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+      		return (ergebnis);
+    	}
+
+    	// =================================
+    	// Anzeigen rücksetzen
+    	// =================================
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+    		z_write2Display("Memory Write", 
+                   		 	"==================",
+                   		 	" "                 ,
+                  		  	" "
+                   		);
+			getvalue(envKTAiDaten , Speicher); // Werte aus dem ApplPuffer holen und nach Speicher kopieren
+		}
+		else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+			getvalue(envKT_Daten , Speicher); // Werte aus dem KTE90Puffer holen und nach Speicher kopieren
+
+  		Task = TASK_SENDEN;                // auf senden stellen
+	}
+
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_SpeicherSchreiben den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{
+  		// Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+
+  		putvalue(envKT2A_Dienst     , envKT2A_Dienst::Speicher_Schreiben); // Kostia Speicher Schreiben
+  		putvalue(envKT2A_Adresse    , Adresse);
+
+  		// --> Anzahl der restlichen Daten berechnen und auf MaxKTDatenSchreiben(=4) begrenzen
+  		if( ((EndAdresse - Adresse + 1) / MaxKTDatenSchreiben) >= 1)
+    		AnzDaten = MaxKTDatenSchreiben;
+  		else
+    		AnzDaten = ((EndAdresse - Adresse + 1) % MaxKTDatenSchreiben);
+   
+  		// --> SchreibDaten setzen ! ! !
+  		for(i=0; i<AnzDaten; i++)
+    		puffer[i] = Speicher[Adresse - AnfangsAdresse + i];
+
+  		putvalue(envKT2A_Daten, puffer, AnzDaten);
+
+  		putvalue(envKT2A_AnzahlDaten, AnzDaten);
+  		putvalue(envKT2A_Page       , getvalue(envKT_Page));
+  		putvalue(envKT2A_Status     , envKT2A_Status::Dienst_starten); // und los geht's
+    	if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+				putvalue(envKTE90_Status, envKTE90_Status::Dienst_starten);
+
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+    		snprintf(Text, elcount(Text), "Write Adresse %X ", Adresse);
+    		z_write2Display("", "", Text, "");
+      }
+
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+    	ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{
+      		if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  			Task = TASK_AUSWERTEN;
+      		if (   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+         		|| getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+         		)
+  				Task = TASK_FEHLERBEHANDLUNG;
+
+ 			StepToNextState ();   // nächsten case aktivieren
+      		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{
+      		getvalue(envKT2A_Daten, puffer); // aus dem Kostia Puffer in den Applikationspuffer kopieren
+
+//  VERGLEICHEN ! ! !
+//      for(i=0; i<AnzDaten; i++)
+//        Speicher[Adresse - AnfangsAdresse + i] = puffer[i];
+
+      		Adresse = Adresse + MaxKTDatenSchreiben;
+
+      		// ============================
+      		//  sind alle Adressen gelesen
+      		// ============================
+      		if(Adresse > EndAdresse)
+      		{
+        		// --> ja
+				if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+				{
+        			SetzeLED(LED_SpeicherSchreiben, LED_Status_Io);
+        			z_write2Display("", "", "Completed", "");
+				}
+				else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+					putvalue(envKTE90_RuntimeError, "Shadow Boot Completed!");
+
+  				Task = TASK_NV;
+        		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+        		ergebnis = READY_IO;
+       		}
+       		else
+       		{
+        		// --> nein, dann weiter lesen
+  				Task = TASK_SENDEN;
+        		ergebnis = NOT_READY;
+   				StepToNextState ();   // nächsten case aktivieren
+       		}
+ 			break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("", "", "Failed ! ! !", "");
+      			SetzeLED(LED_SpeicherSchreiben, LED_Status_Fehler);
+			}
+			else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+				putvalue(envKTE90_RuntimeError, "Fault during Shadow Boot!");
+
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+			//StepToNextState ();
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Error: >Task< has unknow value in func_ in func_SpeicherSchreiben(Memory Write) %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+	return (ergebnis);
+}
+
+// ====================================================================================
+//  schriebt die Daten in ein virtuelles Display auf dem Panel
+//  mit der aktuellen Einstellung sind 80 Zeichen pro Zeile möglich
+//  überzählige Zeichen werden abgeschnitten
+// ====================================================================================
+
+void z_write2Display (char T1[], char T2[], char T3[], char T4[])
+{
+  if(strlen(T1) != 0)               // nur beschreiben, wenn auch Text übergeben wurde
+    putvalue(envKTA_Display_Z1, T1);
+
+  if(strlen(T2) != 0)               // nur beschreiben, wenn auch Text übergeben wurde
+    putvalue(envKTA_Display_Z2, T2);
+
+  if(strlen(T3) != 0)               // nur beschreiben, wenn auch Text übergeben wurde
+    putvalue(envKTA_Display_Z3, T3);
+
+  if(strlen(T4) != 0)               // nur beschreiben, wenn auch Text übergeben wurde
+    putvalue(envKTA_Display_Z4, T4);
+}
+
+// ====================================================================================
+//  Aufgabe: Speicherbereich aus dem Steuergerät lesen
+//           setzt sich zusammen aus: Login starten
+//                                    Speicher Lesen
+// ====================================================================================
+
+void task_SpeicherLesen (byte CallReason)
+{
+  switch (InTaskID)
+  {
+    // ======================================
+    //  erst Login durchführen
+    // ======================================
+    case 0:
+    {
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+	  	{
+			SetzeLEDsRueck();
+		}
+      	canceltimer(t_LoginRefresh);
+      	settimer(t_LoginRefresh, T_LOGINREFRESH); // LoginZeit erneut aufziehen
+      	func_Login(THR_LOGIN);
+      	InTaskID ++;
+      	// nicht StepToNextState, da nächster Event von Kostia kommt
+      	break;
+    }
+    // =============================================
+    //  wenn Login erfolgreich, dann Speicher lesen
+    // =============================================
+    case 1:
+    {
+      if (func_Login(CallReason) == READY_IO)
+      {
+        InTaskID ++;
+        StepToNextState();
+      }
+      break;
+    }
+    // =============================================
+    //  Speicher lesen durchführen
+    // =============================================
+    case 2:
+    {
+      func_SpeicherLesen(THR_SP_LESEN); // hier initialiseren/senden
+      InTaskID ++;
+      // nicht StepToNextState, da nächster Event von Kostia kommt
+      break;
+    }
+
+    // ===============================================
+    //  wenn erfolgreiche Antwort vom Speicher lesen,
+    //  dann fertig mit Speicher Lesen
+    //  oder zyklisch weiterlesen
+    // ===============================================
+    case 3:
+    {
+      if (func_SpeicherLesen(CallReason) == READY_IO)
+      {
+        if (getvalue(envKTA_Taskaufruf) == envKTA_Taskaufruf::einmalig)
+        {
+          canceltimer(t_LoginRefresh); // Loginzeit nicht mehr überwachen
+          InTaskID = 0;                // Aufgabe komplett fertig
+          putvalue(envKTA_TaskReady, envKTA_TaskReady::TaskReady); // die Task ist fertig
+        }
+        else // zyklischer Aufruf
+        {
+          if (LoginZeitFastAbgelaufen == ja)
+          {
+            LoginZeitFastAbgelaufen = nein;           // rücksetzen
+            settimer(t_LoginRefresh, T_LOGINREFRESH); // LoginZeit erneut aufziehen
+            InTaskID = 0;                             // jede Minute einmal im SG den LoginTimer neu aufziehen
+                                                      // und Speicher lesen
+          }
+          else
+          {
+            InTaskID = 2;                             // sonst nur Speicher lesen wiederholen
+          }
+          ZyklischerAufruf();                         // Timer (keine Rekursion) für zyklische Abarbeitung
+        }
+      }
+      break;
+    }
+  }
+}
+
+// ====================================================================================
+//  Aufgabe: Speicherbereich in das Steuergerät schreiben
+//           setzt sich zusammen aus: Login starten
+//                                    Speicher Schreiben
+// ====================================================================================
+
+void task_SpeicherSchreiben (byte CallReason)
+{
+  switch (InTaskID)
+  {
+    // ======================================
+    //  erst Login durchführen
+    // ======================================
+    case 0:
+    {
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+	  	{
+      		SetzeLEDsRueck();
+		}
+      	func_Login(THR_LOGIN);
+      	InTaskID ++;
+      	// nicht StepToNextState, da nächster Event von Kostia kommt
+      	break;
+    }
+    // =================================================
+    //  wenn Login erfolgreich, dann Speicher schreiben
+    // =================================================
+    case 1:
+    {
+      if (func_Login(CallReason) == READY_IO)
+      {
+        func_SpeicherSchreiben(THR_SP_SCHREIBEN); // hier initialiseren/senden
+        InTaskID ++;
+        // nicht StepToNextState, da nächster Event von Kostia kommt
+      }
+      break;
+    }
+    // ===================================================
+    //  wenn erfolgreiche Antwort vom Speicher schreiben,
+    //  dann fertig mit Speicher schreiben
+    // ===================================================
+    case 2:
+    {
+      if (func_SpeicherSchreiben(CallReason) == READY_IO)
+      {
+        InTaskID = 0; // Aufgabe komplett fertig
+      }
+      break;
+    }
+  }
+}
+
+// ====================================================================================
+//  Aktivierung über Button auf einem Panel
+//  hier: Reset auslösen
+// ====================================================================================
+
+on envVar envKTA_ResetAusloesen
+{
+
+  if(getvalue(this) == ein)
+  {
+  	putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+    NeueAufgabeSetzen(THR_RESET_AUSLOESEN);
+  }
+
+}
+
+// ====================================================================================
+//  Aufgabe: WatchdogReset auslösen
+//           setzt sich zusammen aus: Login starten
+//                                    Reset auslösen
+// ====================================================================================
+
+void task_ResetAusloesen (byte CallReason)
+{
+  switch (InTaskID)
+  {
+    // ======================================
+    //  erst Login durchführen
+    // ======================================
+    case 0:
+    {
+      SetzeLEDsRueck();
+      func_Login(THR_LOGIN);
+      InTaskID ++;
+      // nicht StepToNextState, da nächster Event von Kostia kommt
+      break;
+    }
+    // =============================================
+    //  wenn Login erfolgreich, dann Reset auslösen
+    // =============================================
+    case 1:
+    {
+      if (func_Login(CallReason) == READY_IO)
+      {
+        func_ResetAusloesen(THR_RESET_AUSLOESEN); // hier initialiseren/senden
+        InTaskID ++;
+        // nicht StepToNextState, da nächster Event von Kostia kommt
+      }
+      break;
+    }
+    // ===============================================
+    //  wenn erfolgreiche Antwort vom Reset auslösen,
+    //  dann fertig mit Reset auslösen
+    // ===============================================
+    case 2:
+    {
+      if (func_ResetAusloesen(CallReason) == READY_IO)
+      {
+        InTaskID = 0; // Aufgabe komplett fertig
+      }
+      break;
+    }
+  }
+}
+
+// ====================================================================================
+//  Kostia Dienst Reset auslösen anstoßen
+// ====================================================================================
+
+byte func_ResetAusloesen (byte reason)
+{
+	byte Task;
+  byte ergebnis; // wie weit ist die Funktion READY/NOT_READY
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_RESET_AUSLOESEN) // Function mu?Startwerte einstellen
+	{
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+    		// Anzeigen rücksetzen
+    		z_write2Display("Reset ausloesen",
+            		        "===============",
+                    		" "              ,
+                    		" "
+                 			);
+		}
+  		Task = TASK_SENDEN; // auf senden stellen
+	}
+
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_ModusWechselFlash den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{
+  		// Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+
+  		putvalue(envKT2A_Daten     , ResPwd);                          // PWD festlegen, wird als LoginDaten verwendet
+  		putvalue(envKT2A_Dienst    , envKT2A_Dienst::Reset_Ausloesen); // Kostia ResetAuslösen
+  		putvalue(envKT2A_Status    , envKT2A_Status::Dienst_starten);  // und los geht's
+
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+   		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{
+      		if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  				Task = TASK_AUSWERTEN;
+      		if (   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+         		|| getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+         		)
+  				Task = TASK_FEHLERBEHANDLUNG;
+
+			StepToNextState ();   // nächsten case aktivieren
+      		ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{
+      		getvalue(envKT2A_Daten, puffer);
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			if (z_checkLog(ResPwd, puffer, 'n') == true)
+      			{
+        			z_write2Display("", "", "Successed", "");
+        			SetzeLED(LED_ResetAusloesen, LED_Status_Io);
+        			SetzeLED(LED_Login, LED_Status_Warten);      // auch Login LED rücksetzen
+      			}
+      			else
+      			{
+        			z_write2Display("", "", "Not Successed ! ! !", "");
+        			SetzeLED(LED_ResetAusloesen, LED_Status_Fehler);
+      			}
+			}
+
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_IO;
+			break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("", "", "Failed ! ! !", "");
+        		SetzeLED(LED_ResetAusloesen, LED_Status_Fehler);
+			}
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_ModusWechselFlash den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+  return (ergebnis);
+
+}
+
+// ====================================================================================
+//  zu beginn eines Dienstes alle Anzige LED's ausschalten
+// ====================================================================================
+
+void SetzeLEDsRueck()
+{
+//  SetzeLED(LED_Login            , LED_Status_Warten);
+    SetzeLED(LED_Logout           , LED_Status_Warten);
+    SetzeLED(LED_Sync             , LED_Status_Warten);
+    SetzeLED(LED_ModusWechsel     , LED_Status_Warten);
+    SetzeLED(LED_SpeicherLesen    , LED_Status_Warten);
+    SetzeLED(LED_SpeicherSchreiben, LED_Status_Warten);
+    SetzeLED(LED_FSpLoeschen      , LED_Status_Warten);
+    SetzeLED(LED_SGInit           , LED_Status_Warten);
+    SetzeLED(LED_ResetAusloesen   , LED_Status_Warten);
+}
+
+// ====================================================================================
+//  Timer zum Blinken der TriLED's
+// ====================================================================================
+
+on timer t_BlinkTriLED
+{
+
+  LedTime = (T_HELL + T_DUNKEL) - LedTime;
+  settimer(t_BlinkTriLED, LedTime);
+  SetzeLED(LED_isTimer, LED_Status_Fehler);
+
+}
+
+// ====================================================================================
+//  Status an TriLED's weitergeben
+//  Warten = grau
+//  Fehler = dunkelrot/hellrot
+//  Io     = hellgrün
+// ====================================================================================
+void SetzeLED (byte LEDNr, byte Status)
+{
+  byte  thisLED;
+  dword BlinkAktiveLeds;    // LED's die blinken
+  dword altBlinkAktiveLeds; // LED's die beim letzten Aufruf geblinkt haben
+
+
+  if(LEDNr != LED_isTimer)
+  {
+    thisLED = LEDNr; // LED-Nummer merken
+
+    // ===================================
+    //  LED soll Fehler melden
+    // ===================================
+    if (Status == LED_Status_Fehler)
+    {
+      BlinkAktiveLeds |= 1 << LEDNr; // in die Liste aufnehmen
+      if(altBlinkAktiveLeds == 0 && BlinkAktiveLeds != 0) // es war keine LED an und jetzt ist eine LED an
+        { 
+          canceltimer(t_BlinkTriLED);
+          LedTime = T_DUNKEL;
+          settimer(t_BlinkTriLED, LedTime);
+          // writebin(BlinkAktiveLeds);
+        }
+    }
+    else
+    {
+      BlinkAktiveLeds &= ~(1 << LEDNr); // aus der Liste streichen
+      if(altBlinkAktiveLeds != 0 && BlinkAktiveLeds == 0) // es war min. eine LED an und jetzt ist keine LED an
+        canceltimer(t_BlinkTriLED);
+      // writebin(BlinkAktiveLeds);
+    }
+    altBlinkAktiveLeds = BlinkAktiveLeds;
+  }
+
+  // =======================================
+  //  Status an LED's weitergeben
+  // =======================================
+  switch (Status)
+  {
+    // =========================================
+    //  LED auf Status warten setzen
+    // =========================================
+    case LED_Status_Warten:
+    {
+      switch (thisLED)
+      {
+        case LED_Login:
+          { putvalue(envKTAaLogin            , envKTAaLogin::warten            ); break;}
+        case LED_Logout:
+          { putvalue(envKTAaLogout           , envKTAaLogout::warten           ); break;}
+        case LED_Sync:
+          { putvalue(envKTAaSync             , envKTAaSync::warten             ); break;}
+        case LED_ModusWechsel:
+          { putvalue(envKTAaModusWechsel     , envKTAaModusWechsel::warten     ); break;}
+        case LED_SpeicherLesen:
+          { putvalue(envKTAaSpeicherLesen    , envKTAaSpeicherLesen::warten    ); break;}
+        case LED_SpeicherSchreiben:
+          { putvalue(envKTAaSpeicherSchreiben, envKTAaSpeicherSchreiben::warten); break;}
+        case LED_FSpLoeschen:
+          { putvalue(envKTAaFehlerspLoeschen , envKTAaFehlerspLoeschen::warten ); break;}
+        case LED_SGInit:
+          { putvalue(envKTAaSGInit           , envKTAaSGInit::warten           ); break;}
+        case LED_ResetAusloesen:
+          { putvalue(envKTAaResetAusloesen   , envKTAaResetAusloesen::warten   ); break;}
+        default:
+          { break; }
+      }
+      break;
+    }
+    // =========================================
+    //  LED auf Status Fehler setzen
+    // =========================================
+    case LED_Status_Fehler:
+    {
+      // ============================
+      //  LED Login
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_Login) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaLogin            , envKTAaLogin::nicht_io_hell            );
+        else
+          putvalue(envKTAaLogin            , envKTAaLogin::nicht_io                 );
+      }
+      // ============================
+      //  LED Logout
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_Logout) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaLogout           , envKTAaLogout::nicht_io_hell           );
+        else
+          putvalue(envKTAaLogout           , envKTAaLogout::nicht_io                );
+      }
+      // ============================
+      //  LED Sync
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_Sync) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaSync             , envKTAaSync::nicht_io_hell             );
+        else
+          putvalue(envKTAaSync             , envKTAaSync::nicht_io                  );
+      }
+      // ============================
+      //  LED ModusWechsel
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_ModusWechsel) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaModusWechsel     , envKTAaModusWechsel::nicht_io_hell     );
+        else
+          putvalue(envKTAaModusWechsel     , envKTAaModusWechsel::nicht_io          );
+      }
+      // ============================
+      //  LED Speicher lesen
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_SpeicherLesen) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaSpeicherLesen    , envKTAaSpeicherLesen::nicht_io_hell    );
+        else
+          putvalue(envKTAaSpeicherLesen    , envKTAaSpeicherLesen::nicht_io         );
+      }
+      // ============================
+      //  LED Speicher schreiben
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_SpeicherSchreiben) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaSpeicherSchreiben, envKTAaSpeicherSchreiben::nicht_io_hell);
+        else
+          putvalue(envKTAaSpeicherSchreiben, envKTAaSpeicherSchreiben::nicht_io     );
+      }
+      // ============================
+      //  LED Fehlerspeicher löschen
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_FSpLoeschen) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaFehlerspLoeschen , envKTAaFehlerspLoeschen::nicht_io_hell   );
+        else
+          putvalue(envKTAaFehlerspLoeschen , envKTAaFehlerspLoeschen::nicht_io        );
+      }
+      // ============================
+      //  LED Steuergerät initialisieren
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_SGInit) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaSGInit           , envKTAaSGInit::nicht_io_hell             );
+        else
+          putvalue(envKTAaSGInit           , envKTAaSGInit::nicht_io                  );
+      }
+      // ============================
+      //  LED Reset auslösen
+      // ============================
+      if((BlinkAktiveLeds & LED_Mask_ResetAusloesen) != 0)
+      {
+        if(LedTime == T_HELL)
+          putvalue(envKTAaResetAusloesen   , envKTAaResetAusloesen::nicht_io_hell   );
+        else
+          putvalue(envKTAaResetAusloesen   , envKTAaResetAusloesen::nicht_io        );
+      }
+      break;
+    }
+    // =========================================
+    //  LED auf Status InOrdnung setzten
+    // =========================================
+    case LED_Status_Io:
+    {
+      switch (thisLED)
+      {
+        case LED_Login:
+          { putvalue(envKTAaLogin            , envKTAaLogin::io            ); break;}
+        case LED_Logout:
+          { putvalue(envKTAaLogout           , envKTAaLogout::io           ); break;}
+        case LED_Sync:
+          { putvalue(envKTAaSync             , envKTAaSync::io             ); break;}
+        case LED_ModusWechsel:
+          { putvalue(envKTAaModusWechsel     , envKTAaModusWechsel::io     ); break;}
+        case LED_SpeicherLesen:
+          { putvalue(envKTAaSpeicherLesen    , envKTAaSpeicherLesen::io    ); break;}
+        case LED_SpeicherSchreiben:
+          { putvalue(envKTAaSpeicherSchreiben, envKTAaSpeicherSchreiben::io); break;}
+        case LED_FSpLoeschen:
+          { putvalue(envKTAaFehlerspLoeschen , envKTAaFehlerspLoeschen::io ); break;}
+        case LED_SGInit:
+          { putvalue(envKTAaSGInit           , envKTAaSGInit::io           ); break;}
+        case LED_ResetAusloesen:
+          { putvalue(envKTAaResetAusloesen   , envKTAaResetAusloesen::io   ); break;}
+        default:
+          { break; }
+      }
+      break;
+    }
+  }
+}
+
+// ====================================================================================
+//  gibt einen übergebenen 32-Bit-Wert in Hexadezimaler- und Binärer Darstellung
+//  im CAPL-Write Fenster aus (nur zum debugging)
+// ====================================================================================
+
+void writebin (dword Wert)
+{
+  char text[35];
+  byte i;
+  dword maske;
+
+
+  maske = 0x80000000;
+  strncpy(text, "", 34);
+
+  for(i=0; i<32; i++) 
+  {
+    if((Wert & maske) != 0)
+      strncat(text, "1", 34);
+    else
+      strncat(text, "0", 34);
+    maske = maske >> 1;
+  }
+  writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_INFO, "HexWert: %LX  -> BinWert: %s", Wert, text);
+
+}
+
+// ===================================================================================
+//  liefert den Handle für das neue Write-Fenster
+// ===================================================================================
+
+on envVar envKT2AiWriteKostia
+{
+
+  WRITE_KOSTIA = getvalue(this);
+
+}
+
+// ====================================================================================
+//  Aktivierung über Button auf einem Panel
+//  hier: Fehlerspeicher löschen
+// ====================================================================================
+
+on envVar envKTA_FehlerspLoeschen
+{
+
+  if(getvalue(this) == ein)
+  {
+  	putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+    NeueAufgabeSetzen(THR_FSP_LOESCHEN);
+  }
+
+}
+
+// ====================================================================================
+//  Aufgabe: Fehlerspeicher im Steuergerät löschen
+//           setzt sich zusammen aus: Login starten
+//                                    Fehlerspeicher löschen
+// ====================================================================================
+
+void task_FSpLoeschen (byte CallReason)
+{
+  switch (InTaskID)
+  {
+    // ======================================
+    //  erst Login durchführen
+    // ======================================
+    case 0:
+    {
+      SetzeLEDsRueck();
+      func_Login(THR_LOGIN);
+      InTaskID ++;
+      // nicht StepToNextState, da nächster Event von Kostia kommt
+      break;
+    }
+    // ===============================================
+    //  wenn Login erfolgreich, dann FehlerSp löschen
+    // ===============================================
+    case 1:
+    {
+      if (func_Login(CallReason) == READY_IO)
+      {
+        func_FSpLoeschen(THR_FSP_LOESCHEN); // hier initialiseren/senden
+        InTaskID ++;
+        // nicht StepToNextState, da nächster Event von Kostia kommt
+      }
+      break;
+    }
+    // =======================================================
+    //  wenn erfolgreiche Antwort von Fehlerspeicher löschen,
+    //  dann fertig mit Fehlerspeicher löschen
+    // =======================================================
+    case 2:
+    {
+      if (func_FSpLoeschen(CallReason) == READY_IO)
+      {
+        InTaskID = 0; // Aufgabe komplett fertig
+      }
+      break;
+    }
+  }
+}
+
+// ====================================================================================
+//  Kostia Dienst Fehlerspeicher löschen
+// ====================================================================================
+
+byte func_FSpLoeschen (byte reason)
+{
+	byte Task;
+  byte ergebnis; // wie weit ist die Funktion READY/NOT_READY
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_FSP_LOESCHEN) // Function mu?Startwerte einstellen
+	{
+		if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		{
+    		// Anzeigen rücksetzen
+    		z_write2Display("Fehlerspeicher loeschen",
+            		        "=======================",
+                    		" "            ,
+                    		" "
+                   			);
+		}
+  		Task = TASK_SENDEN; // auf senden stellen
+	}
+
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_FSpLoeschen den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{
+      // Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+
+      putvalue(envKT2A_Dienst   , envKT2A_Dienst::Fehlerspeicher_Loeschen); // Kostia Fehlerspeicher löschen
+      putvalue(envKT2A_Adresse  , getValue(envKTAiFSpAdresse));            // Fehlerspeicher Adresse
+      putvalue(envKT2A_FSPDelay , getValue(envKTAiFSpDelay));              // mit oder ohne Delay
+      putvalue(envKT2A_Status    , envKT2A_Status::Dienst_starten); // und los geht's
+
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+      ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{
+      if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  			Task = TASK_AUSWERTEN;
+      if(   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+         || getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+         )
+  			Task = TASK_FEHLERBEHANDLUNG;
+
+			StepToNextState ();   // nächsten case aktivieren
+      ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("", "", "Successed", "");
+      			SetzeLED(LED_FSpLoeschen, LED_Status_Io);
+			}
+			Task = TASK_NV;
+	      	JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+    	  	ergebnis = READY_IO;
+			break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+			if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+			{
+      			z_write2Display("", "", "Failed ! ! !", "");
+      			SetzeLED(LED_FSpLoeschen, LED_Status_Fehler);
+			}
+			Task = TASK_NV;
+      		JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      		ergebnis = READY_ERROR;
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_FSpLoeschen den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+  return (ergebnis);
+
+}
+
+// ====================================================================================
+//  Aktivierung über Button auf einem Panel
+//  hier: Steuergerät initialisieren
+// ====================================================================================
+
+on envVar envKTA_SGInit
+{
+
+  if(getvalue(this) == ein)
+  {
+  	putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+    NeueAufgabeSetzen(THR_SG_INIT);
+  }
+
+}
+
+// ====================================================================================
+//  Aufgabe: SG initialisieren
+//           setzt sich zusammen aus: Login starten
+//                                    SG Init
+// ====================================================================================
+
+void task_SGInit (byte CallReason)
+{
+  switch (InTaskID)
+  {
+    // ======================================
+    //  erst Login durchführen
+    // ======================================
+    case 0:
+    {
+      SetzeLEDsRueck();
+      func_Login(THR_LOGIN);
+      InTaskID ++;
+      // nicht StepToNextState, da nächster Event von Kostia kommt
+      break;
+    }
+    // ===========================================
+    //  wenn Login erfolgreich, dann Moduswechsel
+    // ===========================================
+    case 1:
+    {
+      if (func_Login(CallReason) == READY_IO)
+      {
+        func_SGInit(THR_SG_INIT); // hier initialiseren/senden
+        InTaskID ++;
+        // nicht StepToNextState, da nächster Event von Kostia kommt
+      }
+      break;
+    }
+    // ============================================
+    //  wenn erfolgreiche Antwort von SG Init,
+    //  dann fertig mit SG Init
+    // ============================================
+    case 2:
+    {
+      if (func_SGInit(CallReason) == READY_IO)
+      {
+        InTaskID = 0; // Aufgabe komplett fertig
+      }
+      break;
+    }
+  }
+}
+
+// ====================================================================================
+//  Kostia Dienst Stueregerät initialisieren anstoßen
+// ====================================================================================
+
+byte func_SGInit (byte reason)
+{
+	byte Task;
+  byte ergebnis; // wie weit ist die Funktion READY/NOT_READY
+
+//--------------------------------------------------------------------------------------------
+	
+	if (reason == THR_SG_INIT) // Function mu?Startwerte einstellen
+	{
+    // =================================
+    // Anzahl der Datenbytes abtesten
+    // =================================
+    if(getvaluesize(envKTAiDaten1) < 7)
+    {
+      z_write2Display("Steuergeraet initialisieren",
+                      "===========================",
+                      "Achtung: es wurden zu wenig Werte eingegeben !",
+                      " "
+                     );
+
+			Task = TASK_NV;
+      JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      ergebnis = READY_ERROR;
+      return (ergebnis);
+    }
+
+    if(getvaluesize(envKTAiDaten1) > 7)
+    {
+      z_write2Display("Steuergeraet initialisieren",
+                      "===========================",
+                      "Achtung: es wurden zu viele Werte eingegeben !",
+                      " "
+                     );
+
+			Task = TASK_NV;
+      JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      ergebnis = READY_ERROR;
+      return (ergebnis);
+    }
+
+    // Anzeigen rücksetzen
+    z_write2Display("Steuergeraet initialisieren",
+                    "===========================",
+                    " "                         ,
+                    " "
+                   );
+
+  	Task = TASK_SENDEN; // auf senden stellen
+	}
+
+	// ==================================================================================
+	//  eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_SGInit den Wert 0 !");
+			break;
+		}
+		// =================================================
+		//  Request zusammenstellen und senden aktivieren
+		// =================================================
+		case TASK_SENDEN:
+		{
+      // Kostia Dienst konfigurieren
+      putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_starten);
+
+      getvalue(envKTAiDaten1     , puffer);
+      putvalue(envKT2A_Daten     , puffer);                            // Datum 1 - 7 festlegen
+      putvalue(envKT2A_Dienst    , envKT2A_Dienst::SG_Initialisieren); // Kostia SG Init
+      putvalue(envKT2A_Status    , envKT2A_Status::Dienst_starten);    // und los geht's
+
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+      ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  auf Response warten und auf Fehler prüfen      
+		// =================================================
+		case TASK_WARTEN:
+		{
+      if(getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_beendet)
+  			Task = TASK_AUSWERTEN;
+      if(   getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_timeout
+         || getvalue(envKTAppl_Status) == envKTAppl_Status::Dienst_fehlerhaft
+         )
+  			Task = TASK_FEHLERBEHANDLUNG;
+
+			StepToNextState ();   // nächsten case aktivieren
+      ergebnis = NOT_READY;
+			break;
+		}
+		// =================================================
+		//  Antwortdaten auswerten
+		// =================================================
+		case TASK_AUSWERTEN:
+		{
+      getvalue(envKT2A_Daten, puffer);
+      getvalue(envKTAiDaten1, puffer1);
+      if (z_checkLog(puffer1, puffer, 'n') == true)
+      {
+        z_write2Display("", "", "Successed", "");
+        SetzeLED(LED_SGInit, LED_Status_Io);
+      }
+      else
+      {
+        z_write2Display("", "", "Not Successed ! ! !", "");
+        SetzeLED(LED_SGInit, LED_Status_Fehler);
+      }
+
+			Task = TASK_NV;
+      JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      ergebnis = READY_IO;
+			break;
+		}
+		// =================================================
+		//  Timeout oder Fehler behandeln
+		// =================================================
+		case TASK_FEHLERBEHANDLUNG:
+		{
+      z_write2Display("", "", "Failed ! ! !", "");
+      SetzeLED(LED_SGInit, LED_Status_Fehler);
+			Task = TASK_NV;
+      JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+      ergebnis = READY_ERROR;
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in func_SGInit den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: eigentliche Aufgabe abarbeiten
+	// ==================================================================================
+
+  return (ergebnis);
+
+}
+
+// ====================================================================================
+//  über den Timer den TaskHandler erneut aufrufen
+// ====================================================================================
+
+void ZyklischerAufruf (void)
+{
+	
+	canceltimer(t_cycCall);
+	settimer(t_cycCall, T_CYCCALL); // der TimerEvent ruf dann den TaskHandler erneut auf
+
+}
+
+// ====================================================================================
+//  Timer zur zyklischen Funktionsausführung
+// ====================================================================================
+
+on timer t_cycCall
+{
+	putvalue(envKT_AnfangsAdresse, getvalue(envKTAiAnfangsAdresse));
+	putvalue(envKT_EndAdresse, getvalue(envKTAiEndAdresse));
+	putvalue(envKT_Page, getvalue(envKTAiPage));
+	putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+
+	TaskHandler(THF_ACTION, THR_CYC);
+}
+
+// ====================================================================================
+//  Timer zur Überwachung der LoginZeit
+// ====================================================================================
+
+on timer t_LoginRefresh
+{
+
+  LoginZeitFastAbgelaufen = ja;
+
+}
+
+on envVar envKTA_SpeicherLesen
+{
+	if(getvalue(this) == ein)
+	{
+		putvalue(envKT_AnfangsAdresse, getvalue(envKTAiAnfangsAdresse));
+		putvalue(envKT_EndAdresse, getvalue(envKTAiEndAdresse));
+		putvalue(envKT_Page, getvalue(envKTAiPage));
+		putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+    
+    //write(" In envKTA_SpeicherLesen = %x", envKTAiAnfangsAdresse);
+    
+		NeueAufgabeSetzen(THR_SP_LESEN);
+	}
+}
+
+// ====================================================================================
+//  Aktivierung durch envKTE90_ShadowBooten
+// ====================================================================================
+
+on envVar envKT_SpeicherSchreiben
+{
+  	NeueAufgabeSetzen(THR_SP_SCHREIBEN);
+}
+
+on envVar envKTV_SpeicherLesenTransf
+{
+	if(getvalue(this) == ein)
+	{
+		putvalue(envKTV_SpeicherLesenTransf, aus);
+
+		putvalue(envKT_AnfangsAdresse, getvalue(envKTAiAnfangsAdresse));
+		putvalue(envKT_EndAdresse, getvalue(envKTAiEndAdresse));
+		putvalue(envKT_Page, getvalue(envKTAiPage));
+		putvalue(envKT_Anforderung, envKT_Anforderung::KTAppl);
+
+		NeueAufgabeSetzen(THR_SP_LESEN);
+	}
+}
+

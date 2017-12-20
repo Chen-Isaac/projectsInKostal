@@ -1,0 +1,258 @@
+variables
+{
+  /* IL Include for CAN Vector IL for non-NM (KL15) nodes
+   *
+   * 
+   *
+   * The simulation node needs to load the components CANoeILNLVector.dll.
+   *
+   * Call ILCAN1_OnInit() in "on preStart()" of the main program!
+   * Call ILCAN1_OnStart() in "on start()" of the main program!
+   *
+   * Version 4.0, (c) 2014 Vector Informatik GmbH, Department for Networks and Distributed Systems
+   */
+
+  dword gILCAN1_DebugFlags              = 0;
+
+  const dword cILCAN1_ILIndDebug      = 0x0001;
+  const dword cILCAN1_ILInitDebug     = 0x0002;
+  const dword cILCAN1_ILControlDebug  = 0x0010;
+  
+  const dword cILCAN1_NSToS = 1000000000;
+
+  // Internally used variables and timers:
+  dword   gILCAN1_BusContext = 0;
+  int     gILCAN1_EnableNode = 1;
+}
+
+/*****************************************************************************
+ * Include Initialization
+ *****************************************************************************/
+
+void ILCAN1_OnInit ()
+{
+  gILCAN1_BusContext = GetBusNameContext(gCAN1BusName);
+  if (gILCAN1_BusContext == 0)
+  {
+    write("[%.6f %NODE_NAME%] ERROR: cannot determine bus context of CAN bus '%s'!", TimeNowNS()/cILCAN1_NSToS, gCAN1BusName);
+  }
+
+  NMPCAN1_InitSysVars();
+  
+  gILCAN1_EnableNode = @sysvar::IL_CAN1::EnableNode::%NODE_NAME%;
+ 
+  if (strncmp("%NODE_NAME%", "_LRR", 50) == 0)
+  {
+    gILCAN1_DebugFlags |= cILCAN1_ILIndDebug;
+    gILCAN1_DebugFlags |= cILCAN1_ILInitDebug;
+    gILCAN1_DebugFlags |= cILCAN1_ILControlDebug;
+  }
+
+  if (@sysvar::IL::Klemme30 == 0)
+  {
+    SetBusContext(gILCAN1_BusContext);
+    ILControlInit(); // disables the automatic IL start
+    ILCAN1_Enable(0);
+  }
+
+}
+
+void ILCAN1_OnStart ()
+{
+  if (gILCAN1_DebugFlags & cILCAN1_ILInitDebug)
+  {
+    write("+++++++++ %NODE_NAME%: IL on start()");
+  }
+
+  _NMPCAN1_DisableAllControls();
+
+  if ((@sysvar::IL::Klemme15 > 0) && (@sysvar::IL::Klemme30 > 0))
+  {
+    ILCAN1_SetIgnitionState(@sysvar::IL::Klemme15);
+  }
+
+  gNMPCAN1_TEnableControls.set(2);
+}
+
+void ILCAN1_Enable (int enable)
+{
+  /* void ILCAN1_Enable (int enable);
+   *
+   *  Function enables/disables the cyclic sending of all messages
+   *  that are controlled by the Interaction Layer.
+   */
+  int wasEnabled = -1;
+
+  //if (enable == wasEnabled) return;
+  SetBusContext(gILCAN1_BusContext);
+  if (gILCAN1_DebugFlags & cILCAN1_ILControlDebug)
+  {
+    write("[%.6f %NODE_NAME%] ILCAN1_Enable(%d) called ...", TimeNowNS()/cILCAN1_NSToS, enable);
+  }
+
+  if (enable == 1)
+  {
+    gILCAN1_EnableNode = 1;
+    ILControlSimulationOn();
+    ILCAN1_SetIgnitionState(@sysvar::IL::Klemme15);
+    ILCAN1_WaitResume(@sysvar::IL::Klemme15);
+  }
+  else
+  {
+    ILControlSimulationOff();
+    gILCAN1_EnableNode = 0;
+  }
+
+  wasEnabled = enable;
+}
+
+void ILCAN1_StartStop (int dostart)
+{
+  /* void ILCAN1_StartStop (int dostart);
+   *
+   *  Function starts/stops the cyclic sending of all messages
+   *  that are controlled by the Interaction Layer.
+   */
+  int wasStarted = -1;
+
+  //if (dostart == wasStarted) return;
+  if (gILCAN1_EnableNode == 0) return;
+
+  SetBusContext(gILCAN1_BusContext);
+  if (gILCAN1_DebugFlags & cILCAN1_ILControlDebug)
+  {
+    write("[%.6f %NODE_NAME%] ILCAN1_StartStop(%d) called ...", TimeNowNS()/cILCAN1_NSToS, dostart);
+  }
+
+  if (dostart == 1)
+  {
+    ILControlStart();
+  }
+  else
+  {
+    ILControlStop();
+  }
+
+  wasStarted = dostart;
+}
+
+void ILCAN1_WaitResume (int resume)
+{
+  /* void ILCAN1_WaitResume (int resume);
+   *
+   *  Function resumes/waits the cyclic sending of all messages
+   *  that are controlled by the Interaction Layer.
+   */
+  int wasResumed = -1;
+
+  //if (resume == wasResumed) return;
+  if (gILCAN1_EnableNode == 0) return;
+
+  SetBusContext(gILCAN1_BusContext);
+  if (gILCAN1_DebugFlags & cILCAN1_ILControlDebug)
+  {
+    write("[%.6f %NODE_NAME%] ILCAN1_WaitResume(%d) called ...", TimeNowNS()/cILCAN1_NSToS, resume);
+  }
+
+  if (resume == 1)
+  {
+    ILControlResume();
+  }
+  else
+  {
+    ILControlWait();
+  }
+
+  wasResumed = resume;
+}
+
+void ILCAN1_SetIgnitionState (int ignition)
+{
+  /* void ILCAN1_SetIgnitionState (int ignition);
+   *
+   *  Function sets the ignition state at the Interaction Layer.
+   */
+  int wasIgnition = -1;
+
+  //if (ignition == wasIgnition) return;
+  SetBusContext(gILCAN1_BusContext);
+  if (gILCAN1_DebugFlags & cILCAN1_ILControlDebug)
+  {
+    write("[%.6f %NODE_NAME%] ILCAN1_SetIgnitionState(%d) called ...", TimeNowNS()/cILCAN1_NSToS, ignition);
+  }
+
+  if (ignition > 0)
+  {
+    ILCAN1_StartStop(1); // start CAN IL
+    @sysvar::NM_CAN1::%NODE_NAME%::RequestIL = 1;
+    ILActivateClamp15();
+  }
+  else
+  {
+    ILDeactivateClamp15();
+    @sysvar::NM_CAN1::%NODE_NAME%::RequestIL = 0;
+    ILCAN1_StartStop(0); // stop CAN IL
+  }
+
+  wasIgnition = ignition;
+}
+
+void ILCAN1_OnEnvKlemme15(int enable)
+{
+  ILCAN1_SetIgnitionState(enable);
+}
+
+void ILCAN1_OnEnvKlemme30(int enable)
+{
+  if(enable == 0)
+  {
+    ILCAN1_Enable(1);
+    if (@sysvar::IL::Klemme15 > 0)
+    {
+      @sysvar::NM_CAN1::%NODE_NAME%::RequestIL = 1;
+    }
+  }
+  else
+  {
+    ILCAN1_Enable(0);
+  }
+}
+
+NMCAN1_PassiveBusStart ()
+{
+  @sysvar::NM_CAN1::%NODE_NAME%::RequestIL = 1;
+
+  if (gILCAN1_DebugFlags & cILCAN1_ILControlDebug)
+  {
+    write("[%.6f %NODE_NAME%]: NMCAN1_PassiveStartUp()", TimeNowNS()/cILCAN1_NSToS);
+  }
+}
+
+/*****************************************************************************
+ * IL Control
+ * These functions control the sending behavior of the node and are called
+ * from the NM indications or from the control panel.
+ *****************************************************************************/
+
+on sysvar_update sysvar::NM_CAN1::%NODE_NAME%::RequestIL
+{
+  ILCAN1_WaitResume(@this);
+}
+
+on sysvar_update sysvar::NM_CAN1::StateControl::ILReleaseAll
+{
+  if( @this == 1 )
+  {
+    @sysvar::NM_CAN1::%NODE_NAME%::RequestIL = 0;
+    //@this = 0;
+  }
+}
+
+on sysvar_update sysvar::NM_CAN1::StateControl::ILRequestAll
+{
+  if( @this == 1 )
+  {
+    @sysvar::NM_CAN1::%NODE_NAME%::RequestIL = 1;
+    //@this = 0;
+  }
+}

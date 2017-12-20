@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2017-12-19 15:38:44" timestamp="  54.374960" verdicts="5_extended">
+  <testunit starttime="2017-12-19 15:38:44" timestamp="  54.374960">
+    <testfixture>
+      <testcase starttime="2017-12-19 15:38:44" timestamp="  54.374960">
+        <teststep timestamp="  54.374960" level="0" type="user" ident="Call function" result="pass">At step 1, call function:vtSysPwrSupInit success, function return value = 0.</teststep>
+        <teststep timestamp="  54.374960" level="0" type="user" ident="set VBAT voltage status" result="na">set VBAT voltage = 12.00V.</teststep>
+        <teststep timestamp="  55.374960" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+        <teststep timestamp="  55.374960" level="0" type="user" ident="Call function" result="pass">At step 2, call function:vtSysPwrSupVoltSet success, function return value = 0.</teststep>
+        <teststep timestamp="  55.374960" level="0" type="user" ident="get VBAT voltage status" result="pass">VBAT = 11.94V,in the range [11.80V~12.20V],</teststep>
+        <teststep timestamp="  55.374960" level="0" type="user" ident="Call function" result="pass">At step 3, call function:vtSysPwrSupVoltGet success, function return value = 0.</teststep>
+        <teststep timestamp="  55.374960" level="0" type="user" ident="get VBAT current status" result="pass">VBAT current = 109.238mA,in the range [ 0.000mA~200.000mA],</teststep>
+        <teststep timestamp="  55.374960" level="0" type="user" ident="Call function" result="pass">At step 4, call function:vtSysPwrSupCurrGet success, function return value = 0.</teststep>
+        <verdict time="2017-12-19 15:38:44" timestamp="  54.374960" endtime="2017-12-19 15:38:45" endtimestamp="  55.374960" result="pass" />
+        <title>powerOn ()</title>
+      </testcase>
+      <testcase starttime="2017-12-19 15:38:45" timestamp="  55.374960">
+        <teststep timestamp="  55.374960" level="0" type="user" ident="VT outputs analog value for product input pin" result="na">For pin IGN:Module9 channel6 generates analog voltage: voltage = 8.0V</teststep>
+        <teststep timestamp="  55.374960" level="0" type="user" ident="Call function" result="pass">At step 1, call function:chRamVoltDOSet success, function return value = 0.</teststep>
+        <teststep timestamp="  55.374960" level="0" type="user" ident="set signal status" result="na">Start to set CF_Vcu_GarSelDisp = 0.</teststep>
+        <teststep timestamp="  55.375960" level="0" type="user" ident="set signal status" result="pass">set CF_Vcu_GarSelDisp = 0 successfully after 1.00ms.</teststep>
+        <teststep timestamp="  55.375960" level="0" type="user" ident="Call function" result="pass">At step 2, call function:signalSetting success, function return value = 0.</teststep>
+        <teststep timestamp="  55.375960" level="0" type="user" ident="set signal status" result="na">Start to set CF_Gway_IntTailAct = 1.</teststep>
+        <teststep timestamp="  55.376960" level="0" type="user" ident="set signal status" result="pass">set CF_Gway_IntTailAct = 1 successfully after 1.00ms.</teststep>
+        <teststep timestamp="  55.376960" level="0" type="user" ident="Call function" result="pass">At step 3, call function:signalSetting success, function return value = 0.</teststep>
+        <teststep timestamp="  55.376960" level="0" type="user" ident="set signal status" result="na">Start to set CF_Clu_RheostatLevel = 21.</teststep>
+        <teststep timestamp="  55.377960" level="0" type="user" ident="set signal status" result="pass">set CF_Clu_RheostatLevel = 21 successfully after 1.00ms.</teststep>
+        <teststep timestamp="  55.377960" level="0" type="user" ident="Call function" result="pass">At step 4, call function:signalSetting success, function return value = 0.</teststep>
+        <teststep timestamp="  55.877960" level="0" type="user" ident="Wait" result="na">Wait for 500ms.</teststep>
+        <teststep timestamp="  55.877960" level="0" type="user" ident="Call function" result="pass">At step 5, call function:wait success, function return value = 0.</teststep>
+        <teststep timestamp="  55.877960" level="0" type="user" ident="get VBAT current status" result="pass">VBAT current = 109.242mA,in the range [ 0.000mA~200.000mA],</teststep>
+        <teststep timestamp="  55.877960" level="0" type="user" ident="Call function" result="pass">At step 6, call function:vtSysPwrSupCurrGet success, function return value = 0.</teststep>
+        <verdict time="2017-12-19 15:38:45" timestamp="  55.374960" endtime="2017-12-19 15:38:45" endtimestamp="  55.877960" result="pass" />
+        <title>initProduct ()</title>
+      </testcase>
+      <testcase starttime="2017-12-19 15:38:45" timestamp="  55.877960">
+        <teststep timestamp="  55.877960" level="0" type="user" ident="Kostia Services" result="na">Start to send Login-Request service request.</teststep>
+        <teststep timestamp="  55.881541" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1580 (0x62C) Elapsed time=3.58134ms (max=1000ms)</teststep>
+        <teststep timestamp="  55.881541" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x14B4F5354414C5F</teststep>
+        <teststep timestamp="  55.891283" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1581 (0x62D) Elapsed time=9.74223ms (max=5000ms)</teststep>
+        <teststep timestamp="  55.891283" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x14B4F5354414C5F.</teststep>
+        <teststep timestamp="  55.891283" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sendCanKostiaDiagChkResp success, function return value = 7.</teststep>
+        <teststep timestamp="  55.891283" level="0" type="user" ident="Kostia Services" result="na">Start to send Read VM_SW_Internal service request.</teststep>
+        <teststep timestamp="  55.893099" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1580 (0x62C) Elapsed time=1.81604ms (max=1000ms)</teststep>
+        <teststep timestamp="  55.893099" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x40012060C000000</teststep>
+        <teststep timestamp="  55.901301" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1581 (0x62D) Elapsed time=8.20222ms (max=5000ms)</teststep>
+        <teststep timestamp="  55.901301" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x45A4556305F3000.</teststep>
+        <teststep timestamp="  55.901301" level="0" type="user" ident="Call function" result="pass">At step 2, call function:sendCanKostiaDiagChkResp success, function return value = 7.</teststep>
+        <teststep timestamp="  55.901301" level="0" type="user" ident="Decode Response as ASCII" result="na">The current software internal version is: ZEV0_0.</teststep>
+        <teststep timestamp="  55.901301" level="0" type="user" ident="Call function" result="pass">At step 3, call function:decodeAsciiFromRecDiag success, function return value = 0.</teststep>
+        <teststep timestamp="  55.901301" level="0" type="user" ident="Kostia Services" result="na">Start to send Read VM_SW_External service request.</teststep>
+        <teststep timestamp="  55.903687" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1580 (0x62C) Elapsed time=2.38605ms (max=1000ms)</teststep>
+        <teststep timestamp="  55.903687" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x4000C060C000000</teststep>
+        <teststep timestamp="  55.911306" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1581 (0x62D) Elapsed time=7.61819ms (max=5000ms)</teststep>
+        <teststep timestamp="  55.911306" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x42020412E303000.</teststep>
+        <teststep timestamp="  55.911306" level="0" type="user" ident="Call function" result="pass">At step 4, call function:sendCanKostiaDiagChkResp success, function return value = 7.</teststep>
+        <teststep timestamp="  55.911306" level="0" type="user" ident="Decode Response as ASCII" result="na">The current software external version is:   A.00.</teststep>
+        <teststep timestamp="  55.911306" level="0" type="user" ident="Call function" result="pass">At step 5, call function:decodeAsciiFromRecDiag success, function return value = 0.</teststep>
+        <verdict time="2017-12-19 15:38:45" timestamp="  55.891283" endtime="2017-12-19 15:38:45" endtimestamp="  55.911306" result="pass" />
+        <title>readSwVer ()</title>
+      </testcase>
+      <title>Setup Initialization &amp; Power On</title>
+    </testfixture>
+    <skippedfixture starttime="2017-12-19 15:38:45" timestamp="  55.911306">
+      <title>Button Function</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-12-19 15:38:45" timestamp="  55.911306">
+      <title>Indicator Illumination</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-12-19 15:38:45" timestamp="  55.911306">
+      <title>test operation mode</title>
+    </skippedfixture>
+    <testfixture>
+      <skippedcase starttime="2017-12-19 15:38:45" timestamp="  55.911306">
+        <title>$CF_Gway_DrvDrSw = close</title>
+      </skippedcase>
+      <skippedcase starttime="2017-12-19 15:38:45" timestamp="  55.911306">
+        <title>$CF_Gway_DrvDrSw = open</title>
+      </skippedcase>
+      <skippedcase starttime="2017-12-19 15:38:45" timestamp="  55.911306">
+        <title>$CF_Gway_DrvDrSw = b can timeout</title>
+      </skippedcase>
+      <skippedcase starttime="2017-12-19 15:38:45" timestamp="  55.911306">
+        <title>ign on</title>
+      </skippedcase>
+      <testcaselist>
+        <testcase starttime="2017-12-19 15:38:45" timestamp="  55.911306">
+          <teststep timestamp="  55.911306" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message VCU1 - successfully.</teststep>
+          <teststep timestamp="  55.911306" level="0" type="user" ident="set signal status" result="na">Start to set CF_Vcu_GarSelDisp = 0.</teststep>
+          <teststep timestamp="  55.912306" level="0" type="user" ident="set signal status" result="pass">set CF_Vcu_GarSelDisp = 0 successfully after 1.00ms.</teststep>
+          <teststep timestamp="  55.912306" level="0" type="user" ident="VT outputs PWM for product input pin" result="na">For pin PWM_IN:Module9 channel3 generates PWM:Highvolt=12V,Lowvolt=0V,Duty=12%,Freq=100Hz</teststep>
+          <teststep timestamp="  55.912306" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sigDirMulStatInSet success, function return value = 0.</teststep>
+          <teststep timestamp="  56.912306" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+          <teststep timestamp="  56.912306" level="0" type="user" ident="check signal status" result="pass">Correct response: CF_Lvr_IndicatorStatus = 1 within 1000ms.</teststep>
+          <teststep timestamp="  56.912306" level="0" type="user" ident="Call function" result="pass">At step 2, call function:specStatImpOnSigChk success, function return value = 0.</teststep>
+          <verdict time="2017-12-19 15:38:45" timestamp="  55.911306" endtime="2017-12-19 15:38:46" endtimestamp="  56.912306" result="pass" />
+          <title>chkIndStat (status=P,dFct=0)</title>
+        </testcase>
+        <testcase starttime="2017-12-19 15:38:46" timestamp="  56.912306">
+          <teststep timestamp="  56.912306" level="0" type="user" ident="VT outputs PWM for product input pin" result="na">For pin PWM_IN:Module9 channel3 generates PWM:Highvolt=12V,Lowvolt=0V,Duty=12%,Freq=100Hz</teststep>
+          <teststep timestamp="  56.912306" level="2" type="user" ident="FaultInjection-function" result="pass">TestDisableMsg: Message VCU1 - successfully.</teststep>
+          <teststep timestamp="  56.912306" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sigDirMulStatInSet success, function return value = 0.</teststep>
+          <teststep timestamp="  57.912306" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+          <teststep timestamp="  57.912306" level="0" type="user" ident="check signal status" result="pass">Correct response: CF_Lvr_IndicatorStatus = 1 within 1000ms.</teststep>
+          <teststep timestamp="  57.912306" level="0" type="user" ident="Call function" result="pass">At step 2, call function:specStatImpOnSigChk success, function return value = 0.</teststep>
+          <verdict time="2017-12-19 15:38:46" timestamp="  56.912306" endtime="2017-12-19 15:38:47" endtimestamp="  57.912306" result="pass" />
+          <title>chkIndStat (status=P,dFct=1)</title>
+        </testcase>
+        <testcase starttime="2017-12-19 15:38:47" timestamp="  57.912306">
+          <teststep timestamp="  57.912306" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message VCU1 - successfully.</teststep>
+          <teststep timestamp="  57.912306" level="0" type="user" ident="set signal status" result="na">Start to set CF_Vcu_GarSelDisp = 7.</teststep>
+          <teststep timestamp="  57.922306" level="0" type="user" ident="set signal status" result="pass">set CF_Vcu_GarSelDisp = 7 successfully after 10.00ms.</teststep>
+          <teststep timestamp="  57.922306" level="0" type="user" ident="VT outputs PWM for product input pin" result="na">For pin PWM_IN:Module9 channel3 generates PWM:Highvolt=12V,Lowvolt=0V,Duty=42%,Freq=100Hz</teststep>
+          <teststep timestamp="  57.922306" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sigDirMulStatInSet success, function return value = 0.</teststep>
+          <teststep timestamp="  58.922306" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+          <teststep timestamp="  58.922306" level="0" type="user" ident="check signal status" result="pass">Correct response: CF_Lvr_IndicatorStatus = 2 within 1000ms.</teststep>
+          <teststep timestamp="  58.922306" level="0" type="user" ident="Call function" result="pass">At step 2, call function:specStatImpOnSigChk success, function return value = 0.</teststep>
+          <verdict time="2017-12-19 15:38:47" timestamp="  57.912306" endtime="2017-12-19 15:38:48" endtimestamp="  58.922306" result="pass" />
+          <title>chkIndStat (status=R,dFct=0)</title>
+        </testcase>
+        <testcase starttime="2017-12-19 15:38:48" timestamp="  58.922306">
+          <teststep timestamp="  58.922306" level="0" type="user" ident="VT outputs PWM for product input pin" result="na">For pin PWM_IN:Module9 channel3 generates PWM:Highvolt=12V,Lowvolt=0V,Duty=18%,Freq=100Hz</teststep>
+          <teststep timestamp="  58.922306" level="2" type="user" ident="FaultInjection-function" result="pass">TestDisableMsg: Message VCU1 - successfully.</teststep>
+          <teststep timestamp="  58.922306" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sigDirMulStatInSet success, function return value = 0.</teststep>
+          <teststep timestamp="  59.922306" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+          <teststep timestamp="  59.922306" level="0" type="user" ident="check signal status" result="pass">Correct response: CF_Lvr_IndicatorStatus = 2 within 1000ms.</teststep>
+          <teststep timestamp="  59.922306" level="0" type="user" ident="Call function" result="pass">At step 2, call function:specStatImpOnSigChk success, function return value = 0.</teststep>
+          <verdict time="2017-12-19 15:38:48" timestamp="  58.922306" endtime="2017-12-19 15:38:49" endtimestamp="  59.922306" result="pass" />
+          <title>chkIndStat (status=R,dFct=1)</title>
+        </testcase>
+        <testcase starttime="2017-12-19 15:38:49" timestamp="  59.922306">
+          <teststep timestamp="  59.922306" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message VCU1 - successfully.</teststep>
+          <teststep timestamp="  59.922306" level="0" type="user" ident="set signal status" result="na">Start to set CF_Vcu_GarSelDisp = 6.</teststep>
+          <teststep timestamp="  59.931306" level="0" type="user" ident="set signal status" result="pass">set CF_Vcu_GarSelDisp = 6 successfully after 9.00ms.</teststep>
+          <teststep timestamp="  59.931306" level="0" type="user" ident="VT outputs PWM for product input pin" result="na">For pin PWM_IN:Module9 channel3 generates PWM:Highvolt=12V,Lowvolt=0V,Duty=0%,Freq=100Hz</teststep>
+          <teststep timestamp="  59.931306" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sigDirMulStatInSet success, function return value = 0.</teststep>
+          <teststep timestamp="  60.931306" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+          <teststep timestamp="  60.931306" level="0" type="user" ident="check signal status" result="pass">Correct response: CF_Lvr_IndicatorStatus = 3 within 1000ms.</teststep>
+          <teststep timestamp="  60.931306" level="0" type="user" ident="Call function" result="pass">At step 2, call function:specStatImpOnSigChk success, function return value = 0.</teststep>
+          <verdict time="2017-12-19 15:38:49" timestamp="  59.922306" endtime="2017-12-19 15:38:50" endtimestamp="  60.931306" result="pass" />
+          <title>chkIndStat (status=N,dFct=0)</title>
+        </testcase>
+        <testcase starttime="2017-12-19 15:38:50" timestamp="  60.931306">
+          <teststep timestamp="  60.931306" level="0" type="user" ident="VT outputs PWM for product input pin" result="na">For pin PWM_IN:Module9 channel3 generates PWM:Highvolt=12V,Lowvolt=0V,Duty=30%,Freq=100Hz</teststep>
+          <teststep timestamp="  60.931306" level="2" type="user" ident="FaultInjection-function" result="pass">TestDisableMsg: Message VCU1 - successfully.</teststep>
+          <teststep timestamp="  60.931306" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sigDirMulStatInSet success, function return value = 0.</teststep>
+          <teststep timestamp="  61.931306" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+          <teststep timestamp="  61.931306" level="0" type="user" ident="check signal status" result="pass">Correct response: CF_Lvr_IndicatorStatus = 3 within 1000ms.</teststep>
+          <teststep timestamp="  61.931306" level="0" type="user" ident="Call function" result="pass">At step 2, call function:specStatImpOnSigChk success, function return value = 0.</teststep>
+          <verdict time="2017-12-19 15:38:50" timestamp="  60.931306" endtime="2017-12-19 15:38:51" endtimestamp="  61.931306" result="pass" />
+          <title>chkIndStat (status=N,dFct=1)</title>
+        </testcase>
+        <testcase starttime="2017-12-19 15:38:51" timestamp="  61.931306">
+          <teststep timestamp="  61.931306" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message VCU1 - successfully.</teststep>
+          <teststep timestamp="  61.931306" level="0" type="user" ident="set signal status" result="na">Start to set CF_Vcu_GarSelDisp = 5.</teststep>
+          <teststep timestamp="  61.941306" level="0" type="user" ident="set signal status" result="pass">set CF_Vcu_GarSelDisp = 5 successfully after 10.00ms.</teststep>
+          <teststep timestamp="  61.941306" level="0" type="user" ident="VT outputs PWM for product input pin" result="na">For pin PWM_IN:Module9 channel3 generates PWM:Highvolt=12V,Lowvolt=0V,Duty=47%,Freq=100Hz</teststep>
+          <teststep timestamp="  61.941306" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sigDirMulStatInSet success, function return value = 0.</teststep>
+          <teststep timestamp="  62.941306" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+          <teststep timestamp="  62.941306" level="0" type="user" ident="check signal status" result="pass">Correct response: CF_Lvr_IndicatorStatus = 4 within 1000ms.</teststep>
+          <teststep timestamp="  62.941306" level="0" type="user" ident="Call function" result="pass">At step 2, call function:specStatImpOnSigChk success, function return value = 0.</teststep>
+          <verdict time="2017-12-19 15:38:51" timestamp="  61.931306" endtime="2017-12-19 15:38:52" endtimestamp="  62.941306" result="pass" />
+          <title>chkIndStat (status=D,dFct=0)</title>
+        </testcase>
+        <testcase starttime="2017-12-19 15:38:52" timestamp="  62.941306">
+          <teststep timestamp="  62.941306" level="0" type="user" ident="VT outputs PWM for product input pin" result="na">For pin PWM_IN:Module9 channel3 generates PWM:Highvolt=12V,Lowvolt=0V,Duty=42%,Freq=100Hz</teststep>
+          <teststep timestamp="  62.941306" level="2" type="user" ident="FaultInjection-function" result="pass">TestDisableMsg: Message VCU1 - successfully.</teststep>
+          <teststep timestamp="  62.941306" level="0" type="user" ident="Call function" result="pass">At step 1, call function:sigDirMulStatInSet success, function return value = 0.</teststep>
+          <teststep timestamp="  63.941306" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+          <teststep timestamp="  63.941306" level="0" type="user" ident="check signal status" result="pass">Correct response: CF_Lvr_IndicatorStatus = 4 within 1000ms.</teststep>
+          <teststep timestamp="  63.941306" level="0" type="user" ident="Call function" result="pass">At step 2, call function:specStatImpOnSigChk success, function return value = 0.</teststep>
+          <verdict time="2017-12-19 15:38:52" timestamp="  62.941306" endtime="2017-12-19 15:38:53" endtimestamp="  63.941306" result="pass" />
+          <title>chkIndStat (status=D,dFct=1)</title>
+        </testcase>
+        <title>chkIndStat</title>
+      </testcaselist>
+      <skippedcase starttime="2017-12-19 15:38:53" timestamp="  63.941306">
+        <title>validate function</title>
+      </skippedcase>
+      <title>debug signal</title>
+    </testfixture>
+    <verdict time="2017-12-19 15:38:44" timestamp="  54.374960" endtime="2017-12-19 15:38:53" endtimestamp="  63.941306" result="pass" />
+    <title>HKMC FE SBW</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>HKMC FE SBW</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>D:\Isaac\HKMC FE SBW project\HKMC FE SBW\HKMC FE SBW.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2017-12-19, 14:22:58</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2017-12-19 15:38:44" timestamp="  54.374960" endtime="2017-12-19 15:38:53" endtimestamp="  63.941306" result="pass" />
+  <title>HKMC FE SBW</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>ouyan001</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 9.0.86 (SP3)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>D:\Isaac\HKMC FE SBW project\HKMC_FE_EGSM.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>HKMC FE SBW</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANoeILNLVector</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.32 (Jun  3 2016 09:44:38) , C:\Program Files (x86)\Vector CANoe 9.0\Exec32\CANoeILNLVector.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLDEFAULT</name>
+      <description>CANoe Interaction Layer NL (Default) Version 3.16.32 (Jun  3 2016 09:46:47) , C:\Program Files (x86)\Vector CANoe 9.0\Exec32\CANOEILNLDEFAULT.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.15, C:\Program Files (x86)\Vector CANoe 9.0\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.27, C:\Program Files (x86)\Vector CANoe 9.0\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 9.0.86, C:\Program Files (x86)\Vector CANoe 9.0\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+      <xinfo key="channel">
+        <name>Channel</name>
+        <description>1</description>
+      </xinfo>
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VN1630</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>501043</description>
+      </xinfo>
+      <xinfo key="driverdllversion">
+        <name>Driver DLL version</name>
+        <description>9.2.22</description>
+      </xinfo>
+      <xinfo key="driverversion">
+        <name>Driver version</name>
+        <description>8.9.22</description>
+      </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT8012</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>1031</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>0.0.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x10</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT1004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>452</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT1004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>450</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT1004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>448</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT1004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>449</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>331</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>348</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>329</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2004A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>339</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.0</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2516A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>174</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.2</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2516A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>234</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.2</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT2516A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>210</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.1.2</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x0</description>
+      </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+      <xinfo key="device">
+        <name>Device</name>
+        <description>VT7001A</description>
+      </xinfo>
+      <xinfo key="serialnumber">
+        <name>Serial number</name>
+        <description>267</description>
+      </xinfo>
+      <xinfo key="firmwareversion">
+        <name>Firmware version</name>
+        <description>2.0.5</description>
+      </xinfo>
+      <xinfo key="hardwareversion">
+        <name>Hardware version</name>
+        <description>0x10</description>
+      </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+</testreport>
+<!--footprint="f1a567a57f4eb90033fd2b706e2e647b" version="1"-->

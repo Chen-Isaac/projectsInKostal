@@ -1,0 +1,74 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+
+variables
+{
+  msTimer timCGW1_Transmitter;
+  message CGW1 msgCGW1;
+  message CGW2 msgCGW2;
+}
+
+
+on envVar envCGW1_IGNSw
+{
+	msgCGW1.CF_Gway_IGNSw = @envCGW1_IGNSw;
+}
+
+
+on envVar envCGW1_DrvDrSw
+{
+	msgCGW1.CF_Gway_DrvDrSw = @envCGW1_DrvDrSw;
+}
+
+
+on envVar envCGW1_RKECmd
+{
+	msgCGW1.CF_Gway_RKECmd = @envCGW1_RKECmd;
+}
+
+on envVar envCGW1_LightSwState
+{
+	msgCGW1.CF_Gway_LightSwState = @envCGW1_LightSwState;
+}
+
+on envVar envCGW2_SMK_RKE
+{
+  msgCGW2.CF_Gway_SMKRKECmd = @envCGW2_SMK_RKE;
+}
+
+on envVar envCGW2_IntTailAct
+{
+  msgCGW2.CF_Gway_IntTailAct = @envCGW2_IntTailAct;
+}
+
+on timer timCGW1_Transmitter
+{
+	settimer( timCGW1_Transmitter, 100 );
+  if( @envCGW1TxEnable == 1 ) {
+    output( msgCGW1 );  
+  }
+  if( @envCGW2TxEnable == 1 ) {
+    output( msgCGW2 );  
+  }
+
+}
+
+
+on envVar envBtnWakup
+{
+  if( @envBtnWakup == 1) {
+    output( msgCGW1 ); 
+  }
+}
+
+on start
+{
+	/*settimer( timCGW1_Transmitter, 100 );
+  @envCGW1TxEnable = 1;
+  @envCGW2TxEnable = 1;
+  @envCGW1_IGNSw = 3;*/ //1.deleted by Isaac 2.update the GenMsgSendType of CGW1&CGW2 in database from EventPeriodic to FixedPeriodic
+}

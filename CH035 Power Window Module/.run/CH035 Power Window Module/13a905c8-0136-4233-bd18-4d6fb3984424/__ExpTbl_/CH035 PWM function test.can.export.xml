@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <function name="vtSystemPowerSupplyInitSetting" comment="@!Encoding:936&#xA;@!Encoding:936&#xA;" signature="void vtSystemPowerSupplyInitSetting(int moduleNo, int outputChannelNo, int interConnectionMode)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="outputChannelNo" type="int" raw_type="int" />
+    <parameter name="interConnectionMode" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>0</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSystemOnlyUsingExternalPowerSupplyInitSetting" comment="" signature="void vtSystemOnlyUsingExternalPowerSupplyInitSetting(int moduleNo, int outputChannelNo, int externalPowerInputChannel)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="outputChannelNo" type="int" raw_type="int" />
+    <parameter name="externalPowerInputChannel" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1781</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSystemPowerSupplyVoltSetting" comment="" signature="void vtSystemPowerSupplyVoltSetting(int moduleNo, float volt)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="volt" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>3821</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSystemExternalPowerSupplySetting" comment="" signature="void vtSystemExternalPowerSupplySetting(int moduleNo, int externalPowerInputChannel, float volt, float maxI, int k)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="externalPowerInputChannel" type="int" raw_type="int" />
+    <parameter name="volt" type="float" raw_type="float" />
+    <parameter name="maxI" type="float" raw_type="float" />
+    <parameter name="k" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4163</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readVtSystemPowerSupplyVolt" comment="" signature="float readVtSystemPowerSupplyVolt(int moduleNo, int outputChannelNo, float highLimitV, float lowLimitV)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <return type="float" raw_type="float" />
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="outputChannelNo" type="int" raw_type="int" />
+    <parameter name="highLimitV" type="float" raw_type="float" />
+    <parameter name="lowLimitV" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4934</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readVtSystemPowerSupplyCurrent" comment="" signature="float readVtSystemPowerSupplyCurrent(int moduleNo, int outputChannelNo, float highLimitA, float lowLimitA, int measureRange)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <return type="float" raw_type="float" />
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="outputChannelNo" type="int" raw_type="int" />
+    <parameter name="highLimitA" type="float" raw_type="float" />
+    <parameter name="lowLimitA" type="float" raw_type="float" />
+    <parameter name="measureRange" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>5566</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="checkProductPwmOutput" comment="" signature="void checkProductPwmOutput(int moduleNo, int channelNo, float expectedFreq, float expectedDuty)" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="channelNo" type="int" raw_type="int" />
+    <parameter name="expectedFreq" type="float" raw_type="float" />
+    <parameter name="expectedDuty" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>6754</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setChannelOutputDigitalLevel" comment="" signature="void setChannelOutputDigitalLevel(int moduleNo, int channelNo, int digitalLevel, char productPinName[])" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="channelNo" type="int" raw_type="int" />
+    <parameter name="digitalLevel" type="int" raw_type="int" />
+    <parameter name="productPinName" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>7678</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setChannelOutputAnalogValue" comment="" signature="void setChannelOutputAnalogValue(int moduleNo, int channelNo, float analogValue, char productPinName[])" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="channelNo" type="int" raw_type="int" />
+    <parameter name="analogValue" type="float" raw_type="float" />
+    <parameter name="productPinName" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>8214</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setChannelOutputPwm" comment="" signature="void setChannelOutputPwm(int moduleNo, int channelNo, float pwmFreq, float pwmVoltageLow, float pwmVoltageHigh, float pwmDuty, char productPinName[])" file="D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin">
+    <parameter name="moduleNo" type="int" raw_type="int" />
+    <parameter name="channelNo" type="int" raw_type="int" />
+    <parameter name="pwmFreq" type="float" raw_type="float" />
+    <parameter name="pwmVoltageLow" type="float" raw_type="float" />
+    <parameter name="pwmVoltageHigh" type="float" raw_type="float" />
+    <parameter name="pwmDuty" type="float" raw_type="float" />
+    <parameter name="productPinName" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>9145</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+</tclibrary>

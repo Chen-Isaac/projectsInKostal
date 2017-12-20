@@ -1,0 +1,316 @@
+includes
+{
+  
+}
+
+variables
+{
+  mstimer timSbwRev;
+  mstimer timVcuRev;
+}
+
+
+
+
+on preStart
+{
+//  @evnBtnP_Pressed_Pre = @evnBtnP_Pressed;
+//  @evnBtnR_Pressed_Pre = @evnBtnR_Pressed;
+//  @evnBtnD_Pressed_Pre = @evnBtnD_Pressed;
+//  @evnBtnN_Pressed_Pre = @evnBtnN_Pressed;
+//  @evnBtnPRelease_Pressed_Pre = @evnBtnPRelease_Pressed;
+  
+//  @envBtnSingalErrCount = 0;
+}
+on timer timSbwRev
+{
+  setTimer( timSbwRev, 20 );
+  @envSbwTxFlg = 0;
+}
+
+on timer timVcuRev
+{
+  setTimer( timVcuRev, 20 );
+  @envVcuTxFlg = 0;
+}
+
+on message LVR1
+{
+  char tmpBtnStatus;
+  
+  setTimer( timSbwRev, 20);
+  @envSbwTxFlg = 1;
+  
+  @evnBtnP_Pressed_Pre = @evnBtnP_Pressed;
+  @evnBtnR_Pressed_Pre = @evnBtnR_Pressed;
+  @evnBtnD_Pressed_Pre = @evnBtnD_Pressed;
+  @evnBtnN_Pressed_Pre = @evnBtnN_Pressed;
+  @evnBtnPRelease_Pressed_Pre = @evnBtnPRelease_Pressed;
+  
+  // Button D
+  tmpBtnStatus = ButtonStatusCheck( this.CF_Lvr_DButtonStatus, this.CF_Lvr_DButtonStatus_Reversed );
+  if( tmpBtnStatus == 0x00 ) {
+    putvalue( evnBtnState_D, "Initial" );
+    putvalue( evnBtnD_Pressed, 0 );
+    putvalue( evnErrFlg_D, 1 );
+    
+  } else if( tmpBtnStatus == 0x01 ) {
+    putvalue( evnBtnState_D, "ON" );
+    putvalue( evnBtnD_Pressed, 1 );
+    putvalue( evnErrFlg_D, 1 );
+    
+  } else if( tmpBtnStatus == 0x02 ) {
+    putvalue( evnBtnState_D, "OFF" );
+    putvalue( evnBtnD_Pressed, 0 );
+    putvalue( evnErrFlg_D, 1 );
+    
+  } else if( tmpBtnStatus == 0x03 ) {
+    putvalue( evnBtnState_D, "Fault" );
+    putvalue( evnBtnD_Pressed, 0 );
+    putvalue( evnErrFlg_D, 1 );
+    
+  } else {
+    putvalue( evnBtnState_D, "Fault" );
+    putvalue( evnBtnD_Pressed, 0 );
+    putvalue( evnErrFlg_D, 2 );
+    @envBtnSingalErrCount = @envBtnSingalErrCount + 1;
+    
+  }
+
+  // Button N
+  tmpBtnStatus = ButtonStatusCheck( this.CF_Lvr_NButtonStatus, this.CF_Lvr_NButtonStatus_Reversed );
+  if( tmpBtnStatus == 0x00 ) {
+    putvalue( evnBtnState_N, "Initial" );
+    putvalue( evnBtnN_Pressed, 0 );
+    putvalue( evnErrFlg_N, 1 );
+    
+  } else if( tmpBtnStatus == 0x01 ) {
+    putvalue( evnBtnState_N, "ON" );
+    putvalue( evnBtnN_Pressed, 1 );
+    putvalue( evnErrFlg_N, 1 );
+    
+  } else if( tmpBtnStatus == 0x02 ) {
+    putvalue( evnBtnState_N, "OFF" );
+    putvalue( evnBtnN_Pressed, 0 );
+    putvalue( evnErrFlg_N, 1 );
+    
+  } else if( tmpBtnStatus == 0x03 ) {
+    putvalue( evnBtnState_N, "Fault" );
+    putvalue( evnBtnN_Pressed, 0 );
+    putvalue( evnErrFlg_N, 1 );
+    
+  } else {
+    putvalue( evnBtnState_N, "Fault" );
+    putvalue( evnBtnN_Pressed, 0 );
+    putvalue( evnErrFlg_N, 2 );
+    
+  }
+  
+  // Button P
+  tmpBtnStatus = ButtonStatusCheck( this.CF_Lvr_PButtonStatus, this.CF_Lvr_PButtonStatus_Reversed );
+  if( tmpBtnStatus == 0x00 ) {
+    putvalue( evnBtnState_P, "Initial" );
+    putvalue( evnBtnP_Pressed, 0 );
+    putvalue( evnErrFlg_P, 1 );
+    
+  } else if( tmpBtnStatus == 0x01 ) {
+    putvalue( evnBtnState_P, "ON" );
+    putvalue( evnBtnP_Pressed, 1 );
+     putvalue( evnErrFlg_P, 1 );
+    
+  } else if( tmpBtnStatus == 0x02 ) {
+    putvalue( evnBtnState_P, "OFF" );
+    putvalue( evnBtnP_Pressed, 0 );
+     putvalue( evnErrFlg_P, 1 );
+    
+  } else if( tmpBtnStatus == 0x03 ) {
+    putvalue( evnBtnState_P, "Fault" );
+    putvalue( evnBtnP_Pressed, 0 );
+     putvalue( evnErrFlg_P, 1 );
+    
+  } else {
+    putvalue( evnBtnState_P, "Fault" );
+    putvalue( evnBtnP_Pressed, 0 );
+    putvalue( evnErrFlg_P, 2 );
+    @envBtnSingalErrCount = @envBtnSingalErrCount + 1;
+    
+  }
+  
+  // Button P Release
+  tmpBtnStatus = ButtonStatusCheck( this.CF_Lvr_PRelStat, this.CF_Lvr_PRelButStatus_Reversed );
+  if( tmpBtnStatus == 0x00 ) {
+    putvalue( evnBtnState_PRelease, "Initial" );
+    putvalue( evnBtnPRelease_Pressed, 0 );
+    putvalue( evnErrFlg_PRelease, 1 );
+    
+  } else if( tmpBtnStatus == 0x01 ) {
+    putvalue( evnBtnState_PRelease, "ON" );
+    putvalue( evnBtnPRelease_Pressed, 1 );
+    putvalue( evnErrFlg_PRelease, 1 );
+    
+  } else if( tmpBtnStatus == 0x02 ) {
+    putvalue( evnBtnState_PRelease, "OFF" );
+    putvalue( evnBtnPRelease_Pressed, 0 );
+    putvalue( evnErrFlg_PRelease, 1 );
+    
+  } else if( tmpBtnStatus == 0x03 ) {
+    putvalue( evnBtnState_PRelease, "Fault" );
+    putvalue( evnBtnPRelease_Pressed, 0 );
+    putvalue( evnErrFlg_PRelease, 1 );
+    
+  } else {
+    putvalue( evnBtnState_PRelease, "Fault" );
+    putvalue( evnBtnPRelease_Pressed, 0 );
+    putvalue( evnErrFlg_PRelease, 2 );
+    @envBtnSingalErrCount = @envBtnSingalErrCount + 1;
+    
+  }
+  
+  // Button R
+  tmpBtnStatus = ButtonStatusCheck( this.CF_Lvr_RButtonStatus, this.CF_Lvr_RButtonStatus_Reversed );
+  if( tmpBtnStatus == 0x00 ) {
+    putvalue( evnBtnState_R, "Initial" );
+    putvalue( evnBtnR_Pressed, 0 );
+    putvalue( evnErrFlg_R, 1 );
+    
+  } else if( tmpBtnStatus == 0x01 ) {
+    putvalue( evnBtnState_R, "ON" );
+    putvalue( evnBtnR_Pressed, 1 );
+    putvalue( evnErrFlg_R, 1 );
+    
+  } else if( tmpBtnStatus == 0x02 ) {
+    putvalue( evnBtnState_R, "OFF" );
+    putvalue( evnBtnR_Pressed, 0 );
+    putvalue( evnErrFlg_R, 1 );
+    
+  } else if( tmpBtnStatus == 0x03 ) {
+    putvalue( evnBtnState_R, "Fault" );
+    putvalue( evnBtnR_Pressed, 0 );
+    putvalue( evnErrFlg_R, 1 );
+    
+  } else {
+    putvalue( evnBtnState_R, "Fault" );
+    putvalue( evnBtnR_Pressed, 0 );
+    putvalue( evnErrFlg_R, 2 );
+    @envBtnSingalErrCount = @envBtnSingalErrCount + 1;
+    
+  }
+  
+  // Button Unlock
+  tmpBtnStatus = ButtonStatusCheck( this.CF_Lvr_UnLockButtonStatus, this.CF_Lvr_UnLkButStatus_Reversed );
+  if( tmpBtnStatus == 0x00 ) {
+    putvalue( evnBtnState_Unlock, "Initial" );
+    putvalue( evnBtnUnlock_Pressed, 0 );
+    putvalue( evnErrFlg_Unlock, 1 );
+    
+  } else if( tmpBtnStatus == 0x01 ) {
+    putvalue( evnBtnState_Unlock, "ON" );
+    putvalue( evnBtnUnlock_Pressed, 1 );
+    putvalue( evnErrFlg_Unlock, 1 );
+    
+  } else if( tmpBtnStatus == 0x02 ) {
+    putvalue( evnBtnState_Unlock, "OFF" );
+    putvalue( evnBtnUnlock_Pressed, 0 );
+    putvalue( evnErrFlg_Unlock, 1 );
+    
+  } else if( tmpBtnStatus == 0x03 ) {
+    putvalue( evnBtnState_Unlock, "Fault" );
+    putvalue( evnBtnUnlock_Pressed, 0 );
+    putvalue( evnErrFlg_Unlock, 1 );
+    
+  } else {
+    putvalue( evnBtnState_Unlock, "Fault" );
+    putvalue( evnBtnUnlock_Pressed, 0 );
+    putvalue( evnErrFlg_Unlock, 2 );
+    @envBtnSingalErrCount = @envBtnSingalErrCount + 1;
+    
+  }
+  
+
+  // Indication
+  if( this.CF_Lvr_IndicatorStatus == 0 ) {
+    @evnIndication_P = 0;
+    @evnIndication_B = 0;
+    @evnIndication_R = 0;
+    @evnIndication_N = 0;
+    @evnIndication_D = 0;
+    @evnIndication_PRelease = 0;
+
+  } else if( this.CF_Lvr_IndicatorStatus == 1 ) {
+    @evnIndication_P = 1;
+    @evnIndication_B = 0;
+    @evnIndication_R = 0;
+    @evnIndication_N = 0;
+    @evnIndication_D = 0;
+    @evnIndication_PRelease = 0;
+    
+  } else if( this.CF_Lvr_IndicatorStatus == 2 ) {
+    @evnIndication_P = 0;
+    @evnIndication_B = 0;
+    @evnIndication_R = 1;
+    @evnIndication_N = 0;
+    @evnIndication_D = 0;
+    @evnIndication_PRelease = 0;
+    
+  } else if( this.CF_Lvr_IndicatorStatus == 3 ) {
+    @evnIndication_P = 0;
+    @evnIndication_B = 0;
+    @evnIndication_R = 0;
+    @evnIndication_N = 1;
+    @evnIndication_D = 0;
+    @evnIndication_PRelease = 0;
+    
+  } else if( this.CF_Lvr_IndicatorStatus == 4 ) {
+    @evnIndication_P = 0;
+    @evnIndication_B = 0;
+    @evnIndication_R = 0;
+    @evnIndication_N = 0;
+    @evnIndication_D = 1;
+    @evnIndication_PRelease = 0;
+    
+  } else if( this.CF_Lvr_IndicatorStatus == 5 ){
+    @evnIndication_P = 0;
+    @evnIndication_B = 1;
+    @evnIndication_R = 0;
+    @evnIndication_N = 0;
+    @evnIndication_D = 0;
+    @evnIndication_PRelease = 0;
+    
+  } else if( this.CF_Lvr_IndicatorStatus == 6 ){
+    @evnIndication_P = 0;
+    @evnIndication_B = 0;
+    @evnIndication_R = 0;
+    @evnIndication_N = 0;
+    @evnIndication_D = 0;
+    @evnIndication_PRelease = 1;
+    
+  } else {
+    @evnIndication_P = 0;
+    @evnIndication_B = 0;
+    @evnIndication_R = 0;
+    @evnIndication_N = 0;
+    @evnIndication_D = 0;
+    @evnIndication_PRelease = 0;
+    
+  }
+ 
+}
+
+on message VCU1
+{
+	setTimer( timVcuRev, 20);
+  @envVcuTxFlg = 1;
+}
+
+char ButtonStatusCheck( char BtnStatus, char BtnStatusR )
+{
+	char tmpVal;
+  
+  if( ( BtnStatus + BtnStatusR ) == 0x03 ) {
+    tmpVal = BtnStatus;
+  } else {
+    tmpVal = 0xFF;
+  }
+  
+  return tmpVal;
+}

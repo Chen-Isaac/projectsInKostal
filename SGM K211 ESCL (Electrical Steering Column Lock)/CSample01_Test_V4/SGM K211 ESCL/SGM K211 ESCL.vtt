@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <tf>
+      <title>Test Initialization</title>
+      <capltestcase>
+        <title />
+        <name>powerOn</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <name>initProduct</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <active>false</active>
+        <name>testInit</name>
+      </capltestcase>
+      <capltestcase>
+        <title />
+        <active>true</active>
+        <name>tryDll</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>1122334401</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>5a11933ec437c32ef4d18211df12621bc977d8512a7683b2e7d1082c26dac1b48de0eb0270fb6d0e5f5111743ebbda089f30fcc9e32b5484aff20ebb1f3d</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>04</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>
+            </const>
+          </value>
+        </param>
+      </capltestcase>
+    </tf>
+    <tf>
+      <title>5.4.6 System Operating Voltage</title>
+      <capltestcaselist>
+        <title />
+        <name>sysRs627</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>float</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|voltCommEnable|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <name>sysRs628</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>float</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|voltCommDisable|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <tf>
+      <title>5.5.11 Wake up / Sleep Strategy</title>
+      <active>false</active>
+      <tc>
+        <title>5.5.11.1 Wake Up</title>
+        <preparation>
+          <title />
+          <caplfunction>
+            <title />
+            <name>setChannelOutputDigitalLevel</name>
+            <param>
+              <type>int</type>
+              <value>
+                <const>9</const>
+              </value>
+            </param>
+            <param>
+              <type>int</type>
+              <value>
+                <const>2</const>
+              </value>
+            </param>
+            <param>
+              <type>enum</type>
+              <value>
+                <valuetable_entry>levelLow</valuetable_entry>
+              </value>
+            </param>
+            <param>
+              <type>char[]</type>
+              <value>
+                <const>Common Enable Wakeup</const>
+              </value>
+            </param>
+          </caplfunction>
+        </preparation>
+        <caplinline>
+          <title>test if ESCL is not woken up when the common enable wakeup is invalid</title>
+          <code>int result;
+result = testWaitForMessage(ESCL_Status,2000);
+if (!result)
+  testStepPass("Wake up test","When the common enable wakeup is invalid,the ESCL can't be woken up and send messages on serial bus");
+else
+  testStepFail("Wake up test","When the common enable wakeup is invalid,the ESCL is woken up and send messages on serial bus");</code>
+        </caplinline>
+        <caplfunction>
+          <title />
+          <name>setChannelOutputDigitalLevel</name>
+          <param>
+            <type>int</type>
+            <value>
+              <const>9</const>
+            </value>
+          </param>
+          <param>
+            <type>int</type>
+            <value>
+              <const>2</const>
+            </value>
+          </param>
+          <param>
+            <type>enum</type>
+            <value>
+              <valuetable_entry>levelHigh</valuetable_entry>
+            </value>
+          </param>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>Common Enable Wakeup</const>
+            </value>
+          </param>
+        </caplfunction>
+        <caplinline>
+          <title>test wake up time of ESCL</title>
+          <code>int result;
+float time;
+testWaitForSignalInRange(sysvar::VTS::M9_Ch2::Avg,12.3,13,2000);
+result = testWaitForMessage(ESCL_Status,300);
+time = testGetLastWaitElapsedTimeNS()/1000000;
+if (time &lt; 90)
+  testStepPass("Wake up test","the ESCL is woken up %5.2fms(&lt;90ms) after the common enable wakeup is valid,and send messages on serial bus",time);
+else
+  testStepFail("Wake up test","the ESCL is woken up %5.2fms(&gt;=90ms) after the common enable wakeup is valid,and send messages on serial bus",time);
+</code>
+        </caplinline>
+      </tc>
+      <tc>
+        <title>5.5.11.2 Sleep</title>
+        <caplfunction>
+          <title />
+          <name>setChannelOutputDigitalLevel</name>
+          <param>
+            <type>int</type>
+            <value>
+              <const>9</const>
+            </value>
+          </param>
+          <param>
+            <type>int</type>
+            <value>
+              <const>2</const>
+            </value>
+          </param>
+          <param>
+            <type>enum</type>
+            <value>
+              <valuetable_entry>levelLow</valuetable_entry>
+            </value>
+          </param>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>Common Enable Wakeup</const>
+            </value>
+          </param>
+        </caplfunction>
+        <caplinline>
+          <title>test last message transmission interval</title>
+          <active>true</active>
+          <code>dword checkId;
+long time;
+testWaitForSignalInRange(sysvar::VTS::M9_Ch2::Avg,0,0.2,200);
+//testStep("","avg=%6.5f",@sysvar::VTS::M9_Ch2::Avg);
+checkId = ChkStart_AllNodesBabbling(0);// checks that after 0 ms no transmission are available
+testAddCondition(checkId);
+TestWaitForTimeout(3000);// sequence of different actions and waiting conditions
+time = ChkQuery_EventTimestamp(checkId);//Last event happened timestamp
+//testStep("time","time = %d",time);
+time = ChkQuery_EventInterval(checkId);//Last transmission since check starts
+testRemoveCondition(checkId);
+if (time &lt;= 200)
+  testStepPass("Last transmission interval","Last message transmission happened %dms (within 200ms)after the common enable wakeup is invalid",time);
+else
+  testStepFail("Last transmission interval","Last message transmission happened %dms (out of 200ms)after the common enable wakeup is invalid",time);</code>
+        </caplinline>
+        <wait>
+          <title />
+          <active>false</active>
+          <time>
+            <value>
+              <const>30</const>
+            </value>
+            <unit>s</unit>
+          </time>
+        </wait>
+        <statecheck>
+          <title>test quiescent current @12.6V</title>
+          <active>true</active>
+          <expected>
+            <compare>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+              <lt>
+                <const>0.00025</const>
+              </lt>
+            </compare>
+          </expected>
+        </statecheck>
+        <caplfunction>
+          <title />
+          <name>setChannelOutputDigitalLevel</name>
+          <param>
+            <type>int</type>
+            <value>
+              <const>9</const>
+            </value>
+          </param>
+          <param>
+            <type>int</type>
+            <value>
+              <const>2</const>
+            </value>
+          </param>
+          <param>
+            <type>enum</type>
+            <value>
+              <valuetable_entry>levelHigh</valuetable_entry>
+            </value>
+          </param>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>Common Enable Wakeup</const>
+            </value>
+          </param>
+        </caplfunction>
+      </tc>
+    </tf>
+    <tf>
+      <title>5.5.4.2 ESCL Unlock Password Request Function</title>
+      <capltestcaselist>
+        <title>Sys_RS_660</title>
+        <name>sysRs660</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|sysPwrMdStatus|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <tf>
+      <title>5.5.2 System Power Mode Strategies</title>
+      <active>false</active>
+      <capltestcaselist>
+        <title>Sys_RS_642</title>
+        <name>sysRs642</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|sysPwrMdStatus|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <tf>
+      <title>5.5.5.2 ESCL Lock Function</title>
+      <capltestcaselist>
+        <title />
+        <name>sysRs759_checkDoorOnly</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|sysPwrMdStatus|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|engSpdStatVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+      <capltestcaselist>
+        <title />
+        <name>sysRs759</name>
+        <combinatorics>combinatorial</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|sysPwrMdStatus|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|engSpdStatVal|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <tf>
+      <title>5.5.6 Warnings Management</title>
+      <capltestcaselist>
+        <title />
+        <name>sysRs845</name>
+        <combinatorics>sequential</combinatorics>
+        <structlistparameter />
+        <param>
+          <type>int</type>
+          <listparameter>ChParList_BEGIN_OF_OBJECT|1|sysPwrMdStatus|END_OF_OBJECT_ChParList|</listparameter>
+        </param>
+      </capltestcaselist>
+    </tf>
+    <ts>
+      <title>set security code</title>
+      <active>false</active>
+      <caplfunction>
+        <title />
+        <name>writeSecCode</name>
+        <param>
+          <type>dword</type>
+          <value>
+            <const>0x31323334</const>
+          </value>
+        </param>
+      </caplfunction>
+    </ts>
+    <ts>
+      <title>set mec = 0</title>
+      <active>false</active>
+      <caplfunction>
+        <title />
+        <name>updateMECAtAssemblyMode</name>
+        <param>
+          <type>int</type>
+          <value>
+            <const>0</const>
+          </value>
+        </param>
+      </caplfunction>
+    </ts>
+    <ts>
+      <title>relearnUnlockPassword</title>
+      <active>false</active>
+      <caplfunction>
+        <title />
+        <name>relearnUnlockPassword</name>
+        <param>
+          <type>int</type>
+          <value>
+            <const>0</const>
+          </value>
+        </param>
+        <param>
+          <type>dword</type>
+          <value>
+            <const>0x31323334</const>
+          </value>
+        </param>
+        <param>
+          <type>word</type>
+          <value>
+            <const>0xBF1C</const>
+          </value>
+        </param>
+        <param>
+          <type>int</type>
+          <value>
+            <const>2</const>
+          </value>
+        </param>
+      </caplfunction>
+    </ts>
+    <tf>
+      <title>try</title>
+      <capltestcase>
+        <title />
+        <name>try</name>
+      </capltestcase>
+    </tf>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

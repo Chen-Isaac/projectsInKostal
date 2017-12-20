@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <capltestcase>
+      <title />
+      <name>powerOn</name>
+    </capltestcase>
+    <capltestcaselist>
+      <title />
+      <name>chkALCMLightLvlSetSigImpWhenAccOn</name>
+      <combinatorics>combinatorial</combinatorics>
+      <structlistparameter />
+      <param>
+        <type>char[]</type>
+        <listparameter>ChParList_BEGIN_OF_OBJECT|1|doorSignal|END_OF_OBJECT_ChParList|</listparameter>
+      </param>
+      <param>
+        <type>char[]</type>
+        <valuelist>
+          <value>
+            <const>3000</const>
+          </value>
+        </valuelist>
+      </param>
+      <param>
+        <type>char[]</type>
+        <listparameter>ChParList_BEGIN_OF_OBJECT|1|alcmLightLvlSetVal|END_OF_OBJECT_ChParList|</listparameter>
+      </param>
+    </capltestcaselist>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

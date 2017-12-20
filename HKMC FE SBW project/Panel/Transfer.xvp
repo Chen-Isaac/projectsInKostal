@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Transfer">
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="DetentOut">
+        <Property Name="Name">StaticTextControl8</Property>
+        <Property Name="Size">65, 13</Property>
+        <Property Name="Location">6, 82</Property>
+        <Property Name="Text">IntTailAct</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl8" Children="Controls" ControlName="CB_IntTailAct_cmd">
+        <Property Name="Name">ComboBoxControl8</Property>
+        <Property Name="Size">188, 25</Property>
+        <Property Name="Location">6, 103</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;CANdb1;;;envCGW2_IntTailAct;1;;;-1</Property>
+        <Property Name="TabIndex">8</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl3" Children="Controls" ControlName="Check Box">
+        <Property Name="Name">CheckBoxControl3</Property>
+        <Property Name="Size">66, 23</Property>
+        <Property Name="Location">128, 17</Property>
+        <Property Name="Text">Enable</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;CGW;;;envCGW2TxEnable;1;;;-1</Property>
+        <Property Name="TabIndex">6</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="DetentOut">
+        <Property Name="Name">StaticTextControl7</Property>
+        <Property Name="Size">47, 13</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="Text">SMK RKE</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl7" Children="Controls" ControlName="CB_SMK_RKE_cmd">
+        <Property Name="Name">ComboBoxControl7</Property>
+        <Property Name="Size">188, 25</Property>
+        <Property Name="Location">6, 41</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;CANdb1;;;envCGW2_SMK_RKE;1;;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">213, 136</Property>
+      <Property Name="Location">232, 204</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt, style=Bold</Property>
+      <Property Name="Text">CGW2</Property>
+      <Property Name="TabIndex">13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="Wakup">
+      <Property Name="Name">ButtonControl1</Property>
+      <Property Name="Size">208, 28</Property>
+      <Property Name="Location">9, 277</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt, style=Bold</Property>
+      <Property Name="Text">Wakeup ONCE</Property>
+      <Property Name="SymbolConfiguration">4;1;CGW;;;envBtnWakup;1;;;-1</Property>
+      <Property Name="TabIndex">5</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TrackBarControl1" Children="Controls" ControlName="Track Bar">
+        <Property Name="Name">TrackBarControl1</Property>
+        <Property Name="Size">188, 41</Property>
+        <Property Name="Location">6, 133</Property>
+        <Property Name="Maximum">21</Property>
+        <Property Name="MaximumDouble">21</Property>
+        <Property Name="DisplayValue">True</Property>
+        <Property Name="SymbolConfiguration">4;1;CANdb1;;;envEVCP2_RheostatLevel;1;;;-1</Property>
+        <Property Name="TabIndex">10</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl1" Children="Controls" ControlName="Check Box">
+        <Property Name="Name">CheckBoxControl1</Property>
+        <Property Name="Size">66, 23</Property>
+        <Property Name="Location">128, 17</Property>
+        <Property Name="Text">Enable</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envEVCP2TxEnable;1;;;-1</Property>
+        <Property Name="TabIndex">6</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="DetentOut">
+        <Property Name="Name">StaticTextControl1</Property>
+        <Property Name="Size">59, 13</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="Text">DetentOut</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="RheostatLvl">
+        <Property Name="Name">StaticTextControl2</Property>
+        <Property Name="Size">83, 13</Property>
+        <Property Name="Location">6, 75</Property>
+        <Property Name="Text">RheostatLevel</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl4" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl4</Property>
+        <Property Name="Size">188, 25</Property>
+        <Property Name="Location">6, 94</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;CANdb1;;;envEVCP2_RheostatLevel;1;;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl3" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl3</Property>
+        <Property Name="Size">188, 25</Property>
+        <Property Name="Location">6, 41</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;CANdb1;;;envEVCP2_DetentOut;1;;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl3</Property>
+      <Property Name="Size">208, 194</Property>
+      <Property Name="Location">232, 3</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt, style=Bold</Property>
+      <Property Name="Text">EV_CP2</Property>
+      <Property Name="TabIndex">4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl6" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl6</Property>
+        <Property Name="Size">188, 25</Property>
+        <Property Name="Location">6, 198</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;CANdb1;;;envCGW1_DrvDrSw;1;;;-1</Property>
+        <Property Name="TabIndex">9</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="">
+        <Property Name="Name">StaticTextControl6</Property>
+        <Property Name="Size">47, 13</Property>
+        <Property Name="Location">6, 181</Property>
+        <Property Name="Text">DrvDrSw</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="">
+        <Property Name="Name">StaticTextControl5</Property>
+        <Property Name="Size">77, 13</Property>
+        <Property Name="Location">6, 128</Property>
+        <Property Name="Text">LightSwState</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl2" Children="Controls" ControlName="Check Box">
+        <Property Name="Name">CheckBoxControl2</Property>
+        <Property Name="Size">66, 23</Property>
+        <Property Name="Location">128, 17</Property>
+        <Property Name="Text">Enable</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;ChecksumCalc;;;envCGW1TxEnable;1;;;-1</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="">
+        <Property Name="Name">StaticTextControl4</Property>
+        <Property Name="Size">41, 13</Property>
+        <Property Name="Location">6, 75</Property>
+        <Property Name="Text">RKECmd</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="">
+        <Property Name="Name">StaticTextControl3</Property>
+        <Property Name="Size">35, 13</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="Text">IGNSw</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl1" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl1</Property>
+        <Property Name="Size">188, 25</Property>
+        <Property Name="Location">6, 41</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="MaxDropDownItems">5</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;HS2_CAN;;;envCGW1_IGNSw;1;;;-1</Property>
+        <Property Name="TabIndex">1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl2" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl2</Property>
+        <Property Name="Size">188, 25</Property>
+        <Property Name="Location">6, 94</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;HS2_CAN;;;envCGW1_RKECmd;1;;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl5" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl5</Property>
+        <Property Name="Size">188, 25</Property>
+        <Property Name="Location">6, 147</Property>
+        <Property Name="DropDownWidth">188</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="Font">Microsoft YaHei, 9pt</Property>
+        <Property Name="SymbolConfiguration">4;1;CANdb1;;;envCGW1_LightSwState;1;;;-1</Property>
+        <Property Name="TabIndex">2</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">213, 234</Property>
+      <Property Name="Location">9, 3</Property>
+      <Property Name="Font">Microsoft YaHei, 9pt, style=Bold</Property>
+      <Property Name="Text">CGW1</Property>
+      <Property Name="TabIndex">3</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">449, 350</Property>
+  </Object>
+</Panel>

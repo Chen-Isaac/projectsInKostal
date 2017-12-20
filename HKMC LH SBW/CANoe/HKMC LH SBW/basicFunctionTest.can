@@ -1,0 +1,30 @@
+includes
+{
+  #include "D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin"
+}
+
+variables
+{
+
+}
+
+export testcase powerOn (void) {
+  stateMachine("powerOn",routeNum,noParaPick);
+}
+
+export testcase powerOff (void) {
+  stateMachine("powerOff",routeNum,noParaPick);
+}
+
+export testcase initProduct (void) {
+  stateMachine("initProduct",routeNum,noParaPick);
+}
+
+export testcase readSwVer (void) {
+  stateMachine("readSwVer",routeNum,noParaPick);
+}
+
+export testcase clearThenReadDtc (void) {
+  stateMachine("clearThenReadDtc",routeNum,noParaPick);
+}
+

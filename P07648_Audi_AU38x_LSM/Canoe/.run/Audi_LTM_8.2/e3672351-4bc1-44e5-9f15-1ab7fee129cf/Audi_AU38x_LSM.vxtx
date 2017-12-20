@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <nestedcallparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_capltestcaselist_1__19</name>
+      <title>autoLightBtnImp</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>value_Bel_LTM_Auto</name>
+        <type>string</type>
+        <valuelist>
+          <value>
+            <const>0</const>
+          </value>
+          <value>
+            <const>1</const>
+          </value>
+        </valuelist>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_capltestcaselist_1__34</name>
+      <title>allWeatherLightBtnImp</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>value_Bel_LTM_Nebellicht</name>
+        <type>string</type>
+        <valuelist>
+          <value>
+            <const>0</const>
+          </value>
+          <value>
+            <const>1</const>
+          </value>
+        </valuelist>
+      </callparameter>
+    </callparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_capltestcaselist_1__49</name>
+      <title>rearFogLightBtnImp</title>
+      <combinatorics>sequential</combinatorics>
+      <callparameter>
+        <name>value_Bel_LTM_Nebelschlusslicht</name>
+        <type>string</type>
+        <valuelist>
+          <value>
+            <const>0</const>
+          </value>
+          <value>
+            <const>1</const>
+          </value>
+        </valuelist>
+      </callparameter>
+    </callparameterlist>
+  </nestedcallparameterlist>
+  <caplfunction>
+    <name>_ttg_fct_tt_1__8</name>
+  </caplfunction>
+  <testfixture>
+    <title>Setup&amp;Product Initialization</title>
+    <testcase>
+      <title>powerOn ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__11</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>readSwVer ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__14</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_1__9</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>switch operation</title>
+    <testcaselist>
+      <title>autoLightBtnImp</title>
+      <refname>_ttg_list_capltestcaselist_1__19</refname>
+      <caplfunction>
+        <name>_ttg_fct_capltestcaselist_1__19</name>
+      </caplfunction>
+    </testcaselist>
+    <testcase>
+      <title>autoLightBtnRelateSigImpOnLight ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__31</name>
+      </caplfunction>
+    </testcase>
+    <testcaselist>
+      <title>allWeatherLightBtnImp</title>
+      <refname>_ttg_list_capltestcaselist_1__34</refname>
+      <caplfunction>
+        <name>_ttg_fct_capltestcaselist_1__34</name>
+      </caplfunction>
+    </testcaselist>
+    <testcase>
+      <title>allWeatherLightBtnRelateSigImpOnLight ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__46</name>
+      </caplfunction>
+    </testcase>
+    <testcaselist>
+      <title>rearFogLightBtnImp</title>
+      <refname>_ttg_list_capltestcaselist_1__49</refname>
+      <caplfunction>
+        <name>_ttg_fct_capltestcaselist_1__49</name>
+      </caplfunction>
+    </testcaselist>
+    <testcase>
+      <title>rearFogLightBtnRelateSigImpOnLight ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__61</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_1__17</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>Power off</title>
+    <testcase>
+      <title>powerOff ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__66</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_1__64</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+  <testfixture>
+    <title>Test Fixture</title>
+    <testcase>
+      <title>checkFunctions1 ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__71</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>checkFunctions2 ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__74</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>checkKostia ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_1__77</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_1__69</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+</testtree>

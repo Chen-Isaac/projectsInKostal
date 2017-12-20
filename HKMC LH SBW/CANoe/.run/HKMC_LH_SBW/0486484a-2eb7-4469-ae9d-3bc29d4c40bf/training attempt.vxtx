@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <nestedcallparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_tttestcaselist_33_0_0</name>
+      <title>ListTryTestCase</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>sensor</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>pgLed::plRunningLed</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+      <callparameter>
+        <name>led11</name>
+        <type>int64</type>
+        <listparameter>
+          <syspar>
+            <name>list</name>
+          </syspar>
+        </listparameter>
+      </callparameter>
+    </callparameterlist>
+  </nestedcallparameterlist>
+  <caplfunction>
+    <name>_ttg_fct_tt_33_0</name>
+  </caplfunction>
+  <testcaselist>
+    <title>ListTryTestCase</title>
+    <refname>_ttg_list_tttestcaselist_33_0_0</refname>
+    <variantdependencies>
+      <varprop>
+        <name>TestLevel</name>
+        <eq>
+          <const>0</const>
+        </eq>
+      </varprop>
+    </variantdependencies>
+    <caplfunction>
+      <name>_ttg_fct_tttestcaselist_33_0_0</name>
+    </caplfunction>
+  </testcaselist>
+  <testcase>
+    <title>Test Case</title>
+    <variantdependencies>
+      <varprop>
+        <name>TestLevel</name>
+        <eq>
+          <const>1</const>
+        </eq>
+      </varprop>
+    </variantdependencies>
+    <caplfunction>
+      <name>_ttg_fct_tc_33_0_1</name>
+    </caplfunction>
+  </testcase>
+  <testsequence>
+    <title>attempt (sig=CF_Gway_AstDrSw, str=fuck you)</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestsequence_33_0_2</name>
+    </caplfunction>
+  </testsequence>
+</testtree>

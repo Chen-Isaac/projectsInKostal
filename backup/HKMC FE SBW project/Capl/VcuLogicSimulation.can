@@ -1,0 +1,81 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+  mstimer tmSystimer10ms;
+  message VCU1 msgVcu;
+  int flgSimulationInterrupt;
+}
+
+on start
+{
+  /*setTimer( tmSystimer10ms, 100 );
+  @envVCU_SimulationEnable = 1;
+  flgSimulationInterrupt = 0;
+  @envVCUTxEnable = 1;*/  //1.deleted by Isaac 2.update the GenMsgSendType of VCU1 in database from EventPeriodic to FixedPeriodic
+}
+
+
+on preStart
+{
+	//setTimer( tmSystimer10ms, 100 );
+}
+
+on envVar envVCU_GarSelDisp
+{
+  if( flgSimulationInterrupt == 1 ) {
+    flgSimulationInterrupt = 0;
+  } else {
+    @envVCU_SimulationEnable = 0;
+  }
+  
+}
+
+on timer tmSystimer10ms
+{
+  setTimer( tmSystimer10ms, 10 );
+  
+  if( @envVCU_SimulationEnable == 1 ) {
+    if( ( @evnBtnP_Pressed == 1 ) && ( @evnBtnP_Pressed != @evnBtnP_Pressed_Pre ) ) {             // P Pressed
+      @envVCU_GarSelDisp = 0;
+      flgSimulationInterrupt = 1;
+      
+    } else if( ( @evnBtnD_Pressed == 1 ) && ( @evnBtnD_Pressed != @evnBtnD_Pressed_Pre ) ) {      // D Pressed
+//      if( @envVCU_GarSelDisp == 5 ) {
+//        @envVCU_GarSelDisp = 1;
+//        flgSimulationInterrupt = 1;
+//        
+//      } else {
+        @envVCU_GarSelDisp = 5;
+        flgSimulationInterrupt = 1;
+//        
+//      }
+
+    } else if( ( @evnBtnN_Pressed == 1 ) && ( @evnBtnN_Pressed != @evnBtnN_Pressed_Pre ) ) {      // N Pressed
+      @envVCU_GarSelDisp = 6;
+      flgSimulationInterrupt = 1;
+      
+    } else if( ( @evnBtnR_Pressed == 1 ) && ( @evnBtnR_Pressed != @evnBtnR_Pressed_Pre ) ) {      // R Pressed
+      @envVCU_GarSelDisp = 7;
+       flgSimulationInterrupt = 1;
+       
+    } else {
+      
+    }
+    
+  } else {
+    
+  }
+  
+  msgVcu.CF_Vcu_GarSelDisp = @envVCU_GarSelDisp;
+  msgVcu.CF_Vcu_EvRdy = @envVcu_EvRdy;
+  
+  if( @envVCUTxEnable == 1 ) {
+    output( msgVcu );
+  }
+  
+}

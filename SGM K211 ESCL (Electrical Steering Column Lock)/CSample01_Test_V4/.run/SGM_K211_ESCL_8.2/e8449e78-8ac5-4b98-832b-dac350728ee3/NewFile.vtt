@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title />
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const />
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const />
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+    </ts>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

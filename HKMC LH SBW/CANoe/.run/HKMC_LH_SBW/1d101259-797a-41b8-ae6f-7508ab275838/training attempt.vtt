@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <tc>
+      <title />
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>1</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+    </tc>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

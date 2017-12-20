@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <FileFormatVersion>1</FileFormatVersion>
+  <TestUnitName>HKMC LH SBW</TestUnitName>
+  <TsoProject>D:\Isaac\HKMC LH SBW\CANoe\HKMC LH SBW.vtsoproj</TsoProject>
+  <TsoProjectRelative>.\..\HKMC LH SBW.vtsoproj</TsoProjectRelative>
+  <EditableSources>false</EditableSources>
+  <BuildInfo>
+    <CaplCompiler>8.5.98.0</CaplCompiler>
+    <MinRequiredCANoeVersion>8.2.41</MinRequiredCANoeVersion>
+    <TsoVersion>2.0.50.0</TsoVersion>
+    <NetApiVersion></NetApiVersion>
+  </BuildInfo>
+  <NetTypeLibGenerator>
+    <NamespaceGeneration>NoNamespace</NamespaceGeneration>
+    <NetTypeLibs />
+  </NetTypeLibGenerator>
+  <VariantProperties />
+  <Sources>
+    <CaplFiles>
+      <CaplFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.can" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.cbf" /&gt;</Binary>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\basicFunctionTest.can.export.xml" /&gt;</ExportTable>
+      </CaplFile>
+    </CaplFiles>
+    <CaplIncludeFiles />
+    <NetFiles />
+    <NetBinaries />
+    <VttFiles>
+      <VttFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.vtt" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.vxtx" /&gt;</Binary>
+        <CaplFile>
+          <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.vxtx.can" /&gt;</Source>
+          <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.vxtx.cbf" /&gt;</Binary>
+        </CaplFile>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\basicFunctionTest.vtt.export.xml" /&gt;</ExportTable>
+      </VttFile>
+    </VttFiles>
+    <ParameterFiles>
+      <ParameterFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="HKMC LH SBW.vparam" /&gt;</Source>
+      </ParameterFile>
+    </ParameterFiles>
+    <WaveformFiles />
+    <WaveformBinaries />
+    <CaplDlls />
+  </Sources>
+  <TestSysVar>
+    <Source></Source>
+  </TestSysVar>
+  <ExternalReferences />
+  <SutEnvironment>
+    <Networks>
+      <Network>
+        <Name>HKMC_LH_SBW</Name>
+        <ChannelType>CAN</ChannelType>
+        <Databases>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\HKMC_LH_SBW.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>PB</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\HKMC_LH_SBW.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\CAN_KOSTIA.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>CAN_KOSTIA</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\CAN_KOSTIA.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\IFM.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>IFM</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\IFM.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\UDS.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>UDS</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\UDS.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\ChecksumCalc.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>ChecksumCalc</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\ChecksumCalc.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\ShiftByWire.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>ShiftByWire</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\ShiftByWire.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\Kostia.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>Kostia</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\Kostia.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\KT_E90.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>KT_E90</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\KT_E90.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\KTAppl.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>KTAppl</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\KTAppl.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\KTAppl_Local Fun.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>KTAppl_LocalFun</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\KTAppl_Local Fun.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\KTV_E60Red_EPROM.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>KTV_E60Red_EPROM</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\KTV_E60Red_EPROM.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\Databases\KT_E60Red.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>KT_E60Red</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\HKMC LH SBW\CANoe\Databases\KT_E60Red.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+        </Databases>
+      </Network>
+    </Networks>
+    <UseAllNetworks>false</UseAllNetworks>
+  </SutEnvironment>
+  <TUProperties>
+    <Caption></Caption>
+    <Description></Description>
+    <Version></Version>
+    <TestDesigners>
+      <Columns />
+      <TestDesignerEntries />
+    </TestDesigners>
+    <TUInfos />
+  </TUProperties>
+  <NodeLayerDlls>
+    <NodeLayerDll>
+      <Path>CANstress_NL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>FRStressNL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>J1939TestServiceLibraryNL.dll</Path>
+    </NodeLayerDll>
+  </NodeLayerDlls>
+  <UserFiles />
+  <TetEntries>
+    <TetEntry>
+      <Type>vtt</Type>
+      <Identifier>basicFunctionTest.vtt</Identifier>
+    </TetEntry>
+  </TetEntries>
+</Manifest>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <caplfunction>
+    <name>_ttg_fct_tt_11_0</name>
+  </caplfunction>
+  <testsequence>
+    <title>VTS INIT</title>
+    <caplfunction>
+      <name>_ttg_fct_ts_11_0_0</name>
+    </caplfunction>
+  </testsequence>
+</testtree>

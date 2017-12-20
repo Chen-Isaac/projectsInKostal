@@ -1,0 +1,377 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  message KostiaReq KostiaReq_Msg;
+  char KostiaWorkStatus;
+  char TaskReq;
+  char ReadVsIdx;
+  msTimer TimeoutCnt;
+  
+  char VersionBuffer[50];
+  char Tempbuf[50];
+}
+
+
+
+on start
+{
+	KostiaWorkStatus = 0;
+  setTimer(TimeoutCnt,50);
+  TaskReq = 0;
+}
+
+
+
+on envVar envKTA_LocFun_ReadVersion
+{
+	if( @envKTA_LocFun_ReadVersion == 1 ) {
+    TaskReq = 6;
+    ReadVsIdx = 1;
+  }
+}
+on timer TimeoutCnt
+{
+	setTimer(TimeoutCnt,20);
+  TaskMgr();
+}
+
+ReadVersion()
+{
+	switch(ReadVsIdx)
+  {
+    case 1:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x00;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0C;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+      ReadVsIdx = 2;
+      break;
+      
+    case 2:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x07;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0C;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+      ReadVsIdx = 3;
+      break;
+    case 3:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x0E;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0C;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+      ReadVsIdx = 4;
+      break;
+     case 4:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x15;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0C;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+      ReadVsIdx = 5;
+      break;
+      
+    case 5:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x1C;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0C;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+      ReadVsIdx = 6;
+      break;
+    case 6:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x23;
+      KostiaReq_Msg.byte(3) = 0x04;
+      KostiaReq_Msg.byte(4) = 0x0C;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+      ReadVsIdx = 7; //end
+      break;
+      case 7:
+    ReadVsIdx = 0; //end
+      break;
+    default:
+      break;
+  }
+}
+
+on envVar envKTA_LocFun_ReadADC
+{
+	if( @envKTA_LocFun_ReadADC == 1 ) {
+    TaskReq = 1;
+  }
+}
+
+
+TaskMgr()
+{
+  switch(TaskReq)
+  {
+    case 1:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x21;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0A;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      //KostiaReq_Msg.byte(7) = 0x00;
+      
+      TaskReq = 0;
+      KostiaWorkStatus = 1;
+      output(KostiaReq_Msg);
+      break;
+      
+    case 2:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x22;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0A;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      ///KostiaReq_Msg.byte(7) = 0x00;
+
+      TaskReq = 0;
+      KostiaWorkStatus = 2;
+      output(KostiaReq_Msg);
+      break;
+      
+    case 3:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x31;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0A;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+
+      TaskReq = 0;
+      KostiaWorkStatus = 3;
+      output(KostiaReq_Msg);
+      break;
+      
+    case 4:
+      KostiaReq_Msg.byte(0) = 0x07;
+      KostiaReq_Msg.byte(1) = 0x10;
+      KostiaReq_Msg.byte(2) = 0x05;
+      KostiaReq_Msg.byte(3) = 0x00;
+      KostiaReq_Msg.byte(4) = 0x00;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+      
+      TaskReq = 0;
+      KostiaWorkStatus = 4;
+      output(KostiaReq_Msg);
+      
+      break;
+      
+    case 5:
+      KostiaReq_Msg.byte(0) = 0x04;
+      KostiaReq_Msg.byte(1) = 0x00;
+      KostiaReq_Msg.byte(2) = 0x23;
+      KostiaReq_Msg.byte(3) = 0x07;
+      KostiaReq_Msg.byte(4) = 0x0A;
+      KostiaReq_Msg.byte(5) = 0x00;
+      KostiaReq_Msg.byte(6) = 0x00;
+      KostiaReq_Msg.byte(7) = 0x00;
+      
+      TaskReq = 0;
+      KostiaWorkStatus = 5;
+      output(KostiaReq_Msg);
+      
+      break;
+      
+    case 6:
+      ReadVersion();
+      if(ReadVsIdx == 0)
+      {
+          TaskReq = 0;
+      }
+      KostiaWorkStatus = 6;
+      output(KostiaReq_Msg);
+      
+      break;
+           
+    default:
+      break;
+  }
+}
+
+on message KostiaResp
+{
+	switch(KostiaWorkStatus) {
+    case 1:
+      @envKTAr_AD_P1 = this.byte(1);
+      @envKTAr_AD_P2 = this.byte(2);
+      @envKTAr_AD_P3 = this.byte(3);
+      @envKTAr_AD_R1 = this.byte(4);
+      @envKTAr_AD_R2 = this.byte(5);
+      @envKTAr_AD_R3 = this.byte(6);
+      //@envKTAr_AD_PR1 = this.byte(7);
+      
+      KostiaWorkStatus = 0;
+      TaskReq = 2;
+      break;
+      
+    case 2:
+      @envKTAr_AD_N1 = this.byte(1);
+      @envKTAr_AD_N2 = this.byte(2);
+      @envKTAr_AD_N3 = this.byte(3);
+      @envKTAr_AD_D1 = this.byte(4);
+      @envKTAr_AD_D2 = this.byte(5);
+      @envKTAr_AD_D3 = this.byte(6);
+      //@envKTAr_AD_PR2 = this.byte(7);
+      
+      KostiaWorkStatus = 0;
+      TaskReq = 3;
+      break;
+      
+    case 3:
+      //@envKTAr_AD_VCC = this.byte(1); /*  VCC port usage is replaced by LHD/RHD variant information *
+      if(this.byte(1) == 2)
+      {
+        putvalue( envKTAr_AD_VCC, "LHD" );
+      }
+      else if(this.byte(1) == 3)
+      {
+         putvalue( envKTAr_AD_VCC, "RHD" );         
+      }
+      else{
+         putvalue( envKTAr_AD_VCC, "Variant Error!!!" );
+      }
+      
+      @envKTAr_AD_KL30 = this.byte(2);
+      @envKTAr_AD_IGN = this.byte(3);
+      @envKTAr_AD_VBAT = this.byte(4);
+      @envKTAr_AD_ACC = this.byte(5);
+      @envKTAr_AD_Detent = this.byte(6);
+      
+      KostiaWorkStatus = 0;
+      TaskReq  = 4;
+      break;
+      
+    case 4:
+      @envKTAr_LEC_P = this.byte(3);
+      @envKTAr_LEC_R = this.byte(4);
+      @envKTAr_LEC_N = this.byte(5);
+      @envKTAr_LEC_D = this.byte(6);
+      
+      KostiaWorkStatus = 0;
+      TaskReq  = 5;
+      
+      break;
+      
+    case 5:
+      @envKTAr_AD_PR1 = this.byte(1);
+      @envKTAr_AD_PR2 = this.byte(2);
+      
+      KostiaWorkStatus = 0;
+      TaskReq  = 0;
+      
+      break;
+      
+    case 6:
+
+          
+
+      if(ReadVsIdx == 0)
+      {
+        
+      }       
+      else if(ReadVsIdx <= 7)
+      {
+        VersionBuffer[(ReadVsIdx-2)*7] = this.byte(1);
+        VersionBuffer[(ReadVsIdx-2)*7+1] = this.byte(2);
+        VersionBuffer[(ReadVsIdx-2)*7+2] = this.byte(3);
+        VersionBuffer[(ReadVsIdx-2)*7+3] = this.byte(4);
+        VersionBuffer[(ReadVsIdx-2)*7+4] = this.byte(5);
+        VersionBuffer[(ReadVsIdx-2)*7+5] = this.byte(6);
+        VersionBuffer[(ReadVsIdx-2)*7+6] = this.byte(7);
+        write("haha %s hehe %d",VersionBuffer, ReadVsIdx);
+      }
+      
+      if(ReadVsIdx == 7)
+      {
+       // strncpy_off (Tempbuf, 18,VersionBuffer,6);
+//        Tempbuf[0] =  VersionBuffer[18];
+//        Tempbuf[1] =  VersionBuffer[19];
+//        Tempbuf[2] =  VersionBuffer[20];
+//        Tempbuf[3] =  VersionBuffer[21];
+//        Tempbuf[4] =  VersionBuffer[22];
+//        Tempbuf[5] =  VersionBuffer[23];
+        Tempbuf[0] =  VersionBuffer[12];
+        Tempbuf[1] =  VersionBuffer[13];
+        Tempbuf[2] =  VersionBuffer[14];
+        Tempbuf[3] =  VersionBuffer[15];
+        Tempbuf[4] =  VersionBuffer[16];
+        Tempbuf[5] =  VersionBuffer[17];
+        Tempbuf[6] =  VersionBuffer[18];
+        Tempbuf[7] =  VersionBuffer[19];
+        Tempbuf[8] =  VersionBuffer[20];
+        Tempbuf[9] =  VersionBuffer[21];
+        Tempbuf[10] =  VersionBuffer[22];
+        Tempbuf[11] =  '\0';
+        putvalue(envKTAr_SW_Release, Tempbuf);
+        
+        Tempbuf[0] =  VersionBuffer[23];
+        Tempbuf[1] =  VersionBuffer[24];
+        Tempbuf[2] =  VersionBuffer[25];
+        Tempbuf[3] =  VersionBuffer[26];
+        Tempbuf[4] =  VersionBuffer[27];
+        Tempbuf[5] =  VersionBuffer[28];
+        Tempbuf[6] =  '\0';
+        putvalue(envKTAr_SW_Internal, Tempbuf);
+        
+        Tempbuf[0] =  VersionBuffer[29];
+        Tempbuf[1] =  VersionBuffer[30];
+        Tempbuf[2] =  VersionBuffer[31];
+        Tempbuf[3] =  VersionBuffer[32];
+        Tempbuf[4] =  VersionBuffer[33];
+        Tempbuf[5] =  VersionBuffer[34];
+        Tempbuf[6] =  VersionBuffer[35];
+        Tempbuf[7] =  VersionBuffer[36];
+        Tempbuf[8] =  VersionBuffer[37];
+        Tempbuf[9] =  VersionBuffer[38];
+        Tempbuf[10] =  VersionBuffer[39];
+        Tempbuf[11] =  '\0';
+        putvalue(envKTAr_SW_Customer, Tempbuf);
+     //   write("haha %s ",VersionBuffer[18]);
+
+        KostiaWorkStatus = 0;
+        TaskReq  = 0;
+        ReadVsIdx = 0;
+      } 
+      break;
+    default:
+      break;
+    
+  }
+}

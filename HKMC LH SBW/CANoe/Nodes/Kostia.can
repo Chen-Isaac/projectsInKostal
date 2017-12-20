@@ -1,0 +1,1464 @@
+/*@!Encoding:1252*/
+includes
+{
+  #include "Crc.cin"
+}
+variables
+{
+     /**************** Kostia Request Tx message ****************/
+    message KOSTIA_REQ mKostiaRequest;
+
+    /******************************************/
+    /* Common variables */
+    /******************************************/
+    const KOSTIA_WINDOW_TEXT_LENGTH = 100;
+    char KostiaWindowText[KOSTIA_WINDOW_TEXT_LENGTH];
+    byte bRbrModeActive = 0;
+    byte bCalibModeActive = 0;
+    byte SaveSnapshotDataState = 0;
+    byte SerialNumber[13];
+    byte bReadDataFlashActive = 0;
+    long  ReadDataFlashCurrentAddr = 0;
+
+    /******************************************/
+    /* Kostia return codes */
+    /******************************************/
+    const KOSTIA_RET_OK                 = 0x00;
+    const KOSTIA_RET_ADRESS_MISMATCH    = 0x01;
+    const KOSTIA_RET_UNKNOWN_FUNC       = 0x02;
+    const KOSTIA_RET_INVALID_REQ        = 0x03;
+    const KOSTIA_RET_ERASE              = 0x04;
+    const KOSTIA_RET_PROGRAM            = 0x05;
+    const KOSTIA_RET_INVALID_LOGIN      = 0x06;
+    const KOSTIA_RET_INVALID_MODE       = 0x07;
+    const KOSTIA_RET_MODE_CANNOT_BE_ACT = 0x08;
+    const KOSTIA_RET_INVALID_PAGE       = 0x09;
+    const KOSTIA_RET_COM_ERROR          = 0x0a;
+    const KOSTIA_RET_LOGIN_REQUIRED     = 0x0b;
+    const KOSTIA_RET_BUSY               = 0x0c;
+    const KOSTIA_RET_NOT_DONE           = 0xff;
+
+    /******************************************/
+    /* Kostia Login */
+    /******************************************/
+    const KOSTIA_LOGIN_0 = 0x01;
+    const KOSTIA_LOGIN_1 = 0x4B;
+    const KOSTIA_LOGIN_2 = 0x4F;
+    const KOSTIA_LOGIN_3 = 0x53;
+    const KOSTIA_LOGIN_4 = 0x54;
+    const KOSTIA_LOGIN_5 = 0x41;
+    const KOSTIA_LOGIN_6 = 0x4C;
+    const KOSTIA_LOGIN_7 = 0x5F;
+
+    /******************************************/
+    /* *** Kostia execute local function ******/
+    /******************************************/
+    const KOSTIA_EXEC_LOCAL   = 0x07;
+
+    const KOSTIA_EXEC_DEACTIVATE        = 0x01;
+    const KOSTIA_EXEC_STORE_CALIB_NVRAM = 0x02;
+    
+    /* PosDet calibration */
+    const KOSTIA_EXEC_CALIB_POSDET     = 0x00;
+    const KOSTIA_EXEC_CALIB_POS_DECAL  = 0x00;
+    const KOSTIA_EXEC_CALIB_POS_N      = 0x01;
+    const KOSTIA_EXEC_CALIB_POS_F      = 0x02;
+    const KOSTIA_EXEC_CALIB_POS_B      = 0x03;
+    const KOSTIA_EXEC_CALIB_POS_MMINUS = 0x04;
+    const KOSTIA_EXEC_CALIB_POS_MPLUS  = 0x05;
+
+
+    /******************************************/
+    /* Rbr */
+    /******************************************/  
+    const KOSTIA_RBR_INIT                               = 0x08;
+    const KOSTIA_RBR_INIT_PAGE_MAG3DPOS_HIGH_DETAIL     = 0x00;
+    const KOSTIA_RBR_INIT_PAGE_MAG3DPOS_FAST_RAW_DATA   = 0x01;
+    const KOSTIA_RBR_CONTROL                            = 0x09;
+    const KOSTIA_RBR_CONTROL_OFF                        = 0x00;
+    const KOSTIA_RBR_CONTROL_CYCLIC                     = 0x02;
+    const KOSTIA_RBR_CONTROL_EVENT                      = 0x03;
+    const KOSTIA_RBR_START_OF_STREAM_FLAG_1             = 0x5a;
+    const KOSTIA_RBR_START_OF_STREAM_FLAG_2             = 0xa5;
+    const KOSTIA_NO_OF_RBR_MESSAGES                     = 23;
+
+    byte bRbrMessageCounter = 0;
+  
+    /* For save RBR Snapshot */
+    char RBRSnapshotFilename[70];
+    dword glbHandle    = 0;
+    char CharBuffer[64];
+    
+    const RBR_BUFFER_SIZE                               = 512;
+    const RBR_NUMBER_OF_GRP                             = 10;
+    byte RbrBuffer[RBR_BUFFER_SIZE];
+  
+    /* Group IDs */
+    const MAG3DPOSDET_RBR_VERSION_GRP_ID 				        = 0x00;
+    const MAG3DPOSDET_RBR_POSITION_GRP_ID 			        = 0x01;
+    const MAG3DPOSDET_RBR_ANGLES_GRP_ID 				        = 0x02;
+    const MAG3DPOSDET_RBR_RAW_XYZ_GRP_ID 				        = 0x03;
+    const MAG3DPOSDET_RBR_GAIN_GRP_ID 				          = 0x04;
+    const MAG3DPOSDET_RBR_TEMP_GRP_ID 				          = 0x05;
+    const MAG3DPOSDET_RBR_OVERALL_QUAL_GRP_ID 		      = 0x06;
+    const MAG3DPOSDET_RBR_LANE_QUAL_GRP_ID 			        = 0x07;
+    const MAG3DPOSDET_RBR_TRANSLANE_QUAL_GRP_ID 		    = 0x08;
+    const MAG3DPOSDET_RBR_FIELD_STRENGTH_GRP_ID 		    = 0x09;
+    const MAG3DPOSDET_RBR_TEMP_CALIB_GRP_ID 			      = 0x0A;
+    const MAG3DPOSDET_RBR_CONFIG_GRP_ID 				        = 0x0B;
+    const MAG3DPOSDET_RBR_CALIBRATION_GRP_ID 			      = 0x0C;
+    const MAG3DPOSDET_RBR_ERROR_BOARDERS_GRP_ID 	    	= 0x0D;
+    const MAG3DPOSDET_RBR_MAPPING_GRP_ID 		        		= 0x0E;
+    const MAG3DPOSDET_RBR_FIELD_TEST_PARAM_GRP_ID 	    = 0x0F;
+    const KOSTIA_RBR_END_GRP_ID 	                      = 0xFF;
+  
+    /* Channel IDs */
+    const MAG3DPOSDET_RBR_CHANNEL_1                     = 0x01;
+    const MAG3DPOSDET_RBR_CHANNEL_2                     = 0x02;
+    const MAG3DPOSDET_RBR_MAX_GROUPS                    = 32;
+  
+    /******************************************/
+    /* ********  Kostia mode change  ******** */
+    /******************************************/
+    const KOSTIA_MODE_CHANGE               = 0x03;
+    const KOSTIA_MODE_NORMAL               = 0x00;
+    const KOSTIA_MODE_NORMAL_SLEEP_MODE_2  = 0x02;
+    const KOSTIA_MODE_CALIB                = 0x80;
+
+    /******************************************/
+  
+    const KOSTIA_RESET              = 0x0C;
+    const KOSTIA_WRITE              = 0x05;
+    const KOSTIA_READ               = 0x04;
+    const KOSTIA_EXTEND_ADDRESS     = 0x0D;
+}
+
+on message KOSTIA_RESP
+{
+  byte i;
+  byte isFirstRBRFrame = 1;
+  int RBRBufferPointer = 0;
+  byte bParsingFinished = 0;
+  char strBuffer[10];
+  
+  if(SaveSnapshotDataState != 0)
+  { 
+        HandleSaveSnapshot(this.Byte(0),this.Byte(1),this.Byte(2),this.Byte(3),this.Byte(4),this.Byte(5),this.Byte(6),this.Byte(7));
+  }
+  else if (bReadDataFlashActive != 0)
+  {
+    HandleSaveDataFlash(this.Byte(0),this.Byte(1),this.Byte(2),this.Byte(3),this.Byte(4),this.Byte(5),this.Byte(6),this.Byte(7));
+  }
+  else if(bRbrModeActive == KOSTIA_RBR_CONTROL_OFF)
+  {
+    
+    if(bCalibModeActive == 1)
+    {
+      /* Calibration Mode */
+      
+      if((this.byte(0) == KOSTIA_RESET) && (this.byte(1) == 0x52) && (this.byte(2) == 0x45))
+      {
+        /* Reset */
+        bCalibModeActive = 0;
+        KostiaTextWindowHandler("Leave Calibration Mode");
+      }
+      else if(this.byte(0) == KOSTIA_RBR_START_OF_STREAM_FLAG_1 && this.byte(1) == KOSTIA_RBR_START_OF_STREAM_FLAG_2)
+      {
+        /* First RBR frame */
+        /* Sensor 1 */
+        PutValue(envCalibMode_X1, (int)(this.byte(2) + (this.byte(3) << 8)));
+        PutValue(envCalibMode_Y1, (int)(this.byte(4) + (this.byte(5) << 8)));
+        PutValue(envCalibMode_Z1, (int)(this.byte(6) + (this.byte(7) << 8)));
+                
+      }else
+      {
+        /* Second RBR frame */
+        /* Sensor 2 */
+        PutValue(envCalibMode_X2, (int)(this.byte(0) + (this.byte(1) << 8)));
+        PutValue(envCalibMode_Y2, (int)(this.byte(2) + (this.byte(3) << 8)));
+        PutValue(envCalibMode_Z2, (int)(this.byte(4) + (this.byte(5) << 8)));
+        
+        /* CRC and Alive Counter */
+        PutValue(envCalibMode_AliveCnt, this.byte(6));
+        PutValue(envCalibMode_CRC, this.byte(7));
+      }
+      
+      
+      
+    }else
+    {
+      /* Normal Mode */
+      /* Switch over first return byte */
+      switch(this.Byte(0))
+      {
+          case 0x00:
+          {       
+              
+             KostiaErrorNotification(this.Byte(1));
+             break;
+          }
+      
+          case KOSTIA_LOGIN_0:
+          {
+              if(
+              
+                  (this.Byte(1) == KOSTIA_LOGIN_1)&&
+                  (this.Byte(2) == KOSTIA_LOGIN_2)&&
+                  (this.Byte(3) == KOSTIA_LOGIN_3)&&
+                  (this.Byte(4) == KOSTIA_LOGIN_4)&&
+                  (this.Byte(5) == KOSTIA_LOGIN_5)&&
+                  (this.Byte(6) == KOSTIA_LOGIN_6)&&
+                  (this.Byte(7) == KOSTIA_LOGIN_7)
+                  )
+                  {
+                      KostiaTextWindowHandler("Kostia Login successful!");
+                  }
+                  else if(
+                          (this.Byte(1) == 0)&&
+                          (this.Byte(2) == 0)&&
+                          (this.Byte(3) == 0)&&
+                          (this.Byte(4) == 0)&&
+                          (this.Byte(5) == 0)&&
+                          (this.Byte(6) == 0)&&
+                          (this.Byte(7) == 0)
+                  )
+                  {
+                      KostiaTextWindowHandler("Kostia Logout successful!");
+                  }
+              break;
+          }
+
+          case KOSTIA_EXEC_LOCAL:
+          {
+              if(this.Byte(2) == KOSTIA_EXEC_CALIB_POSDET)
+              {
+                  KostiaNotifyPosDetCalibration(this.Byte(3));
+              }
+              
+              if(this.Byte(1) == KOSTIA_EXEC_DEACTIVATE)
+              {
+                  KostiaTextWindowHandler("Kostia deactivated!");
+              }
+              
+              if(this.Byte(1) == KOSTIA_EXEC_STORE_CALIB_NVRAM)
+              {
+                  KostiaTextWindowHandler("Calibration stored at NVRAM!");
+              }
+                            
+              break;
+          }
+
+          case KOSTIA_RBR_INIT:
+          {
+
+            KostiaTextWindowHandler("Rbr Init successful!");
+          
+            if(getvalue(EnvRbr_DataViewControl) == 1)
+            {
+              /* Reset Init */
+              putValue(EnvRbr_Init,0);
+              /* Start cyclic RBR mode */
+              putValue(EnvRbr_CyclicOn,1);
+            }
+            
+              break;
+          }
+
+          case KOSTIA_RBR_CONTROL:
+          {
+             
+              if(this.Byte(1) == KOSTIA_RBR_CONTROL_CYCLIC)
+              {
+                  if(bRbrModeActive == 0)
+                  {
+                      KostiaTextWindowHandler("Rbr cyclic mode activated!");
+
+                      // Supress other messages 
+                      bRbrModeActive = KOSTIA_RBR_CONTROL_CYCLIC;
+                      write("RBR Cyclic Mode");
+                  }
+              }
+              else if(this.Byte(1) == KOSTIA_RBR_CONTROL_EVENT)
+              {
+                  KostiaTextWindowHandler("Rbr mode snapshot!");
+
+                  // Supress other messages 
+                  bRbrModeActive = KOSTIA_RBR_CONTROL_EVENT;
+                  write("RBR Snapshot requested");
+              }
+
+              break;
+          }
+          
+        case KOSTIA_MODE_CHANGE:
+        {
+          if(this.Byte(1) == KOSTIA_MODE_NORMAL)
+          {
+            KostiaTextWindowHandler("Enter Normal Mode");
+          }
+          else if(this.Byte(1) == KOSTIA_MODE_NORMAL_SLEEP_MODE_2)
+          {
+            KostiaTextWindowHandler("Enter Sleep Mode");
+          }
+          else if(this.Byte(1) == KOSTIA_MODE_CALIB)
+          {
+            KostiaTextWindowHandler("Enter Calibration Mode");
+            bCalibModeActive = 1;
+          }
+          else
+          {
+            KostiaTextWindowHandler("Mode cannot be recognized!");
+          }
+          
+          break;
+        }
+        
+        case KOSTIA_RESET:
+        {
+
+          KostiaTextWindowHandler("Reset!");
+          if(bCalibModeActive == 1)
+          {
+            bCalibModeActive = 0;
+            KostiaTextWindowHandler("Leave Calibration Mode");
+          }
+          
+          break;
+        }
+                
+          default:{break;}
+      
+      } // switch(this.Byte(0)) 
+      
+    } // else bCalibModeActive == 1
+
+   }// if(bRbrModeActive == KOSTIA_RBR_CONTROL_OFF)
+   else
+   {
+      /**************** RBR Mode **********************/
+      
+      /* Leave RBR Mode? */
+      if((this.Byte(0) == KOSTIA_RBR_CONTROL) && (this.Byte(1) == KOSTIA_RBR_CONTROL_OFF) && getvalue(EnvRbr_DataViewControl)==0)
+      {
+          KostiaTextWindowHandler("Rbr mode deactivated!");
+
+          // Deactivate message supression
+          bRbrModeActive = KOSTIA_RBR_CONTROL_OFF;
+
+          write("RBR Mode Off");
+      }
+      else
+      {
+          
+          /* In Event mode there is only one stream */
+          if((bRbrModeActive == KOSTIA_RBR_CONTROL_EVENT) && (bRbrMessageCounter == KOSTIA_NO_OF_RBR_MESSAGES))
+          {
+              /* ... so deactivate the flag again */
+              bRbrModeActive = KOSTIA_RBR_CONTROL_OFF;
+
+              write("RBR Mode Off");
+          }
+          
+          if(getvalue(EnvRbr_DataViewControl) == 1)
+          {
+            // RBR Data View is on           
+            if(this.Byte(0) == KOSTIA_RBR_START_OF_STREAM_FLAG_1 && this.Byte(1) == KOSTIA_RBR_START_OF_STREAM_FLAG_2) 
+            {
+              // Reset Frame Counter
+              bRbrMessageCounter = 0;
+              
+              /* Trigger LabView Program */
+              putValue(envOutput_RBRstartTest,1);
+         
+              if (isFirstRBRFrame != 1)
+              {
+                /* Process data for pannel view */
+                RBRBufferPointer = 2; /* skipp KOSTIA_RBR_START_OF_STREAM_FLAGs  */
+                
+                /* Copy Data to environment variable, which can be accessed by Labview */
+                PutValue(envRBRDataLabView,RbrBuffer,512);
+
+                
+                bParsingFinished = 0;
+                i = 0;
+                while(bParsingFinished == 0) 
+                {
+                 
+                  if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_VERSION_GRP_ID)
+                  {
+/* Version */
+                    if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_VERSION_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+                      snprintf(strBuffer,10,"%c%c.%c%c.%c%c",(char)RbrBuffer[RBRBufferPointer+3],(char)RbrBuffer[RBRBufferPointer+4],(char)RbrBuffer[RBRBufferPointer+5],(char)RbrBuffer[RBRBufferPointer+6],(char)RbrBuffer[RBRBufferPointer+7],(char)RbrBuffer[RBRBufferPointer+8]);
+                      PutValue(EnvRbr_Chx1_Mag3DPosDet_Version, strBuffer); 
+                      putValue(EnvRbr_Chx1_RBR_Version,(int)RbrBuffer[RBRBufferPointer+9] );
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_VERSION_GRP_ID CX2");
+                      //write("BP: %d",RBRBufferPointer);
+                      snprintf(strBuffer,10,"%c%c.%c%c.%c%c",(char)RbrBuffer[RBRBufferPointer+3],(char)RbrBuffer[RBRBufferPointer+4],(char)RbrBuffer[RBRBufferPointer+5],(char)RbrBuffer[RBRBufferPointer+6],(char)RbrBuffer[RBRBufferPointer+7],(char)RbrBuffer[RBRBufferPointer+8]);
+                      PutValue(EnvRbr_Chx2_Mag3DPosDet_Version, strBuffer); 
+                      putValue(EnvRbr_Chx2_RBR_Version,(int)RbrBuffer[RBRBufferPointer+9] );
+                      
+                    }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }
+                    
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_POSITION_GRP_ID)
+                  {
+/* Position */
+                    if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_POSITION_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+                      putValue(EnvRbr_Chx1_DataViewCtrl_DebPos,RbrBuffer[RBRBufferPointer+3]);
+                      putValue(EnvRbr_Chx1_DataViewCtrl_Pos,RbrBuffer[RBRBufferPointer+4]);
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_POSITION_GRP_ID CX2");
+                      //write("BP: %d",RBRBufferPointer);
+                      putValue(EnvRbr_Chx2_DataViewCtrl_DebPos,RbrBuffer[RBRBufferPointer+3]);
+                      putValue(EnvRbr_Chx2_DataViewCtrl_Pos,RbrBuffer[RBRBufferPointer+4]);                     
+                    }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }
+                    
+
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_ANGLES_GRP_ID)
+                  {
+   /* Angles */
+
+                    if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_ANGLES_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+                      PutValue(EnvRbr_Chx1_DataViewCtrl_Phi, (int)(RbrBuffer[RBRBufferPointer+3] + (RbrBuffer[RBRBufferPointer+4] << 8)));
+                      PutValue(EnvRbr_Chx1_DataViewCtrl_Theta, (int)(RbrBuffer[RBRBufferPointer+5] + (RbrBuffer[RBRBufferPointer+6] << 8)));
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_ANGLES_GRP_ID CX2");
+                      //write("BP: %d",RBRBufferPointer);
+                      PutValue(EnvRbr_Chx2_DataViewCtrl_Phi, (int)(RbrBuffer[RBRBufferPointer+3] + (RbrBuffer[RBRBufferPointer+4] << 8)));
+                      PutValue(EnvRbr_Chx2_DataViewCtrl_Theta, (int)(RbrBuffer[RBRBufferPointer+5] + (RbrBuffer[RBRBufferPointer+6] << 8)));                      
+                    }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }                    
+
+                    
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_RAW_XYZ_GRP_ID)
+                  {
+/* Raw Data XYZ */
+                    if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_RAW_XYZ_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+                      PutValue(EnvRbr_Chx1_DataViewCtrl_RawX, (int)(RbrBuffer[RBRBufferPointer+3] + (RbrBuffer[RBRBufferPointer+4] << 8)));
+                      PutValue(EnvRbr_Chx1_DataViewCtrl_RawY, (int)(RbrBuffer[RBRBufferPointer+5] + (RbrBuffer[RBRBufferPointer+6] << 8)));
+                      PutValue(EnvRbr_Chx1_DataViewCtrl_RawZ, (int)(RbrBuffer[RBRBufferPointer+7] + (RbrBuffer[RBRBufferPointer+8] << 8)));
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_RAW_XYZ_GRP_ID CX2");
+                      //write("BP: %d",RBRBufferPointer);
+                      PutValue(EnvRbr_Chx2_DataViewCtrl_RawX, (int)(RbrBuffer[RBRBufferPointer+3] + (RbrBuffer[RBRBufferPointer+4] << 8)));
+                      PutValue(EnvRbr_Chx2_DataViewCtrl_RawY, (int)(RbrBuffer[RBRBufferPointer+5] + (RbrBuffer[RBRBufferPointer+6] << 8)));
+                      PutValue(EnvRbr_Chx2_DataViewCtrl_RawZ, (int)(RbrBuffer[RBRBufferPointer+7] + (RbrBuffer[RBRBufferPointer+8] << 8)));                      
+                    }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }
+
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_GAIN_GRP_ID)
+                  {
+/* Gain */
+                    if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_GAIN_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+                      PutValue(EnvRbr_Chx1_DataViewCtrl_Gain, (int)RbrBuffer[RBRBufferPointer+3]);
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_GAIN_GRP_ID CX2");
+                      //write("BP: %d",RBRBufferPointer);
+                      PutValue(EnvRbr_Chx2_DataViewCtrl_Gain, (int)RbrBuffer[RBRBufferPointer+3]);                      
+                    }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }
+                    
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_TEMP_GRP_ID)
+                  {
+/* Temp */                     //write("MAG3DPOSDET_RBR_TEMP_GRP_ID");
+                    
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_OVERALL_QUAL_GRP_ID)
+                  {
+/* Overall Quality Data */
+                    if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_OVERALL_QUAL_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+                      putValue(EnvRbr_Chx1_OverallError,RbrBuffer[RBRBufferPointer+4]); 
+                      putValue(EnvRbr_Chx1_OverallTransition,RbrBuffer[RBRBufferPointer+5]); 
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_OVERALL_QUAL_GRP_ID CX2");
+                      putValue(EnvRbr_Chx2_OverallError,RbrBuffer[RBRBufferPointer+4]); 
+                      putValue(EnvRbr_Chx2_OverallTransition,RbrBuffer[RBRBufferPointer+5]); 
+                    }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }
+                    
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_LANE_QUAL_GRP_ID)
+                  {
+ /* Lane Quality Data */
+                     if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_LANE_QUAL_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+                      putValue(EnvRbr_Chx1_LaneInterPosComp,(int) (RbrBuffer[RBRBufferPointer+6]+(RbrBuffer[RBRBufferPointer+7] << 8)));  
+                      putValue(EnvRbr_Chx1_LaneErrorComp,(int) (RbrBuffer[RBRBufferPointer+8]+(RbrBuffer[RBRBufferPointer+9] << 8)));
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_LANE_QUAL_GRP_ID CX2");
+                      //write("BP: %d",RBRBufferPointer);
+                      putValue(EnvRbr_Chx2_LaneInterPosComp,(int) (RbrBuffer[RBRBufferPointer+6]+(RbrBuffer[RBRBufferPointer+7] << 8)));  
+                      putValue(EnvRbr_Chx2_LaneErrorComp,(int) (RbrBuffer[RBRBufferPointer+8]+(RbrBuffer[RBRBufferPointer+9] << 8)));                      
+                    }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }                   
+
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_TRANSLANE_QUAL_GRP_ID)
+                  {
+  /* Trans Lane Quality Data */
+                    if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_TRANSLANE_QUAL_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+                      putValue(EnvRbr_Chx1_LaneTrInterPosComp,(int) (RbrBuffer[RBRBufferPointer+6]+(RbrBuffer[RBRBufferPointer+7] << 8)));  
+                      putValue(EnvRbr_Chx1_LaneTrErrorComp,(int) (RbrBuffer[RBRBufferPointer+8]+(RbrBuffer[RBRBufferPointer+9] << 8)));
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_TRANSLANE_QUAL_GRP_ID CX2");
+                      //write("BP: %d",RBRBufferPointer);
+                      putValue(EnvRbr_Chx2_LaneTrInterPosComp,(int) (RbrBuffer[RBRBufferPointer+6]+(RbrBuffer[RBRBufferPointer+7] << 8)));  
+                      putValue(EnvRbr_Chx2_LaneTrErrorComp,(int) (RbrBuffer[RBRBufferPointer+8]+(RbrBuffer[RBRBufferPointer+9] << 8)));                    
+                    }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_FIELD_STRENGTH_GRP_ID)
+                  {
+
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_TEMP_CALIB_GRP_ID)
+                  {
+
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_CONFIG_GRP_ID)
+                  {
+
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_CALIBRATION_GRP_ID)
+                  {
+  /* Calibration */
+                    if(RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_1)
+                    {
+                      //write("MAG3DPOSDET_RBR_CALIBRATION_GRP_ID CX1");
+                      //write("BP: %d",RBRBufferPointer);
+					    /* Lane F */
+                      putValue(EnvRbr_Chx1_CalibTipLeft_Phi,(int) (RbrBuffer[RBRBufferPointer+3]+(RbrBuffer[RBRBufferPointer+4] << 8))); 
+                      putValue(EnvRbr_Chx1_CalibTipLeft_Theta,(int) (RbrBuffer[RBRBufferPointer+5]+(RbrBuffer[RBRBufferPointer+6] << 8))); 
+                      /* Lane N */
+					   putValue(EnvRbr_Chx1_CalibNeutral_Phi,(int) (RbrBuffer[RBRBufferPointer+7]+(RbrBuffer[RBRBufferPointer+8] << 8)));
+                      putValue(EnvRbr_Chx1_CalibNeutral_Theta,(int) (RbrBuffer[RBRBufferPointer+9]+(RbrBuffer[RBRBufferPointer+10] << 8)));
+                      /* Lane B */
+                      putValue(EnvRbr_Chx1_CalibTipDown_Phi,(int) (RbrBuffer[RBRBufferPointer+11]+(RbrBuffer[RBRBufferPointer+12] << 8)));
+                      putValue(EnvRbr_Chx1_CalibTipDown_Theta,(int) (RbrBuffer[RBRBufferPointer+13]+(RbrBuffer[RBRBufferPointer+14] << 8)));
+                     /* Lane M- */
+                      putValue(EnvRbr_Chx1_CalibTipUp_Phi,(int) (RbrBuffer[RBRBufferPointer+15]+(RbrBuffer[RBRBufferPointer+16] << 8)));
+                      putValue(EnvRbr_Chx1_CalibTipUp_Theta,(int) (RbrBuffer[RBRBufferPointer+17]+(RbrBuffer[RBRBufferPointer+18] << 8)));
+//                      /* Lane 3 */
+//                      putValue(EnvRbr_Chx1_CalibTipRight_Phi,(int) (RbrBuffer[RBRBufferPointer+27]+(RbrBuffer[RBRBufferPointer+28] << 8))); 
+//                      putValue(EnvRbr_Chx1_CalibTipRight_Theta,(int) (RbrBuffer[RBRBufferPointer+29]+(RbrBuffer[RBRBufferPointer+30] << 8))); 
+                    }
+                    else if (RbrBuffer[RBRBufferPointer+2] == MAG3DPOSDET_RBR_CHANNEL_2)
+                    {
+                      //write("MAG3DPOSDET_RBR_CALIBRATION_GRP_ID CX2");
+                      //write("BP: %d",RBRBufferPointer);
+                      /* Lane 1 */
+                      putValue(EnvRbr_Chx2_CalibTipLeft_Phi,(int) (RbrBuffer[RBRBufferPointer+3]+(RbrBuffer[RBRBufferPointer+4] << 8))); 
+                      putValue(EnvRbr_Chx2_CalibTipLeft_Theta,(int) (RbrBuffer[RBRBufferPointer+5]+(RbrBuffer[RBRBufferPointer+6] << 8))); 
+                      /* Lane 2 */
+                    
+                      putValue(EnvRbr_Chx2_CalibNeutral_Phi,(int) (RbrBuffer[RBRBufferPointer+7]+(RbrBuffer[RBRBufferPointer+8] << 8)));
+                      putValue(EnvRbr_Chx2_CalibNeutral_Theta,(int) (RbrBuffer[RBRBufferPointer+9]+(RbrBuffer[RBRBufferPointer+10] << 8)));
+					    putValue(EnvRbr_Chx2_CalibTipDown_Phi,(int) (RbrBuffer[RBRBufferPointer+11]+(RbrBuffer[RBRBufferPointer+12] << 8)));
+                      putValue(EnvRbr_Chx2_CalibTipDown_Theta,(int) (RbrBuffer[RBRBufferPointer+13]+(RbrBuffer[RBRBufferPointer+14] << 8)));
+                      putValue(EnvRbr_Chx2_CalibTipUp_Phi,(int) (RbrBuffer[RBRBufferPointer+15]+(RbrBuffer[RBRBufferPointer+16] << 8)));
+                      putValue(EnvRbr_Chx2_CalibTipUp_Theta,(int) (RbrBuffer[RBRBufferPointer+17]+(RbrBuffer[RBRBufferPointer+18] << 8)));
+                                 }
+                    else
+                    {
+                      write("Error: Invalid Channel ID");
+                    }
+                    
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_ERROR_BOARDERS_GRP_ID)
+                  {
+                    //write("MAG3DPOSDET_RBR_ERROR_BOARDERS_GRP_ID");
+                    //write("BP: %d",RBRBufferPointer);
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_MAPPING_GRP_ID)
+                  {
+                    //write("MAG3DPOSDET_RBR_MAPPING_GRP_ID");
+                    //write("BP: %d",RBRBufferPointer);
+                  }
+                  else if(RbrBuffer[RBRBufferPointer] == MAG3DPOSDET_RBR_FIELD_TEST_PARAM_GRP_ID)
+                  {
+                    //write("MAG3DPOSDET_RBR_FIELD_TEST_PARAM_GRP_ID");
+                    //write("BP: %d",RBRBufferPointer);
+                  }
+                  else if (RbrBuffer[RBRBufferPointer] == 0xFF)
+                  {
+                    //write("END GROUP");
+                    /* Last Group */
+                    bParsingFinished = 1;
+                  }
+                  else{
+                    //write("Unknown Group BP: %d Length: %d",RBRBufferPointer,RbrBuffer[RBRBufferPointer+1]);
+                  }
+                  
+                  
+                  if(i > MAG3DPOSDET_RBR_MAX_GROUPS)
+                  {
+                    /* Break dead loop */
+                    bParsingFinished = 1;
+                    write("DEAD LOOP ERROR");
+                  }
+        
+                  
+                  /* Set BufferPointer to next ID Flag */
+                  RBRBufferPointer = RBRBufferPointer + RbrBuffer[RBRBufferPointer+1];
+                  
+                  i++;
+                }
+
+              }else
+              {
+                isFirstRBRFrame = 0;
+              }
+                        
+            }else
+            {
+              /* Increase message counter */
+              bRbrMessageCounter++;
+            }
+            
+            /* Copy Data to RBR buffer */
+            for(i = 0;i<8;i++)
+            {
+              RbrBuffer[(bRbrMessageCounter*8) + i] = this.Byte(i);
+            }
+
+          }
+           
+      }
+
+   }
+}
+
+on start
+{
+    KostiaClearMessagePanel();
+    putvalue(EnvMag3DPosDet_CalibPosition, 1);
+    putvalue(EnvMag3DPosDet_CalibPositionText, "N");
+
+
+}
+
+KostiaClearMessagePanel()
+{
+    putvalue(envKostiaTextWindow1, " ");
+    putvalue(envKostiaTextWindow2, " ");
+}
+
+KostiaErrorNotification (byte error)
+{
+ switch(error)
+        {
+        case KOSTIA_RET_ADRESS_MISMATCH     :{ KostiaTextWindowHandler("Adress mismatch!");   break;}
+        case KOSTIA_RET_UNKNOWN_FUNC        :{ KostiaTextWindowHandler("Unknown function!");  break;}
+        case KOSTIA_RET_INVALID_REQ         :{ KostiaTextWindowHandler("Invalid request!");   break;}
+        case KOSTIA_RET_ERASE               :{ KostiaTextWindowHandler("Erase!");             break;}
+        case KOSTIA_RET_PROGRAM             :{ KostiaTextWindowHandler("Program!");           break;}
+        case KOSTIA_RET_INVALID_LOGIN       :{ KostiaTextWindowHandler("Invalid login!");     break;}
+        case KOSTIA_RET_INVALID_MODE        :{ KostiaTextWindowHandler("Invalid mode!");      break;}
+        case KOSTIA_RET_MODE_CANNOT_BE_ACT  :{ KostiaTextWindowHandler("Mode cannot be activated!");  break;}
+        case KOSTIA_RET_INVALID_PAGE        :{ KostiaTextWindowHandler("Invalid page!");      break;}
+        case KOSTIA_RET_COM_ERROR           :{ KostiaTextWindowHandler("Com error!");         break;}
+        case KOSTIA_RET_LOGIN_REQUIRED      :{ KostiaTextWindowHandler("Login required!");    break;}
+        case KOSTIA_RET_BUSY                :{ KostiaTextWindowHandler("Busy!");              break;}
+        case KOSTIA_RET_NOT_DONE            :{ KostiaTextWindowHandler("Not done!");          break;}
+        default                             :{ KostiaTextWindowHandler("Unknown error!");     break;}
+        }
+}
+
+KostiaNotifyPosDetCalibration(byte channel)
+{
+    switch(channel)
+        {
+        case KOSTIA_EXEC_CALIB_POS_DECAL    :{ KostiaTextWindowHandler("Decalibrated position detection!");  break;}
+        case KOSTIA_EXEC_CALIB_POS_F        :{ KostiaTextWindowHandler("Calibrated position NB!");  break;}
+        case KOSTIA_EXEC_CALIB_POS_B        :{ KostiaTextWindowHandler("Calibrated position NF!");  break;}
+        case KOSTIA_EXEC_CALIB_POS_N        :{ KostiaTextWindowHandler("Calibrated position B!");  break;}
+        case KOSTIA_EXEC_CALIB_POS_MPLUS    :{ KostiaTextWindowHandler("Calibrated position MPLUS!");  break;}
+        case KOSTIA_EXEC_CALIB_POS_MMINUS   :{ KostiaTextWindowHandler("Calibrated position F!");  break;}
+        default:{ KostiaTextWindowHandler("Unknown position");   break;}
+    }
+}
+
+on envVar envKostiaLoginRequest
+{
+    if(getvalue(envKostiaLoginRequest)==1)
+    {
+        mKostiaRequest.byte(0) = KOSTIA_LOGIN_0;
+        mKostiaRequest.byte(1) = KOSTIA_LOGIN_1;
+        mKostiaRequest.byte(2) = KOSTIA_LOGIN_2;
+        mKostiaRequest.byte(3) = KOSTIA_LOGIN_3;
+        mKostiaRequest.byte(4) = KOSTIA_LOGIN_4;
+        mKostiaRequest.byte(5) = KOSTIA_LOGIN_5;
+        mKostiaRequest.byte(6) = KOSTIA_LOGIN_6;
+        mKostiaRequest.byte(7) = KOSTIA_LOGIN_7;
+
+        output(mKostiaRequest);
+      
+        putValue(envKostiaLoginRequest,0);
+        putValue(EnvRbr_SaveRBRSnapshot_Progress,0);
+      }
+
+}
+
+on envVar EnvMag3DPosDet_CalibPosition
+{
+    switch(getvalue(EnvMag3DPosDet_CalibPosition))
+    {
+        case KOSTIA_EXEC_CALIB_POS_DECAL: {putvalue(EnvMag3DPosDet_CalibPositionText, "Decal"); break;}
+        case KOSTIA_EXEC_CALIB_POS_N:     {putvalue(EnvMag3DPosDet_CalibPositionText, "B"); break;}
+        case KOSTIA_EXEC_CALIB_POS_F:     {putvalue(EnvMag3DPosDet_CalibPositionText, "NB"); break;}
+        case KOSTIA_EXEC_CALIB_POS_B:     {putvalue(EnvMag3DPosDet_CalibPositionText, "NF"); break;}
+        case KOSTIA_EXEC_CALIB_POS_MPLUS: {putvalue(EnvMag3DPosDet_CalibPositionText, "None"); break;}
+        case KOSTIA_EXEC_CALIB_POS_MMINUS:{putvalue(EnvMag3DPosDet_CalibPositionText, "F"); break;}
+        default: {putvalue(EnvMag3DPosDet_CalibPositionText, " "); break;}
+    }
+}
+
+
+on envVar EnvMag3DPosDet_CalibRequestF
+{
+    if(getvalue(EnvMag3DPosDet_CalibRequestF) == 1)
+    {
+        putvalue(EnvMag3DPosDet_CalibPosition, KOSTIA_EXEC_CALIB_POS_F);
+
+        mKostiaRequest.byte(0) = KOSTIA_EXEC_LOCAL;
+        mKostiaRequest.byte(1) = 0x00;
+        mKostiaRequest.byte(2) = KOSTIA_EXEC_CALIB_POSDET;
+        mKostiaRequest.byte(3) = getvalue(EnvMag3DPosDet_CalibPosition);
+        output(mKostiaRequest);
+    }
+}
+
+
+on envVar EnvMag3DPosDet_CalibRequestB
+{
+    if(getvalue(EnvMag3DPosDet_CalibRequestB) == 1)
+    {
+        putvalue(EnvMag3DPosDet_CalibPosition, KOSTIA_EXEC_CALIB_POS_B);
+
+        mKostiaRequest.byte(0) = KOSTIA_EXEC_LOCAL;
+        mKostiaRequest.byte(1) = 0x00;
+        mKostiaRequest.byte(2) = KOSTIA_EXEC_CALIB_POSDET;
+        mKostiaRequest.byte(3) = getvalue(EnvMag3DPosDet_CalibPosition);
+        output(mKostiaRequest);
+    }
+}
+
+on envVar EnvMag3DPosDet_CalibRequestN
+{
+    if(getvalue(EnvMag3DPosDet_CalibRequestN) == 1)
+    {
+        putvalue(EnvMag3DPosDet_CalibPosition, KOSTIA_EXEC_CALIB_POS_N);
+
+        mKostiaRequest.byte(0) = KOSTIA_EXEC_LOCAL;
+        mKostiaRequest.byte(1) = 0x00;
+        mKostiaRequest.byte(2) = KOSTIA_EXEC_CALIB_POSDET;
+        mKostiaRequest.byte(3) = getvalue(EnvMag3DPosDet_CalibPosition);
+        output(mKostiaRequest);
+    }
+}
+
+on envVar EnvMag3DPosDet_CalibRequestMPlus
+{
+    if(getvalue(EnvMag3DPosDet_CalibRequestMPlus) == 1)
+    {
+        putvalue(EnvMag3DPosDet_CalibPosition, KOSTIA_EXEC_CALIB_POS_MPLUS);
+
+        mKostiaRequest.byte(0) = KOSTIA_EXEC_LOCAL;
+        mKostiaRequest.byte(1) = 0x00;
+        mKostiaRequest.byte(2) = KOSTIA_EXEC_CALIB_POSDET;
+        mKostiaRequest.byte(3) = getvalue(EnvMag3DPosDet_CalibPosition);
+        output(mKostiaRequest);
+    }
+}
+
+on envVar EnvMag3DPosDet_CalibRequestMMin
+{
+    if(getvalue(EnvMag3DPosDet_CalibRequestMMin) == 1)
+    {
+        putvalue(EnvMag3DPosDet_CalibPosition, KOSTIA_EXEC_CALIB_POS_MMINUS);
+
+        mKostiaRequest.byte(0) = KOSTIA_EXEC_LOCAL;
+        mKostiaRequest.byte(1) = 0x00;
+        mKostiaRequest.byte(2) = KOSTIA_EXEC_CALIB_POSDET;
+        mKostiaRequest.byte(3) = getvalue(EnvMag3DPosDet_CalibPosition);
+        output(mKostiaRequest);
+    }
+}
+
+void KostiaTextWindowHandler (char atext[])
+{
+    getvalue(envKostiaTextWindow1, KostiaWindowText);
+
+    /* Move text in first row to second row */
+    putvalue(envKostiaTextWindow2,KostiaWindowText);
+
+    /* Fill first row with new text */
+    putvalue(envKostiaTextWindow1,atext);
+}
+
+on envVar EnvMag3DPosDet_DeCalibRequest
+{
+    if(getvalue(EnvMag3DPosDet_DeCalibRequest) == 1)
+    {
+        putvalue(EnvMag3DPosDet_CalibPosition, 0);
+
+        mKostiaRequest.byte(0) = KOSTIA_EXEC_LOCAL;
+        mKostiaRequest.byte(1) = 0x00;
+        mKostiaRequest.byte(2) = KOSTIA_EXEC_CALIB_POSDET;
+        mKostiaRequest.byte(3) = getvalue(EnvMag3DPosDet_CalibPosition);
+        output(mKostiaRequest);
+    }
+}
+
+on envVar envKostiaStoreCalibNvram
+{
+    if(getvalue(envKostiaStoreCalibNvram) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_EXEC_LOCAL;
+            mKostiaRequest.byte(1) = KOSTIA_EXEC_STORE_CALIB_NVRAM;
+            mKostiaRequest.byte(2) = 0x00;
+            mKostiaRequest.byte(3) = 0x00;
+            mKostiaRequest.byte(4) = 0x00;
+            mKostiaRequest.byte(5) = 0x00;
+            mKostiaRequest.byte(6) = 0x00;
+            mKostiaRequest.byte(7) = 0x00;
+            output(mKostiaRequest);
+        }
+}
+
+on envVar EnvRbrPgSelect_Mag3DPosDet_High
+{
+    if(getvalue(EnvRbrPgSelect_Mag3DPosDet_High) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_RBR_INIT;
+            mKostiaRequest.byte(1) = 0x00;
+            mKostiaRequest.byte(2) = KOSTIA_RBR_INIT_PAGE_MAG3DPOS_HIGH_DETAIL;
+            output(mKostiaRequest);
+        }
+}
+
+on envVar EnvRbr_Snapshot
+{
+    if(getvalue(EnvRbr_Snapshot) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_RBR_CONTROL;
+            mKostiaRequest.byte(1) = KOSTIA_RBR_CONTROL_EVENT;
+            output(mKostiaRequest);
+            putValue(EnvRbr_Snapshot,0);
+        }
+}
+
+on envVar EnvRbr_CyclicOn
+{
+    if(getvalue(EnvRbr_CyclicOn) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_RBR_CONTROL;
+            mKostiaRequest.byte(1) = KOSTIA_RBR_CONTROL_CYCLIC;
+            output(mKostiaRequest);
+        }else
+        {
+            mKostiaRequest.byte(0) = KOSTIA_RBR_CONTROL;
+            mKostiaRequest.byte(1) = KOSTIA_RBR_CONTROL_OFF;
+            output(mKostiaRequest);
+        }
+}
+
+on envVar envKostiaLogoutRequest
+{
+    if(getvalue(envKostiaLogoutRequest)==1)
+    {
+        mKostiaRequest.byte(0) = KOSTIA_LOGIN_0;
+        mKostiaRequest.byte(1) = 0x00;
+        mKostiaRequest.byte(2) = 0x00;
+        mKostiaRequest.byte(3) = 0x00;
+        mKostiaRequest.byte(4) = 0x00;
+        mKostiaRequest.byte(5) = 0x00;
+        mKostiaRequest.byte(6) = 0x00;
+        mKostiaRequest.byte(7) = 0x00;
+     
+        putValue(EnvRbr_SaveRBRSnapshot_Progress,0);
+
+        output(mKostiaRequest);
+    }
+
+}
+
+on envVar envKostiaDeactivate
+{
+    if(getvalue(envKostiaDeactivate) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_WRITE;
+            mKostiaRequest.byte(1) = 0x00;
+            mKostiaRequest.byte(2) = 0x00;
+            mKostiaRequest.byte(3) = 0xD0;
+            mKostiaRequest.byte(4) = 0xFF;
+            mKostiaRequest.byte(5) = 0x00;
+            mKostiaRequest.byte(6) = 0x00;
+            mKostiaRequest.byte(7) = 0x00;
+            output(mKostiaRequest);
+        }
+}
+
+on envVar EnvRbr_Init
+{
+    if(getvalue(EnvRbr_Init) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_RBR_INIT;
+            mKostiaRequest.byte(1) = 0x00;
+            mKostiaRequest.byte(2) = getValue(EnvRbr_ReqChannel1) + 2* getValue(EnvRbr_ReqChannel2); //Sensor
+            mKostiaRequest.byte(3) = getValue(EnvRbr_CtrlByte0);
+            mKostiaRequest.byte(4) = getValue(EnvRbr_CtrlByte1);
+            mKostiaRequest.byte(5) = getValue(EnvRbr_CtrlByte2);
+            output(mKostiaRequest);
+            putValue(EnvRbr_Init,0);
+        }
+}
+
+
+on envVar envKostiaModeNormalReq
+{
+      if(getvalue(envKostiaModeNormalReq) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_MODE_CHANGE;
+            mKostiaRequest.byte(1) = KOSTIA_MODE_NORMAL;
+            mKostiaRequest.byte(2) = 0x00;
+            mKostiaRequest.byte(3) = 0x00;
+            mKostiaRequest.byte(4) = 0x00;
+            mKostiaRequest.byte(5) = 0x00;
+            mKostiaRequest.byte(6) = 0x00;
+            mKostiaRequest.byte(7) = 0x00;
+            output(mKostiaRequest);
+        }
+}
+
+on envVar envKostiaCalibModeReq
+{
+      if(getvalue(envKostiaCalibModeReq) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_MODE_CHANGE;
+            mKostiaRequest.byte(1) = KOSTIA_MODE_CALIB;
+            mKostiaRequest.byte(2) = 0x00;
+            mKostiaRequest.byte(3) = 0x00;
+            mKostiaRequest.byte(4) = 0x00;
+            mKostiaRequest.byte(5) = 0x00;
+            mKostiaRequest.byte(6) = 0x00;
+            mKostiaRequest.byte(7) = 0x00;
+            output(mKostiaRequest);
+        }
+}
+
+on envVar envKostiaModeSleep2Req
+{
+      if(getvalue(envKostiaModeSleep2Req) == 1)
+        {
+            mKostiaRequest.byte(0) = KOSTIA_MODE_CHANGE;
+            mKostiaRequest.byte(1) = KOSTIA_MODE_NORMAL_SLEEP_MODE_2;
+            mKostiaRequest.byte(2) = 0x00;
+            mKostiaRequest.byte(3) = 0x00;
+            mKostiaRequest.byte(4) = 0x00;
+            mKostiaRequest.byte(5) = 0x00;
+            mKostiaRequest.byte(6) = 0x00;
+            mKostiaRequest.byte(7) = 0x00;
+            output(mKostiaRequest);
+        }
+}
+
+on envVar EnvRbr_DataViewControl
+{
+    if(getvalue(EnvRbr_DataViewControl) == 1)
+        {
+          //Config
+          putValue(EnvRbr_CtrlByte0,0xFB); //F8
+          putValue(EnvRbr_CtrlByte1,0x0A);
+          putValue(EnvRbr_CtrlByte2,0x00);
+          
+          // Start Init
+          putValue(EnvRbr_Init,1);
+        
+        }else
+        {
+          // Deactivate RBR
+          bRbrMessageCounter = 0;
+          putValue(EnvRbr_CyclicOn,0);
+          bRbrModeActive = 0;
+          
+        }
+}
+
+on envVar EnvRbr_SaveRBRSnapshot
+{
+  if(getvalue(EnvRbr_SaveRBRSnapshot) == 1)
+  {
+    
+    SaveSnapshotDataState = 1;
+    putValue(EnvRbr_SaveRBRSnapshot_Progress,0);
+    
+    // Trigger Login
+    putValue(envKostiaLoginRequest,1);          
+  }
+}
+
+on envVar envKostiaReset
+{
+  if(getvalue(envKostiaReset) == 1)
+  {
+    mKostiaRequest.byte(0) = KOSTIA_RESET;
+    /* Reset Password */
+    mKostiaRequest.byte(1) = 0x52;
+    mKostiaRequest.byte(2) = 0x45;
+    mKostiaRequest.byte(3) = 0x53;
+    mKostiaRequest.byte(4) = 0x45;
+    mKostiaRequest.byte(5) = 0x54;
+    mKostiaRequest.byte(6) = 0x4D;
+    mKostiaRequest.byte(7) = 0x45;
+    output(mKostiaRequest);
+          
+  }
+}
+
+HandleSaveSnapShot(byte Resp0, byte Resp1, byte Resp2, byte Resp3, byte Resp4, byte Resp5, byte Resp6, byte Resp7)
+{
+  int i;
+  long TimeStamp[9];
+  switch(SaveSnapshotDataState)
+  {
+      case 1:
+      {   
+          if(Resp0 == KOSTIA_LOGIN_0)
+          {
+            //write("Login successful");
+            // Login successful for save snapshot data
+            // Now send address extention
+            //Config
+            putValue(EnvRbr_CtrlByte0,0xFF);
+            putValue(EnvRbr_CtrlByte1,0xFF);
+            putValue(EnvRbr_CtrlByte2,0xFF);
+            
+            putValue(EnvRbr_ReqChannel1,1);
+            putValue(EnvRbr_ReqChannel2,1);
+                  
+            // Start Init
+            putValue(EnvRbr_Init,1);
+            
+            SaveSnapshotDataState = 5;
+            
+            putValue(EnvRbr_SaveRBRSnapshot_Progress,40);
+            
+          }else
+          {
+            //Reset Flag
+            SaveSnapshotDataState = 0;
+            write("ERROR");
+          }
+          break;
+      }
+      case 2:
+      {       
+          if(Resp0 == KOSTIA_EXTEND_ADDRESS)
+          {
+            // Address Extention successful
+            //write("Address Extention successful");
+            // Now send read request for serial numbers
+            mKostiaRequest.byte(0) = KOSTIA_READ;
+            mKostiaRequest.byte(1) = 0x00;
+            mKostiaRequest.byte(2) = 0x29;
+            mKostiaRequest.byte(3) = 0x07;
+            mKostiaRequest.byte(4) = 0x05;
+            mKostiaRequest.byte(5) = 0x00;
+            mKostiaRequest.byte(6) = 0x00;
+            mKostiaRequest.byte(7) = 0x00;
+            output(mKostiaRequest);
+            
+            SaveSnapshotDataState = 3;
+            
+            putValue(EnvRbr_SaveRBRSnapshot_Progress,20);
+            
+          }else
+          {
+            //Reset Flag
+            SaveSnapshotDataState = 0;
+            write("ERROR");
+          }
+          break;
+      }
+      case 3:
+      {       
+          if(Resp0 == KOSTIA_READ)
+          {
+            //write("READ 1 successful");
+            
+            //Save first bytes of serial number
+            SerialNumber[0] = Resp1;
+            SerialNumber[1] = Resp2;
+            SerialNumber[2] = Resp3;
+            SerialNumber[3] = Resp4;
+            SerialNumber[4] = Resp5;
+            SerialNumber[5] = Resp6;
+            SerialNumber[6] = Resp7;
+            
+            // Now request the other bytes of serial number
+            mKostiaRequest.byte(0) = KOSTIA_READ;
+            mKostiaRequest.byte(1) = 0x00;
+            mKostiaRequest.byte(2) = 0x30;
+            mKostiaRequest.byte(3) = 0x06;
+            mKostiaRequest.byte(4) = 0x05;
+            mKostiaRequest.byte(5) = 0x00;
+            mKostiaRequest.byte(6) = 0x00;
+            mKostiaRequest.byte(7) = 0x00;
+            output(mKostiaRequest);
+            
+            SaveSnapshotDataState = 4;
+            
+            putValue(EnvRbr_SaveRBRSnapshot_Progress,30);
+            
+          }else
+          {
+            //Reset Flag
+            SaveSnapshotDataState = 0;
+            write("ERROR");
+          }
+          break;
+      }
+      case 4:
+      {       
+          if(Resp0 == KOSTIA_READ)
+          {
+            //write("READ 2 successful");
+            //Save first bytes of serial number
+            SerialNumber[7] = Resp1;
+            SerialNumber[8] = Resp2;
+            SerialNumber[9] = Resp3;
+            SerialNumber[10] = Resp4;
+            SerialNumber[11] = Resp5;
+            SerialNumber[12] = Resp6;
+            //write("SERIAL NUMBER: %2X%2X%2X%2X%2X%2X%2X%2X%2X%2X%2X%2X%2X",SerialNumber[0],SerialNumber[1],SerialNumber[2],SerialNumber[3],SerialNumber[4],SerialNumber[5],SerialNumber[6],SerialNumber[7],SerialNumber[8],SerialNumber[9],SerialNumber[10],SerialNumber[11],SerialNumber[12]);
+            
+            //Config
+            putValue(EnvRbr_CtrlByte0,0xFF);
+            putValue(EnvRbr_CtrlByte1,0xFF);
+            putValue(EnvRbr_CtrlByte2,0xFF);
+            
+            putValue(EnvRbr_ReqChannel1,1);
+            putValue(EnvRbr_ReqChannel2,1);
+                  
+            // Start Init
+            putValue(EnvRbr_Init,1);
+            
+            SaveSnapshotDataState = 5;
+            
+            putValue(EnvRbr_SaveRBRSnapshot_Progress,40);
+            
+          }else
+          {
+            //Reset Flag
+            SaveSnapshotDataState = 0;
+            write("ERROR");
+          }
+          break;
+      }
+      case 5:
+      {       
+          if(Resp0 == KOSTIA_RBR_INIT)
+          {
+            //write("RBR INIT successful");
+            
+            /* Send RBR Snapshot command */
+            putValue(EnvRbr_Snapshot, 1);
+            
+            SaveSnapshotDataState = 6;
+            
+            putValue(EnvRbr_SaveRBRSnapshot_Progress,50);
+            
+          }else
+          {
+            //Reset Flag
+            SaveSnapshotDataState = 0;
+            write("ERROR");
+          }
+          break;
+      }
+      case 6:
+      {   
+        if(Resp0 == KOSTIA_RBR_CONTROL)
+        {
+          //write("RBR CONTROL successful");
+          
+          //RBR Snapshot has been processed
+          SaveSnapshotDataState = 7;  
+          bRbrMessageCounter = 0;
+        }else
+        {
+            //Reset Flag
+            SaveSnapshotDataState = 0;
+          write("ERROR");
+        }
+          break;
+      }
+      case 7:
+      {
+        //Buffer RBR Snapshot data
+        //write("RBR DATA %d",bRbrMessageCounter);
+        RbrBuffer[(bRbrMessageCounter*8)]     = Resp0;
+        RbrBuffer[(bRbrMessageCounter*8) + 1] = Resp1;
+        RbrBuffer[(bRbrMessageCounter*8) + 2] = Resp2;
+        RbrBuffer[(bRbrMessageCounter*8) + 3] = Resp3;
+        RbrBuffer[(bRbrMessageCounter*8) + 4] = Resp4;
+        RbrBuffer[(bRbrMessageCounter*8) + 5] = Resp5;
+        RbrBuffer[(bRbrMessageCounter*8) + 6] = Resp6;
+        RbrBuffer[(bRbrMessageCounter*8) + 7] = Resp7;
+        
+        //Increment Message Counter
+        bRbrMessageCounter = bRbrMessageCounter +1;
+        
+        putValue(EnvRbr_SaveRBRSnapshot_Progress,80);
+        
+        if(bRbrMessageCounter == 36)
+        {
+          
+           //All Data is collected -> Reset Flag
+           SaveSnapshotDataState = 0;
+         
+          // Generate filename
+          getLocalTime(TimeStamp);
+          snprintf (RBRSnapshotFilename,elcount(RBRSnapshotFilename),"CalibratedParts/%.4d-%.2d-%.2d_%.2d-%.2d-%.2d.csv", 1900+TimeStamp[5],TimeStamp[4]+1,TimeStamp[3],TimeStamp[2],TimeStamp[1],TimeStamp[0]);
+          
+          if(Crc_CalculateCRC8(RbrBuffer,(bRbrMessageCounter*8)-3,0xFF)==RbrBuffer[(bRbrMessageCounter*8)-3])
+          {
+            
+            write("Save Snapshot finished -> %s",RBRSnapshotFilename);
+            
+            /* Save RBR Data to file */
+            glbHandle = OpenFileWrite (RBRSnapshotFilename,0);
+            
+            for(i=0; i<bRbrMessageCounter*8; i++)
+            {
+              snprintf (CharBuffer,elcount(CharBuffer),"%d\n",RbrBuffer[i]);
+              filePutString (CharBuffer, elcount(CharBuffer),glbHandle);
+            }
+            fileClose (glbHandle);
+            
+            putValue(EnvRbr_SaveRBRSnapshot_Progress,100);
+          }else
+          {
+            //CRC ERROR
+            write("CRC ERROR");
+            write("%.2X == %.2X",Crc_CalculateCRC8(RbrBuffer,(bRbrMessageCounter*8)-3,0xFF),RbrBuffer[(bRbrMessageCounter*8)-3]);
+            putValue(EnvRbr_SaveRBRSnapshot_Progress,0);
+            
+          }
+          
+          //Deactivate RBR
+            mKostiaRequest.byte(0) = KOSTIA_RBR_CONTROL;
+            mKostiaRequest.byte(1) = KOSTIA_RBR_CONTROL_OFF;
+            output(mKostiaRequest);
+        }
+        break;
+      }
+      
+  }
+
+}
+
+on envVar envReadDataFlash
+{
+  if(getvalue(envReadDataFlash) == 1)
+  {
+    write("Read DataFlash");
+    mKostiaRequest.byte(0) = KOSTIA_EXTEND_ADDRESS;
+    mKostiaRequest.byte(1) = 0x03;
+    mKostiaRequest.byte(2) = 0x00;
+    mKostiaRequest.byte(3) = 0x00;
+    mKostiaRequest.byte(4) = 0x00;
+    mKostiaRequest.byte(5) = 0x00;
+    mKostiaRequest.byte(6) = 0xFF;
+    mKostiaRequest.byte(7) = 0x20;
+
+    output(mKostiaRequest);
+    
+    ReadDataFlashCurrentAddr = 0;
+    bReadDataFlashActive = 1;
+  }
+  
+}
+
+HandleSaveDataFlash(byte Resp0, byte Resp1, byte Resp2, byte Resp3, byte Resp4, byte Resp5, byte Resp6, byte Resp7)
+{
+  /* First call? */
+  if(bReadDataFlashActive == 1)
+  {
+    /* Check if Response is as expected */
+    if(Resp0 == 0x0D)
+    {
+      mKostiaRequest.byte(0) = KOSTIA_READ;
+      mKostiaRequest.byte(1) = 0x00;
+      mKostiaRequest.byte(2) = 0x00;
+      mKostiaRequest.byte(3) = 0x07;
+      mKostiaRequest.byte(4) = 0x03;
+      mKostiaRequest.byte(5) = 0x00;
+      mKostiaRequest.byte(6) = 0x00;
+      mKostiaRequest.byte(7) = 0x00;
+
+      output(mKostiaRequest);    
+      
+      /* Delete File */
+      glbHandle = OpenFileWrite ("Dataflash.asc",0);
+      fileClose (glbHandle);
+      putValue(envReadDataFlashProgress, 0);
+      
+      bReadDataFlashActive = 2;
+      
+    }
+    else
+    {
+      /* Error */
+      write("ERROR Address Extension");
+      bReadDataFlashActive = 0;
+      ReadDataFlashCurrentAddr = 0;
+      putValue(envReadDataFlashProgress, 0);
+    }
+  }
+  else
+  {
+
+    /* Not First Frame */
+    /* Check if Error has been occured */
+    if(Resp0 == KOSTIA_READ)
+    {      
+      /* Save Data to file */
+      glbHandle = OpenFileWrite ("DataFlash.asc",2);
+      snprintf (CharBuffer,elcount(CharBuffer),"%.2X %.2X %.2X %.2X %.2X %.2X %.2X \n",Resp1, Resp2, Resp3, Resp4, Resp5, Resp6, Resp7);
+      filePutString (CharBuffer, elcount(CharBuffer),glbHandle);
+      fileClose (glbHandle);
+      
+      putValue(envReadDataFlashProgress, @envReadDataFlashProgress + ((float)100/((float)0x7FFF / (float)0x7)));
+      
+      if(ReadDataFlashCurrentAddr+14 <= 0x7FFF)
+      {  
+        /* Increment address counter */
+        ReadDataFlashCurrentAddr = ReadDataFlashCurrentAddr + 7;
+        
+        /* Issue new request */
+        mKostiaRequest.byte(0) = KOSTIA_READ;
+        mKostiaRequest.byte(1) = (ReadDataFlashCurrentAddr & 0xFF00) >> 8;
+        mKostiaRequest.byte(2) = ReadDataFlashCurrentAddr & 0xFF;
+        mKostiaRequest.byte(3) = 0x07;
+        mKostiaRequest.byte(4) = 0x03;
+        mKostiaRequest.byte(5) = 0x00;
+        mKostiaRequest.byte(6) = 0x00;
+        mKostiaRequest.byte(7) = 0x00;
+        output(mKostiaRequest);  
+      }
+      else if (ReadDataFlashCurrentAddr+7 < 0x7FFF)
+      {
+        /* Increment address counter */
+        ReadDataFlashCurrentAddr = ReadDataFlashCurrentAddr + 7;
+        
+        /* Issue new request */
+        mKostiaRequest.byte(0) = KOSTIA_READ;
+        mKostiaRequest.byte(1) = (ReadDataFlashCurrentAddr & 0xFF00) >> 8;
+        mKostiaRequest.byte(2) = ReadDataFlashCurrentAddr & 0xFF;
+        mKostiaRequest.byte(3) = 0x7FFF - ReadDataFlashCurrentAddr;
+        mKostiaRequest.byte(4) = 0x03;
+        mKostiaRequest.byte(5) = 0x00;
+        mKostiaRequest.byte(6) = 0x00;
+        mKostiaRequest.byte(7) = 0x00;
+        output(mKostiaRequest);  
+      }
+      else
+      {
+        /* Finished */
+        write("Read Data Flash Finished");
+        bReadDataFlashActive = 0;
+        ReadDataFlashCurrentAddr = 0;
+        putValue(envReadDataFlashProgress, 100);
+      }
+      
+      
+    }    
+    else
+    {
+      /* Error */
+      write("ERROR %.2X %.2X", Resp1);
+      bReadDataFlashActive = 0;
+      ReadDataFlashCurrentAddr = 0;
+      putValue(envReadDataFlashProgress, 0);
+    }
+  }
+  
+  
+  
+  
+}
+  
+
+

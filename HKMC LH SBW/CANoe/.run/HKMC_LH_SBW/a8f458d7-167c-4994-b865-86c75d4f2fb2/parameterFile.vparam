@@ -1,0 +1,73 @@
+Vector Parameter	1.0
+
+StructSingleRecord
+
+StructName	structstruct
+ParameterName		str	inte
+Type		Auto	Integer
+Info			
+Value		abc	1
+
+
+ScalarListSingleRecord
+
+Name	Type	Info	Values
+list	Integer		2
+			1
+
+
+ScalarSingleRecord
+
+Name	Type	Info	Value
+sd	Auto		1
+dsd	Auto		2
+
+
+StructListSingleRecord
+
+StructName	slSensor2Led
+ParameterName		sensor	led11
+Type		Integer	Integer
+Info			
+Values		6	5
+		5	1
+		2	3
+		5	
+
+
+StructListSingleRecord
+
+StructName	slWheelSpeed
+ParameterName		wheel_fl	dsfa
+Type		Integer	String
+Info			
+Values		1000	aa
+		1050	asd
+		3000	
+		4	
+		1	
+
+
+StructSingleRecord
+
+StructName	sTimingFrmLamps
+ParameterName		cycleTime	minimal	maximal
+Type		Auto	Auto	Auto
+Info				
+Value		100	95	105
+
+
+ScalarListSingleRecord
+
+Name	Type	Info	Values
+pgLed::plRunningLed	Auto		1
+			10
+
+Group	pgCycleTimes
+
+ScalarSingleRecord
+
+Name	Type	Info	Value
+pgLed::pMinCycleTime	Auto		199
+pgLed::pMaxCycleTime	Auto		201
+

@@ -1,0 +1,94 @@
+VPanel 22 861 411 0 0 255"FaultManager [KOSTIA]"
+255 255 255
+32
+ElemST 14 359 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+SymbElemOCX 22 362 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm8 0 1 3 0 0 1
+ElemST 14 199 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+ElemFrame 7 140 845 265 ElemFrame <PE> 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Fault Manager"
+ElemEdit 20 115 805 17 EnvVar:envKT2A_FehlerText <PE> EnvVar:envKT2A_FehlerText 0 0 0 :0 2 2 0 0 8421376 16777215 1 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana" 255 16711680 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana" -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana"""
+ElemST 20 100 530 14 ElemST <PE> 0 0 16777215 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana""Fault Manager Functionality"
+ElemEdit 20 20 800 15 EnvVar:envKTA_Display_Z1 <PE> EnvVar:envKTA_AO_Display1 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 35 800 15 EnvVar:envKTA_Display_Z2 <PE> EnvVar:envKTA_AO_Display2 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 50 800 15 EnvVar:envKTA_Display_Z3 <PE> EnvVar:envKTA_AO_Display3 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 65 800 15 EnvVar:envKTA_Display_Z4 <PE> EnvVar:envKTA_AO_Display4 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemFrame 10 5 825 135 ElemFrame <PE> 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Display"
+ElemBN 253 153 110 20 EnvVar:envKTA_FehlerspLoeschen <PE> EnvVar:envKTA_AO_ClearFaults 0 0 0 -13 0 0 0 700 0 0 0 0 3 2 1 18"Times New Roman""Clear Fault Mem"
+ElemBN 121 153 125 20 <none> <PE> EnvVar:envKTA_AO_ReadFaults 0 0 0 -13 0 0 0 700 0 0 0 0 3 2 1 18"Times New Roman""Read Fault Manager"
+ElemBN 550 153 125 20 <none> <PE> EnvVar:envKTA_AO_ReadFaultNo 0 0 0 -13 0 0 0 700 0 0 0 0 3 2 1 18"Times New Roman""Read No. of Faults"
+ElemST 48 199 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 1"
+ElemHexEdit 68 199 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_0 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 199 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_0 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 199 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_0 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemST 48 179 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" #"
+ElemST 68 179 50 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow""   ID"
+ElemST 118 179 265 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" Name"
+ElemST 383 179 460 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" Description"
+ElemST 48 219 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 2"
+ElemST 48 239 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 3"
+ElemST 48 259 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 4"
+ElemHexEdit 68 219 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_1 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 219 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_1 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 219 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_1 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 68 239 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_2 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 239 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_2 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 239 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_2 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 68 259 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_3 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 259 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_3 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 259 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_3 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemST 48 279 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 5"
+ElemHexEdit 68 279 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_4 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 279 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_4 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 279 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_4 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemST 48 299 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 6"
+ElemST 48 319 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 7"
+ElemST 48 339 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 8"
+ElemHexEdit 68 299 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_5 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 299 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_5 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 299 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_5 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 68 319 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_6 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 319 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_6 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 319 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_6 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 68 339 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_7 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 339 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_7 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 339 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_7 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemST 48 359 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 9"
+ElemST 48 379 20 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" 10"
+ElemHexEdit 68 359 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_8 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 359 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_8 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 359 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_8 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 68 379 50 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsID_9 0 0 0 5 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 118 379 265 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsName_9 0 0 0 30 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemHexEdit 383 379 460 20 <none> <PE> EnvVar:envKTA_AO_Display_FaultsDesc_9 0 0 0 100 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+SymbElemOCX 22 201 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm0 0 1 3 0 0 1
+ElemST 14 179 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow""State"
+ElemST 14 219 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+ElemST 14 239 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+ElemST 14 259 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+ElemST 14 279 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+ElemST 14 299 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+ElemST 14 319 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+ElemST 14 339 34 20 ElemST <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"" "
+ElemST 14 379 34 20 <none> <PE> 1 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow"""
+SymbElemOCX 22 221 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm1 0 1 3 0 0 1
+SymbElemOCX 22 242 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm2 0 1 3 0 0 1
+SymbElemOCX 22 262 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm3 0 1 3 0 0 1
+SymbElemOCX 22 281 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm4 0 1 3 0 0 1
+SymbElemOCX 22 301 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm5 0 1 3 0 0 1
+SymbElemOCX 22 322 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm6 0 1 3 0 0 1
+SymbElemOCX 22 342 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm7 0 1 3 0 0 1
+SymbElemOCX 22 382 15 15 Error_Alarm <PE> EnvVar:envKTA_AO_FaultAlarm9 0 1 3 0 0 1
+ElemHexEdit 753 153 45 20 <none> <PE> EnvVar:envKTA_AO_NoFaultText 0 0 0 20 1 3 2 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 18"Times New Roman"
+ElemST 683 153 60 20 ElemST <PE> 0 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial Narrow""# of Faults:"
+ElemSBM 25 30 135 40 ElemSBM <PE> <VFileName V4 QL> 1 "" * 1 0
+@
+
+
+[OCX1]
+Name=Alarm_States_Indicator
+
+
+[OCX1_Properties]
+1=0700010001000100000000000100ffffff0001000100000000000100ff00000001000100000000000100ffff00008d0100008d01000001000000ece9d800
+
+
+

@@ -1,0 +1,1014 @@
+/*@!Encoding:1252*/
+variables{
+
+// =================================================
+//  allgemeine Definitionen
+// =================================================
+   const byte aus  = 0;
+	 const byte ein  = 1;
+	 const byte nein = 0;
+	 const byte ja   = 1;
+	 const byte false  = 0;
+	 const byte true   = 1;
+
+// =================================================
+//  Kostia Botschaft         
+// =================================================
+	 message KostiaReq msgDiag_Request;           // Botschaft zur Kostal Diagnose
+	 message KostiaReq msgKT_Request;
+	 mstimer t_KT_Timeout;                           // Timeoutzähler der Kostia Botschaft
+	 const   T_KT_TIMEOUT = 1000;                    // 1000ms TimeoutZeit
+
+   message KostiaResp msgDiag_Response;         // Botschaft zur Kostal Diagnose
+	 message KostiaResp msgKT_Response;         // Botschaft zur Kostal Diagnose
+
+
+		int TP_status ;
+
+// =================================================
+//  Timer für StepToNextState
+// =================================================
+	 mstimer t_stns;                                 // Zähler zur aktiven Weiterschaltung
+	 const   T_STNS = 1;                             // 1ms Zeit
+
+// =================================================
+// Parameter 'CallReason' des TaskHandlers
+// =================================================
+   const byte THR_NV      =   0; // ohne Funktion
+   const byte THR_SYS     =   1; // SystemStart
+	 const byte THR_STNS    =   2; // StepToNextState
+   const byte THR_ENV     =   3; // SG Login
+   const byte THR_MSG     =   4; // eingegangene Botschaft
+   const byte THR_TO      =   5; // Botschafts Timeout
+
+
+// =================================================
+//  Verriegelung der einzelnen Jobs gegeneinander
+// =================================================
+   byte JobState;
+	 const byte JS_SILENT = 0; // es wird z.Zt. keine Aktion ausgeführt
+	 const byte JS_ACTIVE = 1; // es läuft z.Zt. Kommunikation (nicht stören)
+
+// ===========================================================
+//  nur auf Kostia Antwort hören, wenn vorher angefragt wurde
+// ===========================================================
+   byte Wait4Response;
+
+// =================================================
+//  Aufgaben der envx_func
+// =================================================
+   const TASK_NV               = 0; // ohne Funktion
+   const TASK_SENDEN           = 1; // Botschaft senden
+   const TASK_WARTEN           = 2; // warten auf Antwort oder Timeout
+// =================================================
+
+// =================================================
+//  Kostia Fehlertext
+// =================================================
+//                   [Anzahl][Länge]
+   char KT_FehlerText[12][73] = {
+                                 "???",
+                                 "ADRESS_MISMATCH - The requested address is not valid",
+                                 "UNKNOWN_FUNCTION - The function is unknown and not implemented",
+                                 "INVALID_REQUEST - The request is invalid",
+                                 "V_ERASE - Verification Error - Flash/EEPROM Clear",
+                                 "V_PROGRAM - Verification Error - Flash/EEPROM Write",
+                                 "INVALID_LOGIN - Login is Invalid",
+                                 "INVALID_MODE - The Mode is Invalid",
+                                 "MODE_ERROR - Can not enter the mode currently",
+                                 "INVALID_PAGE - The requested page is invalid",
+                                 "COM_ERROR - Communication error between Master and Slave",
+                                 "LOGIN_REQUIRED - Login is required first for the request"
+                                };
+
+// =================================================
+//  Grenzdaten Kostia
+// =================================================
+   const byte MaxKTDatenLesen     = 7;
+   const byte MaxKTDatenSchreiben = 4;
+
+// =================================================
+// Konstanten zur Ausgabe im WriteFenster
+// =================================================
+// write sources
+
+//	DWORD WRITE_TRACE = -3;
+//	DWORD WRITE_LOG = -2;
+//	DWORD WRITE_DEBUG = -1;
+//	DWORD WRITE_SYSTEM = 0;
+//	DWORD WRITE_CAPL = 1;
+
+  dword WRITE_KOSTIA; // wird in "on start" gesetzt
+
+// write window severities
+	DWORD WRITE_SEVERITY_SUCCESS = 0;
+	DWORD WRITE_SEVERITY_INFO = 1;
+	DWORD WRITE_SEVERITY_WARNING = 2;
+	DWORD WRITE_SEVERITY_ERROR = 3;
+
+// logging block flags
+	DWORD WRITE_NO_COMMENT = 1;
+
+
+// =================================================
+// Konstanten für's Profiling
+// =================================================
+
+	 char ProfilDatei[12] = "Kostia.ini";           // hier werden die ProfilDaten gespeichert
+	                                                // Datei befindet sich im akt. ProjektPfad
+   const byte KT_Profile_1 = 0;
+
+}
+
+// ====================================================================================
+//  Startwerte setzen
+// ====================================================================================
+
+on start
+{
+
+  WRITE_KOSTIA = writeCreate("Kostia");        // neues Writefenster für Kostia erzeugen
+  putvalue(envKT2AiWriteKostia, WRITE_KOSTIA);
+
+	ProfilInfosHolen(); // Startwerte holen
+
+}
+
+// ====================================================================================
+//  Information aus der ProfilDatei holen
+// ====================================================================================
+
+void ProfilInfosHolen (void)
+{
+
+	long ergebnis;
+	long defaultWert;
+
+//--------------------------------------------------------------------------------------------
+
+}
+
+// ====================================================================================
+//  Information in die ProfilDatei schreiben
+// ====================================================================================
+void ProfilInfoSetzen (byte Art)
+{
+
+	long ergebnis;
+
+//--------------------------------------------------------------------------------------------
+
+
+}
+
+on message KostiaResp
+{
+
+ if (Wait4Response == ja) // nur wenn vorher Request gesendet wurde
+  {
+    cancelTimer(t_KT_Timeout); // TimeoutMessung abbrechen
+
+    msgKT_Response.byte(0) = this.byte(0);     // Botschaftsinhalt kopieren
+	msgKT_Response.byte(1) = this.byte(1);     // Botschaftsinhalt kopieren
+	msgKT_Response.byte(2) = this.byte(2);     // Botschaftsinhalt kopieren
+	msgKT_Response.byte(3) = this.byte(3);     // Botschaftsinhalt kopieren
+	msgKT_Response.byte(4) = this.byte(4);     // Botschaftsinhalt kopieren
+	msgKT_Response.byte(5) = this.byte(5);     // Botschaftsinhalt kopieren
+	msgKT_Response.byte(6) = this.byte(6);     // Botschaftsinhalt kopieren
+	msgKT_Response.byte(7) = this.byte(7);     // Botschaftsinhalt kopieren
+
+    TaskHandler(THR_MSG);      // TaskHandler mit Botschaftseingang weiterschalten
+    Wait4Response = nein;      // nur einmal Botschaft aufnehmen
+  }
+}
+
+// ====================================================================================
+//  zentrale Funktion, die die eintreffenden Events (Message, Timer, Enviroment)
+//  konzentriert und an die aktive Funktionalität weiterleitet
+// ====================================================================================
+TaskHandler (byte CallReason)
+{
+  byte Task;
+  byte Fehlercode;
+
+	// -----------------------------------------------------------------------------------------------------------------
+
+	if (CallReason == THR_ENV)
+	{
+		Task = TASK_SENDEN; // auf senden stellen
+	}
+
+	// ==================================================================================
+	//  Aufgabe abarbeiten
+	// ==================================================================================
+	switch (Task)
+	{
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		case TASK_NV:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in TaskHandler Kostia den Wert 0 !");
+			break;
+		}
+		case TASK_SENDEN:
+		{
+	    	SendeKTBotschaft(); // Botschaft raus und Timeout starten
+			Task = TASK_WARTEN; // auf Antwort oder Timeout warten
+			break;
+		}
+		case TASK_WARTEN:
+		{
+    	// ============================
+    	//  Botschaft ist eingegangen
+    	// ============================
+  		if(CallReason == THR_MSG)
+  		{
+    		// --> auf Fehler abtesten
+    		if(msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Fehler)
+    		{
+        	// --> Fehler in UV anzeigen
+					if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+					{
+						putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_fehlerhaft);
+        		Fehlercode = msgKT_Response.KTRespFehlercode;
+          	putvalue(envKT2A_FehlerText, KT_FehlerText[Fehlercode]);
+					}
+					if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+					{
+						putvalue(envKTE90_Status, envKTE90_Status::Dienst_fehlerhaft);
+					}
+					if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE60R)
+					{
+						putvalue(envKTE60R_Status, envKTE60R_Status::Dienst_fehlerhaft);
+					}
+					putvalue(envKT2A_Dienst, envKT2A_Dienst::not_used);          // Fehlerwert
+ 					putvalue(envKT2A_Status, envKT2A_Status::Dienst_fehlerhaft); // fehlerhaft
+				}
+    		else
+    		{
+
+		    	ParameterSetzen(); // Daten aus der Empfangsbotschaft nach UV's kopieren
+          // und Bescheid sagen
+ 					if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+          {
+				    putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_beendet);
+          	putvalue(envKT2A_FehlerText, "O.K.");
+          }
+		    	if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+          {
+//				    putvalue(envKTE90_Status, envKTE90_Status::Dienst_beendet);
+				    putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_beendet);
+          }
+					if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE60R)
+          {
+    				putvalue(envKTE60R_Status, envKTE60R_Status::Dienst_beendet);
+          }
+
+       		putvalue(envKT2A_Status, envKT2A_Status::Dienst_beendet);    // ok, für KOSTIA
+    		}
+  		}
+  		// ============================
+  		//  Timeout ist aufgetreten
+  		// ============================
+  		if(CallReason == THR_TO)
+  		{
+				if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+					putvalue(envKTAppl_Status, envKTAppl_Status::Dienst_timeout);
+				if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+					putvalue(envKTE90_Status, envKTE90_Status::Dienst_timeout);
+				if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE60R)
+					putvalue(envKTE60R_Status, envKTE60R_Status::Dienst_timeout);
+
+		 		putvalue(envKT2A_Status, envKT2A_Status::Dienst_timeout);      // Timeout
+  		}
+			Task = TASK_NV;
+      JobState = JS_SILENT; // wieder frei für nächste Aufgabe
+			//StepToNextState ();
+			break;
+		}
+		// =================================================
+		//  Fehlerfall: falsche Funktion
+		// =================================================
+		default:
+		{
+			writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: >Task< hat in TaskHandler Kostia den unbekannten Wert %d !", Task);
+			break;
+		}
+	}
+	// ==================================================================================
+	//  ENDE: Aufgabe abarbeiten
+	// ==================================================================================
+}
+
+// ====================================================================================
+//  über den Timer den TaskHandler erneut aufrufen
+//  (Timer, damit keine Rekursion entsteht)
+// ====================================================================================
+StepToNextState ()
+{
+	
+	canceltimer(t_stns);
+	settimer(t_stns, T_STNS); // der TimerEvent ruf dann den TaskHandler erneut auf
+
+}
+
+on timer t_stns
+{
+	TaskHandler(THR_STNS);
+}
+
+// ====================================================================================
+//  zieht den Timeout-Timer auf und sendet die Anfrage
+// ====================================================================================
+SendeKTBotschaft ()
+{
+
+
+  putvalue(envKT2A_FehlerText, " "); // Kostia Anzeige löschen
+
+  // ==============================
+  //  Timeout für Antwort starten
+  // ==============================
+  cancelTimer(t_KT_Timeout);
+  settimer(t_KT_Timeout, T_KT_TIMEOUT);
+
+  // ==============================
+  //  Botschaft absetzen
+  // ==============================
+  Wait4Response = ja;    // darf auf Response hören
+
+	
+  msgDiag_Request.byte(0) = msgKT_Request.byte(0); 
+  msgDiag_Request.byte(1) = msgKT_Request.byte(1); 
+  msgDiag_Request.byte(2) = msgKT_Request.byte(2); 
+  msgDiag_Request.byte(3) = msgKT_Request.byte(3); 
+  msgDiag_Request.byte(4) = msgKT_Request.byte(4); 
+  msgDiag_Request.byte(5) = msgKT_Request.byte(5); 
+  msgDiag_Request.byte(6) = msgKT_Request.byte(6); 
+  msgDiag_Request.byte(7) = msgKT_Request.byte(7); 
+
+  msgDiag_Request.dlc = 8;
+  msgDiag_Response.dlc = 8;
+
+  output(msgDiag_Request);
+
+}
+
+on envVar envKT2A_Status
+{
+  if(getvalue(envKT2A_Status) == envKT2A_Status::Dienst_starten)
+  {
+    if(JobState == JS_SILENT)
+    {
+      JobState = JS_ACTIVE; // augenblickliche Bearbeitung anzeigen
+      ParameterHolen();     // Daten aus den UV's in die Empfangsbotschaft kopieren
+      TaskHandler(THR_ENV);
+    }
+    else
+    {
+      writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_WARNING, "Kostia ist zur Zeit beschäftigt !");
+    }
+  }
+}
+
+// ====================================================================================
+//  holt die per UV's übergebenen Daten und baut sie in die Anfrage-Botschaft ein
+// ====================================================================================
+
+void ParameterHolen ()
+{
+
+  byte puffer[7] = {0,0,0,0,0,0,0};
+  int i;
+
+//--------------------------------------------------------------------------------------------
+
+  // ==========================================================
+  //  puffer von Hand löschen, da lokale variablen static sind
+  // ==========================================================
+  for (i=0; i<elcount(puffer); i++)
+    puffer[i] = 0;
+
+  // ==========================================================
+  //  Kostia Request Message löschen
+  // ==========================================================
+  for (i=0; i<msgKT_Request.DLC; i++)
+    msgKT_Request.BYTE(i) = 0;
+
+                                                                      // switch geht nicht
+  // ========================================================================================
+  //  Fehler
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::not_used)
+  {
+    writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: envKT2A_Dienst hat den Wert 0 !");
+  } 
+
+  // ========================================================================================
+  //  Login
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Login_Request)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::Login_Request;
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_Login_1 = puffer[0];
+    msgKT_Request.KTReq_Login_2 = puffer[1];
+    msgKT_Request.KTReq_Login_3 = puffer[2];
+    msgKT_Request.KTReq_Login_4 = puffer[3];
+    msgKT_Request.KTReq_Login_5 = puffer[4];
+    msgKT_Request.KTReq_Login_6 = puffer[5];
+    msgKT_Request.KTReq_Login_7 = puffer[6];
+    return;
+  } 
+  // ========================================================================================
+  //  Sync
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Sync)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::Sync;
+    msgKT_Request.KTReq_Sync_Fest = msgKT_Request.KTReq_Sync_Fest::FestWert;
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_Sync_2  = puffer[0];
+    msgKT_Request.KTReq_Sync_3  = puffer[1];
+    msgKT_Request.KTReq_Sync_4  = puffer[2];
+    msgKT_Request.KTReq_Sync_5  = puffer[3];
+    msgKT_Request.KTReq_Sync_6  = puffer[4];
+    msgKT_Request.KTReq_Sync_7  = puffer[5];
+    return;
+  } 
+  // ========================================================================================
+  //  Modus-Wechsel
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Modus_Wechsel)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::Modus_Wechsel;
+    msgKT_Request.KTReq_MWSollModus = getvalue(envKT2A_SollModus);
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_MWLogin_2 = puffer[0];
+    msgKT_Request.KTReq_MWLogin_3 = puffer[1];
+    msgKT_Request.KTReq_MWLogin_4 = puffer[2];
+    msgKT_Request.KTReq_MWLogin_5 = puffer[3];
+    msgKT_Request.KTReq_MWLogin_6 = puffer[4];
+    msgKT_Request.KTReq_MWLogin_7 = puffer[5];
+    
+        /* Start Calibrationmode */
+  if(getvalue(envKTAiSollModus) == envKTAiSollModus::CalibrationMode )
+  {
+    msgKT_Request.byte(0) = 3;
+    msgKT_Request.byte(1) = 0x80;
+    msgKT_Request.byte(2) = 0;
+    msgKT_Request.byte(3) = 0;
+    msgKT_Request.byte(4) = 0;
+    msgKT_Request.byte(5) = 0;
+    msgKT_Request.byte(6) = 0;
+    msgKT_Request.byte(7) = 0;
+  }
+    return;
+  } 
+  /* End Calibrationmode */
+  // ========================================================================================
+  //  Speicher Lesen
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Speicher_Lesen)
+  { 
+    msgKT_Request.KTReq_Befehlstitel   = msgKT_Request.KTReq_Befehlstitel::Speicher_Lesen;
+    msgKT_Request.KTReq_SPLAdresse     = getvalue(envKT2A_Adresse);
+    msgKT_Request.KTReq_PageAdresse_L  = ( getvalue(envKT2A_Adresse) & 0x00FF0000 ) / 0x10000;
+    msgKT_Request.KTReq_PageAdresse_H  = ( getvalue(envKT2A_Adresse) & 0xFF000000 ) / 0x1000000;
+    
+    if(getvalue(envKT2A_AnzahlDaten) > MaxKTDatenLesen)
+    {
+      writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler Speicher lesen: Anzahl Daten ist %d, reduziert auf 7", getvalue(envKT2A_AnzahlDaten));
+      msgKT_Request.KTReq_SPLAnzahlDaten = MaxKTDatenLesen;
+    }
+    else
+      msgKT_Request.KTReq_SPLAnzahlDaten = getvalue(envKT2A_AnzahlDaten);
+
+    msgKT_Request.KTReq_SPLPage        = getvalue(envKT2A_Page);
+    return;
+  } 
+  // ========================================================================================
+  //  Speicher Schreiben
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Speicher_Schreiben)
+  {
+    msgKT_Request.KTReq_Befehlstitel   = msgKT_Request.KTReq_Befehlstitel::Speicher_Schreiben;
+    msgKT_Request.KTReq_SPSAdresse     = getvalue(envKT2A_Adresse);
+    if(getvalue(envKT2A_AnzahlDaten) > MaxKTDatenSchreiben)
+    {
+      writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler Speicher Schreiben: Anzahl Daten ist %d, reduziert auf %d", getvalue(envKT2A_AnzahlDaten), MaxKTDatenSchreiben);
+      msgKT_Request.KTReq_SPSAnzahlDaten = MaxKTDatenSchreiben - 1;
+    }
+    else
+      msgKT_Request.KTReq_SPSAnzahlDaten = getvalue(envKT2A_AnzahlDaten) - 1;
+
+    msgKT_Request.KTReq_SPSPage  = getvalue(envKT2A_Page);
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_SPSData_4 = puffer[0];
+    msgKT_Request.KTReq_SPSData_5 = puffer[1];
+    msgKT_Request.KTReq_SPSData_6 = puffer[2];
+    msgKT_Request.KTReq_SPSData_7 = puffer[3];
+    return;
+  } 
+  // ========================================================================================
+  //  Fehlerspeicher Löschen
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Fehlerspeicher_Loeschen)
+  {
+    msgKT_Request.KTReq_Befehlstitel   = msgKT_Request.KTReq_Befehlstitel::Fehlerspeicher_Loeschen;
+    msgKT_Request.KTReq_FSPAdresse     = getvalue(envKT2A_Adresse);
+    msgKT_Request.KTReq_FSPDelay       = getvalue(envKT2A_FSPDelay);
+    return;
+  } 
+  // ========================================================================================
+  //  Steuergerät initialisieren
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::SG_Initialisieren)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::SG_Initialisieren;
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_SGIData_1 = puffer[0];
+    msgKT_Request.KTReq_SGIData_2 = puffer[1];
+    msgKT_Request.KTReq_SGIData_3 = puffer[2];
+    msgKT_Request.KTReq_SGIData_4 = puffer[3];
+    msgKT_Request.KTReq_SGIData_5 = puffer[4];
+    msgKT_Request.KTReq_SGIData_6 = puffer[5];
+    msgKT_Request.KTReq_SGIData_7 = puffer[6];
+    return;
+  } 
+  // ========================================================================================
+  //  RBR initialisieren
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::RBR_Initialisieren)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::RBR_Initialisieren;
+    msgKT_Request.KTReq_RBRIAdresse     = getvalue(envKT2A_Adresse);
+    if(getvalue(envKT2A_AnzahlDaten) > 7)
+    {
+      writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler RBR initialisieren: Anzahl Daten > 7, reduziert auf 7");
+      msgKT_Request.KTReq_RBRIAnzahlDaten = 7;
+    }
+    else
+      msgKT_Request.KTReq_RBRIAnzahlDaten = getvalue(envKT2A_AnzahlDaten);
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_RBRIData_4 = puffer[0];
+    msgKT_Request.KTReq_RBRIData_5 = puffer[0];
+    msgKT_Request.KTReq_RBRIData_6 = puffer[0];
+    msgKT_Request.KTReq_RBRIData_7 = puffer[0];
+    return;
+  } 
+  // ========================================================================================
+  //  RBR starten oder stoppen
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::RBR_Start_Stop)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::RBR_Start_Stop;
+    msgKT_Request.KTReq_RBRKStatus   = getvalue(envKT2A_RBRKStatus);
+    return;
+  } 
+  // ========================================================================================
+  //  Flash löschen
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Flash_Loeschen)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::Flash_Loeschen;
+    return;
+  } 
+  // ========================================================================================
+  //  Flasher Freigabe
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Flasher_Freigabe)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::Flasher_Freigabe;
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_FFGData_1 = puffer[0];
+    msgKT_Request.KTReq_FFGData_2 = puffer[1];
+    msgKT_Request.KTReq_FFGData_3 = puffer[2];
+    msgKT_Request.KTReq_FFGData_4 = puffer[3];
+    msgKT_Request.KTReq_FFGData_5 = puffer[4];
+    msgKT_Request.KTReq_FFGData_6 = puffer[5];
+    msgKT_Request.KTReq_FFGData_7 = puffer[6];
+    return;
+  } 
+  // ========================================================================================
+  //  Reset auslösen
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Reset_Ausloesen)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::Reset_Ausloesen;
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_RESLogin_1 = puffer[0];
+    msgKT_Request.KTReq_RESLogin_2 = puffer[1];
+    msgKT_Request.KTReq_RESLogin_3 = puffer[2];
+    msgKT_Request.KTReq_RESLogin_4 = puffer[3];
+    msgKT_Request.KTReq_RESLogin_5 = puffer[4];
+    msgKT_Request.KTReq_RESLogin_6 = puffer[5];
+    msgKT_Request.KTReq_RESLogin_7 = puffer[6];
+    return;
+  } 
+  // ========================================================================================
+  //  Adressraum Erweiterung
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Adressraum_Erweiterung)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::Adressraum_Erweiterung;
+
+    msgKT_Request.KTReq_ADEPage = getvalue(envKT2A_Page);
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.KTReq_ADEAd64 = puffer[0];
+    msgKT_Request.KTReq_ADEAd56 = puffer[1];
+    msgKT_Request.KTReq_ADEAd48 = puffer[2];
+    msgKT_Request.KTReq_ADEAd40 = puffer[3];
+    msgKT_Request.KTReq_ADEAd32 = puffer[4];
+    msgKT_Request.KTReq_ADEAd24 = puffer[5];
+    return;
+  } 
+  // ========================================================================================
+  //  projektspezifische Kostia-Erweiterungen
+	//  hier: DiagnoseErsatz LWS Nullpunktabgleich
+  // ========================================================================================
+  if (getvalue(envKT2A_Dienst) == envKT2A_Dienst::Diag_LWS_Nullpunkt)
+  {
+    msgKT_Request.KTReq_Befehlstitel = msgKT_Request.KTReq_Befehlstitel::Diag_LWS_Nullpunkt;
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.BYTE(1) = puffer[0];
+    msgKT_Request.BYTE(2) = puffer[1];
+    msgKT_Request.BYTE(3) = puffer[2];
+    msgKT_Request.BYTE(4) = puffer[3];
+    msgKT_Request.BYTE(5) = puffer[4];
+    msgKT_Request.BYTE(6) = puffer[5];
+    msgKT_Request.BYTE(7) = puffer[6];
+    return;
+  } 
+
+  // ========================================================================================
+  //  projektspezifische Kostia-Erweiterungen
+  // ========================================================================================
+    msgKT_Request.KTReq_Befehlstitel = getvalue(envKT2A_Dienst);
+
+    getvalue(envKT2A_Daten, puffer);
+    msgKT_Request.BYTE(1) = puffer[0];
+    msgKT_Request.BYTE(2) = puffer[1];
+    msgKT_Request.BYTE(3) = puffer[2];
+    msgKT_Request.BYTE(4) = puffer[3];
+    msgKT_Request.BYTE(5) = puffer[4];
+    msgKT_Request.BYTE(6) = puffer[5];
+    msgKT_Request.BYTE(7) = puffer[6];
+    return;
+}
+
+// =======================
+on envVar envKTA_LocFun_ResetProg
+{
+if( @envKTA_LocFun_ResetProg == 1 ) {
+    msgKT_Request.BYTE(0) = 0x0C;
+	  msgKT_Request.BYTE(1) = 0x52;
+    msgKT_Request.BYTE(2) = 0x45;
+    msgKT_Request.BYTE(3) = 0x53;
+    msgKT_Request.BYTE(4) = 0x45;
+    msgKT_Request.BYTE(5) = 0x54;
+    msgKT_Request.BYTE(6) = 0x4D;
+    msgKT_Request.BYTE(7) = 0x45;
+    
+     
+  msgKT_Request.dlc = 8;
+
+  output(msgKT_Request);
+  }
+}
+//on envVar envKTA_LocFun_ExtAdrSend
+//{
+//if( @envKTA_LocFun_ExtAdrSend == 1 ) {
+//    msgKT_Request.BYTE(0) = 0x0D;
+//	  msgKT_Request.BYTE(1) = 0x00;
+//    msgKT_Request.BYTE(2) = 0x00;
+//    msgKT_Request.BYTE(3) = 0x00;
+//    msgKT_Request.BYTE(4) = 0x00;
+//    msgKT_Request.BYTE(5) = 0x00;
+//    msgKT_Request.BYTE(6) = 0xFE;
+//    msgKT_Request.BYTE(7) = 0xDF;
+//    
+//     
+//  msgKT_Request.dlc = 8;
+//
+//  output(msgKT_Request);
+//  
+//  }
+//}
+
+/* Start */
+on envVar envKTA_LocFun_ExtAdrSend
+{
+    byte addbuff[2];
+    
+    word ExtAddress;
+
+    ExtAddress = getvalue(envKTExtendedAdresse);
+    if( getvalue(envKTA_LocFun_ExtAdrSend) == 1 ){
+        addbuff[0] = ( ExtAddress & 0xFF00 ) >> 8;
+        addbuff[1] = ( ExtAddress & 0xFF );
+             
+        msgKT_Request.BYTE(0) = 0x0D;
+    	  msgKT_Request.BYTE(1) = 0x00;
+        msgKT_Request.BYTE(2) = 0x00;
+        msgKT_Request.BYTE(3) = 0x00;
+        msgKT_Request.BYTE(4) = 0x00;
+        msgKT_Request.BYTE(5) = 0x00;
+        msgKT_Request.BYTE(6) = addbuff[0];
+        msgKT_Request.BYTE(7) = addbuff[1];
+    
+     
+        msgKT_Request.dlc = 8;
+
+        output(msgKT_Request);
+    }
+}
+/* End */
+//=============================================================
+//  setzt die in der Anfrage-Botschaft enthaltenen Daten in die UV's um
+// ====================================================================================
+void ParameterSetzen ()
+{
+
+  byte puffer[7] = {0,0,0,0,0,0,0};
+  int i;
+
+//--------------------------------------------------------------------------------------------
+
+  // ==========================================================
+  //  puffer von Hand löschen, da lokale variablen static sind
+  // ==========================================================
+  for (i=0; i<elcount(puffer); i++)
+    puffer[i] = 0;
+                                                                      // switch geht nicht
+  // ================================
+  //  Fehler
+  // ================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Fehler)
+  {
+    writeLineEx(WRITE_KOSTIA, WRITE_SEVERITY_ERROR, "Fehler: KTResp_Befehl_Fehler hat in der Funktion setzeParameter den Werte 'Fehler' !");
+  } 
+
+  // ========================================================================================
+  //  Login
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Login_Request)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    puffer[0] = msgKT_Response.KTResp_Login_1;
+    puffer[1] = msgKT_Response.KTResp_Login_2;
+    puffer[2] = msgKT_Response.KTResp_Login_3;
+    puffer[3] = msgKT_Response.KTResp_Login_4;
+    puffer[4] = msgKT_Response.KTResp_Login_5;
+    puffer[5] = msgKT_Response.KTResp_Login_6;
+    puffer[6] = msgKT_Response.KTResp_Login_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  Sync 
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Sync)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+    putvalue(envKT2A_IstSyncFest, msgKT_Response.KTResp_Sync_Fest);
+
+    puffer[0] = msgKT_Response.KTResp_Sync_2;
+    puffer[1] = msgKT_Response.KTResp_Sync_3;
+    puffer[2] = msgKT_Response.KTResp_Sync_4;
+    puffer[3] = msgKT_Response.KTResp_Sync_5;
+    puffer[4] = msgKT_Response.KTResp_Sync_6;
+    puffer[5] = msgKT_Response.KTResp_Sync_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  Modus-Wechsel
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Modus_Wechsel)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    putvalue(envKT2A_IstModus, msgKT_Response.KTResp_MWIstModus); 
+
+    puffer[0] = msgKT_Response.KTResp_MWLogin_2;
+    puffer[1] = msgKT_Response.KTResp_MWLogin_3;
+    puffer[2] = msgKT_Response.KTResp_MWLogin_4;
+    puffer[3] = msgKT_Response.KTResp_MWLogin_5;
+    puffer[4] = msgKT_Response.KTResp_MWLogin_6;
+    puffer[5] = msgKT_Response.KTResp_MWLogin_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  Speicher Lesen
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Speicher_Lesen)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    puffer[0] = msgKT_Response.KTResp_SPLData_1;
+    puffer[1] = msgKT_Response.KTResp_SPLData_2;
+    puffer[2] = msgKT_Response.KTResp_SPLData_3;
+    puffer[3] = msgKT_Response.KTResp_SPLData_4;
+    puffer[4] = msgKT_Response.KTResp_SPLData_5;
+    puffer[5] = msgKT_Response.KTResp_SPLData_6;
+    puffer[6] = msgKT_Response.KTResp_SPLData_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  Speicher Schreiben
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Speicher_Schreiben)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    putvalue(envKT2A_Adresse    , msgKT_Response.KTResp_SPSAdresse); 
+    putvalue(envKT2A_AnzahlDaten, msgKT_Response.KTResp_SPSAnzahlDaten); 
+    putvalue(envKT2A_Page       , msgKT_Response.KTResp_SPSPage); 
+
+    puffer[0] = msgKT_Response.KTResp_SPSData_4;
+    puffer[1] = msgKT_Response.KTResp_SPSData_5;
+    puffer[2] = msgKT_Response.KTResp_SPSData_6;
+    puffer[3] = msgKT_Response.KTResp_SPSData_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  Fehlerspeicher Löschen
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Fehlerspeicher_Loeschen)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    putvalue(envKT2A_Adresse , msgKT_Response.KTResp_FSPAdresse); 
+    putvalue(envKT2A_FSPDelay, msgKT_Response.KTResp_FSPDelay); 
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  SG initialisieren
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::SG_Initialisieren)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    puffer[0] = msgKT_Response.KTResp_SGIData_1;
+    puffer[1] = msgKT_Response.KTResp_SGIData_2;
+    puffer[2] = msgKT_Response.KTResp_SGIData_3;
+    puffer[3] = msgKT_Response.KTResp_SGIData_4;
+    puffer[4] = msgKT_Response.KTResp_SGIData_5;
+    puffer[5] = msgKT_Response.KTResp_SGIData_6;
+    puffer[6] = msgKT_Response.KTResp_SGIData_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  RBR initialisieren
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::RBR_Initialisieren)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    putvalue(envKT2A_Adresse    , msgKT_Response.KTResp_RBRIAdresse); 
+    putvalue(envKT2A_AnzahlDaten, msgKT_Response.KTResp_RBRIAnzahlDaten); 
+
+    puffer[0] = msgKT_Response.KTResp_RBRIData_4;
+    puffer[1] = msgKT_Response.KTResp_RBRIData_5;
+    puffer[2] = msgKT_Response.KTResp_RBRIData_6;
+    puffer[3] = msgKT_Response.KTResp_RBRIData_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  RBR starten / stoppen
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::RBR_Start_Stop)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    putvalue(envKT2A_RBRKStatus, msgKT_Response.KTResp_RBRKStatus);
+    return;
+  } 
+  // ========================================================================================
+  //  Flash löschen
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Flash_Loeschen)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    return;
+  } 
+  // ========================================================================================
+  //  Flasher Freigabe
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Flasher_Freigabe)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    puffer[0] = msgKT_Response.KTResp_FFGData_1;
+    puffer[1] = msgKT_Response.KTResp_FFGData_2;
+    puffer[2] = msgKT_Response.KTResp_FFGData_3;
+    puffer[3] = msgKT_Response.KTResp_FFGData_4;
+    puffer[4] = msgKT_Response.KTResp_FFGData_5;
+    puffer[5] = msgKT_Response.KTResp_FFGData_6;
+    puffer[6] = msgKT_Response.KTResp_FFGData_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  Reset auslösen
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Reset_Ausloesen)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    puffer[0] = msgKT_Response.KTResp_RESLogin_1;
+    puffer[1] = msgKT_Response.KTResp_RESLogin_2;
+    puffer[2] = msgKT_Response.KTResp_RESLogin_3;
+    puffer[3] = msgKT_Response.KTResp_RESLogin_4;
+    puffer[4] = msgKT_Response.KTResp_RESLogin_5;
+    puffer[5] = msgKT_Response.KTResp_RESLogin_6;
+    puffer[6] = msgKT_Response.KTResp_RESLogin_7;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+  // ========================================================================================
+  //  Adressraum Erweiterung
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Adressraum_Erweiterung)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    putvalue(envKT2A_Page  , msgKT_Response.KTResp_ADEPage); 
+
+    puffer[0] = msgKT_Response.KTResp_ADEAd64;
+    puffer[1] = msgKT_Response.KTResp_ADEAd56;
+    puffer[2] = msgKT_Response.KTResp_ADEAd48;
+    puffer[3] = msgKT_Response.KTResp_ADEAd40;
+    puffer[4] = msgKT_Response.KTResp_ADEAd32;
+    puffer[5] = msgKT_Response.KTResp_ADEAd24;
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+
+  // ========================================================================================
+  //  projektspezifische Kostia-Erweiterungen
+	//  hier: DiagnoseErsatz LWS Nullpunktabgleich
+  // ========================================================================================
+  if (msgKT_Response.KTResp_Befehl_Fehler == msgKT_Response.KTResp_Befehl_Fehler::Diag_LWS_Nullpunkt)
+  {
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    puffer[0] = msgKT_Response.KTResp_DiagServiceNr;
+    puffer[1] = msgKT_Response.KTResp_DiagService1WwOffset;
+    puffer[2] = msgKT_Response.BYTE(3);
+    puffer[3] = msgKT_Response.BYTE(4);
+    puffer[4] = msgKT_Response.BYTE(5);
+    puffer[5] = msgKT_Response.BYTE(6);
+    puffer[6] = msgKT_Response.BYTE(7);
+    putvalue(envKT2A_Daten, puffer);
+    return;
+  } 
+
+  // ========================================================================================
+  //  projektspezifische Kostia-Erweiterungen
+  // ========================================================================================
+    putvalue(envKT2A_Dienst, msgKT_Response.KTResp_Befehl_Fehler);
+
+    puffer[0] = msgKT_Response.BYTE(1);
+    puffer[1] = msgKT_Response.BYTE(2);
+    puffer[2] = msgKT_Response.BYTE(3);
+    puffer[3] = msgKT_Response.BYTE(4);
+    puffer[4] = msgKT_Response.BYTE(5);
+    puffer[5] = msgKT_Response.BYTE(6);
+    puffer[6] = msgKT_Response.BYTE(7);
+    putvalue(envKT2A_Daten, puffer);
+    return;
+
+}
+
+on timer t_KT_Timeout
+{
+	if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTAppl)
+		putvalue(envKT2A_FehlerText, "Timeout");
+	else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE90)
+		putvalue(envKTE90_RuntimeError, "Timeout");
+	else if (getvalue(envKT_Anforderung) == envKT_Anforderung::KTE60R)
+		putvalue(envKTE60R_RuntimeError, "Timeout");
+
+	TaskHandler(THR_TO); // TaskHandler mit Timeout weiterschalten
+}
+

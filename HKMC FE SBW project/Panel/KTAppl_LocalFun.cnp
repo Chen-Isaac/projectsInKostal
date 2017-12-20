@@ -1,0 +1,82 @@
+VPanel 22 713 696 0 0 255"SAS | Voltages [KOSTIA]"
+255 255 255
+32
+ElemFrame 19 479 235 165 ElemFrame <PE> 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New""ADC Data "
+ElemFrame 10 185 670 285 ElemFrame <PE> 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Local Functions"
+ElemFrame 265 480 440 185 ElemFrame <PE> 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New""RBR Control for MLX and Backtrack "
+ElemSBM 15 80 625 22 ElemSBM <PE> <VFileName V4 QL> 1 "" * 1 0
+ElemBN 10 154 130 25 EnvVar:envKTA_Login <PE> EnvVar:envKTA_Login 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Login"
+ElemEdit 20 115 565 17 EnvVar:envKT2A_FehlerText <PE> EnvVar:envKTA_LocFun_DisplayFaults 0 0 0 :0 2 2 0 0 8421376 16777215 1 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana" 255 16711680 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana" -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana"""
+ElemST 20 100 530 14 ElemST <PE> 0 0 16777215 0 -11 0 0 0 400 0 0 0 0 3 2 1 34"Verdana""Fault Manager Functionality"
+ElemSwitchAndDisplay 145 154 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTAaLogin 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemEdit 20 20 610 15 EnvVar:envKTA_Display_Z1 <PE> EnvVar:envKTA_LocFun_DisplayBuff1 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 35 610 15 EnvVar:envKTA_Display_Z2 <PE> EnvVar:envKTA_LocFun_DisplayBuff2 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 50 610 15 EnvVar:envKTA_Display_Z3 <PE> <none> 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemEdit 20 65 610 15 EnvVar:envKTA_Display_Z4 <PE> <none> 0 0 0 :0 2 2 0 0 11849864 0 1 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" 255 16711680 0 0 -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal" -12 0 0 0 400 0 0 0 255 1 2 1 49"Terminal"""
+ElemFrame 10 5 635 135 ElemFrame <PE> 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Display"
+ElemBN 505 380 155 25 envKTA_LocFun_ResetApp <PE> EnvVar:envKTA_LocFun_ResetAppBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Reset App (Local Fun)"
+ElemBN 25 212 130 25 envKTA_LocFun_ResetApp <PE> EnvVar:envKTA_LocFun_ResetSASOffsetsBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Reset SAS Offsets"
+ElemBN 25 250 130 20 envKTA_LocFun_CalABSOffsetBut <PE> EnvVar:envKTA_LocFun_CalABSOffsetBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Calibrate ABS"
+ElemBN 174 249 150 25 envKTA_LocFun_CalAngleOffsetBut <PE> EnvVar:envKTA_LocFun_CalAngleOffsetBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Calibrate Hall Offsets"
+ElemBN 25 293 135 25 envKTA_LocFun_GetRawMLXBut <PE> EnvVar:envKTA_LocFun_GetRawMLXBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Get Raw MLX Data"
+ElemHexEdit 191 296 90 25 <none> <PE> EnvVar:envKTA_LocFun_RawMLX0Data 0 0 0 8 1 3 2 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"
+ElemHexEdit 20 566 100 -21 <none> <PE> EnvVar:envKTA_LocFun_RawMLX1Data 0 0 0 8 1 3 2 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"
+ElemHexEdit 301 296 90 25 <none> <PE> EnvVar:envKTA_LocFun_RawMLX1Data 0 0 0 8 1 3 2 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"
+ElemST 530 325 90 40 ElemST <PE> 0 1 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Get Raw MLX Data Cyclic SW"
+ElemBMMultiState 554 283 33 40 <none> <PE> EnvVar:envKTA_LocFun_CyclicRawMLXSW 0 0 0 1 <VFileName V4 QL> 1 ""  4 0
+ElemST 216 277 40 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""MLX 0"
+ElemST 321 277 40 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""MLX 1"
+ElemBN 25 379 144 25 envKTA_LocFun_GetRawMLXBut <PE> EnvVar:envKTA_LocFun_SetHallOffsetsBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Set MLX Offsets"
+ElemST 212 367 40 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""MLX 0"
+ElemST 306 367 40 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""MLX 1"
+ElemBN 25 335 135 25 envKTA_LocFun_GetRawMLXBut <PE> EnvVar:envKTA_LocFun_SetABSOffsetBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Set ABS Angle"
+ElemST 285 340 245 20 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""ABS Angle (Degrees, .1 resolution)"
+ElemEdit 195 340 80 19 <none> <PE> EnvVar:envKTA_LocFun_ABSAngleIn 0 0 0 :2 1 2 1 0 16777215 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" 255 16711680 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier"""
+ElemEdit 193 385 80 19 <none> <PE> EnvVar:envKTA_LocFun_RawMLX0In 0 0 0 :0 0 2 1 0 16777215 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" 255 16711680 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier"""
+ElemEdit 288 385 75 19 <none> <PE> EnvVar:envKTA_LocFun_RawMLX1In 0 0 0 :0 0 2 1 0 16777215 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" 255 16711680 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier"""
+ElemHexEdit 407 296 90 25 <none> <PE> EnvVar:envKTA_LocFun_ABSAngleData 0 0 0 8 1 3 2 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"
+ElemST 420 277 70 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""ABS Angle"
+ElemBN 174 212 130 25 envKTA_LocFun_ResetApp <PE> EnvVar:envKTA_LocFun_ResetABSOnlyBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Reset SAS ABS Only"
+ElemSwitchAndDisplay 600 110 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTA_LocFun_FaultLight 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemBN 25 422 149 25 envKTA_LocFun_GetRawMLXBut <PE> EnvVar:envKTA_LocFun_ReadSASCalStatBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Read SAS Cal Status"
+ElemSwitchAndDisplay 263 420 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTA_LocFun_HallCalStatusData 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemSwitchAndDisplay 380 422 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTA_LocFun_ABSCalStatusData 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemST 191 418 70 30 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Hall Sen Calibrated"
+ElemPanelCtrlBN 490 531 205 30 ElemPanelCtrlBN <PE>
+ -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana" 0"Display for RBR MLX and ABS "
+<VFileName V4 QL> 1 "RBR03_MLX_ABSONLY.CNP" 
+~
+ElemBN 276 536 150 25 envKTA_LocFun_GetRawMLXBut <PE> EnvVar:envKTA_RBR03_Init_But 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Init SAS RBR for MLX"
+ElemSwitchAndDisplay 444 536 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTA_RBR03_Init_Alarm 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemBN 292 608 125 25 envKTA_LocFun_GetRawMLXBut <PE> EnvVar:envKTA_RBR03_Control_But 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Control RBR "
+ElemSwitchAndDisplay 443 605 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTA_RBR03_Control_Alarm 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemST 305 416 70 30 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""ABS Calibrated"
+ElemST 400 498 110 30 ElemST <PE> 0 1 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Green = Running Red = Rejected"
+ElemBMMultiState 192 512 33 40 <none> <PE> EnvVar:envKTA_LocFun_CyclicADCSW 0 0 0 1 <VFileName V4 QL> 1 ""  4 0
+ElemHexEdit 26 514 35 100 <none> <PE> EnvVar:envKTA_LocFun_ADCData 0 0 0 3 1 3 2 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"
+ElemBN 148 606 100 25 envKTA_LocFun_GetRawMLXBut <PE> EnvVar:envKTA_LocFun_GetADCBut 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Get ADC Data"
+ElemST 159 554 90 30 ElemST <PE> 0 1 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Get ADC Data Cyclic SW"
+ElemST 65 516 75 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Clamp 15"
+ElemST 65 532 75 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""5V1 Full"
+ElemST 65 549 75 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""5V1 Half"
+ElemST 65 567 75 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""5V1 GND"
+ElemST 65 584 95 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""5V2 Sub Micro"
+ElemST 65 598 95 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Valid Bits"
+ElemBN 273 573 160 20 envKTA_LocFun_GetRawMLXBut <PE> EnvVar:envKTA_RBRBackT_Init_But 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Init App RBR- Backtrack"
+ElemSwitchAndDisplay 444 570 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTA_RBRBackt_Init_Alarm 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemHexEdit 491 603 56 25 <none> <PE> EnvVar:envKTA_RBRBackTMLX0Data 0 0 0 8 1 3 2 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"
+ElemHexEdit 557 603 56 25 <none> <PE> EnvVar:envKTA_RBRBackTMLX1Data 0 0 0 8 1 3 2 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"
+ElemST 497 583 40 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""MLX 0"
+ElemST 567 583 40 15 ElemST <PE> 0 0 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""MLX 1"
+ElemHexEdit 621 603 56 25 <none> <PE> EnvVar:envKTA_RBRBackTActData 0 0 0 8 1 3 2 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"
+ElemST 613 573 75 30 ElemST <PE> 0 1 16777215 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Backtrack Angle"
+ElemBN 20 660 135 25 envKTA_LocFun_ResetApp <PE> EnvVar:envKTA_ResetAppBut_0C 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Reset App (0x0C)"
+ElemSwitchAndDisplay 175 660 25 25 EnvVar:envKTAaLogin <PE> EnvVar:envKTA_Reset_0C_Alarm 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+ElemEdit 487 631 61 19 <none> <PE> EnvVar:envKTA_RBRBackTMLX0Float 0 0 0 :3 1 2 1 0 16777215 0 1 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" 255 16711680 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier"""
+ElemEdit 554 631 61 19 <none> <PE> EnvVar:envKTA_RBRBackTMLX1Float 0 0 0 :3 1 2 1 0 16777215 0 1 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" 255 16711680 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier"""
+ElemEdit 619 631 61 19 <none> <PE> EnvVar:envKTA_RBRBackTActFloat 0 0 0 :3 1 2 1 0 16777215 0 1 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" 255 16711680 0 0 -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier" -13 0 0 0 700 0 0 0 0 1 2 1 49"Courier"""
+ElemBN 495 210 130 25 envKTA_LocFun_SetMLX <PE> EnvVar:envKTA_LocFun_SetMLX 0 0 0 -11 0 0 0 700 0 0 0 0 3 2 1 34"Verdana""Set Kostal MLX"
+ElemSwitchAndDisplay 637 211 25 25 envKTAaSetKostalMLX <PE> EnvVar:envKTA_SetKostalMLX 0 0 0 4 <VFileName V4 QL> 1 "..\Bitmaps\TriLED.bmp"  1 1 0 1 0 1 1
+@
+
+

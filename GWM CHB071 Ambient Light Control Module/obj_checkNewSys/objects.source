@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TempFileMetainfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel">
+  <FileFormatVersion xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">1</FileFormatVersion>
+  <TempFileMetainfo xmlns:d2p1="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel.Entities" z:Id="2">
+    <_p z:Ref="1" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    <d2p1:FileSources z:Id="3">
+      <Content z:Id="4" z:Size="20" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">
+        <d2p1:FileSource z:Id="5" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="6">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="7">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-11-09T11:45:53.8677382+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>141</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="8">h315kkmsoclr-TSV</d2p1:PersistencyKey>
+          <d2p1:Crc>650686418</d2p1:Crc>
+          <d2p1:SourceFile z:Id="9">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="10" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-09T11:45:54.9977495+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>3072</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="11">h315kkmsoclr#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="12">
+            <_p z:Ref="10" i:nil="true" />
+            <d2p1:FullFilePath z:Id="13">D:\Isaac\GWM CHB071 Ambient Light Control Module\obj_checkNewSys\h315kkmsoclr-TSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-11-09T11:45:53.8677382+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="14" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="15">.vvarprop</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-11-09T11:45:53.9577391+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="16">TU_Indep=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Id="17"></d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="18" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="15" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-09T11:51:58.5531962+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="19">f8rche0c1kau=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="17" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="20" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-09T18:40:22.9296103+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>54</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="21">f8rche0c1kau~3-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="22">
+            <Content z:Id="23" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="24">
+                <_p z:Ref="22" i:nil="true" />
+                <d2p1:FullFilePath z:Id="25">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys\checkAllFunc.vtt</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-11-09T17:57:30.4246955+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="20" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="26" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-09T14:39:37.3322468+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>238678</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="27">adk333ct1047-CSV</d2p1:PersistencyKey>
+          <d2p1:Crc>2729087194</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="28" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-09T14:39:38.4722468+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>473600</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="29">adk333ct1047#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="30">
+            <_p z:Ref="28" i:nil="true" />
+            <d2p1:FullFilePath z:Id="31">D:\Isaac\GWM CHB071 Ambient Light Control Module\obj_checkNewSys\adk333ct1047-CSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-11-09T14:39:37.3322468+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="32" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="17" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>0001-01-01T00:00:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>-1</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="33">h5vrercvr294#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription i:nil="true" />
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="34" z:Size="0" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="35" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="36">.vparam</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-11-09T16:12:43.2506955+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>451</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="37">eogsd94lghi3=PA</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="38">
+            <_p z:Ref="35" i:nil="true" />
+            <d2p1:FullFilePath z:Id="39">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys\Parameter File.vparam</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-06-16T16:19:42.035505+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="40" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="41">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="42">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-11-09T18:40:22.9396098+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>45317</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="43">f8rche0c1kau~0-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="44">
+            <Content z:Id="45" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="46">
+                <_p z:Ref="44" i:nil="true" />
+                <d2p1:FullFilePath z:Id="47">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys\basicFunctionTest.can</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-11-09T11:30:47.8226813+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="40" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="48" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="49">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="50">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-11-09T18:48:14.1297125+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>141</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="51">qd39fkqmp7gg-TSV</d2p1:PersistencyKey>
+          <d2p1:Crc>650686418</d2p1:Crc>
+          <d2p1:SourceFile z:Id="52">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="53" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="49" i:nil="true" />
+          <d2p1:Extension z:Ref="50" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-09T18:48:15.2397014+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>3072</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="54">qd39fkqmp7gg#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="55">
+            <_p z:Ref="53" i:nil="true" />
+            <d2p1:FullFilePath z:Id="56">D:\Isaac\GWM CHB071 Ambient Light Control Module\obj_checkNewSys\qd39fkqmp7gg-TSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-11-09T18:48:14.1297125+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="57" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="49" i:nil="true" />
+          <d2p1:Extension z:Id="58">.vvarprop</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-11-09T18:52:21.9078323+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="59">v2pjl3gh6ish=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="17" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="60" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="61">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="62">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-12-11T14:18:21.3144674+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>54</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="63">v2pjl3gh6ish~3-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="64">
+            <Content z:Id="65" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="66">
+                <_p z:Ref="64" i:nil="true" />
+                <d2p1:FullFilePath z:Id="67">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys\checkNewSys.vtt</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-11-28T10:58:30.1410979+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="60" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="68" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="61" i:nil="true" />
+          <d2p1:Extension z:Ref="62" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-10T09:50:22.2475703+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>238620</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="69">qui3mucies0d-CSV</d2p1:PersistencyKey>
+          <d2p1:Crc>2510060257</d2p1:Crc>
+          <d2p1:SourceFile z:Id="70">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="71" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="61" i:nil="true" />
+          <d2p1:Extension z:Ref="62" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-10T09:50:23.2175703+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>473600</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="72">qui3mucies0d#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="73">
+            <_p z:Ref="71" i:nil="true" />
+            <d2p1:FullFilePath z:Id="74">D:\Isaac\GWM CHB071 Ambient Light Control Module\obj_checkNewSys\qui3mucies0d-CSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-11-10T09:50:22.2475703+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="75" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="17" i:nil="true" />
+          <d2p1:Extension z:Ref="62" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>0001-01-01T00:00:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>-1</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="76">cnk3hdvvp465#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription i:nil="true" />
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="77" z:Size="0" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="78" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="17" i:nil="true" />
+          <d2p1:Extension z:Id="79">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>0001-01-01T00:00:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>-1</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="80">jn7ddnhdkds7#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription i:nil="true" />
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="81" z:Size="0" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="82" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="83">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="84">.vparam</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-11-10T10:45:32.8373537+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>451</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="85">shvk711gfsov=PA</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="86">
+            <_p z:Ref="82" i:nil="true" />
+            <d2p1:FullFilePath z:Id="87">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys\paraFile.vparam</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-06-16T16:19:42.035505+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="88" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="89">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="90">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-12-11T14:18:21.3444671+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>35404</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="91">v2pjl3gh6ish~0-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="92">
+            <Content z:Id="93" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="94">
+                <_p z:Ref="92" i:nil="true" />
+                <d2p1:FullFilePath z:Id="95">D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys\basicFunctionTest.can</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-12-11T14:17:49.9947806+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="88" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+      </Content>
+      <_p z:Ref="2" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    </d2p1:FileSources>
+  </TempFileMetainfo>
+</TempFileMetainfo>

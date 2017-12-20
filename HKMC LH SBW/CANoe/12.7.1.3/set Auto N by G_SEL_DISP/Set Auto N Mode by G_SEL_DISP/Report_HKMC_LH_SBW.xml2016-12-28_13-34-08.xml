@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2016-12-28 13:31:46" timestamp="15678.359922" verdicts="2_basic">
+  <testunit starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+    <skippedsequence starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+      <title>Test preparation:Power supply initialization</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+      <title>11.5.1 P switch handling</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+      <title>11.6 Brake Input Handling</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+      <title>12.5.2 Sending Gear Position Pattern Sequence</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+      <title>12.6 Unlock Switch Handling</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+      <title>12.7.1.1 Door Open Auto P Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+      <title>12.7.1.2 Driver Seat Belt OFF Auto P</title>
+    </skippedfixture>
+    <testfixture>
+      <testcaselist>
+        <skippedcase starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+          <title>a. Set Auto N Mode (canSigTimeoutBool=1)</title>
+        </skippedcase>
+        <testcase starttime="2016-12-28 13:31:46" timestamp="15678.359922">
+          <teststep timestamp="15678.359922" level="0" type="user" ident="vehicleSpeedOutputValid" result="na">VS_TCU signal occurs valid value,WHL_SPD_FL whatever</teststep>
+          <teststep timestamp="15678.359922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU12 - successfully.</teststep>
+          <teststep timestamp="15678.359922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU12/VS_TCU&apos;.  Value: 0 </teststep>
+          <teststep timestamp="15678.409922" level="0" type="user" ident="VS_TCU status" result="na">VS_TCU =   0</teststep>
+          <teststep timestamp="15678.409922" level="2" type="user" ident="FaultInjection-function" result="pass">TestDisableMsg: Message WHL_SPD11 - successfully.</teststep>
+          <teststep timestamp="15678.409922" level="0" type="user" ident="WHL_SPD_FL status" result="na">WHL_SPD_FL = timeout</teststep>
+          <teststep timestamp="15680.409922" level="0" type="user" ident="Engine status" result="na">set engine running, ENG_STAT = 3</teststep>
+          <teststep timestamp="15680.409922" level="0" type="user" ident="IGN status" result="na">IGN ON, IGN voltage = 11.95v</teststep>
+          <teststep timestamp="15680.409922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15680.409922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15680.409922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15680.459922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15680.459922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15683.459922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15683.459922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15683.459922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15683.509922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15683.559922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 86,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15685.559922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15685.559922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15685.559922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 5 </teststep>
+          <teststep timestamp="15685.609922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  5</teststep>
+          <teststep timestamp="15685.609922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15687.609922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15687.609922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15687.609922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15687.659922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15687.659922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15689.659922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15689.659922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15689.659922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 5 </teststep>
+          <teststep timestamp="15689.709922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  5</teststep>
+          <teststep timestamp="15689.709922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15694.709922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15694.709922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15694.709922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15694.759922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15694.809922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 79,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15696.809922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15696.809922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15696.809922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 5 </teststep>
+          <teststep timestamp="15696.859922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  5</teststep>
+          <teststep timestamp="15696.859922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15697.859922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15697.859922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15697.859922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15697.909922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15697.909922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15699.909922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15699.909922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15699.909922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15699.959922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15699.959922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15701.959922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15701.959922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15701.959922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15702.009922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15702.059922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 96,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15704.059922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15704.059922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15704.059922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 5 </teststep>
+          <teststep timestamp="15704.109922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  5</teststep>
+          <teststep timestamp="15704.109922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15705.109922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15705.109922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15705.109922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15705.159922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15705.209922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 39,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15707.209922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15707.209922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15707.209922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15707.259922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15707.309922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 42,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15710.309922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15710.309922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15710.309922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15710.359922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15710.359922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15713.359922" level="0" type="user" ident="IGN status" result="na">IGN off, IGN voltage = 0.03v</teststep>
+          <teststep timestamp="15715.359922" level="0" type="user" ident="IGN status" result="na">IGN on, IGN voltage = 9.51v</teststep>
+          <teststep timestamp="15720.359922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15720.359922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15720.359922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15720.409922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15720.409922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15725.409922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15725.409922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15725.409922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15725.459922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15725.459922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15727.459922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15727.459922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15727.459922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 5 </teststep>
+          <teststep timestamp="15727.509922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  5</teststep>
+          <teststep timestamp="15727.559922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 15,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15730.559922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15730.559922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15730.559922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15730.609922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15730.609922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15732.609922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15732.609922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15732.609922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15732.659922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15732.709922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 57,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15736.709922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15736.709922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15736.709922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15736.759922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15736.759922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15738.759922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15738.759922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15738.759922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15738.809922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15738.809922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15743.809922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15743.809922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15743.809922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15743.859922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15743.859922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15745.859922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15745.859922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15745.859922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15745.909922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15745.959922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 43,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15750.959922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15750.959922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15750.959922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15751.009922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15751.059922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 78,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15753.059922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15753.059922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15753.059922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15753.109922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15753.159922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 61,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15758.159922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15758.159922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15758.159922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15758.209922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15758.259922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 63,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15760.259922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15760.259922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15760.259922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15760.309922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15760.309922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15764.309922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15764.309922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15764.309922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15764.359922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15764.359922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15767.359922" level="0" type="user" ident="IGN status" result="na">IGN off, IGN voltage = 1.99v</teststep>
+          <teststep timestamp="15769.359922" level="0" type="user" ident="IGN status" result="na">IGN on, IGN voltage = 7.46v</teststep>
+          <teststep timestamp="15774.359922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15774.359922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15774.359922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15774.409922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15774.459922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 61,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15775.459922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15775.459922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15775.459922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15775.509922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15775.509922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15777.509922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15777.509922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15777.509922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15777.559922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15777.609922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 61,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15780.609922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15780.609922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15780.609922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15780.659922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15780.709922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 57,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15782.709922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15782.709922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15782.709922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 5 </teststep>
+          <teststep timestamp="15782.759922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  5</teststep>
+          <teststep timestamp="15782.809922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 44,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15783.809922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15783.809922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15783.809922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15783.859922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15783.859922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15785.859922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15785.859922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15785.859922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15785.909922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15785.959922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 17,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15786.959922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15786.959922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15786.959922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15787.009922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15787.009922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15789.009922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15789.009922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15789.009922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 5 </teststep>
+          <teststep timestamp="15789.059922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  5</teststep>
+          <teststep timestamp="15789.109922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 49,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15791.109922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15791.109922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15791.109922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15791.159922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15791.159922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15793.159922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15793.159922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15793.159922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15793.209922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15793.259922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 44,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15794.259922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15794.259922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15794.259922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15794.309922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15794.309922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15796.309922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15796.309922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15796.309922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 8 </teststep>
+          <teststep timestamp="15796.359922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  8</teststep>
+          <teststep timestamp="15796.359922" level="0" type="user" ident="PWM status" result="na">PWM timeout,stim mode inactive</teststep>
+          <teststep timestamp="15799.359922" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is valid,PWM from TCU whatever</teststep>
+          <teststep timestamp="15799.359922" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="15799.359922" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/TCU11/G_SEL_DISP&apos;.  Value: 6 </teststep>
+          <teststep timestamp="15799.409922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP =  6</teststep>
+          <teststep timestamp="15799.459922" level="0" type="user" ident="PWM status" result="na">PWMOutputDC= 43,PWMOutputFreq = 100</teststep>
+          <teststep timestamp="15802.459922" level="0" type="user" ident="IGN status" result="na">IGN off, IGN voltage = 0.02v</teststep>
+          <teststep timestamp="15804.459922" level="0" type="user" ident="IGN status" result="na">IGN on, IGN voltage = 11.95v</teststep>
+          <teststep timestamp="15809.559922" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP = P = 0</teststep>
+          <teststep timestamp="15811.059922" level="0" type="user" ident="IGN status" result="na">IGN off, IGN voltage = 1.99v</teststep>
+          <teststep timestamp="15811.359922" level="0" type="user" ident="enter standby mode" result="na">CF_Gway_RKECmd = lock</teststep>
+          <teststep timestamp="15811.370730" level="0" type="user" ident="Login-Request Service" result="na">kostiaReq = 0x5f4c4154534f4b01</teststep>
+          <teststep timestamp="15811.370730" level="0" type="user" ident="login success" result="pass">kostiaResp = 0x5f4c4154534f4b01</teststep>
+          <teststep timestamp="15812.380728" level="0" type="user" ident="enter sleep mode" result="na">kostiaReq = 0x203</teststep>
+          <teststep timestamp="15812.380728" level="0" type="user" ident="enter sleep mode success" result="pass">kostiaResp = 0x203</teststep>
+          <teststep timestamp="15816.380728" level="0" type="user" ident="Current on Sleep Mode" result="fail">Consumption Current on Sleep Mode with Door Closed is larger than 0.1mA, sleep current = 90.1150mA</teststep>
+          <command timestamp="15816.380728" name="Wait">
+            <title>Wait</title>
+            <teststep timestamp="15819.380728" level="2" type="user" ident="1" result="na">Waited for 3.000 s</teststep>
+            <result timestamp="15819.380728" result="pass"/>
+          </command>
+          <teststep timestamp="15820.380728" level="0" type="user" ident="IGN status" result="na">IGN on, IGN voltage = 11.95v</teststep>
+          <verdict time="2016-12-28 13:34:04" timestamp="15816.380728" endtime="2016-12-28 13:34:08" endtimestamp="15820.380728" result="fail" />
+          <title>a. Set Auto N Mode (canSigTimeoutBool=0)</title>
+        </testcase>
+        <title>a. Set Auto N Mode</title>
+      </testcaselist>
+      <skippedtestcaselist starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+        <title>b. Test auto N mode after mode set</title>
+        <skippedcount>2</skippedcount>
+      </skippedtestcaselist>
+      <skippedcase starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+        <title>c. Mode Reset</title>
+      </skippedcase>
+      <skippedtestcaselist starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+        <title>d. Test auto N mode inactive after mode reset</title>
+        <skippedcount>2</skippedcount>
+      </skippedtestcaselist>
+      <title>12.7.1.3 Auto N Mode</title>
+    </testfixture>
+    <skippedfixture starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>13 Illumination Control</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>15.3.1 PRA Logic: IG ON Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>15.3.2 PRA Logic: IG OFF Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>15.3.3 Gear N IG OFF Mode</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>15.3.4 N Park Mode</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>15.3.5 Manual Release Function</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>15.3.6 TCU Eol Complete</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>15.3.7 Limp-Home function</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>15.3.8 PRA Disable Voltage</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>try</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>Test Sequence</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>confirm PRA position</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>Test completion:shutdown the power</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>try ig on</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 13:34:08" timestamp="15820.380728">
+      <title>try DTC</title>
+    </skippedsequence>
+    <verdict time="2016-12-28 13:34:04" timestamp="15816.380728" endtime="2016-12-28 13:34:08" endtimestamp="15820.380728" result="fail" />
+    <title>HKMC LH SBW</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>HKMC LH SBW</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\HKMC LH SBW\HKMC LH SBW.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2016-12-27, 17:02:10</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2016-12-28 13:34:04" timestamp="15816.380728" endtime="2016-12-28 13:34:08" endtimestamp="15820.380728" result="fail" />
+  <title>HKMC_LH_SBW</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>chen106</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 8.5.112 (SP6)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\HKMC_LH_SBW.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>HKMC_LH_SBW</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANoeILNLVector</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANoeILNLVector.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLDEFAULT</name>
+      <description>CANoe Interaction Layer NL (Default) Version 3.16.30 (Mar 17 2016 15:53:01) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLDEFAULT.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 8.5.112, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="channel">
+          <name>Channel</name>
+          <description>1</description>
+        </xinfo>
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VN1630</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>501043</description>
+        </xinfo>
+        <xinfo key="driverdllversion">
+          <name>Driver DLL version</name>
+          <description>9.2.22</description>
+        </xinfo>
+        <xinfo key="driverversion">
+          <name>Driver version</name>
+          <description>8.9.22</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT8012</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>1031</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>0.0.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>452</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>450</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>448</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>449</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>331</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>348</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>329</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>339</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>174</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>234</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>210</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT7001A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>267</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.0.5</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+</testreport>
+<!--footprint="f80090a4bbb719747e602745746dfce5" version="1"-->

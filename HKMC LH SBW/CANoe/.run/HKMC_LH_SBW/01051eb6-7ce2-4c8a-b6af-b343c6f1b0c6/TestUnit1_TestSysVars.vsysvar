@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment=""><namespace name="HKMC_LH_SBW" comment=""><namespace name="TestUnit1" comment="">
+    <namespace name="LedSystem" comment="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="Stimulation" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" />
+    </namespace>
+  </namespace></namespace></namespace>
+</systemvariables>

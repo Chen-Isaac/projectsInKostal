@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>VTS INIT</title>
+      <comment>
+        <title>Initialize VT system,make power supply voltage output equals 12V, current not over 30A.</title>
+      </comment>
+      <caplinline>
+        <title />
+        <active>true</active>
+        <code>sysvar::VTS::M12_VT7001.SetInterconnectionMode(1);
+sysvar::VTS::M12_Sup1.SetRefVoltageMode(1);
+//sysvar::VTS::M12_Sup1.SetRefVoltageMode(mode, 1);
+@sysvar::VTS::M12_Sup1::RefVoltage = 1;
+sysvar::VTS::M12_Sup1.SetMaxCurrentMode(1);
+// sysvar::VTS::M12_Sup1.SetMaxCurrentMode(mode, 1);
+@sysvar::VTS::M12_Sup1::MaxCurrent = 2.5;
+sysvar::VTS::M12_Out1.ResetMinMax();
+sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(4);
+@sysvar::VTS::M12_Out1::Active = 1;</code>
+      </caplinline>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>100</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title />
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <lt>
+              <const>0.1</const>
+            </lt>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgVoltage|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>11</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+    </ts>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

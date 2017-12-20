@@ -1,0 +1,140 @@
+/*-----------------------------------------------------------CANoe Start(do not change!)-------------------------------------------------------------*/													
+    SBW_ERROR_INIT = 0,                                         /*   0 Dummy          : -                                                            */													
+/*----- BusCommMgr ----------------------------------------------------------------------------------------------------------------------------------*/													
+    CAN_Bus_off,                                                /*   1 BusCommMgr     : CAN-Bus-off condition                                        */													
+    CAN_Bus_NoAck,                                              /*   2 BusCommMgr     : CAN-Bus NoAck condition                                      */													
+    CAN_Signal_Timeout_GarSelDisp,                              /*   3 BusCommMgr     : Signal CF_Vcu_GarSelDisp timeout                             */													
+    CAN_Signal_Timeout_IGNSw,                                   /*   4 BusCommMgr     : Signal CF_Gway_IGNSw timeout                                 */													
+    CAN_Signal_Timeout_RKECmd,                                  /*   5 BusCommMgr     : Signal CF_Gway_RKECmd timeout                                */													
+    CAN_Signal_Timeout_DetentOut,                               /*   6 BusCommMgr     : Signal CF_GWAY_Detentout timeout                             */													
+    CAN_Signal_Timeout_RheostatLevel,                           /*   7 BusCommMgr     : Signal CF_Clu_RheostatLevel timeout                          */													
+    CAN_Signal_Timeout_LightSwState,                            /*   8 BusCommMgr     : Signal CF_Gway_LightSwState timeout                          */													
+    CAN_Signal_Timeout_DrvDrSw,                                 /*   9 BusCommMgr     : Signal CF_Gway_DrvDrSw timeout                               */													
+    CAN_Signal_Timeout_EvRdy,                                   /*  10 BusCommMgr     : Signal CF_Vcu_EvRdy timeout                                  */													
+    CAN_Signal_Timeout_SmkRkeCmd,                               /*  11 BusCommMgr     : Signal CF_Gway_SMKRKECmd timeout                             */													
+    CAN_Signal_Timeout_IntTailAct,                              /*  12 BusCommMgr     : CAN_Signal_Timeout_IntTailAct timeout                        */													
+    CAN_CRC_Incorrect,                                          /*  13 BusCommMgr     : CRC of BusCommMgr data not correct                           */													
+/*----- FaultMgr ------------------------------------------------------------------------------------------------------------------------------------*/													
+    FM_FaultStorageCorrupted,                                   /*  14 FaultMgr       : Fault Manager detected corrupted DTC slots in shadow         */													
+    FM_DTCStorageCorrupted,                                     /*  15 FaultMgr       : Custome DTC Fault Manager detected corrupted DTC shadow      */													
+    FM_CDBTimeout,                                              /*  16 FaultMgr       : Fault Manager coding shadow EEPROM could not be loaded       */													
+    FM_SPTimeout,                                               /*  17 FaultMgr       : Fault Manager history could not be loaded                    */													
+/*----- Volt ----------------------------------------------------------------------------------------------------------------------------------------*/													
+    Volt_Vbat_OverVoltage,                                      /*  18 Volt           : Vbat over 17.8V                                              */													
+    Volt_Vbat_UnderVoltage,                                     /*  19 Volt           : Vbat under 6.2V                                              */													
+    Volt_Diag_OverVoltage,                                      /*  20 Volt           : Vbat over 17.8V                                              */													
+    Volt_Diag_UnderVoltage,                                     /*  21 Volt           : Vbat under 6.2V                                              */													
+    PWR_Startup_CRC_EEPROM,                                     /*  22 Volt           : crc wrong                                                    */													
+    PWR_Startup_Timeout_EEPROM,                                 /*  23 Volt           : no complete boot                                             */													
+    Volt_KL30_UnderVoltage,                                     /*  24 Volt           : kl30 is open                                                 */													
+/*----- VoltIf --------------------------------------------------------------------------------------------------------------------------------------*/													
+    VoltIf_CRC_Incorrect,                                       /*  25 VoltIf         : CRC of VoltIf data not correct                               */													
+/*----- DetentDet -----------------------------------------------------------------------------------------------------------------------------------*/													
+    DetentDet_CRC_Incorrect,                                    /*  26 DetentDet      : CRC of DetentDet data not correct                            */													
+/*----- SystemCheck ---------------------------------------------------------------------------------------------------------------------------------*/													
+    SYS_Failure_UnknownWakeupReason,                            /*  27 SystemCheck    : ROM Fault Detected                                           */													
+    SYS_Failure_ROM_Main,                                       /*  28 SystemCheck    : ROM Fault Detected                                           */													
+    SYS_Failure_RAM_Main,                                       /*  29 SystemCheck    : RAM Failure                                                  */													
+    SYS_Failure_CoreTest_Main,                                  /*  30 SystemCheck    : Core Test Failure                                            */													
+    SYS_Failure_WD_Main,                                        /*  31 SystemCheck    : WatchDog Failure                                             */													
+    SYS_Failure_AD_Diag,                                        /*  32 SystemCheck    : AD module Failure                                            */													
+    SYS_Stack_Overflow_Reset_Main,                              /*  33 SystemCheck    : Stack overflow caused reset                                  */													
+    SYS_Stack_Check_Warning_Main,                               /*  34 SystemCheck    : Stack usage above the alert level                            */													
+    SYS_SVariableCorrupted_Main,                                /*  35 SystemCheck    : Corruption in security variable detected                     */													
+    SYS_Task_Timeslot_SYS5MS,                                   /*  36 SystemCheck    : Task COMBI has exceeded timeslot                             */													
+    SYS_Task_Timeslot_SYS10MS,                                  /*  37 SystemCheck    : Task COMBI has exceeded timeslot                             */													
+    SYS_Task_Timeslot_ILL10MS,                                  /*  38 SystemCheck    : Task COMBI has exceeded timeslot                             */													
+/*----- VariantMgr ----------------------------------------------------------------------------------------------------------------------------------*/													
+    VarM_VariantsStorageCorrupted,                              /*  39 VariantMgr     : Variant manager can not pass the safe ram strategy           */													
+/*----- VersMgr -------------------------------------------------------------------------------------------------------------------------------------*/													
+    VersM_SWIndexMainEepIncompatible,                           /*  40 VersMgr        : The EEPROM Version does not fit with the Main                */													
+    VersM_SWIndexMainFblIncompatible,                           /*  41 VersMgr        : The FBL Version does not fit with the Main                   */													
+/*----- IllumationMgr -------------------------------------------------------------------------------------------------------------------------------*/													
+    ILM_LED_Indicator_P,                                        /*  42 IllumationMgr  : P LED Readback Error                                         */													
+    ILM_LED_Indicator_R,                                        /*  43 IllumationMgr  : R LED Readback Error                                         */													
+    ILM_LED_Indicator_N,                                        /*  44 IllumationMgr  : N LED Readback Error                                         */													
+    ILM_LED_Indicator_D,                                        /*  45 IllumationMgr  : D LED Readback Error                                         */													
+    ILM_CRC_Incorrect,                                          /*  46 IllumationMgr  : CRC of IllumationMgr data not correct                        */													
+/*----- BtnPosDet -----------------------------------------------------------------------------------------------------------------------------------*/													
+    BPD_Button_AD_ERROR_P,                                      /*  47 BtnPosDet      : P Button AD input Error                                      */													
+    BPD_Button_AD_ERROR_R,                                      /*  48 BtnPosDet      : R Button AD input Error                                      */													
+    BPD_Button_AD_ERROR_N,                                      /*  49 BtnPosDet      : N Button AD input Error                                      */													
+    BPD_Button_AD_ERROR_D,                                      /*  50 BtnPosDet      : D Button AD input Error                                      */													
+    BPD_Button_AD_ERROR_PR,                                     /*  51 BtnPosDet      : PR Button AD input Error                                     */													
+    BPD_Button_AD_P_Contact_1,                                  /*  52 BtnPosDet      : P Button Contact 1 AD input Error                            */													
+    BPD_Button_AD_P_Contact_2,                                  /*  53 BtnPosDet      : P Button Contact 2 AD input Error                            */													
+    BPD_Button_AD_P_Contact_3,                                  /*  54 BtnPosDet      : P Button Contact 3 AD input Error                            */													
+    BPD_Button_AD_R_Contact_1,                                  /*  55 BtnPosDet      : R Button Contact 1 AD input Error                            */													
+    BPD_Button_AD_R_Contact_2,                                  /*  56 BtnPosDet      : R Button Contact 2 AD input Error                            */													
+    BPD_Button_AD_R_Contact_3,                                  /*  57 BtnPosDet      : R Button Contact 3 AD input Error                            */													
+    BPD_Button_AD_N_Contact_1,                                  /*  58 BtnPosDet      : N Button Contact 1 AD input Error                            */													
+    BPD_Button_AD_N_Contact_2,                                  /*  59 BtnPosDet      : N Button Contact 2 AD input Error                            */													
+    BPD_Button_AD_N_Contact_3,                                  /*  60 BtnPosDet      : N Button Contact 3 AD input Error                            */													
+    BPD_Button_AD_D_Contact_1,                                  /*  61 BtnPosDet      : D Button Contact 1 AD input Error                            */													
+    BPD_Button_AD_D_Contact_2,                                  /*  62 BtnPosDet      : D Button Contact 2 AD input Error                            */													
+    BPD_Button_AD_D_Contact_3,                                  /*  63 BtnPosDet      : D Button Contact 3 AD input Error                            */													
+    BPD_Button_AD_PR_Contact_1,                                 /*  64 BtnPosDet      : PR Button Contact 1 AD input Error                           */													
+    BPD_Button_AD_PR_Contact_2,                                 /*  65 BtnPosDet      : PR Button Contact 2 AD input Error                           */													
+    BPD_Button_AD_ContactStuck_P,                               /*  66 BtnPosDet      : P Button Contact Stuck Error                                 */													
+    BPD_Button_AD_ContactStuck_R,                               /*  67 BtnPosDet      : R Button Contact Stuck Error                                 */													
+    BPD_Button_AD_ContactStuck_N,                               /*  68 BtnPosDet      : N Button Contact Stuck Error                                 */													
+    BPD_Button_AD_ContactStuck_D,                               /*  69 BtnPosDet      : D Button Contact Stuck Error                                 */													
+    BPD_Button_P_Fault,                                         /*  70 BtnPosDet      : P Button all 3 contact fault                                 */													
+    BPD_Button_R_Fault,                                         /*  71 BtnPosDet      : R Button all 3 contact fault                                 */													
+    BPD_Button_N_Fault,                                         /*  72 BtnPosDet      : N Button all 3 contact fault                                 */													
+    BPD_Button_D_Fault,                                         /*  73 BtnPosDet      : D Button all 3 contact fault                                 */													
+    BPD_Button_PR_Fault,                                        /*  74 BtnPosDet      : PR Button all 2 contact fault                                */													
+    BPD_Button_AD_P_Contact_FAULT_1,                            /*  75 BtnPosDet      : P Button Contact 1 Contact cnt over 10                       */													
+    BPD_Button_AD_P_Contact_FAULT_2,                            /*  76 BtnPosDet      : P Button Contact 2 Contact cnt over 10                       */													
+    BPD_Button_AD_P_Contact_FAULT_3,                            /*  77 BtnPosDet      : P Button Contact 3 Contact cnt over 10                       */													
+    BPD_Button_AD_R_Contact_FAULT_1,                            /*  78 BtnPosDet      : R Button Contact 1 Contact cnt over 10                       */													
+    BPD_Button_AD_R_Contact_FAULT_2,                            /*  79 BtnPosDet      : R Button Contact 2 Contact cnt over 10                       */													
+    BPD_Button_AD_R_Contact_FAULT_3,                            /*  80 BtnPosDet      : R Button Contact 3 Contact cnt over 10                       */													
+    BPD_Button_AD_N_Contact_FAULT_1,                            /*  81 BtnPosDet      : N Button Contact 1 Contact cnt over 10                       */													
+    BPD_Button_AD_N_Contact_FAULT_2,                            /*  82 BtnPosDet      : N Button Contact 2 Contact cnt over 10                       */													
+    BPD_Button_AD_N_Contact_FAULT_3,                            /*  83 BtnPosDet      : N Button Contact 3 Contact cnt over 10                       */													
+    BPD_Button_AD_D_Contact_FAULT_1,                            /*  84 BtnPosDet      : D Button Contact 1 Contact cnt over 10                       */													
+    BPD_Button_AD_D_Contact_FAULT_2,                            /*  85 BtnPosDet      : D Button Contact 2 Contact cnt over 10                       */													
+    BPD_Button_AD_D_Contact_FAULT_3,                            /*  86 BtnPosDet      : D Button Contact 3 Contact cnt over 10                       */													
+    BPD_Button_P_Stuck,                                         /*  87 BtnPosDet      : P Button Stuck                                               */													
+    BPD_Button_R_Stuck,                                         /*  88 BtnPosDet      : R Button Stuck                                               */													
+    BPD_Button_N_Stuck,                                         /*  89 BtnPosDet      : N Button Stuck                                               */													
+    BPD_Button_D_Stuck,                                         /*  90 BtnPosDet      : D Button Stuck                                               */													
+    BPD_Button_PR_Stuck,                                        /*  91 BtnPosDet      : PR Button Stuck                                              */													
+    BPD_CRC_Incorrect,                                          /*  92 BtnPosDet      : CRC of BtnPosDet data not correct                            */													
+/*----- PwrSigMgr -----------------------------------------------------------------------------------------------------------------------------------*/													
+    AD_convert_Error,                                           /*  93 PwrSigMgr      : ADC mcall convert error                                      */													
+/*----- NVM -----------------------------------------------------------------------------------------------------------------------------------------*/													
+    NVM_Timestamp_Corrupt,                                      /*  94 NVM            : NVM_Timestamp_Corrupt                                        */													
+    NVM_Req_Failed,                                             /*  95 NVM            : NVM_Req_Failed                                               */													
+    NVM_Integrity_Failed,                                       /*  96 NVM            : NVM_Integrity_Failed                                         */													
+    NVM_Init_Timeout,                                           /*  97 NVM            : Nvm init. Timeout                                            */													
+    NVM_Write_Timeout_BeforeSleep,                              /*  98 NVM            : Nvm write timeout before sleep                               */													
+/*----- SBC -----------------------------------------------------------------------------------------------------------------------------------------*/													
+    SYS_SBC_DEVELOPMENT_MODE,                                   /*  99 SBC            : SBC being into development without any fail safe protection  */													
+    SYS_SBC_VS_UV,                                              /* 100 SBC            : SBC power supply is lower than 5.3 V                         */													
+    SYS_SBC_TPW,                                                /* 101 SBC            : SBC thermal shutdown due to temperature  over 125 degrees    */													
+    SYS_SBC_SPI_FAIL,                                           /* 102 SBC            : SBC SPI communication using wrong commands                   */													
+    SYS_SBC_SPI_COM_FAIL,                                       /* 103 SBC            : SBC SPI communication bits error                             */													
+    SYS_SBC_VCAN_UV,                                            /* 104 SBC            : SBC CAN module power supply voltage is lower than 4.75V      */													
+    SYS_SBC_CAN_FAIL_TSD,                                       /* 105 SBC            : SBC CAN driver  temperature over 125 degrees                 */													
+    SYS_SBC_CAN_FAIL_TXD_DOM,                                   /* 106 SBC            : SBC CAN module Txd pin interferenced by noise                */													
+    SYS_SBC_CAN_FAIL_BUS_DOM,                                   /* 107 SBC            : SBC CAN bus dominant interferenced by noise                  */													
+    SYS_SBC_VSHS_OV,                                            /* 108 SBC            : SBC high sider driver output voltage is over than 20V        */													
+    SYS_SBC_VSHS_UV,                                            /* 109 SBC            : SBC high sider driver output voltage is lower than 4.8V      */													
+    SYS_SBC_TSD1,                                               /* 110 SBC            : SBC high sider driver over temperature level 1 is detected   */													
+    SYS_SBC_TSD2,                                               /* 111 SBC            : SBC high sider driver over temperature level 2 is detected   */													
+    SYS_SBC_HS1_OC_OT,                                          /* 112 SBC            : SBC high sider driver over temperature and current           */													
+    SYS_SBC_HS1_OL,                                             /* 113 SBC            : SBC high sider driver output circuit open load               */													
+    SYS_SBC_VCC1_OV,                                            /* 114 SBC            : SBC VCC1 output voltage is over than 5.2V                    */													
+    SYS_SBC_VCC1_UV,                                            /* 115 SBC            : SBC VCC1 output voltage is lower than 4.5V                   */													
+    SYS_SBC_VCC1_WARN,                                          /* 116 SBC            : SBC previous warning when output voltage is lower than 4.5V  */													
+    SYS_SBC_VCC1_UV_FS,                                         /* 117 SBC            : SBC enter Fail safe mode due to 4th VCC1 under voltage       */													
+    SYS_SBC_VCC1_SC,                                            /* 118 SBC            : SBC VCC1 output short to ground                              */													
+    SYS_FAILURE_ABNORMAL_SHUTDOWN,                              /* 119 SBC            : The ECU is power off before going sleep                      */													
+    SYS_FAILURE_UNUSED_INTERRUPT,                               /* 120 SBC            : unused interrupt service triggered                           */													
+/*----- PWMIN ---------------------------------------------------------------------------------------------------------------------------------------*/
+    PWMIN_FREQ_FAILURE,                               		/* 121 PWMIN          : PWM IN signal frequency fault                          	     */
+    PWMIN_DUTY_FAILURE,                               		/* 122 PWMIN          : PWM IN signal duty fault                          	     */
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/													
+    FMLastErrorKind                                             /* 123                : CAUTION MUST ALWAYS BE THE LAST ENTRY, SO KEEP IT AS IT IS ! */													

@@ -1,0 +1,637 @@
+﻿/* !Encoding: 65001  */
+// Generated with version 2.1.45.0
+variables
+{
+  // global general purpose buffers
+  char _ttg_B[2000];
+  char _ttg_Z[2000];
+  char _ttg_BR[2000];
+  long _ttg_verdict;
+  long _ttg_Re;
+  long _ttg_TestActionFailCnt;
+  long _ttg_TestStepInitOk;
+  int64 _ttg_I64;
+  double _ttg_Double;
+  dword _ttg_gBusContextNew = 0;
+  dword _ttg_gBusContextOld = 0;
+  int64 _ttg_gBusContextOk = 0;
+  // enums
+  enum EVerdBOF
+  {
+    EVerdBOF_None = 0,
+    EVerdBOF_TC = 1,
+    EVerdBOF_TS = 2
+  }
+  ;
+  // FlexRay configuration
+  FRConfiguration _ttg_gFRConfiguration;
+  long _ttg_gFRNumberOfStaticSlots[32];
+  long _ttg_gFRPayloadLengthStatic[32];
+  // globals for user defined variables
+  // global declarations
+}
+void _fct_Wait(char step[], int64 timeInNs, int64 unitInNs, char valueSymbol[])
+{
+  char b[400];
+  double timeValueByUnit;
+
+  timeValueByUnit = (double)timeInNs / (double)unitInNs;
+
+  if(unitInNs == 1LL)
+  {
+    if(valueSymbol[0] == 0)
+      snprintf(b, elcount(b), "%I64d ns", timeInNs);
+    else
+      snprintf(b, elcount(b), "%I64d (%s) ns", timeInNs, valueSymbol);
+  }
+  else if(unitInNs == 1000LL)
+  {
+    if(valueSymbol[0] == 0)
+      snprintf(b, elcount(b), "%.3f us", timeValueByUnit);
+    else
+      snprintf(b, elcount(b), "%.3f (%s) us", timeValueByUnit, valueSymbol);
+  }
+  else if(unitInNs == 1000000LL)
+  {
+    if(valueSymbol[0] == 0)
+      snprintf(b, elcount(b), "%.3f ms", timeValueByUnit);
+    else
+      snprintf(b, elcount(b), "%.3f (%s) ms", timeValueByUnit, valueSymbol);
+  }
+  else if(unitInNs == 1000000000LL)
+  {
+    if(valueSymbol[0] == 0)
+      snprintf(b, elcount(b), "%.3f s", timeValueByUnit);
+    else
+      snprintf(b, elcount(b), "%.3f (%s) s", timeValueByUnit, valueSymbol);
+  }
+  else
+    testStepErrorInTestSystem(0, step, "Internal error: invalid time unit: %I64d", unitInNs);
+
+  if(timeInNs > 0)
+  {
+    if(0 == testWaitForTimeoutNS(timeInNs))
+      testStepEndWait(2, step, "Waited for %s", b);
+    else
+      testStepErrorInTestSystem(0, step, "Waited for %s", b);
+  }
+  else if(timeInNs  == 0)
+  {
+    // do not wait
+    testStepEndWait(2, step, "Waited for %s", b);
+  }
+  else
+  {
+    testStepErrorInTestSystem(0, step, "Unable to wait for %s. Please check input parameter.", b);
+  }
+}
+
+void _fct_CommandVerdict(long verdict)
+{
+  if(_ttg_verdict == 1) // failed
+    return; // setting verdict from 'failed' to 'pass' is not possible
+  _ttg_verdict = verdict;
+}
+
+int _fct_DoStop(enum EVerdBOF verdictSource, int doBreakOnFail)
+{
+  long verdict;
+
+  switch (verdictSource)
+  {
+    case EVerdBOF_TC: verdict = TestGetVerdictLastTestCase(); break;
+    case EVerdBOF_TS: verdict = TestGetVerdictLastTestSequence(); break;
+    default: verdict = 0; break; // Note: error in test system will only be checked inside TS/TC body
+  }
+
+  if (doBreakOnFail && verdict == 1 /*fail*/ && !testIsBreakOnFailDeactivated())
+    return 1; // stop execution because current verdict is 'Fail'
+
+  if (testIsStopRequested() /*user pressed stop button*/ || verdict == 4 /*error in testsystem*/)
+    return 1; // stop execution
+
+  return 0;
+}
+
+int _fct_LoopIsBlocking()
+{ 
+  // works for nested loops, too
+  dword timeLoopNow, timeLoopOld, cntTimeEqual;
+  timeLoopNow = timeNow();
+  if(timeLoopNow > timeLoopOld)
+  {
+    cntTimeEqual = 0;
+  }
+  else
+  {
+    ++cntTimeEqual;
+    if(cntTimeEqual >= 1000)
+    {
+      // busy loop detected
+      testStepErrorInTestSystem(0, "", "Blocking loop detected. Aborted after 1000 cycles have been performed at the same time.");
+      return 1;
+    }
+  }
+  timeLoopOld = timeLoopNow;
+  return 0;
+}
+
+void _fct_CallTsTc(char function[], dword fType, dword isExported, char title[])
+{
+  CreateTTEIFFunction(function, fType, isExported);
+  CallInterfaceFunction(title,"");
+}
+
+void _fct_TestControlStructEnd(long count)
+{
+  // call TestControlStructEnd count times to close report scope in nested ifs
+  long i;
+  for(i = 0; i < count; ++i)
+    TestControlStructEnd(_ttg_verdict);
+}
+
+void _fct_ConditionTableHead(char inCondition[], int bCondition)
+{
+  char localBuf[2048];
+
+  snprintf(localBuf, elCount(localBuf), "%s: ", inCondition);
+  if(bCondition)
+    strncat(localBuf, "true", elCount(localBuf));
+  else
+    strncat(localBuf, "false", elCount(localBuf));
+
+  _fct_TiTableHeadExpectedEx(localBuf);
+}
+
+int _fct_DoElseIf(int bDone)
+{
+  if(bDone)
+  {
+    testStep(0, "", "Previous condition matched, skipping block.");
+    return 0;
+  }
+  return 1;
+}
+
+int _fct_DoElse(int bDone)
+{
+  if(bDone)
+  {
+    testStep(0, "", "Previous condition matched, skipping block.");
+    return 0;
+  }
+  else
+  {
+    testStep(0, "", "No condition matched, executing 'else' block.");
+    return 1;
+  }
+}
+
+// compare byte sequences - returns:
+// == 0 if byte sequences match 
+// != 0 otherwise
+long _fct_CompareBytes(byte leftSide[], long leftSideCnt, byte rightSide[], long rightSideCnt)
+{
+  DWORD i;
+
+  if (leftSideCnt > elCount(leftSide) || rightSideCnt > elCount(rightSide))
+  {
+    testStepErrorInTestSystem("_fct_CompareBytes: The buffer itself is not large enough, this should not happen!");
+    return -1;
+  }
+
+  if (leftSideCnt != rightSideCnt)
+    return leftSideCnt - rightSideCnt;
+
+  for (i = 0; i < leftSideCnt; i++)
+  {
+    if (leftSide[i] != rightSide[i])
+      return leftSide[i] - rightSide[i];
+  }
+
+  return 0; // sequences match
+}
+
+long _fct_AssignBytes(byte destination[], long destCnt, byte source[], long sourceCnt)
+{
+  long count;
+  count = _min(destCnt, sourceCnt);
+  memcpy(destination, source, count);
+  return count;
+}
+
+// Note EVAL00136179: convert 32 bit system variables to 64 bit values (value coherence for signed64/unsigned64 CAPL function overloads)
+int64 _SVC(sysvarInt *svi)
+{
+  dword _32BitUs;
+  
+  // Note: if we have a unsigned 32 bit sysvar, we need to convert it to a unsigned 32 bit integer first,
+  // before converting to 64 bit signed integer. Otherwise CAPL will interpret the SV value as signed and extend it to 64 bit,
+  // which will result in wrong values (above 2^31).
+  if (!IsSVSigned(svi))
+  {
+    _32BitUs = @svi;
+    return (int64)_32BitUs;
+  }
+  
+  return (int64)@svi;
+}
+
+void _fct_TiTableHeadInit()
+{
+  _ttg_TestActionFailCnt = 0;
+}
+
+void _fct_TiTableHead2Columns(char caption[], char c1[], char c2[])
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable(caption);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell(c1);
+  _fct_TiCell(c2);
+  testInfoHeadingEnd(_ttg_Re);
+}
+
+void _fct_TiTableHead3Columns(char caption[], char c1[], char c2[], char c3[])
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable(caption);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell(c1);
+  _fct_TiCell(c2);
+  _fct_TiCell(c3);
+  testInfoHeadingEnd(_ttg_Re);
+}
+
+void _fct_TiTableHeadAssignment()
+{
+  _fct_TiTableHead3Columns("Stimulation of values", "Symbol", "Op.", "Assigned");
+}
+
+void _fct_TiTableHeadAssignmentEx(char caption[])
+{
+  _fct_TiTableHead3Columns(caption, "Symbol", "Op.", "Assigned");
+}
+
+void _fct_TiTableHeadSetVariables()
+{
+  _fct_TiTableHead3Columns("Setting variable values", "Variable", "Op.", "Assigned");
+}
+
+void _fct_TiTableHeadSend(char msgDesc[])
+{
+  char b[256];
+  snprintf(b, elcount(b), "Send %s", msgDesc);
+  _fct_TiTableHead3Columns(b, "Signal/Byte", "Op.", "Assigned");
+}
+
+void _fct_TiTableFunctionCallReturnValue(char callSig[])
+{
+  char localBuf[256];
+  snprintf(localBuf, elCount(localBuf), "Function call: %s", callSig);
+  _fct_TiTableHead3Columns(localBuf, "Symbol", "Op.", "Return Value");
+}
+
+void _fct_TiTableWaveformStimulus()
+{
+  _fct_TiTableHead2Columns("Stimulation of values with waveform curves", "Symbol", "Stimulated with curve");
+}
+
+void _fct_TiTableHeadReport(char userText[])
+{
+  _fct_TiTableHead2Columns(userText, "Symbol", "Value");
+}
+
+void _fct_TiTableHeadAwaitSigAv(char text[])
+{
+  _fct_TiTableHead3Columns(text, "Signal/Node", "State", "Result");
+}
+void _fct_TiSignalsAvRow(long indent, long eventId, char reportIdent[]/*, Signal *s*/)
+{
+  _fct_TiRow(indent, reportIdent);
+
+  if (eventId >= 0)
+  {
+    if (eventId == 0) // already on bus
+    {
+      _fct_TiCell("already online");
+      _fct_TiCellResult(1);
+    }
+    else
+    {
+      int64 time;
+      long occurred;
+      occurred = testGetJoinedEventOccured(eventId, time);
+      if (occurred)
+        _fct_TiCell("online");
+      else
+        _fct_TiCell("not online yet");
+      _fct_TiCellResult(occurred);
+    }
+  }
+  else
+  { // note: this is a test environment error ...
+    _fct_TiCell("-");
+    _fct_TiCellResult(0);
+  }
+}
+
+void _fct_TiTableHeadExpected()
+{
+  _fct_TiTableHeadExpectedEx("Check of expected values");
+}
+
+void _fct_TiTableHeadExpectedEx(char title[])
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable(title);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Symbol");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Reference Value");
+  _fct_TiCell("Actual");
+  _fct_TiCell("Result");
+  testInfoHeadingEnd(_ttg_Re);
+}
+
+void _fct_TiTableHeadExpectedDtcAv(char caption[])
+{
+  //_fct_TiTableHead3Columns(title, "Symbol", "Status", "Result");
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable(caption);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Symbol");
+  _fct_TiCell("Status");
+  _fct_TiCell("Expected");
+  _fct_TiCell("Result");
+  testInfoHeadingEnd(_ttg_Re);
+}
+void _fct_TiTableRowExpectedDtcAv(int64 dtc, char dtcSymIdent[], int bSupported)
+{
+  long status;
+
+  snprintf(_ttg_BR, elCount(_ttg_BR), "DTC 0x%I64X%s", dtc, dtcSymIdent);
+  status = DiagGetDtcStatus(dtc);
+
+  // symbol
+  _fct_TiRow(0, _ttg_BR);
+
+  // status
+  if (status >= 0)
+    _fct_TiCell("supported");
+  else
+    _fct_TiCell("unsupported");
+
+  // expected result
+  if (bSupported)
+  {
+    _fct_TiCell("supported");
+    _fct_TiCellResult(status >= 0);
+  }
+  else
+  {
+    _fct_TiCell("unsupported");
+    _fct_TiCellResult(status < 0);
+  }
+}
+
+void _fct_TiTableHeadResponse(char msgDesc[], int numReceived)
+{
+  char b[200];
+  _fct_TiTableHeadInit();
+  if (numReceived == -1)
+    snprintf(b, elcount(b), "Response of %s", msgDesc); // maybe received after x MS?
+  else
+    snprintf(b, elcount(b), "Response of %s (received %d times)", msgDesc, numReceived);
+  _ttg_Re = testInfoTable(b);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Signal/Byte");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Reference Value");
+  if (numReceived == -1)
+    _fct_TiCell("Actual");
+  else
+    _fct_TiCell("Last Received");
+  _fct_TiCell("Result");
+  testInfoHeadingEnd(_ttg_Re);
+}
+
+void _fct_TiCell(char text[])
+{
+  testInfoCell(_ttg_Re, text);
+}
+
+void _fct_TiCellResult(long condition)
+{
+  if(condition)
+    _fct_TiCell("pass");
+  else
+  {
+    _fct_TiCell("fail");
+    ++_ttg_TestActionFailCnt;
+  }
+}
+
+void _fct_TiCellResultTrueFalse(long condition)
+{
+  if(condition)
+    _fct_TiCell("true");
+  else
+  {
+    _fct_TiCell("false");
+    ++_ttg_TestActionFailCnt;
+  }
+}
+
+void _fct_TiCell(int64 value)
+{
+  _fct_TiIntCell(value);
+}
+void _fct_TiIntCell(int64 value)
+{
+  snprintf(_ttg_BR, elcount(_ttg_BR), "%I64d", value);
+  _fct_TiCell(_ttg_BR);
+}
+void _fct_TiUIntCell(qword value)
+{
+  snprintf(_ttg_BR, elcount(_ttg_BR), "%I64u", value);
+  _fct_TiCell(_ttg_BR);
+}
+
+void _fct_TiCell(double value)
+{
+  _fct_TiFloatCell(value);
+}
+void _fct_TiFloatCell(double value)
+{
+  snprintf(_ttg_BR, elcount(_ttg_BR), "%.15g", value);
+  _fct_TiCell(_ttg_BR);
+}
+
+void _fct_TiRow(long indent, char firstCellContent[])
+{
+  testInfoRow(_ttg_Re, indent, firstCellContent);
+}
+
+void _fct_TiWriteByteX(int64 idx, char valueSymbol[], char nameOut[])
+{
+  if(valueSymbol[0] == 0)
+    snprintf(nameOut, elcount(nameOut), "Byte[%I64d]", idx);
+  else
+    snprintf(nameOut, elcount(nameOut), "Byte[%I64d (%s)]", idx, valueSymbol);
+}
+
+void _fct_TiTableEvaluation(char stepIdentifier[])
+{
+  if(_ttg_TestActionFailCnt > 0)
+  {
+    testStepFail(0, stepIdentifier, _ttg_Re);
+  }
+  else
+  {
+    testStepPass(2, stepIdentifier, _ttg_Re);
+  }
+}
+
+void _fct_TiTableEnd(char step[], long result, long restriction)
+{
+  testStep(2, step, _ttg_Re, result, restriction);
+}
+
+// write a byte stream as hex tuples into a given buffer ([size] 00 01 A0 ... )
+void _fct_TiWriteHexDataToStrBuf(char strBuf[], byte data[], long dataCnt)
+{
+  char tmp[16];
+  long limit, i;
+
+  const long dataMaxDisplayCnt = 32;
+
+  snprintf(strBuf, elcount(strBuf), "[%d] ", dataCnt);
+  limit = _min(dataMaxDisplayCnt, dataCnt);
+
+  // if we have more than 'maxCount' bytes ... print first 'maxCount-1' bytes, followed by "..." and the last byte of the sequence
+  if (dataCnt > dataMaxDisplayCnt)
+    limit--;
+
+  for (i = 0; i < limit; i++)
+  {
+    if (i == 0)
+      snprintf(tmp, elCount(tmp), "%02X", (int)data[i]);
+    else
+      snprintf(tmp, elCount(tmp), " %02X", (int)data[i]);
+
+    strncat(strBuf, tmp, elCount(strBuf));
+  }
+
+  if (dataCnt > dataMaxDisplayCnt)
+  {
+    snprintf(tmp, elCount(tmp), "... %02X", (int)data[dataCnt - 1]);
+    strncat(strBuf, tmp, elCount(strBuf));
+  }
+}
+
+void _fct_TiCell(byte rawBytes[], long count)
+{
+  const long dataMaxDisplayCnt = 32; // see _fct_TiWriteHexDataToStrBuf()
+  char byteDump[dataMaxDisplayCnt * 3 + 15]; // Only print up to 'maxCount' bytes in the first step -> also in "min..." below!
+
+  _fct_TiWriteHexDataToStrBuf(byteDump, rawBytes, count);
+
+  _fct_TiCell(byteDump);
+}
+void _fct_TiCellUpdateOccurred(dword updated)
+{
+  if (updated == 1)
+    _fct_TiCell("");
+  else
+    _fct_TiCell("(no update)");
+}
+void _fct_TiTableHeadExpectedUpdateOccurred(char title[])
+{
+  _fct_TiTableHeadInit();
+  _ttg_Re = testInfoTable(title);
+  testInfoHeadingBegin(_ttg_Re, 0);
+  _fct_TiCell("Symbol");
+  _fct_TiCell("Op.");
+  _fct_TiCell("Reference Value");
+  _fct_TiCell("Actual");
+  _fct_TiCell(""); // empty cell to report updates
+  _fct_TiCell("Result");
+  testInfoHeadingEnd(_ttg_Re);
+}
+void _fct_SetBusContext(char bus[], int saveOldBusContext)
+{
+  _ttg_gBusContextOk = 1;
+  _ttg_gBusContextNew = GetBusNameContext(bus);
+  if(_ttg_gBusContextNew == 0)
+  {
+    _ttg_gBusContextOk = 0;
+    testStepErrorInTestSystem("", "Error: Cannot determine context for bus: %s", bus);
+    _ttg_gBusContextOld = 0;
+    return;
+  }
+  if(saveOldBusContext == 1)
+  {
+    _ttg_gBusContextOld = SetBusContext(_ttg_gBusContextNew);
+  }
+  else
+  {
+    SetBusContext(_ttg_gBusContextNew);
+  }
+}
+
+void _fct_ResetBusContext()
+{
+  if(_ttg_gBusContextOld > 0)
+  {
+    SetBusContext(_ttg_gBusContextNew);
+  }
+}
+
+int _fct_BusContextOk()
+{
+  return _ttg_gBusContextOk;
+}
+
+
+// Test Tree
+void _ttg_fct_tt_6__8()
+{
+  // Init FlexRay configuration
+}
+// _ttg_#_6__8
+// powerOn ()
+void _ttg_fct_capltestcase_6__9()
+{
+  CreateCaplIFFunction("powerOn", 1);
+  CallInterfaceFunction("powerOn ()", "");
+}
+// _ttg_#_6__9
+// checkKostia ()
+void _ttg_fct_capltestcase_6__12()
+{
+  CreateCaplIFFunction("checkKostia", 1);
+  CallInterfaceFunction("checkKostia ()", "");
+}
+// _ttg_#_6__12
+// powerOff ()
+void _ttg_fct_capltestcase_6__15()
+{
+  CreateCaplIFFunction("powerOff", 1);
+  CallInterfaceFunction("powerOff ()", "");
+}
+// _ttg_#_6__15
+// try ()
+void _ttg_fct_capltestcase_6__18()
+{
+  CreateCaplIFFunction("try", 1);
+  CallInterfaceFunction("try ()", "");
+}
+// _ttg_#_6__18
+// try1 ()
+void _ttg_fct_capltestcase_6__21()
+{
+  CreateCaplIFFunction("try1", 1);
+  CallInterfaceFunction("try1 ()", "");
+}
+// _ttg_#_6__21

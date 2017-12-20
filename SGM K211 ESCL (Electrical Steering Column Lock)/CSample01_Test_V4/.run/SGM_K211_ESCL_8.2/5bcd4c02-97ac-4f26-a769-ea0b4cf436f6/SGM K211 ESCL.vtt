@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>Test preparation:Power supply initialization</title>
+      <caplfunction>
+        <title />
+        <name>initVTSystem</name>
+      </caplfunction>
+      <caplfunction>
+        <title>set inverted Ign = 1</title>
+        <active>false</active>
+        <name>setInvertedIgn</name>
+        <param>
+          <type>int</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </caplfunction>
+      <wait>
+        <title />
+        <active>false</active>
+        <time>
+          <value>
+            <const>500</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplfunction>
+        <title>set CommEnableWakeup =1</title>
+        <active>false</active>
+        <name>setCommEnableWakeup</name>
+        <param>
+          <type>int</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </caplfunction>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Press simuAndMonitor button on the panel</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const />
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+    </ts>
+    <tf>
+      <title>5.5.11 Wake up / Sleep Strategy</title>
+      <tc>
+        <title>5.5.11.1 Wake Up</title>
+        <caplinline>
+          <title>test if ESCL is not woken up when the common enable wakeup is invalid</title>
+          <code>int result;
+result = testWaitForMessage(ESCL_Status,2000);
+if (!result)
+  testStepPass("Wake up test","When the common enable wakeup is invalid,the ESCL can't be woken up and send messages on serial bus");
+else
+  testStepFail("Wake up test","When the common enable wakeup is invalid,the ESCL is woken up and send messages on serial bus");</code>
+        </caplinline>
+        <caplfunction>
+          <title>set common enable wakeup be valid</title>
+          <active>true</active>
+          <name>setCommEnableWakeup</name>
+          <param>
+            <type>int</type>
+            <value>
+              <const>1</const>
+            </value>
+          </param>
+        </caplfunction>
+        <caplinline>
+          <title>test wake up time of ESCL</title>
+          <code>int result;
+float time;
+result = testWaitForMessage(ESCL_Status,300);
+time = testGetLastWaitElapsedTimeNS()/1000000;
+if (time &lt; 90)
+  testStepPass("Wake up test","the ESCL is woken up %5.2fms(&lt;90ms) after the common enable wakeup is valid,and send messages on serial bus",time);
+else
+  testStepFail("Wake up test","the ESCL is woken up %5.2fms(&gt;=90ms) after the common enable wakeup is valid,and send messages on serial bus",time);
+</code>
+        </caplinline>
+      </tc>
+      <tc>
+        <title>5.5.11.2 Sleep</title>
+        <caplfunction>
+          <title>set common enable wakeup be invalid</title>
+          <active>true</active>
+          <name>setCommEnableWakeup</name>
+          <param>
+            <type>int</type>
+            <value>
+              <const>0</const>
+            </value>
+          </param>
+        </caplfunction>
+        <caplinline>
+          <title>test last message transmission interval</title>
+          <active>true</active>
+          <code>dword checkId;
+long time;
+checkId = ChkStart_AllNodesBabbling(1);// checks that after 0 ms no transmission are available
+//testAddCondition(checkId);
+TestWaitForTimeout(3000);// sequence of different actions and waiting conditions
+//time = ChkQuery_EventTimestamp(checkId);//Last event happened timestamp
+//testStep("time","time = %d",time);
+time = ChkQuery_EventInterval(checkId);//Last transmission since check starts
+testStep("timeinterval","Last transmission since check starts interval = %d",time);
+//testRemoveCondition(checkId);
+if (time &lt;= 200)
+  testStepPass("Last transmission interval","Last message transmission happened %dms (within 200ms)after the common enable wakeup is invalid",time);
+else
+  testStepFail("Last transmission interval","Last message transmission happened %dms (out of 200ms)after the common enable wakeup is invalid",time);</code>
+        </caplinline>
+        <canoestandardservice>
+          <title />
+          <name>testValidateTesterConfirmation</name>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>ooo</const>
+            </value>
+          </param>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>ooo</const>
+            </value>
+          </param>
+          <param>
+            <type>long</type>
+            <value>
+              <const>1</const>
+            </value>
+          </param>
+        </canoestandardservice>
+        <wait>
+          <title />
+          <active>true</active>
+          <time>
+            <value>
+              <const>30</const>
+            </value>
+            <unit>s</unit>
+          </time>
+        </wait>
+        <statecheck>
+          <title>test quiescent current @12.6V</title>
+          <active>true</active>
+          <expected>
+            <compare>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+              <lt>
+                <const>0.00025</const>
+              </lt>
+            </compare>
+          </expected>
+        </statecheck>
+      </tc>
+    </tf>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

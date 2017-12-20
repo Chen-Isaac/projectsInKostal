@@ -1,0 +1,585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>CH035 PWM function test</title>
+      <comment>
+        <title>Initialize VT system,make power supply voltage output equals 12V, current not over 30A.</title>
+      </comment>
+      <caplinline>
+        <title />
+        <active>true</active>
+        <code>sysvar::VTS::M12_VT7001.SetInterconnectionMode(1);
+sysvar::VTS::M12_Sup1.SetRefVoltageMode(1);
+//sysvar::VTS::M12_Sup1.SetRefVoltageMode(mode, 1);
+@sysvar::VTS::M12_Sup1::RefVoltage = 1;
+sysvar::VTS::M12_Sup1.SetMaxCurrentMode(1);
+// sysvar::VTS::M12_Sup1.SetMaxCurrentMode(mode, 1);
+@sysvar::VTS::M12_Sup1::MaxCurrent = 2.5;
+sysvar::VTS::M12_Out1.ResetMinMax();
+sysvar::VTS::M12_Out1.SetMinCurrentMeasurementRange(4);
+@sysvar::VTS::M12_Out1::Active = 1;</code>
+      </caplinline>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>300</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title />
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <lt>
+              <const>0.2</const>
+            </lt>
+          </compare>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgVoltage|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <ge>
+              <const>11.5</const>
+            </ge>
+          </compare>
+        </expected>
+      </statecheck>
+      <comment>
+        <title>3.1.1 Power window motor drive</title>
+      </comment>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>When power window is in the course of automatically lifting down, if the manually lift up button or the lift down button was manipulated, will the motor stop immediately?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Ready to manually lift up</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>When power window is in the course of manually lifting down,if the automation liftdown button was manipulated,will the motor go on lifting down?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Ready to manually lift down</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Will the power window motor stopped immediately when it was lifted up at the top?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Press the lift up button and make locked roter situation happens in the top. Don't release the button in the course.</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <while>
+        <title />
+        <compare>
+          <value>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+          </value>
+          <gt>
+            <const>1</const>
+          </gt>
+        </compare>
+        <comment>
+          <title>AvgCurrent&gt;1 means the power window is working.</title>
+        </comment>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            </value>
+            <gt>
+              <const>14</const>
+            </gt>
+          </compare>
+          <report>
+            <text>Locked roter situation happened</text>
+            <object>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            </object>
+          </report>
+          <break>
+            <title />
+          </break>
+        </if>
+        <wait>
+          <title />
+          <time>
+            <value>
+              <const>100</const>
+            </value>
+            <unit>ms</unit>
+          </time>
+        </wait>
+      </while>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>1</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if the product output has been shutted down.</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Will the power window motor stopped immediately when it was lifted down at the bottom?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Press the lift down button and make locked roter situation happen in the bottom. Don't release the button in the course.</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <while>
+        <title />
+        <compare>
+          <value>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+          </value>
+          <gt>
+            <const>1</const>
+          </gt>
+        </compare>
+        <comment>
+          <title>AvgCurrent&gt;1 means the power window is working.</title>
+        </comment>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            </value>
+            <gt>
+              <const>14</const>
+            </gt>
+          </compare>
+          <report>
+            <text>Locked roter situation happened</text>
+            <object>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            </object>
+          </report>
+          <break>
+            <title />
+          </break>
+        </if>
+        <wait>
+          <title />
+          <time>
+            <value>
+              <const>100</const>
+            </value>
+            <unit>ms</unit>
+          </time>
+        </wait>
+      </while>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>1</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if the product output has been shutted down.</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <comment>
+        <title>3.1.4 overtime protection</title>
+      </comment>
+      <canoestandardservice>
+        <title>
+        </title>
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Cut down the connection of power window</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Make only power resistor connect with the product output</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Ready to press the lift up button, once you start pressing it,press the ok button on the popup.</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Keep the button pressed for 10s</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>10</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if the product output has been shutted down.</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Stop pressing</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Stop pressing the button</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Ready to press the lift down button, once you start pressing it,press the ok button on the popup.</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Keep the button pressed for 10s</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>10</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if the product output has been shutted down.</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Stop pressing</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Stop pressing the button</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <comment>
+        <title>3.1.5 Motor locked rotor protection</title>
+      </comment>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Set up a block in the power window</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Set up a block in the power window</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Start running the power window</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Run the power window.Don't release the button in the course.</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <while>
+        <title />
+        <compare>
+          <value>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+          </value>
+          <gt>
+            <const>1</const>
+          </gt>
+        </compare>
+        <comment>
+          <title>AvgCurrent&gt;1 means the power window is working.</title>
+        </comment>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            </value>
+            <gt>
+              <const>14</const>
+            </gt>
+          </compare>
+          <report>
+            <text>Locked roter situation happened</text>
+            <object>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            </object>
+          </report>
+          <break>
+            <title />
+          </break>
+        </if>
+        <wait>
+          <title />
+          <time>
+            <value>
+              <const>100</const>
+            </value>
+            <unit>ms</unit>
+          </time>
+        </wait>
+      </while>
+      <wait>
+        <title />
+        <time>
+          <value>
+            <const>1</const>
+          </value>
+          <unit>s</unit>
+        </time>
+      </wait>
+      <statecheck>
+        <title>Check if the product output has been shutted down.</title>
+        <expected>
+          <compare>
+            <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out1|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+            <le>
+              <const>0.2</const>
+            </le>
+          </compare>
+        </expected>
+      </statecheck>
+      <comment>
+        <title>3.1.7 Background light illumination</title>
+      </comment>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>IG ON, PCUT actived, check if the back light is lighten?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Check the background light lighten</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+      <canoestandardservice>
+        <title />
+        <name>testValidateTesterConfirmation</name>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>IG ON, PCUT deactived, check if the back light is not lighten?</const>
+          </value>
+        </param>
+        <param>
+          <type>char[]</type>
+          <value>
+            <const>Check the background light not lighten</const>
+          </value>
+        </param>
+        <param>
+          <type>long</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </canoestandardservice>
+    </ts>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

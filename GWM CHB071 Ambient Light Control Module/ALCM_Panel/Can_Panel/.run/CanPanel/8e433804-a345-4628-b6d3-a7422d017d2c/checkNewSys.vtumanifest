@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <FileFormatVersion>1</FileFormatVersion>
+  <TestUnitName>checkNewSys</TestUnitName>
+  <TsoProject>D:\Isaac\GWM CHB071 Ambient Light Control Module\checkNewSys.vtsoproj</TsoProject>
+  <TsoProjectRelative>.\..\checkNewSys.vtsoproj</TsoProjectRelative>
+  <EditableSources>false</EditableSources>
+  <BuildInfo>
+    <CaplCompiler>8.5.98.0</CaplCompiler>
+    <MinRequiredCANoeVersion>8.2.41</MinRequiredCANoeVersion>
+    <TsoVersion>2.0.50.0</TsoVersion>
+    <NetApiVersion></NetApiVersion>
+  </BuildInfo>
+  <NetTypeLibGenerator>
+    <NamespaceGeneration>NoNamespace</NamespaceGeneration>
+    <NetTypeLibs />
+  </NetTypeLibGenerator>
+  <VariantProperties />
+  <Sources>
+    <CaplFiles>
+      <CaplFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.can" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="basicFunctionTest.cbf" /&gt;</Binary>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\basicFunctionTest.can.export.xml" /&gt;</ExportTable>
+      </CaplFile>
+    </CaplFiles>
+    <CaplIncludeFiles />
+    <NetFiles />
+    <NetBinaries />
+    <VttFiles>
+      <VttFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="checkNewSys.vtt" /&gt;</Source>
+        <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="checkNewSys.vxtx" /&gt;</Binary>
+        <CaplFile>
+          <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="checkNewSys.vxtx.can" /&gt;</Source>
+          <Binary>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="checkNewSys.vxtx.cbf" /&gt;</Binary>
+        </CaplFile>
+        <ExportTable>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="__ExpTbl_\checkNewSys.vtt.export.xml" /&gt;</ExportTable>
+      </VttFile>
+    </VttFiles>
+    <ParameterFiles>
+      <ParameterFile>
+        <Source>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="paraFile.vparam" /&gt;</Source>
+      </ParameterFile>
+    </ParameterFiles>
+    <WaveformFiles />
+    <WaveformBinaries />
+    <CaplDlls />
+  </Sources>
+  <TestSysVar>
+    <Source></Source>
+  </TestSysVar>
+  <ExternalReferences />
+  <SutEnvironment>
+    <Networks>
+      <Network>
+        <Name>CAN</Name>
+        <ChannelType>CAN</ChannelType>
+        <Databases>
+          <Database>
+            <DatabaseFile>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="..\..\ALCM_Panel\DBC\CHB071_ALCM_V1.26_20160719.dbc" /&gt;</DatabaseFile>
+            <DatabaseName>_____CF_C_Matrix</DatabaseName>
+            <OpenInfoString>*12*ASRShortNameUsage*0*CalculateUpdateBit*0*DatabaseFile*D:\Isaac\GWM CHB071 Ambient Light Control Module\ALCM_Panel\DBC\CHB071_ALCM_V1.26_20160719.dbc*DoNormalization*1*EncodingForNETStringConversions*0*FlexRayABCompatibility*0*FlexRayPostfixOption*0*IgnoredNodes**IsConvertedLinDbc*0*IsLDFEditorMode*0*LanguageCode**LinChannelPostfix*1*NetworkName**NetworkType*0</OpenInfoString>
+          </Database>
+        </Databases>
+      </Network>
+    </Networks>
+    <UseAllNetworks>false</UseAllNetworks>
+  </SutEnvironment>
+  <TUProperties>
+    <Caption></Caption>
+    <Description></Description>
+    <Version></Version>
+    <TestDesigners>
+      <Columns />
+      <TestDesignerEntries />
+    </TestDesigners>
+    <TUInfos />
+  </TUProperties>
+  <NodeLayerDlls>
+    <NodeLayerDll>
+      <Path>CANstress_NL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>FRStressNL.dll</Path>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>J1939TestServiceLibraryNL.dll</Path>
+    </NodeLayerDll>
+  </NodeLayerDlls>
+  <UserFiles />
+  <TetEntries>
+    <TetEntry>
+      <Type>vtt</Type>
+      <Identifier>checkNewSys.vtt</Identifier>
+    </TetEntry>
+  </TetEntries>
+</Manifest>

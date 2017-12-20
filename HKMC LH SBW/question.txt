@@ -1,0 +1,86 @@
+1.	P switch handling
+	P Switch should use 2 channels of input. 1-o-o-2 concept should be used. Either one channel is detected ON, P switch should be consider as ON. Otherwise, P switch should be consider as OFF.
+硬件上我只看到了一个pin啊？哪来的2通道？(20pin里没有，P switch是指bezel PCB上的park switch )
+
+2. ?	When activated P Position by P switch On, SBW shall send the P position for 100ms. Then send the actual real time lever position again.
+actual real time lever position是什么信号？ G_SEL_DISP吗？P position和lever position是属于同一个signal吗？不然自顾自地发不是很好？
+
+3.?	P-Release Switch should use 2 channels of input. 2-o-o-2 concept should be used. Both channels are detected ON, P-Release switch should be consider as ON. Other-wise, P-Release switch should be consider as OFF.
+是指pin18 Not-P吗？硬件上也只有一个pin啊，2通道在哪里？（20pin里没有，P-Release switch是指bezel PCB上的P-Release SW）
+
+4. 11.6.2.2的电路图不明白（Brake ON -- High，Brake OFF -- Floating）
+
+5. A valid P switch press means the park switch is not earlier pressed than the brake switch ON.
+A valid P-Release switch press means the P-Release switch is not earlier pressed than the brake switch ON.
+
+P switch是指pin17吗？P-Release switch是指pin18吗？（1,3中已解答）
+
+6. The SBW shall use 2 hall sensor to detect the lever position.
+这2个sensor是不是在内部的，外部没有任何pin？（yes）
+
+7. ?	Unlock Switch should use 2 channels of input. 2-o-o-2 concept should be used. 
+Unlock Switch是哪个pin？(20pin里没有，位于Knob PCB上的unlock sw)
+
+8. The door status is determined for 2 levels: Level A and Level B.
+A,B的区别是啥？
+
+9. The SBW shall receive the illumination signal from CAN. According to the day/night mode and illumination level, the SBW shall light the backlight LED by PWM.
+没看到背景灯的pwm pin啊？(不是20pin里头的，BACK LED也位于bezel PCB上)
+
+10. The indicators should be controlled according to PRA position when IG OFF. While PRA is at P position, SBW shall light P indicator. While PRA is at Not P position, SBW shall light N indicator.
+是指pin12,13吗？是控制背景灯吗？负载应该选多少？（负载产品上已经有的，在BEZEL PCB上）
+
+11. PWM input signals fault P R N D属于同一根硬线？
+（LEVER POSITION）
+
+
+HW-INTERFACE接TCU
+PRA Driver接PRA
+
+jin，xu 项目协调
+顾勇 EE 8714
+ma liang yin 系统 8260
+cao feixiang kostia
+
+
+系统问题：
+1.  11.3	Vehicle Speed Signal Handling
+timeout时间可以查看database  以客户文档为主，database为辅，粗略的话，timeout设为5s即可。这个timeout的判断软件是做在应用层上，所以database没有timeout也无所谓，不影响软件功能。
+WHL_SPD_FL的值虽然可以达到500多km/h，但是也只能以VS_TCU的上限为准。
+VS_TCU的有效值为0-FE，唯有FF为error。
+
+2.  14.2.1.3	PWM Output signals
+Initial 	90%Initial什么意思?怎么实现?
+
+3.  11.5 	When activated P Position by P switch On, SBW shall send the P position for 100ms.
+这个发的是啥? CF_Lvr_PosInf=P吗?
+
+4. PWM OUTPUT负载大小确认,能不能不接负载?
+
+5.  12.7 Gear Request Logic 12.7.1 Optional Function 这个有做进去吗？（有）
+
+12.7.1.1	Door Open Auto P Mode  
+?	If either door is open(Level B), vehicle stop, gear D or R and brake on to off, then SBW shall send P signal.
+这里的P signal是指lever的位置信号吗?包括pwm output？(Yes) CF_Lvr_PosInf和CF_Lvr_PosCpl互为反码
+
+6.  12.7.1.1	LEVEA A LEVEA B的区别确认 (可以既是A又是B)
+
+7.  11.5.1	P switch handling 
+If this switch is being ON for over 3 mins, SBW shall consider this switch as stuck and treated as switch OFF. The switch stuck will be recovered after the switch is OFF.
+这个具体会有什么现象发生？ 同理 P release呢？
+
+8.  11.6.4 Valid P Switch Press  这个要是invalid会有什么后果？哪里体现？
+
+
+9.  12.7.1.1	Door Open Auto P Mode
+?	If either door is open(Level B), vehicle stop, gear D or R and brake on to off, then SBW shall send P signal
+这里gear D or R是看TCU发来的，还是看我们自己把排挡拉到的位置？ (TCU发来的)
+
+10. 15.3.4	N Park Mode
+N Park Mode是指N park ign off mode
+?	In this mode, SBW shall operate PRA between “Not P” position and “P” position before the sleep mode 
+这是指必须是Not P或者P两个位置之一，不能是中间过程。如果在中间过程，必须等它执行完。
+
+11. 15.3.6.4	PRA Not P position
+P switch==OFF && Unlock switch 5times within 2sec.
+这里Unlock switch是指lever侧面边上的那个小按钮。

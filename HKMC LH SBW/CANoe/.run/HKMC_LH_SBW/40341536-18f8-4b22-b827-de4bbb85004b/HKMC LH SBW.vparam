@@ -1,0 +1,30 @@
+Vector Parameter	1.0
+
+ScalarListSingleRecord
+
+Name	Type	Info	Values
+canSigTimeoutBool	Integer		1
+			0
+
+vehicleGearPosStatus_DorR	Integer	1:P 2:R 3:N 4:D	2
+			4
+
+vehicleGearPosStatus_PorN	Integer	1:P 2:R 3:N 4:D	1
+			3
+
+vehicleGearPosStatus_notN	Integer		1
+			2
+			4
+
+G_SEL_DISP_value_of_D	Integer		5
+			8
+
+G_SEL_DISP_value_of_PRorN	Auto	P=0;R=7;N=6	0
+			6
+			7
+
+G_SEL_DISP_value_of_notN	Integer	P=0;R=7;D=5or8	0
+			5
+			7
+			8
+

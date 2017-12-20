@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <nestedcallparameterlist>
+    <callparameterlist>
+      <name>_ttg_list_capltestcaselist_1_0_2</name>
+      <title>buttonPressFunctionCheck</title>
+      <combinatorics>combinatorial</combinatorics>
+      <callparameter>
+        <name>ignValueLevel</name>
+        <type>string</type>
+        <valuelist>
+          <value>
+            <const>1</const>
+          </value>
+          <value>
+            <const>0</const>
+          </value>
+        </valuelist>
+      </callparameter>
+      <callparameter>
+        <name>button</name>
+        <type>string</type>
+        <valuelist>
+          <value>
+            <const>P</const>
+          </value>
+          <value>
+            <const>R</const>
+          </value>
+          <value>
+            <const>N</const>
+          </value>
+          <value>
+            <const>D</const>
+          </value>
+          <value>
+            <const>P&amp;R</const>
+          </value>
+          <value>
+            <const>PRelease</const>
+          </value>
+        </valuelist>
+      </callparameter>
+    </callparameterlist>
+  </nestedcallparameterlist>
+  <caplfunction>
+    <name>_ttg_fct_tt_1_0</name>
+  </caplfunction>
+  <testcase>
+    <title>poweron ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_1_0_0</name>
+    </caplfunction>
+  </testcase>
+  <testcase>
+    <title>productinit ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_1_0_1</name>
+    </caplfunction>
+  </testcase>
+  <testcaselist>
+    <title>buttonPressFunctionCheck</title>
+    <refname>_ttg_list_capltestcaselist_1_0_2</refname>
+    <caplfunction>
+      <name>_ttg_fct_capltestcaselist_1_0_2</name>
+    </caplfunction>
+  </testcaselist>
+</testtree>

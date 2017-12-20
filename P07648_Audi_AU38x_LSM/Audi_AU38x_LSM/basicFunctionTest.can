@@ -1,0 +1,64 @@
+includes
+{
+  #include "D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin"
+}
+
+variables
+{
+
+}
+
+export testcase powerOn (void) {
+  stateMachine("powerOn",routeNum,noParaPick);
+}
+
+export testcase powerOff (void) {
+  stateMachine("powerOff",routeNum,noParaPick);
+}
+
+export testcase readSwVer (void) {
+  stateMachine("readSwVer",routeNum,noParaPick);
+}
+
+export testcase autoLightBtnImp (char value_Bel_LTM_Auto[]) {
+  char paraPick[1][2][100] = {{"value_Bel_LTM_Auto",""}};
+  strncpy(paraPick[0][1],value_Bel_LTM_Auto,elCount(paraPick[0][1]));
+  stateMachine("autoLightBtnImp",routeNum,paraPick);
+}
+
+export testcase autoLightBtnRelateSigImpOnLight (void) {
+  stateMachine("autoLightBtnRelateSigImpOnLight",routeNum,noParaPick);
+}
+
+export testcase allWeatherLightBtnImp (char value_Bel_LTM_Nebellicht[]) {
+  char paraPick[1][2][100] = {{"value_Bel_LTM_Nebellicht",""}};
+  strncpy(paraPick[0][1],value_Bel_LTM_Nebellicht,elCount(paraPick[0][1]));
+  stateMachine("allWeatherLightBtnImp",routeNum,paraPick);
+}
+
+export testcase allWeatherLightBtnRelateSigImpOnLight (void) {
+  stateMachine("allWeatherLightBtnRelateSigImpOnLight",routeNum,noParaPick);
+}
+
+export testcase rearFogLightBtnImp (char value_Bel_LTM_Nebelschlusslicht[]) {
+  char paraPick[1][2][100] = {{"value_Bel_LTM_Nebelschlusslicht",""}};
+  strncpy(paraPick[0][1],value_Bel_LTM_Nebelschlusslicht,elCount(paraPick[0][1]));
+  stateMachine("rearFogLightBtnImp",routeNum,paraPick);
+}
+
+export testcase rearFogLightBtnRelateSigImpOnLight (void) {
+  stateMachine("rearFogLightBtnRelateSigImpOnLight",routeNum,noParaPick);
+}
+
+export testcase checkFunctions1 (void) {
+  stateMachine("checkFunctions1",routeNum,noParaPick);
+}
+
+export testcase checkFunctions2 (void) {
+  stateMachine("checkFunctions2",routeNum,noParaPick);
+}
+
+export testcase checkKostia (void) {
+  stateMachine("checkKostia",routeNum,noParaPick);
+}
+

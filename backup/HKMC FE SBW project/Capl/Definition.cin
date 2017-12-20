@@ -1,0 +1,39 @@
+
+variables
+{
+  /******************** Kostia Status Definition  ********************/
+  const byte KOSTIA_STATUS_IDLE = 0;
+  const byte KOSTIA_STATUS_LOGIN = 1;
+  const byte KOSTIA_STATUS_LOGOUT = 2;
+  const byte KOSTIA_STATUS_EEPROM_READ = 3;
+
+  /******************** Kostia SID Definition  ********************/
+  const byte KOSTIA_SID_LOG = 0x01;
+  const byte KOSTIA_SID_MEM_READ = 0x04;
+  const byte KOSTIA_SID_MEM_WRITE = 0x05;
+  const byte KOSTIA_SID_MEM_CLEAR = 0x06;
+  const byte KOSTIA_SID_LOC_FUNC = 0x07;
+  const byte KOSTIA_SID_DEV_RESET = 0x0C;
+  
+  /******************** Kostia Read Memory SSID Definition  ********************/
+  const byte KOSTIA_SSID_MEM_READ_EEP = 0x01;
+  const byte KOSTIA_SSID_MEM_READ_RAM = 0x02;
+  const byte KOSTIA_SSID_MEM_READ_IO = 0x04;
+  const byte KOSTIA_SSID_MEM_READ_VERINFO = 0x0C;
+  const byte KOSTIA_SSID_MEM_READ_ROM = 0x30;
+  const byte KOSTIA_SSID_MEM_READ_ERRNUM = 0x040;
+  const byte KOSTIA_SSID_MEM_READ_ERR = 0x41;
+  const byte KOSTIA_SSID_MEM_READ_VERNUM = 0x43;
+  
+  /******************** Kostia Login Request Message Definition ********************/
+  byte KOSTIA_LOGIN_REQUEST_MESSAGE[8] = { 0x01, 0x4B, 0x4F, 0x53, 0x54, 0x41, 0x4C, 0x5F };
+  /******************** Kostia Login Response Message Definition ********************/
+  byte KOSTIA_LOGIN_RESPONSE_MESSAGE[8] = { 0x01, 0x4B, 0x4F, 0x53, 0x54, 0x41, 0x4C, 0x5F };
+
+   /******************** Kostia Login Request Message Definition ********************/
+  byte KOSTIA_LOGOUT_REQUEST_MESSAGE[8] = { 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+  /******************** Kostia Login Response Message Definition ********************/
+  byte KOSTIA_LOGOUT_RESPONSE_MESSAGE[8] = { 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+  
+  
+}

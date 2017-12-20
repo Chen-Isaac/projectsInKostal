@@ -1,0 +1,770 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: KOSTIA_Tester_FA_CAN EGSM
+
+
+BO_ 1580 KOSTIA_REQ: 8 KOSTIA_Tester_FA_CAN
+ SG_ KTReq_DataByte_7 : 56|8@1+ (1,0) [0|0] ""  EGSM
+ SG_ KTReq_DataByte_6 : 48|8@1+ (1,0) [0|0] ""  EGSM
+ SG_ KTReq_DataByte_5 : 40|8@1+ (1,0) [0|0] ""  EGSM
+ SG_ KTReq_DataByte_4 : 32|8@1+ (1,0) [0|0] ""  EGSM
+ SG_ KTReq_DataByte_3 : 24|8@1+ (1,0) [0|0] ""  EGSM
+ SG_ KTReq_DataByte_2 : 16|8@1+ (1,0) [0|0] ""  EGSM
+ SG_ KTReq_DataByte_1 : 8|8@1+ (1,0) [0|0] ""  EGSM
+ SG_ KTReq_Befehlstitel : 0|8@1+ (1,0) [0|0] ""  EGSM
+
+BO_ 1581 KOSTIA_RESP: 8 EGSM
+ SG_ KTResp_DataByte_7 : 56|8@1+ (1,0) [0|0] ""  KOSTIA_Tester_FA_CAN
+ SG_ KTResp_DataByte_6 : 48|8@1+ (1,0) [0|0] ""  KOSTIA_Tester_FA_CAN
+ SG_ KTResp_DataByte_5 : 40|8@1+ (1,0) [0|0] ""  KOSTIA_Tester_FA_CAN
+ SG_ KTResp_DataByte_4 : 32|8@1+ (1,0) [0|0] ""  KOSTIA_Tester_FA_CAN
+ SG_ KTResp_DataByte_3 : 24|8@1+ (1,0) [0|0] ""  KOSTIA_Tester_FA_CAN
+ SG_ KTResp_DataByte_2 : 16|8@1+ (1,0) [0|0] ""  KOSTIA_Tester_FA_CAN
+ SG_ KTResp_DataByte_1 : 8|8@1+ (1,0) [0|0] ""  KOSTIA_Tester_FA_CAN
+ SG_ KTResp_Befehl_Fehler : 0|8@1+ (1,0) [0|0] ""  KOSTIA_Tester_FA_CAN
+
+
+
+EV_ envReadDataFlashProgress: 1 [0|100] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envReadDataFlash: 0 [0|1] "" 0 2 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envOutput_RBRstartTest: 0 [0|1] "" 0 3 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envRBRDataLabView: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_SaveRBRSnapshot_Progress: 1 [0|100] "" 0 5 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCalibMode_CRC: 0 [0|255] "" 0 6 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCalibMode_AliveCnt: 0 [0|255] "" 0 7 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCalibMode_Z2: 1 [-65535|65535] "" 0 8 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCalibMode_Z1: 1 [-65535|65535] "" 0 9 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCalibMode_Y2: 1 [-65535|65535] "" 0 10 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCalibMode_Y1: 1 [-65535|65535] "" 0 11 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCalibMode_X2: 1 [-65535|65535] "" 0 12 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCalibMode_X1: 1 [-65535|65535] "" 0 13 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKostiaCalibModeReq: 0 [0|1] "" 0 14 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKostiaReset: 0 [0|1] "" 0 15 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_SaveRBRSnapshot: 0 [0|1] "" 0 16 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_DataViewCtrl_Gain: 1 [-65535|65535] "" 0 17 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_DataViewCtrl_Gain: 1 [-65535|65535] "" 0 18 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_ReqChannel2: 0 [0|1] "" 1 19 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_RBR_Version: 0 [0|255] "" 0 20 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_OverallTransition: 0 [0|255] "" 0 21 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_OverallError: 0 [0|255] "" 0 22 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_Mag3DPosDet_Version: 0 [0|255] "" 0 23 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvRbr_Chx2_LaneTrInterPosComp: 1 [-255|255] "" 0 24 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_LaneTrErrorComp: 1 [-65535|65535] "" 0 25 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_LaneInterPosComp: 1 [-255|255] "" 0 26 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_LaneErrorComp: 1 [-65535|65535] "" 0 27 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_DataViewCtrl_Theta: 1 [-65535|65535] "" 0 28 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_DataViewCtrl_RawZ: 1 [-65535|65535] "" 0 29 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_DataViewCtrl_RawY: 1 [-65535|65535] "" 0 30 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_DataViewCtrl_RawX: 1 [-65535|65535] "" 0 31 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_DataViewCtrl_Pos: 0 [0|255] "" 0 32 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_DataViewCtrl_Phi: 1 [-65535|65535] "" 0 33 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_DataViewCtrl_DebPos: 0 [0|255] "" 0 34 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibTipUp_Theta: 1 [-65535|65535] "" 0 35 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibTipUp_Phi: 1 [-65535|65535] "" 0 36 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibTipRight_Theta: 1 [-65535|65535] "" 0 37 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibTipRight_Phi: 1 [-65535|65535] "" 0 38 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibTipLeft_Theta: 1 [-65535|65535] "" 0 39 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibTipLeft_Phi: 1 [-65535|65535] "" 0 40 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibTipDown_Theta: 1 [-65535|65535] "" 0 41 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibTipDown_Phi: 1 [-65535|65535] "" 0 42 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibNeutral_Theta: 1 [-65535|65535] "" 0 43 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx2_CalibNeutral_Phi: 1 [-65535|65535] "" 0 44 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_ReqChannel1: 0 [0|1] "" 1 45 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibTipRight_Phi: 1 [-65535|65535] "" 0 46 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibTipUp_Theta: 1 [-65535|65535] "" 0 47 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibTipRight_Theta: 1 [-65535|65535] "" 0 48 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibTipLeft_Theta: 1 [-65535|65535] "" 0 49 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibTipDown_Theta: 1 [-65535|65535] "" 0 50 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibNeutral_Theta: 1 [-65535|65535] "" 0 51 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibTipLeft_Phi: 1 [-65535|65535] "" 0 52 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibTipDown_Phi: 1 [-65535|65535] "" 0 53 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibTipUp_Phi: 1 [-65535|65535] "" 0 54 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_CalibNeutral_Phi: 1 [-65535|65535] "" 0 55 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_RBR_Version: 0 [0|255] "" 0 56 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_OverallTransition: 0 [0|255] "" 0 57 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_OverallError: 0 [0|255] "" 0 58 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_LaneTrErrorComp: 1 [-65535|65535] "" 0 59 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_LaneErrorComp: 1 [-65535|65535] "" 0 60 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_LaneTrInterPosComp: 1 [-255|255] "" 0 61 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_LaneInterPosComp: 1 [-255|255] "" 0 62 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_DataViewCtrl_RawZ: 1 [-65535|65535] "" 0 63 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_DataViewCtrl_RawY: 1 [-65535|65535] "" 0 64 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_DataViewCtrl_RawX: 1 [-65535|65535] "" 0 65 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_DataViewCtrl_Theta: 1 [-65535|65535] "" 0 66 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_DataViewCtrl_Phi: 1 [-65535|65535] "" 0 67 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_DataViewCtrl_Pos: 0 [0|255] "" 0 68 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_DataViewCtrl_DebPos: 0 [0|255] "" 0 69 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Chx1_Mag3DPosDet_Version: 0 [0|255] "" 0 70 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvRbr_DataViewControl: 0 [0|1] "" 0 71 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Init: 0 [0|1] "" 0 72 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_CtrlByte2: 0 [0|255] "" 0 73 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_CtrlByte1: 0 [0|255] "" 0 74 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_CtrlByte0: 0 [0|255] "" 0 75 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_CyclicOn: 0 [0|1] "" 0 76 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKostiaStoreCalibNvram: 0 [0|1] "" 0 77 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKostiaModeSleep2Req: 0 [0|1] "" 0 78 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKostiaModeNormalReq: 0 [0|1] "" 0 79 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKostiaDeactivate: 0 [0|1] "" 0 80 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvMag3DPosDet_DeCalibRequest: 0 [0|1] "" 0 81 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbrPgSelect_Mag3DPosDet_High: 0 [0|1] "" 0 82 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbrPgSelect_Mag3DPosDet_Fast2: 0 [0|1] "" 0 83 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbrPgSelect_Mag3DPosDet_Fast1: 0 [0|1] "" 0 84 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvRbr_Snapshot: 0 [0|1] "" 0 85 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvMag3DPosDet_RbrSnapshot: 0 [0|1] "" 0 86 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvMag3DPosDet_CalibRequestMMin: 0 [0|1] "" 0 87 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvMag3DPosDet_CalibRequestMPlus: 0 [0|1] "" 0 88 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvMag3DPosDet_CalibRequestB: 0 [0|1] "" 0 89 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvMag3DPosDet_CalibRequestF: 0 [0|1] "" 0 90 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvMag3DPosDet_CalibRequestN: 0 [0|1] "" 0 91 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvMag3DPosDet_CalibPositionText: 0 [0|0] "" 0 92 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvMag3DPosDet_CalibPosition: 0 [0|9] "" 1 93 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKostiaTextWindow2: 0 [0|0] "" 0 94 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envKostiaTextWindow1: 0 [0|0] "" 0 95 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envKostiaLogoutRequest: 0 [0|1] "" 0 96 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envKostiaLoginRequest: 0 [0|1] "" 0 97 DUMMY_NODE_VECTOR0 Vector__XXX;
+ENVVAR_DATA_ envRBRDataLabView: 200;
+
+CM_ BU_ KOSTIA_Tester_FA_CAN "EOL in production KOSTAL worldwide";
+CM_ BU_ EGSM "VCC CMA EGSM";
+BA_DEF_  "Manufacturer" ENUM  "DBAG","VAG","BMWAG","VCC";
+BA_DEF_  "NmAsrTimeoutTime" INT 0 65535;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 0 65535;
+BA_DEF_  "NmAsrRepeatMessageTime" INT 0 65535;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 0 65535;
+BA_DEF_  "NmAsrCanMsgTxTimeoutTime" INT 0 65535;
+BA_DEF_  "NmAsrBaseAddress" HEX 0 2047;
+BA_DEF_  "NmAsrMessageCount" INT 1 255;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_ BO_  "DiagRequest" ENUM  "no","yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "no","yes";
+BA_DEF_ BO_  "Message_Longname" STRING ;
+BA_DEF_ BO_  "RequestMessage" ENUM  "no","yes";
+BA_DEF_ BO_  "NmAsrMessage" ENUM  "no","yes";
+BA_DEF_ BO_  "AddRemark" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark2" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime2" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime2" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType2" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime2" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark3" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime3" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime3" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType3" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime3" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark4" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime4" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime4" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType4" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime4" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark5" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime5" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime5" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType5" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime5" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark6" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime6" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime6" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType6" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime6" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark7" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime7" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime7" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType7" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime7" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark8" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime8" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime8" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType8" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime8" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark9" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime9" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime9" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType9" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime9" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark10" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime10" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime10" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType10" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime10" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark11" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime11" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime11" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType11" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime11" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark12" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime12" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime12" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType12" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime12" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark13" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime13" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime13" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType13" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime13" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark14" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime14" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime14" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType14" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime14" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark15" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime15" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime15" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType15" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime15" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark16" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime16" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime16" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType16" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime16" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark17" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime17" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime17" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType17" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime17" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark18" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime18" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime18" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType18" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime18" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark19" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime19" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime19" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType19" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime19" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark20" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime20" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime20" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType20" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime20" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark21" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime21" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime21" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType21" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime21" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark22" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime22" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime22" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType22" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime22" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark23" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime23" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime23" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType23" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime23" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark24" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime24" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime24" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType24" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime24" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark25" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime25" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime25" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType25" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime25" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark26" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime26" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime26" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType26" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime26" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark27" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime27" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime27" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType27" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime27" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark28" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime28" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime28" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType28" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime28" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark29" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime29" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime29" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType29" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime29" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark30" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime30" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime30" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType30" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime30" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark31" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime31" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime31" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType31" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime31" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark32" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime32" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime32" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType32" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime32" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark33" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime33" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime33" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType33" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime33" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark34" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime34" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime34" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType34" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime34" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark35" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime35" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime35" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType35" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime35" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark36" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime36" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime36" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType36" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime36" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark37" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime37" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime37" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType37" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime37" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark38" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime38" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime38" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType38" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime38" INT 0 1000000;
+BA_DEF_ BO_  "AddRemark39" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime39" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgDelayTime39" INT 0 1000000;
+BA_DEF_ BO_  "GenMsgSendType39" ENUM  "Zyklisch","Ereignisgesteuert","Auf Anfrage","dummy";
+BA_DEF_ BO_  "GenMsgStartDelayTime39" INT 0 1000000;
+BA_DEF_ BU_  "ECU_Longname" STRING ;
+BA_DEF_ BU_  "MCV-Nummer" STRING ;
+BA_DEF_ BU_  "DiagnoseStationsAdresse" HEX 0 255;
+BA_DEF_ BU_  "MessageManagerUsed" ENUM  "no","yes";
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "NmAsrCanMsgCycleOffset" INT 0 65535;
+BA_DEF_ BU_  "NmAsrCanMsgReducedTime" INT 0 65535;
+BA_DEF_ BU_  "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_ BU_  "NmAsrNode" ENUM  "no","yes";
+BA_DEF_ SG_  "Signal_Name_English" STRING ;
+BA_DEF_ SG_  "Signal_Name_German" STRING ;
+BA_DEF_DEF_  "Manufacturer" "VCC";
+BA_DEF_DEF_  "NmAsrTimeoutTime" 2000;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 1500;
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 3200;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 640;
+BA_DEF_DEF_  "NmAsrCanMsgTxTimeoutTime" 1920;
+BA_DEF_DEF_  "NmAsrBaseAddress" 1280;
+BA_DEF_DEF_  "NmAsrMessageCount" 128;
+BA_DEF_DEF_  "NmType" "NmAsr";
+BA_DEF_DEF_  "DiagRequest" "no";
+BA_DEF_DEF_  "DiagResponse" "no";
+BA_DEF_DEF_  "Message_Longname" "";
+BA_DEF_DEF_  "RequestMessage" "no";
+BA_DEF_DEF_  "NmAsrMessage" "no";
+BA_DEF_DEF_  "AddRemark" "";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "AddRemark2" "";
+BA_DEF_DEF_  "GenMsgCycleTime2" 0;
+BA_DEF_DEF_  "GenMsgDelayTime2" 0;
+BA_DEF_DEF_  "GenMsgSendType2" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime2" 0;
+BA_DEF_DEF_  "AddRemark3" "";
+BA_DEF_DEF_  "GenMsgCycleTime3" 0;
+BA_DEF_DEF_  "GenMsgDelayTime3" 0;
+BA_DEF_DEF_  "GenMsgSendType3" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime3" 0;
+BA_DEF_DEF_  "AddRemark4" "";
+BA_DEF_DEF_  "GenMsgCycleTime4" 0;
+BA_DEF_DEF_  "GenMsgDelayTime4" 0;
+BA_DEF_DEF_  "GenMsgSendType4" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime4" 0;
+BA_DEF_DEF_  "AddRemark5" "";
+BA_DEF_DEF_  "GenMsgCycleTime5" 0;
+BA_DEF_DEF_  "GenMsgDelayTime5" 0;
+BA_DEF_DEF_  "GenMsgSendType5" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime5" 0;
+BA_DEF_DEF_  "AddRemark6" "";
+BA_DEF_DEF_  "GenMsgCycleTime6" 0;
+BA_DEF_DEF_  "GenMsgDelayTime6" 0;
+BA_DEF_DEF_  "GenMsgSendType6" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime6" 0;
+BA_DEF_DEF_  "AddRemark7" "";
+BA_DEF_DEF_  "GenMsgCycleTime7" 0;
+BA_DEF_DEF_  "GenMsgDelayTime7" 0;
+BA_DEF_DEF_  "GenMsgSendType7" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime7" 0;
+BA_DEF_DEF_  "AddRemark8" "";
+BA_DEF_DEF_  "GenMsgCycleTime8" 0;
+BA_DEF_DEF_  "GenMsgDelayTime8" 0;
+BA_DEF_DEF_  "GenMsgSendType8" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime8" 0;
+BA_DEF_DEF_  "AddRemark9" "";
+BA_DEF_DEF_  "GenMsgCycleTime9" 0;
+BA_DEF_DEF_  "GenMsgDelayTime9" 0;
+BA_DEF_DEF_  "GenMsgSendType9" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime9" 0;
+BA_DEF_DEF_  "AddRemark10" "";
+BA_DEF_DEF_  "GenMsgCycleTime10" 0;
+BA_DEF_DEF_  "GenMsgDelayTime10" 0;
+BA_DEF_DEF_  "GenMsgSendType10" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime10" 0;
+BA_DEF_DEF_  "AddRemark11" "";
+BA_DEF_DEF_  "GenMsgCycleTime11" 0;
+BA_DEF_DEF_  "GenMsgDelayTime11" 0;
+BA_DEF_DEF_  "GenMsgSendType11" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime11" 0;
+BA_DEF_DEF_  "AddRemark12" "";
+BA_DEF_DEF_  "GenMsgCycleTime12" 0;
+BA_DEF_DEF_  "GenMsgDelayTime12" 0;
+BA_DEF_DEF_  "GenMsgSendType12" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime12" 0;
+BA_DEF_DEF_  "AddRemark13" "";
+BA_DEF_DEF_  "GenMsgCycleTime13" 0;
+BA_DEF_DEF_  "GenMsgDelayTime13" 0;
+BA_DEF_DEF_  "GenMsgSendType13" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime13" 0;
+BA_DEF_DEF_  "AddRemark14" "";
+BA_DEF_DEF_  "GenMsgCycleTime14" 0;
+BA_DEF_DEF_  "GenMsgDelayTime14" 0;
+BA_DEF_DEF_  "GenMsgSendType14" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime14" 0;
+BA_DEF_DEF_  "AddRemark15" "";
+BA_DEF_DEF_  "GenMsgCycleTime15" 0;
+BA_DEF_DEF_  "GenMsgDelayTime15" 0;
+BA_DEF_DEF_  "GenMsgSendType15" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime15" 0;
+BA_DEF_DEF_  "AddRemark16" "";
+BA_DEF_DEF_  "GenMsgCycleTime16" 0;
+BA_DEF_DEF_  "GenMsgDelayTime16" 0;
+BA_DEF_DEF_  "GenMsgSendType16" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime16" 0;
+BA_DEF_DEF_  "AddRemark17" "";
+BA_DEF_DEF_  "GenMsgCycleTime17" 0;
+BA_DEF_DEF_  "GenMsgDelayTime17" 0;
+BA_DEF_DEF_  "GenMsgSendType17" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime17" 0;
+BA_DEF_DEF_  "AddRemark18" "";
+BA_DEF_DEF_  "GenMsgCycleTime18" 0;
+BA_DEF_DEF_  "GenMsgDelayTime18" 0;
+BA_DEF_DEF_  "GenMsgSendType18" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime18" 0;
+BA_DEF_DEF_  "AddRemark19" "";
+BA_DEF_DEF_  "GenMsgCycleTime19" 0;
+BA_DEF_DEF_  "GenMsgDelayTime19" 0;
+BA_DEF_DEF_  "GenMsgSendType19" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime19" 0;
+BA_DEF_DEF_  "AddRemark20" "";
+BA_DEF_DEF_  "GenMsgCycleTime20" 0;
+BA_DEF_DEF_  "GenMsgDelayTime20" 0;
+BA_DEF_DEF_  "GenMsgSendType20" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime20" 0;
+BA_DEF_DEF_  "AddRemark21" "";
+BA_DEF_DEF_  "GenMsgCycleTime21" 0;
+BA_DEF_DEF_  "GenMsgDelayTime21" 0;
+BA_DEF_DEF_  "GenMsgSendType21" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime21" 0;
+BA_DEF_DEF_  "AddRemark22" "";
+BA_DEF_DEF_  "GenMsgCycleTime22" 0;
+BA_DEF_DEF_  "GenMsgDelayTime22" 0;
+BA_DEF_DEF_  "GenMsgSendType22" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime22" 0;
+BA_DEF_DEF_  "AddRemark23" "";
+BA_DEF_DEF_  "GenMsgCycleTime23" 0;
+BA_DEF_DEF_  "GenMsgDelayTime23" 0;
+BA_DEF_DEF_  "GenMsgSendType23" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime23" 0;
+BA_DEF_DEF_  "AddRemark24" "";
+BA_DEF_DEF_  "GenMsgCycleTime24" 0;
+BA_DEF_DEF_  "GenMsgDelayTime24" 0;
+BA_DEF_DEF_  "GenMsgSendType24" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime24" 0;
+BA_DEF_DEF_  "AddRemark25" "";
+BA_DEF_DEF_  "GenMsgCycleTime25" 0;
+BA_DEF_DEF_  "GenMsgDelayTime25" 0;
+BA_DEF_DEF_  "GenMsgSendType25" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime25" 0;
+BA_DEF_DEF_  "AddRemark26" "";
+BA_DEF_DEF_  "GenMsgCycleTime26" 0;
+BA_DEF_DEF_  "GenMsgDelayTime26" 0;
+BA_DEF_DEF_  "GenMsgSendType26" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime26" 0;
+BA_DEF_DEF_  "AddRemark27" "";
+BA_DEF_DEF_  "GenMsgCycleTime27" 0;
+BA_DEF_DEF_  "GenMsgDelayTime27" 0;
+BA_DEF_DEF_  "GenMsgSendType27" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime27" 0;
+BA_DEF_DEF_  "AddRemark28" "";
+BA_DEF_DEF_  "GenMsgCycleTime28" 0;
+BA_DEF_DEF_  "GenMsgDelayTime28" 0;
+BA_DEF_DEF_  "GenMsgSendType28" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime28" 0;
+BA_DEF_DEF_  "AddRemark29" "";
+BA_DEF_DEF_  "GenMsgCycleTime29" 0;
+BA_DEF_DEF_  "GenMsgDelayTime29" 0;
+BA_DEF_DEF_  "GenMsgSendType29" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime29" 0;
+BA_DEF_DEF_  "AddRemark30" "";
+BA_DEF_DEF_  "GenMsgCycleTime30" 0;
+BA_DEF_DEF_  "GenMsgDelayTime30" 0;
+BA_DEF_DEF_  "GenMsgSendType30" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime30" 0;
+BA_DEF_DEF_  "AddRemark31" "";
+BA_DEF_DEF_  "GenMsgCycleTime31" 0;
+BA_DEF_DEF_  "GenMsgDelayTime31" 0;
+BA_DEF_DEF_  "GenMsgSendType31" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime31" 0;
+BA_DEF_DEF_  "AddRemark32" "";
+BA_DEF_DEF_  "GenMsgCycleTime32" 0;
+BA_DEF_DEF_  "GenMsgDelayTime32" 0;
+BA_DEF_DEF_  "GenMsgSendType32" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime32" 0;
+BA_DEF_DEF_  "AddRemark33" "";
+BA_DEF_DEF_  "GenMsgCycleTime33" 0;
+BA_DEF_DEF_  "GenMsgDelayTime33" 0;
+BA_DEF_DEF_  "GenMsgSendType33" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime33" 0;
+BA_DEF_DEF_  "AddRemark34" "";
+BA_DEF_DEF_  "GenMsgCycleTime34" 0;
+BA_DEF_DEF_  "GenMsgDelayTime34" 0;
+BA_DEF_DEF_  "GenMsgSendType34" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime34" 0;
+BA_DEF_DEF_  "AddRemark35" "";
+BA_DEF_DEF_  "GenMsgCycleTime35" 0;
+BA_DEF_DEF_  "GenMsgDelayTime35" 0;
+BA_DEF_DEF_  "GenMsgSendType35" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime35" 0;
+BA_DEF_DEF_  "AddRemark36" "";
+BA_DEF_DEF_  "GenMsgCycleTime36" 0;
+BA_DEF_DEF_  "GenMsgDelayTime36" 0;
+BA_DEF_DEF_  "GenMsgSendType36" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime36" 0;
+BA_DEF_DEF_  "AddRemark37" "";
+BA_DEF_DEF_  "GenMsgCycleTime37" 0;
+BA_DEF_DEF_  "GenMsgDelayTime37" 0;
+BA_DEF_DEF_  "GenMsgSendType37" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime37" 0;
+BA_DEF_DEF_  "AddRemark38" "";
+BA_DEF_DEF_  "GenMsgCycleTime38" 0;
+BA_DEF_DEF_  "GenMsgDelayTime38" 0;
+BA_DEF_DEF_  "GenMsgSendType38" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime38" 0;
+BA_DEF_DEF_  "AddRemark39" "";
+BA_DEF_DEF_  "GenMsgCycleTime39" 0;
+BA_DEF_DEF_  "GenMsgDelayTime39" 0;
+BA_DEF_DEF_  "GenMsgSendType39" "Zyklisch";
+BA_DEF_DEF_  "GenMsgStartDelayTime39" 0;
+BA_DEF_DEF_  "ECU_Longname" "";
+BA_DEF_DEF_  "MCV-Nummer" "";
+BA_DEF_DEF_  "DiagnoseStationsAdresse" 0;
+BA_DEF_DEF_  "MessageManagerUsed" "yes";
+BA_DEF_DEF_  "NodeLayerModules" "AsrNM_BMW.dll";
+BA_DEF_DEF_  "NmAsrCanMsgCycleOffset" 0;
+BA_DEF_DEF_  "NmAsrCanMsgReducedTime" 640;
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 0;
+BA_DEF_DEF_  "NmAsrNode" "no";
+BA_DEF_DEF_  "Signal_Name_English" "";
+BA_DEF_DEF_  "Signal_Name_German" "";
+BA_ "NmAsrNodeIdentifier" BU_ KOSTIA_Tester_FA_CAN 0;
+BA_ "NmAsrCanMsgCycleOffset" BU_ KOSTIA_Tester_FA_CAN 0;
+BA_ "NmAsrNode" BU_ KOSTIA_Tester_FA_CAN 0;
+BA_ "NodeLayerModules" BU_ KOSTIA_Tester_FA_CAN "";
+BA_ "DiagnoseStationsAdresse" BU_ KOSTIA_Tester_FA_CAN 0;
+BA_ "MCV-Nummer" BU_ KOSTIA_Tester_FA_CAN "0";
+BA_ "MessageManagerUsed" BU_ KOSTIA_Tester_FA_CAN 0;
+BA_ "ECU_Longname" BU_ KOSTIA_Tester_FA_CAN "KOSTIA_Tester_FA_CAN";
+BA_ "NmAsrNodeIdentifier" BU_ EGSM 0;
+BA_ "NmAsrCanMsgCycleOffset" BU_ EGSM 0;
+BA_ "NmAsrNode" BU_ EGSM 0;
+BA_ "NodeLayerModules" BU_ EGSM "";
+BA_ "DiagnoseStationsAdresse" BU_ EGSM 0;
+BA_ "MCV-Nummer" BU_ EGSM "0";
+BA_ "MessageManagerUsed" BU_ EGSM 0;
+BA_ "ECU_Longname" BU_ EGSM "Electronic Gear Shift Module";
+BA_ "AddRemark" BO_ 1580 "*";
+BA_ "GenMsgDelayTime" BO_ 1580 0;
+BA_ "GenMsgCycleTime" BO_ 1580 0;
+BA_ "GenMsgSendType" BO_ 1580 1;
+BA_ "AddRemark2" BO_ 1580 "*";
+BA_ "AddRemark3" BO_ 1580 "*";
+BA_ "AddRemark4" BO_ 1580 "*";
+BA_ "NmAsrMessage" BO_ 1580 0;
+BA_ "RequestMessage" BO_ 1580 0;
+BA_ "DiagRequest" BO_ 1580 0;
+BA_ "DiagResponse" BO_ 1580 0;
+BA_ "Message_Longname" BO_ 1580 "Kostia Request Frame";
+BA_ "AddRemark" BO_ 1581 "*";
+BA_ "GenMsgDelayTime" BO_ 1581 0;
+BA_ "GenMsgCycleTime" BO_ 1581 0;
+BA_ "GenMsgSendType" BO_ 1581 1;
+BA_ "AddRemark2" BO_ 1581 "*";
+BA_ "AddRemark3" BO_ 1581 "*";
+BA_ "AddRemark4" BO_ 1581 "*";
+BA_ "NmAsrMessage" BO_ 1581 0;
+BA_ "RequestMessage" BO_ 1581 0;
+BA_ "DiagRequest" BO_ 1581 0;
+BA_ "DiagResponse" BO_ 1581 0;
+BA_ "Message_Longname" BO_ 1581 "Kostia Response Frame";
+BA_ "Signal_Name_English" SG_ 1580 KTReq_DataByte_7 "Request Data Byte 7";
+BA_ "Signal_Name_German" SG_ 1580 KTReq_DataByte_7 "Anforderung Datenbyte 7";
+BA_ "Signal_Name_English" SG_ 1580 KTReq_DataByte_6 "Request Data Byte 6";
+BA_ "Signal_Name_German" SG_ 1580 KTReq_DataByte_6 "Anforderung Datenbyte 6";
+BA_ "Signal_Name_English" SG_ 1580 KTReq_DataByte_5 "Request Data Byte 5";
+BA_ "Signal_Name_German" SG_ 1580 KTReq_DataByte_5 "Anforderung Datenbyte 5";
+BA_ "Signal_Name_English" SG_ 1580 KTReq_DataByte_4 "Request Data Byte 4";
+BA_ "Signal_Name_German" SG_ 1580 KTReq_DataByte_4 "Anforderung Datenbyte 4";
+BA_ "Signal_Name_English" SG_ 1580 KTReq_DataByte_3 "Request Data Byte 3";
+BA_ "Signal_Name_German" SG_ 1580 KTReq_DataByte_3 "Anforderung Datenbyte 3";
+BA_ "Signal_Name_English" SG_ 1580 KTReq_DataByte_2 "Request Data Byte 2";
+BA_ "Signal_Name_German" SG_ 1580 KTReq_DataByte_2 "Anforderung Datenbyte 2";
+BA_ "Signal_Name_English" SG_ 1580 KTReq_DataByte_1 "Request Data Byte 1";
+BA_ "Signal_Name_German" SG_ 1580 KTReq_DataByte_1 "Anforderung Datenbyte 1";
+BA_ "Signal_Name_English" SG_ 1580 KTReq_Befehlstitel "Request Command title";
+BA_ "Signal_Name_German" SG_ 1580 KTReq_Befehlstitel "Anforderung Befehlstitel";
+BA_ "Signal_Name_English" SG_ 1581 KTResp_DataByte_7 "Response Data Byte 7";
+BA_ "Signal_Name_German" SG_ 1581 KTResp_DataByte_7 "Antwort Datenbyte 7";
+BA_ "Signal_Name_English" SG_ 1581 KTResp_DataByte_6 "Response Data Byte 6";
+BA_ "Signal_Name_German" SG_ 1581 KTResp_DataByte_6 "Antwort Datenbyte 6";
+BA_ "Signal_Name_English" SG_ 1581 KTResp_DataByte_5 "Response Data Byte 5";
+BA_ "Signal_Name_German" SG_ 1581 KTResp_DataByte_5 "Antwort Datenbyte 5";
+BA_ "Signal_Name_English" SG_ 1581 KTResp_DataByte_4 "Response Data Byte 4";
+BA_ "Signal_Name_German" SG_ 1581 KTResp_DataByte_4 "Antwort Datenbyte 4";
+BA_ "Signal_Name_English" SG_ 1581 KTResp_DataByte_3 "Response Data Byte 3";
+BA_ "Signal_Name_German" SG_ 1581 KTResp_DataByte_3 "Antwort Datenbyte 3";
+BA_ "Signal_Name_English" SG_ 1581 KTResp_DataByte_2 "Response Data Byte 2";
+BA_ "Signal_Name_German" SG_ 1581 KTResp_DataByte_2 "Antwort Datenbyte 2";
+BA_ "Signal_Name_English" SG_ 1581 KTResp_DataByte_1 "Response Data Byte 1";
+BA_ "Signal_Name_German" SG_ 1581 KTResp_DataByte_1 "Antwort Datenbyte 1";
+BA_ "Signal_Name_English" SG_ 1581 KTResp_Befehl_Fehler "Response Command or Error";
+BA_ "Signal_Name_German" SG_ 1581 KTResp_Befehl_Fehler "Antwort Befehl oder Fehler";
+

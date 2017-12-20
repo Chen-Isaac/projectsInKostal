@@ -1,0 +1,128 @@
+/*@!Encoding:949*/
+
+variables
+{
+    
+    /**************** CGW_CP2 Tx message ****************/
+//    const CGW_CP2_CYCLE_TIME   = 100;
+//    message CGW_CP2    mCGW_CP2;
+//    mstimer tCGW_CP2;
+    
+
+    /**************** TCU1 Rx message ****************/
+    byte bTcuGearMode;
+    
+    /* G_SEL_DISP signal coding */
+    const  G_SEL_DISP_P = 0x00;
+    const  G_SEL_DISP_R = 0x07;
+    const  G_SEL_DISP_N = 0x06;
+    const  G_SEL_DISP_D = 0x05;
+    const  G_SEL_DISP_M = 0x08;
+    const  G_SEL_DISP_Init = 0x09;
+    const  G_SEL_DISP_Error = 0x0F;
+
+
+    /* "CF_Lvr_PosInf" signal coding */
+        const LVR_POS_INF_INIT  = 0x00;
+        const LVR_POS_INF_P     = 0x01;
+        const LVR_POS_INF_R     = 0x03;
+        const LVR_POS_INF_D     = 0x07;
+        const LVR_POS_INF_NR    = 0x08;
+        const LVR_POS_INF_ND    = 0x09;
+        const LVR_POS_INF_M     = 0x0A;
+        const LVR_POS_INF_M_P   = 0x0B;
+        const LVR_POS_INF_M_M   = 0x0C;
+        const LVR_POS_INF_ERR   = 0x0F;
+        
+        //mstimer mGearShiftDisplayTimer;
+        const GEAR_SHIFT_DISPLAY_TIME   = 500;
+}
+
+on message TCU11
+{
+    /* Changed? */
+    if(bTcuGearMode != this.G_SEL_DISP)
+    {
+        /* Stor new gear mode */
+        bTcuGearMode = this.G_SEL_DISP;
+        //write("In CGW TCU11");
+        /**** Realize Gear Mode Display in instrument cluster ****/
+
+        putvalue(EnvCluGearModeText_P, " "); // Reset display before new value is set
+        putvalue(EnvCluGearModeText_N, " ");
+        putvalue(EnvCluGearModeText_R, " ");
+        putvalue(EnvCluGearModeText_D, " ");
+        putvalue(EnvCluGearModeText_M, " ");
+
+        switch(bTcuGearMode)
+        {
+            
+            case G_SEL_DISP_P:{putvalue(EnvCluGearModeText_P, "P");write("GearMode changed to P");break;}
+            case G_SEL_DISP_N:{putvalue(EnvCluGearModeText_N, "N");write("GearMode changed to N");break;}
+            case G_SEL_DISP_R:{putvalue(EnvCluGearModeText_R, "R");write("GearMode changed to R");break;}
+            case G_SEL_DISP_D:{putvalue(EnvCluGearModeText_D, "D");write("GearMode changed to D");break;}
+            case G_SEL_DISP_M:{putvalue(EnvCluGearModeText_D, "D");write("GearMode changed to M");break;}
+            default:{break;}    // Init/Error -> leave display blank
+        }
+    }
+}
+
+on start
+{
+    putvalue(EnvCluGearModeText_P, " "); // Reset display before new value is set
+    putvalue(EnvCluGearModeText_N, " ");
+    putvalue(EnvCluGearModeText_R, " ");
+    putvalue(EnvCluGearModeText_D, " ");
+    putvalue(EnvCluGearModeText_M, " ");
+  
+    bTcuGearMode = G_SEL_DISP_P;
+    putvalue(EnvCluGearModeText_P, "P");
+    write("GearMode initialized to P");
+
+    //settimer(tCGW_CP2,CGW_CP2_CYCLE_TIME);
+
+//    putvalue(EnvCluGearModeText_MMinus, " ");
+//    putvalue(EnvCluGearModeText_MPlus, " ");
+}
+
+//on timer tCGW_CP2
+//{
+//    canceltimer(tCGW_CP2);
+//    if( @envCGW_CP12TxEnable == 1 ) {
+//      /* Write illumination parameters from environment variables to CAN signals*/
+//      mCGW_CP2.CF_Gway_DetentOut = getvalue(envCF_Gway_DetentOut);
+//      mCGW_CP2.CF_Gway_RheostatLevel = getvalue(envCF_Gway_RheostatLevel);
+//
+//      output(mCGW_CP2);
+//    }
+//    settimer(tCGW_CP2, CGW_CP2_CYCLE_TIME);
+//}
+
+//on message LVR11
+//{
+//    if(this.CF_Lvr_PosInf == LVR_POS_INF_M_M)
+//    {
+//        canceltimer(mGearShiftDisplayTimer);
+//        putvalue(EnvCluGearModeText_MMinus, "-");
+//        putvalue(EnvCluGearModeText_MPlus, " ");
+//        settimer(mGearShiftDisplayTimer,GEAR_SHIFT_DISPLAY_TIME);
+//    }
+//    else if(this.CF_Lvr_PosInf == LVR_POS_INF_M_P)
+//    {
+//        canceltimer(mGearShiftDisplayTimer);
+//        putvalue(EnvCluGearModeText_MMinus, " ");
+//        putvalue(EnvCluGearModeText_MPlus, "+");
+//        settimer(mGearShiftDisplayTimer,GEAR_SHIFT_DISPLAY_TIME);
+//    }
+//    else
+//    {
+//        
+//    }
+//}
+
+//on timer mGearShiftDisplayTimer
+//{
+//    canceltimer(mGearShiftDisplayTimer);
+//    putvalue(EnvCluGearModeText_MMinus, " ");
+//    putvalue(EnvCluGearModeText_MPlus, " ");
+//}

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <FileFormatVersion>10</FileFormatVersion>
+  <ProjectModelRoot>
+    <EmbeddedSysVars>
+      <ExternalFiles />
+      <MainFile></MainFile>
+      <PersistencyGuid>nce4d6juf3l7</PersistencyGuid>
+    </EmbeddedSysVars>
+    <CANoeEmbeddedSysVars>
+      <ExternalFiles />
+      <MainFile>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;systemvariables version="4"&gt;
+  &lt;namespace name="" comment=""&gt;
+    &lt;namespace name="DiVa" comment=""&gt;
+      &lt;variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SystemCondition" comment="" bitcount="8" isSigned="true" encoding="0" type="string" /&gt;
+    &lt;/namespace&gt;
+    &lt;namespace name="_Statistics" comment=""&gt;
+      &lt;namespace name="LIN1" comment="Bus Statistic Variables for Channel LIN1"&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="BaudRateDevMaster" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="Busload" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" maxValue="100" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="ms" name="InitTimeMaster" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="ms" name="FrameCycleTime" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="bit/s" name="BaudRateMaster" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="SleepCommands" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="ErrorsResp" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="fr/s" name="FrameRate" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="Frames" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="ErrorsBus" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="Wakeups" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="us" name="WakeupsDuration" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="ToleranceHeader" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="ms" name="DurationHeader" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="ErrorsRespDetected" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="ToleranceResp" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="us" name="RespSpace" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="ms" name="DurationResp" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="total" name="DiagNoResps" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="BusloadAvg" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" maxValue="100" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="BusloadMin" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" maxValue="100" /&gt;
+        &lt;variable anlyzLocal="1" readOnly="true" valueSequence="false" unit="%" name="BusloadMax" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" minValue="0" maxValue="100" /&gt;
+      &lt;/namespace&gt;
+    &lt;/namespace&gt;
+    &lt;variable anlyzLocal="2" readOnly="true" valueSequence="false" unit="" name="iniParaCfgPath" comment="" bitcount="64" isSigned="true" encoding="0" type="string" startValue="D:\\Isaac\\CanOE_Workspace\\cfg\\paraCfg.ini" /&gt;
+    &lt;variable anlyzLocal="2" readOnly="true" valueSequence="false" unit="" name="iniTestStepCfgPath" comment="" bitcount="64" isSigned="true" encoding="0" type="string" startValue="D:\\Isaac\\CanOE_Workspace\\cfg\\testStepCfg.ini" /&gt;
+  &lt;/namespace&gt;
+&lt;/systemvariables&gt;</MainFile>
+      <PersistencyGuid>aippn0vm89jo</PersistencyGuid>
+    </CANoeEmbeddedSysVars>
+    <EmbeddedBasicDiagnosisFiles>
+      <EmbeddedBasicDiagnosis>
+        <FileName>diagBasicDiagnosticsEcu1476.bd</FileName>
+        <Content>&lt;?xml version="1.0" encoding="Windows-1252"?&gt;&lt;ECU protocol="UDS"&gt; &lt;NEGATIVE_RESPONSE_CODES&gt; &lt;/NEGATIVE_RESPONSE_CODES&gt; &lt;INSTANCE id="VW_SlaveSparePartNumber"&gt;  &lt;REQUEST&gt;   &lt;PARAMETER id="SID_RQ" bitPos="7" bitLen="8" type="none" unit="" value="22" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="62 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;  &lt;/REQUEST&gt;  &lt;RESPONSE&gt;   &lt;PARAMETER id="SID_PR" bitPos="7" bitLen="8" type="none" unit="" value="62" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="62 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="Data" bitPos="31" bitLen="88" type="asc" unit="" value="" semantics="MOTOROLA" convId=""/&gt;  &lt;/RESPONSE&gt;  &lt;NEGATIVE_RESPONSE&gt;  &lt;/NEGATIVE_RESPONSE&gt; &lt;/INSTANCE&gt; &lt;INSTANCE id="VW_SlaveApplicationSoftwareVersionNumber"&gt;  &lt;REQUEST&gt;   &lt;PARAMETER id="SID_RQ" bitPos="7" bitLen="8" type="none" unit="" value="22" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="64 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;  &lt;/REQUEST&gt;  &lt;RESPONSE&gt;   &lt;PARAMETER id="SID_PR" bitPos="7" bitLen="8" type="none" unit="" value="62" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="64 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="Data" bitPos="31" bitLen="32" type="asc" unit="" value="" semantics="MOTOROLA" convId=""/&gt;  &lt;/RESPONSE&gt;  &lt;NEGATIVE_RESPONSE&gt;  &lt;/NEGATIVE_RESPONSE&gt; &lt;/INSTANCE&gt; &lt;INSTANCE id="VW_SlaveHardwareNumber"&gt;  &lt;REQUEST&gt;   &lt;PARAMETER id="SID_RQ" bitPos="7" bitLen="8" type="none" unit="" value="22" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="66 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;  &lt;/REQUEST&gt;  &lt;RESPONSE&gt;   &lt;PARAMETER id="SID_PR" bitPos="7" bitLen="8" type="none" unit="" value="62" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="66 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="Data" bitPos="31" bitLen="88" type="asc" unit="" value="" semantics="MOTOROLA" convId=""/&gt;  &lt;/RESPONSE&gt;  &lt;NEGATIVE_RESPONSE&gt;  &lt;/NEGATIVE_RESPONSE&gt; &lt;/INSTANCE&gt; &lt;INSTANCE id="VW_SlaveSystemName"&gt;  &lt;REQUEST&gt;   &lt;PARAMETER id="SID_RQ" bitPos="7" bitLen="8" type="none" unit="" value="22" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="6C 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;  &lt;/REQUEST&gt;  &lt;RESPONSE&gt;   &lt;PARAMETER id="SID_PR" bitPos="7" bitLen="8" type="none" unit="" value="62" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="6C 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="Data" bitPos="31" bitLen="104" type="asc" unit="" value="" semantics="MOTOROLA" convId=""/&gt;  &lt;/RESPONSE&gt;  &lt;NEGATIVE_RESPONSE&gt;  &lt;/NEGATIVE_RESPONSE&gt; &lt;/INSTANCE&gt; &lt;INSTANCE id="VW_SlaveSerialNumber"&gt;  &lt;REQUEST&gt;   &lt;PARAMETER id="SID_RQ" bitPos="7" bitLen="8" type="none" unit="" value="22" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="6A 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;  &lt;/REQUEST&gt;  &lt;RESPONSE&gt;   &lt;PARAMETER id="SID_PR" bitPos="7" bitLen="8" type="none" unit="" value="62" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="6A 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="Data" bitPos="31" bitLen="160" type="asc" unit="" value="" semantics="MOTOROLA" convId=""/&gt;  &lt;/RESPONSE&gt;  &lt;NEGATIVE_RESPONSE&gt;  &lt;/NEGATIVE_RESPONSE&gt; &lt;/INSTANCE&gt; &lt;INSTANCE id="VW_SlaveHardwareVersionNumber"&gt;  &lt;REQUEST&gt;   &lt;PARAMETER id="SID_RQ" bitPos="7" bitLen="8" type="none" unit="" value="22" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="68 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;  &lt;/REQUEST&gt;  &lt;RESPONSE&gt;   &lt;PARAMETER id="SID_PR" bitPos="7" bitLen="8" type="none" unit="" value="62" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="68 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="Data" bitPos="31" bitLen="24" type="asc" unit="" value="" semantics="MOTOROLA" convId=""/&gt;  &lt;/RESPONSE&gt;  &lt;NEGATIVE_RESPONSE&gt;  &lt;/NEGATIVE_RESPONSE&gt; &lt;/INSTANCE&gt; &lt;INSTANCE id="VW_SlaveFazitString"&gt;  &lt;REQUEST&gt;   &lt;PARAMETER id="SID_RQ" bitPos="7" bitLen="8" type="none" unit="" value="22" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="6E 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;  &lt;/REQUEST&gt;  &lt;RESPONSE&gt;   &lt;PARAMETER id="SID_PR" bitPos="7" bitLen="8" type="none" unit="" value="62" semantics="SID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="dataIdentifier" bitPos="15" bitLen="16" type="none" unit="" value="6E 1E" semantics="XID CONST MOTOROLA" convId=""/&gt;   &lt;PARAMETER id="Data" bitPos="31" bitLen="184" type="asc" unit="" value="" semantics="MOTOROLA" convId=""/&gt;  &lt;/RESPONSE&gt;  &lt;NEGATIVE_RESPONSE&gt;  &lt;/NEGATIVE_RESPONSE&gt; &lt;/INSTANCE&gt;&lt;/ECU&gt;</Content>
+        <PersistencyGuid>pb6olrjs59ld</PersistencyGuid>
+      </EmbeddedBasicDiagnosis>
+    </EmbeddedBasicDiagnosisFiles>
+    <ExternalReferences />
+    <Libraries>
+      <Library>
+        <Name>Library</Name>
+        <FileName>.\..\Library\</FileName>
+      </Library>
+    </Libraries>
+    <Mappings>
+      <FolderName>Mappings</FolderName>
+      <SubFolders />
+      <Files />
+    </Mappings>
+    <ProjectRoot>
+      <TestUnits>
+        <FolderName>Test Units</FolderName>
+        <SubFolders>
+          <TestUnit>
+            <FolderName>Bentley_P07234_Roof_Module</FolderName>
+            <SubFolders />
+            <Files>
+              <ProjectFile>
+                <FileName>Bentley_P07234_Roof_Module.vtt</FileName>
+                <PersistencyGuid>tksuae6kmnpc</PersistencyGuid>
+              </ProjectFile>
+              <ProjectFile>
+                <FileName>basicFunctionTest.can</FileName>
+                <PersistencyGuid>o1lfq5ab7fcd</PersistencyGuid>
+              </ProjectFile>
+            </Files>
+            <PersistencyGuid>s4hslbim13va</PersistencyGuid>
+            <FilesExcludedFromTestTree />
+            <FilesExcludedFromBuild />
+            <ExcludeFromBuild>False</ExcludeFromBuild>
+            <EmbeddedTUVariantProperties>
+              <Content>&lt;TUVariantPropertyModel&gt;
+  &lt;FileFormatVersion&gt;1&lt;/FileFormatVersion&gt;
+  &lt;TUVariantPropertyValues&gt;
+    &lt;VariantPropertyRefs /&gt;
+  &lt;/TUVariantPropertyValues&gt;
+&lt;/TUVariantPropertyModel&gt;</Content>
+              <PersistencyGuid>l99u09v99i0g</PersistencyGuid>
+            </EmbeddedTUVariantProperties>
+            <EmbeddedTUProperties>
+              <Content>&lt;TUProperties&gt;
+  &lt;Caption&gt;&lt;/Caption&gt;
+  &lt;Description&gt;&lt;/Description&gt;
+  &lt;Version&gt;&lt;/Version&gt;
+  &lt;TestDesigners&gt;
+    &lt;Columns /&gt;
+    &lt;TestDesignerEntries /&gt;
+  &lt;/TestDesigners&gt;
+  &lt;TUInfos /&gt;
+&lt;/TUProperties&gt;</Content>
+              <PersistencyGuid>v2icd7vf2o7g</PersistencyGuid>
+            </EmbeddedTUProperties>
+            <ModellingLibraries>
+              <FolderName></FolderName>
+              <SubFolders />
+              <Files />
+            </ModellingLibraries>
+          </TestUnit>
+        </SubFolders>
+        <Files />
+      </TestUnits>
+    </ProjectRoot>
+    <ProjectSettings>
+      <NetGenerateNsNetwork>False</NetGenerateNsNetwork>
+      <NetGenerateNsDatabase>False</NetGenerateNsDatabase>
+      <NetGenerateNsNode>False</NetGenerateNsNode>
+      <NetGenerateNsFrame>False</NetGenerateNsFrame>
+      <BuildDirLocal></BuildDirLocal>
+      <BuildDirPackAndGo></BuildDirPackAndGo>
+      <BuildMode>Local</BuildMode>
+      <IncludeSources>False</IncludeSources>
+      <CreateExecutableFolder>False</CreateExecutableFolder>
+      <ExportTraceabilityMatrix>False</ExportTraceabilityMatrix>
+      <GenerateXmlDocumentation>False</GenerateXmlDocumentation>
+      <TdeBreakOnFailDefault>True</TdeBreakOnFailDefault>
+      <TdePartialPathSeparator>_</TdePartialPathSeparator>
+      <TteTcBreakOnFailDefault>True</TteTcBreakOnFailDefault>
+      <TteTsBreakOnFailDefault>True</TteTsBreakOnFailDefault>
+    </ProjectSettings>
+    <SUTEnvironment>
+      <SUTSystemVariables>
+        <FolderName>SUT System Variables</FolderName>
+        <SubFolders />
+        <Files />
+      </SUTSystemVariables>
+      <DiagnosticTargets>
+        <FolderName>Diagnostic Targets</FolderName>
+        <SubFolders />
+        <Files>
+          <DiagFileLink>
+            <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="obj_Bentley_P07234_Roof_Module\pb6olrjs59ld-CoeBD.bd" /&gt;</SerializedBasedFileName>
+            <Variant>BaseVariant</Variant>
+            <VariantQualifier>BaseVariant</VariantQualifier>
+            <Language>???</Language>
+            <EcuQualifier>BasicDiagnosticsEcu</EcuQualifier>
+            <Ecu>BasicDiagnosticsEcu</Ecu>
+            <EcuIdentifier></EcuIdentifier>
+            <PersistencyGuid>1g3i2v3602b0</PersistencyGuid>
+          </DiagFileLink>
+        </Files>
+      </DiagnosticTargets>
+      <SUTNetworks>
+        <FolderName>SUT Networks</FolderName>
+        <SubFolders>
+          <Channel>
+            <FolderName>LIN</FolderName>
+            <SubFolders />
+            <Files>
+              <DatabaseFileLink>
+                <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="RoofModule_Env.dbc" /&gt;</SerializedBasedFileName>
+                <Caption>RoofModule_Env</Caption>
+                <ChannelType>LIN</ChannelType>
+                <Cluster></Cluster>
+                <IgnoredNodes></IgnoredNodes>
+                <DatabaseFileType>DBC</DatabaseFileType>
+                <PersistencyGuid>lm39gi4h1hei</PersistencyGuid>
+                <FlexRayABCompatibility>0</FlexRayABCompatibility>
+                <ASRShortNameUsage>ISignalOrGroup</ASRShortNameUsage>
+                <FlexRayPostfixOption>0</FlexRayPostfixOption>
+              </DatabaseFileLink>
+              <DatabaseFileLink>
+                <SerializedBasedFileName>&lt;VFileName v="V5" f="BQL" init="1" base="cfg" name="MLBevo_Konzern_MLBevo_BCM1_LIN2_KMatri_V8.11.00E_20160323.ldf.ldf" /&gt;</SerializedBasedFileName>
+                <Caption>MLBevo_Konzern_MLBevo_BCM1_LIN2_</Caption>
+                <ChannelType>LIN</ChannelType>
+                <Cluster></Cluster>
+                <IgnoredNodes></IgnoredNodes>
+                <DatabaseFileType>LDF</DatabaseFileType>
+                <PersistencyGuid>qfvba7henmsh</PersistencyGuid>
+                <FlexRayABCompatibility>0</FlexRayABCompatibility>
+                <ASRShortNameUsage>ISignalOrGroup</ASRShortNameUsage>
+                <FlexRayPostfixOption>0</FlexRayPostfixOption>
+              </DatabaseFileLink>
+            </Files>
+            <ChannelNum>1</ChannelNum>
+            <ChannelType>LIN</ChannelType>
+          </Channel>
+        </SubFolders>
+        <Files />
+      </SUTNetworks>
+    </SUTEnvironment>
+  </ProjectModelRoot>
+</Project>

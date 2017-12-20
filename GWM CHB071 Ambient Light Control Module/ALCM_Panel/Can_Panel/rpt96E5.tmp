@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2017-06-29 17:30:53" timestamp="  28.731781" verdicts="2_basic">
+  <testunit starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+    <skippedsequence starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+      <title>Power supply initialization</title>
+    </skippedsequence>
+    <skippedsequence starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+      <title>3.5.1 Switch on Ambient light by door open signal</title>
+    </skippedsequence>
+    <skippedsequence starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+      <title>3.5.2 Switch on ambient light by ACC or IGN ON</title>
+    </skippedsequence>
+    <skippedsequence starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+      <title>3.5.3 Switch off function</title>
+    </skippedsequence>
+    <skippedsequence starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+      <title>Read SW version</title>
+    </skippedsequence>
+    <skippedfixture starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+      <title>Setup&amp;Product Initialization</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+      <title>3.5.1 Switch on Ambient light by door open signal</title>
+    </skippedfixture>
+    <testfixture>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkDrivingModeReqSigImpWhenAccOn</title>
+        <skippedcount>64</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkALCMLightLvlSetSigImpWhenAccOn</title>
+        <skippedcount>44</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkALCMLightLvlSetSigImpWhenIgnOn</title>
+        <skippedcount>11</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkALCMLightLvlSetSigImpWhenIgnOn</title>
+        <skippedcount>11</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkALCMLightLvlSetSigImpWhenIgnOn</title>
+        <skippedcount>11</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkALCMLightLvlSetSigImpWhenIgnOn</title>
+        <skippedcount>11</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkAccImpWhenMode0</title>
+        <skippedcount>4</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff</title>
+        <skippedcount>12</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff</title>
+        <skippedcount>12</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff</title>
+        <skippedcount>12</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+        <title>chkRisingTimeAndMemoryFunctionOfAccImpExceptMode0SwitchOff</title>
+        <skippedcount>12</skippedcount>
+      </skippedtestcaselist>
+      <testcaselist>
+        <testcase starttime="2017-06-29 17:30:53" timestamp="  28.731781">
+          <teststep timestamp="  28.731781" level="0" type="user" ident="set signal status" result="na">Start to set SystemPowerMode = 0.</teststep>
+          <teststep timestamp="  28.732781" level="0" type="user" ident="set signal status" result="pass">set SystemPowerMode = 0 successfully after 1.00ms.</teststep>
+          <teststep timestamp="  28.732781" level="0" type="user" ident="set signal status" result="na">Start to set DriverDoorSts = 1.</teststep>
+          <teststep timestamp="  28.751781" level="0" type="user" ident="set signal status" result="pass">set DriverDoorSts = 1 successfully after 19.00ms.</teststep>
+          <teststep timestamp="  31.751781" level="0" type="user" ident="Wait" result="na">Wait for 3000ms.</teststep>
+          <teststep timestamp="  31.751781" level="0" type="user" ident="check PWM" result="pass">pin Zone1_R+ :output frequency =  0.0Hz, duty = 0.0%, average voltage = 0.04V</teststep>
+          <teststep timestamp="  31.751781" level="0" type="user" ident="check PWM Frequency" result="pass">pin Zone1_G+ :output frequency = 200.0Hz</teststep>
+          <teststep timestamp="  31.751781" level="0" type="user" ident="check PWM Duty" result="pass">pin Zone1_G+ :output duty = 20.7%</teststep>
+          <teststep timestamp="  31.751781" level="0" type="user" ident="check PWM Frequency" result="pass">pin Zone1_B+ :output frequency = 200.0Hz</teststep>
+          <teststep timestamp="  31.751781" level="0" type="user" ident="check PWM Duty" result="pass">pin Zone1_B+ :output duty = 96.7%</teststep>
+          <teststep timestamp="  31.751781" level="0" type="user" ident="set signal status" result="na">Start to set DriverDoorSts = 0.</teststep>
+          <teststep timestamp="  31.801781" level="0" type="user" ident="set signal status" result="pass">set DriverDoorSts = 0 successfully after 50.00ms.</teststep>
+          <teststep timestamp="  31.801781" level="0" type="user" ident="set signal status" result="na">Start to set SystemPowerMode = 2.</teststep>
+          <teststep timestamp="  31.851781" level="0" type="user" ident="set signal status" result="pass">set SystemPowerMode = 2 successfully after 50.00ms.</teststep>
+          <teststep timestamp="  32.251781" level="0" type="user" ident="VT outputs digital level for product input pin" result="na">For pin color_change_sw:Module9 channel4 generates low digital level.</teststep>
+          <teststep timestamp="  33.052781" level="0" type="user" ident="Wait" result="na">Wait for 801ms.</teststep>
+          <teststep timestamp="  33.452781" level="0" type="user" ident="VT outputs digital level for product input pin" result="na">For pin color_change_sw:Module9 channel4 is set to float.</teststep>
+          <teststep timestamp="  35.452781" level="0" type="user" ident="Wait" result="na">Wait for 2000ms.</teststep>
+          <teststep timestamp="  35.452781" level="0" type="user" ident="check PWM" result="pass">pin Zone1_R+ :output frequency =  0.0Hz, duty = 0.0%, average voltage = 0.04V</teststep>
+          <teststep timestamp="  35.452781" level="0" type="user" ident="check PWM" result="pass">pin Zone1_G+ :output frequency =  0.0Hz, duty = 0.0%, average voltage = 0.04V</teststep>
+          <teststep timestamp="  35.452781" level="0" type="user" ident="check PWM" result="pass">pin Zone1_B+ :output frequency =  0.0Hz, duty = 0.0%, average voltage = 0.04V</teststep>
+          <teststep timestamp="  35.452781" level="0" type="user" ident="set signal status" result="na">Start to set SystemPowerMode = 0.</teststep>
+          <teststep timestamp="  35.502781" level="0" type="user" ident="set signal status" result="pass">set SystemPowerMode = 0 successfully after 50.00ms.</teststep>
+          <teststep timestamp="  35.502781" level="0" type="user" ident="set signal status" result="na">Start to set ALCMLightLvlSet = 0.</teststep>
+          <teststep timestamp="  35.602781" level="0" type="user" ident="set signal status" result="pass">set ALCMLightLvlSet = 0 successfully after 100.00ms.</teststep>
+          <teststep timestamp="  35.602781" level="0" type="user" ident="set signal status" result="na">Start to set SystemPowerMode = 2.</teststep>
+          <teststep timestamp="  35.652781" level="0" type="user" ident="set signal status" result="pass">set SystemPowerMode = 2 successfully after 50.00ms.</teststep>
+          <teststep timestamp="  36.052781" level="0" type="user" ident="VT outputs digital level for product input pin" result="na">For pin color_change_sw:Module9 channel4 generates low digital level.</teststep>
+          <teststep timestamp="  36.084781" level="0" type="user" ident="Wait" result="na">Wait for 32ms.</teststep>
+          <teststep timestamp="  36.484781" level="0" type="user" ident="VT outputs digital level for product input pin" result="na">For pin color_change_sw:Module9 channel4 is set to float.</teststep>
+          <teststep timestamp="  39.484781" level="0" type="user" ident="measure PWM rising edge" result="fail">pin Zone1_G+ :PWM output didn&apos;t rise within 3s after rising start timing measurement.</teststep>
+          <teststep timestamp="  40.986781" level="0" type="user" ident="measure PWM rising edge" result="pass">pin Zone1_G+ :PWM rising edge ended at   0.00ms after rising end timing measurment.</teststep>
+          <teststep timestamp="  40.986781" level="0" type="user" ident="check PWM" result="fail">check PWM fail -&gt; pin Zone1_G+ :output frequency =  0.0Hz vs expectedFreq = 200.0Hz, duty = 0.0% vs expectedDuty = 20.0%.</teststep>
+          <teststep timestamp="  40.986781" level="0" type="user" ident="measure PWM rising edge" result="pass">pin Zone1_G+ :PWM rising time is 830.07ms,within 1000ms.</teststep>
+          <teststep timestamp=" 100.986781" level="0" type="user" ident="measure PWM falling edge" result="fail">pin Zone1_G+ :PWM falling edge didn&apos;t start within 60s after falling start timing measurement.</teststep>

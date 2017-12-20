@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <tc>
+      <title />
+      <variables>
+        <variable_definition>
+          <name>shit</name>
+          <type>int</type>
+          <source>
+            <const>0</const>
+          </source>
+        </variable_definition>
+        <variable_definition>
+          <name>cycleTime</name>
+          <type>int</type>
+          <source>
+            <const>0</const>
+          </source>
+        </variable_definition>
+      </variables>
+      <caplinline>
+        <title />
+        <active>true</active>
+        <code>shit = syspar::slSensor2Led[0].sensor;</code>
+      </caplinline>
+      <if>
+        <title />
+        <compare>
+          <value>
+            <variable>shit</variable>
+          </value>
+          <eq>
+            <const>6</const>
+          </eq>
+        </compare>
+        <canoestandardservice>
+          <title />
+          <name>testValidateTesterConfirmation</name>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>[0]</const>
+            </value>
+          </param>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>[0]</const>
+            </value>
+          </param>
+          <param>
+            <type>long</type>
+            <value>
+              <const>1</const>
+            </value>
+          </param>
+        </canoestandardservice>
+        <caplfunction>
+          <title />
+          <active>false</active>
+          <name>tf_FrmStatusCycleTimeIncremented</name>
+          <param>
+            <type>long</type>
+            <value>
+              <const>0</const>
+            </value>
+          </param>
+          <returnvalue>
+            <type>long</type>
+            <value>
+              <variable>cycleTime</variable>
+            </value>
+          </returnvalue>
+        </caplfunction>
+        <caplinline>
+          <title />
+          <code>testStep("cycle time","cycletime=%d",cycleTime);</code>
+        </caplinline>
+        <if>
+          <title />
+          <compare>
+            <value>
+              <variable>shit</variable>
+            </value>
+            <eq>
+              <const>1</const>
+            </eq>
+          </compare>
+          <canoestandardservice>
+            <title />
+            <name>testValidateTesterConfirmation</name>
+            <param>
+              <type>char[]</type>
+              <value>
+                <const>[1]</const>
+              </value>
+            </param>
+            <param>
+              <type>char[]</type>
+              <value>
+                <const>[1]</const>
+              </value>
+            </param>
+            <param>
+              <type>long</type>
+              <value>
+                <const>1</const>
+              </value>
+            </param>
+          </canoestandardservice>
+        </if>
+      </if>
+    </tc>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>

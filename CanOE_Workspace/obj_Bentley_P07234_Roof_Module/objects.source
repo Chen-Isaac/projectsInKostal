@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TempFileMetainfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel">
+  <FileFormatVersion xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">1</FileFormatVersion>
+  <TempFileMetainfo xmlns:d2p1="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel.Entities" z:Id="2">
+    <_p z:Ref="1" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    <d2p1:FileSources z:Id="3">
+      <Content z:Id="4" z:Size="11" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">
+        <d2p1:FileSource z:Id="5" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="6">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="7">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-12-05T15:12:31.0239044+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>141</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="8">nce4d6juf3l7-TSV</d2p1:PersistencyKey>
+          <d2p1:Crc>650686418</d2p1:Crc>
+          <d2p1:SourceFile z:Id="9">D:\Isaac\CanOE_Workspace\Bentley_P07234_Roof_Module.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="10" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-05T15:12:32.2449044+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>3072</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="11">nce4d6juf3l7#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="12">
+            <_p z:Ref="10" i:nil="true" />
+            <d2p1:FullFilePath z:Id="13">D:\Isaac\CanOE_Workspace\obj_Bentley_P07234_Roof_Module\nce4d6juf3l7-TSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-12-05T15:12:31.0239044+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="14" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="15">.vvarprop</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-12-05T15:12:31.1099044+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="16">TU_Indep=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Id="17"></d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="18" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="15" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-05T15:12:38.9909044+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="19">s4hslbim13va=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="17" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="20" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-20T16:26:04.5468372+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>54</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="21">s4hslbim13va~3-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="22">
+            <Content z:Id="23" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="24">
+                <_p z:Ref="22" i:nil="true" />
+                <d2p1:FullFilePath z:Id="25">D:\Isaac\CanOE_Workspace\Bentley_P07234_Roof_Module\Bentley_P07234_Roof_Module.vtt</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-12-20T16:15:53.4548372+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="20" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="26" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-20T16:26:04.5768372+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>34875</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="27">s4hslbim13va~0-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="28">
+            <Content z:Id="29" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="30">
+                <_p z:Ref="28" i:nil="true" />
+                <d2p1:FullFilePath z:Id="31">D:\Isaac\CanOE_Workspace\Bentley_P07234_Roof_Module\basicFunctionTest.can</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-12-20T16:25:45.2668372+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="26" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="32" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-05T15:28:02.0939381+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>5336</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="33">aippn0vm89jo-CSV</d2p1:PersistencyKey>
+          <d2p1:Crc>1260340116</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="34" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-05T15:28:02.3049592+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>16384</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="35">aippn0vm89jo#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="36">
+            <_p z:Ref="34" i:nil="true" />
+            <d2p1:FullFilePath z:Id="37">D:\Isaac\CanOE_Workspace\obj_Bentley_P07234_Roof_Module\aippn0vm89jo-CSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-12-05T15:28:02.0939381+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="38" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="39">.bd</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-12-05T15:27:58.4175705+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>5464</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="40">pb6olrjs59ld-CoeBD</d2p1:PersistencyKey>
+          <d2p1:Crc>2876281454</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="41" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-05T15:27:58.8266114+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>18944</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="42">lm39gi4h1hei#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="43">
+            <_p z:Ref="41" i:nil="true" />
+            <d2p1:FullFilePath z:Id="44">D:\Isaac\CanOE_Workspace\RoofModule_Env.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-09-29T08:41:50+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="45" z:Size="1">
+            <d6p1:string z:Id="46">LIN</d6p1:string>
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="47" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-06T14:41:35.1416425+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>360960</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="48">qfvba7henmsh#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="49">
+            <_p z:Ref="47" i:nil="true" />
+            <d2p1:FullFilePath z:Id="50">D:\Isaac\CanOE_Workspace\MLBevo_Konzern_MLBevo_BCM1_LIN2_KMatri_V8.11.00E_20160323.ldf.ldf</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-12-06T13:58:05.6057161+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="51" z:Size="1">
+            <d6p1:string z:Id="52">LIN</d6p1:string>
+          </d2p1:Networks>
+        </d2p1:FileSource>
+      </Content>
+      <_p z:Ref="2" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    </d2p1:FileSources>
+  </TempFileMetainfo>
+</TempFileMetainfo>

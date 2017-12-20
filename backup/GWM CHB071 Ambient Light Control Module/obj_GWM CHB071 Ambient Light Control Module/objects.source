@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TempFileMetainfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel">
+  <FileFormatVersion xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">1</FileFormatVersion>
+  <TempFileMetainfo xmlns:d2p1="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel.Entities" z:Id="2">
+    <_p z:Ref="1" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    <d2p1:FileSources z:Id="3">
+      <Content z:Id="4" z:Size="7" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">
+        <d2p1:FileSource z:Id="5" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="6">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="7">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2016-11-15T09:47:33.2364452+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>327</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="8">3cpo1h2tctbh-TSV</d2p1:PersistencyKey>
+          <d2p1:Crc>3015546</d2p1:Crc>
+          <d2p1:SourceFile z:Id="9">D:\Isaac\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="10" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-11-15T09:47:33.2764452+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>235801</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="11">svcb8uh84mpd-CSV</d2p1:PersistencyKey>
+          <d2p1:Crc>1928135463</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="12" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="13">.vvarprop</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2016-11-15T09:47:33.5664452+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="14">TU_Indep=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Id="15"></d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="16" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="13" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-11-15T09:47:33.5764452+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="17">ge0leqevhj9p=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="15" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="18" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-04-14T16:30:44.3744247+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>6526</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="19">ge0leqevhj9p~3-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="20">
+            <Content z:Id="21" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="22">
+                <_p z:Ref="20" i:nil="true" />
+                <d2p1:FullFilePath z:Id="23">D:\Isaac\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtt</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2016-11-23T11:24:10.709765+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="18" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="24" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-11-15T09:47:38.6164452+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>4608</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="25">3cpo1h2tctbh#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="26">
+            <_p z:Ref="24" i:nil="true" />
+            <d2p1:FullFilePath z:Id="27">D:\Isaac\GWM CHB071 Ambient Light Control Module\obj_GWM CHB071 Ambient Light Control Module\3cpo1h2tctbh-TSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-11-15T09:47:33.2364452+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="28" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-11-15T09:47:39.0264452+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>471552</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="29">svcb8uh84mpd#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="30">
+            <_p z:Ref="28" i:nil="true" />
+            <d2p1:FullFilePath z:Id="31">D:\Isaac\GWM CHB071 Ambient Light Control Module\obj_GWM CHB071 Ambient Light Control Module\svcb8uh84mpd-CSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-11-15T09:47:33.2764452+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+      </Content>
+      <_p z:Ref="2" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    </d2p1:FileSources>
+  </TempFileMetainfo>
+</TempFileMetainfo>

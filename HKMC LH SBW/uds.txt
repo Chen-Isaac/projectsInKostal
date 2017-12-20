@@ -1,0 +1,2753 @@
+/*@!Encoding:1252*/
+
+includes
+{
+  
+}
+
+//variables
+//{
+ // message EGSM_diareq  DIAG_REQUE_S10;
+  //message EGSM_resp DIAG_RESP;
+//}
+variables
+{
+ 
+    /* --------------------------------------------------------------------------------------------------- */
+    /*                                      Message Define Area                                            */
+    /* --------------------------------------------------------------------------------------------------- */
+
+    message     EGSM_diareq       PMSG;               /* Physical Request Message */
+    message     Func_diareq       FMSG;               /* Function Request Message */
+    message     EGSM_resp         RMSG;               /* Response Message         */
+
+
+    msTimer     tmTesterPresent;
+
+    msTimer     tmShowIndicator;
+
+    msTimer     tmCFSending;
+
+    /* --------------------------------------------------------------------------------------------------- */
+    /*                                        Const Define Area                                            */
+    /* --------------------------------------------------------------------------------------------------- */
+
+    const       PHYSICAL     = 0x00;    
+    const       FUNCTION     = 0x01;
+    
+    const       MSGFILLDATA  = 0x00; 
+
+    const       SF           = 0x00;
+    const       FF           = 0x10;
+    const       CF           = 0x20;
+    const       FC           = 0x30;
+
+    /* Security Access Mask     */
+    const       MASK   =   0x20534153;   
+    
+    /* Time Relevant Define     */
+    const       S3CLIENT     = 2000;
+
+    /* Data Type                */
+    const       HEX_TYPE     =  0;
+    const       DEC_TYPE     =  1; 
+    const       BCD_TYPE     =  2;
+    const       ASCII_TYPE   =  3;
+
+    /* --------------------------------------------------------------------------------------------------- */
+    /*                                        Variable Define Area                                         */
+    /* --------------------------------------------------------------------------------------------------- */
+
+    byte        udsPnlEnable;
+
+    byte        udsRequestAddress;
+
+    byte        udsRequestSuppress;
+  
+    byte        udsSecurityKey[4];
+
+    byte        udsSecuritySeed[4];
+
+    struct  
+    {
+                word        Node;
+                word        Length;
+                byte        Data[100];
+    }udsRequest;
+    
+    struct
+    {       
+                word        Length;
+                byte        Data[100];
+    }udsResponce;
+    
+    byte        udsSendingFrameState;     
+    byte        udsSendingFrameIndex;
+    byte        udsSendingDataNumber;
+
+    byte        udsReceiveDataNumber;
+    byte        udsReceiveFrameIndex;
+
+    byte        udsReadDTCStatusMask;
+
+    byte        FlowBS;
+    byte        FlowSTmin;
+    byte        FlowControlTimes;
+
+    byte        RecFlowBS;
+    byte        RecFlowSTmin;
+
+    dword       DTCTable[14];
+
+    byte        udsPnlEnabled;
+
+    byte        udsSendingDID[2];
+    
+    byte        udsSendingPID[2];
+
+    byte        ECUSerialNumber[4];
+
+
+       
+}
+udsRequestBuffInit ()
+{
+    byte        i;
+
+    udsRequest.Node = PHYSICAL;
+
+    udsRequest.Length = 0;
+
+    for( i = 0; i < 100; i++ ){
+        
+        udsRequest.Data[i] = MSGFILLDATA;
+    
+    }
+
+}
+
+udsResponceBuffInit ()
+{
+    
+    byte    i;
+
+    udsResponce.Length = 0;
+
+    for ( i = 0; i < 100; i ++ ){
+
+        udsResponce.Data[i] = MSGFILLDATA;
+
+    }
+
+}
+udsServiceClearDiagInfo (byte group[])
+{
+
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x14;
+
+    udsRequest.Data[1]  =   group[2];
+    udsRequest.Data[2]  =   group[1];
+    udsRequest.Data[3]  =   group[0];
+
+    udsRequest.Length   =   4;
+
+    udsRequestSending();
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+}
+
+udsRequestSending ()
+{
+    
+    byte    udsSendingBuff[8];
+    
+    byte    i;
+
+    byte    tmplen;
+
+    if( udsPnlEnable != 1 ){                /* if udsPanel disable, no frame sending    */
+        return;
+    }
+
+    /* Sending Frame            */
+    switch ( udsSendingFrameState ){
+                    
+        case SF :
+            
+            if( udsRequest.Length <= 8 ){
+                
+                udsSendingBuff[0] = udsRequest.Length + SF ;
+
+                for( i = 0; i < udsRequest.Length ; i ++ ){
+                    udsSendingBuff[i+1] = udsRequest.Data[i];
+                }
+                for( i = udsRequest.Length + 1 ; i < 8 ; i ++ ){
+                    udsSendingBuff[i] = MSGFILLDATA;
+                }
+
+            }
+            else {
+                
+                udsSendingBuff[0] = ((udsRequest.Length) >> 8) + FF ;
+                udsSendingBuff[1] = udsRequest.Length & 0xFF;
+                
+                for( i = 0 ; i < 8 - 2; i ++ ){
+                    udsSendingBuff[i+2] = udsRequest.Data[i];
+                } 
+
+                udsSendingFrameState = FC;
+                udsSendingFrameIndex = 0;
+                udsSendingDataNumber = 6;
+
+            }
+            
+            break;
+
+        case CF : 
+            
+            udsSendingFrameIndex ++ ;
+
+            udsSendingBuff[0] = udsSendingFrameIndex + CF;
+
+            if( udsRequest.Length - udsSendingDataNumber > 7  ){
+                
+                for( i = 0; i < 7; i ++ ){
+                    udsSendingBuff[i+1] = udsRequest.Data[ udsSendingDataNumber + i ];
+                }
+                udsSendingDataNumber = udsSendingDataNumber + 7;
+
+                if( RecFlowBS == 0 ){
+                    if( udsSendingDataNumber >= udsRequest.Length ){
+                        udsSendingFrameState = SF;
+                        udsSendingFrameIndex = 0;
+                        udsSendingDataNumber = 0; 
+                        cancelTimer(tmCFSending);
+                    }
+                }
+                else {
+                    if( udsSendingFrameIndex >= RecFlowBS ){
+                        udsSendingFrameState = FC;
+                        udsSendingFrameIndex = 0;
+                        udsSendingDataNumber = 0; 
+                        cancelTimer(tmCFSending);
+                    }
+                }
+            }
+            else {
+
+                for( i = 0; i < udsRequest.Length - udsSendingDataNumber ; i ++ ){
+                    udsSendingBuff[i+1] = udsRequest.Data[ udsSendingDataNumber + i ];
+                }
+                for( i = udsRequest.Length - udsSendingDataNumber; i < 7 ; i ++ ){
+                    udsSendingBuff[ i+1 ] = MSGFILLDATA;
+                }
+                
+                udsSendingFrameState = SF;
+                udsSendingFrameIndex = 0;
+                udsSendingDataNumber = 0; 
+
+                cancelTimer(tmCFSending);
+            }
+
+            break;
+        default:
+            break;
+    }
+
+    if( udsRequestAddress == PHYSICAL ){ 
+        for( i = 0 ; i < 8 ; i ++ ){
+            PMSG.byte(i) = udsSendingBuff[i];
+        }
+        PMSG.DLC = 8;
+
+        output(PMSG);
+    }
+    else {
+        for( i = 0 ; i < 8 ; i ++ ){
+            FMSG.byte(i) = udsSendingBuff[i];
+        }
+        FMSG.DLC = 8;
+
+        output(FMSG);
+    }
+
+    if( getvalue(udsPNL_FLG_TesterPresent) == 0x01 ){
+        canceltimer(tmTesterPresent);
+        settimer(tmTesterPresent, S3CLIENT);
+    }
+}
+
+udsServiceCommControl (byte sub, byte p)
+{
+    
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x28;
+
+    if( udsRequestSuppress == 0 )
+        udsRequest.Data[1]  =   sub;
+    else
+        udsRequest.Data[1]  =   0x80 + sub;
+
+    udsRequest.Data[2]  =   p;   
+
+    udsRequest.Length   =   3;
+
+    udsRequestSending();
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+
+}
+udsServiceIOControlByIdentifier(byte sub[], byte p)
+{
+   udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x2F;
+
+    udsRequest.Data[1]  =   sub[0];
+
+    udsRequest.Data[2]  =   sub[1];
+  
+    udsRequest.Data[3]  =   p;
+
+    udsRequest.length   =   4;
+
+    udsRequestSending();
+  
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+  
+}
+udsServiceIOControlByIdentifierShortTrmAdj(byte sub[], byte p)
+{
+   udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x2F;
+
+    udsRequest.Data[1]  =   sub[0];
+
+    udsRequest.Data[2]  =   sub[1];
+  
+    udsRequest.Data[3]  =   p;
+  
+    udsRequest.Data[4]  =   sub[2];
+
+    udsRequest.length   =   5;
+
+    udsRequestSending();
+  
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+  
+}
+udsServiceControlDTCSetting (byte sub)
+{
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x85;
+
+    if( udsRequestSuppress == 0 )
+        udsRequest.Data[1]  =   sub;
+    else
+        udsRequest.Data[1]  =   0x80 + sub;
+
+    udsRequest.Length   =   2;
+
+    udsRequestSending();
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+}
+udsServiceEcuReset (byte sub)
+{
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x11;
+
+    if( udsRequestSuppress == 0 )
+        udsRequest.Data[1]  =   sub;
+    else
+        udsRequest.Data[1]  =   0x80 + sub;
+
+    udsRequest.Length   =   2;
+
+    udsRequestSending();
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+}
+
+udsServiceReadDTCInfo (byte sub, byte p[])
+{
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x19;
+
+    if( udsRequestSuppress == 0 )
+        udsRequest.Data[1]  =   sub;
+    else
+        udsRequest.Data[1]  =   0x80 + sub;
+
+    switch( sub ){
+        case 0x01:
+        case 0x02:
+        case 0x05:
+        case 0x11:
+        case 0x0F:
+            udsRequest.Data[2]  =   p[0];
+            udsRequest.Length   =   3;
+            break;
+        case 0x03:
+        case 0x04:
+        case 0x06:
+        case 0x10:
+            udsRequest.Data[2]  =   p[0];
+            udsRequest.Data[3]  =   p[1];
+            udsRequest.Data[4]  =   p[2];
+            udsRequest.Data[5]  =   p[3];
+            udsRequest.Length   =   6;
+            break;
+        case 0x0A:
+            udsRequest.Length   =   2;
+            break;
+        default:
+            break;
+    }
+
+    udsRequestSending();
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+
+}
+on start
+{
+    FlowBS = 4;
+    FlowSTmin = 10; 
+}
+/*on start
+{
+  DIAG_REQUE_S10.byte(0)= 0x02;
+  DIAG_REQUE_S10.byte(1)= 0x10;
+  DIAG_REQUE_S10.byte(2)= 0x01;
+  DIAG_REQUE_S10.byte(3)= 0x00;
+  DIAG_REQUE_S10.byte(4)= 0x00;
+  DIAG_REQUE_S10.byte(5)= 0x00;
+  DIAG_REQUE_S10.byte(6)= 0x00;
+  DIAG_REQUE_S10.byte(7)= 0x00;
+}
+*/
+
+
+on envVar udsPNL_CMD_Session_Default
+{
+    if( getvalue(udsPNL_CMD_Session_Default) == 1 ){
+        udsServiceSessionControl(1);
+    }
+}
+on envVar udsPNL_CMD_Session_Programm
+{
+    if( getvalue(udsPNL_CMD_Session_Programm) == 1 ){
+        udsServiceSessionControl(2);
+    }
+}
+
+on envVar udsPNL_CMD_Session_Extend
+{
+    if( getvalue(udsPNL_CMD_Session_Extend) == 1 ){
+        udsServiceSessionControl(3);
+    }
+}
+on envVar udsPNL_CMD_Session_ECUProgramm
+{
+    if( getvalue(udsPNL_CMD_Session_ECUProgramm) == 1 ){
+        udsServiceSessionControl(5);
+    }
+}
+on envVar udsPNL_CMD_Session_ExtDiagMode
+{
+    if( getvalue(udsPNL_CMD_Session_ExtDiagMode) == 1 ){
+        udsServiceSessionControl(16);
+    }
+}
+on envVar udsPNL_CMD_SleepMode_Start
+{
+    if( getvalue(udsPNL_CMD_SleepMode_Start) == 1 ){
+        udsServiceSessionControl(81);
+    }
+}
+on envVar udsPNL_CMD_QuiCurrDiagMode_Start
+{
+    if( getvalue(udsPNL_CMD_QuiCurrDiagMode_Start) == 1 ){
+        udsServiceSessionControl(80);
+    }
+}
+on envVar udsPNL_CMD_Reset_Hardware
+{
+    if( getvalue(udsPNL_CMD_Reset_Hardware) == 1){
+        udsServiceEcuReset(1);
+    }
+}
+on envVar udsPNL_CMD_Reset_Software
+{
+    if( getvalue(udsPNL_CMD_Reset_Software) == 1){
+        udsServiceEcuReset(2);
+    }
+}
+on envVar udsPNL_CMD_ClearDTC_All
+{
+    byte    group[3];
+
+    if( getvalue(udsPNL_CMD_ClearDTC_All) == 1 ){
+        group[0] = 0xFF;
+        group[1] = 0xFF;
+        group[2] = 0xFF;
+
+        udsServiceClearDiagInfo(group);
+
+    }
+}
+on envVar udsPNL_CMD_ClearDTC_Chassic
+{
+    byte    group[3];
+
+    if( getvalue(udsPNL_CMD_ClearDTC_Chassic) == 1 ){
+        group[0] = 0xFF;
+        group[1] = 0x00;
+        group[2] = 0x40;
+
+        udsServiceClearDiagInfo(group);
+
+    }
+}
+on envVar udsPNL_CMD_DTC_ON
+{
+    if( getvalue(udsPNL_CMD_DTC_ON) == 1 ){
+        udsServiceControlDTCSetting(0x01);
+    }
+}
+
+on envVar udsPNL_CMD_DTC_OFF
+{
+    if( getvalue(udsPNL_CMD_DTC_OFF) == 1 ){
+        udsServiceControlDTCSetting(0x02);
+    }
+}
+
+on envVar udsPNL_CMD_RESP_ON
+{
+    if( getvalue(udsPNL_CMD_RESP_ON) == 1 ){
+        udsServiceNormalMsgTransmission(1);
+    }
+}
+
+on envVar udsPNL_CMD_RESP_OFF
+{
+    if( getvalue(udsPNL_CMD_RESP_OFF) == 1 ){
+        udsServiceNormalMsgTransmission(2);
+    }
+}
+
+on envVar udsPNL_CMD_RetCtrToECU_PRACtr
+{
+    byte DiD[2];
+  
+    word DiDs;
+    
+    DiDs = 0xF011;
+  
+    if( getvalue(udsPNL_CMD_RetCtrToECU_PRACtr) == 1 ){
+        
+        DiD[0] = ( DiDs & 0xFF00 ) >> 8;
+        DiD[1] = ( DiDs & 0xFF );
+        udsServiceIOControlByIdentifier(DiD, 0x00);
+    }
+}
+on envVar udsPNL_CMD_ShortTrmAdj_PRACtr
+{
+    byte DiD[3];
+  
+    word DiDs;
+    
+    DiDs = 0xF011;
+  
+    if( getvalue(udsPNL_CMD_ShortTrmAdj_PRACtr) == 1 ){
+        
+        DiD[0] = ( DiDs & 0xFF00 ) >> 8;
+        DiD[1] = ( DiDs & 0xFF );
+        DiD[2] = getValue(udsPNL_IPT_PRAShortTrmAdj_BYTE5);
+        udsServiceIOControlByIdentifierShortTrmAdj(DiD, 0x03);
+    }
+}
+on envVar udsPNL_CMD_RetCtrToECU_SleepMode
+{
+    byte DiD[2];
+  
+    word DiDs;
+    
+    DiDs = 0xF012;
+  
+    if( getvalue(udsPNL_CMD_RetCtrToECU_SleepMode) == 1 ){
+        
+        DiD[0] = ( DiDs & 0xFF00 ) >> 8;
+        DiD[1] = ( DiDs & 0xFF );
+        udsServiceIOControlByIdentifier(DiD, 0x00);
+    }
+}
+on envVar udsPNL_CMD_ShortTrmAdj_SleepMode
+{
+    byte DiD[3];
+  
+    word DiDs;
+    
+    DiDs = 0xF012;
+  
+    if( getvalue(udsPNL_CMD_ShortTrmAdj_SleepMode) == 1 ){
+        
+        DiD[0] = ( DiDs & 0xFF00 ) >> 8;
+        DiD[1] = ( DiDs & 0xFF );
+        DiD[2] = getValue(udsPNL_IPT_FSMShortTrmAdj_BYTE5);
+        udsServiceIOControlByIdentifierShortTrmAdj(DiD, 0x03);
+    }
+}
+on envVar udsPNL_CMD_Comm_ERX_ETX
+{
+    if( getvalue(udsPNL_CMD_Comm_ERX_ETX) == 1 ){
+        udsServiceCommControl(0x00, 0x1);
+    }
+}
+on envVar udsPNL_CMD_Comm_DRX_DTX
+{
+    if( getvalue(udsPNL_CMD_Comm_DRX_DTX) == 1 ){
+        udsServiceCommControl(0x03, 0x1);
+    }
+}
+on envVar udsPNL_CMD_Comm_DRX_DTX_RespON
+{
+    if( getvalue(udsPNL_CMD_Comm_DRX_DTX_RespON) == 1 ){
+        udsServiceCommControl(0x01, 0x1);
+    }
+}
+on envVar udsPNL_CMD_Comm_DRX_DTX_RespOFF
+{
+    if( getvalue(udsPNL_CMD_Comm_DRX_DTX_RespOFF) == 1 ){
+        udsServiceCommControl(0x02, 0x1);
+    }
+}
+
+on envVar udsPNL_SW_EnablePNL
+{
+    byte    DiD[2]; 
+    if( getvalue(udsPNL_SW_EnablePNL) == 0x01 ){
+            udsPnlEnable = 1;                   
+
+    }
+    else {
+            udsPnlEnable = 0;
+    }
+}
+on envVar udsPNL_DiagStop_Indicator
+{
+   if( getvalue(udsPNL_DiagStop_Indicator) == 1 ){
+            udsServiceStopDiagnosticSession();                   
+    }
+}
+on envVar udsPNL_FLG_AddressType
+{
+    udsRequestAddress = getvalue(udsPNL_FLG_AddressType);
+}
+
+on envVar udsPNL_FLG_SuppressType
+{
+    udsRequestSuppress = getvalue(udsPNL_FLG_SuppressType);
+}
+on envVar udsPNL_IPT_Suppress_Type
+{
+    udsRequestSuppress = getvalue(udsPNL_IPT_Suppress_Type);
+}
+on envVar udsPNL_FLG_TesterPresent
+{
+    if( getvalue(udsPNL_FLG_TesterPresent) == 1 ){
+        udsServiceTesterPresent();
+    }
+    else {
+        canceltimer(tmTesterPresent);
+    }
+}
+on envVar udsPNL_CMD_ReadDTCByStsMask
+{
+    byte    buf[4];
+
+    if( getvalue(udsPNL_CMD_ReadDTCByStsMask) == 0x01 ){
+
+        udsPNLConfigStatusMask();
+
+        buf[0] = udsReadDTCStatusMask;
+
+        udsServiceReadDTCInfo(0x02, buf);
+    }
+}
+on envVar udsPNL_CMD_ReadExtDatRecByDTCNo
+{
+    //byte DiD[2];
+    byte    buf[4];
+    dword ExtDataDTCNo;
+    
+    //ExtDataDTCNo = getvalue(udsPNL_IPT_RepDTCExtData_ByDTCNo);
+  
+    if( getvalue(udsPNL_CMD_ReadExtDatRecByDTCNo) == 0x01 ){
+        
+        ExtDataDTCNo  = getvalue(udsPNL_IPT_RepDTCExtData_ByDTCNo);
+      write("ExtDataDTCNo = %x", ExtDataDTCNo);
+        buf[0] = (ExtDataDTCNo & 0xFF0000) >> 16;
+        buf[1] = (ExtDataDTCNo & 0xFF00) >> 8;
+        buf[2] = (ExtDataDTCNo & 0xFF);
+        buf[3] = getValue(udsPNL_IPT_ExtDataRecNo);
+      
+        udsServiceReadDTCInfo(0x06, buf);
+    }
+}
+on envVar udsPNL_CMD_ReadSupportedDTC
+{
+    byte    buf[4];
+
+    if( getvalue(udsPNL_CMD_ReadSupportedDTC) == 0x01 ){
+
+        udsServiceReadDTCInfo(0x0A, buf);
+    }
+}
+on envVar udsPNL_IND_Error
+{
+    settimer(tmShowIndicator, 10000);
+}
+on timer tmShowIndicator
+{
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0);
+}
+on timer tmTesterPresent
+{
+    udsServiceTesterPresent();
+}
+
+udsServiceSessionControl (byte sub)
+{
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x10;
+
+    if( udsRequestSuppress == 0 ){
+        udsRequest.Data[1]  =   sub;
+    }
+    else {
+        udsRequest.Data[1]  =   sub + 0x80;
+    }
+
+    udsRequest.Length   =   2;
+    
+    udsRequestSending();
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+}
+
+udsServiceTesterPresent ()
+{
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x3E;
+
+    if( udsRequestSuppress == 0 ){
+        udsRequest.Data[1]  =   0x00;
+    }
+    else {
+        udsRequest.Data[1]  =   0x80;
+    }
+
+    udsRequest.Length   =   2;
+
+    udsRequestSending();  
+    
+    /* settimer(tmTesterPresent, S3CLIENT); */     
+        
+}
+
+
+udsServiceNormalMsgTransmission (byte sub)
+{
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x29;
+
+    if( udsRequestSuppress == 0 )
+        udsRequest.Data[1]  =   sub;
+    else
+        udsRequest.Data[1]  =   0x80 + sub;
+
+    udsRequest.Length   =   2;
+
+    udsRequestSending();
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+}
+
+udsServiceStopDiagnosticSession ()
+{
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x20;
+
+    udsRequest.Length   =   1;
+
+    udsRequestSending();  
+          
+}
+
+/*on message EGSM_resp*/
+on message EGSM_resp
+{
+    byte    udsReceiveBuff[8];
+    byte    i;
+
+    for( i = 0; i < 8; i ++ ){
+        udsReceiveBuff[i] = this.byte(i);
+    }
+    
+    switch( udsReceiveBuff[0] & 0xF0 ) {
+        case 0x00:  /* SF */
+
+
+            udsResponce.Length = udsReceiveBuff[0] & 0x0F;
+
+            for( i = 0; i < 7; i ++ ){
+                udsResponce.Data[i] = udsReceiveBuff[i+1];
+            }
+
+            udsResponceDeal( udsResponce.Data, udsResponce.Length);
+            
+            break;            
+        case 0x10:  /* FF */
+
+
+            udsResponce.Length = (udsReceiveBuff[0] & 0x0F) * 256 + udsReceiveBuff[1];
+
+            for(i = 0; i < 6; i ++ ){
+                udsResponce.Data[i] = udsReceiveBuff[i+2];
+            }
+
+            udsReceiveDataNumber = 6;
+
+            udsReceiveFrameIndex = 0;
+
+            udsFuncFlowControl();
+
+            FlowControlTimes    = 1;
+
+            break;
+        case 0x20:  /* CF */
+            if( (udsReceiveBuff[0] & 0xF) == udsReceiveFrameIndex + 1 ){
+                
+                udsReceiveFrameIndex = udsReceiveFrameIndex + 1; 
+                               
+                for( i = 0; i < 7; i ++ ){
+                    udsResponce.Data[udsReceiveDataNumber+i] = udsReceiveBuff[i+1];
+                }
+                udsReceiveDataNumber = udsReceiveDataNumber + 7;
+
+                if( udsReceiveDataNumber >= udsResponce.Length ){
+                    udsResponceDeal( udsResponce.Data, udsResponce.Length);
+                }
+                else {
+                    if( udsReceiveFrameIndex >= FlowBS + FlowBS * (FlowControlTimes - 1) ){
+                        udsFuncFlowControl();
+                        FlowControlTimes = FlowControlTimes + 1;
+                    }
+                }                
+            }
+            else {
+                udsReceiveDataNumber = 0;
+                udsReceiveFrameIndex = 0;
+
+                udsResponce.Length = 0;
+            }
+            break;
+        case 0x30:  /* FL */
+            RecFlowBS = udsReceiveBuff[1];
+            RecFlowSTmin = udsReceiveBuff[2];
+
+            if( udsSendingFrameState == FC ){
+                udsSendingFrameState = CF;
+            }
+            else {
+                udsSendingFrameState = SF;
+            }
+            
+            setTimer(tmCFSending, RecFlowSTmin);
+            
+            break;
+    }
+}
+udsFuncFlowControl ()
+{
+    byte    udsSendingBuff[8];
+    byte    i;
+
+    if( udsPnlEnable != 1 ){                /* if udsPanel disable, no frame sending    */
+        return;
+    }
+
+    udsSendingBuff[0]   =   0x30;
+    udsSendingBuff[1]   =   FlowBS;
+    udsSendingBuff[2]   =   FlowSTmin;
+    udsSendingBuff[3]   =   MSGFILLDATA;
+    udsSendingBuff[4]   =   MSGFILLDATA;
+    udsSendingBuff[5]   =   MSGFILLDATA;
+    udsSendingBuff[6]   =   MSGFILLDATA;
+    udsSendingBuff[7]   =   MSGFILLDATA;
+
+    if( udsRequestAddress == 0 ){
+        for( i = 0; i < 8; i ++ ){
+            PMSG.byte(i) = udsSendingBuff[i];
+        }
+        PMSG.DLC = 8;
+        output(PMSG);
+    }
+    else {
+        for( i = 0; i < 8; i ++ ){
+            FMSG.byte(i) = udsSendingBuff[i];
+        }
+        FMSG.DLC = 8;
+        output(FMSG);
+    }
+    
+}
+udsResponceDeal (byte buff[], word len)
+{
+    byte    disStr[100];
+    byte    disStrLen;
+    char    conStr[100];
+    byte    i;
+    word    tmp;
+    dword   dtc;
+
+    byte    idle;
+
+    char    tmpChar[10];
+    long    tmpData;
+
+        
+    
+    switch ( udsResponce.Data[0] ){
+        case 0x7F:
+            switch( udsResponce.Data[2] ){
+                case 0x78:
+                    break;
+                default:
+                    putvalue(udsPNL_IND_Error, 2);
+                    putvalue(udsPNL_IND_ErrorCode, udsResponce.Data[2]);
+                    break;
+            }
+            break;
+        case (0x10 + 0x40):                         /* Session Control                      */
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0); 
+            break;
+        case (0x11 + 0x40):                         /* Reset                                */
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+            break;
+        case (0x14 + 0x40):                         /* Clear DTC                            */
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+            break;
+        case (0x19 + 0x40):                         /* Read DTC                            */
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+            switch( udsResponce.Data[1] ){
+                case 0x01:
+                    tmp = udsResponce.Data[4] * 255 + udsResponce.Data[5];
+                    putvalue(udsPNL_OPT_ReadDTC_Number, tmp);
+                    break;
+                case 0x02:
+                    tmp = (udsResponce.length - 3)/4;
+                    putvalue(udsPNL_OPT_ReadDTC_Number, tmp);
+
+                    udsPNLDisplayDTCInit();
+                    
+                    for( i = 0; i < 13; i++ ){
+                        if( tmp > i ){
+                            dtc = (udsResponce.Data[3 + i * 4]) * 65536  + (udsResponce.Data[4 + i * 4]) * 256 + (udsResponce.Data[5 + i * 4]);
+                            udsPNLDisplayDTC(i+1, dtc, udsResponce.Data[6 + i*4]);
+                          
+                          //write("In Read DTC");
+                          //write(" dtc number = %X", dtc);
+                        }
+                    }
+                    break;
+                case 0x06:
+                    dtc = (udsResponce.Data[2]) * 65536  + (udsResponce.Data[3]) * 256 + (udsResponce.Data[4]);
+
+                    udsPNLDisplayDTCExtend(dtc, udsResponce.Data[5], udsResponce.Data[6],udsResponce.Data[7]);
+
+                    break;
+                case 0x0A:
+                    tmp = (udsResponce.length - 3)/4;
+                    putvalue(udsPNL_OPT_ReadDTC_Number, tmp);
+
+                    udsPNLDisplayDTCInit();
+                    
+                    
+                    for( i = 0; i < 13; i++ ){
+                        if( tmp > i ){
+                            dtc = (udsResponce.Data[3 + i * 4]) * 65536  + (udsResponce.Data[4 + i * 4]) * 256 + (udsResponce.Data[5 + i * 4]);
+                            udsPNLDisplayDTC(i+1, dtc, udsResponce.Data[6 + i*4]);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case (0x22 + 0x40):                         /* Read Data by Identifier              */ 
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+
+           /* if( udsResponce.Data[1] == 0xF1 && udsResponce.Data[2] == 0x8C ){
+
+                    ECUSerialNumber[0] = udsResponce.Data[11];
+                    ECUSerialNumber[1] = udsResponce.Data[12];
+                    ECUSerialNumber[2] = udsResponce.Data[13];
+                    ECUSerialNumber[3] = udsResponce.Data[14];
+                    
+            }
+            */
+            for( i = 0; i < 100 ; i++ ){
+                disStr[i] = 0x00;
+                conStr[i] = 0x00;
+            }
+
+            putvalue( udsPNL_OPT_ReadCustDiDsResult, conStr);
+            putvalue( udsPNL_OPT_ReadSuppDiDsResult, conStr);
+            
+            
+            switch( udsPNL_GetDIDType(udsSendingDID) ){
+                case ASCII_TYPE:
+                    for( i = 3; i < udsResponce.Length ; i ++ ){
+                        disStr[i-3] = udsResponce.Data[i];
+                        write("%x", disStr[i-3]);
+                        disStrLen = udsResponce.Length -2;
+                    }
+                    
+                    if( AsciiToString(disStr, conStr) > 0 ){
+                        putvalue( udsPNL_OPT_ReadCustDiDsResult, conStr);
+                    }
+                      
+                    break;
+                case BCD_TYPE:
+                    for( i = 3; i < udsResponce.Length ; i ++ ){
+                        disStr[i-3] = udsResponce.Data[i];
+                        disStrLen = udsResponce.Length -3;
+                    }
+                    for( i = 0 ; i < disStrLen ; i ++ ){                       
+                        
+
+                        tmpData = (disStr[i] & 0xF0) >> 4;
+
+                        if( tmpData > 9 ){
+                            if( i == 0 ){
+                                strncpy( conStr, "-", 100);
+                            }
+                            else {
+                                strncat( conStr, "-", 100);
+                            }
+                        }
+                        else if( tmpData == 0 ){
+                            if( i == 0 ){
+                                strncpy( conStr, "0", 100);
+                            }
+                            else {
+                                strncat( conStr, "0", 100);
+                            }
+                        }
+                        else {
+                            ltoa(tmpData, tmpChar, 10);
+                            if( i == 0 ){
+                                strncpy( conStr, tmpChar, 100);
+                            }
+                            else {
+                                strncat( conStr, tmpChar, 100);
+                            }                            
+                        }
+
+                        tmpData = (disStr[i] & 0x0F); 
+
+                        if( tmpData > 9 ){
+                                strncat( conStr, "-", 100);
+                        }
+                        else if( tmpData == 0 ){
+                                strncat( conStr, "0", 100);
+                        }
+                        else {
+                            ltoa(tmpData, tmpChar, 10);
+                            strncat( conStr, tmpChar, 100);                            
+                        }
+ 
+                    }
+                    putvalue( udsPNL_OPT_ReadCustDiDsResult, conStr);
+                    break;
+                case HEX_TYPE:
+                    for( i = 3; i < udsResponce.Length ; i ++ ){
+                        disStr[i-3] = udsResponce.Data[i];
+                        disStrLen = udsResponce.Length -3;
+                    }
+                    for( i = 0 ; i < disStrLen ; i ++ ){
+                        ltoa(disStr[i], tmpChar, 16);
+                        
+                        if( i == 0 ){
+                            strncpy( conStr, tmpChar, 100);
+                            strncat( conStr, " ",     100);
+                        }
+                        else {
+                            strncat( conStr, tmpChar, 100);
+                            strncat( conStr, " ",     100);   
+                        }
+                        
+                    }
+                    putvalue( udsPNL_OPT_ReadCustDiDsResult, conStr);
+                default:
+                    break;
+            }
+            break;
+            
+//             switch( udsPNL_GetPIDType(udsSendingPID) ){
+//                case ASCII_TYPE:
+//                    for( i = 3; i < udsResponce.Length ; i ++ ){
+//                        disStr[i-3] = udsResponce.Data[i];
+//                        write("%x", disStr[i-3]);
+//                        disStrLen = udsResponce.Length -2;
+//                    }
+//                    
+//                    if( AsciiToString(disStr, conStr) > 0 ){
+//                        putvalue( udsPNL_OPT_ReadSuppDiDsResult, conStr);
+//                    }
+//                      
+//                    break;
+//                case BCD_TYPE:
+//                    for( i = 3; i < udsResponce.Length ; i ++ ){
+//                        disStr[i-3] = udsResponce.Data[i];
+//                        disStrLen = udsResponce.Length -3;
+//                    }
+//                    for( i = 0 ; i < disStrLen ; i ++ ){                       
+//                        
+//
+//                        tmpData = (disStr[i] & 0xF0) >> 4;
+//
+//                        if( tmpData > 9 ){
+//                            if( i == 0 ){
+//                                strncpy( conStr, "-", 100);
+//                            }
+//                            else {
+//                                strncat( conStr, "-", 100);
+//                            }
+//                        }
+//                        else if( tmpData == 0 ){
+//                            if( i == 0 ){
+//                                strncpy( conStr, "0", 100);
+//                            }
+//                            else {
+//                                strncat( conStr, "0", 100);
+//                            }
+//                        }
+//                        else {
+//                            ltoa(tmpData, tmpChar, 10);
+//                            if( i == 0 ){
+//                                strncpy( conStr, tmpChar, 100);
+//                            }
+//                            else {
+//                                strncat( conStr, tmpChar, 100);
+//                            }                            
+//                        }
+//
+//                        tmpData = (disStr[i] & 0x0F); 
+//
+//                        if( tmpData > 9 ){
+//                                strncat( conStr, "-", 100);
+//                        }
+//                        else if( tmpData == 0 ){
+//                                strncat( conStr, "0", 100);
+//                        }
+//                        else {
+//                            ltoa(tmpData, tmpChar, 10);
+//                            strncat( conStr, tmpChar, 100);                            
+//                        }
+// 
+//                    }
+//                    putvalue( udsPNL_OPT_ReadSuppDiDsResult, conStr);
+//                    break;
+//                case HEX_TYPE:
+//                    for( i = 3; i < udsResponce.Length ; i ++ ){
+//                        disStr[i-3] = udsResponce.Data[i];
+//                        disStrLen = udsResponce.Length -3;
+//                    }
+//                    for( i = 0 ; i < disStrLen ; i ++ ){
+//                        ltoa(disStr[i], tmpChar, 16);
+//                        
+//                        if( i == 0 ){
+//                            strncpy( conStr, tmpChar, 100);
+//                            strncat( conStr, " ",     100);
+//                        }
+//                        else {
+//                            strncat( conStr, tmpChar, 100);
+//                            strncat( conStr, " ",     100);   
+//                        }
+//                        
+//                    }
+//                    putvalue( udsPNL_OPT_ReadSuppDiDsResult, conStr);
+//                default:
+//                    break;
+//            }
+//            break;
+        case (0x27 + 0x40):                                                         /* Security Access          */                               
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);                    
+            switch( udsResponce.Data[1] ){              
+                case 0x01:                                                          /* Request Seed             */
+                    putvalue(udsPNL_OPT_Security_SEED0, udsResponce.Data[2]);
+                    putvalue(udsPNL_OPT_Security_SEED1, udsResponce.Data[3]);
+                    putvalue(udsPNL_OPT_Security_SEED2, udsResponce.Data[4]);
+                    putvalue(udsPNL_OPT_Security_SEED3, udsResponce.Data[5]);
+
+                    udsSecuritySeed[0] = udsResponce.Data[5];
+                    udsSecuritySeed[1] = udsResponce.Data[4];
+                    udsSecuritySeed[2] = udsResponce.Data[3];
+                    udsSecuritySeed[3] = udsResponce.Data[2];
+
+                    udsSecurityAlgorithm();
+
+                    putvalue(udsPNL_IPT_Security_KEY0, udsSecurityKey[3]);
+                    putvalue(udsPNL_IPT_Security_KEY1, udsSecurityKey[2]);
+                    putvalue(udsPNL_IPT_Security_KEY2, udsSecurityKey[1]);
+                    putvalue(udsPNL_IPT_Security_KEY3, udsSecurityKey[0]);
+                    break;
+            }
+            break;
+        case (0x2E + 0x40):
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+            break;
+        case (0x28 + 0x40):
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+            break;
+        case (0x29 + 0x40):
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+            break;
+        case (0x31 + 0x40):
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+            switch( udsResponce.Data[1] ){
+                case 0x03:  /* request routine result */
+                    //putvalue(udsPNL_OPT_RoutineOther, udsResponce.Data[4]);
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case (0x85 + 0x40):               /* DTC Setting */
+            putvalue(udsPNL_IND_Error, 1);
+            putvalue(udsPNL_IND_ErrorCode, 0);
+            break;
+        default:
+            break;
+    }            
+}
+udsPNLDisplayDTCInit ()
+{
+    byte    tmp[3];
+
+    putvalue( udsPNL_OPT_DTC1, "");
+    putvalue( udsPNL_OPT_DTC1_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC1_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC1_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC1_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC1_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC1_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC1_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC1_MaskBit7, 0 );
+    DTCTable[1] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC1_Extend, tmp,0);
+   
+    putvalue( udsPNL_OPT_DTC2, "");
+    putvalue( udsPNL_OPT_DTC2_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC2_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC2_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC2_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC2_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC2_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC2_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC2_MaskBit7, 0 );
+    DTCTable[2] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC2_Extend, tmp,0);
+
+    putvalue( udsPNL_OPT_DTC3, "");
+    putvalue( udsPNL_OPT_DTC3_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC3_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC3_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC3_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC3_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC3_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC3_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC3_MaskBit7, 0 );
+    DTCTable[3] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC3_Extend, tmp,0);
+
+    putvalue( udsPNL_OPT_DTC4, "");
+    putvalue( udsPNL_OPT_DTC4_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC4_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC4_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC4_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC4_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC4_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC4_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC4_MaskBit7, 0 );
+    DTCTable[4] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC4_Extend, tmp,0);
+
+    putvalue( udsPNL_OPT_DTC5, "");
+    putvalue( udsPNL_OPT_DTC5_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC5_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC5_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC5_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC5_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC5_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC5_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC5_MaskBit7, 0 );
+    DTCTable[5] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC5_Extend, tmp,0);
+
+    putvalue( udsPNL_OPT_DTC6, "");
+    putvalue( udsPNL_OPT_DTC6_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC6_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC6_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC6_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC6_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC6_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC6_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC6_MaskBit7, 0 );
+    DTCTable[6] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC6_Extend, tmp,0);
+    
+    putvalue( udsPNL_OPT_DTC7, "");
+    putvalue( udsPNL_OPT_DTC7_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC7_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC7_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC7_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC7_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC7_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC7_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC7_MaskBit7, 0 );
+    DTCTable[7] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC7_Extend, tmp,0);
+
+    putvalue( udsPNL_OPT_DTC8, "");
+    putvalue( udsPNL_OPT_DTC8_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC8_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC8_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC8_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC8_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC8_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC8_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC8_MaskBit7, 0 );
+    DTCTable[8] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC8_Extend, tmp,0);
+
+    putvalue( udsPNL_OPT_DTC9, "");
+    putvalue( udsPNL_OPT_DTC9_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC9_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC9_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC9_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC9_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC9_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC9_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC9_MaskBit7, 0 );
+    DTCTable[9] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC9_Extend, tmp,0);
+
+    putvalue( udsPNL_OPT_DTC10, "");
+    putvalue( udsPNL_OPT_DTC10_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC10_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC10_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC10_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC10_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC10_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC10_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC10_MaskBit7, 0 );
+    DTCTable[10] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC10_Extend, tmp,0);
+
+    putvalue( udsPNL_OPT_DTC11, "");
+    putvalue( udsPNL_OPT_DTC11_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC11_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC11_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC11_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC11_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC11_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC11_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC11_MaskBit7, 0 );
+    DTCTable[11] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC11_Extend, tmp,0);
+  
+    putvalue( udsPNL_OPT_DTC12, "");
+    putvalue( udsPNL_OPT_DTC12_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC12_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC12_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC12_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC12_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC12_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC12_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC12_MaskBit7, 0 );
+    DTCTable[12] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC12_Extend, tmp,0);
+  
+    putvalue( udsPNL_OPT_DTC13, "");
+    putvalue( udsPNL_OPT_DTC13_MaskBit0, 0 );
+    putvalue( udsPNL_OPT_DTC13_MaskBit1, 0 );
+    putvalue( udsPNL_OPT_DTC13_MaskBit2, 0 );
+    putvalue( udsPNL_OPT_DTC13_MaskBit3, 0 );
+    putvalue( udsPNL_OPT_DTC13_MaskBit4, 0 );
+    putvalue( udsPNL_OPT_DTC13_MaskBit5, 0 );
+    putvalue( udsPNL_OPT_DTC13_MaskBit6, 0 );
+    putvalue( udsPNL_OPT_DTC13_MaskBit7, 0 );
+    DTCTable[13] = 0xFFFFFF;
+    putvalue( udsPNL_OPT_DTC13_Extend, tmp,0);
+}
+on envVar udsPNL_CMD_DTC1_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC1_Extend) == 0x01 ){
+
+        if( DTCTable[1] != 0xFFFFF && DTCTable[1] != 0x000000 ){
+            buf[0] = (DTCTable[1] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[1] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[1] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC2_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC2_Extend) == 0x01 ){
+
+        if( DTCTable[2] != 0xFFFFF && DTCTable[2] != 0x000000 ){
+            buf[0] = (DTCTable[2] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[2] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[2] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC3_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC3_Extend) == 0x01 ){
+
+        if( DTCTable[3] != 0xFFFFF && DTCTable[3] != 0x000000 ){
+            buf[0] = (DTCTable[3] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[3] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[3] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC4_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC4_Extend) == 0x01 ){
+
+        if( DTCTable[4] != 0xFFFFF && DTCTable[4] != 0x000000 ){
+            buf[0] = (DTCTable[4] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[4] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[4] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC5_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC5_Extend) == 0x01 ){
+
+        if( DTCTable[5] != 0xFFFFF && DTCTable[5] != 0x000000 ){
+            buf[0] = (DTCTable[5] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[5] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[5] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC6_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC6_Extend) == 0x01 ){
+
+        if( DTCTable[6] != 0xFFFFF && DTCTable[6] != 0x000000 ){
+            buf[0] = (DTCTable[6] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[6] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[6] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC7_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC7_Extend) == 0x01 ){
+
+        if( DTCTable[7] != 0xFFFFF && DTCTable[7] != 0x000000 ){
+            buf[0] = (DTCTable[7] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[7] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[7] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC8_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC8_Extend) == 0x01 ){
+
+        if( DTCTable[8] != 0xFFFFF && DTCTable[8] != 0x000000 ){
+            buf[0] = (DTCTable[8] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[8] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[8] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC9_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC9_Extend) == 0x01 ){
+
+        if( DTCTable[9] != 0xFFFFF && DTCTable[9] != 0x000000 ){
+            buf[0] = (DTCTable[9] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[9] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[9] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC10_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC10_Extend) == 0x01 ){
+
+        if( DTCTable[10] != 0xFFFFF && DTCTable[10] != 0x000000 ){
+            buf[0] = (DTCTable[10] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[10] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[10] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+
+on envVar udsPNL_CMD_DTC11_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC11_Extend) == 0x01 ){
+
+        if( DTCTable[11] != 0xFFFFF && DTCTable[11] != 0x000000 ){
+            buf[0] = (DTCTable[11] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[11] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[11] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+on envVar udsPNL_CMD_DTC12_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC12_Extend) == 0x01 ){
+
+        if( DTCTable[12] != 0xFFFFF && DTCTable[12] != 0x000000 ){
+            buf[0] = (DTCTable[12] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[12] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[12] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+on envVar udsPNL_CMD_DTC13_Extend
+{
+    byte    buf[4];
+    if( getvalue(udsPNL_CMD_DTC13_Extend) == 0x01 ){
+
+        if( DTCTable[13] != 0xFFFFF && DTCTable[13] != 0x000000 ){
+            buf[0] = (DTCTable[13] & 0xFF0000) >> 16;
+            buf[1] = (DTCTable[13] & 0xFF00) >> 8;
+            buf[2] = (DTCTable[13] & 0xFF);
+            buf[3] = 0xFF;
+            udsServiceReadDTCInfo(0x06, buf);
+        }
+    }
+}
+on timer tmCFSending
+{
+    setTimer(tmCFSending, RecFlowSTmin);
+
+    udsRequestSending();
+      
+}
+udsPNLDisplayDTC (byte index, dword dtc, byte status)
+{
+    char dtccomm[100];
+    //write("In udsPNLDisplayDTC");
+    //write("DisplayDTC = %X", dtc);
+    switch( dtc ){
+        case 0x510117:
+            strncpy(dtccomm, "DTC 510117: Battery Voltage High", 50);
+            break;
+        case 0x510216:
+            strncpy(dtccomm, "DTC 510216: Battery Voltage Low", 50);
+            break;
+        case 0x642271:
+            strncpy(dtccomm, "DTC 642271: Override Motor Fault", 50);
+            break;
+        case 0x642319:
+            strncpy(dtccomm, "DTC 642319: Override Gear Fault", 50);
+            break;
+        case 0x538201:
+            strncpy(dtccomm, "DTC 538201: Lever Hall Sensor Fault", 50);
+            break;
+        case 0x553364:
+            strncpy(dtccomm, "DTC 553364: Shift Lever Error/P-Release/Park/Safety/Unlock Switch Fault", 65);
+            break;
+        case 0x624201:
+            strncpy(dtccomm, "DTC 624201: PRA Hall Sensor Fault", 50);
+            break;
+        case 0x624102:
+            strncpy(dtccomm, "DTC 624102: PRA Range Fault", 50);
+            break;
+        case 0x553794:
+            strncpy(dtccomm, "DTC 553794: TM Switch Fault", 50);
+            break;
+        case 0x560404:
+            strncpy(dtccomm, "DTC 560404: EEPROM Fault", 50);
+            break;
+        case 0x561688:
+            strncpy(dtccomm, "DTC 561688: CAN Bus Off", 50);
+            break;
+         case 0x561287:
+            strncpy(dtccomm, "DTC 561287: CAN VS_TCU/G_SEL_DISP/CF_Tcu_PRelReq Timeout Fault", 55);
+            break;
+         case 0x564686:
+            strncpy(dtccomm, "DTC 564686: CAN VS_TCU/G_SEL_DISP Invalid Signal Fault", 50);
+            break;
+        default:
+            break;
+    }
+    
+    switch(index){
+        case 1:
+
+            DTCTable[1] = dtc;
+
+            putvalue( udsPNL_OPT_DTC1, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC1_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC1_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC1_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC1_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC1_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC1_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC1_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC1_MaskBit7, 2 );
+            }
+            break;
+        case 2:
+
+            DTCTable[2] = dtc;
+
+            putvalue( udsPNL_OPT_DTC2, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC2_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC2_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC2_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC2_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC2_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC2_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC2_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC2_MaskBit7, 2 );
+            }
+            break;
+        case 3:
+            
+            DTCTable[3] = dtc;
+
+            putvalue( udsPNL_OPT_DTC3, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC3_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC3_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC3_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC3_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC3_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC3_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC3_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC3_MaskBit7, 2 );
+            }
+            break;
+        case 4:
+            
+            DTCTable[4] = dtc;
+
+            putvalue( udsPNL_OPT_DTC4, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC4_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC4_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC4_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC4_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC4_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC4_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC4_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC4_MaskBit7, 2 );
+            }
+            break;
+        case 5:
+            
+            DTCTable[5] = dtc;
+
+            putvalue( udsPNL_OPT_DTC5, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC5_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC5_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC5_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC5_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC5_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC5_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC5_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC5_MaskBit7, 2 );
+            }
+            break;
+        case 6:
+
+            DTCTable[6] = dtc;
+
+            putvalue( udsPNL_OPT_DTC6, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC6_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC6_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC6_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC6_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC6_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC6_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC6_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC6_MaskBit7, 2 );
+            }
+            break;
+        case 7:
+
+            DTCTable[7] = dtc;
+
+            putvalue( udsPNL_OPT_DTC7, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC7_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC7_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC7_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC7_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC7_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC7_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC7_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC7_MaskBit7, 2 );
+            }
+            break;
+        case 8:
+
+             DTCTable[8] = dtc;
+
+            putvalue( udsPNL_OPT_DTC8, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC8_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC8_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC8_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC8_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC8_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC8_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC8_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC8_MaskBit7, 2 );
+            }
+            break;
+        case 9:
+
+            DTCTable[9] = dtc;
+
+            putvalue( udsPNL_OPT_DTC9, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC9_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC9_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC9_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC9_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC9_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC9_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC9_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC9_MaskBit7, 2 );
+            }
+            break;
+        case 10:
+
+            DTCTable[10] = dtc;
+
+            putvalue( udsPNL_OPT_DTC10, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC10_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC10_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC10_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC10_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC10_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC10_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC10_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC10_MaskBit7, 2 );
+            }
+            break;
+        case 11:
+
+            DTCTable[11] = dtc;
+
+            putvalue( udsPNL_OPT_DTC11, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC11_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC11_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC11_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC11_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC11_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC11_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC11_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC11_MaskBit7, 2 );
+            }
+            break;
+        case 12:
+
+            DTCTable[12] = dtc;
+
+            putvalue( udsPNL_OPT_DTC12, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC12_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC12_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC12_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC12_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC12_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC12_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC12_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC12_MaskBit7, 2 );
+            }
+            break;
+        case 13:
+
+            DTCTable[13] = dtc;
+
+            putvalue( udsPNL_OPT_DTC13, dtccomm);
+            if( status & 0x01 ){
+                putvalue( udsPNL_OPT_DTC13_MaskBit0, 2 );
+            }
+            if( status & 0x02 ){
+                putvalue( udsPNL_OPT_DTC13_MaskBit1, 2 );
+            }
+            if( status & 0x04 ){
+                putvalue( udsPNL_OPT_DTC13_MaskBit2, 2 );
+            }
+            if( status & 0x08 ){
+                putvalue( udsPNL_OPT_DTC13_MaskBit3, 2 );
+            }
+            if( status & 0x10 ){
+                putvalue( udsPNL_OPT_DTC13_MaskBit4, 2 );
+            }
+            if( status & 0x20 ){
+                putvalue( udsPNL_OPT_DTC13_MaskBit5, 2 );
+            }
+            if( status & 0x40 ){
+                putvalue( udsPNL_OPT_DTC13_MaskBit6, 2 );
+            }
+            if( status & 0x80 ){
+                putvalue( udsPNL_OPT_DTC13_MaskBit7, 2 );
+            }
+            break;
+        default:
+            break;
+    }
+}
+udsPNLDisplayDTCExtend (dword dtc, byte st1, byte st2, byte st3)
+{
+    byte    index;
+
+    char    stat[20];
+    char    tmp[2];
+
+    byte    ExtendData[3];
+
+    ExtendData[0] = st1;
+    ExtendData[1] = st2;
+    ExtendData[2] = st3;
+
+    if( dtc == DTCTable[1] ){
+        putvalue(udsPNL_OPT_DTC1_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[2]){
+        putvalue(udsPNL_OPT_DTC2_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[3] ){
+        putvalue(udsPNL_OPT_DTC3_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[4] ){
+        putvalue(udsPNL_OPT_DTC4_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[5] ){
+        putvalue(udsPNL_OPT_DTC5_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[6] ){
+        putvalue(udsPNL_OPT_DTC6_Extend, ExtendData);
+        return;
+    }    
+    if( dtc == DTCTable[7] ){
+        putvalue(udsPNL_OPT_DTC7_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[8] ){
+        putvalue(udsPNL_OPT_DTC8_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[9] ){
+        putvalue(udsPNL_OPT_DTC9_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[10] ){
+        putvalue(udsPNL_OPT_DTC10_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[11] ){
+        putvalue(udsPNL_OPT_DTC11_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[12] ){
+        putvalue(udsPNL_OPT_DTC12_Extend, ExtendData);
+        return;
+    }
+    if( dtc == DTCTable[13] ){
+        putvalue(udsPNL_OPT_DTC13_Extend, ExtendData);
+        return;
+    }
+        
+}
+on envVar udsPNL_CMD_ReadCustDiDs
+{
+    byte DiD[2];
+    
+    word DiDs;
+
+    DiDs = getvalue(udsPNL_SEL_ReadCustDiDs);
+    if( getvalue(udsPNL_CMD_ReadCustDiDs) == 1 ){
+        DiD[0] = ( DiDs & 0xFF00 ) >> 8;
+        DiD[1] = ( DiDs & 0xFF );
+        udsServiceReadDID(DiD);
+    }
+}
+udsServiceReadDID (byte p[])
+{
+
+    char NULL[100];
+
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x22;
+
+    udsRequest.Data[1]  =   p[0];
+
+    udsRequest.Data[2]  =   p[1];
+
+    udsRequest.length   =   3;
+
+    udsRequestSending();
+
+    udsSendingDID[0] = p[0];
+    udsSendingDID[1] = p[1];
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+
+    putvalue(udsPNL_OPT_ReadCustDiDsResult, NULL);
+    
+}
+//on envVar udsPNL_CMD_ReadSuppDiDs
+//{
+//    byte PiD[2];
+//    
+//    word PiDs;
+//
+//    PiDs = getvalue(udsPNL_SEL_ReadSuppPiDs);
+//    if( getvalue(udsPNL_CMD_ReadSuppDiDs) == 1 ){
+//        PiD[0] = ( PiDs & 0xFF00 ) >> 8;
+//        PiD[1] = ( PiDs & 0xFF );
+//        udsServiceReadPID(PiD);
+//    }
+//}
+on envVar udsPNL_CMD_ReadSuppDiDs
+{
+    byte PiD[2];
+    
+    word PiDs;
+
+    PiDs = getvalue(udsPNL_SEL_ReadSuppDiDs);
+    if( getvalue(udsPNL_CMD_ReadSuppDiDs) == 1 ){
+        PiD[0] = ( PiDs & 0xFF00 ) >> 8;
+        PiD[1] = ( PiDs & 0xFF );
+        udsServiceReadPID(PiD);
+    }
+}
+udsServiceReadPID (byte p[])
+{
+
+    char NULL[100];
+
+    udsRequest.Node     =   udsRequestAddress;
+
+    udsRequest.Data[0]  =   0x22;
+
+    udsRequest.Data[1]  =   p[0];
+
+    udsRequest.Data[2]  =   p[1];
+
+    udsRequest.length   =   3;
+
+    udsRequestSending();
+
+    udsSendingPID[0] = p[0];
+    udsSendingPID[1] = p[1];
+
+    putvalue(udsPNL_IND_Error, 0);
+    putvalue(udsPNL_IND_ErrorCode, 0); 
+
+    putvalue(udsPNL_OPT_ReadSuppDiDsResult, NULL);
+    
+}
+byte udsPNL_GetDIDType (byte DiDs[])
+{
+    word    DiD;
+    
+    DiD = DiDs[0] * 256 + DiDs[1];
+
+    switch ( DiD ){
+        case 0xF187:
+            return ASCII_TYPE;
+            break;
+        case 0xF189:
+            return ASCII_TYPE;
+            break;
+        case 0xF18A:
+            return ASCII_TYPE;
+            break;
+        case 0xF18B:
+            return ASCII_TYPE;
+            break;
+        case 0xF191:
+            return ASCII_TYPE;
+            break;
+        case 0xF193:
+            return ASCII_TYPE;
+            break;
+        case 0xF195:
+            return ASCII_TYPE;
+            break;
+        case 0xF199:
+            return ASCII_TYPE;
+            break;
+        case 0x0104:
+            return HEX_TYPE;
+            break;
+        default:
+            return ASCII_TYPE;
+            break;
+    }
+}
+//byte udsPNL_GetPIDType (byte PiDs[])
+//{
+//    word    PiD;
+//    
+//    PiD = PiDs[0] * 256 + PiDs[1];
+//
+//    switch ( PiD ){
+//        case 0x00:
+//            return HEX_TYPE;
+//            break;
+//        case 0x01:
+//            return HEX_TYPE;
+//            break;
+//        case 0x02:
+//            return HEX_TYPE;
+//            break;
+//        case 0x03:
+//            return HEX_TYPE;
+//            break;
+//        case 0x04:
+//            return HEX_TYPE;
+//            break;
+//        case 0x05:
+//            return HEX_TYPE;
+//            break;
+//        case 0x06:
+//            return HEX_TYPE;
+//            break;
+//        case 0x07:
+//            return HEX_TYPE;
+//            break;
+//        case 0x08:
+//            return HEX_TYPE;
+//            break;
+//        case 0x09:
+//            return HEX_TYPE;
+//            break;
+//        case 0x0A:
+//            return HEX_TYPE;
+//            break;
+//        case 0x0B:
+//            return HEX_TYPE;
+//            break;
+//        case 0x0104:
+//            return ASCII_TYPE;
+//            break;
+//        default:
+//            return HEX_TYPE;
+//            break;
+//    }
+//}
+udsSecurityAlgorithm()
+{
+
+    dword   seedx;
+    byte    i;
+
+    seedx = (udsSecuritySeed[3] << 24) + (udsSecuritySeed[2] << 16) + (udsSecuritySeed[1] << 8) + udsSecuritySeed[0];
+
+    /*  FAW C303 SAS */
+    if( seedx != 0 ){
+        for( i = 0; i <35 ; i++ ){
+            if( seedx & 0x80000000 ){
+                seedx = seedx << 1;
+                seedx = seedx ^ MASK;
+            }
+            else {
+                seedx = seedx << 1;
+            }
+        }
+        udsSecurityKey[3] = ( seedx & 0xFF000000 ) >> 24;
+        udsSecurityKey[2] = ( seedx & 0x00FF0000 ) >> 16;
+        udsSecurityKey[1] = ( seedx & 0x0000FF00 ) >> 8;
+        udsSecurityKey[0] = ( seedx & 0xFF );
+    }
+    else {
+        udsSecurityKey[3] = 0x00;
+        udsSecurityKey[2] = 0x00;
+        udsSecurityKey[1] = 0x00;
+        udsSecurityKey[0] = 0x00;
+    }  
+      
+}
+udsPNLConfigStatusMask ()
+{
+    udsReadDTCStatusMask    =   0x00;
+
+    if( getvalue(udsPNL_ST_ReadDTC_MaskBIT7) == 0x02 ){
+        udsReadDTCStatusMask =  udsReadDTCStatusMask + 0x80;
+    }
+    if( getvalue(udsPNL_ST_ReadDTC_MaskBIT6) == 0x02 ){
+        udsReadDTCStatusMask =  udsReadDTCStatusMask + 0x40;
+    }
+    if( getvalue(udsPNL_ST_ReadDTC_MaskBIT5) == 0x02 ){
+        udsReadDTCStatusMask =  udsReadDTCStatusMask + 0x20;
+    }
+    if( getvalue(udsPNL_ST_ReadDTC_MaskBIT4) == 0x02 ){
+        udsReadDTCStatusMask =  udsReadDTCStatusMask + 0x10;
+    }
+    if( getvalue(udsPNL_ST_ReadDTC_MaskBIT3) == 0x02 ){
+        udsReadDTCStatusMask =  udsReadDTCStatusMask + 0x08;
+    }
+    if( getvalue(udsPNL_ST_ReadDTC_MaskBIT2) == 0x02 ){
+        udsReadDTCStatusMask =  udsReadDTCStatusMask + 0x04;
+    }
+    if( getvalue(udsPNL_ST_ReadDTC_MaskBIT1) == 0x02 ){
+        udsReadDTCStatusMask =  udsReadDTCStatusMask + 0x02;
+    }
+    if( getvalue(udsPNL_ST_ReadDTC_MaskBIT0) == 0x02 ){
+        udsReadDTCStatusMask =  udsReadDTCStatusMask + 0x01;
+    }
+}
+
+byte AsciiToString (byte src[],  char des[]) 
+{
+    byte    i;
+    byte    desn;
+
+    desn = 0;
+    for( i = 0 ; i < 255; i ++ ){
+
+        if( src[i] == 0x00 ){
+            return desn;
+        }
+        else {
+            desn ++;
+        }
+
+        switch( src[i] & 0xF0) {
+            case 0x00:
+                return 0;
+                break;
+            case 0x10:
+                return 0;
+                break;
+            case 0x20:
+                switch( src[i] & 0xF) {
+                    case 0x0:
+                        des[i] = ' ';
+                        break;
+                    case 0x1:
+                        des[i] = '!';
+                        break;
+                    case 0x2:
+                        des[i] = '"';
+                        break;
+                    case 0x3:
+                        des[i] = '#';
+                        break;
+                    case 0x4:
+                        des[i] = '$';
+                        break;
+                    case 0x5:
+                        des[i] = '%';
+                        break;
+                    case 0x6:
+                        des[i] = '&';
+                        break;
+                    case 0x7:
+                        des[i] = ''';
+                        break;
+                    case 0x8:
+                        des[i] = '(';
+                        break;
+                    case 0x9:
+                        des[i] = ')';
+                        break;
+                    case 0xa:
+                        des[i] = '*';
+                        break;
+                    case 0xb:
+                        des[i] = '+';
+                        break;
+                    case 0xc:
+                        des[i] = ',';
+                        break;
+                    case 0xd:
+                        des[i] = '-';
+                        break;
+                    case 0xe:
+                        des[i] = '.';
+                        break;
+                    case 0xf:
+                        des[i] = '/';
+                        break;
+                }
+                break;
+            case 0x30:
+                switch( src[i] & 0xF) {
+                    case 0x0:
+                        des[i] = '0';
+                        break;
+                    case 0x1:
+                        des[i] = '1';
+                        break;
+                    case 0x2:
+                        des[i] = '2';
+                        break;
+                    case 0x3:
+                        des[i] = '3';
+                        break;
+                    case 0x4:
+                        des[i] = '4';
+                        break;
+                    case 0x5:
+                        des[i] = '5';
+                        break;
+                    case 0x6:
+                        des[i] = '6';
+                        break;
+                    case 0x7:
+                        des[i] = '7';
+                        break;
+                    case 0x8:
+                        des[i] = '8';
+                        break;
+                    case 0x9:
+                        des[i] = '9'; 
+                        break;
+                    case 0xa:
+                        des[i] = ':';
+                        break;
+                    case 0xb:
+                        des[i] = ';';
+                        break;
+                    case 0xc:
+                        des[i] = '<';
+                        break;
+                    case 0xd:
+                        des[i] = '=';
+                        break;
+                    case 0xe:
+                        des[i] = '>';
+                        break;
+                    case 0xf:
+                        des[i] = '?';
+                        break;
+                }
+                break;
+            case 0x40:
+                switch( src[i] & 0xF) {
+                    case 0x0:
+                        des[i] = '@'; 
+                        break;
+                    case 0x1:
+                        des[i] = 'A';
+                        break;
+                    case 0x2:
+                        des[i] = 'B';
+                        break;
+                    case 0x3:
+                        des[i] = 'C';
+                        break;
+                    case 0x4:
+                        des[i] = 'D';
+                        break;
+                    case 0x5:
+                        des[i] = 'E';
+                        break;
+                    case 0x6:
+                        des[i] = 'F';
+                        break;
+                    case 0x7:
+                        des[i] = 'G';
+                        break;
+                    case 0x8:
+                        des[i] = 'H';
+                        break;
+                    case 0x9:
+                        des[i] = 'I';
+                        break;
+                    case 0xa:
+                        des[i] = 'J';
+                        break;
+                    case 0xb:
+                        des[i] = 'K';
+                        break;
+                    case 0xc:
+                        des[i] = 'L';
+                        break;
+                    case 0xd:
+                        des[i] = 'M';
+                        break;
+                    case 0xe:
+                        des[i] = 'N';
+                        break;
+                    case 0xf:
+                        des[i] = 'O';
+                        break;
+                }
+                break;
+            case 0x50:
+                switch( src[i] & 0xF) {
+                    case 0x0:
+                        des[i] = 'P';
+                        break;
+                    case 0x1:
+                        des[i] = 'Q';
+                        break;
+                    case 0x2:
+                        des[i] = 'R';
+                        break;
+                    case 0x3:
+                        des[i] = 'S';
+                        break;
+                    case 0x4:
+                        des[i] = 'T';
+                        break;
+                    case 0x5:
+                        des[i] = 'U';
+                        break;
+                    case 0x6:
+                        des[i] = 'V';
+                        break;
+                    case 0x7:
+                        des[i] = 'W';
+                        break;
+                    case 0x8:
+                        des[i] = 'X';
+                        break;
+                    case 0x9:
+                        des[i] = 'Y';
+                        break;
+                    case 0xa:
+                        des[i] = 'Z';
+                        break;
+                    case 0xb:
+                        des[i] = '[';
+                        break;
+                    case 0xc:
+                        des[i] = '.';
+                        break;
+                    case 0xd:
+                        des[i] = ']';
+                        break;
+                    case 0xe:
+                        des[i] = '^';
+                        break;
+                    case 0xf:
+                        des[i] = '_';
+                        break;
+                }
+                break;
+            case 0x60:
+                switch( src[i] & 0xF) {
+                    case 0x0:
+                        des[i] = '`';
+                        break;
+                    case 0x1:
+                        des[i] = 'a';
+                        break;
+                    case 0x2:
+                        des[i] = 'b';
+                        break;
+                    case 0x3:
+                        des[i] = 'c';
+                        break;
+                    case 0x4:
+                        des[i] = 'd';
+                        break;
+                    case 0x5:
+                        des[i] = 'e';
+                        break;
+                    case 0x6:
+                        des[i] = 'f';
+                        break;
+                    case 0x7:
+                        des[i] = 'g';
+                        break;
+                    case 0x8:
+                        des[i] = 'h';
+                        break;
+                    case 0x9:
+                        des[i] = 'i';
+                        break;
+                    case 0xa:
+                        des[i] = 'j';
+                        break;
+                    case 0xb:
+                        des[i] = 'k';
+                        break;
+                    case 0xc:
+                        des[i] = 'l';
+                        break;
+                    case 0xd:
+                        des[i] = 'm';
+                        break;
+                    case 0xe:
+                        des[i] = 'n';
+                        break;
+                    case 0xf:
+                        des[i] = 'o';
+                        break;
+                }
+                break;
+            case 0x70:
+                switch( src[i] & 0xF) {
+                    case 0x0:
+                        des[i] = 'p';
+                        break;
+                    case 0x1:
+                        des[i] = 'q';
+                        break;
+                    case 0x2:
+                        des[i] = 'r';
+                        break;
+                    case 0x3:
+                        des[i] = 's';
+                        break;
+                    case 0x4:
+                        des[i] = 't';
+                        break;
+                    case 0x5:
+                        des[i] = 'u';
+                        break;
+                    case 0x6:
+                        des[i] = 'v';
+                        break;
+                    case 0x7:
+                        des[i] = 'w';
+                        break;
+                    case 0x8:
+                        des[i] = 'x';
+                        break;
+                    case 0x9:
+                        des[i] = 'y';
+                        break;
+                    case 0xa:
+                        des[i] = 'z';
+                        break;
+                    case 0xb:
+                        des[i] = '{';
+                        break;
+                    case 0xc:
+                        des[i] = '|';
+                        break;
+                    case 0xd:
+                        des[i] = '}';
+                        break;
+                    case 0xe:
+                        des[i] = '~';
+                        break;
+                    case 0xf:
+                        return 0;
+                        break;
+                }
+                break;
+            case 0x80:
+                return 0;
+                break;
+            case 0x90:
+                return 0;
+                break;
+            case 0xa0:
+                return 0;
+                break;
+            case 0xb0:
+                return 0;
+                break;
+            case 0xc0:
+                return 0;
+                break;
+            case 0xd0:
+                return 0;
+                break;
+            case 0xe0:
+                return 0;
+                break;
+            case 0xf0:
+                switch( src[i] & 0xF) {
+                    case 0xf:
+                        des[i] = '..';
+                        break;
+                    default:
+                        return 0;
+                        break;
+                }
+                break;                               
+        }
+    }
+}
+
+                        
+

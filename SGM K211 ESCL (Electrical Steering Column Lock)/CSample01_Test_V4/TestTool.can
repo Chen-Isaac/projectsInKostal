@@ -1,0 +1,248 @@
+/*@!Encoding:936*/
+includes
+{
+  
+}
+
+variables
+{
+    message USDT_Req_to_ESCL_HS  DiagReq;
+    word  DIDCode;
+   byte RecBuff[8];
+  byte u8temp;
+
+}
+
+on preStart
+{
+ 
+}
+
+
+on start
+{
+  
+}
+on envVar ReadCanInfo
+{
+   if(@ReadCanInfo == 1)
+   {
+     DiagReq.byte(0) = 3;
+     DiagReq.byte(1) = 0x22;
+     DiagReq.byte(2) = 0x80;
+     DiagReq.byte(3) = 0x21;
+     output(DiagReq);
+   }
+}
+on envVar ReadSafetyError
+{
+   if(@ReadSafetyError == 1)
+   {
+     DiagReq.byte(0) = 3;
+     DiagReq.byte(1) = 0x22;
+     DiagReq.byte(2) = 0x80;
+     DiagReq.byte(3) = 0x19;
+     output(DiagReq);
+   }
+}
+on envVar ReadAssemblyMode
+{
+   if(@ReadAssemblyMode == 1)
+   {
+     DiagReq.byte(0) = 3;
+     DiagReq.byte(1) = 0x22;
+     DiagReq.byte(2) = 0x90;
+     DiagReq.byte(3) = 0xd4;
+     output(DiagReq);
+   }
+}
+
+on envVar ReadLockCondition
+{
+   if(@ReadLockCondition == 1)
+   {
+     DiagReq.byte(0) = 3;
+     DiagReq.byte(1) = 0x22;
+     DiagReq.byte(2) = 0x80;
+     DiagReq.byte(3) = 0x20;
+     output(DiagReq);
+   }
+}
+
+on envVar ReadCoSafeError
+{
+   if(@ReadCoSafeError == 1)
+   {
+      DiagReq.byte(0) = 3;
+     DiagReq.byte(1) = 0x22;
+     DiagReq.byte(2) = 0x80;
+     DiagReq.byte(3) = 0x18;
+     output(DiagReq);
+    }
+}
+on envVar ReadMainCoreError
+{
+   if(@ReadMainCoreError == 1)
+   {
+     DiagReq.byte(0) = 3;
+     DiagReq.byte(1) = 0x22;
+     DiagReq.byte(2) = 0x80;
+     DiagReq.byte(3) = 0x17;
+     output(DiagReq);
+   }
+}
+on message USDT_Resp_From_ESCL_HS
+{
+  if(this.DIR == rx)
+  {
+     if(this.byte(1) == 0x62)
+     {
+        DIDCode = (word)(this.byte(2)<<8)+(word)this.byte(3);
+        RecBuff[0] = this.byte(4);
+        RecBuff[1] = this.byte(5);
+        RecBuff[2] = this.byte(6);
+        RecBuff[3] = this.byte(7);
+ 
+       //write("Test DID:   %x",DIDCode);
+        switch(DIDCode)
+        {
+          case  0x8019:
+            MainSafetyErrorDecode();  
+           // write("code1");
+            
+            break;
+          case 0x8020:
+            LockConditionDecode();
+             //write("code2");
+            break;
+          case 0x8021:
+            CANInfoDecode();
+            // write("code3");
+            break;
+          case 0x8017:
+             MainErrorDecode();
+            // write("code3");
+            break;
+          case 0x8018:
+             CoErrorDecode();
+            // write("code3");
+            break;
+          case 0x90d4:
+             AssambleDecode();
+             //write("code3");
+            break;
+         default:
+            break;
+       }
+    }
+  }
+}
+void MainErrorDecode()
+{
+    @MainCoreError = (word)(RecBuff[0]<<8) + (word)(RecBuff[1]);
+}
+void CoErrorDecode()
+{
+    @CorSafeError = (dword)(RecBuff[0]<<24) + (dword)(RecBuff[1]<<16) + (dword)(RecBuff[2]<<8)+(dword)(RecBuff[3]);
+#if 0
+  if((byte)(RecBuff[3]>>6) != 1)
+  {
+      @CoUC_VehicleSpdV = 2;
+  }
+  else
+  {
+      @CoUC_VehicleSpdV = 1;
+  }
+#endif  
+}
+  void MainSafetyErrorDecode()
+{
+#if 1
+   @Slot_Sequence_CheckResult =(byte)((RecBuff[0]&0x80)>>7)+(byte)1;
+   @Program_Sequence_CheckResult=(byte)((RecBuff[0]&0x40)>>6)+(byte)1;
+   @ISK_ComFlag_Status=(byte)((RecBuff[0]&0x20)>>5)+(byte)1;
+   @CAN_ComFlag_Status=(byte)((RecBuff[0]&0x10)>>4)+(byte)1;
+   @ADCCheckResult=(byte)((RecBuff[0]&0x08)>>3)+(byte)1;
+   @CoreTst_Result=(byte)((RecBuff[0]&0x04)>>2)+(byte)1;
+   @HalClk_CLM_Result=(byte)((RecBuff[0]&0x02)>>1)+(byte)1;
+   @ROMTst_Result=(byte)(RecBuff[0]& 0x01)+(byte)1;
+  
+  @DiagADRef =(byte)((RecBuff[1]&0x80)>>7)+(byte)1;
+  @DiagLockHall =(byte)((RecBuff[1]&0x40)>>6)+(byte)1;
+  @DiagUnlockHall=(byte)((RecBuff[1]&0x20)>>5)+(byte)1;
+  @DiagVCC2AD=(byte)((RecBuff[1]&0x10)>>4)+(byte)1;
+  @DiagBatAD=(byte)((RecBuff[1]&0x08)>>3)+(byte)1;
+  @DiagUnlockSW=(byte)((RecBuff[1]&0x04)>>2)+(byte)1;
+  @DiagInvertGN=(byte)((RecBuff[1]&0x02)>>1)+(byte)1;
+  @Err_HSideShortToBat=(byte)(RecBuff[1]&0x01)+(byte)1;
+#endif 
+  @ESCL_Safety_Status = (byte)((RecBuff[2]&0x04)>>2)+(byte)1;
+#if 1
+  @Co_uC_Status = (byte)((RecBuff[2]&0x02)>>1)+(byte)1;
+#endif
+#if 0
+  if((byte)(RecBuff[3]>>3) != 1)
+  {
+      @CoUC_VehicleSpdV = 2;
+  }
+  else
+  {
+      @CoUC_VehicleSpdV = 1;
+  }
+#endif
+  // write("Test Data: %d,%d,%d",@CAN_ComFlag_Status,@ESCL_Safety_Status,@Err_HSideShortToBat);
+}
+
+
+void LockConditionDecode()
+{
+  u8temp = (byte)(RecBuff[0]&0x80);
+   //write("PP1: %x",u8temp);
+    //write("PP1");
+  if(u8temp == 0)
+  {
+   @MainVoltage = (byte)(RecBuff[0]&0x01)+(byte)1;
+   @VehicleStaLock = (byte)((RecBuff[0]&0x02)>>1)+(byte)1;
+   @EngSta = (byte)((RecBuff[0]&0x04)>>2)+(byte)1;
+   @ESCL_SafeState =  (byte)((RecBuff[0]&0x08)>>3)+(byte)1;
+   @ESCL_Bolt_State = (byte)((RecBuff[0]&0x10)>>4)+(byte)1;
+    // write("PP2");
+  // write("Test Data: %d,%d,%d,%d,%d",@MainVoltage,@VehicleStaLock,@EngSta,@ESCL_SafeState,@ESCL_Bolt_State);
+  }
+  else
+  {
+     @MainVoltage  =0;
+     @VehicleStaLock=0;
+     @EngSta =0;
+     @ESCL_SafeState=0;
+     @ESCL_Bolt_State=0;
+     //write("PP3");
+  }
+ // write("Test Data: %d,%d,%d,%d,%d,",@MainVoltage,@VehicleStaLock,@EngSta,@ESCL_SafeState,@ESCL_Bolt_State);
+}
+
+void CANInfoDecode()
+{
+
+  //write("REC Data: %x,%x,%x,%x,%x,",RecBuff[0],RecBuff[1],RecBuff[2],RecBuff[3],RecBuff[4]);
+  //write("Test Data: %d,%d,%d,%d,%d,",@MainVoltage,@VehicleStaLock,@EngSta,@ESCL_SafeState,@ESCL_Bolt_State);
+  @SystemPM = (byte)(RecBuff[1]&0x03);
+  @SystemPMUnl =  (byte)((RecBuff[1]>>2)&0x03);
+  @VehicleSta =  (byte)((RecBuff[1]>>4)&0x03);
+  @EngspeedSta =  (byte)((RecBuff[1]>>6)&0x03);
+  @DriverDoorSta =  (byte)((RecBuff[0])&0x03);
+  @PassengDoorSta =  (byte)((RecBuff[0]>>2)&0x03);
+ // write("Test Data: %d,%d,%d,%d,%d,%d",@SystemPM ,@SystemPMUnl,@VehicleSta,@EngspeedSta,@DriverDoorSta,@PassengDoorSta);
+ 
+}
+void  AssambleDecode()
+{
+    if((RecBuff[0]&0x08) != 0)
+    {
+        
+      @AssemblyMode = 2;
+    }
+    else{
+      @AssemblyMode = 1;
+    }
+}

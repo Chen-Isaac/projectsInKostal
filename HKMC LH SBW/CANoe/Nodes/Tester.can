@@ -1,0 +1,498 @@
+includes
+{
+  // Import required CAPL include files
+  //--- begin generated part --- Block start #Hdr_Includes#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_Includes#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_Includes#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  #include "..\CAPL\Vector-NM-Panel-Helper_CAN1.cin"
+  #include "..\CAPL\Vector-IL-KL15-Helper_CAN1.cin"
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_Includes#; do not delete this line! Add application code below this line.
+}
+
+variables
+{
+  // Define global variables for this CAPL file
+
+  /*--- #GenHeader Begin# --- begin generated comment ---
+  | Generated on Monday, 九月 05, 2016, 15:00:06
+  | By ModelGenerator for Vector 1.0.0.1, ModelGeneratorVectorDLL 1.0.0.2
+  | Target Bus: HKMC_LH_SBW; Channel: CAN1; DB Cluster: HKMC_LH_SBW;
+  | From Database: HKMC_LH_SBW.dbc
+    --- #GenHeader End  # --- end generated comment --- */
+
+  char gECU[256] = "Tester";
+  //--- begin generated part --- Block start #Hdr_GlobalVariables#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_GlobalVariables#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_GlobalVariables#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  char gCAN1BusName[256] = "HKMC_LH_SBW";
+  int gCAN1Channel = 1; //// The channel the bus is attached to
+
+  long gCAN1DisturbanceMode;
+  long gCAN1DisturbanceCount;
+  long gCAN1DisturbanceValue;
+  long gCAN1DisturbanceContinueMode;
+  double gCAN1DisturbancePeriod;
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_GlobalVariables#; do not delete this line! Add application code below this line.
+}
+
+on preStart
+{
+  // Initialize CAPL includes and node's modules/DLLs
+  //--- begin generated part --- Block start #Hdr_OnInit#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_OnInit#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_OnInit#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  ILCAN1_OnInit();
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_OnInit#; do not delete this line! Add application code below this line.
+}
+
+on start
+{
+  // Start CAPL includes and node's modules/DLLs
+  //--- begin generated part --- Block start #Hdr_OnStart#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_OnStart#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_OnStart#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  ILCAN1_OnStart();
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_OnStart#; do not delete this line! Add application code below this line.
+}
+
+on FrPOCState
+{
+  // Possibly propagate FlexRay POC state of interface to the FlexRay bus control
+  //--- begin generated part --- Block start #Hdr_OnFrPOCState#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_OnFrPOCState#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_OnFrPOCState#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_OnFrPOCState#; do not delete this line! Add application code below this line.
+}
+
+on FrSymbol
+{
+  // Possibly propagate FlexRay symbol reception to the FlexRay bus control
+  //--- begin generated part --- Block start #Hdr_OnFrSymbol#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_OnFrSymbol#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_OnFrSymbol#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_OnFrSymbol#; do not delete this line! Add application code below this line.
+}
+
+on FRFrameError *
+{
+  // Possibly propagate FlexRay erroneous frame reception to the FlexRay bus control
+  //--- begin generated part --- Block start #Hdr_OnFrFrameError#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_OnFrFrameError#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_OnFrFrameError#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_OnFrFrameError#; do not delete this line! Add application code below this line.
+}
+
+on preStop
+{
+  // Prepare stopping
+  //--- begin generated part --- Block start #Hdr_OnStopping#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_OnStopping#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_OnStopping#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_OnStopping#; do not delete this line! Add application code below this line.
+}
+
+on stopMeasurement
+{
+  // Stop actions
+  //--- begin generated part --- Block start #Hdr_OnStop#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_OnStop#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_OnStop#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_OnStop#; do not delete this line! Add application code below this line.
+}
+
+on sysvar_update sysvar::IL::Klemme15
+{
+  // Handle system state variable
+  //--- begin generated part --- Block start #Hdr_KL15_Klemme15#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_KL15_Klemme15#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_KL15_Klemme15#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  ILCAN1_OnEnvKlemme15(@this);
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_KL15_Klemme15#; do not delete this line! Add application code below this line.
+}
+
+on sysvar_update sysvar::IL::Klemme30
+{
+  // Handle system state variable
+  //--- begin generated part --- Block start #Hdr_KL30_Klemme30#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_KL30_Klemme30#; do not delete this line! Add application code below this line.
+  //--- begin generated part --- Block start #Body_KL30_Klemme30#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  ILCAN1_OnEnvKlemme30(@this);
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_KL30_Klemme30#; do not delete this line! Add application code below this line.
+}
+
+void Nm_NetworkStartInd()
+{
+  // Callback of CAN AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_Nm_NetworkStartInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_Nm_NetworkStartInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_Nm_NetworkStartInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_Nm_NetworkStartInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void Nm_NetworkModeInd()
+{
+  // Callback of CAN AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_Nm_NetworkModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_Nm_NetworkModeInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_Nm_NetworkModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_Nm_NetworkModeInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void Nm_NetworkTimeoutInd()
+{
+  // Callback of CAN AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_Nm_NetworkTimeoutInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_Nm_NetworkTimeoutInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_Nm_NetworkTimeoutInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_Nm_NetworkTimeoutInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void Nm_PrepareBusSleepModeInd()
+{
+  // Callback of CAN AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_Nm_PrepareBusSleepModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_Nm_PrepareBusSleepModeInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_Nm_PrepareBusSleepModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_Nm_PrepareBusSleepModeInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void Nm_BusSleepModeInd()
+{
+  // Callback of CAN AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_Nm_BusSleepModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_Nm_BusSleepModeInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_Nm_BusSleepModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_Nm_BusSleepModeInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void Nm_StateChangeNotification(long previousState, long currentState)
+{
+  // Callback of CAN AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_Nm_StateChangeNotification#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_Nm_StateChangeNotification#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_Nm_StateChangeNotification#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_Nm_StateChangeNotification#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void FrNm_NetworkStartInd()
+{
+  // Callback of FlexRay AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_FrNm_NetworkStartInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_FrNm_NetworkStartInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_FrNm_NetworkStartInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_FrNm_NetworkStartInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void FrNm_NetworkModeInd()
+{
+  // Callback of FlexRay AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_FrNm_NetworkModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_FrNm_NetworkModeInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_FrNm_NetworkModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_FrNm_NetworkModeInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void FrNm_NetworkTimeoutInd()
+{
+  // Callback of FlexRay AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_FrNm_NetworkTimeoutInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_FrNm_NetworkTimeoutInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_FrNm_NetworkTimeoutInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_FrNm_NetworkTimeoutInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void FrNm_PrepareBusSleepModeInd()
+{
+  // Callback of FlexRay AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_FrNm_PrepareBusSleepModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_FrNm_PrepareBusSleepModeInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_FrNm_PrepareBusSleepModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_FrNm_PrepareBusSleepModeInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void FrNm_BusSleepModeInd()
+{
+  // Callback of FlexRay AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_FrNm_BusSleepModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_FrNm_BusSleepModeInd#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_FrNm_BusSleepModeInd#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_FrNm_BusSleepModeInd#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void FrNm_StateChangeNotification(long previousState, long currentState)
+{
+  // Callback of FlexRay AUTOSAR NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_FrNm_StateChangeNotification#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_FrNm_StateChangeNotification#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_FrNm_StateChangeNotification#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_FrNm_StateChangeNotification#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void apCanWakeUp()
+{
+  // Callback of OSEK NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_apCanWakeUp#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_apCanWakeUp#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_apCanWakeUp#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_apCanWakeUp#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void apCanOn()
+{
+  // Callback of OSEK NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_apCanOn#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_apCanOn#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_apCanOn#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_apCanOn#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void apCanOff()
+{
+  // Callback of OSEK NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_apCanOff#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_apCanOff#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_apCanOff#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_apCanOff#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void apCanNormal()
+{
+  // Callback of OSEK NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_apCanNormal#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_apCanNormal#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_apCanNormal#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_apCanNormal#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void apCanSleep()
+{
+  // Callback of OSEK NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_apCanSleep#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_apCanSleep#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_apCanSleep#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_apCanSleep#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+void apBusSleep()
+{
+  // Callback of OSEK NM DLL
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_apBusSleep#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_apBusSleep#; do not delete this line! Add application code below this line.
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_apBusSleep#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_apBusSleep#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+}
+
+long apIndPreSend(byte buf[], byte dlc[])
+{
+  // Callback of OSEK NM DLL
+  long result;
+  dword lBusContext;
+  //--- begin generated part --- Block start #Hdr_apIndPreSend#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Hdr_apIndPreSend#; do not delete this line! Add application code below this line.
+  result = 1;
+  lBusContext = GetBusContext();
+  //--- begin generated part --- Block start #Body_apIndPreSend#; do not delete this line and do not add application code in this code block!
+  /* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+  /* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+  //--- end generated part --- Block end #Body_apIndPreSend#; do not delete this line! Add application code below this line.
+  SetBusContext(lBusContext);
+  return result;
+}
+
+//--- begin generated part --- Block start <#Helper_Functions#> do not delete this line and do not add application code in this code block!
+/* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+/* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+//--- end generated part --- Block end <#Helper_Functions#> do not delete this line! Add application code below this line.
+
+//--- begin generated part --- Block start <#SysVar_Handler#> do not delete this line and do not add application code in this code block!
+/* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+on sysvar_update sysvar::IL_CAN1::EnableNode::Tester
+{
+  ILCAN1_Enable(@this && @sysvar::IL_CAN1::enable_AllNodes);
+}
+
+on sysvar_update sysvar::IL_CAN1::enable_AllNodes
+{
+  ILCAN1_Enable(@this && @sysvar::IL_CAN1::EnableNode::Tester);
+}
+
+/* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+//--- end generated part --- Block end <#SysVar_Handler#> do not delete this line! Add application code below this line.
+
+//--- begin generated part --- Block start <#MsgUpdateFcns#> do not delete this line and do not add application code in this code block!
+/* #ChannelStart# |CAN1| #BusStart# |HKMC_LH_SBW| */
+/* #ChannelEnd# |CAN1| #BusEnd# |HKMC_LH_SBW| */
+//--- end generated part --- Block end <#MsgUpdateFcns#> do not delete this line! Add application code below this line.
+

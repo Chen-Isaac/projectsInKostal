@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2016-11-23 11:27:20" timestamp="   1.919974" verdicts="2_basic">
+  <testunit starttime="2016-11-23 11:27:20" timestamp="   1.919974">
+    <testsequence starttime="2016-11-23 11:27:20" timestamp="   1.919974">
+      <command timestamp="   1.919974" name="CAPL Inline">
+        <title>Initialize VT system,make VT internal power supply voltage output equals 12V</title>
+        <result timestamp="   2.519974" result="pass"/>
+      </command>
+      <command timestamp="   2.519974" name="Wait">
+        <title>Wait for power supply initialization complete</title>
+        <teststep timestamp="   2.819974" level="2" type="user" ident="1" result="na">Waited for 300.000 ms</teststep>
+        <result timestamp="   2.819974" result="pass"/>
+      </command>
+      <command timestamp="   2.819974" name="Check">
+        <title>Check</title>
+        <teststep timestamp="   2.819974" level="0" type="user" ident="1" result="fail">
+          <tabularinfo expand="true">
+            <description>Check of expected values</description>
+            <heading>
+              <cell>Symbol</cell>
+              <cell>Op.</cell>
+              <cell>Reference Value</cell>
+              <cell>Actual</cell>
+              <cell>Result</cell>
+            </heading>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgVoltage&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>12.5</cell>
+              <cell>11.9473860896634</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgVoltage&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>11.5</cell>
+              <cell>11.9473860896634</cell>
+              <cell>pass</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgCurrent&apos;</cell>
+              <cell>&gt;=</cell>
+              <cell>0.001</cell>
+              <cell>0.000902</cell>
+              <cell>fail</cell>
+            </row>
+            <row level="0">
+              <cell>System variable &apos;M12_Out2::AvgCurrent&apos;</cell>
+              <cell>&lt;=</cell>
+              <cell>0.1</cell>
+              <cell>0.000902</cell>
+              <cell>pass</cell>
+            </row>
+          </tabularinfo>
+        </teststep>
+        <result timestamp="   2.819974" result="fail"/>
+      </command>
+      <command timestamp="   2.819974" name="Wait">
+        <title>Wait</title>
+        <teststep timestamp="   2.919974" level="2" type="user" ident="1" result="na">Waited for 100.000 ms</teststep>
+        <result timestamp="   2.919974" result="pass"/>
+      </command>
+      <command timestamp="   2.919974" name="CAPL Inline">
+        <title>Set Pin4 input inactive at the beginning and Pin1~3 connect with loads</title>
+        <result timestamp="   2.919974" result="pass"/>
+      </command>
+      <command timestamp="   2.919974" name="CANoe Standard Service">
+        <title>testValidateTesterConfirmation</title>
+        <teststep timestamp="   2.919974" level="2" type="user" ident="" result="na">Execute testValidateTesterConfirmation(&quot;for 3.5.2 debug&quot;, &quot;&quot;, 1)</teststep>
+        <teststep timestamp="   4.795995" level="0" type="user" ident="" result="fail">Measurement stop forced. Test is incomplete!</teststep>
+<!-- Measurement stop forced. Test is incomplete! -->
+        <result timestamp="   4.795995" result="fail"/>
+      </command>
+      <title>Power supply initialization</title>
+      <seqend endtime="2016-11-23 11:27:23" endtimestamp="   4.795995" />
+    </testsequence>
+    <verdict time="2016-11-23 11:27:21" timestamp="   2.819974" endtime="2016-11-23 11:27:23" endtimestamp="   4.795995" result="fail" />
+    <title>GWM CHB071 Ambient Light Control Module</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>GWM CHB071 Ambient Light Control Module</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>D:\Isaac\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2016-11-23, 11:24:12</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2016-11-23 11:27:21" timestamp="   2.819974" endtime="2016-11-23 11:27:23" endtimestamp="   4.795995" result="fail" />
+  <title>GWM CHB071 Ambient Light Control Module</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>chen106</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 8.5.107 (SP5)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>D:\Isaac\GWM CHB071 Ambient Light Control Module\ALCM_Panel\Can_Panel\CanPanel.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>GWM CHB071 Ambient Light Control Module</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLVECTOR</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLVECTOR.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module OSEKNM01</name>
+      <description>OSEK-NM Vector Informatik GmbH 1.6.65 2016-03-14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\OSEKNM01.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 8.5.107, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="channel">
+          <name>Channel</name>
+          <description>1</description>
+        </xinfo>
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VN1630</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>501043</description>
+        </xinfo>
+        <xinfo key="driverdllversion">
+          <name>Driver DLL version</name>
+          <description>9.2.22</description>
+        </xinfo>
+        <xinfo key="driverversion">
+          <name>Driver version</name>
+          <description>8.9.22</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT8012</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>1031</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>0.0.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>452</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>450</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>448</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>449</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>331</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>348</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>329</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>339</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>174</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>234</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>210</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT7001A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>267</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.0.5</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <extendedinfo type="html"><![CDATA[<b>Measurement stop forced. Test is incomplete!</b>]]></extendedinfo>
+</testreport>
+<!--footprint="83cac22099baada8274c28c71a06a056" version="1"-->

@@ -1,0 +1,785 @@
+/*@!Encoding:949*/
+
+    
+
+variables
+{
+    char CANOE_Init = 0;
+    char DISP_ND_Init;
+    char DISP_NR_Init;
+  
+    /**************** TCU11 Tx message ****************/
+    const TCU11_CYCLE_TIME   = 10;
+    byte bTcuGearMode;
+    message CAN1.TCU11 mTcu11;
+    //mstimer tTcu11;
+        
+        /* G_SEL_DISP signal coding */
+        const  G_SEL_DISP_P = 0x00;
+        const  G_SEL_DISP_R = 0x07;
+        const  G_SEL_DISP_N = 0x06;
+        const  G_SEL_DISP_D = 0x05;
+        const  G_SEL_DISP_D_D = 0x08;
+        const  G_SEL_DISP_Init = 0x09;
+        const  G_SEL_DISP_Error = 0x0F;
+
+    /**************** TCU12 Tx message ****************/
+//    const TCU12_CYCLE_TIME   = 100;
+    byte bVehicleSpeed;
+//    message CAN1.TCU12 mTcu2;
+//    mstimer tTcu12;
+
+    /**************** LVR11 Rx message ****************/
+    byte bDriversWish;
+    byte bLastDriversWish;
+        
+        /* "CF_Lvr_PosInf" signal coding */
+        const LVR_POS_INF_INIT  = 0x00;
+        const LVR_POS_INF_P     = 0x01;
+        const LVR_POS_INF_P_R     = 0x02;
+        const LVR_POS_INF_R     = 0x03;
+        const LVR_POS_INF_R_N     = 0x04;
+        const LVR_POS_INF_N     = 0x05;
+        const LVR_POS_INF_N_D     = 0x06;
+        const LVR_POS_INF_D     = 0x07;
+        const LVR_POS_INF_NR    = 0x08;
+        const LVR_POS_INF_ND    = 0x09;
+        const LVR_POS_INF_M     = 0x0A;
+        const LVR_POS_INF_M_P   = 0x0B;
+        const LVR_POS_INF_M_M   = 0x0C;
+        const LVR_POS_INF_ERR   = 0x0F;
+
+}
+
+on start
+{
+     /* Initialization */;
+    bTcuGearMode = G_SEL_DISP_P;
+    //$G_SEL_DISP = bTcuGearMode;
+    bVehicleSpeed = 0;
+  /* Initialize Driver Wish variables */
+    bDriversWish = LVR_POS_INF_NR;
+    bLastDriversWish = LVR_POS_INF_NR;
+    putvalue(EnvDriverWishText," ");
+  
+    @envVS_TCU = 0;
+    @envVS = 0;
+    @envWHL_SPD_FL = 0;
+    @envENG_STAT = 0;
+    WarningMessageValidation_Init();
+}
+
+on message CAN1.LVR11
+{
+    
+  
+    //CurrBkeAct = this.CF_Lvr_BkeAct;
+  
+    if( CANOE_Init == 0 ) {
+      WarningMessageValidation_Init();
+      CANOE_Init = 1;
+      if(this.CF_Lvr_PosInf == LVR_POS_INF_NR){
+        DISP_NR_Init = 1;
+      }
+      if(this.CF_Lvr_PosInf == LVR_POS_INF_ND){
+        DISP_ND_Init = 1;
+      }
+    }
+  
+    /* Auto P */
+    if((this.CF_Lvr_PosInf == LVR_POS_INF_INIT) )
+    {
+        if((bVehicleSpeed <= 2) && (bTcuGearMode != G_SEL_DISP_N))
+        {
+            bTcuGearMode = G_SEL_DISP_P;
+        }
+        else
+        {
+            bTcuGearMode = G_SEL_DISP_N;
+        }
+     
+        bLastDriversWish = bDriversWish;
+        bDriversWish = this.CF_Lvr_PosInf;
+
+         // Ouput Driver wish on display
+           putvalue(EnvDriverWishText,"Init");
+
+    }
+    else if( this.CF_Lvr_PosInf == LVR_POS_INF_ERR )
+    {
+        putvalue(EnvDriverWishText,"Error");
+    }
+    
+    /* Drivers wish changed? */
+    else if(this.CF_Lvr_PosInf != bDriversWish)
+    {
+        bLastDriversWish = bDriversWish;
+        bDriversWish = this.CF_Lvr_PosInf;
+        //write("%x", bDriversWish);
+        
+        // Ouput Driver wish on display    
+        switch(bDriversWish)
+        {   
+           case  LVR_POS_INF_P: {putvalue(EnvDriverWishText,"P"); break;}
+           case  LVR_POS_INF_R: {putvalue(EnvDriverWishText,"R"); break;}
+           case  LVR_POS_INF_D: {putvalue(EnvDriverWishText,"D"); break;}
+           case  LVR_POS_INF_ND: {putvalue(EnvDriverWishText,"Nd"); break;}
+           case  LVR_POS_INF_NR: {putvalue(EnvDriverWishText,"Nr"); break;}
+                    
+           default : {putvalue(EnvDriverWishText," "); break;}
+          
+        }
+        
+        /* Do not trigger changes if there is a CF_Lvr_PosInf edge from P,R,D back to Nd/Nr */
+        /* Do not change the gear mode if we comne from init */
+        if((bLastDriversWish != LVR_POS_INF_INIT)  && (bLastDriversWish != LVR_POS_INF_P) && (bLastDriversWish != LVR_POS_INF_R) && (bLastDriversWish != LVR_POS_INF_D))
+        {
+             
+            /* Compute new Drivers Request depeding on current gear mode */
+            switch(bTcuGearMode)
+            {
+                case G_SEL_DISP_P:
+                {   
+                    /* P may only be left if the car is stopped (that should be obviously always the case!!!) */
+                    if(bVehicleSpeed <= 2)
+                    {   
+                        //write("%x", bDriversWish);
+                        switch(bDriversWish)
+                        {   
+                            case LVR_POS_INF_R:
+                            {
+                              //if(this.CF_Lvr_SftButStat == 2)
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_BkeAct == 1)
+                                {
+                                  if(this.CF_Lvr_UlkButStat == 2)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                  }
+                                }
+                                else if(this.CF_Lvr_UlkButStat == 2)
+                                {
+                                  if(this.CF_Lvr_BkeAct == 1)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press the Brake");
+                                  }
+                                }
+                                else
+                                {
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Brake and Unlock Button");
+                                }
+                              }
+                              else{
+                                //if(this.CF_Lvr_UlkButStat == 2)
+                                //{
+                                  bTcuGearMode = G_SEL_DISP_R;
+                                  putvalue(envWarningMessageIndication, 0);
+                                  putvalue(envWarningMessageValidation, "");
+                                //}
+                              }
+                              break;
+                            }
+                            case LVR_POS_INF_ND:
+                            {
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_BkeAct == 1)
+                                {
+                                  if(this.CF_Lvr_UlkButStat == 2)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_D;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                  }
+                                }
+                                else if(this.CF_Lvr_UlkButStat == 2)
+                                {
+                                  if(this.CF_Lvr_BkeAct == 1)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_D;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press the Brake");
+                                  }
+                                }
+                                else
+                                {
+                                  if(DISP_ND_Init == 1)
+                                  {
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                    DISP_ND_Init = 0;
+                                    //DISP_NR_Init = 0;
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Brake and Unlock Button");
+                                  }
+                                  
+                                }
+                              }
+                              else{
+                                
+                                bTcuGearMode = G_SEL_DISP_P;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              break;
+                            }
+                            /* Start */
+                            case LVR_POS_INF_NR:
+                            {
+                              //if(this.CF_Lvr_SftButStat == 2)
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_BkeAct == 1)
+                                {
+                                  if(this.CF_Lvr_UlkButStat == 2)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                  }
+                                }
+                                else if(this.CF_Lvr_UlkButStat == 2)
+                                {
+                                  if(this.CF_Lvr_BkeAct == 1)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press the Brake");
+                                  }
+                                }
+                                else
+                                {
+                                    if(DISP_NR_Init == 1)
+                                  {
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                    DISP_NR_Init = 0;
+                                    //DISP_ND_Init = 0;
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Brake and Unlock Button");
+                                  }
+                                }
+                              }
+                              else{
+                               
+                                bTcuGearMode = G_SEL_DISP_R;
+                                 putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              break;
+                            }
+                             /* End */
+                            case LVR_POS_INF_D:
+                            {
+                              //if(this.CF_Lvr_SftButStat == 2)
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_BkeAct == 1)
+                                {
+                                  if(this.CF_Lvr_UlkButStat == 2)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_D;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                  }
+                                }
+                                else if(this.CF_Lvr_UlkButStat == 2)
+                                {
+                                  if(this.CF_Lvr_BkeAct == 1)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_D;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press the Brake");
+                                  }
+                                }
+                                else
+                                {
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Brake and Unlock Button");
+                                }
+                              }
+                              else{
+                                
+                                bTcuGearMode = G_SEL_DISP_D;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              break;
+                            }
+                            default:{/* Remain in P */break;}
+                        }
+                    }
+                    break;
+                }
+
+                case G_SEL_DISP_R:
+                {   
+                    /* R may be left to P,N,D if car is stopped and to N if car is driving */
+                    if(bVehicleSpeed <= 2)
+                    {
+                        /* Car is stopped */
+                        switch(bDriversWish)
+                        {
+                            case LVR_POS_INF_P:
+                            {
+
+                                bTcuGearMode = G_SEL_DISP_P;
+                                                           break;
+                            }
+                            case LVR_POS_INF_ND:
+                            {
+
+                                bTcuGearMode = G_SEL_DISP_N;
+
+                              break;
+                            }
+                            case LVR_POS_INF_D:
+                            {
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_UlkButStat == 2)
+                                {
+                                  bTcuGearMode = G_SEL_DISP_D;
+                                  putvalue(envWarningMessageIndication, 0);
+                                  putvalue(envWarningMessageValidation, "");
+                                }
+                                else{
+                                  putvalue(envWarningMessageIndication, 2);
+                                  putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                }
+                              }
+                              else{
+                                bTcuGearMode = G_SEL_DISP_D;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              break;
+                            }
+                            default:{/* Do not alter the TcuGearMode */break;}
+                        }
+                    }
+                    else
+                    {
+                        /* Car is driving */
+                        switch(bDriversWish)
+                        {
+                            case LVR_POS_INF_ND:case LVR_POS_INF_NR:
+                            {
+
+                                bTcuGearMode = G_SEL_DISP_N;
+
+                              break;
+                            }
+//                            case LVR_POS_INF_P:
+//                            {
+//                              
+//                                bTcuGearMode = G_SEL_DISP_P;
+//                              
+//                              break;
+//                            }
+                            default:{/* Do not alter the TcuGearMode */break;}
+                        }
+                    }
+                    break;
+                }
+
+                case G_SEL_DISP_N:
+                {
+                    
+                    //write("%x", bDriversWish);
+                    /* R may be left to P,R,D if car is stopped and to R,D if car is driving */
+                    if(bVehicleSpeed <= 2)
+                    {
+                        /* Car is stopped */
+                        switch(bDriversWish)
+                        {
+                            case LVR_POS_INF_P:
+                            {
+                                bTcuGearMode = G_SEL_DISP_P;
+                              
+                              break;
+                            }
+                            case LVR_POS_INF_R:
+                            {
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_BkeAct == 1)
+                                {
+                                  if(this.CF_Lvr_UlkButStat == 2)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                  }
+                                }
+                                else if(this.CF_Lvr_UlkButStat == 2)
+                                {
+                                  if(this.CF_Lvr_BkeAct == 1)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press the Brake");
+                                  }
+                                }
+                                else
+                                {
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Brake and Unlock Button");
+                                }
+                              }
+                              else{
+                                bTcuGearMode = G_SEL_DISP_R;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              break;
+                            }
+                            case LVR_POS_INF_D:
+                            case LVR_POS_INF_ND:
+                            {
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_BkeAct == 1)
+                                {
+                                    bTcuGearMode = G_SEL_DISP_D;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                }
+                                else
+                                {
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press the Brake");
+                                }
+                              }
+                              else{
+                                bTcuGearMode = G_SEL_DISP_D;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              
+                              break;
+                            }
+                            /* Start */
+                            case LVR_POS_INF_NR:
+                            {
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_BkeAct == 1)
+                                {
+                                  if(this.CF_Lvr_UlkButStat == 2)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                  }
+                                }
+                                else if(this.CF_Lvr_UlkButStat == 2)
+                                {
+                                  if(this.CF_Lvr_BkeAct == 1)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press the Brake");
+                                  }
+                                }
+                                else
+                                {
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Brake and Unlock Button");
+                                }
+                              }
+                              else{
+                                bTcuGearMode = G_SEL_DISP_R;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              break;
+                            }
+                            /* End */
+                            default:{/* Do not alter the TcuGearMode */break;}
+                        }
+                    }
+                    else
+                    {
+                        
+                        /* Car is driving */
+                        switch(bDriversWish)
+                        {
+                            case LVR_POS_INF_NR:
+                            case LVR_POS_INF_R:
+                            {
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if((bVehicleSpeed > 2) && (bVehicleSpeed < 8))
+                                {
+                                  if(this.CF_Lvr_UlkButStat == 2)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                  }
+                                }
+                                else if(bVehicleSpeed >= 8)
+                                {
+                                   putvalue(envWarningMessageIndication, 2);
+                                   putvalue(envWarningMessageValidation, "Please Check the Vehicle Speed Condition...!!!");
+                                }
+                              }
+                              else{
+                                bTcuGearMode = G_SEL_DISP_R;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              break;
+                            }
+                            case LVR_POS_INF_D:
+                            {
+                                bTcuGearMode = G_SEL_DISP_D;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                                ;break;
+                            }
+                            case LVR_POS_INF_ND: 
+                            {
+                              bTcuGearMode = G_SEL_DISP_D; 
+                              putvalue(envWarningMessageIndication, 0);
+                              putvalue(envWarningMessageValidation, "");
+                              ;break;
+                            }
+                            default:{/* Do not alter the TcuGearMode */break;}
+                        }
+                        
+                    }
+                    break;
+                }
+
+                case G_SEL_DISP_D:
+                {
+                    /* R may be left to P,R,N,M if car is stopped and to N,M if car is driving */
+                    if(bVehicleSpeed <= 2)
+                    {
+                        /* Car is stopped */
+                        switch(bDriversWish)
+                        {
+                            case LVR_POS_INF_P:
+                            {
+                                bTcuGearMode = G_SEL_DISP_P;
+                              
+                              break;
+                            }
+                            case LVR_POS_INF_R:
+                            {
+                              if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                              {
+                                if(this.CF_Lvr_BkeAct == 1)
+                                {
+                                  if(this.CF_Lvr_UlkButStat == 2)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press Unlock Button");
+                                  }
+                                }
+                                else if(this.CF_Lvr_UlkButStat == 2)
+                                {
+                                  if(this.CF_Lvr_BkeAct == 1)
+                                  {
+                                    bTcuGearMode = G_SEL_DISP_R;
+                                    putvalue(envWarningMessageIndication, 0);
+                                    putvalue(envWarningMessageValidation, "");
+                                  }
+                                  else{
+                                    putvalue(envWarningMessageIndication, 2);
+                                    putvalue(envWarningMessageValidation, "Please Press the Brake");
+                                  }
+                                }
+                              }
+                              else{
+                                bTcuGearMode = G_SEL_DISP_R;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              break;
+                            }
+                            case LVR_POS_INF_NR:{bTcuGearMode = G_SEL_DISP_N; break;}
+                            case LVR_POS_INF_M:{bTcuGearMode = G_SEL_DISP_D_D; break;}
+                            default:{/* Do not alter the TcuGearMode */break;}
+                        }
+                    }
+                    else
+                    {
+                        /* Car is driving */
+                        switch(bDriversWish)
+                        {
+                            case LVR_POS_INF_M:{bTcuGearMode = G_SEL_DISP_D_D; break;}
+                            case LVR_POS_INF_NR:{bTcuGearMode = G_SEL_DISP_N; break;}
+                            default:{/* Do not alter the TcuGearMode */break;}
+                        }
+                    }
+                    break;
+                }
+
+                case G_SEL_DISP_D_D:
+                {
+                    /* Switch to D possible anytime */
+                    switch(bDriversWish)
+                    {
+                        case LVR_POS_INF_D:case LVR_POS_INF_ND:{bTcuGearMode = G_SEL_DISP_D; break;}
+                        case LVR_POS_INF_P:
+                        {
+                              
+                                bTcuGearMode = G_SEL_DISP_P;
+                              
+                              break;
+                        }
+                        case LVR_POS_INF_R:
+                        {
+                          if( 0x1 == getvalue(EnvUlkBut_G_SEL_DISP))
+                          {
+                              if(this.CF_Lvr_UlkButStat == 2)
+                              {
+                                bTcuGearMode = G_SEL_DISP_R;
+                                putvalue(envWarningMessageIndication, 0);
+                                putvalue(envWarningMessageValidation, "");
+                              }
+                              else{
+                                  putvalue(envWarningMessageIndication, 2);
+                                  putvalue(envWarningMessageValidation, "Please Press Brake and Unlock Button");
+                                }
+                          }
+                          else{
+                            bTcuGearMode = G_SEL_DISP_R;
+                            putvalue(envWarningMessageIndication, 0);
+                            putvalue(envWarningMessageValidation, "");
+                          }
+                              break;
+                        }
+                        case LVR_POS_INF_NR:{bTcuGearMode = G_SEL_DISP_N; break;}
+                        default:{/* Do not alter the TcuGearMode */break;}
+                    }
+
+                   break;
+                }
+
+                default:{break;}
+
+            } // switch(bTcuGearMode)
+
+        }  // if((bLastDriversWish != LVR_POS_INF_P) && (bLastDriversWish != LVR_POS_INF_R) && (bLastDriversWish != LVR_POS_INF_D)) 
+        else{}
+        /* Write computed gear mode to CAN signal */
+         if( 0x1 == getvalue(EnvAutoGen_G_SEL_DISP))
+        {
+          $G_SEL_DISP = bTcuGearMode;
+          
+          //$VS_TCU;
+          
+          //$VS;
+        }
+
+    }   // if(bDriversWish != this.CF_Lvr_PosInf)
+}
+
+//on envVar envVS
+//{
+//   if( 0x1 == getvalue(EnvAutoGen_G_SEL_DISP)){
+//	    $VS = @envVS;
+//      bVehicleSpeed = getvalue(envVS);
+//      //$VS = bVehicleSpeed * 8;
+//  }
+//}
+on envVar envVS_TCU
+{
+   if( 0x1 == getvalue(EnvAutoGen_G_SEL_DISP)){
+	    $VS_TCU = @envVS_TCU;
+      bVehicleSpeed = getvalue(envVS_TCU);
+      //write("Vehicle speed = %X",bVehicleSpeed);
+  }
+}
+//on envVar envWHL_SPD_FL
+//{
+//   if( 0x1 == getvalue(EnvAutoGen_G_SEL_DISP)){
+//	    //$WHL_SPD_FL = @envWHL_SPD_FL;
+//      bVehicleSpeed = getvalue(envWHL_SPD_FL);
+//      $WHL_SPD_FL = bVehicleSpeed * (0.03125);
+//  }
+//}
+//on envVar envENG_STAT
+//{
+//   if( 0x1 == getvalue(EnvAutoGen_G_SEL_DISP))
+//  {    
+//    $ENG_STAT = @envENG_STAT;
+//  }
+//}
+
+void WarningMessageValidation_Init(void)
+{
+  putvalue(envWarningMessageIndication, 0);
+  putvalue(envWarningMessageValidation, "");
+}

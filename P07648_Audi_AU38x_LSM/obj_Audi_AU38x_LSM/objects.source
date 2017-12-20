@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TempFileMetainfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel">
+  <FileFormatVersion xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">1</FileFormatVersion>
+  <TempFileMetainfo xmlns:d2p1="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel.Entities" z:Id="2">
+    <_p z:Ref="1" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    <d2p1:FileSources z:Id="3">
+      <Content z:Id="4" z:Size="12" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">
+        <d2p1:FileSource z:Id="5" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="6">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="7">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:09:38.7291482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>141</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="8">907fv1ka5rih-TSV</d2p1:PersistencyKey>
+          <d2p1:Crc>650686418</d2p1:Crc>
+          <d2p1:SourceFile z:Id="9">D:\Isaac\P07648_Audi_AU38x_LSM\Audi_AU38x_LSM.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="10" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:09:39.4121482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>3072</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="11">907fv1ka5rih#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="12">
+            <_p z:Ref="10" i:nil="true" />
+            <d2p1:FullFilePath z:Id="13">D:\Isaac\P07648_Audi_AU38x_LSM\obj_Audi_AU38x_LSM\907fv1ka5rih-TSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-07-03T15:09:38.7291482+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="14" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="15">.vvarprop</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:09:38.8141482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="16">TU_Indep=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Id="17"></d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="18" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="15" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:11:48.7491482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="19">4rtq21cuueuf=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="17" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="20" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-07T14:57:12.3313644+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>54</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="21">4rtq21cuueuf~3-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="22">
+            <Content z:Id="23" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="24">
+                <_p z:Ref="22" i:nil="true" />
+                <d2p1:FullFilePath z:Id="25">D:\Isaac\P07648_Audi_AU38x_LSM\Audi_AU38x_LSM\Audi_AU38x_LSM.vtt</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-11-30T16:35:32.0021387+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="20" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="26" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-07T14:57:12.3613641+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>37850</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="27">4rtq21cuueuf~0-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="28">
+            <Content z:Id="29" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="30">
+                <_p z:Ref="28" i:nil="true" />
+                <d2p1:FullFilePath z:Id="31">D:\Isaac\P07648_Audi_AU38x_LSM\Audi_AU38x_LSM\basicFunctionTest.can</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-11-30T16:29:59.9271387+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="26" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="32" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:29:51.7651482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>229237</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="33">7bdt7d5a3fa4-CSV</d2p1:PersistencyKey>
+          <d2p1:Crc>3228116957</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="34" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:29:53.1931482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>457728</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="35">7bdt7d5a3fa4#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="36">
+            <_p z:Ref="34" i:nil="true" />
+            <d2p1:FullFilePath z:Id="37">D:\Isaac\P07648_Audi_AU38x_LSM\obj_Audi_AU38x_LSM\7bdt7d5a3fa4-CSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-07-03T15:29:51.7651482+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="38" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="39">.bd</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:29:51.9571482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>7564</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="40">tanj6rdn4sev-CoeBD</d2p1:PersistencyKey>
+          <d2p1:Crc>175384289</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="41" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-11-30T17:45:38.4631285+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>236544</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="42">gjmkkou2fd2v#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="43">
+            <_p z:Ref="41" i:nil="true" />
+            <d2p1:FullFilePath z:Id="44">D:\Isaac\P07648_Audi_AU38x_LSM\Canoe\DOC01877370-0000_MLBevo_Konzern_MLBevo_BCM1_LIN1_KMatrix_V8.13.00F_20161110_FB.ldf</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-11-30T17:45:37.6021285+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="45" z:Size="1">
+            <d6p1:string z:Id="46">LIN</d6p1:string>
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="47" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:29:53.2791482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>16896</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="48">hk5r9smjkdfd#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="49">
+            <_p z:Ref="47" i:nil="true" />
+            <d2p1:FullFilePath z:Id="50">D:\Isaac\P07648_Audi_AU38x_LSM\Canoe\VW_DiagEnv.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-04-20T16:01:59.8581176+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="51" z:Size="1">
+            <d6p1:string z:Id="52">LIN</d6p1:string>
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="53" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-07-03T15:29:53.3541482+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>7168</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="54">d6qsn5oe780f#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="55">
+            <_p z:Ref="53" i:nil="true" />
+            <d2p1:FullFilePath z:Id="56">D:\Isaac\P07648_Audi_AU38x_LSM\Canoe\SinalPannelEnv.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-05-02T10:20:39.1866935+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="57" z:Size="1">
+            <d6p1:string z:Ref="52" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+      </Content>
+      <_p z:Ref="2" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    </d2p1:FileSources>
+  </TempFileMetainfo>
+</TempFileMetainfo>

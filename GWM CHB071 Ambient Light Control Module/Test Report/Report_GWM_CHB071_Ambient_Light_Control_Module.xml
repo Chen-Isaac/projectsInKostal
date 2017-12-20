@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2017-10-27 11:26:20" timestamp="   6.139933" verdicts="2_basic">
+  <testunit starttime="2017-10-27 11:26:20" timestamp="   6.139933">
+    <skippedsequence starttime="2017-10-27 11:26:20" timestamp="   6.139933">
+      <title>Power supply initialization</title>
+    </skippedsequence>
+    <skippedsequence starttime="2017-10-27 11:26:20" timestamp="   6.139933">
+      <title>3.5.1 Switch on Ambient light by door open signal</title>
+    </skippedsequence>
+    <skippedsequence starttime="2017-10-27 11:26:20" timestamp="   6.139933">
+      <title>3.5.2 Switch on ambient light by ACC or IGN ON</title>
+    </skippedsequence>
+    <skippedsequence starttime="2017-10-27 11:26:20" timestamp="   6.139933">
+      <title>3.5.3 Switch off function</title>
+    </skippedsequence>
+    <skippedsequence starttime="2017-10-27 11:26:20" timestamp="   6.139933">
+      <title>Read SW version</title>
+    </skippedsequence>
+    <testfixture>
+      <testcase starttime="2017-10-27 11:26:20" timestamp="   6.139933">
+        <teststep timestamp="   6.739933" level="0" type="user" ident="set VBAT voltage status" result="na">set VBAT voltage = 12.00V.</teststep>
+        <teststep timestamp="   7.739933" level="0" type="user" ident="Wait" result="na">Wait for 1000ms.</teststep>
+        <teststep timestamp="   7.739933" level="0" type="user" ident="get VBAT voltage status" result="pass">VBAT = 11.94V,in the range [11.80V~12.20V],</teststep>
+        <teststep timestamp="   7.739933" level="0" type="user" ident="get VBAT current status" result="pass">VBAT current = 15.456mA,in the range [ 1.000mA~100.000mA],</teststep>
+        <verdict time="2017-10-27 11:26:22" timestamp="   7.739933" endtime="2017-10-27 11:26:22" endtimestamp="   7.739933" result="pass" />
+        <title>powerOn ()</title>
+      </testcase>
+      <testcase starttime="2017-10-27 11:26:22" timestamp="   7.739933">
+        <teststep timestamp="   8.139933" level="0" type="user" ident="VT outputs digital level for product input pin" result="na">For pin color_change_sw:Module9 channel4 is set to float.</teststep>
+        <teststep timestamp="   8.339933" level="0" type="user" ident="Wait" result="na">Wait for 200ms.</teststep>
+        <teststep timestamp="   8.339933" level="0" type="user" ident="VT channel&apos;s load connection status" result="na">For pin Zone1_R+:Module9 channel1 connect with load.</teststep>
+        <teststep timestamp="   8.539933" level="0" type="user" ident="Wait" result="na">Wait for 200ms.</teststep>
+        <teststep timestamp="   8.539933" level="0" type="user" ident="VT channel&apos;s load connection status" result="na">For pin Zone1_G+:Module9 channel2 connect with load.</teststep>
+        <teststep timestamp="   8.739933" level="0" type="user" ident="Wait" result="na">Wait for 200ms.</teststep>
+        <teststep timestamp="   8.739933" level="0" type="user" ident="VT channel&apos;s load connection status" result="na">For pin Zone1_B+:Module9 channel3 connect with load.</teststep>
+        <teststep timestamp="   8.739933" level="0" type="user" ident="set signal status" result="na">Start to set SystemPowerMode = 2.</teststep>
+        <teststep timestamp="   8.751933" level="0" type="user" ident="set signal status" result="pass">set SystemPowerMode = 2 successfully after 12.00ms.</teststep>
+        <teststep timestamp="   8.751933" level="0" type="user" ident="set signal status" result="na">Start to set ALCMLightLvlSet = 10.</teststep>
+        <teststep timestamp="   8.803933" level="0" type="user" ident="set signal status" result="pass">set ALCMLightLvlSet = 10 successfully after 52.00ms.</teststep>
+        <teststep timestamp="   8.803933" level="0" type="user" ident="set signal status" result="na">Start to set PosLmpSts = 0.</teststep>
+        <teststep timestamp="   8.804933" level="0" type="user" ident="set signal status" result="pass">set PosLmpSts = 0 successfully after 1.00ms.</teststep>
+        <teststep timestamp=" 229.885696" level="0" type="user" ident="" result="pass">Question/Text: If the product is not on mode2 then manually press PIN4 to make it on mode2.\nTester confirmed with &apos;Yes&apos;.</teststep>
+        <teststep timestamp=" 229.885696" level="0" type="user" ident="check PWM" result="pass">pin Zone1_R+ :output frequency =  0.0Hz, duty = 0.0%, average voltage = 0.04V</teststep>
+        <teststep timestamp=" 229.885696" level="0" type="user" ident="check PWM Frequency" result="pass">pin Zone1_G+ :output frequency = 200.0Hz</teststep>
+        <teststep timestamp=" 229.885696" level="0" type="user" ident="check PWM Duty" result="pass">pin Zone1_G+ :output duty = 20.7%</teststep>
+        <teststep timestamp=" 229.885696" level="0" type="user" ident="check PWM Frequency" result="pass">pin Zone1_B+ :output frequency = 200.0Hz</teststep>
+        <teststep timestamp=" 229.885696" level="0" type="user" ident="check PWM Duty" result="pass">pin Zone1_B+ :output duty = 96.7%</teststep>
+        <teststep timestamp=" 229.885696" level="0" type="user" ident="set signal status" result="na">Start to set SystemPowerMode = 0.</teststep>
+        <teststep timestamp=" 229.902696" level="0" type="user" ident="set signal status" result="pass">set SystemPowerMode = 0 successfully after 17.00ms.</teststep>
+        <teststep timestamp=" 229.902696" level="0" type="user" ident="set signal status" result="na">Start to set RKEDoorLockCmd = 1.</teststep>
+        <teststep timestamp=" 229.911696" level="0" type="user" ident="set signal status" result="pass">set RKEDoorLockCmd = 1 successfully after 9.00ms.</teststep>
+        <teststep timestamp=" 231.911696" level="0" type="user" ident="Wait" result="na">Wait for 2000ms.</teststep>
+        <teststep timestamp=" 231.911696" level="0" type="user" ident="check PWM" result="pass">pin Zone1_R+ :output frequency =  0.0Hz, duty = 0.0%, average voltage = 0.04V</teststep>
+        <teststep timestamp=" 231.911696" level="0" type="user" ident="check PWM" result="pass">pin Zone1_G+ :output frequency =  0.0Hz, duty = 0.0%, average voltage = 0.04V</teststep>
+        <teststep timestamp=" 231.911696" level="0" type="user" ident="check PWM" result="pass">pin Zone1_B+ :output frequency =  0.0Hz, duty = 0.0%, average voltage = 0.04V</teststep>
+        <teststep timestamp=" 231.911696" level="0" type="user" ident="set signal status" result="na">Start to set RKEDoorLockCmd = 0.</teststep>
+        <teststep timestamp=" 231.921696" level="0" type="user" ident="set signal status" result="pass">set RKEDoorLockCmd = 0 successfully after 10.00ms.</teststep>
+        <verdict time="2017-10-27 11:30:06" timestamp=" 231.921696" endtime="2017-10-27 11:30:06" endtimestamp=" 231.921696" result="pass" />
+        <title>initProduct ()</title>
+      </testcase>
+      <testcase starttime="2017-10-27 11:30:06" timestamp=" 231.921696">
+        <teststep timestamp=" 231.921696" level="0" type="user" ident="Login-Request" result="na">Start to send Login-Request service request.</teststep>
+        <teststep timestamp=" 231.924787" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1394 (0x572) Elapsed time=3.09126ms (max=1000ms)</teststep>
+        <teststep timestamp=" 231.924787" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x14B4F5354414C50</teststep>
+        <teststep timestamp=" 231.941706" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1395 (0x573) Elapsed time=16.9185ms (max=5000ms)</teststep>
+        <teststep timestamp=" 231.941706" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x14B4F5354414C50.</teststep>
+        <teststep timestamp=" 231.941706" level="0" type="user" ident="Read SW_Version" result="na">Start to send Read SW_Version service request.</teststep>
+        <teststep timestamp=" 231.944310" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1394 (0x572) Elapsed time=2.60404ms (max=1000ms)</teststep>
+        <teststep timestamp=" 231.944310" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x40000070C000000</teststep>
+        <teststep timestamp=" 231.961762" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1395 (0x573) Elapsed time=17.4524ms (max=5000ms)</teststep>
+        <teststep timestamp=" 231.961762" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x453573030330000.</teststep>
+        <teststep timestamp=" 231.961762" level="0" type="user" ident="Decode Response as ASCII" result="na">The current software version is SW003.</teststep>
+        <teststep timestamp=" 231.961762" level="0" type="user" ident="Read HW_Version" result="na">Start to send Read HW_Version service request.</teststep>
+        <teststep timestamp=" 231.964076" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1394 (0x572) Elapsed time=2.31404ms (max=1000ms)</teststep>
+        <teststep timestamp=" 231.964076" level="0" type="user" ident="Diagnostic Request" result="na">Send diagnostic request: 0x40001070C000000</teststep>
+        <teststep timestamp=" 231.981777" level="1" type="auto" ident="Resume reason" result="na">Resumed on message id=1395 (0x573) Elapsed time=17.7004ms (max=5000ms)</teststep>
+        <teststep timestamp=" 231.981777" level="0" type="user" ident="Diagnostic Response" result="pass">Get positive response:0x448573030300000.</teststep>
+        <teststep timestamp=" 231.981777" level="0" type="user" ident="Decode Response as ASCII" result="na">The current hardware version is HW000.</teststep>
+        <verdict time="2017-10-27 11:30:06" timestamp=" 231.981777" endtime="2017-10-27 11:30:06" endtimestamp=" 231.981777" result="pass" />
+        <title>readSwVer ()</title>
+      </testcase>
+      <title>Setup&amp;Product Initialization</title>
+    </testfixture>
+    <skippedfixture starttime="2017-10-27 11:30:06" timestamp=" 231.981777">
+      <title>3.5.1 Switch on Ambient light by door open signal</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-10-27 11:30:06" timestamp=" 231.981777">
+      <title>3.5.2 Switch on ambient light by ACC or IGN ON</title>
+    </skippedfixture>
+    <skippedfixture starttime="2017-10-27 11:30:06" timestamp=" 231.981777">
+      <title>Shutdown Power</title>
+    </skippedfixture>
+    <verdict time="2017-10-27 11:30:06" timestamp=" 231.981777" endtime="2017-10-27 11:30:06" endtimestamp=" 231.981777" result="pass" />
+    <title>GWM CHB071 Ambient Light Control Module</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>GWM CHB071 Ambient Light Control Module</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>D:\Isaac\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module\GWM CHB071 Ambient Light Control Module.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2017-07-13, 14:50:52</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2017-10-27 11:30:06" timestamp=" 231.981777" endtime="2017-10-27 11:30:06" endtimestamp=" 231.981777" result="pass" />
+  <title>GWM CHB071 Ambient Light Control Module</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>chen106</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 8.5.112 (SP6)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>D:\Isaac\GWM CHB071 Ambient Light Control Module\ALCM_Panel\Can_Panel\CanPanel.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>GWM CHB071 Ambient Light Control Module</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLVECTOR</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLVECTOR.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module OSEKNM01</name>
+      <description>OSEK-NM Vector Informatik GmbH 1.6.65 2016-03-14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\OSEKNM01.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 8.5.112, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="channel">
+          <name>Channel</name>
+          <description>1</description>
+        </xinfo>
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VN1630</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>501043</description>
+        </xinfo>
+        <xinfo key="driverdllversion">
+          <name>Driver DLL version</name>
+          <description>9.2.22</description>
+        </xinfo>
+        <xinfo key="driverversion">
+          <name>Driver version</name>
+          <description>8.9.22</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT8012</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>1031</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>0.0.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>452</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>450</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>448</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>449</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>331</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>348</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>329</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>339</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>174</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>234</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>210</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT7001A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>267</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.0.5</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+</testreport>
+<!--footprint="7e6bc683d7221e7d6b19418bc5d9581b" version="1"-->

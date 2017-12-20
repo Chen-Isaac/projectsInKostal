@@ -1,0 +1,125 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+VAL_TABLE_ vTabSideVariant 1 "Right" 0 "Left" ;
+
+
+
+
+EV_ envSideVariant: 0 [0|1] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCarryIdentData: 0 [0|1] "" 0 2 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envRqCRC: 0 [0|0] "" 0 3 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envRspCRC: 0 [0|0] "" 0 4 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envLoadDefaultValue: 0 [0|1] "" 0 5 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envRqVWSystemName: 0 [0|0] "" 0 6 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRqVWSparePartNumber: 0 [0|0] "" 0 7 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRqVWSerialNumber: 0 [0|0] "" 0 8 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRqVWHardwareVersionNumber: 0 [0|0] "" 0 9 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRqVWHardwareNumber: 0 [0|0] "" 0 10 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRqVWFazitString: 0 [0|0] "" 0 11 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRqVWCodingValues: 0 [0|0] "" 0 12 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRqVWApplSWVersionNr: 0 [0|0] "" 0 13 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envWriteIdentData: 0 [0|1] "" 0 14 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envClearIdentData_disp: 0 [0|1] "" 0 15 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envReadIdentData: 0 [0|1] "" 0 16 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envRspVWSystemName: 0 [0|0] "" 0 17 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRspVWSparePartNumber: 0 [0|0] "" 0 18 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRspVWSerialNumber: 0 [0|0] "" 0 19 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRspVWHardwareNumber: 0 [0|0] "" 0 20 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRspVWFazitString: 0 [0|0] "" 0 21 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRspVWCodingValues: 0 [0|0] "" 0 22 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRspVWApplSWVersionNr: 0 [0|0] "" 0 23 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envRspVWHardwareVersionNumber: 0 [0|0] "" 0 24 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+CM_ EV_ envCarryIdentData "VWSlaveApplicationSoftwareVersionNumber Request";
+CM_ EV_ envRqVWSystemName "VWSlaveSystemName Response";
+CM_ EV_ envRqVWSparePartNumber "VWSlaveSparePartNumber Response";
+CM_ EV_ envRqVWSerialNumber "VWSlaveSerialNumber Response";
+CM_ EV_ envRqVWHardwareVersionNumber "VWSlaveHardwareVersionNumber Response";
+CM_ EV_ envRqVWHardwareNumber "VWSlaveHardwareNumber Response";
+CM_ EV_ envRqVWFazitString "VWSlaveFazitString Response";
+CM_ EV_ envRqVWCodingValues "VWSlaveCodingValues Response";
+CM_ EV_ envRqVWApplSWVersionNr "VWSlaveApplicationSoftwareVersionNumber Response";
+CM_ EV_ envWriteIdentData "VWSlaveApplicationSoftwareVersionNumber Request";
+CM_ EV_ envClearIdentData_disp "VWSlaveApplicationSoftwareVersionNumber Request";
+CM_ EV_ envReadIdentData "VWSlaveApplicationSoftwareVersionNumber Request";
+CM_ EV_ envRspVWSystemName "VWSlaveSystemName Response";
+CM_ EV_ envRspVWSparePartNumber "VWSlaveSparePartNumber Response";
+CM_ EV_ envRspVWSerialNumber "VWSlaveSerialNumber Response";
+CM_ EV_ envRspVWHardwareNumber "VWSlaveHardwareNumber Response";
+CM_ EV_ envRspVWFazitString "VWSlaveFazitString Response";
+CM_ EV_ envRspVWCodingValues "VWSlaveCodingValues Response";
+CM_ EV_ envRspVWApplSWVersionNr "VWSlaveApplicationSoftwareVersionNumber Response";
+CM_ EV_ envRspVWHardwareVersionNumber "VWSlaveHardwareVersionNumber Response";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+VAL_ envSideVariant 1 "Right" 0 "Left" ;
+

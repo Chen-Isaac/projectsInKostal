@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="KOSTIA">
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.HexEditorControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="HexEditorControl1" Children="Controls" ControlName="Hex/Text Editor">
+        <Property Name="Name">HexEditorControl1</Property>
+        <Property Name="Size">486, 142</Property>
+        <Property Name="Location">6, 54</Property>
+        <Property Name="Font">Courier New, 8.139131pt</Property>
+        <Property Name="ColumnCount">16</Property>
+        <Property Name="SymbolDataType">ByteArray</Property>
+        <Property Name="SymbolConfiguration">4;1;Kostia;;;envHexText;8;;;-1</Property>
+        <Property Name="TabIndex">73</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">502, 203</Property>
+      <Property Name="Location">3, 65</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Text">Memory Control</Property>
+      <Property Name="TabIndex">74</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControlBSI65" ControlName="EnvVar:envKTAaLogin">
+        <Property Name="Name">SwitchControlBSI65</Property>
+        <Property Name="Size">25, 27</Property>
+        <Property Name="Location">6, 22</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">..\png\Indication_Light.png</Property>
+        <Property Name="SymbolConfiguration">4;1;Kostia;;;envKostiaLoginStatus;1;;;-1</Property>
+        <Property Name="TabIndex">65</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl68" Children="Controls" ControlName="btnKostiaReq_Login">
+        <Property Name="Name">ButtonControl68</Property>
+        <Property Name="Size">130, 25</Property>
+        <Property Name="Location">37, 24</Property>
+        <Property Name="Font">Verdana, 11px, style=Bold</Property>
+        <Property Name="Text">Login</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">4;1;Kostia;;;envKostiaLoginRequest;1;;;-1</Property>
+        <Property Name="TabIndex">68</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="btnKostiaReq_Logout">
+        <Property Name="Name">ButtonControl1</Property>
+        <Property Name="Size">130, 25</Property>
+        <Property Name="Location">173, 24</Property>
+        <Property Name="Font">Verdana, 11px, style=Bold</Property>
+        <Property Name="Text">Logout</Property>
+        <Property Name="UseTransparentColor">False</Property>
+        <Property Name="SymbolConfiguration">4;1;Kostia;;;envKostiaLogoutRequest;1;;;-1</Property>
+        <Property Name="TabIndex">68</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">486, 55</Property>
+      <Property Name="Location">3, 3</Property>
+      <Property Name="BackColor">White</Property>
+      <Property Name="Font">Microsoft YaHei, 12pt</Property>
+      <Property Name="Text">Login Status</Property>
+      <Property Name="TabIndex">71</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.0.49.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl1</Property>
+      <Property Name="Size">311, 46</Property>
+      <Property Name="Location">3, 274</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="TextBackColor">White</Property>
+      <Property Name="ValueDisplay">Text</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="BoxFont">Microsoft YaHei, 12pt</Property>
+      <Property Name="AlarmUpperFont">Microsoft YaHei, 12pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+      <Property Name="DisplayLabel">Top</Property>
+      <Property Name="DescriptionText">Kostia</Property>
+      <Property Name="AlarmLowerFont">Microsoft YaHei, 12pt</Property>
+      <Property Name="DescriptionSize">311, 18</Property>
+      <Property Name="SymbolConfiguration">4;1;Kostia;;;envKostiaDisplayString;4;;;-1</Property>
+      <Property Name="TabIndex">69</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">606, 333</Property>
+    <Property Name="BackColor">White</Property>
+    <Property Name="Panel">Panel</Property>
+  </Object>
+</Panel>

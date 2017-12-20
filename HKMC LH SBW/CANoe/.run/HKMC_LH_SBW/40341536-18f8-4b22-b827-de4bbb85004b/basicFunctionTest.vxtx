@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <caplfunction>
+    <name>_ttg_fct_tt_4_0</name>
+  </caplfunction>
+  <testfixture>
+    <title>Test Fixture</title>
+    <testcase>
+      <title>powerOn ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_4_0_0_1</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>initProduct ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_4_0_0_2</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>readSwVer ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_4_0_0_3</name>
+      </caplfunction>
+    </testcase>
+    <testcase>
+      <title>clearThenReadDtc ()</title>
+      <caplfunction>
+        <name>_ttg_fct_capltestcase_4_0_0_4</name>
+      </caplfunction>
+    </testcase>
+    <precompletion>
+      <caplfunction>
+        <name>_ttg_fct_tfix_cleanup_4_0_0</name>
+      </caplfunction>
+    </precompletion>
+  </testfixture>
+</testtree>

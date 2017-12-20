@@ -1,0 +1,703 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="DiagRead">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl34" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl34</Property>
+      <Property Name="Size">74, 13</Property>
+      <Property Name="Location">37, 623</Property>
+      <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+      <Property Name="Text">CoECUError</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.PictureBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="PictureBoxControl1" ControlName="Picture Box">
+      <Property Name="Name">PictureBoxControl1</Property>
+      <Property Name="Size">466, 73</Property>
+      <Property Name="Location">115, 623</Property>
+      <Property Name="ImageFile">Image\CoECUError.bmp</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl8</Property>
+      <Property Name="Size">71, 13</Property>
+      <Property Name="Location">403, 537</Property>
+      <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+      <Property Name="Text">ColumState</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl4" Children="Controls" ControlName="Combo Box">
+      <Property Name="Name">ComboBoxControl4</Property>
+      <Property Name="Size">121, 20</Property>
+      <Property Name="Location">495, 534</Property>
+      <Property Name="BackColor">Window</Property>
+      <Property Name="ForeColor">WindowText</Property>
+      <Property Name="SymbolConfiguration">4;2;PB;ESCL_PB;ESCL_Status;ClmnLckStat;1;CAN;;-1</Property>
+      <Property Name="TabIndex">43</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl24" ControlName="Switch/Indicator">
+      <Property Name="Name">SwitchControl24</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">45, 573</Property>
+      <Property Name="StateCnt">2</Property>
+      <Property Name="Activation">Left</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="IsButton">True</Property>
+      <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ReadCoSafeError;1;;;-1</Property>
+      <Property Name="TabIndex">42</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl23" ControlName="Switch/Indicator">
+      <Property Name="Name">SwitchControl23</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">45, 537</Property>
+      <Property Name="StateCnt">2</Property>
+      <Property Name="Activation">Left</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="IsButton">True</Property>
+      <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ReadMainCoreError;1;;;-1</Property>
+      <Property Name="TabIndex">41</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl2</Property>
+      <Property Name="Size">224, 21</Property>
+      <Property Name="Location">89, 547</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Hexadecimal</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+      <Property Name="DescriptionText">MainCoreError (hex)  </Property>
+      <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+      <Property Name="DescriptionSize">118, 23</Property>
+      <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;MainCoreError;1;;;-1</Property>
+      <Property Name="TabIndex">4</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl1</Property>
+      <Property Name="Size">219, 21</Property>
+      <Property Name="Location">94, 585</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Hexadecimal</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="AlarmUpperFont">SimSun, 9pt</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Left</Property>
+      <Property Name="TextFont">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+      <Property Name="DescriptionText">CorSafeError (hex)     </Property>
+      <Property Name="AlarmLowerFont">SimSun, 9pt</Property>
+      <Property Name="DescriptionSize">120, 23</Property>
+      <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;CorSafeError;1;;;-1</Property>
+      <Property Name="TabIndex">3</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl3" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl28" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl28</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">164, 186</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ESCL_Bolt_State;1;;;-1</Property>
+        <Property Name="TabIndex">50</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl27" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl27</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">164, 152</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ESCL_SafeState;1;;;-1</Property>
+        <Property Name="TabIndex">49</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl26" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl26</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">164, 119</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;EngSta;1;;;-1</Property>
+        <Property Name="TabIndex">48</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl25" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl25</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">164, 83</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;VehicleStaLock;1;;;-1</Property>
+        <Property Name="TabIndex">47</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl1" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl1</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">164, 49</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;MainVoltage;1;;;-1</Property>
+        <Property Name="TabIndex">46</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl33" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl33</Property>
+        <Property Name="Size">37, 13</Property>
+        <Property Name="Location">18, 26</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Read</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl22" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl22</Property>
+        <Property Name="Size">23, 30</Property>
+        <Property Name="Location">72, 19</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="IsButton">True</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ReadLockCondition;1;;;-1</Property>
+        <Property Name="TabIndex">40</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl30" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl30</Property>
+        <Property Name="Size">48, 13</Property>
+        <Property Name="Location">38, 136</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">EngSta</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl29" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl29</Property>
+        <Property Name="Size">97, 13</Property>
+        <Property Name="Location">22, 197</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">ESCL_BoltState</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl28" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl28</Property>
+        <Property Name="Size">114, 13</Property>
+        <Property Name="Location">17, 169</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">ESCL_Safe_Status</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl27" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl27</Property>
+        <Property Name="Size">96, 13</Property>
+        <Property Name="Location">17, 100</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">VehicleStaLock</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl26" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl26</Property>
+        <Property Name="Size">77, 13</Property>
+        <Property Name="Location">18, 63</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">MainVoltage</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl3</Property>
+      <Property Name="Size">301, 216</Property>
+      <Property Name="Location">28, 305</Property>
+      <Property Name="Text">LockCondition</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl29" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl29</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">217, 444</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;CoUC_VehicleSpdV;1;;;-1</Property>
+        <Property Name="TabIndex">59</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl35" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl35</Property>
+        <Property Name="Size">130, 13</Property>
+        <Property Name="Location">19, 461</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">CouC_VehicleSpeedV</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl32" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl32</Property>
+        <Property Name="Size">37, 13</Property>
+        <Property Name="Location">24, 32</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Read</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl21" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl21</Property>
+        <Property Name="Size">23, 30</Property>
+        <Property Name="Location">76, 19</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="IsButton">True</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ReadSafetyError;1;;;-1</Property>
+        <Property Name="TabIndex">39</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl25" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl25</Property>
+        <Property Name="Size">124, 13</Property>
+        <Property Name="Location">30, 75</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">ESCL_Safety_Status</Property>
+        <Property Name="ForeColor">Red</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl24" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl24</Property>
+        <Property Name="Size">87, 13</Property>
+        <Property Name="Location">282, 75</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Co_uC_Status</Property>
+        <Property Name="ForeColor">Red</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl19" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl19</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">69, 105</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ESCL_Safety_Status;1;;;-1</Property>
+        <Property Name="TabIndex">36</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl16" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl16</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">306, 105</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;Co_uC_Status;1;;;-1</Property>
+        <Property Name="TabIndex">35</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl18" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl18</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">405, 401</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;DiagADRef;1;;;-1</Property>
+        <Property Name="TabIndex">34</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl17" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl17</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">405, 357</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;DiagLockHall;1;;;-1</Property>
+        <Property Name="TabIndex">33</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl15" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl15</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">405, 322</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;DiagUnlockHall;1;;;-1</Property>
+        <Property Name="TabIndex">32</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl14" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl14</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">405, 286</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;DiagVCC2AD;1;;;-1</Property>
+        <Property Name="TabIndex">31</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl13" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl13</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">405, 249</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;DiagBatAD;1;;;-1</Property>
+        <Property Name="TabIndex">30</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl12" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl12</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">405, 213</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;DiagUnlockSW;1;;;-1</Property>
+        <Property Name="TabIndex">29</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl11" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl11</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">405, 177</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;DiagInvertGN;1;;;-1</Property>
+        <Property Name="TabIndex">28</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl10" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl10</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">405, 139</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;Err_HSideShortToBat;1;;;-1</Property>
+        <Property Name="TabIndex">27</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl9" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl9</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">216, 401</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ISK_ComFlag_Status;1;;;-1</Property>
+        <Property Name="TabIndex">26</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl8" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl8</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">217, 365</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;Slot_Sequence_CheckResult;1;;;-1</Property>
+        <Property Name="TabIndex">25</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl7" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl7</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">216, 329</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;Program_Sequence_CheckResult;1;;;-1</Property>
+        <Property Name="TabIndex">24</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl6" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl6</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">216, 286</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;CAN_ComFlag_Status;1;;;-1</Property>
+        <Property Name="TabIndex">23</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl5" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl5</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">216, 249</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;CoreTst_Result;1;;;-1</Property>
+        <Property Name="TabIndex">22</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl4" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl4</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">216, 213</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ADCCheckResult;1;;;-1</Property>
+        <Property Name="TabIndex">21</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl2" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl2</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">216, 177</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;HalClk_CLM_Result;1;;;-1</Property>
+        <Property Name="TabIndex">20</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl3" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl3</Property>
+        <Property Name="Size">30, 30</Property>
+        <Property Name="Location">216, 136</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="BorderStyle">FixedSingle</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="ImageFile">Image\AuthLed.bmp</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ROMTst_Result;1;;;-1</Property>
+        <Property Name="TabIndex">18</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl23" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl23</Property>
+        <Property Name="Size">125, 13</Property>
+        <Property Name="Location">24, 418</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">ISK_ComFlag_Status</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl22" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl22</Property>
+        <Property Name="Size">70, 13</Property>
+        <Property Name="Location">252, 418</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">DiagADRef</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl21" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl21</Property>
+        <Property Name="Size">83, 13</Property>
+        <Property Name="Location">253, 378</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">DiagLockHall</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl20" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl20</Property>
+        <Property Name="Size">95, 13</Property>
+        <Property Name="Location">252, 336</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">DiagUnlockHall</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl19" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl19</Property>
+        <Property Name="Size">81, 13</Property>
+        <Property Name="Location">252, 300</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">DiagVCC2AD</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl18" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl18</Property>
+        <Property Name="Size">69, 13</Property>
+        <Property Name="Location">252, 261</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">DiagBatAD</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl17" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl17</Property>
+        <Property Name="Size">93, 13</Property>
+        <Property Name="Location">252, 225</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">DiagUnlockSW</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl16" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl16</Property>
+        <Property Name="Size">84, 13</Property>
+        <Property Name="Location">252, 190</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">DiagInvertGN</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl15" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl15</Property>
+        <Property Name="Size">128, 13</Property>
+        <Property Name="Location">252, 154</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Err_HSideShortToBat</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl14" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl14</Property>
+        <Property Name="Size">172, 13</Property>
+        <Property Name="Location">6, 382</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Slot_Sequence_CheckResult</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl13" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl13</Property>
+        <Property Name="Size">196, 13</Property>
+        <Property Name="Location">6, 341</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Program_Sequence_CheckResult</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl12" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl12</Property>
+        <Property Name="Size">130, 13</Property>
+        <Property Name="Location">26, 301</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">CAN_ComFlag_Status</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl11" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl11</Property>
+        <Property Name="Size">104, 13</Property>
+        <Property Name="Location">30, 230</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">ADCCheckResult</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl10" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl10</Property>
+        <Property Name="Size">94, 13</Property>
+        <Property Name="Location">26, 266</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">CoreTst_Result</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl9</Property>
+        <Property Name="Size">119, 13</Property>
+        <Property Name="Location">24, 195</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">HalClk_CLM_Result</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl7</Property>
+        <Property Name="Size">96, 13</Property>
+        <Property Name="Location">24, 154</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">ROMTst_Result</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">477, 491</Property>
+      <Property Name="Location">403, 30</Property>
+      <Property Name="Text">SafetyError</Property>
+      <Property Name="TabIndex">1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="CANDecode">
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl31" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl31</Property>
+        <Property Name="Size">37, 13</Property>
+        <Property Name="Location">18, 36</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">Read</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl20" ControlName="Switch/Indicator">
+        <Property Name="Name">SwitchControl20</Property>
+        <Property Name="Size">23, 30</Property>
+        <Property Name="Location">72, 19</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="IsButton">True</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;ReadCanInfo;1;;;-1</Property>
+        <Property Name="TabIndex">12</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl7" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl7</Property>
+        <Property Name="Size">121, 20</Property>
+        <Property Name="Location">148, 233</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;PassengDoorSta;1;;;-1</Property>
+        <Property Name="TabIndex">11</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl6" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl6</Property>
+        <Property Name="Size">121, 20</Property>
+        <Property Name="Location">148, 200</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;DriverDoorSta;1;;;-1</Property>
+        <Property Name="TabIndex">10</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl5" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl5</Property>
+        <Property Name="Size">121, 20</Property>
+        <Property Name="Location">148, 172</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;EngspeedSta;1;;;-1</Property>
+        <Property Name="TabIndex">9</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl3" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl3</Property>
+        <Property Name="Size">121, 20</Property>
+        <Property Name="Location">148, 141</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;VehicleSta;1;;;-1</Property>
+        <Property Name="TabIndex">8</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl2" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl2</Property>
+        <Property Name="Size">121, 20</Property>
+        <Property Name="Location">148, 110</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;SystemPMUnl;1;;;-1</Property>
+        <Property Name="TabIndex">7</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl1" Children="Controls" ControlName="Combo Box">
+        <Property Name="Name">ComboBoxControl1</Property>
+        <Property Name="Size">121, 20</Property>
+        <Property Name="Location">148, 71</Property>
+        <Property Name="BackColor">Window</Property>
+        <Property Name="ForeColor">WindowText</Property>
+        <Property Name="SymbolConfiguration">4;1;ESCLTestEnv;;;SystemPM;1;;;-1</Property>
+        <Property Name="TabIndex">6</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl6</Property>
+        <Property Name="Size">101, 13</Property>
+        <Property Name="Location">18, 236</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">PassengDoorSta</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl5</Property>
+        <Property Name="Size">87, 13</Property>
+        <Property Name="Location">17, 203</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">DriverDoorSta</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl4</Property>
+        <Property Name="Size">82, 13</Property>
+        <Property Name="Location">18, 172</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">EngspeedSta</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl3</Property>
+        <Property Name="Size">68, 13</Property>
+        <Property Name="Location">18, 144</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">VehicleSta</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl2</Property>
+        <Property Name="Size">84, 13</Property>
+        <Property Name="Location">17, 113</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">SystemPMUnl</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=8.2.64.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text">
+        <Property Name="Name">StaticTextControl1</Property>
+        <Property Name="Size">65, 13</Property>
+        <Property Name="Location">18, 71</Property>
+        <Property Name="Font">Microsoft Sans Serif, 8.25pt, style=Bold</Property>
+        <Property Name="Text">SystemPM</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">301, 270</Property>
+      <Property Name="Location">28, 22</Property>
+      <Property Name="Text">CANDecode</Property>
+      <Property Name="TabIndex">0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">947, 717</Property>
+  </Object>
+</Panel>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testtree>
+  <title />
+  <version>1</version>
+  <caplfunction>
+    <name>_ttg_fct_tt_1__8</name>
+  </caplfunction>
+  <testcase>
+    <title>powerOn ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_1__9</name>
+    </caplfunction>
+  </testcase>
+  <testcase>
+    <title>checkKostia ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_1__12</name>
+    </caplfunction>
+  </testcase>
+  <testcase>
+    <title>powerOff ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_1__15</name>
+    </caplfunction>
+  </testcase>
+  <testcase>
+    <title>try ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_1__18</name>
+    </caplfunction>
+  </testcase>
+  <testcase>
+    <title>try1 ()</title>
+    <caplfunction>
+      <name>_ttg_fct_capltestcase_1__21</name>
+    </caplfunction>
+  </testcase>
+</testtree>

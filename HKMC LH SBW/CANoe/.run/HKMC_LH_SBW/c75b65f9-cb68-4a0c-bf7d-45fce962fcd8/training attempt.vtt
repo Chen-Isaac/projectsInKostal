@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <tc>
+      <title />
+      <preparation>
+        <title />
+      </preparation>
+      <foreach>
+        <title />
+        <loopvar>t</loopvar>
+        <listparameter>ChParList_BEGIN_OF_OBJECT|1|pgLed::plRunningLed|END_OF_OBJECT_ChParList|</listparameter>
+        <wait>
+          <title />
+          <time>
+            <value>
+              <variable>t</variable>
+            </value>
+            <unit>s</unit>
+          </time>
+        </wait>
+        <canoestandardservice>
+          <title />
+          <name>testValidateTesterConfirmation</name>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>wait</const>
+            </value>
+          </param>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>wait</const>
+            </value>
+          </param>
+          <param>
+            <type>long</type>
+            <value>
+              <const>1</const>
+            </value>
+          </param>
+        </canoestandardservice>
+      </foreach>
+      <completion>
+        <title />
+        <ttfunction>
+          <title />
+          <name>NewFunction</name>
+        </ttfunction>
+      </completion>
+    </tc>
+  </tt>
+  <ttlib>
+    <ts_definitions>
+      <ts_definition>
+        <name>NewTestSequence</name>
+        <export>true</export>
+        <parameters />
+      </ts_definition>
+    </ts_definitions>
+    <tc_definitions />
+    <function_definitions>
+      <function_definition>
+        <name>NewFunction</name>
+        <export>false</export>
+        <parameters />
+        <wait>
+          <title />
+          <time>
+            <value>
+              <const>111</const>
+            </value>
+            <unit>ms</unit>
+          </time>
+        </wait>
+      </function_definition>
+    </function_definitions>
+  </ttlib>
+</ttroot>

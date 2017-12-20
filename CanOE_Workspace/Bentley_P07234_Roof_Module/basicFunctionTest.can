@@ -1,0 +1,46 @@
+/*@!Encoding:936*/
+includes
+{
+  #include "D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin"
+}
+
+variables
+{
+
+}
+
+export testcase powerOn (void) {
+  stateMachine("powerOn",routeNum,noParaPick);
+}
+
+export testcase powerOff (void) {
+  stateMachine("powerOff",routeNum,noParaPick);
+}
+
+export testcase readSwVer (void) {
+  stateMachine("readSwVer",routeNum,noParaPick);
+}
+
+export testcase checkKostia (void) {
+  stateMachine("checkKostia",routeNum,noParaPick);
+}
+
+export testcase try (void) {
+  int res;
+  res = linDeactivateSlot(0,0);
+  testStep("linDeactive","res = %d",res);
+  res = linDeactivateSlot(0,12);
+  testStep("linDeactive","res = %d",res);
+  res = linChangeSchedTable(5);
+  testStep("linChangeSchedTable","res = %d",res);
+}
+
+export testcase try1 (void) {
+  int res;
+  res = linActivateSlot(0,0);
+  testStep("linActivate","res = %d",res);
+  res = linActivateSlot(0,12);
+  testStep("linActivate","res = %d",res);
+  res = linChangeSchedTable(0);
+  testStep("linChangeSchedTable","res = %d",res);
+}

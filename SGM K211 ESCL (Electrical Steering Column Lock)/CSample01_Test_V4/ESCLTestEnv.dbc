@@ -1,0 +1,248 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+VAL_TABLE_ VtBoltSta 3 "MIDDLE_STATE" 2 "UNLOCKED_STATE" 1 "LOCKED_STATE" 0 "INVALID_STATE" ;
+VAL_TABLE_ VtVoltageSta 2 "VOLTAGE_TOO_HIGH" 1 "NORMAL_VOLTAGE" 0 "VOLTAGE_TOO_LOW" ;
+VAL_TABLE_ VtSafeSta 1 "ESCL_SAFE_STA" 0 "ESCL_NORMAL" ;
+VAL_TABLE_ VtDoorSta 2 "DOOR_OPEN" 1 "DOOR_CLOSE" 0 "DOOR_UNKNOW" ;
+VAL_TABLE_ VtEngSta 2 "ENG_ACTIVE" 1 "ENG_INACTIVE" 0 "ENG_UNKNOW" ;
+VAL_TABLE_ VtVehicleSta 2 "VEH_MOVE" 1 "VEH_STABLE" 0 "VEH_UNKNOW" ;
+VAL_TABLE_ VtSystemPM 2 "NON_OFF" 1 "OFF" 0 "POWER_UNKNOW" ;
+VAL_TABLE_ Table_SafetyMode 2 "Safety Mode" 1 "Normal Mode" 0 "Unknow" ;
+VAL_TABLE_ Table_AssemblyMode 2 "AssembleMode" 1 "Normal Mode" 0 "Unknow" ;
+
+
+
+
+EV_ LFM_1Byte_LockDelay_PasDoor: 0 [0|1] "" 0 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_1Byte_LockDelay_DrvDoor: 0 [0|1] "" 0 2 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_1Byte_LockDelay_SetPrecon: 0 [0|1] "" 0 3 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_1Byte_LockDelay_Start: 0 [0|1] "" 0 4 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_2Byte_LockDelay_t2: 0 [0|65535] "" 0 5 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_2Byte_LockDelay_t1: 0 [0|65535] "" 0 6 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_1Byte_LockDelay_Case4: 0 [0|1] "" 0 7 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_1Byte_SysPwrMdV_y: 0 [0|10] "" 10 8 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_1Byte_SysPwrMdV_x: 0 [0|10] "" 0 9 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_1Byte_EngSpdStat_y: 0 [0|10] "" 10 10 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_1Byte_EngSpdStat_x: 0 [0|10] "" 0 11 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_Butt_xy_Tst_End: 0 [0|1] "" 0 12 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_Butt_xy_Tst_Start: 0 [0|1] "" 0 13 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_Butt_Tst_End: 0 [0|1] "" 0 14 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_Butt_Tst_Start: 0 [0|1] "" 0 15 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LFM_TST_VAR_3Byte: 0 [0|16777215] "" 0 16 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ OptionNewSpd: 0 [0|0] "" 0 17 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SpdValidity4: 0 [0|0] "" 0 18 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SpdValidity3: 0 [0|0] "" 0 19 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SpdValidity2: 0 [0|0] "" 0 20 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SpdValidity1: 0 [0|0] "" 0 21 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ CoUC_VehicleSpdV: 0 [0|0] "" 0 22 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ Simu_Tigger: 0 [0|0] "" 0 23 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SafetyCnt: 0 [0|0] "" 0 24 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ReadCoSafeError: 0 [0|0] "" 0 25 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ReadMainCoreError: 0 [0|0] "" 0 26 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ CorSafeError: 0 [0|0] "" 0 27 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ MainCoreError: 0 [0|0] "" 0 28 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DiagADRef: 0 [0|0] "" 0 29 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DiagLockHall: 0 [0|0] "" 0 30 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DiagUnlockHall: 0 [0|0] "" 0 31 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DiagVCC2AD: 0 [0|0] "" 0 32 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DiagBatAD: 0 [0|0] "" 0 33 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DiagUnlockSW: 0 [0|0] "" 0 34 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DiagInvertGN: 0 [0|0] "" 0 35 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ Err_HSideShortToBat: 0 [0|0] "" 0 36 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ Slot_Sequence_CheckResult: 0 [0|0] "" 0 37 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ Program_Sequence_CheckResult: 0 [0|0] "" 0 38 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ISK_ComFlag_Status: 0 [0|0] "" 0 39 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ CAN_ComFlag_Status: 0 [0|0] "" 0 40 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ADCCheckResult: 0 [0|0] "" 0 41 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ CoreTst_Result: 0 [0|0] "" 0 42 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ HalClk_CLM_Result: 0 [0|0] "" 0 43 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ROMTst_Result: 0 [0|0] "" 0 44 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ Co_uC_Status: 0 [0|0] "" 0 45 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ESCL_Safety_Status: 0 [0|0] "" 0 46 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ESCL_Bolt_State: 0 [0|0] "" 0 47 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ESCL_SafeState: 0 [0|0] "" 0 48 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EngSta: 0 [0|0] "" 0 49 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ VehicleStaLock: 0 [0|0] "" 0 50 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ MainVoltage: 0 [0|0] "" 0 51 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ PassengDoorSta: 0 [0|0] "" 0 52 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DriverDoorSta: 0 [0|0] "" 0 53 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EngspeedSta: 0 [0|0] "" 0 54 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ VehicleSta: 0 [0|0] "" 0 55 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SystemPMUnl: 0 [0|0] "" 0 56 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SystemPM: 0 [0|0] "" 0 57 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ReadLockCondition: 0 [0|0] "" 0 58 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ReadSafetyError: 0 [0|0] "" 0 59 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ReadCanInfo: 0 [0|0] "" 0 60 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ReadSafetyMode: 0 [0|0] "" 0 61 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ReadAssemblyMode: 0 [0|0] "" 0 62 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SafetyMode: 0 [0|0] "" 0 63 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ AssemblyMode: 0 [0|0] "" 0 64 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EngineSpd: 0 [0|0] "" 0 65 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EngineState: 0 [0|0] "" 0 66 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EngRunAtv: 0 [0|0] "" 0 67 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ PaDoorSta: 0 [0|0] "" 0 68 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ DrDoorSta: 0 [0|0] "" 0 69 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SystemPowerMode: 0 [0|0] "" 0 70 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ UnlockPassword: 0 [0|0] "" 0 71 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ OperateResult: 0 [0|0] "" 0 72 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ ColumState: 0 [0|0] "" 0 73 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ AuthenResult: 0 [0|0] "" 0 74 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ SimuSW: 0 [0|0] "" 0 75 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ WDRDef: 0 [0|0] "" 0 76 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ WPRRef: 0 [0|0] "" 0 77 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ TS_RESDef: 0 [0|0] "" 0 78 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ TstmDef: 0 [0|0] "" 0 79 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ RtNDrvSpeedDisp: 0 [0|0] "" 0 80 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LftNDrvSpeedDisp: 0 [0|0] "" 0 81 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ RtDrvSpeedDisp: 0 [0|0] "" 0 82 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LftDrvSpeedDisp: 0 [0|0] "" 0 83 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ RtNDrvSpeed: 0 [0|0] "" 0 84 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LftNDrvSpeed: 0 [0|0] "" 0 85 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ RtDrvSpeed: 0 [0|0] "" 0 86 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ LftDrvSpeed: 0 [0|0] "" 0 87 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+VAL_ PassengDoorSta 2 "DOOR_OPEN" 1 "DOOR_CLOSE" 0 "DOOR_UNKNOW" ;
+VAL_ DriverDoorSta 2 "DOOR_OPEN" 1 "DOOR_CLOSE" 0 "DOOR_UNKNOW" ;
+VAL_ EngspeedSta 2 "ENG_ACTIVE" 1 "ENG_INACTIVE" 0 "ENG_UNKNOW" ;
+VAL_ VehicleSta 2 "VEH_MOVE" 1 "VEH_STABLE" 0 "VEH_UNKNOW" ;
+VAL_ SystemPMUnl 2 "NON_OFF" 1 "OFF" 0 "POWER_UNKNOW" ;
+VAL_ SystemPM 2 "NON_OFF" 1 "OFF" 0 "POWER_UNKNOW" ;
+VAL_ SafetyMode 2 "Safety Mode" 1 "Normal Mode" 0 "Unknow" ;
+VAL_ AssemblyMode 2 "AssembleMode" 1 "Normal Mode" 0 "Unknow" ;
+VAL_ EngineSpd 2 "ENG_ACTIVE" 1 "ENG_INACTIVE" 0 "ENG_UNKNOW" ;
+VAL_ EngineState 2 "ENG_ACTIVE" 1 "ENG_INACTIVE" 0 "ENG_UNKNOW" ;
+

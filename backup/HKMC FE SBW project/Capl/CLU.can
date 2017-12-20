@@ -1,0 +1,30 @@
+variables
+{
+  msTimer timCLU_Transmitter;
+  message CLU11 msgCLU;
+}
+
+on start
+{
+	settimer( timCLU_Transmitter, 100 );
+  @envCLUTxEnable = 1;
+}
+
+on timer timCLU_Transmitter
+{
+	settimer( timCLU_Transmitter, 10 );
+  
+  if( @envCLUTxEnable == 1 ) {
+    output( msgCLU );
+  }
+}
+
+on envVar envCLU_DetentOut
+{
+	msgCLU.CF_Clu_DetentOut = @envCLU_DetentOut;
+}
+
+on envVar envCLU_RheostatLvl
+{
+	msgCLU.CF_Clu_RheostatLvl = @envCLU_RheostatLvl;
+}

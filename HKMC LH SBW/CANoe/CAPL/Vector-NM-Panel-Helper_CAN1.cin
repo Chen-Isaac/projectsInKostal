@@ -1,0 +1,192 @@
+variables
+{
+  /* NM-IL Include for initializing the NM panel controls
+   *
+   * ATTENTION: Adapt variables gNumSimNodes and gSimNodeNames and system variable definitions
+   * in file "SysVarDef.xml" to your nodes of the CANoe's simulation setup!
+   *
+   * Version 4.0, (c) 2014 Vector Informatik GmbH, Department for Networks and Distributed Systems
+   */
+
+  char  gNMPCAN1_SysVarNamespace[120];   // Will be initialized in NMPCAN1_InitSysVars()
+
+  dword gNMPCAN1_Channel                 = 1; // The CAN channel the bus is attached to
+  dword gNMPCAN1_DebugFlags              = 0;
+
+  char  gNMPCAN1_SysVarNMState[100]      = "State";
+  char  gNMPCAN1_SysVarNMMode[100]       = "Mode";
+  char  gNMPCAN1_SysVarNMRequestBus[100] = "RequestBus";
+  char  gNMPCAN1_SysVarNMRequestIL[100]  = "RequestIL";
+
+  const int cNMPCAN1_MaxSimNodes = 5;
+  const int cNMPCAN1_HasNMPanel = 0;
+
+  // The nodes of CANoe's simulation setup that are observed for the automatic
+  // startup and shutdown of the FlexRay bus:
+  int   gNMPCAN1_NumSimNodes = 5;
+    
+  char  gNMPCAN1_SimNodeNames[cNMPCAN1_MaxSimNodes][100] = { // All these CAPL nodes need to include this file!
+    "TCU", "ESC", "Tester", "EMS", "CGW"
+  };
+
+  const dword cNMPCAN1_NMControlDebug  = 0x0004;
+  const dword cNMPCAN1_BusControlDebug = 0x0008;
+
+  enum tCAN1_ASR_NM_STATE {
+    cCAN1_ASR_NM_STATE_UNDEFINED         = 0,
+    cCAN1_ASR_NM_STATE_BUS_SLEEP         = 1,
+    cCAN1_ASR_NM_STATE_PREPARE_BUS_SLEEP = 2,
+    cCAN1_ASR_NM_STATE_READY_SLEEP       = 3,
+    cCAN1_ASR_NM_STATE_NORMAL_OPERATION  = 4,
+    cCAN1_ASR_NM_STATE_REPEAT_MESSAGE    = 5,
+    cCAN1_ASR_NM_STATE_SYNCHRONIZE       = 6
+  };
+
+  enum tCAN1_OSEK_NM_STATE {
+    cCAN1_OSEK_NM_STATE_UNDEFINED        = 0,
+    cCAN1_OSEK_NM_STATE_BUS_SLEEP        = 1,
+    cCAN1_OSEK_NM_STATE_READY_SLEEP      = 2,
+    cCAN1_OSEK_NM_STATE_AWAKE            = 3
+  };
+
+  enum tCAN1_NM_NODE_MODE {
+    cCAN1_NM_NODE_MODE_Sleep_Mode       = 0,
+    cCAN1_NM_NODE_MODE_Network_Mode     = 1,
+    cCAN1_NM_NODE_MODE_Synchronize_Mode = 2
+  };
+
+  const double cNMPCAN1_NS2S = 1000000000.0;
+
+  // Internally used variables and timers:
+  msTimer gNMPCAN1_TEnableControls;
+  int     gNMPCAN1_IsInitialized = 0;
+
+}
+
+/*****************************************************************************
+ * Include Initialization
+ *****************************************************************************/
+
+NMPCAN1_InitSysVars ()
+{
+  int i;
+  char lSysVarNamespace[120];
+
+  //FrNm_GetNodeName(gNMPCAN1_MyNodeName, elcount(gNMPCAN1_MyNodeName));
+
+  strncpy(gNMPCAN1_SysVarNamespace, "NM_CAN1::", elcount(gNMPCAN1_SysVarNamespace));
+  strncat(gNMPCAN1_SysVarNamespace, gECU, elcount(gNMPCAN1_SysVarNamespace));
+
+  //@sysvar::NM_CAN1::%NODE_NAME%::RequestBus = 0;
+
+  strncpy(lSysVarNamespace, "NM_CAN1::", elcount(lSysVarNamespace));
+  strncat(lSysVarNamespace, "StateControl", elcount(lSysVarNamespace));
+  if (sysGetVariableInt(lSysVarNamespace, "ControlsDisabled") >= 1) return;
+
+  sysSetVariableInt(lSysVarNamespace, "ControlsDisabled", 1);
+
+  //@sysvar::NM_CAN1::StateControl::BusActive = 1;
+
+  //@sysvar::NM_CAN1::StateControl::StopCommunication = 0;
+  //@sysvar::NM_CAN1::StateControl::StartCommunication = 0;
+
+  strncpy(lSysVarNamespace, "NM_CAN1::", elcount(lSysVarNamespace));
+  strncat(lSysVarNamespace, gNMPCAN1_SimNodeNames[i], elcount(lSysVarNamespace));
+
+  // If any node is disabled in the sim setup, also init its sys vars:
+  for (i=0; i<cNMPCAN1_MaxSimNodes && i<gNMPCAN1_NumSimNodes; i++)
+  {
+    sysSetVariableInt(lSysVarNamespace, gNMPCAN1_SysVarNMState, cCAN1_ASR_NM_STATE_UNDEFINED);
+    sysSetVariableInt(lSysVarNamespace, gNMPCAN1_SysVarNMMode, cCAN1_NM_NODE_MODE_Sleep_Mode);
+    sysSetVariableInt(lSysVarNamespace, gNMPCAN1_SysVarNMRequestIL, 0);
+    //sysSetVariableInt(lSysVarNamespace, gNMPCAN1_SysVarNMRequestBus, 0);
+  }
+}
+
+_NMPCAN1_DisableAllControls ()
+{
+  int i;
+  char lSysVarNamespace[120];
+  char lSysVarName[120];
+
+  if (cNMPCAN1_HasNMPanel <= 0)
+  {
+    return;
+  }
+
+  strncpy(lSysVarNamespace, "NM_CAN1::", elcount(lSysVarNamespace));
+  strncat(lSysVarNamespace, "StateControl", elcount(lSysVarNamespace));
+  if (sysGetVariableInt(lSysVarNamespace, "ControlsDisabled") >= 2) return;
+
+  for (i=0; i<cNMPCAN1_MaxSimNodes && i<gNMPCAN1_NumSimNodes; i++)
+  {
+    strncpy(lSysVarName, "NM_CAN1_", elcount(lSysVarName));
+    strncat(lSysVarName, gNMPCAN1_SimNodeNames[i], elcount(lSysVarName));
+    strncat(lSysVarName, "_NMReq", elcount(lSysVarName));
+    enableControl("NMPanel", lSysVarName, 0);
+    SetControlVisibility("NM Panel CAN1", lSysVarName, 0);
+
+    strncpy(lSysVarName, "NM_CAN1_", elcount(lSysVarName));
+    strncat(lSysVarName, gNMPCAN1_SimNodeNames[i], elcount(lSysVarName));
+    strncat(lSysVarName, "_NMApplAct", elcount(lSysVarName));
+    enableControl("NMPanel", lSysVarName, 0);
+    SetControlVisibility("NM Panel CAN1", lSysVarName, 0);
+
+    strncpy(lSysVarName, "NM_CAN1_", elcount(lSysVarName));
+    strncat(lSysVarName, gNMPCAN1_SimNodeNames[i], elcount(lSysVarName));
+    strncat(lSysVarName, "_ILReq", elcount(lSysVarName));
+    enableControl("NMPanel", lSysVarName, 0);
+    SetControlVisibility("NM Panel CAN1", lSysVarName, 0);
+
+    strncpy(lSysVarName, "NM_CAN1_", elcount(lSysVarName));
+    strncat(lSysVarName, gNMPCAN1_SimNodeNames[i], elcount(lSysVarName));
+    strncat(lSysVarName, "_NMState", elcount(lSysVarName));
+    enableControl("NM Panel CAN1", lSysVarName, 0);
+
+    strncpy(lSysVarName, "NM_CAN1_", elcount(lSysVarName));
+    strncat(lSysVarName, gNMPCAN1_SimNodeNames[i], elcount(lSysVarName));
+    strncat(lSysVarName, "_NMStaticText", elcount(lSysVarName));
+    setControlForeColor("NM Panel CAN1", lSysVarName, MakeRGB(180,180,180));
+
+    strncpy(lSysVarName, "NM_CAN1_", elcount(lSysVarName));
+    strncat(lSysVarName, gNMPCAN1_SimNodeNames[i], elcount(lSysVarName));
+    strncat(lSysVarName, "_NMDeactivate", elcount(lSysVarName));
+    enableControl("NMPanel", lSysVarName, 0);
+    SetControlVisibility("NM Panel CAN1", lSysVarName, 0);
+  }
+  sysSetVariableInt(lSysVarNamespace, "ControlsDisabled", 2);
+}
+
+_NMPCAN1_EnableMyControls (int enable)
+{
+  gNMPCAN1_IsInitialized = 1;
+
+  openPanel("MainPanel");
+
+  if (cNMPCAN1_HasNMPanel <= 0)
+  {
+    return;
+  }
+
+  enableControl("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_NMReq", enable);
+  SetControlVisibility("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_NMReq", enable);
+  enableControl("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_NMApplAct", enable);
+  SetControlVisibility("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_NMApplAct", enable);
+  enableControl("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_ILReq", enable);
+  SetControlVisibility("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_ILReq", enable);
+  enableControl("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_NMDeactivate", enable);
+  SetControlVisibility("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_NMDeactivate", enable);
+  enableControl("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_NMState", enable);
+  setControlForeColor("NM Panel CAN1", "NM_CAN1_%NODE_NAME%_NMStaticText", MakeRGB(0,0,0));
+  
+  //openPanel("NM Panel CAN1");
+}
+
+on timer gNMPCAN1_TEnableControls
+{
+  _NMPCAN1_EnableMyControls(1);
+}
+
+/*****************************************************************************
+ * EOF
+ *****************************************************************************/

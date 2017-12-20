@@ -1,0 +1,7 @@
+6.1	RATED VOLTAGE
+?	SBW RATED VOLTATE: B+ = 12V
+6.2	OPERATING VOLTAGE RANGE
+?	NORMAL OPERATING VOLTAGE: 9.0V < B+ < 16.0V      
+
+7	System Purpose
+The purpose of the SBW system is to provide the lever position signal to TCU via CAN communication and PWM communication. Based on the lever position information, the TCU selects Gear Select information and transmits it to SBW through CAN communi-cation and PWM communication back. On the bezel of SBW, the Gear Select infor-mation is visually displayed to show gear information to a driver.

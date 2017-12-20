@@ -1,0 +1,23 @@
+Date / Time
+===========
+2016/11/2 / 10:26
+
+Conversion report:
+==================
+Information: The panel 'C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\DTCSTATUSMASK_DEFINITION.CNP' was converted successfully.
+
+Information: The panel 'C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\IFM.cnp' was converted successfully.
+
+Information: The panel 'C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\UDS.cnp' was converted successfully.
+
+[Added Panels]
+Following panels are added to the configuration:
+C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\IFM.xvp
+C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\UDS.xvp
+C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\DTCSTATUSMASK_DEFINITION.xvp
+
+[Removed Panels]
+Following panels are removed from the configuration:
+C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\IFM.cnp
+C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\UDS.cnp
+C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\Panels\DTCSTATUSMASK_DEFINITION.CNP

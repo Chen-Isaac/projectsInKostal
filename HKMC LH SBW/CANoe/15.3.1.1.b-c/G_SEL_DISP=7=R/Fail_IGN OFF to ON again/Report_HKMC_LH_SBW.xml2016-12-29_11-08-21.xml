@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2016-12-29 11:08:01" timestamp="1801.967302" verdicts="2_basic">
+  <testunit starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+    <skippedsequence starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>Test preparation:Power supply initialization</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>11.5.1 P switch handling</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>11.6 Brake Input Handling</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>12.5.2 Sending Gear Position Pattern Sequence</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>12.6 Unlock Switch Handling</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>12.7.1.1 Door Open Auto P Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>12.7.1.2 Driver Seat Belt OFF Auto P</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>12.7.1.3 Auto N Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+      <title>13 Illumination Control</title>
+    </skippedfixture>
+    <testfixture>
+      <skippedtestcaselist starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+        <title>15.3.1.a IG ON Mode: If PRA positon is not P and Gear changes to NOT N position, SBW shall operate PRA to P Position.</title>
+        <skippedcount>6</skippedcount>
+      </skippedtestcaselist>
+      <skippedcase starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+        <title>15.3.1.b IG ON Mode: If P Switch pressed ON while IGN ON and vehicle stop, SBW shall operate PRA to P position.</title>
+      </skippedcase>
+      <skippedtestcaselist starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+        <title>15.3.1.1.a TCU OFF: When last gear is D,SBW shall operate PRA to Not P position.</title>
+        <skippedcount>2</skippedcount>
+      </skippedtestcaselist>
+      <testcaselist>
+        <skippedcase starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+          <title>15.3.1.1.b-c TCU OFF: When last gear is P,R or N SBW shall keep PRA in P position.After PRA is operated from Not P Position to P position, SBW should not operate PRA again while keep in TCU OFF condition unless IGN OFF to ON again. (G_SEL_DISP_value_of_PRorN=0)</title>
+        </skippedcase>
+        <skippedcase starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+          <title>15.3.1.1.b-c TCU OFF: When last gear is P,R or N SBW shall keep PRA in P position.After PRA is operated from Not P Position to P position, SBW should not operate PRA again while keep in TCU OFF condition unless IGN OFF to ON again. (G_SEL_DISP_value_of_PRorN=6)</title>
+        </skippedcase>
+        <testcase starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+          <preparation starttime="2016-12-29 11:08:01" timestamp="1801.967302">
+            <command timestamp="1801.967302" name="CANoe Standard Service">
+              <title>Prepare the graph to see CF_Tcu_PRelReq,G_SEL_DISP,CF_Lvr_PNStat,CF_Lvr_PRelStat easily</title>
+              <teststep timestamp="1801.967302" level="2" type="user" ident="" result="na">Execute testValidateTesterConfirmation(&quot;Prepare the graph to see CF_Tcu_PRelReq,G_SEL_DISP,CF_Lvr_PNStat,CF_Lvr_PRelStat easily&quot;, &quot;Prepare the graph to see CF_Tcu_PRelReq,G_SEL_DISP,CF_Lvr_PNStat,CF_Lvr_PRelStat easily&quot;, 1)</teststep>
+              <teststep timestamp="1803.101267" level="0" type="user" ident="" result="pass">Question/Text: Prepare the graph to see CF_Tcu_PRelReq,G_SEL_DISP,CF_Lvr_PNStat,CF_Lvr_PRelStat easily\nTester confirmed with &apos;Yes&apos;.</teststep>
+              <result timestamp="1803.101267" result="pass"/>
+            </command>
+            <command timestamp="1803.101267" name="CAPL Inline">
+              <title>set last gear as P R or N</title>
+              <teststep timestamp="1803.601267" level="0" type="user" ident="G_SEL_DISP status" result="na">G_SEL_DISP = 7</teststep>
+              <result timestamp="1803.601267" result="pass"/>
+            </command>
+            <command timestamp="1803.601267" name="Wait">
+              <title>Wait</title>
+              <teststep timestamp="1804.601267" level="2" type="user" ident="1" result="na">Waited for 1.000 s</teststep>
+              <result timestamp="1804.601267" result="pass"/>
+            </command>
+            <teststep timestamp="1805.101267" level="0" type="user" ident="PRAPosStatus" result="na">to Not P position:received CF_Tcu_PrelReq = 0x1(0-&gt;1 edge) from TCU,while P switch is not pressed.</teststep>
+            <command timestamp="1805.101267" name="Await Value Match">
+              <title>check if SBW operate PRA to not P Position</title>
+              <teststep timestamp="1806.237313" level="2" type="user" ident="1" result="pass">Waited for occurrence of 2 value condition(s).</teststep>
+              <teststep timestamp="1806.237313" level="2" type="user" ident="" result="na">
+                <tabularinfo expand="true">
+                  <description></description>
+                  <heading>
+                    <cell>Symbol</cell>
+                    <cell>Op.</cell>
+                    <cell>Reference Value</cell>
+                    <cell>Actual</cell>
+                    <cell>Result</cell>
+                  </heading>
+                  <row level="0">
+                    <cell>CAN signal &apos;CF_Lvr_PNStat&apos;</cell>
+                    <cell>==</cell>
+                    <cell>2 (Not Park Status)</cell>
+                    <cell>2</cell>
+                    <cell>pass</cell>
+                  </row>
+                  <row level="0">
+                    <cell>CAN signal &apos;CF_Lvr_PRelStat&apos;</cell>
+                    <cell>==</cell>
+                    <cell>1 (Parking released)</cell>
+                    <cell>1</cell>
+                    <cell>pass</cell>
+                  </row>
+                </tabularinfo>
+              </teststep>
+              <result timestamp="1806.237313" result="pass"/>
+            </command>
+            <command timestamp="1806.237313" name="CAPL Inline">
+              <title>capture CF_Lvr_PNStat&amp;CF_Lvr_PRelStat</title>
+              <details timestamp="1806.737313">
+                <title>Set PRA to not P position at initial</title>
+                <image file="Report_HKMC_LH_SBW.xml2016-12-29_11-09-01/15.3.1.1.b-c Set PRA to not P position at initial.png"/>
+              </details>
+              <result timestamp="1806.737313" result="pass"/>
+            </command>
+            <command timestamp="1806.737313" name="CAPL Inline">
+              <title>set signal G_SEL_DISP time out</title>
+              <teststep timestamp="1806.737313" level="2" type="user" ident="FaultInjection-function" result="pass">TestDisableMsg: Message TCU11 - successfully.</teststep>
+              <result timestamp="1806.737313" result="pass"/>
+            </command>
+            <command timestamp="1806.737313" name="Await Value Match">
+              <title>check if SBW operate PRA to P Position</title>
+              <teststep timestamp="1808.717324" level="2" type="user" ident="1" result="pass">Waited for occurrence of 2 value condition(s).</teststep>
+              <teststep timestamp="1808.717324" level="2" type="user" ident="" result="na">
+                <tabularinfo expand="true">
+                  <description></description>
+                  <heading>
+                    <cell>Symbol</cell>
+                    <cell>Op.</cell>
+                    <cell>Reference Value</cell>
+                    <cell>Actual</cell>
+                    <cell>Result</cell>
+                  </heading>
+                  <row level="0">
+                    <cell>CAN signal &apos;CF_Lvr_PNStat&apos;</cell>
+                    <cell>==</cell>
+                    <cell>1 (Park Status)</cell>
+                    <cell>1</cell>
+                    <cell>pass</cell>
+                  </row>
+                  <row level="0">
+                    <cell>CAN signal &apos;CF_Lvr_PRelStat&apos;</cell>
+                    <cell>==</cell>
+                    <cell>0 (Parking not released)</cell>
+                    <cell>0</cell>
+                    <cell>pass</cell>
+                  </row>
+                </tabularinfo>
+              </teststep>
+              <result timestamp="1808.717324" result="pass"/>
+            </command>
+            <command timestamp="1808.717324" name="CAPL Inline">
+              <title>capture CF_Lvr_PNStat&amp;CF_Lvr_PRelStat</title>
+              <details timestamp="1809.217324">
+                <title>15.3.1.1.b When last gear is P,R or N SBW shall keep PRA in P position</title>
+                <image file="Report_HKMC_LH_SBW.xml2016-12-29_11-09-01/15.3.1.1.b When last gear is P,R or N SBW shall keep PRA in P position.png"/>
+              </details>
+              <result timestamp="1809.217324" result="pass"/>
+            </command>
+            <teststep timestamp="1809.717324" level="0" type="user" ident="PRAPosStatus" result="na">to Not P position:received CF_Tcu_PrelReq = 0x1(0-&gt;1 edge) from TCU,while P switch is not pressed.</teststep>
+            <command timestamp="1809.717324" name="Await Value Match">
+              <title>check if PRA keep at P Position</title>
+              <teststep timestamp="1809.717324" level="2" type="user" ident="1" result="pass">Waited for occurrence of 2 value condition(s).</teststep>
+              <teststep timestamp="1809.717324" level="2" type="user" ident="" result="na">
+                <tabularinfo expand="true">
+                  <description></description>
+                  <heading>
+                    <cell>Symbol</cell>
+                    <cell>Op.</cell>
+                    <cell>Reference Value</cell>
+                    <cell>Actual</cell>
+                    <cell>Result</cell>
+                  </heading>
+                  <row level="0">
+                    <cell>CAN signal &apos;CF_Lvr_PNStat&apos;</cell>
+                    <cell>==</cell>
+                    <cell>1 (Park Status)</cell>
+                    <cell>1</cell>
+                    <cell>pass</cell>
+                  </row>
+                  <row level="0">
+                    <cell>CAN signal &apos;CF_Lvr_PRelStat&apos;</cell>
+                    <cell>==</cell>
+                    <cell>0 (Parking not released)</cell>
+                    <cell>0</cell>
+                    <cell>pass</cell>
+                  </row>
+                </tabularinfo>
+              </teststep>
+              <result timestamp="1809.717324" result="pass"/>
+            </command>
+            <command timestamp="1809.717324" name="CAPL Inline">
+              <title>capture CF_Lvr_PNStat&amp;CF_Lvr_PRelStat</title>
+              <details timestamp="1810.217324">
+                <title>15.3.1.1.c After PRA is operated from Not P Position to P position, SBW should not operate PRA again</title>
+                <image file="Report_HKMC_LH_SBW.xml2016-12-29_11-09-01/15.3.1.1.c After PRA is operated from Not P Position to P position, SBW should not operate PRA again.png"/>
+              </details>
+              <result timestamp="1810.217324" result="pass"/>
+            </command>
+            <teststep timestamp="1811.217324" level="0" type="user" ident="IGN status" result="na">IGN off, IGN voltage = 4.04v</teststep>
+            <command timestamp="1811.217324" name="Wait">
+              <title>Wait</title>
+              <teststep timestamp="1813.217324" level="2" type="user" ident="1" result="na">Waited for 2.000 s</teststep>
+              <result timestamp="1813.217324" result="pass"/>
+            </command>
+            <teststep timestamp="1814.217324" level="0" type="user" ident="IGN status" result="na">IGN on, IGN voltage = 10.49v</teststep>
+            <command timestamp="1814.217324" name="Wait">
+              <title>Wait</title>
+              <teststep timestamp="1816.217324" level="2" type="user" ident="1" result="na">Waited for 2.000 s</teststep>
+              <result timestamp="1816.217324" result="pass"/>
+            </command>
+            <teststep timestamp="1816.717324" level="0" type="user" ident="PRAPosStatus" result="na">to Not P position:received CF_Tcu_PrelReq = 0x1(0-&gt;1 edge) from TCU,while P switch is not pressed.</teststep>
+            <command timestamp="1816.717324" name="Await Value Match">
+              <title>check if SBW operate PRA to not P Position</title>
+              <teststep timestamp="1821.717324" level="0" type="user" ident="1" result="fail">Waited for occurrence of 2 value condition(s).</teststep>
+              <teststep timestamp="1821.717324" level="2" type="user" ident="" result="na">
+                <tabularinfo expand="true">
+                  <description></description>
+                  <heading>
+                    <cell>Symbol</cell>
+                    <cell>Op.</cell>
+                    <cell>Reference Value</cell>
+                    <cell>Actual</cell>
+                    <cell>Result</cell>
+                  </heading>
+                  <row level="0">
+                    <cell>CAN signal &apos;CF_Lvr_PNStat&apos;</cell>
+                    <cell>==</cell>
+                    <cell>2 (Not Park Status)</cell>
+                    <cell>1</cell>
+                    <cell>fail</cell>
+                  </row>
+                  <row level="0">
+                    <cell>CAN signal &apos;CF_Lvr_PRelStat&apos;</cell>
+                    <cell>==</cell>
+                    <cell>1 (Parking released)</cell>
+                    <cell>0</cell>
+                    <cell>fail</cell>
+                  </row>
+                </tabularinfo>
+              </teststep>
+              <result timestamp="1821.717324" result="fail"/>
+            </command>
+            <command timestamp="1821.717324" name="CAPL Inline">
+              <title>capture CF_Lvr_PNStat&amp;CF_Lvr_PRelStat</title>
+              <details timestamp="1822.217324">
+                <title>SBW should not operate PRA again while keep in TCU OFF condition unless IGN OFF to ON again</title>
+                <image file="Report_HKMC_LH_SBW.xml2016-12-29_11-09-01/15.3.1.1.c SBW should not operate PRA again while keep in TCU OFF condition unless IGN OFF to ON again.png"/>
+              </details>
+              <result timestamp="1822.217324" result="pass"/>
+            </command>
+            <prepend endtime="2016-12-29 11:08:21" endtimestamp="1822.217324" />
+          </preparation>
+          <completion starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+            <command timestamp="1822.217324" name="CAPL Inline">
+              <title>set signal G_SEL_DISP enable</title>
+              <teststep timestamp="1822.217324" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message TCU11 - successfully.</teststep>
+              <result timestamp="1822.217324" result="pass"/>
+            </command>
+            <compend endtime="2016-12-29 11:08:21" endtimestamp="1822.217324" />
+          </completion>
+          <verdict time="2016-12-29 11:08:21" timestamp="1821.717324" endtime="2016-12-29 11:08:21" endtimestamp="1822.217324" result="fail" />
+          <title>15.3.1.1.b-c TCU OFF: When last gear is P,R or N SBW shall keep PRA in P position.After PRA is operated from Not P Position to P position, SBW should not operate PRA again while keep in TCU OFF condition unless IGN OFF to ON again. (G_SEL_DISP_value_of_PRorN=7)</title>
+        </testcase>
+        <title>15.3.1.1.b-c TCU OFF: When last gear is P,R or N SBW shall keep PRA in P position.After PRA is operated from Not P Position to P position, SBW should not operate PRA again while keep in TCU OFF condition unless IGN OFF to ON again.</title>
+      </testcaselist>
+      <skippedcase starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+        <title>15.3.1.1.d TCU OFF: When P switch is pressed when vehicle is stopped, SBW shall operate PRA to P position</title>
+      </skippedcase>
+      <skippedcase starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+        <title>15.3.1.2.c TCU Request: During the activating to Not P position by receiving CF_Tcu_PrelReq = 0x1 from TCU, if receiving the CF_Tcu_PrelReq = 0x0 from TCU, then SBW shall operate PRA to P position immediately.</title>
+      </skippedcase>
+      <skippedcase starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+        <title>15.3.1.2.d TCU Request: Otherwise SBW shall ignore TCU request, without any PRA operation.</title>
+      </skippedcase>
+      <skippedtestcaselist starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+        <title>15.3.1.3 Recovery TCU OFF at Vehicle Driving</title>
+        <skippedcount>2</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+        <title>15.3.1.4 Recovery TCU OFF at Vehicle Stop</title>
+        <skippedcount>2</skippedcount>
+      </skippedtestcaselist>
+      <title>15.3.1 PRA Logic: IG ON Mode</title>
+    </testfixture>
+    <skippedfixture starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>15.3.2 PRA Logic: IG OFF Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>15.3.3 Gear N IG OFF Mode</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>15.3.4 N Park Mode</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>15.3.5 Manual Release Function</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>15.3.6 TCU Eol Complete</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>15.3.7 Limp-Home function</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>15.3.8 PRA Disable Voltage</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>try</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>Test Sequence</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>confirm PRA position</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>Test completion:shutdown the power</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>try ig on</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-29 11:08:21" timestamp="1822.217324">
+      <title>try DTC</title>
+    </skippedsequence>
+    <verdict time="2016-12-29 11:08:21" timestamp="1821.717324" endtime="2016-12-29 11:08:21" endtimestamp="1822.217324" result="fail" />
+    <title>HKMC LH SBW</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>HKMC LH SBW</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\HKMC LH SBW\HKMC LH SBW.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2016-12-29, 10:32:23</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2016-12-29 11:08:21" timestamp="1821.717324" endtime="2016-12-29 11:08:21" endtimestamp="1822.217324" result="fail" />
+  <title>HKMC_LH_SBW</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>chen106</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 8.5.112 (SP6)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\HKMC_LH_SBW.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>HKMC_LH_SBW</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANoeILNLVector</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANoeILNLVector.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLDEFAULT</name>
+      <description>CANoe Interaction Layer NL (Default) Version 3.16.30 (Mar 17 2016 15:53:01) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLDEFAULT.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 8.5.112, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="channel">
+          <name>Channel</name>
+          <description>1</description>
+        </xinfo>
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VN1630</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>501043</description>
+        </xinfo>
+        <xinfo key="driverdllversion">
+          <name>Driver DLL version</name>
+          <description>9.2.22</description>
+        </xinfo>
+        <xinfo key="driverversion">
+          <name>Driver version</name>
+          <description>8.9.22</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT8012</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>1031</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>0.0.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>452</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>450</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>448</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>449</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>331</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>348</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>329</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>339</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>174</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>234</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>210</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT7001A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>267</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.0.5</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+</testreport>
+<!--footprint="b7b2eeba040b81d91246caaa7aa2e851" version="1"-->

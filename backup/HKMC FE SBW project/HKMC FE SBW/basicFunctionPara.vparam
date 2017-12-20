@@ -1,0 +1,57 @@
+Vector Parameter	1.0
+
+ScalarListSingleRecord
+
+Name	Type	Info	Values
+ignValueLevel	Integer		0
+			1
+
+oneButtonPressMode	Integer		0
+			1
+			2
+			3
+			4
+
+decideBySignalBool	Integer		0
+			1
+
+indicatorStatus	String		P
+			R
+			N
+			D
+			OFF
+
+setOnMode	Integer	0:by IGN ON 1://by Welcome counter is not equal to zero	0
+			1
+
+setClearMode	Integer	0:enter sleep state 1:enter silence state 2:RKE Lock Command == Lock while IGN OFF 3:SMKRKE Command == Lock Event while IGN OFF	0
+			1
+
+twoButtonPressMode	Integer		0
+			1
+			2
+			3
+			4
+			5
+			6
+			7
+			8
+			9
+
+drvDrSwSigValNotOpen	Auto		0
+			2
+
+fromIgnOnModeToInitModeToSilenceModeToSleepRouteNo	Integer		0
+			1
+			2
+
+drvDrSwSigVal	Integer		0
+			1
+			2
+
+throughNParkToSilenceBool	Integer		0
+			1
+
+fromSilenceModeToSleepModeWayNo	Integer		0
+			1
+

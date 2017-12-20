@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TempFileMetainfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel">
+  <FileFormatVersion xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">1</FileFormatVersion>
+  <TempFileMetainfo xmlns:d2p1="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel.Entities" z:Id="2">
+    <_p z:Ref="1" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    <d2p1:FileSources z:Id="3">
+      <Content z:Id="4" z:Size="12" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">
+        <d2p1:FileSource z:Id="5" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="6">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="7">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-04-12T10:38:32.5473207+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>70</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="8">9rgs6c30pvtm-TSV</d2p1:PersistencyKey>
+          <d2p1:Crc>1158085051</d2p1:Crc>
+          <d2p1:SourceFile z:Id="9">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="10" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-04-12T10:38:34.1373207+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>3072</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="11">9rgs6c30pvtm#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="12">
+            <_p z:Ref="10" i:nil="true" />
+            <d2p1:FullFilePath z:Id="13">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\obj_SGM K211 ESCL\9rgs6c30pvtm-TSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-04-12T10:38:32.5473207+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="14" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-07-20T17:34:44.090509+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>233060</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="15">4hb6ison0s32-CSV</d2p1:PersistencyKey>
+          <d2p1:Crc>3570847615</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="16" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-07-20T17:34:45.120509+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>464384</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="17">4hb6ison0s32#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="18">
+            <_p z:Ref="16" i:nil="true" />
+            <d2p1:FullFilePath z:Id="19">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\obj_SGM K211 ESCL\4hb6ison0s32-CSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-07-20T17:34:44.090509+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="20" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-04-12T10:38:34.0343207+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>48640</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="21">ofsnlsdkddkc#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="22">
+            <_p z:Ref="20" i:nil="true" />
+            <d2p1:FullFilePath z:Id="23">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\ESCLTestEnv.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-02-01T14:24:26.4784964+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Id="24"></d2p1:IgnoredNodes>
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="25" z:Size="1">
+            <d6p1:string z:Id="26">CAN</d6p1:string>
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="27" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-04-12T10:38:39.7483207+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>5287424</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="28">fcutfm1g81tk#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="29">
+            <_p z:Ref="27" i:nil="true" />
+            <d2p1:FullFilePath z:Id="30">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\CLEA17.2.0_1cb.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-01-17T15:41:24.6075759+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="24" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="31" z:Size="1">
+            <d6p1:string z:Ref="26" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="32" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-04-12T10:38:40.1083207+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>6656</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="33">70ob08ldgoss#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="34">
+            <_p z:Ref="32" i:nil="true" />
+            <d2p1:FullFilePath z:Id="35">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\ESCL PIN Control Env.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-02-06T10:37:59.7211329+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="24" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="36" z:Size="1">
+            <d6p1:string z:Ref="26" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="37" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="38">.vvarprop</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-04-12T10:38:32.5953207+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="39">TU_Indep=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="24" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="40" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="38" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-04-12T10:38:32.5943207+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="41">1nnqoq61t0cj=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="24" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="42" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-07T10:43:09.3085173+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>39309</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="43">1nnqoq61t0cj~0-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="44">
+            <Content z:Id="45" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="46">
+                <_p z:Ref="44" i:nil="true" />
+                <d2p1:FullFilePath z:Id="47">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-07-21T11:21:16.9260677+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="42" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="48" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-07T10:43:09.2785179+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>54</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="49">1nnqoq61t0cj~3-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="50">
+            <Content z:Id="51" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="52">
+                <_p z:Ref="50" i:nil="true" />
+                <d2p1:FullFilePath z:Id="53">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\SGM K211 ESCL.vtt</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-07-21T10:27:14.9786517+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="48" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="54" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="55">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="56">.vparam</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-04-12T15:05:06.2316817+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>270</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="57">b13ck9vu7cb2=PA</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="58">
+            <_p z:Ref="54" i:nil="true" />
+            <d2p1:FullFilePath z:Id="59">D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\SGM K211 ESCL.vparam</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-02-08T11:05:03.7305354+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+      </Content>
+      <_p z:Ref="2" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    </d2p1:FileSources>
+  </TempFileMetainfo>
+</TempFileMetainfo>

@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TempFileMetainfo xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel">
+  <FileFormatVersion xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">1</FileFormatVersion>
+  <TempFileMetainfo xmlns:d2p1="http://schemas.datacontract.org/2004/07/Vector.ITE.TempFileRepository.MetainfoModel.Entities" z:Id="2">
+    <_p z:Ref="1" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    <d2p1:FileSources z:Id="3">
+      <Content z:Id="4" z:Size="23" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework">
+        <d2p1:FileSource z:Id="5" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="6">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="7">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:18.1673901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>70</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="8">ioa8qldndjgr-TSV</d2p1:PersistencyKey>
+          <d2p1:Crc>1158085051</d2p1:Crc>
+          <d2p1:SourceFile z:Id="9">D:\Isaac\HKMC LH SBW\CANoe\HKMC LH SBW.vtsoproj</d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="10" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="7" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:24.9793901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>3072</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="11">ioa8qldndjgr#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="12">
+            <_p z:Ref="10" i:nil="true" />
+            <d2p1:FullFilePath z:Id="13">D:\Isaac\HKMC LH SBW\CANoe\obj_HKMC LH SBW\ioa8qldndjgr-TSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-01-05T10:46:18.1673901+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="14" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="15">.vvarprop</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2016-12-11T20:10:42.2994585+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="16">TU_Indep=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Id="17"></d2p1:SourceFile>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="18" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="15" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2016-12-11T20:10:42.3094585+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>266</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="19">pc0l7mltn946=VP</d2p1:PersistencyKey>
+          <d2p1:Crc>3110147276</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="17" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="20" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="21">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-07-13T16:46:52.3806312+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>233424</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="22">ij8jj1bngok8-CSV</d2p1:PersistencyKey>
+          <d2p1:Crc>3810034284</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="23" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:25.3313901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>460800</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="24">ij8jj1bngok8#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="25">
+            <_p z:Ref="23" i:nil="true" />
+            <d2p1:FullFilePath z:Id="26">D:\Isaac\HKMC LH SBW\CANoe\obj_HKMC LH SBW\ij8jj1bngok8-CSV</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-01-05T10:46:18.2063901+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="27" i:type="d2p1:CrcBasedFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Id="28">.bd</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:17.9993903+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>21</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="29">0of5ik6450aa-CoeBD</d2p1:PersistencyKey>
+          <d2p1:Crc>179876148</d2p1:Crc>
+          <d2p1:SourceFile z:Ref="9" i:nil="true" />
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="30" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:25.5203901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>54784</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="31">2mhpv2acrqb4#SV</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="32">
+            <_p z:Ref="30" i:nil="true" />
+            <d2p1:FullFilePath z:Id="33">D:\Isaac\HKMC LH SBW\CANoe\SysVarDef.xml</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="34" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-07T11:52:56.4249181+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>70656</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="35">d868r18mv3dq#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="36">
+            <_p z:Ref="34" i:nil="true" />
+            <d2p1:FullFilePath z:Id="37">D:\Isaac\HKMC LH SBW\CANoe\Databases\HKMC_LH_SBW.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2017-12-07T11:52:55.5149272+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="38" z:Size="1">
+            <d6p1:string z:Id="39">HKMC_LH_SBW</d6p1:string>
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="40" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:25.0773901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>86016</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="41">cgrivsvgt7re#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="42">
+            <_p z:Ref="40" i:nil="true" />
+            <d2p1:FullFilePath z:Id="43">D:\Isaac\HKMC LH SBW\CANoe\Databases\CAN_KOSTIA.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="44" z:Size="1">
+            <d6p1:string z:Id="45">HKMC_LH_SBW</d6p1:string>
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="46" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:25.4373901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>135168</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="47">69rdpnnv548u#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="48">
+            <_p z:Ref="46" i:nil="true" />
+            <d2p1:FullFilePath z:Id="49">D:\Isaac\HKMC LH SBW\CANoe\Databases\IFM.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="50" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="51" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:25.6283901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>123904</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="52">acf5g4jd35na#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="53">
+            <_p z:Ref="51" i:nil="true" />
+            <d2p1:FullFilePath z:Id="54">D:\Isaac\HKMC LH SBW\CANoe\Databases\UDS.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-26T13:30:12+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="55" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="56" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:25.7033901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>32768</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="57">c8qedrejqd87#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="58">
+            <_p z:Ref="56" i:nil="true" />
+            <d2p1:FullFilePath z:Id="59">D:\Isaac\HKMC LH SBW\CANoe\Databases\ChecksumCalc.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="60" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="61" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:25.7863901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>23040</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="62">307lk9c6nv2e#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="63">
+            <_p z:Ref="61" i:nil="true" />
+            <d2p1:FullFilePath z:Id="64">D:\Isaac\HKMC LH SBW\CANoe\Databases\ShiftByWire.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="65" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="66" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:25.9273901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>193024</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="67">n5p325b4cuqr#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="68">
+            <_p z:Ref="66" i:nil="true" />
+            <d2p1:FullFilePath z:Id="69">D:\Isaac\HKMC LH SBW\CANoe\Databases\Kostia.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="70" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="71" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:26.0103901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>31232</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="72">dglk3uh3gkqs#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="73">
+            <_p z:Ref="71" i:nil="true" />
+            <d2p1:FullFilePath z:Id="74">D:\Isaac\HKMC LH SBW\CANoe\Databases\KT_E90.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="75" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="76" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:26.0893901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>25088</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="77">nl3bo1987i08#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="78">
+            <_p z:Ref="76" i:nil="true" />
+            <d2p1:FullFilePath z:Id="79">D:\Isaac\HKMC LH SBW\CANoe\Databases\KTAppl.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="80" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="81" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:26.1753901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>49664</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="82">ttja6ma24tqn#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="83">
+            <_p z:Ref="81" i:nil="true" />
+            <d2p1:FullFilePath z:Id="84">D:\Isaac\HKMC LH SBW\CANoe\Databases\KTAppl_Local Fun.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="85" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="86" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:26.2753901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>25600</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="87">btu70gq269pf#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="88">
+            <_p z:Ref="86" i:nil="true" />
+            <d2p1:FullFilePath z:Id="89">D:\Isaac\HKMC LH SBW\CANoe\Databases\KTV_E60Red_EPROM.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="90" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="91" i:type="d2p1:DatabaseTlbFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="6" i:nil="true" />
+          <d2p1:Extension z:Ref="21" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:26.3453901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>6656</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="92">l9h0t3alsm9e#DB</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="93">
+            <_p z:Ref="91" i:nil="true" />
+            <d2p1:FullFilePath z:Id="94">D:\Isaac\HKMC LH SBW\CANoe\Databases\KT_E60Red.dbc</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-10-25T17:43:06+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+          <d2p1:IgnoredNodes z:Ref="17" i:nil="true" />
+          <d2p1:NamespaceMode>0</d2p1:NamespaceMode>
+          <d2p1:Networks xmlns:d6p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="95" z:Size="1">
+            <d6p1:string z:Ref="45" i:nil="true" />
+          </d2p1:Networks>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="96" i:type="d2p1:SimpleFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="97">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="98">.vparam</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-01-05T10:46:18.1383901+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>458</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="99">71rcp5ckjotn=PA</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescription z:Id="100">
+            <_p z:Ref="96" i:nil="true" />
+            <d2p1:FullFilePath z:Id="101">D:\Isaac\HKMC LH SBW\CANoe\HKMC LH SBW\HKMC LH SBW.vparam</d2p1:FullFilePath>
+            <d2p1:SourceModificationTime>2016-12-29T13:58:15.1562885+08:00</d2p1:SourceModificationTime>
+          </d2p1:FileSourceDescription>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="102" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Id="103">2.0.50.0</d2p1:AppVersion>
+          <d2p1:Extension z:Id="104">.</d2p1:Extension>
+          <d2p1:GeneratedFileModificationTime>2017-12-07T14:08:52.258364+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>54</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="105">pc0l7mltn946~3-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="106">
+            <Content z:Id="107" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="108">
+                <_p z:Ref="106" i:nil="true" />
+                <d2p1:FullFilePath z:Id="109">D:\Isaac\HKMC LH SBW\CANoe\HKMC LH SBW\basicFunctionTest.vtt</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-12-04T11:47:50.0530751+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="102" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+        <d2p1:FileSource z:Id="110" i:type="d2p1:MultiFileSource">
+          <_p z:Ref="3" i:nil="true" />
+          <d2p1:AppVersion z:Ref="103" i:nil="true" />
+          <d2p1:Extension z:Ref="104" i:nil="true" />
+          <d2p1:GeneratedFileModificationTime>2017-12-07T14:08:52.2883637+08:00</d2p1:GeneratedFileModificationTime>
+          <d2p1:GeneratedFileSize>34438</d2p1:GeneratedFileSize>
+          <d2p1:PersistencyKey z:Id="111">pc0l7mltn946~0-0</d2p1:PersistencyKey>
+          <d2p1:FileSourceDescriptions z:Id="112">
+            <Content z:Id="113" z:Size="1">
+              <d2p1:FileSourceDescription z:Id="114">
+                <_p z:Ref="112" i:nil="true" />
+                <d2p1:FullFilePath z:Id="115">D:\Isaac\HKMC LH SBW\CANoe\HKMC LH SBW\basicFunctionTest.can</d2p1:FullFilePath>
+                <d2p1:SourceModificationTime>2017-12-04T11:33:36.04179+08:00</d2p1:SourceModificationTime>
+              </d2p1:FileSourceDescription>
+            </Content>
+            <_p z:Ref="110" i:nil="true" />
+          </d2p1:FileSourceDescriptions>
+        </d2p1:FileSource>
+      </Content>
+      <_p z:Ref="2" i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/Vector.Reusable.ModelFramework" />
+    </d2p1:FileSources>
+  </TempFileMetainfo>
+</TempFileMetainfo>

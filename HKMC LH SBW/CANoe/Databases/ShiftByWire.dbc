@@ -1,0 +1,128 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+
+
+
+EV_ EnvUlkBut_G_SEL_DISP: 0 [0|0] "" 1 1 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCGW_CP12TxEnable: 0 [0|1] "" 1 2 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envTCU15TxEnable: 0 [0|1] "" 1 3 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envTCU14TxEnable: 0 [0|1] "" 1 4 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envTCU13TxEnable: 0 [0|1] "" 1 5 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envTCU12TxEnable: 0 [0|1] "" 1 6 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envTCU11TxEnable: 0 [0|1] "" 1 7 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvSending_TCU_PRelRequest: 0 [0|0] "" 1 8 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvSending_VS_TCU: 0 [0|0] "" 1 9 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvSending_G_SEL_DISP: 0 [0|0] "" 1 10 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvManu_G_SEL_DISP: 0 [0|0] "" 0 11 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvAutoGen_G_SEL_DISP: 0 [0|0] "" 1 12 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ EnvCluGearModeText_R: 0 [0|0] "" 0 13 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvCluGearModeText_P: 0 [0|0] "" 0 14 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvCluGearModeText_N: 0 [0|0] "" 0 15 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvCluGearModeText_MPlus: 0 [0|0] "" 0 16 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvCluGearModeText_MMinus: 0 [0|0] "" 0 17 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvCluGearModeText_M: 0 [0|0] "" 0 18 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvCluGearModeText_D: 0 [0|0] "" 0 19 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ EnvDriverWishText: 0 [0|0] "" 0 20 DUMMY_NODE_VECTOR8000 Vector__XXX;
+
+EV_ envENG_STAT: 0 [0|0] "" 0 21 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envVS: 0 [0|0] "" 0 22 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Tcu_GSel_BlinkReq: 0 [0|0] "" 0 23 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Tcu_PRelReq: 0 [0|0] "" 0 24 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envVS_TCU: 0 [0|0] "" 0 25 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envG_SEL_DISP: 0 [0|0] "" 0 26 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envWHL_SPD_FL: 0 [0|0] "" 0 27 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_RheostatLevel: 0 [0|0] "" 0 28 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_DetentOut: 0 [0|0] "" 0 29 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_PassiveAccessLock: 0 [0|0] "" 0 30 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_LightSwState: 0 [0|0] "" 0 31 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_AstDrSw: 0 [0|0] "" 0 32 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_DrvDrSw: 0 [0|0] "" 0 33 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_DrvKeyLockSw: 0 [0|0] "" 0 34 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_RKECmd: 0 [0|0] "" 0 35 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+EV_ envCF_Gway_IGNSw: 0 [0|0] "" 0 36 DUMMY_NODE_VECTOR0 Vector__XXX;
+
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "BusType" "CAN";
+VAL_ envENG_STAT 7 "Fault" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Running" 2 "Stalled" 1 "Cranking" 0 "Engine Stop" ;
+VAL_ envCF_Tcu_GSel_BlinkReq 1 "Request lamp blinking" 0 "No blink" ;
+VAL_ envCF_Tcu_PRelReq 1 "E-shifter Parking Release" 0 "No Request" ;
+VAL_ envG_SEL_DISP 15 "fault" 14 "Intermediate Position" 13 "Reserved" 12 "Paddle shift (D-position)" 11 "Sub-Rom Communication Error" 10 "Sub-Rom Communication" 9 "NOT DISPLAY AT CLUSTER" 8 "SPORT MODE/MANUAL/PADDLE" 7 "R" 6 "N" 5 "D" 4 "DS MODE" 3 "3" 2 "2" 1 "L" 0 "P" ;
+VAL_ envCF_Gway_RheostatLevel 21 "Step 21 (Detent)" 20 "20" 19 "19" 18 "18" 17 "17" 16 "16" 15 "15" 14 "14" 13 "13" 12 "12" 11 "11" 10 "10" 9 "9" 8 "8" 7 "7" 6 "6" 5 "5" 4 "4" 3 "3" 2 "2" 1 "1" 0 "Reserved" ;
+VAL_ envCF_Gway_DetentOut 1 "ON(Daytime Max)" 0 "OFF(Night Max)" ;
+VAL_ envCF_Gway_PassiveAccessLock 2 "Passive Trunk Lock" 1 "Lock" 0 "none" ;
+VAL_ envCF_Gway_LightSwState 3 "AutoLight Sw On" 2 "HeadLamp Low Sw On" 1 "Tail Sw On" 0 "Light Sw Off" ;
+VAL_ envCF_Gway_AstDrSw 1 "Open" 0 "Close" ;
+VAL_ envCF_Gway_DrvDrSw 2 "Timeout" 1 "Open" 0 "Close" ;
+VAL_ envCF_Gway_DrvKeyLockSw 1 "Lock" 0 "Off" ;
+VAL_ envCF_Gway_RKECmd 7 "Reserved" 6 "Reserved" 5 "Trunk(Or Tail Gate) " 4 "Panic Stop " 3 "Panic " 2 "Unlock " 1 "Lock " 0 "None" ;
+VAL_ envCF_Gway_IGNSw 7 "B-CAN Time-out" 6 "Reserved" 5 "Reserved" 4 "Start" 3 "IGN" 2 "ACC" 1 "Key In " 0 "Key Off" ;
+

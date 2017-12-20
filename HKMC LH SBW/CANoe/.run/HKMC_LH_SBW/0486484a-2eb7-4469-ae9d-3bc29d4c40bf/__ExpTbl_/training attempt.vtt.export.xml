@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <testcase name="ListTryTestCase" comment="" signature="" file="C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\training attempt\training attempt.vtt">
+    <parameter name="sensor" type="int64" raw_type="int" />
+    <parameter name="led11" type="int64" raw_type="int" />
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/tc_definitions[1]/tc_definition[1]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </testcase>
+  <function name="NewFunction" comment="" signature="" file="C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\training attempt\training attempt.vtt">
+    <document_position><![CDATA[<XPathDocumentPosition xmlns:SerializedType="Vector.ITE.Document.XPathDocumentPosition"><XPath>/ttroot/ttlib[1]/function_definitions[1]/function_definition[1]/name[1]</XPath></XPathDocumentPosition>]]></document_position>
+    <implementation_language lang="TTE" />
+  </function>
+</tclibrary>

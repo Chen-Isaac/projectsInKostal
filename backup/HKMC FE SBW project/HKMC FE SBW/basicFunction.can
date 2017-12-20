@@ -1,0 +1,852 @@
+/*@!Encoding:936*/
+includes
+{
+  //#include "D:\\Isaac\\Library\\Communication\\canCommunication.cin"
+  //#include "D:\\Isaac\\Library\\vtSystem\\vtSystemSetting.cin"//it seems \\ and \ both works at includes section
+  #include "D:\\Isaac\\Library\\report\\report.cin"
+  #include "D:\\Isaac\\Library\\productRelated\\productRelated.cin"
+}
+
+variables
+{
+  message Kostia_Request sendDiaq;
+  qword recDiagContent;
+  struct vt7001Cfg vt7001Cfg = {12,supint,out2,suply1};
+  struct vt2516Cfg ignCfg = {9,6,"IGN"};
+  struct vt2516Cfg accCfg = {9,5,"ACC"};
+  struct vt2516Cfg detentCfg = {9,2,"Detent"};
+  struct vt2516Cfg pwmInCfg = {9,3,"PWM_IN"};
+  struct vt2516Cfg pwmOutCfg = {9,1,"PWM_OUT"};
+  struct vLevelCfg ignVLevelCfg = {0,4,8,5};
+  struct vLevelCfg accVLevelCfg = {0,4,8,5};
+  struct vLevelCfg detentVLevelCfg = {8,5,0,4};//low is active
+  struct buttonPressOnSpecSigImpactCfg xOnCF_Lvr_xButtonStatusImpactCfg = {"X",1,500};
+  struct buttonPressOnSpecSigImpactCfg xOnCF_Lvr_xButtonStatus_ReversedImpactCfg = {"X",2,500};
+  struct sigOrientTwoStatInputCfg detentInputCfg = {0x450,0,1,{9,2,"Detent"},{8,5,0,4}};
+  enum indStat {
+    P = 0, 
+    R = 1, 
+    N = 2,
+    D = 3,
+    OFF = 4
+  };
+  struct sigOrientMultiStatInputCfg pHighLightIndInputCfg = {0x200,0,{9,3,"PWM_IN"},{100,0,12,8,5}};//P=0 8%~12%
+  struct sigOrientMultiStatInputCfg rHighLightIndInputCfg = {0x200,7,{9,3,"PWM_IN"},{100,0,12,18,5}};//R=7 18%~22%
+  struct sigOrientMultiStatInputCfg nHighLightIndInputCfg = {0x200,6,{9,3,"PWM_IN"},{100,0,12,28,5}};//N=6 28%~32%
+  struct sigOrientMultiStatInputCfg dHighLightIndInputCfg = {0x200,5,{9,3,"PWM_IN"},{100,0,12,38,5}};//D=5 38%~42%
+  struct sigOrientMultiStatInputCfg offHighLightIndInputCfg = {0x200,1,{9,3,"PWM_IN"},{100,0,12,48,5}};//off 1~4 8~15;Not-Display 48%~52%, Fault 88%~92%
+  struct specSignalUpdateResp pHighLightSigUpdateResp = {1,1000};//P lighted=1
+  struct specSignalUpdateResp rHighLightSigUpdateResp = {2,1000};//R lighted=2
+  struct specSignalUpdateResp nHighLightSigUpdateResp = {3,1000};//N lighted=3
+  struct specSignalUpdateResp dHighLightSigUpdateResp = {4,1000};//D lighted=4
+  struct specSignalUpdateResp offHighLightSigUpdateResp = {0,1000};//ALL light OFF=0
+}
+
+export void enterKostia (void) {
+  
+  testStep("Login-Request","Start to send Login-Request Service.");
+  sendDiaq.qword(0) = 0x5f4c4154534f4b01ll;
+  sendDiagCheckResp(sendDiaq,Kostia_Response,8,0x014b4f5354414c5fll);
+}
+
+export void fromIgnOnModeToNWashMode (void) {
+  setChannelOutputRandomVoltageAsDigitalLevel(accCfg,accVLevelCfg,High);//ACC ON
+  testWaitForTimeout(200);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//IGN OFF
+}
+
+export void fromIgnOnModeToNParkMode (void) {
+  setChannelOutputRandomVoltageAsDigitalLevel(accCfg,accVLevelCfg,Low);//ACC OFF
+  testWaitForTimeout(200);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//IGN OFF
+}
+
+export void fromIgnOffModeToSilenceMode (int drvDrSwSigVal) {
+  //make welcome function counter = 0
+  signalSettingAndReport(CF_Gway_DrvDrSw,drvDrSwSigVal);//close or open door
+  testWaitForTimeout(3*60*1000-200);//wait for 3mins,so welcome function counter must have already been 0 during 20s
+  testStep("wait","wait for 3min");
+}
+
+export void fromSilenceModeToIgnOnMode (int decideBySignalBool) {
+  signalSettingAndReport(CF_Gway_DrvDrSw,1);//open door
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//IGN ON
+}
+
+export void fromInitModeToSilenceMode (int drvDrSwSigVal, int wayNo) {
+  testStep("Read signal","$CF_Gway_DrvDrSw = %1.0f at the beginning.",$CF_Gway_DrvDrSw);
+  switch(wayNo) {
+    case 0://IGN is not detected ON in 20s
+      signalSettingAndReport(CF_Gway_DrvDrSw,1);//1=dooropen
+      testWaitForTimeout(20*1000-200);//wait 20s,so welcome counter must be equal to 0
+      testStep("wait","wait for 20s to make sure that IGN is not detected ON in 20s");
+      break;
+    case 1://
+      if ($CF_Gway_DrvDrSw == 1) {
+        testWaitForTimeout(20000);
+        testStep("wait","wait for 20s to make sure that welcome counter is equal to 0");
+      }
+      //testValidateTesterConfirmation("check $CF_Gway_DrvDrSw","",1);
+      signalSettingAndReport(CF_Gway_DrvDrSw,drvDrSwSigVal);//1=open,0=closed,2=B-CAN timeout
+      break;
+  }
+}
+
+export void fromSilenceModeToSleepMode (int wayNo) {
+  float current;
+  current = readVtSystemPowerSupplyCurrent(vt7001Cfg,0.05,0,_10mA_100mA,mA);
+  if (current > 0.002) {//it's in silence mode
+    switch (wayNo) {
+      case 0:
+        if ($CF_Gway_DrvDrSw == 0) {//$CF_Gway_DrvDrSw = door close
+          testWaitForTimeout(15000);
+          testStep("wait","wait for 15s");
+        }
+        else {
+          if ($CF_Gway_DrvDrSw == 1) {//door open
+            signalSettingAndReport(CF_Gway_DrvDrSw,0);//0 = door close
+            testWaitForTimeout(4000);
+          }
+          else {// B CAN TIMEOUT
+            signalSettingAndReport(CF_Gway_DrvDrSw,0);//0 = door close
+            testWaitForTimeout(15000);
+            testStep("wait","wait for 15s");
+          }
+        }
+        break;
+      case 1://door signal timeout
+        if (($CF_Gway_DrvDrSw == 0) || ($CF_Gway_DrvDrSw == 2)) {//$CF_Gway_DrvDrSw = door close
+          testDisableMsg(CGW1);
+          testWaitForTimeout(20000);
+          testStep("wait","wait for 20s");
+        }
+        else {
+          testDisableMsg(CGW1);
+          testWaitForTimeout(8000);
+        }
+        break;
+    }
+    
+    readVtSystemPowerSupplyCurrent(vt7001Cfg,0.001,0,all,mA);
+    /*testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,1);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,2);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,3);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,4);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,5);
+    testWaitForTimeout(1000);
+    readVtSystemPowerSupplyCurrent(12,2,0.001,0,6);
+    testEnableMsg(CGW1);*/
+  }
+  else //it's in sleep mode already
+    testStepFail("check mode","directly go into the sleep mode,no through silence mode.");
+}
+
+export void shutdownPowerAndEnterInitMode (float volt) {
+  vtSystemPowerSupplyVoltSetting(vt7001Cfg,0);
+  testWaitForTimeout(500);
+  readVtSystemPowerSupplyVolt(vt7001Cfg,0.2,-0.2);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//ign off
+  testWaitForTimeout(100);
+  vtSystemPowerSupplyVoltSetting(vt7001Cfg,volt);
+  readVtSystemPowerSupplyVolt(vt7001Cfg,volt+0.2,volt-0.2);
+}
+export void setInput_b_ILLStatus (int status,int setOnMode,int setClearMode) {
+  if (status) {//set Input_b_ILLStatus = on
+    setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+    signalSettingAndReport(CF_Gway_DrvDrSw,0);//0=closed
+    signalSettingAndReport(CF_Gway_RKECmd,0);//0=none 2=unlock
+    signalSettingAndReport(CF_Gway_SMKRKECmd,0);//0=none 2=unlock
+    switch (setOnMode) {
+      case 0://by IGN on
+        setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//ign on
+      break;
+      case 1://by Welcome counter is not equal to zero
+        signalSettingAndReport(CF_Gway_DrvDrSw,1);//Door Open Event(CF_Gway_DrvDrSw*) will set the counter)
+      break;
+    } 
+  }
+  else {//set Input_b_ILLStatus = off
+    signalSettingAndReport(CF_Gway_RKECmd,0);//0=none 2=unlock
+    signalSettingAndReport(CF_Gway_SMKRKECmd,0);//0=none 2=unlock
+    switch (setClearMode) {
+      /*case 0:         /////test this part in state machine
+        //enter sleep state
+      break;
+      case 1:
+        //enter silence state
+      break;*/
+      case 0://RKE Lock Command == Lock while IGN OFF
+        setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//ign off
+        signalSettingAndReport(CF_Gway_RKECmd,1);//1=lock
+      break; 
+      case 1://SMKRKE Command == Lock Event while IGN OFF
+        setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);//ign off
+        signalSettingAndReport(CF_Gway_SMKRKECmd,1);
+      break;
+    }
+  }
+}
+
+export testcase tryIni (void) {
+  int v;
+  char para1[100];
+  char para2[100];
+  v = getProfileInt("byHw","para3",-1,"C:\\Users\\chen106\\Desktop\\try.ini");
+  testStep("para3","%d",v);
+  getProfileString("byHw","para1","error", para1, elcount(para1), "C:\\Users\\chen106\\Desktop\\try.ini");
+  testStep("para1","%s",para1);
+  getProfileString("byHw","para2","error", para2, elcount(para2), "C:\\Users\\chen106\\Desktop\\try.ini");
+  testStep("para2","%s",para2);
+  
+  
+  //setChannelOutputRandomVoltageAsDigitalLevel(@para1,@para2,1);
+}
+
+export testcase powerOn (void) {
+  vtSystemPowerSupplyInitSetting(vt7001Cfg);
+  vtSystemPowerSupplyVoltSetting(vt7001Cfg,12);
+  readVtSystemPowerSupplyVolt(vt7001Cfg,12.2,11.8);
+  readVtSystemPowerSupplyCurrent(vt7001Cfg,0.2,0,_100mA_1A,mA);
+}
+
+export testcase powerOff (void) {
+  vtSystemPowerSupplyVoltSetting(vt7001Cfg,0);
+  readVtSystemPowerSupplyVolt(vt7001Cfg,0.25,-0.2);
+  readVtSystemPowerSupplyCurrent(vt7001Cfg,0.2,0,all,uA);
+}
+
+export testcase initProduct (void) {
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  signalSettingAndReport(CF_Vcu_GarSelDisp,0);
+  signalSettingAndReport(CF_Gway_IntTailAct,1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+}
+
+export testcase readSwVer (void) {
+  enterKostia();
+  testStep("Read software internal version","Start to read VM_SW_Internal.");
+  sendDiaq.qword(0) = 0x0c06120004ll;//page=0c for version info
+  recDiagContent = sendDiagCheckResp(sendDiaq,Kostia_Response,1,0x04ll);
+  decodeAsciiFromRecDiagThenPrint(recDiagContent,"The current software internal version is");
+  testStep("Read software external version","Start to read VM_SW_External.");
+  sendDiaq.qword(0) = 0x0c060c0004ll;//page=0c for version info
+  recDiagContent = sendDiagCheckResp(sendDiaq,Kostia_Response,1,0x04ll);
+  decodeAsciiFromRecDiagThenPrint(recDiagContent,"The current software external version is");
+  
+}
+
+export testcase oneTimeOneButtonFunctionCheck (int oneButtonPressMode,int ignValueLevel) {
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,(enum digitalLevel)ignValueLevel);
+  testWaitForTimeout(500);
+  testStep("test condition","Test happens under no botton pressed.");
+  if (($CF_Lvr_PButtonStatus ==2)&&($CF_Lvr_RButtonStatus ==2)&&($CF_Lvr_NButtonStatus == 2)&&($CF_Lvr_DButtonStatus == 2)&&($CF_Lvr_PRelStat == 2)&&($CF_Lvr_PButtonStatus_Reversed ==1)&&($CF_Lvr_RButtonStatus_Reversed ==1)&&($CF_Lvr_NButtonStatus_Reversed == 1)&&($CF_Lvr_DButtonStatus_Reversed == 1)&&($CF_Lvr_PRelButStatus_Reversed == 1))
+    testStepPass("Read button status","All the button status are correct when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  else
+    testStepFail("Read button status","Something wrong when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  checkProductPwmOutput(pwmOutCfg,100,50);//check if PWM is idle
+  switch (oneButtonPressMode) {
+    case 0://'P'
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P",2);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P",2);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      checkProductPwmOutput(pwmOutCfg,100,10);
+      break;
+    case 1://'R':
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"R",2);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"R",2);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,20+(!ignValueLevel)*30);
+      break;
+    case 2://'N':
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"N",2);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"N",2);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,30+(!ignValueLevel)*20);
+      break;
+    case 3://'D':
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"D",2);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"D",2);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,40+(!ignValueLevel)*10);
+      break;
+		case 4://PRelease
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"PRelease",9);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"PRelease",9);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,50+(!ignValueLevel)*20);
+		  break;
+  }
+}
+
+export testcase oneTimeTwoButtonFunctionCheck (int twoButtonPressMode,int ignValueLevel) {
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,(enum digitalLevel)ignValueLevel);
+  testWaitForTimeout(500);
+  testStep("test condition","Test happens under no botton pressed.");
+  if (($CF_Lvr_PButtonStatus ==2)&&($CF_Lvr_RButtonStatus ==2)&&($CF_Lvr_NButtonStatus == 2)&&($CF_Lvr_DButtonStatus == 2)&&($CF_Lvr_PRelStat == 2)&&($CF_Lvr_PButtonStatus_Reversed ==1)&&($CF_Lvr_RButtonStatus_Reversed ==1)&&($CF_Lvr_NButtonStatus_Reversed == 1)&&($CF_Lvr_DButtonStatus_Reversed == 1)&&($CF_Lvr_PRelButStatus_Reversed == 1))
+    testStepPass("Read button status","All the button status are correct when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  else
+    testStepFail("Read button status","Something wrong when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  checkProductPwmOutput(pwmOutCfg,100,50);//check if PWM is idle
+  switch (twoButtonPressMode) {
+    case 0://P R
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P&R",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P&R",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 1://P N
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P&N",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P&N",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 2://P D
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P&D",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P&D",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 3://P P-Release
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"P&PRelease",11);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"P&PRelease",11);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PButtonStatus,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PButtonStatus_Reversed,fulfillment);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 4://R N
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"R&N",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"R&N",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 5://R D
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"R&D",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"R&D",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 6://R P-Release
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"R&PRelease",11);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"R&PRelease",11);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_RButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_RButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 7://N D
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"N&D",4);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"N&D",4);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 8://N P-Release
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"N&P-Release",11);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"N&PRelease",11);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_NButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_NButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+    case 9://D P-Release
+      strncpy(xOnCF_Lvr_xButtonStatusImpactCfg.buttonName,"D&P-Release",11);
+      strncpy(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg.buttonName,"D&PRelease",11);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_DButtonStatus,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_DButtonStatus_Reversed,(enum demandResult)ignValueLevel);
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatusImpactCfg,CF_Lvr_PRelStat,(enum demandResult)(!ignValueLevel));
+      chkBtnPressImpactOnSpecSig(xOnCF_Lvr_xButtonStatus_ReversedImpactCfg,CF_Lvr_PRelButStatus_Reversed,(enum demandResult)(!ignValueLevel));
+      checkProductPwmOutput(pwmOutCfg,100,90);
+      break;
+  }
+}
+
+
+/*export testcase oneTimeThreeButtonFunctionCheck (int threeButtonPressMode,int ignValueLevel) {
+  setIgnStatus(ignValueLevel);
+  testWaitForTimeout(500);
+  testStep("test condition","Test happens under no botton pressed.");
+  if (($CF_Lvr_PButtonStatus ==2)&&($CF_Lvr_RButtonStatus ==2)&&($CF_Lvr_NButtonStatus == 2)&&($CF_Lvr_DButtonStatus == 2)&&($CF_Lvr_PRelStat == 2)&&($CF_Lvr_PButtonStatus_Reversed ==1)&&($CF_Lvr_RButtonStatus_Reversed ==1)&&($CF_Lvr_NButtonStatus_Reversed == 1)&&($CF_Lvr_DButtonStatus_Reversed == 1)&&($CF_Lvr_PRelButStatus_Reversed == 1))
+    testStepPass("Read button status","All the button status are correct when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  else
+    testStepFail("Read button status","Something wrong when no botton is pressed.$CF_Lvr_PButtonStatus=%1.0f,$CF_Lvr_RButtonStatus=%1.0f,$CF_Lvr_NButtonStatus=%1.0f,$CF_Lvr_DButtonStatus=%1.0f,$CF_Lvr_PRelStat=%1.0f,$CF_Lvr_PButtonStatus_Reversed=%1.0f,$CF_Lvr_RButtonStatus_Reversed=%1.0f,$CF_Lvr_NButtonStatus_Reversed=%1.0f,$CF_Lvr_DButtonStatus_Reversed=%1.0f,$CF_Lvr_PRelButStatus_Reversed=%1.0f",$CF_Lvr_PButtonStatus,$CF_Lvr_RButtonStatus,$CF_Lvr_NButtonStatus,$CF_Lvr_DButtonStatus,$CF_Lvr_PRelStat,$CF_Lvr_PButtonStatus_Reversed,$CF_Lvr_RButtonStatus_Reversed,$CF_Lvr_NButtonStatus_Reversed,$CF_Lvr_DButtonStatus_Reversed,$CF_Lvr_PRelButStatus_Reversed);
+  checkProductPwmOutput(9,1,100,50);//check if PWM is idle
+  if (ignValueLevel) {//@IGN ON
+    switch (threeButtonPressMode) {
+      case 0://P R N
+	      testValidateTesterConfirmation("","Press button P&R&N at a time",1);
+        testStep("test condition","Press button P&R&N.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+        checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",1);
+		    checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 1://P R D
+	      testValidateTesterConfirmation("","Press button P&R&D at a time",1);
+        testStep("test condition","Press button P&R&D.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+		    checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",1);
+        checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 2://P R P-Release
+	      testValidateTesterConfirmation("","Press button P&R&P-Release at a time",1);
+        testStep("test condition","Press button P&R&P-Release.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+		    checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",1);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 3://P N D
+	      testValidateTesterConfirmation("","Press button P&N&D at a time",1);
+        testStep("test condition","Press button R&N&D.");
+		    checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+		    checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",1);
+		    checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 4://P N P-Release
+	      testValidateTesterConfirmation("","Press button P&N&P-Release at a time",1);
+        testStep("test condition","Press button P&N&P-Release.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+        checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",1);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 5://P D P-Release
+	      testValidateTesterConfirmation("","Press button P&D&P-Release at a time",1);
+        testStep("test condition","Press button P&D&P-Release.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+        checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",1);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 6://R N D
+	      testValidateTesterConfirmation("","Press button R&N&D at a time",1);
+        testStep("test condition","Press button R&N&D.");
+        checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",1);
+		    checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",1);
+        checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 7://R N P-Release
+	      testValidateTesterConfirmation("","Press button R&N&P-Release at a time",1);
+        testStep("test condition","Press button N&D.");
+		    checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",1);
+        checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",1);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 8://R D P-Release
+	      testValidateTesterConfirmation("","Press button R&D&P-Release at a time",1);
+        testStep("test condition","Press button N&P-Release.");
+		    checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",1);
+		    checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",1);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 9://N D P-Release
+	      testValidateTesterConfirmation("","Press button N&D&P-Release at a time",1);
+        testStep("test condition","Press button D&P-Release.");
+		    checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",1);
+        checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",1);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+    }
+  }
+  else {//@IGN OFF
+    switch (threeButtonPressMode) {
+      case 0://P R N
+	      testValidateTesterConfirmation("","Press button P&R&N at a time",1);
+        testStep("test condition","Press button P&R&N.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+        checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",0);
+		    checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 1://P R D
+	      testValidateTesterConfirmation("","Press button P&R&D at a time",1);
+        testStep("test condition","Press button P&R&D.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+		    checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",0);
+        checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 2://P R P-Release
+	      testValidateTesterConfirmation("","Press button P&R&P-Release at a time",1);
+        testStep("test condition","Press button P&R&P-Release.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+		    checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",0);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 3://P N D
+	      testValidateTesterConfirmation("","Press button P&N&D at a time",1);
+        testStep("test condition","Press button R&N&D.");
+		    checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+		    checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",0);
+		    checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 4://P N P-Release
+	      testValidateTesterConfirmation("","Press button P&N&P-Release at a time",1);
+        testStep("test condition","Press button P&N&P-Release.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+        checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",0);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 5://P D P-Release
+	      testValidateTesterConfirmation("","Press button P&D&P-Release at a time",1);
+        testStep("test condition","Press button P&D&P-Release.");
+        checkButtonSignalOutput(CF_Lvr_PButtonStatus,CF_Lvr_PButtonStatus_Reversed,"P",1);
+        checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",0);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 6://R N D
+	      testValidateTesterConfirmation("","Press button R&N&D at a time",1);
+        testStep("test condition","Press button R&N&D.");
+        checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",0);
+		    checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",0);
+        checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",0);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 7://R N P-Release
+	      testValidateTesterConfirmation("","Press button R&N&P-Release at a time",1);
+        testStep("test condition","Press button N&D.");
+		    checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",0);
+        checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",0);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 8://R D P-Release
+	      testValidateTesterConfirmation("","Press button R&D&P-Release at a time",1);
+        testStep("test condition","Press button N&P-Release.");
+		    checkButtonSignalOutput(CF_Lvr_RButtonStatus,CF_Lvr_RButtonStatus_Reversed,"R",0);
+		    checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",0);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+      case 9://N D P-Release
+	      testValidateTesterConfirmation("","Press button N&D&P-Release at a time",1);
+        testStep("test condition","Press button D&P-Release.");
+		    checkButtonSignalOutput(CF_Lvr_NButtonStatus,CF_Lvr_NButtonStatus_Reversed,"N",0);
+        checkButtonSignalOutput(CF_Lvr_DButtonStatus,CF_Lvr_DButtonStatus_Reversed,"D",0);
+		    checkButtonSignalOutput(CF_Lvr_PRelStat,CF_Lvr_PRelButStatus_Reversed,"P-Release",1);
+        checkProductPwmOutput(9,1,100,90);
+        break;
+    }
+  }
+}*/
+
+export testcase testIndicatorControlFunctionStateChart (int setOnMode,int setClearMode) {
+  setInput_b_ILLStatus(0,0,setClearMode);
+  testValidateTesterConfirmation("check if highlight and backlight indicator are off.","",1);
+  setInput_b_ILLStatus(1,setOnMode,0);
+  testValidateTesterConfirmation("check if highlight and backlight indicator are on.","",1);
+}
+
+export testcase testHighLightIndicatorBehavior (enum indStat indStat,int decideBySignalBool) {
+  int fact;
+  char title[100];
+  switch (indStat) {
+    case P:
+      sigOrientMultiStatInputSetting(pHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,pHighLightSigUpdateResp);
+      strncpy(title,"check if P highlight indicator is lighten.",100);
+    break;
+    case R:
+      sigOrientMultiStatInputSetting(rHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,rHighLightSigUpdateResp);
+      strncpy(title,"check if R highlight indicator is lighten.",100);
+    break;
+    case N:
+      sigOrientMultiStatInputSetting(nHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,nHighLightSigUpdateResp);
+      strncpy(title,"check if N highlight indicator is lighten.",100);
+    break;
+    case D:
+      sigOrientMultiStatInputSetting(dHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,dHighLightSigUpdateResp);
+      strncpy(title,"check if D highlight indicator is lighten.",100);
+    break;
+    case OFF:
+      fact = random(2);
+      offHighLightIndInputCfg.specSigVal = fact*(random(4)+1)+(1-fact)*(random(8)+8);
+      offHighLightIndInputCfg.specStatPwmWaveCfg.dutyBase = fact*(48)+(1-fact)*(88);
+      sigOrientMultiStatInputSetting(offHighLightIndInputCfg,CF_Vcu_GarSelDisp,(enum determiningFactor)(!decideBySignalBool));
+      chkSignalUpdateResp(CF_Lvr_IndicatorStatus,offHighLightSigUpdateResp);
+      strncpy(title,"check if ALL highlight indicator is off.",100);
+    break;
+  }
+  testValidateTesterConfirmation(title,"",1);
+}
+
+export testcase testRheostatLevelRow1 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,0);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++) 
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight","",1);
+}
+
+export testcase testRheostatLevelRow2 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,0);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++)
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight","",1);
+}
+
+export testcase testRheostatLevelRow3_4 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,1);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow5_6 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,1); //0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow7 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testDisableMsg(CGW2);//disable $CF_Gway_IntTailAct
+  testWaitForTimeout(100);
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++) 
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight","",1);
+}
+
+export testcase testRheostatLevelRow8_9 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,Low);
+  testDisableMsg(CGW2);//disable $CF_Gway_IntTailAct
+  testWaitForTimeout(100);
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow10 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,0);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++) 
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for highlight and backlight is off.");
+  testValidateTesterConfirmation("check if illumination is 100% for highlight and backlight is off.","",1);
+}
+
+export testcase testRheostatLevelRow11 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,0);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++) 
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% for highlight and backlight is off.");
+  testValidateTesterConfirmation("check if illumination is 100% for highlight and backlight is off.","",1);
+}
+
+export testcase testRheostatLevelRow12_13 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,1);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow14_15 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testEnableMsg(CGW2);
+  signalSettingAndReport(CF_Gway_IntTailAct,1);//0=off,1=on
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+export testcase testRheostatLevelRow16 (int dentDecideBySignalBool) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testDisableMsg(CGW2);//disable $CF_Gway_IntTailAct
+  testWaitForTimeout(100);
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,(enum determiningFactor)(!dentDecideBySignalBool),High);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  if (dentDecideBySignalBool) {//$CF_GWAY_Detentout and $CF_Clu_RheostatLevel belongs to same message:EV_CP2
+    for (lightLevel = 0;lightLevel < 22;lightLevel++)
+      signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  }
+  testStep("check illumination","check if illumination is 100%% highlight indicator and backlight is off.");
+  testValidateTesterConfirmation("check if illumination is 100% highlight indicator and backlight is off.","",1);
+}
+
+export testcase testRheostatLevelRow17_18 (void) {
+  int lightLevel;
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);
+  testDisableMsg(CGW2);//disable $CF_Gway_IntTailAct
+  testWaitForTimeout(100);
+  sigOrientTwoStatInputSetting(detentInputCfg,CF_GWAY_Detentout,determinedBySignal,Low);//disable $CF_GWAY_Detentout will also disable $CF_Clu_RheostatLevel
+  for (lightLevel = 0;lightLevel < 21;lightLevel++) 
+    signalSettingAndReport(CF_Clu_RheostatLevel,lightLevel);
+  testStep("check illumination","check if highlight illumination is 60%%,backlight illumination is change with $CF_Clu_RheostatLevel.");
+  testValidateTesterConfirmation("","check if highlight illumination is 60%,backlight illumination is change with $CF_Clu_RheostatLevel.",1);
+  signalSettingAndReport(CF_Clu_RheostatLevel,21);
+  testStep("check illumination","check if illumination is 100%% for both highlight and backlight.");
+  testValidateTesterConfirmation("check if illumination is 100% for both highlight and backlight.","",1);
+}
+
+/*export testcase testFromInitModeToSleepMode (int drvDrSwSigVal) {
+  vtSystemPowerSupplyVoltSetting(12,2,0);
+  readVtSystemPowerSupplyVolt(12,2,0.2,-0.2);
+  setIgnStatus(0);
+  testWaitForTimeout(100);
+  vtSystemPowerSupplyVoltSetting(12,2,12);
+  readVtSystemPowerSupplyVolt(12,2,12.2,11.8);
+  readVtSystemPowerSupplyCurrent(12,2,0.2,0);
+  fromInitModeToSleepMode(drvDrSwSigVal);
+  testWaitForTimeout(3000);
+  testValidateTesterConfirmation("","",1);
+}*/
+
+export testcase checkOperationModeChangeFromIgnOnModeToInitModeToSilenceModeToSleep (int routeNo, int fromSilenceModeToSleepModeWayNo) {
+  switch (routeNo) {
+    case 0://shut down power --> init --> silence
+      testStep("route 0","route 0:shut down power --> init --> silence(way 0)");
+      shutdownPowerAndEnterInitMode(12);
+      fromInitModeToSilenceMode(1,0);
+      break;
+    case 1://shut down power --> init --> silence
+      testStep("route 1","route 1:shut down power --> init --> silence(way 1)");
+      shutdownPowerAndEnterInitMode(12);
+      fromInitModeToSilenceMode(0,1);
+      break;
+    case 2://shut down power --> init --> silence
+      testStep("route 2","route 2:shut down power --> init --> silence(way 2)");
+      shutdownPowerAndEnterInitMode(12);
+      fromInitModeToSilenceMode(2,1);
+      break;
+  }
+  testValidateTesterConfirmation("Check if TX is stoped to judge it has entered the silence mode or not","",1);
+  testValidateTesterConfirmation("Check if backlight and indicator turn off under the silence mode","",1);
+  fromSilenceModeToSleepMode(fromSilenceModeToSleepModeWayNo);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//return to ign on mode
+}
+
+export testcase checkOperationModeChangeFromIgnOnModeToNWashModeToSilenceModeToSleep (int drvDrSwSigVal,int throughNParkToSilenceBool,int fromSilenceModeToSleepModeWayNo) {
+  //ign on --> N WASH --> silence (door close/open/B CAN timeout)
+  if (throughNParkToSilenceBool)
+    testStep("route ","route:ign on -->N WASH --> N PARK -- silence");
+  else
+    testStep("route","route:ign on --> N WASH --> silence");
+  fromIgnOnModeToNWashMode();
+  if (throughNParkToSilenceBool)
+    setChannelOutputRandomVoltageAsDigitalLevel(accCfg,accVLevelCfg,Low);
+  fromIgnOffModeToSilenceMode(drvDrSwSigVal);
+  testValidateTesterConfirmation("Check if TX is stoped to judge it has entered the silence mode or not","",1);
+  testValidateTesterConfirmation("Check if backlight and indicator turn off under the silence mode","",1);
+  fromSilenceModeToSleepMode(fromSilenceModeToSleepModeWayNo);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//return to ign on mode
+}
+
+export testcase checkOperationModeChangeFromIgnOnModeToNParkModeToSilenceModeToSleep (int drvDrSwSigVal,int fromSilenceModeToSleepModeWayNo) {
+  testStep("route","route:ign on --> N PARK --> silence");
+  fromIgnOnModeToNParkMode();
+  fromIgnOffModeToSilenceMode(drvDrSwSigVal);  
+  testValidateTesterConfirmation("Check if TX is stoped to judge it has entered the silence mode or not","",1);
+  testValidateTesterConfirmation("Check if backlight and indicator turn off under the silence mode","",1);
+  fromSilenceModeToSleepMode(fromSilenceModeToSleepModeWayNo);
+  setChannelOutputRandomVoltageAsDigitalLevel(ignCfg,ignVLevelCfg,High);//return to ign on mode
+}

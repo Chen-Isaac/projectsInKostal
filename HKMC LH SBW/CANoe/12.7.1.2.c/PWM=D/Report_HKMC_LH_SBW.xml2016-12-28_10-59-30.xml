@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<testreport starttime="2016-12-28 10:59:03" timestamp="6515.457510" verdicts="2_basic">
+  <testunit starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+    <skippedsequence starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+      <title>Test preparation:Power supply initialization</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+      <title>11.5.1 P switch handling</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+      <title>11.6 Brake Input Handling</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+      <title>12.5.2 Sending Gear Position Pattern Sequence</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+      <title>12.6 Unlock Switch Handling</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+      <title>12.7.1.1 Door Open Auto P Mode</title>
+    </skippedfixture>
+    <testfixture>
+      <skippedtestcaselist starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+        <title>a. If driver seat belt is off, vehicle stop, gear D or R and brake on to off, then SBW send P signal.</title>
+        <skippedcount>4</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+        <title>b. If driver seat belt is off, vehicle stop, gear P or N and detecting position D or R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+        <skippedcount>4</skippedcount>
+      </skippedtestcaselist>
+      <testcaselist>
+        <skippedcase starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+          <title>c. If driver seat belt is off, vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU (canSigTimeoutBool=1,vehicleGearPosStatus=2)</title>
+        </skippedcase>
+        <testcase starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+          <preparation starttime="2016-12-28 10:59:03" timestamp="6515.457510">
+            <command timestamp="6515.457510" name="CANoe Standard Service">
+              <title>Prepare the graph to see CF_Lvr_PosInf ,CF_Lvr_PosCpl easily</title>
+              <teststep timestamp="6515.457510" level="2" type="user" ident="" result="na">Execute testValidateTesterConfirmation(&quot;Prepare the graph to see CF_Lvr_PosInf ,CF_Lvr_PosCpl easily&quot;, &quot;Prepare the graph to see CF_Lvr_PosInf ,CF_Lvr_PosCpl easily&quot;, 1)</teststep>
+              <teststep timestamp="6516.837528" level="0" type="user" ident="" result="pass">Question/Text: Prepare the graph to see CF_Lvr_PosInf ,CF_Lvr_PosCpl easily\nTester confirmed with &apos;Yes&apos;.</teststep>
+              <result timestamp="6516.837528" result="pass"/>
+            </command>
+            <teststep timestamp="6516.837528" level="0" type="user" ident="hardwire status" result="na">DOOR_OPEN float</teststep>
+            <teststep timestamp="6516.887528" level="0" type="user" ident="CF_Gway_DrvDrSw status" result="na">CF_Gway_DrvDrSw = 3</teststep>
+            <prepend endtime="2016-12-28 10:59:06" endtimestamp="6517.887528" />
+          </preparation>
+          <command timestamp="6517.887528" name="CAPL Inline">
+            <title>driver seat belt is off</title>
+            <result timestamp="6518.887528" result="pass"/>
+          </command>
+          <teststep timestamp="6518.887528" level="0" type="user" ident="vehicleSpeedOutputValid" result="na">VS_TCU signal occurs timeout or error value,WHL_SPD_FL is valid</teststep>
+          <teststep timestamp="6518.887528" level="2" type="user" ident="FaultInjection-function" result="pass">TestDisableMsg: Message TCU12 - successfully.</teststep>
+          <teststep timestamp="6518.887528" level="0" type="user" ident="VS_TCU status" result="na">VS_TCU = timeout</teststep>
+          <teststep timestamp="6518.887528" level="2" type="user" ident="FaultInjection-function" result="pass">TestEnableMsg: Message WHL_SPD11 - successfully.</teststep>
+          <teststep timestamp="6518.887528" level="2" type="user" ident="Set signal value" result="na">Signal: &apos;Signal:CAN1/PB/WHL_SPD11/WHL_SPD_FL&apos;.  Value: 58 </teststep>
+          <teststep timestamp="6518.937528" level="0" type="user" ident="WHL_SPD_FL status" result="na">WHL_SPD_FL =    58</teststep>
+          <command timestamp="6518.937528" name="Wait">
+            <title>Wait</title>
+            <teststep timestamp="6519.937528" level="2" type="user" ident="1" result="na">Waited for 1.000 s</teststep>
+            <result timestamp="6519.937528" result="pass"/>
+          </command>
+          <teststep timestamp="6519.937528" level="0" type="user" ident="vehicleGearPosOutputValid" result="na">G_SEL_DISP signal is timeout,PWM from TCU is valid</teststep>
+          <teststep timestamp="6519.937528" level="2" type="user" ident="FaultInjection-function" result="pass">TestDisableMsg: Message TCU11 - successfully.</teststep>
+          <teststep timestamp="6519.987528" level="0" type="user" ident="PWM status" result="na">PWMOutputDC = 40</teststep>
+          <command timestamp="6519.987528" name="Wait">
+            <title>Wait</title>
+            <teststep timestamp="6520.987528" level="2" type="user" ident="1" result="na">Waited for 1.000 s</teststep>
+            <result timestamp="6520.987528" result="pass"/>
+          </command>
+          <teststep timestamp="6521.019866" level="0" type="user" ident="Brake status" result="pass">Brake on:CF_Lvr_BkeAct=1</teststep>
+          <teststep timestamp="6522.605607" level="0" type="user" ident="" result="pass">Question/Text: Press Park Switch\nTester confirmed with &apos;Yes&apos;.</teststep>
+          <teststep timestamp="6522.605607" level="0" type="user" ident="Lever operation" result="na">Lever position at P</teststep>
+          <teststep timestamp="6525.529891" level="0" type="user" ident="Lever position at P" result="pass">CF_Lvr_PosInf =  1,CF_Lvr_PosCpl = 14.</teststep>
+          <teststep timestamp="6525.559891" level="0" type="user" ident="PWMDC measurement" result="fail">PWMDC = 13.2%,out of range.</teststep>
+          <teststep timestamp="6525.559891" level="0" type="user" ident="PWMFreq measurement" result="pass">PWMFreq = 100.0Hz.</teststep>
+          <details timestamp="6526.059891">
+            <title>CF_Lvr_PosInf after valid P switch press</title>
+            <image file="Report_HKMC_LH_SBW.xml2016-12-28_11-00-03/12.7.1.2.c make a valid P press.png"/>
+          </details>
+          <teststep timestamp="6526.589894" level="0" type="user" ident="Brake status" result="pass">Brake off:CF_Lvr_BkeAct=0</teststep>
+          <command timestamp="6526.589894" name="Wait">
+            <title>Wait</title>
+            <teststep timestamp="6527.589894" level="2" type="user" ident="1" result="na">Waited for 1.000 s</teststep>
+            <result timestamp="6527.589894" result="pass"/>
+          </command>
+          <command timestamp="6527.589894" name="CANoe Standard Service">
+            <title>handle lever at position Nr</title>
+            <teststep timestamp="6527.589894" level="2" type="user" ident="" result="na">Execute testValidateTesterConfirmation(&quot;handle lever at position Nr&quot;, &quot;Operate lever&quot;, 1)</teststep>
+            <teststep timestamp="6536.253793" level="0" type="user" ident="" result="pass">Question/Text: handle lever at position Nr\nTester confirmed with &apos;Yes&apos;.</teststep>
+            <result timestamp="6536.253793" result="pass"/>
+          </command>
+          <teststep timestamp="6536.253793" level="0" type="user" ident="Lever operation" result="na">Lever position at Nr</teststep>
+          <teststep timestamp="6536.253793" level="0" type="user" ident="Lever position at R" result="pass">CF_Lvr_PosInf =  8,CF_Lvr_PosCpl =  7.</teststep>
+          <teststep timestamp="6536.283793" level="0" type="user" ident="PWMDC measurement" result="fail">PWMDC = 33.2%,out of range.</teststep>
+          <teststep timestamp="6536.283793" level="0" type="user" ident="PWMFreq measurement" result="pass">PWMFreq = 100.0Hz.</teststep>
+          <command timestamp="6536.283793" name="Wait">
+            <title>Wait</title>
+            <teststep timestamp="6537.283793" level="2" type="user" ident="1" result="na">Waited for 1.000 s</teststep>
+            <result timestamp="6537.283793" result="pass"/>
+          </command>
+          <command timestamp="6537.283793" name="CANoe Standard Service">
+            <title>handle lever at position Nd</title>
+            <teststep timestamp="6537.283793" level="2" type="user" ident="" result="na">Execute testValidateTesterConfirmation(&quot;handle lever at position Nd&quot;, &quot;Operate lever&quot;, 1)</teststep>
+            <teststep timestamp="6542.382361" level="0" type="user" ident="" result="pass">Question/Text: handle lever at position Nd\nTester confirmed with &apos;Yes&apos;.</teststep>
+            <result timestamp="6542.382361" result="pass"/>
+          </command>
+          <teststep timestamp="6542.382361" level="0" type="user" ident="Lever operation" result="na">Lever position at Nd</teststep>
+          <teststep timestamp="6542.382361" level="0" type="user" ident="Lever position at R" result="pass">CF_Lvr_PosInf =  9,CF_Lvr_PosCpl =  6.</teststep>
+          <teststep timestamp="6542.412361" level="0" type="user" ident="PWMDC measurement" result="fail">PWMDC = 43.2%,out of range.</teststep>
+          <teststep timestamp="6542.412361" level="0" type="user" ident="PWMFreq measurement" result="pass">PWMFreq = 100.0Hz.</teststep>
+          <verdict time="2016-12-28 10:59:14" timestamp="6525.559891" endtime="2016-12-28 10:59:30" endtimestamp="6542.412361" result="fail" />
+          <title>c. If driver seat belt is off, vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU (canSigTimeoutBool=1,vehicleGearPosStatus=4)</title>
+        </testcase>
+        <skippedcase starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+          <title>c. If driver seat belt is off, vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU (canSigTimeoutBool=0,vehicleGearPosStatus=2)</title>
+        </skippedcase>
+        <skippedcase starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+          <title>c. If driver seat belt is off, vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU (canSigTimeoutBool=0,vehicleGearPosStatus=4)</title>
+        </skippedcase>
+        <title>c. If driver seat belt is off, vehicle stop, gear D or R and detecting position P or N, then SBW shall send detecting position to TCU</title>
+      </testcaselist>
+      <skippedtestcaselist starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+        <title>d. If driver seat belt is off, vehicle stop, gear D and detecting position R, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+        <skippedcount>2</skippedcount>
+      </skippedtestcaselist>
+      <skippedtestcaselist starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+        <title>e. If driver seat belt is off, vehicle stop, gear R and detecting position D, then SBW shall send warning message (CF_Lvr_ShtErrinf -&gt; bit5)</title>
+        <skippedcount>2</skippedcount>
+      </skippedtestcaselist>
+      <title>12.7.1.2 Driver Seat Belt OFF Auto P</title>
+    </testfixture>
+    <skippedfixture starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>12.7.1.3 Auto N Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>13 Illumination Control</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>15.3.1 PRA Logic: IG ON Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>15.3.2 PRA Logic: IG OFF Mode</title>
+    </skippedfixture>
+    <skippedfixture starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>15.3.3 Gear N IG OFF Mode</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>15.3.4 N Park Mode</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>15.3.5 Manual Release Function</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>15.3.6 TCU Eol Complete</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>15.3.7 Limp-Home function</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>15.3.8 PRA Disable Voltage</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>try</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>Test Sequence</title>
+    </skippedsequence>
+    <skippedfixture starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>confirm PRA position</title>
+    </skippedfixture>
+    <skippedsequence starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>Test completion:shutdown the power</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>try ig on</title>
+    </skippedsequence>
+    <skippedsequence starttime="2016-12-28 10:59:30" timestamp="6542.412361">
+      <title>try DTC</title>
+    </skippedsequence>
+    <verdict time="2016-12-28 10:59:14" timestamp="6525.559891" endtime="2016-12-28 10:59:30" endtimestamp="6542.412361" result="fail" />
+    <title>HKMC LH SBW</title>
+    <geninfo>
+      <xinfo>
+        <name>Name</name>
+        <description>HKMC LH SBW</description>
+      </xinfo>
+      <xinfo>
+        <name>Description</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>Version</name>
+        <description></description>
+      </xinfo>
+      <xinfo>
+        <name>File</name>
+        <description>C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\HKMC LH SBW\HKMC LH SBW.vtuexe</description>
+      </xinfo>
+      <xinfo>
+        <name>Last modification</name>
+        <description>2016-12-27, 17:02:10</description>
+      </xinfo>
+    </geninfo>
+  </testunit>
+  <verdict time="2016-12-28 10:59:14" timestamp="6525.559891" endtime="2016-12-28 10:59:30" endtimestamp="6542.412361" result="fail" />
+  <title>HKMC_LH_SBW</title>
+  <testlogfiles>
+    <testlogfile file="" />
+  </testlogfiles>
+  <engineer>
+    <xinfo>
+      <name>Windows Login Name</name>
+      <description>chen106</description>
+    </xinfo>
+  </engineer>
+  <testsetup>
+    <xinfo>
+      <name>Version</name>
+      <description>CANoe.LIN 8.5.112 (SP6)</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration</name>
+      <description>C:\Users\chen106\Desktop\HKMC LH SBW\CANoe\HKMC_LH_SBW.cfg</description>
+    </xinfo>
+    <xinfo>
+      <name>Configuration Comment</name>
+      <description></description>
+    </xinfo>
+    <xinfo>
+      <name>Test Configuration</name>
+      <description>HKMC_LH_SBW</description>
+    </xinfo>
+    <xinfo>
+      <name>Windows Computer Name</name>
+      <description>CN150449</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANoeILNLVector</name>
+      <description>CANoe Interaction Layer NL (Vector) Version 3.16.30 (Mar 17 2016 15:50:35) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANoeILNLVector.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANOEILNLDEFAULT</name>
+      <description>CANoe Interaction Layer NL (Default) Version 3.16.30 (Mar 17 2016 15:53:01) , C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANOEILNLDEFAULT.DLL</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module CANstress_NL</name>
+      <description>CANstress NodeLayer for CANoe Version 3.0.14, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\CANstress_NL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module FRStressNL</name>
+      <description>FRstress NL Version 1.0.26, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\FRStressNL.dll</description>
+    </xinfo>
+    <xinfo>
+      <name>Nodelayer Module J1939TestServiceLibraryNL</name>
+      <description>J1939 Test Service Library for CANoe, Version 8.5.112, C:\Program Files (x86)\Vector CANoe 8.5\Exec32\J1939TestServiceLibraryNL.dll</description>
+    </xinfo>
+  </testsetup>
+  <hardware name="CAN Channel Interfaces" category="CategoryCANIF">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="channel">
+          <name>Channel</name>
+          <description>1</description>
+        </xinfo>
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VN1630</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>501043</description>
+        </xinfo>
+        <xinfo key="driverdllversion">
+          <name>Driver DLL version</name>
+          <description>9.2.22</description>
+        </xinfo>
+        <xinfo key="driverversion">
+          <name>Driver version</name>
+          <description>8.9.22</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+  <hardware name="VT-System" category="vtsystem">
+    <xinfoset type="device">
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT8012</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>1031</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>0.0.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>452</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>450</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>448</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT1004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>449</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>331</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>348</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>329</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2004A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>339</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.0</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>174</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>234</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT2516A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>210</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.1.2</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x0</description>
+        </xinfo>
+      </xinfoobject>
+      <xinfoobject type="device">
+        <xinfo key="device">
+          <name>Device</name>
+          <description>VT7001A</description>
+        </xinfo>
+        <xinfo key="serialnumber">
+          <name>Serial number</name>
+          <description>267</description>
+        </xinfo>
+        <xinfo key="firmwareversion">
+          <name>Firmware version</name>
+          <description>2.0.5</description>
+        </xinfo>
+        <xinfo key="hardwareversion">
+          <name>Hardware version</name>
+          <description>0x10</description>
+        </xinfo>
+      </xinfoobject>
+    </xinfoset>
+  </hardware>
+</testreport>
+<!--footprint="6ae911cc41b14e25a2a26ff2cd700d9d" version="1"-->

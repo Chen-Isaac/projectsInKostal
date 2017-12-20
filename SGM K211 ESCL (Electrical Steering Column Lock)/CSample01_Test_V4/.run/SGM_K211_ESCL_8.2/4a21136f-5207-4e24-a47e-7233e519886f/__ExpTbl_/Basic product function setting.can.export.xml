@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <enumeration name="vt7001MeasureRange" namespace="" comment="" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1138</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">all</element>
+    <element raw_value="1">_100uA_1mA</element>
+    <element raw_value="2">_1mA_10mA</element>
+    <element raw_value="3">_10mA_100mA</element>
+    <element raw_value="4">_100mA_1A</element>
+    <element raw_value="5">_1A_10A</element>
+    <element raw_value="6">_10A_100A</element>
+  </enumeration>
+  <enumeration name="currentUnit" namespace="" comment="" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1298</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">uA</element>
+    <element raw_value="1">mA</element>
+    <element raw_value="2">A</element>
+  </enumeration>
+  <enumeration name="digitalLevel" namespace="" comment="" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1065</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">Low</element>
+    <element raw_value="1">High</element>
+    <element raw_value="2">Floating</element>
+  </enumeration>
+  <enumeration name="connectStat" namespace="" comment="" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1358</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">disconnect</element>
+    <element raw_value="1">connect</element>
+  </enumeration>
+  <enumeration name="determiningFactor" namespace="" comment="" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin" integral_type="long">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>185</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+    <element raw_value="0">determinedBySignal</element>
+    <element raw_value="1">determinedByHardware</element>
+  </enumeration>
+  <function name="getCfgDataArray" comment="****************ini file data handle**************************&#xA;" signature="void getCfgDataArray(char section[], char entry[], char cfgDataArray[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="section" type="string" raw_type="char[]" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="cfgDataArray" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2071</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="getCfgStrArray" comment="" signature="int getCfgStrArray(char section[], char entry[], char cfgStrArray[][])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int" raw_type="int" />
+    <parameter name="section" type="string" raw_type="char[]" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="cfgStrArray" type="unsupported" raw_type="char[][]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2373</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="getCfgFuncArray" comment="" signature="int getCfgFuncArray(char section[], char entry[], char cfgFuncArray[][][], int paraNum[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int" raw_type="int" />
+    <parameter name="section" type="string" raw_type="char[]" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="cfgFuncArray" type="unsupported" raw_type="char[][][]" />
+    <parameter name="paraNum" type="unsupported" raw_type="int[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>3184</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="getDataFromBinFile" comment="***************bin file data handle***************************&#xA;" signature="qword getDataFromBinFile(char filePath[], qword offsetBytePos, int byteLen)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="qword" raw_type="qword" />
+    <parameter name="filePath" type="string" raw_type="char[]" />
+    <parameter name="offsetBytePos" type="qword" raw_type="qword" />
+    <parameter name="byteLen" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4508</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="getShortSigNameStr" comment="*************************get signal property*************************************&#xA;" signature="void getShortSigNameStr(signal sig, char shortSigNameStr[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="sig" type="signal" raw_type="signal" />
+    <parameter name="shortSigNameStr" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>5397</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sigStatGet" comment="***************************report record related********************************&#xA;" signature="void sigStatGet(char sig[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="sig" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>5912</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="signalSetting" comment="*************************CAN LIN communication********************************&#xA;" signature="void signalSetting(char sigName[], float valueBase, int range)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="sigName" type="string" raw_type="char[]" />
+    <parameter name="valueBase" type="float" raw_type="float" />
+    <parameter name="range" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>6103</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="signalContSetting" comment="" signature="void signalContSetting(char settingSignal[], float startVal, int range, long msGapTime)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="settingSignal" type="string" raw_type="char[]" />
+    <parameter name="startVal" type="float" raw_type="float" />
+    <parameter name="range" type="int" raw_type="int" />
+    <parameter name="msGapTime" type="long" raw_type="long" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>6891</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="cfgLinMsgAndSend" comment="" signature="int cfgLinMsgAndSend(char section[], char entry[], char diagInfo[][], linMessage sendDiag, linMessage recDiag)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int" raw_type="int" />
+    <parameter name="section" type="string" raw_type="char[]" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="diagInfo" type="unsupported" raw_type="char[][]" />
+    <parameter name="sendDiag" type="unsupported" raw_type="linMessage" />
+    <parameter name="recDiag" type="unsupported" raw_type="linMessage" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>7447</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="cfgCanMsgAndSend" comment="" signature="int cfgCanMsgAndSend(char section[], char entry[], char diagInfo[][], message sendDiag, message recDiag)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int" raw_type="int" />
+    <parameter name="section" type="string" raw_type="char[]" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="diagInfo" type="unsupported" raw_type="char[][]" />
+    <parameter name="sendDiag" type="unsupported" raw_type="message" />
+    <parameter name="recDiag" type="unsupported" raw_type="message" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>8647</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sendCanUdsDiagChkResp" comment="" signature="int sendCanUdsDiagChkResp(char entry[], byte recMsg[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int" raw_type="int" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="recMsg" type="data" raw_type="byte[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>9883</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sendCanKostiaDiagChkResp" comment="" signature="int sendCanKostiaDiagChkResp(char entry[], byte recMsg[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int" raw_type="int" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="recMsg" type="data" raw_type="byte[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>12762</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sendLinUdsDiagChkResp" comment="" signature="int sendLinUdsDiagChkResp(char entry[], byte recMsg[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int" raw_type="int" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="recMsg" type="data" raw_type="byte[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>14576</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sendLinKostiaDiagChkResp" comment="" signature="int sendLinKostiaDiagChkResp(char entry[], byte recMsg[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int" raw_type="int" />
+    <parameter name="entry" type="string" raw_type="char[]" />
+    <parameter name="recMsg" type="data" raw_type="byte[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>17148</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="wait" comment="" signature="void wait(dword waitMs)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="waitMs" type="dword" raw_type="dword" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>18894</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="decodeAsciiFromRecDiag" comment="************************ communication data analyze ********************************&#xA;" signature="void decodeAsciiFromRecDiag(byte recMsg[], int arrayLen, int offsetBytePos, char reportContent[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="recMsg" type="data" raw_type="byte[]" />
+    <parameter name="arrayLen" type="int" raw_type="int" />
+    <parameter name="offsetBytePos" type="int" raw_type="int" />
+    <parameter name="reportContent" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>19027</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSysPwrSupInit" comment="***************************vtSystem related************************************&#xA;" signature="void vtSysPwrSupInit(char vt7001CfgEntry[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="vt7001CfgEntry" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>19632</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSysWithExPwrSupInit" comment="" signature="void vtSysWithExPwrSupInit(char vt7001CfgEntry[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="vt7001CfgEntry" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>20790</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSysPwrSupVoltSet" comment="" signature="void vtSysPwrSupVoltSet(char vt7001CfgEntry[], float volt)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="vt7001CfgEntry" type="string" raw_type="char[]" />
+    <parameter name="volt" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>21937</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSysExPwrSupSet" comment="" signature="void vtSysExPwrSupSet(char vt7001CfgEntry[], float volt, float maxI, int k)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="vt7001CfgEntry" type="string" raw_type="char[]" />
+    <parameter name="volt" type="float" raw_type="float" />
+    <parameter name="maxI" type="float" raw_type="float" />
+    <parameter name="k" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>22350</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSysPwrSupVoltGet" comment="" signature="float vtSysPwrSupVoltGet(char vt7001CfgEntry[], float highLimitV, float lowLimitV)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="float" raw_type="float" />
+    <parameter name="vt7001CfgEntry" type="string" raw_type="char[]" />
+    <parameter name="highLimitV" type="float" raw_type="float" />
+    <parameter name="lowLimitV" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>23400</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="vtSysPwrSupCurrGet" comment="" signature="float vtSysPwrSupCurrGet(char vt7001CfgEntry[], float highLimitA, float lowLimitA, enum vt7001MeasureRange vt7001MeasureRange, enum currentUnit currentUnit)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="float" raw_type="float" />
+    <parameter name="vt7001CfgEntry" type="string" raw_type="char[]" />
+    <parameter name="highLimitA" type="float" raw_type="float" />
+    <parameter name="lowLimitA" type="float" raw_type="float" />
+    <parameter name="vt7001MeasureRange" type="enum vt7001MeasureRange" raw_type="vt7001MeasureRange" />
+    <parameter name="currentUnit" type="enum currentUnit" raw_type="currentUnit" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>24102</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="prodPwmOutChk" comment="" signature="void prodPwmOutChk(char vt2516CfgEntry[], float expectedFreq, float expectedDuty, int deviationRange)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="vt2516CfgEntry" type="string" raw_type="char[]" />
+    <parameter name="expectedFreq" type="float" raw_type="float" />
+    <parameter name="expectedDuty" type="float" raw_type="float" />
+    <parameter name="deviationRange" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>25328</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="pwmRiseStartTimingMeas" comment="" signature="int64 pwmRiseStartTimingMeas(char pinName[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int64" raw_type="int64" />
+    <parameter name="pinName" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>27601</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="pwmRiseEndTimingMeas" comment="" signature="int64 pwmRiseEndTimingMeas(char pinName[], float expectedFreq, float expectedDuty, int deviationRange)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int64" raw_type="int64" />
+    <parameter name="pinName" type="string" raw_type="char[]" />
+    <parameter name="expectedFreq" type="float" raw_type="float" />
+    <parameter name="expectedDuty" type="float" raw_type="float" />
+    <parameter name="deviationRange" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>28921</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="pwmFallStartTimingMeas" comment="" signature="int64 pwmFallStartTimingMeas(char pinName[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int64" raw_type="int64" />
+    <parameter name="pinName" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>31908</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="pwmFallEndTimingMeas" comment="" signature="int64 pwmFallEndTimingMeas(char pinName[], float expectedFreq, float expectedDuty, int deviationRange)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <return type="int64" raw_type="int64" />
+    <parameter name="pinName" type="string" raw_type="char[]" />
+    <parameter name="expectedFreq" type="float" raw_type="float" />
+    <parameter name="expectedDuty" type="float" raw_type="float" />
+    <parameter name="deviationRange" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>33308</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="prodPwmOutRisingEdgeMeas" comment="" signature="void prodPwmOutRisingEdgeMeas(char pwmMode[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="pwmMode" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>36394</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="prodPwmOutKeepTimeMeas" comment="" signature="void prodPwmOutKeepTimeMeas(char pwmMode[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="pwmMode" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>37287</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="prodPwmOutFallingEdgeMeas" comment="" signature="void prodPwmOutFallingEdgeMeas(char pwmMode[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="pwmMode" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>38335</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="prodPwmOutRiseFallCurveMeas" comment="" signature="void prodPwmOutRiseFallCurveMeas(char pwmMode[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="pwmMode" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>39233</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="chFixVoltDOSet" comment="" signature="void chFixVoltDOSet(char vt2516CfgEntry[], enum digitalLevel level)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="vt2516CfgEntry" type="string" raw_type="char[]" />
+    <parameter name="level" type="enum digitalLevel" raw_type="digitalLevel" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>45781</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="chAOSet" comment="" signature="void chAOSet(char vt2516CfgEntry[], float analogValue)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="vt2516CfgEntry" type="string" raw_type="char[]" />
+    <parameter name="analogValue" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>47162</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="chRamVoltDOSet" comment="" signature="void chRamVoltDOSet(char pinNameEntry[], enum digitalLevel level)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="pinNameEntry" type="string" raw_type="char[]" />
+    <parameter name="level" type="enum digitalLevel" raw_type="digitalLevel" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>48155</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="chPwmOutSet" comment="" signature="void chPwmOutSet(char pin[], char pwmWaveCfgEntry[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="pin" type="string" raw_type="char[]" />
+    <parameter name="pwmWaveCfgEntry" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>48520</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="chLoadConnectStatSet" comment="" signature="void chLoadConnectStatSet(char vt2516CfgEntry[], enum connectStat stat)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="vt2516CfgEntry" type="string" raw_type="char[]" />
+    <parameter name="stat" type="enum connectStat" raw_type="connectStat" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>49999</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="btnPrsImpOnSpecSigChk" comment="***********************Product function related*****************************&#xA;" signature="void btnPrsImpOnSpecSigChk(char button[], int revPinVoltLevel)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="button" type="string" raw_type="char[]" />
+    <parameter name="revPinVoltLevel" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>50559</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="btnPrsImpOnSpecPwmChk" comment="" signature="void btnPrsImpOnSpecPwmChk(char button[], int impFactVal)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="button" type="string" raw_type="char[]" />
+    <parameter name="impFactVal" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>52987</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sigDirTwoStatInSet" comment="" signature="void sigDirTwoStatInSet(char pin[], enum determiningFactor dFct, enum digitalLevel level)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="pin" type="string" raw_type="char[]" />
+    <parameter name="dFct" type="enum determiningFactor" raw_type="determiningFactor" />
+    <parameter name="level" type="enum digitalLevel" raw_type="digitalLevel" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>53834</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sigDirMulStatInSet" comment="" signature="void sigDirMulStatInSet(char specStat[], enum determiningFactor dFct)" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="specStat" type="string" raw_type="char[]" />
+    <parameter name="dFct" type="enum determiningFactor" raw_type="determiningFactor" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>54488</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="specStatImpOnSigChk" comment="" signature="void specStatImpOnSigChk(char specStat[])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="specStat" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>55062</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="stateMachine" comment="" signature="void stateMachine(char stateMachineSection[], int routeNum[], char paraPick[][][])" file="D:\\Isaac\\Library\\KostalSoftwareTestLibrary.cin">
+    <parameter name="stateMachineSection" type="string" raw_type="char[]" />
+    <parameter name="routeNum" type="unsupported" raw_type="int[]" />
+    <parameter name="paraPick" type="unsupported" raw_type="char[][][]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>55757</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readAsciiFromDiagResp" comment="" signature="void readAsciiFromDiagResp(qword msgRec, int beginByteIndex, int checkByteCount, char testStepStatus[])" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="msgRec" type="qword" raw_type="qword" />
+    <parameter name="beginByteIndex" type="int" raw_type="int" />
+    <parameter name="checkByteCount" type="int" raw_type="int" />
+    <parameter name="testStepStatus" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>2434</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <testcase name="sysRs627" comment="" signature="testcase sysRs627(float volt)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="volt" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4254</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs628" comment="" signature="testcase sysRs628(float volt)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="volt" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4866</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs660" comment="" signature="testcase sysRs660(int sysPwrMdStatus)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>6405</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs759_checkDoorOnly" comment="" signature="testcase sysRs759_checkDoorOnly(int sysPwrMdStatus, int engSpdStatVal)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <parameter name="engSpdStatVal" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>9741</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs759" comment="" signature="testcase sysRs759(int sysPwrMdStatus, int engSpdStatVal)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <parameter name="engSpdStatVal" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>12141</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs845" comment="" signature="testcase sysRs845(int sysPwrMdStatus)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>15114</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="tryDll" comment="" signature="testcase tryDll(char szPara2[], char szPassword[], char szPara3[], char szHash[])" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="szPara2" type="string" raw_type="char[]" />
+    <parameter name="szPassword" type="string" raw_type="char[]" />
+    <parameter name="szPara3" type="string" raw_type="char[]" />
+    <parameter name="szHash" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>22690</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="powerOn" comment="" signature="testcase powerOn()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>22872</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="powerOff" comment="" signature="testcase powerOff()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>22955</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="initProduct" comment="" signature="testcase initProduct()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>23040</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="try" comment="" signature="testcase try()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>23131</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+</tclibrary>

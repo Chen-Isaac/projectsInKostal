@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tclibrary>
+  <function name="setInvertedIgn" comment="" signature="void setInvertedIgn(int status)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="status" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>104</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setCommEnableWakeup" comment="" signature="void setCommEnableWakeup(int status)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="status" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>562</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setSystemPowerMode" comment="" signature="void setSystemPowerMode(int status)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="status" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1046</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="setPwrMdWithoutSignal" comment="" signature="void setPwrMdWithoutSignal(int sysPwrMdStatus)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1246</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="sendDiagCheckResp" comment="" signature="qword sendDiagCheckResp(message msgSend, dbMessage msgRecDb, int checkByteNumFromBeginning, qword byteContent)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <return type="qword" raw_type="qword" />
+    <parameter name="msgSend" type="unsupported" raw_type="message" />
+    <parameter name="msgRecDb" type="unsupported" raw_type="dbMessage" />
+    <parameter name="checkByteNumFromBeginning" type="int" raw_type="int" />
+    <parameter name="byteContent" type="qword" raw_type="qword" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>1949</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="enterKostia" comment="" signature="int enterKostia()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <return type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>3112</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readAsciiFromDiagResp" comment="" signature="void readAsciiFromDiagResp(qword msgRec, int beginByteIndex, int checkByteCount, char testStepStatus[])" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="msgRec" type="qword" raw_type="qword" />
+    <parameter name="beginByteIndex" type="int" raw_type="int" />
+    <parameter name="checkByteCount" type="int" raw_type="int" />
+    <parameter name="testStepStatus" type="string" raw_type="char[]" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4103</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readVersion" comment="" signature="void readVersion()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4492</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="exitKostia" comment="" signature="void exitKostia(int mecValue, word keyToSeed)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="mecValue" type="int" raw_type="int" />
+    <parameter name="keyToSeed" type="word" raw_type="word" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>4974</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <testcase name="sysRs627" comment="" signature="testcase sysRs627(float volt)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="volt" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>5929</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs628" comment="" signature="testcase sysRs628(float volt)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="volt" type="float" raw_type="float" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>6541</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs642" comment="" signature="testcase sysRs642(int sysPwrMdStatus)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>7202</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs660" comment="" signature="testcase sysRs660(int sysPwrMdStatus)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>8076</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs759_checkDoorOnly" comment="" signature="testcase sysRs759_checkDoorOnly(int sysPwrMdStatus, int engSpdStatVal)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <parameter name="engSpdStatVal" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>11412</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs759" comment="" signature="testcase sysRs759(int sysPwrMdStatus, int engSpdStatVal)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <parameter name="engSpdStatVal" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>13812</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <testcase name="sysRs845" comment="" signature="testcase sysRs845(int sysPwrMdStatus)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>16785</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+  <function name="updateMECAtAssemblyMode" comment="" signature="void updateMECAtAssemblyMode(int mecValue)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="mecValue" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>16983</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="writeSecCode" comment="" signature="void writeSecCode(dword secCode)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="secCode" type="dword" raw_type="dword" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>17929</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="relearnUnlockPassword" comment="" signature="void relearnUnlockPassword(int mecValue, dword secCode, word keyToSeed, int sysPwrMdStatus)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="mecValue" type="int" raw_type="int" />
+    <parameter name="secCode" type="dword" raw_type="dword" />
+    <parameter name="keyToSeed" type="word" raw_type="word" />
+    <parameter name="sysPwrMdStatus" type="int" raw_type="int" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>18273</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="enterSecurityAccess" comment="" signature="void enterSecurityAccess(byte mecValue, word keyToSeed)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="mecValue" type="byte" raw_type="byte" />
+    <parameter name="keyToSeed" type="word" raw_type="word" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>20588</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="securityAccessDeviceControl" comment="" signature="void securityAccessDeviceControl(byte controlByte, dword secCode)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="controlByte" type="byte" raw_type="byte" />
+    <parameter name="secCode" type="dword" raw_type="dword" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>21435</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readSecurityCodeStatusFlags" comment="" signature="byte readSecurityCodeStatusFlags()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <return type="byte" raw_type="byte" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>21706</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="readMECValue" comment="" signature="byte readMECValue()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <return type="byte" raw_type="byte" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>21932</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="checkSecurityAccessStateAfterInitialPowerApply" comment="" signature="byte checkSecurityAccessStateAfterInitialPowerApply()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <return type="byte" raw_type="byte" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>22167</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <function name="changeNormalModeToAssemblyMode" comment="" signature="void changeNormalModeToAssemblyMode()" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>23102</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </function>
+  <testcase name="testInit" comment="" signature="testcase testInit(word keyToSeed)" file="D:\Isaac\SGM K211 ESCL (Electrical Steering Column Lock)\CSample01_Test_V4\SGM K211 ESCL\Basic product function setting.can">
+    <parameter name="keyToSeed" type="word" raw_type="word" />
+    <document_position><![CDATA[<OffsetDocumentPosition xmlns:SerializedType="Vector.ITE.Document.OffsetDocumentPosition"><Offset>23753</Offset></OffsetDocumentPosition>]]></document_position>
+    <implementation_language lang="CAPL" />
+  </testcase>
+</tclibrary>

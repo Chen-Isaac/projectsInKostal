@@ -1,0 +1,1745 @@
+/* ***********************************************************************/
+/*                                                                       */
+/*  LIN DESCRIPTION FILE                                                 */
+/*                                                                       */
+/*  Date:          16.10.2015                                            */
+/*  Project:       MLBevo_Konzern                                        */
+/*  Version:       V8.11.00E                                             */
+/*                                                                       */
+/*  Network:       MLBevo_BCM1_LIN2                                      */
+/*  Slave(s):      EC_Spiegel          EC-Innenspiegel                   */
+/*                 LIM                 Innenlichtmodul                   */
+/*                 LIM2                Innenlichtmodul 2                 */
+/*                 TCH                 Thermo Cup Holder                 */
+/*                 UGDO_B              Bedienungseinheit f?             */
+/*                                     Garagentor?fnung                 */
+/*                 UGDO_S              Steuerger? f? Garagentor?fnung */
+/*  Master:        BCM1                Body Control Modul 1              */
+/*                                                                       */
+/*  Ersteller:     Benjamin Pregel     I/EE-82                           */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*  SYSTEMPARAMETER                                                      */
+/*                                                                       */
+/*  Spannungsversorgung:       BCM1                Kl.30                 */
+/*                             EC_Spiegel          Kl.15                 */
+/*                             LIM                 Kl.30                 */
+/*                             LIM2                Kl.30                 */
+/*                             TCH                 Kl.15                 */
+/*                             UGDO_B              Kl.15                 */
+/*                             UGDO_S              Kl.30                 */
+/*                                                                       */
+/*  Sleep / WakeUp:            BCM1                Ja, CAN aktiv         */
+/*                             EC_Spiegel          Nein                  */
+/*                             LIM                 Nein                  */
+/*                             LIM2                Nein                  */
+/*                             TCH                 Nein                  */
+/*                             UGDO_B              Nein                  */
+/*                             UGDO_S              Nein                  */
+/*                                                                       */
+/*  Diagnoseklasse:            BCM1                4                     */
+/*                             EC_Spiegel          1                     */
+/*                             LIM                 2                     */
+/*                             LIM2                2F                    */
+/*                             TCH                 1                     */
+/*                             UGDO_B              2                     */
+/*                             UGDO_S              2F                    */
+/*                                                                       */
+/*  ScheduleTable:             ST1, DiagRequest, DiagResponse,           */
+/*                             FlashRequest, FlashResponse               */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*  AENDERUNGSHISTORIE                                                   */
+/*                                                                       */
+/*  31.01.2013 V8.05F                                                    */
+/*                                                                       */
+/*  05.02.2013 V8.05.01F                                                 */
+/*             - BugFix: BCM1 als Sender des Signals DI_KL_58xs          */
+/*             eingefuegt                                                */
+/*  29.05.2013 V8.06.00E                                                 */
+/*             - Das Signal ISP_Dimmung_Aussensp wurde durch             */
+/*             ISP_Dimmung_ASP_02 ersetzt                                */
+/*  20.06.2013 V8.06F                                                    */
+/*             - Final-Release IS6                                       */
+/*  04.11.2013 - ST1 geaendert:                                          */
+/*             LIMs_01 2mal in der Schedule                              */
+/*  20.11.2013 - Signal entfaellt                                        */
+/*             BEM_Leistung_Freigabe                                     */
+/*             V8.07.00E                                                 */
+/*             - Neue Signale eingefuegt: LIM_S_Rollo_hi/_vo;            */
+/*             LIM_S_SAD_hi/vo; LIM_TK_Funktion_Status;                  */
+/*             BCM1_TK_Funktion; HLR_TCH_Freigabe; BCM1_TCH_HLR_Anf      */
+/*  22.11.2013 V8.07.00E                                                 */
+/*             - ST1 geaendert: LIMs_01 2mal in der Schedule             */
+/*                                                                       */
+/*             - Signal entfallen: BEM_Leistung_Freigabe                 */
+/*                                                                       */
+/*             - Neue Signale eingefuegt: LIM_S_Rollo_hi;                */
+/*             LIM_S_Rollo_vo; LIM_S_SAD_hi; LIM_S_SAD_vo;               */
+/*             LIM_TK_Funktion_Status; BCM1_TK_Funktion;                 */
+/*             HLR_TCH_Freigabe; BCM1_TCH_HLR_Anf                        */
+/*  11.12.2013 V8.07F                                                    */
+/*                                                                       */
+/*  24.04.2014 V8.08.00E                                                 */
+/*             - UGDO_LED_Code_01, UGDO_SW_Code_01 Codierung Wert 4      */
+/*             angepasst                                                 */
+/*             V8.08.00E                                                 */
+/*             - Neue Signale von UGDO_S zum zFAS (Gen2) eingefuegt      */
+/*  12.05.2014 V8.08F                                                    */
+/*                                                                       */
+/*  21.05.2014 V8.08.01F                                                 */
+/*             - Zusammenfuehrung von Gen1 und Gen2 LDFs in einem        */
+/*  09.10.2014 V8.09.00E                                                 */
+/*             - Neue Signale eingefuegt (Gen2): LIM_PDC, LED_LIM_PDC,   */
+/*             LIM_Sideview                                              */
+/*  04.11.2014 V8.09F                                                    */
+/*                                                                       */
+/*  04.12.2014 V8.09.01F                                                 */
+/*             - Neue Vorhalt-Slots zugefuegt                            */
+/*  02.04.2015 V8.10.00E                                                 */
+/*                                                                       */
+/*  27.05.2015 V8.10.00F                                                 */
+/*             - Final Release 22/15                                     */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*    HINWEIS:                                                           */
+/*    Die derzeit verwendete bzw. im ldf eingetragene product_id ist NUR */
+/*  default zur Vollstaendigkeit eingetragen. Diese muss eigenstaendig   */
+/*  vom Lieferanten wie folgt angepasst, zur Verfuegung gestellt werden: */
+/*    - "SupplierID" ist vom Lieferanten beim LIN Konsortium zu          */
+/*  organisieren                                                         */
+/*    - "FunctionID" ist vom Lieferanten zu verwalten                    */
+/*    - "VariantID" ist vom Lieferanten zu verwalten                     */
+/*       Bei jeder Aenderung ist dieser Index zu inkrementieren          */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*   Bildung der CRC-8:                                                  */
+/*   "C2" - Polynom:  P(X) = X^8 + X^5 + X^3 + X^2 + X + 1 = 0x97        */
+/*                                                                       */
+/*   Die CRC-8 auf LIN wird ueber saemtliche Datenbytes (0 bis n-1) des  */
+/*  LIN-Frames (ausser CRC-8-Feld) gebildet. Zusaetzlich flie? die      */
+/*  Protected ID des LIN-Frames als Datenbyte n in die CRC-8-Berechnung  */
+/*  mit ein.                                                             */
+/*   Die Umkonfiguration der Frame ID wirkt sich auf die                 */
+/*  CRC-8-Berechnung aus.                                                */
+/*                                                                       */
+/* ***********************************************************************/
+/*                                                                       */
+/*   Hinweis:                                                            */
+/*   Signale, die mehrfach im LDF verwendet werden mit einem Suffix      */
+/*  erweitert (Signalname_Frame-ID).                                     */
+/*                                                                       */
+/* ***********************************************************************/
+
+LIN_description_file;
+LIN_protocol_version = "2.0";
+LIN_language_version = "2.0";
+LIN_speed = 19.2 kbps;
+
+Nodes {
+  Master: BCM1, 10 ms, 0.1 ms ;
+  Slaves: EC_Spiegel, LIM, LIM2, TCH, UGDO_B, UGDO_S ;
+}
+
+Signals {
+  BAPe_Data_Byte_1: 8, 0, BCM1, UGDO_S ;
+  BAPe_Data_Byte_2: 8, 0, BCM1, UGDO_S ;
+  BAPe_Data_Byte_3: 8, 0, BCM1, UGDO_S ;
+  BAPe_Data_Byte_4: 8, 0, BCM1, UGDO_S ;
+  BAPe_Data_Byte_5: 8, 0, BCM1, UGDO_S ;
+  BAPe_Data_Byte_6: 8, 0, BCM1, UGDO_S ;
+  BAPe_FCT_ID: 6, 0, BCM1, UGDO_S ;
+  BAPe_LSG_ID1: 4, 0, BCM1, UGDO_S ;
+  BAPe_LSG_ID2: 2, 0, BCM1, UGDO_S ;
+  BAPe_Opcode: 3, 0, BCM1, UGDO_S ;
+  BAPe_Segment: 1, 0, BCM1, UGDO_S ;
+  BAPs_Data_Byte_1: 8, 0, UGDO_S, BCM1 ;
+  BAPs_Data_Byte_2: 8, 0, UGDO_S, BCM1 ;
+  BAPs_Data_Byte_3: 8, 0, UGDO_S, BCM1 ;
+  BAPs_Data_Byte_4: 8, 0, UGDO_S, BCM1 ;
+  BAPs_Data_Byte_5: 8, 0, UGDO_S, BCM1 ;
+  BAPs_Data_Byte_6: 8, 0, UGDO_S, BCM1 ;
+  BAPs_FCT_ID: 6, 0, UGDO_S, BCM1 ;
+  BAPs_LSG_ID1: 4, 0, UGDO_S, BCM1 ;
+  BAPs_LSG_ID2: 2, 0, UGDO_S, BCM1 ;
+  BAPs_Opcode: 3, 0, UGDO_S, BCM1 ;
+  BAPs_Segment: 1, 0, UGDO_S, BCM1 ;
+  bCall_active: 1, 0, BCM1, LIM ;
+  BCM1_CAN_Sleep: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_DI_Beleuchtung_Panormadach: 7, 0, BCM1, LIM ;
+  BCM1_DI_Rampe_Innenlicht: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_DI_Rampe_Leselicht: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Innenlicht_Anf_hl_ZusatzL: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Innenlicht_Anf_hr_ZusatzL: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Innenlicht_gedimmt_H: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Innenlicht_gedimmt_V: 1, 0, BCM1, LIM ;
+  BCM1_Innenlicht_H: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Innenlicht_V: 1, 0, BCM1, LIM ;
+  BCM1_Lauflicht_disable: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Leselicht_Anf_hl: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Leselicht_Anf_hl_Sitzreihe3: 1, 0, BCM1, LIM ;
+  BCM1_Leselicht_Anf_hl_ZusatzL: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Leselicht_Anf_hr: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Leselicht_Anf_hr_Sitzreihe3: 1, 0, BCM1, LIM ;
+  BCM1_Leselicht_Anf_hr_ZusatzL: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_Leselicht_Anf_vl: 1, 0, BCM1, LIM ;
+  BCM1_Leselicht_Anf_vr: 1, 0, BCM1, LIM ;
+  BCM1_Leuchten_Aus: 1, 0, BCM1, LIM, LIM2 ;
+  BCM1_SCON_Anforderung: 2, 0, BCM1, LIM, LIM2 ;
+  BCM1_SCON_Auslenkung: 4, 14, BCM1, LIM, LIM2 ;
+  BCM1_SCON_Dimmwert: 7, 126, BCM1, LIM, LIM2 ;
+  BCM1_SCON_Fokus: 4, 14, BCM1, LIM, LIM2 ;
+  BCM1_SCON_Leuchte: 3, 6, BCM1, LIM, LIM2 ;
+  BCM1_SCON_Winkel: 4, 14, BCM1, LIM, LIM2 ;
+  BCM1_TCH_HLR_Anf: 1, 0, TCH, BCM1 ;
+  BCM1_TK_Funktion: 1, 1, BCM1, LIM, LIM2 ;
+  BCM1_Verdeck_zu: 1, 1, BCM1, LIM, LIM2 ;
+  BCM_Dimmwert_Flaechenlicht_Farbe1: 7, 126, BCM1, LIM ;
+  BEM_02_Abschaltstufen: 3, 0, BCM1, TCH ;
+  DI_KL_58d: 8, 254, BCM1, LIM ;
+  DI_KL_58st: 7, 126, BCM1, LIM ;
+  DI_KL_58xd: 8, 254, BCM1, EC_Spiegel, TCH ;
+  DI_KL_58xs: 7, 126, BCM1, EC_Spiegel, TCH, UGDO_B ;
+  eCall_Statuslicht_Farbe1: 2, 0, BCM1, LIM ;
+  eCall_Statuslicht_Farbe2: 2, 0, BCM1, LIM ;
+  eCall_Taste: 2, 0, LIM, BCM1 ;
+  Enable_EC: 1, 1, BCM1, EC_Spiegel ;
+  Enable_Kompass: 1, 1, BCM1, EC_Spiegel ;
+  ESP_v_Signal_8Bit: 8, 254, BCM1, UGDO_S ;
+  FSH_aktiv: 1, 0, BCM1, EC_Spiegel ;
+  FT_Kisi_li_aktiv: 1, 0, BCM1, LIM, LIM2 ;
+  FT_Kisi_re_aktiv: 1, 0, BCM1, LIM, LIM2 ;
+  HLR_TCH_Freigabe: 1, 0, BCM1, TCH ;
+  IL_Innenlicht_aktiv: 1, 1, BCM1, EC_Spiegel ;
+  Innenleuchten_Stellgliedtest: 1, 0, BCM1, LIM, LIM2 ;
+  ISP_defekt: 1, 0, EC_Spiegel, BCM1 ;
+  ISP_Dimmung_ASP_02: 6, 0, EC_Spiegel, BCM1 ;
+  ISP_EC_aktiv: 1, 1, EC_Spiegel, BCM1 ;
+  ISP_EC_Lichtwert_hinten: 6, 62, EC_Spiegel, BCM1 ;
+  ISP_EC_Lichtwert_vorne: 6, 62, EC_Spiegel, BCM1 ;
+  ISP_ECSensor_h_defekt: 1, 0, EC_Spiegel, BCM1 ;
+  ISP_ECSensor_v_defekt: 1, 0, EC_Spiegel, BCM1 ;
+  ISP_Himmelsrichtung: 5, 30, EC_Spiegel, BCM1 ;
+  ISP_Kompass_aktiv: 1, 1, EC_Spiegel, BCM1 ;
+  ISP_ResponseError: 1, 0, EC_Spiegel, BCM1 ;
+  ISP_Taste_betaetigt: 1, 0, EC_Spiegel, BCM1 ;
+  ISP_Taste_haengt: 1, 0, EC_Spiegel, BCM1 ;
+  Kalibrierung_Kompass: 1, 0, BCM1, EC_Spiegel ;
+  Klemme_15: 1, 0, BCM1, EC_Spiegel, LIM, LIM2, UGDO_S ;
+  Klemme_X: 1, 0, BCM1, TCH ;
+  LED_LIM_PDC: 2, 0, BCM1, LIM ;
+  LH_Rueckfahrlicht_aktiv: 1, 0, BCM1, EC_Spiegel ;
+  LIM2_Auslenkung_Leselicht_hl: 4, 14, LIM2, BCM1, LIM ;
+  LIM2_Auslenkung_Leselicht_hr: 4, 14, LIM2, BCM1, LIM ;
+  LIM2_defekt: 1, 0, LIM2, BCM1 ;
+  LIM2_Fokus_Leselicht_hl: 4, 14, LIM2, BCM1, LIM ;
+  LIM2_Fokus_Leselicht_hr: 4, 14, LIM2, BCM1, LIM ;
+  LIM2_Gueltigkeit_Lichterfehler: 1, 0, LIM2, BCM1 ;
+  LIM2_Gueltigkeit_Tasterfehler: 1, 0, LIM2, BCM1 ;
+  LIM2_Innenlicht_h_aktiv: 1, 0, LIM2, BCM1, LIM ;
+  LIM2_Intensity_Leselicht_hl: 7, 126, LIM2, BCM1, LIM ;
+  LIM2_Intensity_Leselicht_hr: 7, 126, LIM2, BCM1, LIM ;
+  LIM2_Lokalaktiv: 1, 0, LIM2, BCM1 ;
+  LIM2_ResponseError: 1, 0, LIM2, BCM1 ;
+  LIM2_Taster_Leselicht_hl_def: 1, 0, LIM2, BCM1 ;
+  LIM2_Taster_Leselicht_hr_def: 1, 0, LIM2, BCM1 ;
+  LIM2_Taster_REAR_hi_betaetigt: 1, 0, LIM2, BCM1, LIM ;
+  LIM2_Taster_REAR_hi_def: 1, 0, LIM2, BCM1, LIM ;
+  LIM2_Ueberspannung: 1, 0, LIM2, BCM1, LIM ;
+  LIM2_Uebertemperatur: 1, 0, LIM2, BCM1, LIM ;
+  LIM2_Unterspannung: 1, 0, LIM2, BCM1, LIM ;
+  LIM2_Winkel_Leselicht_hl: 4, 14, LIM2, BCM1, LIM ;
+  LIM2_Winkel_Leselicht_hr: 4, 14, LIM2, BCM1, LIM ;
+  LIM_bCall_Taster: 1, 0, LIM, BCM1 ;
+  LIM_Beleuchtung_Panormadach_def: 1, 0, LIM, BCM1 ;
+  LIM_defekt: 1, 0, LIM, BCM1 ;
+  LIM_DI_Rear: 7, 126, LIM, LIM2 ;
+  LIM_ErrorGueltigkeit_Lichterfehler: 1, 0, LIM, BCM1 ;
+  LIM_ErrorGueltigkeit_Tasterfehler: 1, 0, LIM, BCM1 ;
+  LIM_FLED_REAR_hinten_def: 1, 0, LIM, BCM1 ;
+  LIM_IL_Modus_Status: 1, 0, LIM, BCM1, LIM2 ;
+  LIM_Innenbeleuchtung_aktiv: 1, 0, LIM, BCM1 ;
+  LIM_Innenbeleuchtung_V_aktiv: 1, 0, LIM, BCM1 ;
+  LIM_Innenlicht_H_1_def: 1, 0, LIM, BCM1 ;
+  LIM_Innenlicht_H_umschalten: 1, 0, LIM, LIM2 ;
+  LIM_Innenlicht_ZusatzL_hl_def: 1, 0, LIM, BCM1 ;
+  LIM_Innenlicht_ZusatzL_hr_def: 1, 0, LIM, BCM1 ;
+  LIM_ISP_EC_Aufblenden_def: 1, 0, LIM, BCM1 ;
+  LIM_Leselicht_hl_def: 1, 0, LIM, BCM1 ;
+  LIM_Leselicht_hl_def_Sitzreihe3: 1, 0, LIM, BCM1 ;
+  LIM_Leselicht_hl_umschalten: 1, 0, LIM, LIM2 ;
+  LIM_Leselicht_hr_def: 1, 0, LIM, BCM1 ;
+  LIM_Leselicht_hr_def_Sitzreihe3: 1, 0, LIM, BCM1 ;
+  LIM_Leselicht_hr_umschalten: 1, 0, LIM, LIM2 ;
+  LIM_Leselicht_ZusatzL_hl_def: 1, 0, LIM, BCM1 ;
+  LIM_Leselicht_ZusatzL_hr_def: 1, 0, LIM, BCM1 ;
+  LIM_Lokalaktiv: 1, 0, LIM, BCM1 ;
+  LIM_PAO_Alivesignal: 4, 0, LIM, BCM1 ;
+  LIM_PAO_OFF_Status: 2, 0, LIM, BCM1 ;
+  LIM_PAO_ON_Status: 2, 0, LIM, BCM1 ;
+  LIM_PAO_Schriftzug_Status: 2, 0, LIM, BCM1 ;
+  LIM_PDC: 2, 0, LIM, BCM1 ;
+  LIM_Rear_Mode: 1, 0, LIM, BCM1, LIM2 ;
+  LIM_ResponseError: 1, 0, LIM, BCM1 ;
+  LIM_S_Rollo_hi: 3, 0, LIM, BCM1 ;
+  LIM_S_Rollo_vo: 3, 0, LIM, BCM1 ;
+  LIM_S_SAD_hi: 4, 0, LIM, BCM1 ;
+  LIM_S_SAD_Vo: 4, 0, LIM, BCM1 ;
+  LIM_Sideview: 2, 0, LIM, BCM1 ;
+  LIM_Tasten_Innenlicht_V_def: 1, 0, LIM, BCM1 ;
+  LIM_Taster_Leseleuchten_H_def: 1, 0, LIM, BCM1 ;
+  LIM_Taster_Leselicht_hl_def: 1, 0, LIM, BCM1 ;
+  LIM_Taster_Leselicht_hl_def_SR3: 1, 0, LIM, BCM1 ;
+  LIM_Taster_Leselicht_hr_def: 1, 0, LIM, BCM1 ;
+  LIM_Taster_Leselicht_hr_def_SR3: 1, 0, LIM, BCM1 ;
+  LIM_Taster_Leselicht_vl_def: 1, 0, LIM, BCM1 ;
+  LIM_Taster_Leselicht_vr_def: 1, 0, LIM, BCM1 ;
+  LIM_Taster_REAR_hinten_def: 1, 0, LIM, BCM1 ;
+  LIM_TK_Funktion_Status: 1, 1, LIM, BCM1, LIM2 ;
+  LIM_Ueberspannung: 1, 0, LIM, BCM1, LIM2 ;
+  LIM_Uebertemperatur: 1, 0, LIM, BCM1, LIM2 ;
+  LIM_Unterspannung: 1, 0, LIM, BCM1, LIM2 ;
+  Magnetzone: 4, 0, BCM1, EC_Spiegel ;
+  Navi_Kompass: 4, 0, BCM1, EC_Spiegel ;
+  SAD_offen: 1, 0, BCM1, EC_Spiegel ;
+  SC_PAO_OFF_Anf: 2, 0, BCM1, LIM ;
+  SC_PAO_ON_Anf: 2, 0, BCM1, LIM ;
+  SC_PAO_Schriftzug_Anf: 2, 0, BCM1, LIM ;
+  SM_Parken_UGDO_Aktion: 3, 0, BCM1, UGDO_S ;
+  SM_Parken_UGDO_Anf: 4, 0, BCM1, UGDO_S ;
+  Stellgliedtest_LED_Heizen: 1, 0, BCM1, TCH ;
+  Stellgliedtest_LED_Kuehlen: 1, 0, BCM1, TCH ;
+  Stellgliedtest_Luefter: 1, 0, BCM1, TCH ;
+  Stellgliedtest_Restwaerme_LED: 1, 0, BCM1, TCH ;
+  Stellgliedtest_TCH: 2, 0, BCM1, TCH ;
+  TCH_BEM_Status: 2, 0, TCH, BCM1 ;
+  TCH_Fehlerstatus_Interner_Fehler: 1, 0, TCH, BCM1 ;
+  TCH_Ist_Temperatur: 7, 0, TCH, BCM1 ;
+  TCH_Lokalaktiv: 1, 0, TCH, BCM1 ;
+  TCH_ResponseError: 1, 0, TCH, BCM1 ;
+  TCH_Status_LED_Heizen: 2, 0, TCH, BCM1 ;
+  TCH_Status_LED_Kuehlen: 2, 0, TCH, BCM1 ;
+  TCH_Status_Luefter: 2, 0, TCH, BCM1 ;
+  TCH_Status_Peltierelement: 2, 0, TCH, BCM1 ;
+  TCH_Status_PWM_Peltierelement: 7, 0, TCH, BCM1 ;
+  TCH_Status_Restwaerme_LED: 2, 0, TCH, BCM1 ;
+  TCH_Status_Taster_Heizen: 2, 0, TCH, BCM1 ;
+  TCH_Status_Taster_Kuehlen: 2, 0, TCH, BCM1 ;
+  Testmode_EC: 6, 63, BCM1, EC_Spiegel ;
+  TSG_FT_01_alt: 1, 1, BCM1, LIM, LIM2 ;
+  UGDO_B_ResponseError: 1, 0, UGDO_B, BCM1 ;
+  UGDO_Buttons: 4, 0, BCM1, UGDO_S ;
+  UGDO_Channel_1: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_10: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_11: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_12: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_13: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_14: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_15: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_2: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_3: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_4: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_5: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_6: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_7: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_8: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Channel_9: 1, 0, UGDO_S, BCM1 ;
+  UGDO_DoorState: 4, 0, UGDO_S, BCM1 ;
+  UGDO_Failure_Antenne: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Failure_Codierung: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Failure_Hardware: 1, 0, UGDO_S, BCM1 ;
+  UGDO_Function_01: 3, 0, UGDO_S, BCM1 ;
+  UGDO_LED_Code_01: 5, 0, UGDO_S, BCM1 ;
+  UGDO_ResponseError: 1, 0, UGDO_S, BCM1 ;
+  UGDO_SW_Buttons: 4, 0, UGDO_B, BCM1 ;
+  UGDO_SW_Function: 3, 0, BCM1, UGDO_B ;
+  UGDO_SW_LED_Code: 5, 0, BCM1, UGDO_B ;
+  UGDO_SW_Switchboard: 2, 0, UGDO_B, BCM1 ;
+  UGDO_Switchboard: 2, 0, BCM1, UGDO_S ;
+  VS_VD_offen_ver: 1, 0, BCM1, EC_Spiegel ;
+  ZAS_Kl_15: 1, 0, BCM1, TCH ;
+  ZV_auf_Funk: 1, 0, BCM1, UGDO_S ;
+  kostiaReq_0: 8, 0, BCM1, LIM ;
+  kostiaResp_0: 8, 0, LIM, BCM1 ;
+  kostiaReq_1: 8, 0, BCM1, LIM ;
+  kostiaReq_2: 8, 0, BCM1, LIM ;
+  kostiaReq_3: 8, 0, BCM1, LIM ;
+  kostiaReq_4: 8, 0, BCM1, LIM ;
+  kostiaReq_5: 8, 0, BCM1, LIM ;
+  kostiaReq_6: 8, 0, BCM1, LIM ;
+  kostiaReq_7: 8, 0, BCM1, LIM ;
+  kostiaResp_1: 8, 0, LIM, BCM1 ;
+  kostiaResp_2: 8, 0, LIM, BCM1 ;
+  kostiaResp_3: 8, 0, LIM, BCM1 ;
+  kostiaResp_4: 8, 0, LIM, BCM1 ;
+  kostiaResp_5: 8, 0, LIM, BCM1 ;
+  kostiaResp_6: 8, 0, LIM, BCM1 ;
+  kostiaResp_7: 8, 0, LIM, BCM1 ;
+}
+
+Diagnostic_signals {
+  MasterReqB0: 8, 0 ;
+  MasterReqB1: 8, 0 ;
+  MasterReqB2: 8, 0 ;
+  MasterReqB3: 8, 0 ;
+  MasterReqB4: 8, 0 ;
+  MasterReqB5: 8, 0 ;
+  MasterReqB6: 8, 0 ;
+  MasterReqB7: 8, 0 ;
+  SlaveRespB0: 8, 0 ;
+  SlaveRespB1: 8, 0 ;
+  SlaveRespB2: 8, 0 ;
+  SlaveRespB3: 8, 0 ;
+  SlaveRespB4: 8, 0 ;
+  SlaveRespB5: 8, 0 ;
+  SlaveRespB6: 8, 0 ;
+  SlaveRespB7: 8, 0 ;
+}
+
+
+Frames {
+  ISPe_01: 57, BCM1, 7 {
+    Klemme_15, 0 ;
+    IL_Innenlicht_aktiv, 1 ;
+    LH_Rueckfahrlicht_aktiv, 2 ;
+    VS_VD_offen_ver, 3 ;
+    SAD_offen, 4 ;
+    FSH_aktiv, 5 ;
+    Navi_Kompass, 8 ;
+    Magnetzone, 12 ;
+    Enable_EC, 16 ;
+    Enable_Kompass, 17 ;
+    Kalibrierung_Kompass, 18 ;
+    Testmode_EC, 24 ;
+    DI_KL_58xd, 32 ;
+    DI_KL_58xs, 48 ;
+  }
+  ISPs_01: 56, EC_Spiegel, 8 {
+    ISP_Taste_betaetigt, 0 ;
+    ISP_Taste_haengt, 1 ;
+    ISP_EC_aktiv, 4 ;
+    ISP_Kompass_aktiv, 5 ;
+    ISP_Dimmung_ASP_02, 8 ;
+    ISP_Himmelsrichtung, 16 ;
+    ISP_EC_Lichtwert_vorne, 24 ;
+    ISP_EC_Lichtwert_hinten, 32 ;
+    ISP_ECSensor_v_defekt, 40 ;
+    ISP_ECSensor_h_defekt, 41 ;
+    ISP_defekt, 42 ;
+    ISP_ResponseError, 43 ;
+  }
+  LIM2s_01: 28, LIM2, 8 {
+    LIM2_Auslenkung_Leselicht_hl, 0 ;
+    LIM2_Auslenkung_Leselicht_hr, 4 ;
+    LIM2_Fokus_Leselicht_hl, 8 ;
+    LIM2_Fokus_Leselicht_hr, 12 ;
+    LIM2_Winkel_Leselicht_hl, 16 ;
+    LIM2_Winkel_Leselicht_hr, 20 ;
+    LIM2_Taster_REAR_hi_def, 24 ;
+    LIM2_Taster_REAR_hi_betaetigt, 25 ;
+    LIM2_Gueltigkeit_Lichterfehler, 26 ;
+    LIM2_Gueltigkeit_Tasterfehler, 27 ;
+    LIM2_Innenlicht_h_aktiv, 28 ;
+    LIM2_Uebertemperatur, 29 ;
+    LIM2_Ueberspannung, 30 ;
+    LIM2_Unterspannung, 31 ;
+    LIM2_Intensity_Leselicht_hl, 32 ;
+    LIM2_Lokalaktiv, 39 ;
+    LIM2_Intensity_Leselicht_hr, 40 ;
+    LIM2_defekt, 47 ;
+    LIM2_Taster_Leselicht_hl_def, 48 ;
+    LIM2_Taster_Leselicht_hr_def, 49 ;
+    LIM2_ResponseError, 55 ;
+  }
+  LIMe_01: 26, BCM1, 8 {
+    BCM1_SCON_Auslenkung, 0 ;
+    BCM1_SCON_Winkel, 4 ;
+    SC_PAO_OFF_Anf, 8 ;
+    SC_PAO_ON_Anf, 10 ;
+    SC_PAO_Schriftzug_Anf, 12 ;
+    BCM1_SCON_Anforderung, 14 ;
+    BCM_Dimmwert_Flaechenlicht_Farbe1, 30 ;
+    BCM1_SCON_Fokus, 40 ;
+    BCM1_SCON_Leuchte, 44 ;
+    BCM1_Leselicht_Anf_hl_ZusatzL, 47 ;
+    BCM1_SCON_Dimmwert, 48 ;
+    BCM1_Leselicht_Anf_hr_ZusatzL, 55 ;
+    eCall_Statuslicht_Farbe1, 56 ;
+    eCall_Statuslicht_Farbe2, 58 ;
+    LED_LIM_PDC, 60 ;
+    BCM1_Verdeck_zu, 62 ;
+  }
+  LIMe_02: 27, BCM1, 6 {
+    DI_KL_58d, 0 ;
+    DI_KL_58st, 8 ;
+    Innenleuchten_Stellgliedtest, 15 ;
+    bCall_active, 16 ;
+    TSG_FT_01_alt, 17 ;
+    BCM1_DI_Rampe_Innenlicht, 19 ;
+    BCM1_DI_Rampe_Leselicht, 20 ;
+    BCM1_Innenlicht_H, 21 ;
+    BCM1_Innenlicht_V, 22 ;
+    BCM1_Leselicht_Anf_hl, 23 ;
+    BCM1_Leselicht_Anf_hr, 24 ;
+    BCM1_Leselicht_Anf_vl, 25 ;
+    BCM1_Leselicht_Anf_vr, 26 ;
+    BCM1_Leuchten_Aus, 27 ;
+    BCM1_Innenlicht_gedimmt_H, 28 ;
+    BCM1_Innenlicht_gedimmt_V, 29 ;
+    FT_Kisi_li_aktiv, 30 ;
+    FT_Kisi_re_aktiv, 31 ;
+    BCM1_DI_Beleuchtung_Panormadach, 32 ;
+    BCM1_CAN_Sleep, 40 ;
+    Klemme_15, 41 ;
+    BCM1_Leselicht_Anf_hl_Sitzreihe3, 42 ;
+    BCM1_Leselicht_Anf_hr_Sitzreihe3, 43 ;
+    BCM1_TK_Funktion, 44 ;
+    BCM1_Innenlicht_Anf_hr_ZusatzL, 45 ;
+    BCM1_Innenlicht_Anf_hl_ZusatzL, 46 ;
+    BCM1_Lauflicht_disable, 47 ;
+  }
+  LIMs_01: 21, LIM, 8 {
+    LIM_Innenlicht_H_1_def, 0 ;
+    LIM_Leselicht_hl_def, 2 ;
+    LIM_Leselicht_hr_def, 3 ;
+    LIM_IL_Modus_Status, 7 ;
+    LIM_ErrorGueltigkeit_Lichterfehler, 8 ;
+    LIM_ISP_EC_Aufblenden_def, 9 ;
+    LIM_bCall_Taster, 10 ;
+    LIM_Lokalaktiv, 11 ;
+    LIM_defekt, 12 ;
+    LIM_Unterspannung, 13 ;
+    LIM_Ueberspannung, 14 ;
+    LIM_Uebertemperatur, 15 ;
+    LIM_ErrorGueltigkeit_Tasterfehler, 16 ;
+    LIM_Tasten_Innenlicht_V_def, 17 ;
+    LIM_Taster_Leseleuchten_H_def, 18 ;
+    LIM_Taster_Leselicht_vl_def, 19 ;
+    LIM_Taster_Leselicht_vr_def, 20 ;
+    LIM_Taster_Leselicht_hl_def, 21 ;
+    LIM_Taster_Leselicht_hr_def, 22 ;
+    LIM_Innenbeleuchtung_V_aktiv, 23 ;
+    LIM_Innenbeleuchtung_aktiv, 24 ;
+    eCall_Taste, 25 ;
+    LIM_S_SAD_Vo, 27 ;
+    LIM_Rear_Mode, 31 ;
+    LIM_PAO_OFF_Status, 32 ;
+    LIM_PAO_ON_Status, 34 ;
+    LIM_PAO_Schriftzug_Status, 36 ;
+    LIM_PDC, 38 ;
+    LIM_Taster_Leselicht_hl_def_SR3, 40 ;
+    LIM_Taster_Leselicht_hr_def_SR3, 41 ;
+    LIM_Leselicht_hl_def_Sitzreihe3, 42 ;
+    LIM_Leselicht_hr_def_Sitzreihe3, 43 ;
+    LIM_Beleuchtung_Panormadach_def, 44 ;
+    LIM_Sideview, 45 ;
+    LIM_PAO_Alivesignal, 48 ;
+    LIM_S_SAD_hi, 52 ;
+    LIM_ResponseError, 56 ;
+    LIM_TK_Funktion_Status, 57 ;
+    LIM_S_Rollo_hi, 58 ;
+    LIM_S_Rollo_vo, 61 ;
+  }
+  LIMs_02: 29, LIM, 8 {
+    LIM_DI_Rear, 0 ;
+    LIM_Innenlicht_H_umschalten, 7 ;
+    LIM_Leselicht_hr_umschalten, 8 ;
+    LIM_Leselicht_hl_umschalten, 9 ;
+    LIM_FLED_REAR_hinten_def, 10 ;
+    LIM_Innenlicht_ZusatzL_hr_def, 11 ;
+    LIM_Innenlicht_ZusatzL_hl_def, 12 ;
+    LIM_Taster_REAR_hinten_def, 13 ;
+    LIM_Leselicht_ZusatzL_hr_def, 14 ;
+    LIM_Leselicht_ZusatzL_hl_def, 15 ;
+  }
+  TCHe_01: 42, BCM1, 5 {
+    DI_KL_58xd, 0 ;
+    DI_KL_58xs, 8 ;
+    ZAS_Kl_15, 15 ;
+    Klemme_X, 16 ;
+    BEM_02_Abschaltstufen, 17 ;
+    Stellgliedtest_LED_Heizen, 22 ;
+    Stellgliedtest_LED_Kuehlen, 23 ;
+    Stellgliedtest_Luefter, 24 ;
+    Stellgliedtest_Restwaerme_LED, 25 ;
+    Stellgliedtest_TCH, 26 ;
+    HLR_TCH_Freigabe, 28 ;
+  }
+  TCHs_01: 43, TCH, 6 {
+    TCH_Ist_Temperatur, 0 ;
+    TCH_ResponseError, 7 ;
+    TCH_Status_PWM_Peltierelement, 8 ;
+    TCH_Fehlerstatus_Interner_Fehler, 15 ;
+    TCH_BEM_Status, 16 ;
+    TCH_Status_Luefter, 18 ;
+    TCH_Status_Peltierelement, 20 ;
+    TCH_Status_Taster_Heizen, 22 ;
+    TCH_Status_Taster_Kuehlen, 24 ;
+    TCH_Status_LED_Heizen, 26 ;
+    TCH_Status_LED_Kuehlen, 28 ;
+    TCH_Status_Restwaerme_LED, 30 ;
+    TCH_Lokalaktiv, 32 ;
+    BCM1_TCH_HLR_Anf, 40 ;
+  }
+  UGDO_Be_01: 4, BCM1, 6 {
+    UGDO_SW_LED_Code, 0 ;
+    UGDO_SW_Function, 5 ;
+    DI_KL_58xs, 8 ;
+  }
+  UGDO_Bs_01: 3, UGDO_B, 6 {
+    UGDO_SW_Buttons, 0 ;
+    UGDO_SW_Switchboard, 4 ;
+    UGDO_B_ResponseError, 16 ;
+  }
+  UGDOe_02: 46, BCM1, 6 {
+    UGDO_Buttons, 0 ;
+    Klemme_15, 6 ;
+    ZV_auf_Funk, 7 ;
+    ESP_v_Signal_8Bit, 8 ;
+    UGDO_Switchboard, 16 ;
+    SM_Parken_UGDO_Anf, 24 ;
+    SM_Parken_UGDO_Aktion, 28 ;
+  }
+  UGDOe_BAP: 31, BCM1, 8 {
+    BAPe_LSG_ID1, 0 ;
+    BAPe_Opcode, 4 ;
+    BAPe_Segment, 7 ;
+    BAPe_FCT_ID, 8 ;
+    BAPe_LSG_ID2, 14 ;
+    BAPe_Data_Byte_1, 16 ;
+    BAPe_Data_Byte_2, 24 ;
+    BAPe_Data_Byte_3, 32 ;
+    BAPe_Data_Byte_4, 40 ;
+    BAPe_Data_Byte_5, 48 ;
+    BAPe_Data_Byte_6, 56 ;
+  }
+  UGDOs_02: 47, UGDO_S, 8 {
+    UGDO_LED_Code_01, 0 ;
+    UGDO_Function_01, 5 ;
+    UGDO_Failure_Antenne, 8 ;
+    UGDO_Failure_Codierung, 9 ;
+    UGDO_Failure_Hardware, 10 ;
+    UGDO_ResponseError, 16 ;
+    UGDO_Channel_1, 24 ;
+    UGDO_Channel_2, 25 ;
+    UGDO_Channel_3, 26 ;
+    UGDO_Channel_4, 27 ;
+    UGDO_Channel_5, 28 ;
+    UGDO_Channel_6, 29 ;
+    UGDO_Channel_7, 30 ;
+    UGDO_Channel_8, 31 ;
+    UGDO_Channel_9, 32 ;
+    UGDO_Channel_10, 33 ;
+    UGDO_Channel_11, 34 ;
+    UGDO_Channel_12, 35 ;
+    UGDO_Channel_13, 36 ;
+    UGDO_Channel_14, 37 ;
+    UGDO_Channel_15, 38 ;
+    UGDO_DoorState, 40 ;
+  }
+  UGDOs_BAP: 32, UGDO_S, 8 {
+    BAPs_LSG_ID1, 0 ;
+    BAPs_Opcode, 4 ;
+    BAPs_Segment, 7 ;
+    BAPs_FCT_ID, 8 ;
+    BAPs_LSG_ID2, 14 ;
+    BAPs_Data_Byte_1, 16 ;
+    BAPs_Data_Byte_2, 24 ;
+    BAPs_Data_Byte_3, 32 ;
+    BAPs_Data_Byte_4, 40 ;
+    BAPs_Data_Byte_5, 48 ;
+    BAPs_Data_Byte_6, 56 ;
+  }
+  kostiaReq: 58, BCM1, 8 {
+    kostiaReq_0, 0 ;
+    kostiaReq_1, 8 ;
+    kostiaReq_2, 16 ;
+    kostiaReq_3, 24 ;
+    kostiaReq_4, 32 ;
+    kostiaReq_5, 40 ;
+    kostiaReq_6, 48 ;
+    kostiaReq_7, 56 ;
+  }
+  kostiaResp: 59, LIM, 8 {
+    kostiaResp_0, 0 ;
+    kostiaResp_1, 8 ;
+    kostiaResp_2, 16 ;
+    kostiaResp_3, 24 ;
+    kostiaResp_4, 32 ;
+    kostiaResp_5, 40 ;
+    kostiaResp_6, 48 ;
+    kostiaResp_7, 56 ;
+  }
+}
+
+
+
+Diagnostic_frames {
+  MasterReq: 0x3c {
+    MasterReqB0, 0 ;
+    MasterReqB1, 8 ;
+    MasterReqB2, 16 ;
+    MasterReqB3, 24 ;
+    MasterReqB4, 32 ;
+    MasterReqB5, 40 ;
+    MasterReqB6, 48 ;
+    MasterReqB7, 56 ;
+  }
+  SlaveResp: 0x3d {
+    SlaveRespB0, 0 ;
+    SlaveRespB1, 8 ;
+    SlaveRespB2, 16 ;
+    SlaveRespB3, 24 ;
+    SlaveRespB4, 32 ;
+    SlaveRespB5, 40 ;
+    SlaveRespB6, 48 ;
+    SlaveRespB7, 56 ;
+  }
+}
+
+Node_attributes {
+  EC_Spiegel{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0x1F ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = ISP_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      ISPe_01 = 0x2039 ;
+      ISPs_01 = 0x2038 ;
+      LIMe_02 = 0x0 ;
+      TCHe_01 = 0x0 ;
+      UGDO_Be_01 = 0x0 ;
+      UGDOe_02 = 0x0 ;
+    }
+  }
+  LIM{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0x5E ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = LIM_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      LIM2s_01 = 0x201C ;
+      LIMe_01 = 0x201A ;
+      LIMe_02 = 0x2021 ;
+      LIMs_01 = 0x2022 ;
+      LIMs_02 = 0x201D ;
+      ISPe_01 = 0x0 ;
+      UGDOe_02 = 0x0 ;
+      kostiaReq = 0x0 ;
+      kostiaResp = 0x0 ;
+    }
+  }
+  LIM2{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0x7A ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = LIM2_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      LIM2s_01 = 0x201C ;
+      LIMe_01 = 0x201A ;
+      LIMe_02 = 0x2021 ;
+      LIMs_01 = 0x2022 ;
+      LIMs_02 = 0x201D ;
+      ISPe_01 = 0x0 ;
+      UGDOe_02 = 0x0 ;
+    }
+  }
+  TCH{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0x5C ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = TCH_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      TCHe_01 = 0x1005 ;
+      TCHs_01 = 0x1006 ;
+      ISPe_01 = 0x0 ;
+      UGDO_Be_01 = 0x0 ;
+    }
+  }
+  UGDO_B{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0xC ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = UGDO_B_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      UGDO_Be_01 = 0x2004 ;
+      UGDO_Bs_01 = 0x2003 ;
+      ISPe_01 = 0x0 ;
+      TCHe_01 = 0x0 ;
+    }
+  }
+  UGDO_S{
+    LIN_protocol = "2.0" ;
+    configured_NAD = 0x1 ;
+    product_id = 0x0, 0x0, 0 ;
+    response_error = UGDO_ResponseError ;
+    P2_min = 10 ms ;
+    ST_min = 10 ms ;
+    configurable_frames {
+      UGDOe_02 = 0x112E ;
+      UGDOe_BAP = 0x111F ;
+      UGDOs_02 = 0x112F ;
+      UGDOs_BAP = 0x1120 ;
+      ISPe_01 = 0x0 ;
+      LIMe_02 = 0x0 ;
+    }
+  }
+}
+
+Schedule_tables {
+ ST1 {
+    LIMs_01 delay 10 ms ;
+    LIMe_01 delay 10 ms ;
+    LIM2s_01 delay 10 ms ;
+    UGDOe_BAP delay 10 ms ;
+    ISPs_01 delay 10 ms ;
+    UGDO_Bs_01 delay 10 ms ;
+    LIMs_02 delay 10 ms ;
+    UGDOs_BAP delay 10 ms ;
+    ISPe_01 delay 10 ms ;
+    UGDOe_02 delay 10 ms ;
+    TCHe_01 delay 10 ms ;
+    UGDOe_BAP delay 10 ms ;
+    LIMs_01 delay 10 ms ;
+    LIMe_01 delay 10 ms ;
+    LIM2s_01 delay 10 ms ;
+    UGDOs_BAP delay 10 ms ;
+    ISPs_01 delay 10 ms ;
+    UGDOs_02 delay 10 ms ;
+    LIMs_02 delay 10 ms ;
+    UGDOe_BAP delay 10 ms ;
+    LIMe_02 delay 10 ms ;
+    UGDO_Be_01 delay 10 ms ;
+    TCHs_01 delay 10 ms ;
+    UGDOs_BAP delay 10 ms ;
+  }
+ DiagRequest {
+    MasterReq delay 10 ms ;
+  }
+ DiagResponse {
+    SlaveResp delay 10 ms ;
+  }
+ FlashRequest {
+    MasterReq delay 10 ms ;
+  }
+ FlashResponse {
+    SlaveResp delay 10 ms ;
+  }
+ kostia {
+    kostiaReq delay 10 ms ;
+    kostiaResp delay 10 ms ;
+  }
+}
+
+
+Signal_encoding_types {
+  BAPe_Data_Byte_1_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPe_Data_Byte_2_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPe_Data_Byte_3_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPe_Data_Byte_4_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPe_Data_Byte_5_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPe_Data_Byte_6_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPs_Data_Byte_1_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPs_Data_Byte_2_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPs_Data_Byte_3_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPs_Data_Byte_4_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPs_Data_Byte_5_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BAPs_Data_Byte_6_encoding {
+    logical_value, 0, "Init" ;
+  }
+  BCM1_DI_Beleuchtung_Panormadach_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_Percent" ;
+  }
+  BCM1_DI_Rampe_Innenlicht_encoding {
+    logical_value, 0, "Dimming ramp0" ;
+    logical_value, 1, "Dimming ramp1" ;
+  }
+  BCM1_DI_Rampe_Leselicht_encoding {
+    logical_value, 0, "Dimming_ramp0" ;
+    logical_value, 1, "Dimming_ramp1" ;
+  }
+  BCM1_Innenlicht_gedimmt_H_encoding {
+    logical_value, 0, "100% InteriorLight" ;
+    logical_value, 1, "Dimmed interiorLight" ;
+  }
+  BCM1_Innenlicht_gedimmt_V_encoding {
+    logical_value, 0, "100% InteriorLight" ;
+    logical_value, 1, "Dimmed interiorLight" ;
+  }
+  BCM1_Lauflicht_disable_encoding {
+    logical_value, 0, "Running_light_active" ;
+    logical_value, 1, "Running_light_disable" ;
+  }
+  BCM1_Leselicht_Anf_hl_Sitzreihe3_encoding {
+    logical_value, 0, "OFF" ;
+    logical_value, 1, "ON" ;
+  }
+  BCM1_Leselicht_Anf_hr_Sitzreihe3_encoding {
+    logical_value, 0, "OFF" ;
+    logical_value, 1, "ON" ;
+  }
+  BCM1_Leuchten_Aus_encoding {
+    logical_value, 0, "No change" ;
+    logical_value, 1, "OFF" ;
+  }
+  BCM1_SCON_Anforderung_encoding {
+    logical_value, 0, "Standard" ;
+    logical_value, 1, "Default" ;
+    logical_value, 2, "Memory" ;
+  }
+  BCM1_SCON_Auslenkung_encoding {
+    physical_value, 0, 10, 10, 0, "Unit_Percent" ;
+    logical_value, 13, "No change" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  BCM1_SCON_Dimmwert_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_Percent" ;
+    logical_value, 125, "No change" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Error" ;
+  }
+  BCM1_SCON_Fokus_encoding {
+    physical_value, 0, 10, 10, 0, "Unit_Percent" ;
+    logical_value, 13, "No change" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  BCM1_SCON_Leuchte_encoding {
+    logical_value, 0, "No_lamp" ;
+    logical_value, 1, "Readinglight_RR_MatrixL" ;
+    logical_value, 2, "Readinglight_RL_MatrixL" ;
+    logical_value, 3, "Interiorlight_R_Total" ;
+    logical_value, 4, "Readinglight_RR_Seatseries3" ;
+    logical_value, 5, "Readinglight_RL_Seatseries3" ;
+    logical_value, 6, "Init" ;
+    logical_value, 7, "Error" ;
+  }
+  BCM1_SCON_Winkel_encoding {
+    physical_value, 0, 11, 30, 0, "Unit_DegreOfArc" ;
+    logical_value, 13, "No_Change" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  BCM1_TCH_HLR_Anf_encoding {
+    logical_value, 0, "No_Request" ;
+    logical_value, 1, "Request" ;
+  }
+  BCM1_TK_Funktion_encoding {
+    logical_value, 0, "TK_Function_inactive" ;
+    logical_value, 1, "TK_Function_active" ;
+  }
+  BCM1_Verdeck_zu_encoding {
+    logical_value, 0, "Verdeck_Open" ;
+    logical_value, 1, "Verdeck_Closed" ;
+  }
+  BCM_Dimmwert_Flaechenlicht_Farbe1_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_Percent" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Error" ;
+  }
+  BEM_02_Abschaltstufen_encoding {
+    logical_value, 0, "Level 0 (No Restrictions)" ;
+    logical_value, 1, "Level 1" ;
+    logical_value, 2, "Level 2" ;
+    logical_value, 3, "Level 3" ;
+    logical_value, 4, "Transport_mode" ;
+    logical_value, 7, "Quiescent_current_measurement_mode" ;
+  }
+  DI_KL_58d_encoding {
+    physical_value, 0, 253, 1, 0 ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Error" ;
+  }
+  DI_KL_58xd_encoding {
+    physical_value, 0, 253, 1, 0 ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Error" ;
+  }
+  ESP_v_Signal_8Bit_encoding {
+    physical_value, 0, 253, 2.56, 0, "Unit_KiloMeterPerHour" ;
+    logical_value, 254, "Init" ;
+    logical_value, 255, "Error" ;
+  }
+  IL_Innenlicht_aktiv_encoding {
+    logical_value, 0, "Interior_Light_not_active" ;
+    logical_value, 1, "Interior_Light_active" ;
+  }
+  ISP_Dimmung_ASP_02_encoding {
+    physical_value, 0, 62, 0.0226, 0, "Unit_Volt" ;
+  }
+  ISP_EC_Lichtwert_hinten_encoding {
+    physical_value, 0, 61, 1, 0, "Unit_None" ;
+    logical_value, 62, "Init" ;
+    logical_value, 63, "Fehler" ;
+  }
+  ISP_EC_Lichtwert_vorne_encoding {
+    physical_value, 0, 61, 1, 0, "Unit_None" ;
+    logical_value, 62, "Init" ;
+    logical_value, 63, "Fehler" ;
+  }
+  ISP_Himmelsrichtung_encoding {
+    physical_value, 0, 29, 12, 0, "Unit_DegreOfArc" ;
+    logical_value, 30, "nicht verfuegbar bzw. Init" ;
+    logical_value, 31, "Fehler" ;
+  }
+  LED_LIM_PDC_encoding {
+    logical_value, 0, "OFF" ;
+    logical_value, 1, "ON" ;
+    logical_value, 2, "Flashing" ;
+  }
+  LH_Rueckfahrlicht_aktiv_encoding {
+    logical_value, 0, "Not active" ;
+    logical_value, 1, "active" ;
+  }
+  LIM2_Auslenkung_Leselicht_hl_encoding {
+    physical_value, 0, 10, 10, 0, "Unit_Percent" ;
+    logical_value, 12, "Not_adjustable" ;
+    logical_value, 13, "No_Chang" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  LIM2_Auslenkung_Leselicht_hr_encoding {
+    physical_value, 0, 10, 10, 0, "Unit_Percent" ;
+    logical_value, 12, "Not_adjustable" ;
+    logical_value, 13, "No_Chang" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  LIM2_Fokus_Leselicht_hl_encoding {
+    physical_value, 0, 10, 10, 0, "Unit_PerCent" ;
+    logical_value, 12, "Not_adjustable" ;
+    logical_value, 13, "No_Chang" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  LIM2_Fokus_Leselicht_hr_encoding {
+    physical_value, 0, 10, 10, 0, "Unit_PerCent" ;
+    logical_value, 12, "Not_adjustable" ;
+    logical_value, 13, "No_Chang" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  LIM2_Intensity_Leselicht_hl_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+    logical_value, 124, "Not_adjustable" ;
+    logical_value, 125, "No_Chang" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Error" ;
+  }
+  LIM2_Intensity_Leselicht_hr_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+    logical_value, 124, "Not_adjustable" ;
+    logical_value, 125, "No_Chang" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Error" ;
+  }
+  LIM2_Unterspannung_encoding {
+    logical_value, 0, "normal" ;
+    logical_value, 1, "Error" ;
+  }
+  LIM2_Winkel_Leselicht_hl_encoding {
+    physical_value, 0, 11, 30, 0, "Unit_DegreOfArc" ;
+    logical_value, 12, "Not_adjustable" ;
+    logical_value, 13, "No_Chang" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  LIM2_Winkel_Leselicht_hr_encoding {
+    physical_value, 0, 11, 30, 0, "Unit_DegreOfArc" ;
+    logical_value, 12, "Not_adjustable" ;
+    logical_value, 13, "No_Chang" ;
+    logical_value, 14, "Init" ;
+    logical_value, 15, "Error" ;
+  }
+  LIM_DI_Rear_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+    logical_value, 124, "Not_adjustable" ;
+    logical_value, 125, "No_Chang" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Error" ;
+  }
+  LIM_IL_Modus_Status_encoding {
+    logical_value, 0, "Not_active" ;
+    logical_value, 1, "Active" ;
+  }
+  LIM_Innenbeleuchtung_V_aktiv_encoding {
+    logical_value, 0, "front Interior lights and front reading lights are all off" ;
+    logical_value, 1, "min. is a front interior light or a front reading light" ;
+  }
+  LIM_Innenbeleuchtung_aktiv_encoding {
+    logical_value, 0, "all interior lights, reading lights, shade lights and ambient lights are off" ;
+    logical_value, 1, "min. an interior light, reading light or ambient light is on" ;
+  }
+  LIM_Innenlicht_H_umschalten_encoding {
+    logical_value, 0, "Leave" ;
+    logical_value, 1, "Toggle" ;
+  }
+  LIM_Leselicht_hl_umschalten_encoding {
+    logical_value, 0, "Leave" ;
+    logical_value, 1, "Toggle" ;
+  }
+  LIM_Leselicht_hr_umschalten_encoding {
+    logical_value, 0, "Leave" ;
+    logical_value, 1, "Toggle" ;
+  }
+  LIM_PAO_OFF_Status_encoding {
+    logical_value, 0, "LED Off" ;
+    logical_value, 1, "LED On" ;
+    logical_value, 2, "LED flash" ;
+    logical_value, 3, "LED defective" ;
+  }
+  LIM_PAO_ON_Status_encoding {
+    logical_value, 0, "LED Off" ;
+    logical_value, 1, "LED On" ;
+    logical_value, 2, "LED flash" ;
+    logical_value, 3, "LED defective" ;
+  }
+  LIM_PAO_Schriftzug_Status_encoding {
+    logical_value, 0, "LED Off" ;
+    logical_value, 1, "LED On" ;
+    logical_value, 2, "LED flash" ;
+    logical_value, 3, "LED defective" ;
+  }
+  LIM_S_Rollo_hi_encoding {
+    logical_value, 0, "Not_Pressed" ;
+    logical_value, 1, "Manual_close" ;
+    logical_value, 2, "auto_close" ;
+    logical_value, 3, "man_open" ;
+    logical_value, 4, "auto_open" ;
+    logical_value, 6, "Error_switch_lock" ;
+    logical_value, 7, "Error_switch_status_unclear" ;
+  }
+  LIM_S_Rollo_vo_encoding {
+    logical_value, 0, "Not_Pressed" ;
+    logical_value, 1, "Manual_close" ;
+    logical_value, 2, "auto_close" ;
+    logical_value, 3, "man_open" ;
+    logical_value, 4, "auto_open" ;
+    logical_value, 6, "Error_switch_lock" ;
+    logical_value, 7, "Error_switch_status_unclear" ;
+  }
+  LIM_S_SAD_Vo_encoding {
+    logical_value, 0, "Not_Pressed" ;
+    logical_value, 1, "Manual_sl_Close" ;
+    logical_value, 2, "auto_sl_close" ;
+    logical_value, 3, "manual_sl_open" ;
+    logical_value, 4, "auto_sl_open" ;
+    logical_value, 5, "manual_al_open" ;
+    logical_value, 6, "auto_al_open" ;
+    logical_value, 7, "manual_al_close" ;
+    logical_value, 8, "auto_al_close" ;
+    logical_value, 14, "error_switch_lock" ;
+    logical_value, 15, "error_switch_status_unclear" ;
+  }
+  LIM_S_SAD_hi_encoding {
+    logical_value, 0, "Not_pressed" ;
+    logical_value, 1, "manual_sl_close" ;
+    logical_value, 2, "auto_sl_close" ;
+    logical_value, 3, "manual_sl_open" ;
+    logical_value, 4, "auto_sl_open" ;
+    logical_value, 5, "manual_al_open" ;
+    logical_value, 6, "auto_al_open" ;
+    logical_value, 7, "manual_al_close" ;
+    logical_value, 8, "auto_al_close" ;
+    logical_value, 14, "Error_switch_lock" ;
+    logical_value, 15, "Error_switch_status_unclear" ;
+  }
+  LIM_TK_Funktion_Status_encoding {
+    logical_value, 0, "TK_Function_not_active" ;
+    logical_value, 1, "TK_Function_active" ;
+  }
+  Magnetzone_encoding {
+    logical_value, 0, "Not available" ;
+    logical_value, 1, "Zone 1" ;
+    logical_value, 2, "Zone 2" ;
+    logical_value, 3, "Zone 3" ;
+    logical_value, 4, "Zone 4" ;
+    logical_value, 5, "Zone 5" ;
+    logical_value, 6, "Zone 6" ;
+    logical_value, 7, "Zone 7" ;
+    logical_value, 8, "Zone 8" ;
+    logical_value, 9, "Zone 9" ;
+    logical_value, 10, "Zone 10" ;
+    logical_value, 11, "Zone 11" ;
+    logical_value, 12, "Zone 12" ;
+    logical_value, 13, "Zone 13" ;
+    logical_value, 14, "Zone 14" ;
+    logical_value, 15, "Zone 15" ;
+  }
+  Navi_Kompass_encoding {
+    logical_value, 0, "nicht verfuegbar" ;
+    logical_value, 1, "Norden" ;
+    logical_value, 2, "Nord Ost" ;
+    logical_value, 3, "Osten" ;
+    logical_value, 4, "Sued Ost" ;
+    logical_value, 5, "Sueden" ;
+    logical_value, 6, "Sued West" ;
+    logical_value, 7, "Westen" ;
+    logical_value, 8, "Nord West" ;
+    logical_value, 15, "Fehler" ;
+  }
+  SC_100Prozent_7Bit_Init {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+    logical_value, 126, "Init" ;
+    logical_value, 127, "Error" ;
+  }
+  SC_Aus_Ein {
+    logical_value, 0, "Off" ;
+    logical_value, 1, "On" ;
+  }
+  SC_BZ {
+    physical_value, 0, 15, 1, 0 ;
+  }
+  SC_Betaetigung {
+    logical_value, 0, "Not_Pressed" ;
+    logical_value, 1, "Pressed" ;
+  }
+  SC_Defekt {
+    logical_value, 0, "iO" ;
+    logical_value, 1, "Defect" ;
+  }
+  SC_Freigabe {
+    logical_value, 0, "No_sharing" ;
+    logical_value, 1, "Sharing" ;
+  }
+  SC_Lokalaktiv_2 {
+    logical_value, 0, "not_local_active" ;
+    logical_value, 1, "local_active" ;
+  }
+  SC_PAO_OFF_Anf_encoding {
+    logical_value, 0, "LED Off" ;
+    logical_value, 1, "LED on" ;
+    logical_value, 2, "LED flashing" ;
+    logical_value, 3, "reserved" ;
+  }
+  SC_PAO_ON_Anf_encoding {
+    logical_value, 0, "LED Off" ;
+    logical_value, 1, "LED on" ;
+    logical_value, 2, "LED flashing" ;
+    logical_value, 3, "reserved" ;
+  }
+  SC_PAO_Schriftzug_Anf_encoding {
+    logical_value, 0, "LED Off" ;
+    logical_value, 1, "LED on" ;
+    logical_value, 2, "LED flashing" ;
+    logical_value, 3, "reserved" ;
+  }
+  SC_SI_CAN_Sleep {
+    logical_value, 0, "No_Bus_Rest" ;
+    logical_value, 1, "Bus_Rest" ;
+  }
+  SC_Taster_betaetigt_2 {
+    logical_value, 0, "Button_not_Pressed" ;
+    logical_value, 1, "Button_Pressed" ;
+    logical_value, 2, "Button_not_Installed" ;
+  }
+  SC_Veraltet_Bit {
+    logical_value, 0, "Up_to_date" ;
+    logical_value, 1, "Out_of_date" ;
+  }
+  SC_geschlossen_offen {
+    logical_value, 0, "geschlossen" ;
+    logical_value, 1, "offen" ;
+  }
+  SC_inaktiv_aktiv {
+    logical_value, 0, "inactive" ;
+    logical_value, 1, "active" ;
+  }
+  SC_normal_Fehler {
+    logical_value, 0, "normal" ;
+    logical_value, 1, "Error" ;
+  }
+  SC_ungueltig_gueltig {
+    logical_value, 0, "invalid" ;
+    logical_value, 1, "valid" ;
+  }
+  SM_Parken_UGDO_Aktion_encoding {
+    logical_value, 0, "Keine_Anforderung" ;
+    logical_value, 1, "Garage_oeffnen_oder_toggeln" ;
+    logical_value, 2, "Garage_schliessen" ;
+    logical_value, 3, "Garage_stoppen" ;
+    logical_value, 4, "Status_Anfrage" ;
+  }
+  SM_Parken_UGDO_Anf_encoding {
+    logical_value, 0, "Keine_Anforderung" ;
+    logical_value, 1, "Garage_1" ;
+    logical_value, 2, "Garage_2" ;
+    logical_value, 3, "Garage_3" ;
+    logical_value, 4, "Garage_4" ;
+    logical_value, 5, "Garage_5" ;
+    logical_value, 6, "Garage_6" ;
+    logical_value, 7, "Garage_7" ;
+    logical_value, 8, "Garage_8" ;
+    logical_value, 9, "Garage_9" ;
+    logical_value, 10, "Garage_10" ;
+    logical_value, 11, "Garage_11" ;
+    logical_value, 12, "Garage_12" ;
+    logical_value, 13, "Garage_13" ;
+    logical_value, 14, "Garage_14" ;
+    logical_value, 15, "Garage_15" ;
+  }
+  Stellgliedtest_LED_Heizen_encoding {
+    logical_value, 0, "Kein_Stellgliedtest" ;
+    logical_value, 1, "Stellgliedtest_LED_ein" ;
+  }
+  Stellgliedtest_LED_Kuehlen_encoding {
+    logical_value, 0, "Kein_Stellgliedtest" ;
+    logical_value, 1, "Stellgliedtest_LED_ein" ;
+  }
+  Stellgliedtest_Luefter_encoding {
+    logical_value, 0, "Kein_Stellgliedtest" ;
+    logical_value, 1, "Stellgliedtest_LED_ein" ;
+  }
+  Stellgliedtest_Restwaerme_LED_encoding {
+    logical_value, 0, "Kein_Stellgliedtest" ;
+    logical_value, 1, "Stellgliedtest_LED_ein" ;
+  }
+  Stellgliedtest_TCH_encoding {
+    logical_value, 0, "Kein_Stellgliedtest" ;
+    logical_value, 1, "Heizen_ein" ;
+    logical_value, 2, "Kuehlen_ein" ;
+    logical_value, 3, "Aus" ;
+  }
+  TCH_BEM_Status_encoding {
+    logical_value, 0, "Betriebsbereit_Aus" ;
+    logical_value, 1, "TCH_Ein" ;
+    logical_value, 2, "Fehler" ;
+  }
+  TCH_Fehlerstatus_Interner_Fehler_encoding {
+    logical_value, 0, "Kein_Fehler" ;
+    logical_value, 1, "Interner_Fehler" ;
+  }
+  TCH_Ist_Temperatur_encoding {
+    physical_value, 0, 125, 1, -40, "Unit_DegreCelsi" ;
+  }
+  TCH_Status_LED_Heizen_encoding {
+    logical_value, 0, "LED_Aus" ;
+    logical_value, 1, "LED_Ein" ;
+    logical_value, 2, "LED_Fehler" ;
+  }
+  TCH_Status_LED_Kuehlen_encoding {
+    logical_value, 0, "LED_Aus" ;
+    logical_value, 1, "LED_Ein" ;
+    logical_value, 2, "LED_Fehler" ;
+  }
+  TCH_Status_Luefter_encoding {
+    logical_value, 0, "Aus" ;
+    logical_value, 1, "Ein" ;
+    logical_value, 2, "Fehler" ;
+  }
+  TCH_Status_PWM_Peltierelement_encoding {
+    physical_value, 0, 100, 1, 0, "Unit_PerCent" ;
+  }
+  TCH_Status_Peltierelement_encoding {
+    logical_value, 0, "Aus" ;
+    logical_value, 1, "Heizen" ;
+    logical_value, 2, "Kuehlen" ;
+    logical_value, 3, "Fehler" ;
+  }
+  TCH_Status_Restwaerme_LED_encoding {
+    logical_value, 0, "LED_Aus" ;
+    logical_value, 1, "LED_Ein" ;
+    logical_value, 2, "LED_Fehler" ;
+  }
+  TCH_Status_Taster_Heizen_encoding {
+    logical_value, 0, "unbetaetigt" ;
+    logical_value, 1, "betaetigt" ;
+    logical_value, 2, "Init" ;
+    logical_value, 3, "Fehler_Taste_klemmt" ;
+  }
+  TCH_Status_Taster_Kuehlen_encoding {
+    logical_value, 0, "unbetaetigt" ;
+    logical_value, 1, "betaetigt" ;
+    logical_value, 2, "Init" ;
+    logical_value, 3, "Fehler_Taste_klemmt" ;
+  }
+  Testmode_EC_encoding {
+    physical_value, 0, 61, 1.613, 0, "Unit_PerCent" ;
+    logical_value, 62, "alle Segmente an" ;
+    logical_value, 63, "normale Funktion" ;
+  }
+  UGDO_Buttons_encoding {
+    logical_value, 0, "All buttons released" ;
+    logical_value, 1, "Button 1 Status" ;
+    logical_value, 2, "Button 2 Status" ;
+    logical_value, 3, "Button 1 2  Status on" ;
+    logical_value, 4, "Button 3 Status" ;
+    logical_value, 5, "Button 1 3  Status on" ;
+    logical_value, 6, "Button 2 3  Status on" ;
+    logical_value, 7, "Button 1 2 3  Status on" ;
+    logical_value, 8, "Button X Status" ;
+  }
+  UGDO_Channel_10_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_11_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_12_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_13_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_14_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_15_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_1_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_2_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_3_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_4_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_5_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_6_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_7_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_8_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_Channel_9_encoding {
+    logical_value, 0, "not_trained" ;
+    logical_value, 1, "trained" ;
+  }
+  UGDO_DoorState_encoding {
+    logical_value, 0, "idle" ;
+    logical_value, 1, "move" ;
+    logical_value, 2, "open" ;
+    logical_value, 3, "close" ;
+    logical_value, 4, "movement_stopped_stop_movement" ;
+    logical_value, 5, "no_com_door_out_of_reach" ;
+    logical_value, 6, "communication_error" ;
+  }
+  UGDO_Failure_Antenne_encoding {
+    logical_value, 0, "normal" ;
+    logical_value, 1, "Fehler" ;
+  }
+  UGDO_Failure_Codierung_encoding {
+    logical_value, 0, "normal" ;
+    logical_value, 1, "Fehler" ;
+  }
+  UGDO_Failure_Hardware_encoding {
+    logical_value, 0, "normal" ;
+    logical_value, 1, "Fehler" ;
+  }
+  UGDO_Function_01_encoding {
+    logical_value, 0, "LED Function" ;
+    logical_value, 1, "Transceiver locked" ;
+    logical_value, 2, "reserviert" ;
+    logical_value, 3, "reserviert" ;
+    logical_value, 4, "Successful learned" ;
+    logical_value, 5, "reserviert" ;
+    logical_value, 6, "Timeout learning" ;
+    logical_value, 7, "Fehler" ;
+  }
+  UGDO_LED_Code_01_encoding {
+    logical_value, 0, "Init" ;
+    logical_value, 1, "LED_green_on" ;
+    logical_value, 2, "LED_yellow_on" ;
+    logical_value, 3, "LED_red_on" ;
+    logical_value, 4, "LED_green_flashing_with_10_Hz" ;
+    logical_value, 5, "LED_yellow_flashing_with_1_Hz" ;
+    logical_value, 16, "LED_flashing_off" ;
+    logical_value, 17, "LED_green_flashing_1_x_1_Hz" ;
+    logical_value, 18, "LED_green_flashing_2_x_1_Hz" ;
+    logical_value, 19, "LED_green_flashing_3_x_1_Hz" ;
+    logical_value, 20, "LED_green_flashing_4_x_1_Hz" ;
+    logical_value, 21, "LED_green_flashing_5_x_1_Hz" ;
+    logical_value, 22, "LED_green_flashing_6_x_1_Hz" ;
+    logical_value, 23, "LED_green_flashing_7_x_1_Hz" ;
+    logical_value, 24, "LED_green_flashing_8_x_1_Hz" ;
+    logical_value, 25, "LED_green_flashing_9_x_1_Hz" ;
+    logical_value, 26, "LED_green_flashing_10_x_1_Hz" ;
+    logical_value, 27, "LED_green_flashing_11_x_1_Hz" ;
+    logical_value, 28, "LED_green_flashing_12_x_1_Hz" ;
+    logical_value, 29, "LED_green_flashing_13_x_1_Hz" ;
+    logical_value, 30, "LED_green_flashing_14_x_1_Hz" ;
+  }
+  UGDO_SW_Buttons_encoding {
+    logical_value, 0, "All buttons released" ;
+    logical_value, 1, "Button 1 Status" ;
+    logical_value, 2, "Button 2 Status" ;
+    logical_value, 3, "Button 1 2  Status on" ;
+    logical_value, 4, "Button 3 Status" ;
+    logical_value, 5, "Button 1 3  Status on" ;
+    logical_value, 6, "Button 2 3  Status on" ;
+    logical_value, 7, "Button 1 2 3  Status on" ;
+    logical_value, 8, "Button X Status" ;
+  }
+  UGDO_SW_Function_encoding {
+    logical_value, 0, "LED Function" ;
+    logical_value, 1, "Transceiver locked" ;
+    logical_value, 2, "Reserved" ;
+    logical_value, 3, "Reserved" ;
+    logical_value, 4, "Successful learned" ;
+    logical_value, 5, "Reserved" ;
+    logical_value, 6, "Timeout learning" ;
+    logical_value, 7, "Error" ;
+  }
+  UGDO_SW_LED_Code_encoding {
+    logical_value, 0, "LEDs_off" ;
+    logical_value, 1, "LED_green_on" ;
+    logical_value, 2, "LED_yellow_on" ;
+    logical_value, 3, "LED_red_on" ;
+    logical_value, 4, "LED_green_flashing_with_10_Hz" ;
+    logical_value, 5, "LED_yellow_flashing_with_1_Hz" ;
+    logical_value, 16, "LED_flashing_off" ;
+    logical_value, 17, "LED_green_flashing_1_x_1_Hz" ;
+    logical_value, 18, "LED_green_flashing_2_x_1_Hz" ;
+    logical_value, 19, "LED_green_flashing_3_x_1_Hz" ;
+    logical_value, 20, "LED_green_flashing_4_x_1_Hz" ;
+    logical_value, 21, "LED_green_flashing_5_x_1_Hz" ;
+    logical_value, 22, "LED_green_flashing_6_x_1_Hz" ;
+    logical_value, 23, "LED_green_flashing_7_x_1_Hz" ;
+    logical_value, 24, "LED_green_flashing_8_x_1_Hz" ;
+    logical_value, 25, "LED_green_flashing_9_x_1_Hz" ;
+    logical_value, 26, "LED_green_flashing_10_x_1_Hz" ;
+    logical_value, 27, "LED_green_flashing_11_x_1_Hz" ;
+    logical_value, 28, "LED_green_flashing_12_x_1_Hz" ;
+    logical_value, 29, "LED_green_flashing_13_x_1_Hz" ;
+    logical_value, 30, "LED_green_flashing_14_x_1_Hz" ;
+  }
+  UGDO_SW_Switchboard_encoding {
+    logical_value, 0, "Button function" ;
+    logical_value, 1, "Switchboard failure" ;
+  }
+  UGDO_Switchboard_encoding {
+    logical_value, 0, "Button function" ;
+    logical_value, 1, "Switchboard failure" ;
+  }
+  VS_VD_offen_ver_encoding {
+    logical_value, 0, "Init" ;
+    logical_value, 1, "Zustand des Verdecks verriegelt und offen" ;
+  }
+  ZAS_Kl_15_encoding {
+    logical_value, 0, "off" ;
+    logical_value, 1, "on" ;
+  }
+  bCall_active_encoding {
+    logical_value, 0, "bcall inactive" ;
+    logical_value, 1, "bcall active" ;
+  }
+  eCall_Statuslicht_Farbe1_encoding {
+    logical_value, 0, "OFF" ;
+    logical_value, 1, "Flashing_1" ;
+    logical_value, 2, "Flashing_2" ;
+    logical_value, 3, "ON" ;
+  }
+  eCall_Statuslicht_Farbe2_encoding {
+    logical_value, 0, "OFF" ;
+    logical_value, 1, "Flashing_1" ;
+    logical_value, 2, "Flashing_2" ;
+    logical_value, 3, "ON" ;
+  }
+  eCall_Taste_encoding {
+    logical_value, 0, "button_released" ;
+    logical_value, 1, "button_pressed" ;
+    logical_value, 2, "discrete_line_broken" ;
+    logical_value, 3, "Error" ;
+  }
+}
+
+Signal_representation {
+  BAPe_Data_Byte_1_encoding: BAPe_Data_Byte_1 ;
+  BAPe_Data_Byte_2_encoding: BAPe_Data_Byte_2 ;
+  BAPe_Data_Byte_3_encoding: BAPe_Data_Byte_3 ;
+  BAPe_Data_Byte_4_encoding: BAPe_Data_Byte_4 ;
+  BAPe_Data_Byte_5_encoding: BAPe_Data_Byte_5 ;
+  BAPe_Data_Byte_6_encoding: BAPe_Data_Byte_6 ;
+  BAPs_Data_Byte_1_encoding: BAPs_Data_Byte_1 ;
+  BAPs_Data_Byte_2_encoding: BAPs_Data_Byte_2 ;
+  BAPs_Data_Byte_3_encoding: BAPs_Data_Byte_3 ;
+  BAPs_Data_Byte_4_encoding: BAPs_Data_Byte_4 ;
+  BAPs_Data_Byte_5_encoding: BAPs_Data_Byte_5 ;
+  BAPs_Data_Byte_6_encoding: BAPs_Data_Byte_6 ;
+  BCM1_DI_Beleuchtung_Panormadach_encoding: BCM1_DI_Beleuchtung_Panormadach ;
+  BCM1_DI_Rampe_Innenlicht_encoding: BCM1_DI_Rampe_Innenlicht ;
+  BCM1_DI_Rampe_Leselicht_encoding: BCM1_DI_Rampe_Leselicht ;
+  BCM1_Innenlicht_gedimmt_H_encoding: BCM1_Innenlicht_gedimmt_H ;
+  BCM1_Innenlicht_gedimmt_V_encoding: BCM1_Innenlicht_gedimmt_V ;
+  BCM1_Lauflicht_disable_encoding: BCM1_Lauflicht_disable ;
+  BCM1_Leselicht_Anf_hl_Sitzreihe3_encoding: BCM1_Leselicht_Anf_hl_Sitzreihe3 ;
+  BCM1_Leselicht_Anf_hr_Sitzreihe3_encoding: BCM1_Leselicht_Anf_hr_Sitzreihe3 ;
+  BCM1_Leuchten_Aus_encoding: BCM1_Leuchten_Aus ;
+  BCM1_SCON_Anforderung_encoding: BCM1_SCON_Anforderung ;
+  BCM1_SCON_Auslenkung_encoding: BCM1_SCON_Auslenkung ;
+  BCM1_SCON_Dimmwert_encoding: BCM1_SCON_Dimmwert ;
+  BCM1_SCON_Fokus_encoding: BCM1_SCON_Fokus ;
+  BCM1_SCON_Leuchte_encoding: BCM1_SCON_Leuchte ;
+  BCM1_SCON_Winkel_encoding: BCM1_SCON_Winkel ;
+  BCM1_TCH_HLR_Anf_encoding: BCM1_TCH_HLR_Anf ;
+  BCM1_TK_Funktion_encoding: BCM1_TK_Funktion ;
+  BCM1_Verdeck_zu_encoding: BCM1_Verdeck_zu ;
+  BCM_Dimmwert_Flaechenlicht_Farbe1_encoding: BCM_Dimmwert_Flaechenlicht_Farbe1 ;
+  BEM_02_Abschaltstufen_encoding: BEM_02_Abschaltstufen ;
+  DI_KL_58d_encoding: DI_KL_58d ;
+  DI_KL_58xd_encoding: DI_KL_58xd ;
+  ESP_v_Signal_8Bit_encoding: ESP_v_Signal_8Bit ;
+  IL_Innenlicht_aktiv_encoding: IL_Innenlicht_aktiv ;
+  ISP_Dimmung_ASP_02_encoding: ISP_Dimmung_ASP_02 ;
+  ISP_EC_Lichtwert_hinten_encoding: ISP_EC_Lichtwert_hinten ;
+  ISP_EC_Lichtwert_vorne_encoding: ISP_EC_Lichtwert_vorne ;
+  ISP_Himmelsrichtung_encoding: ISP_Himmelsrichtung ;
+  LED_LIM_PDC_encoding: LED_LIM_PDC ;
+  LH_Rueckfahrlicht_aktiv_encoding: LH_Rueckfahrlicht_aktiv ;
+  LIM2_Auslenkung_Leselicht_hl_encoding: LIM2_Auslenkung_Leselicht_hl ;
+  LIM2_Auslenkung_Leselicht_hr_encoding: LIM2_Auslenkung_Leselicht_hr ;
+  LIM2_Fokus_Leselicht_hl_encoding: LIM2_Fokus_Leselicht_hl ;
+  LIM2_Fokus_Leselicht_hr_encoding: LIM2_Fokus_Leselicht_hr ;
+  LIM2_Intensity_Leselicht_hl_encoding: LIM2_Intensity_Leselicht_hl ;
+  LIM2_Intensity_Leselicht_hr_encoding: LIM2_Intensity_Leselicht_hr ;
+  LIM2_Unterspannung_encoding: LIM2_Unterspannung ;
+  LIM2_Winkel_Leselicht_hl_encoding: LIM2_Winkel_Leselicht_hl ;
+  LIM2_Winkel_Leselicht_hr_encoding: LIM2_Winkel_Leselicht_hr ;
+  LIM_DI_Rear_encoding: LIM_DI_Rear ;
+  LIM_IL_Modus_Status_encoding: LIM_IL_Modus_Status ;
+  LIM_Innenbeleuchtung_V_aktiv_encoding: LIM_Innenbeleuchtung_V_aktiv ;
+  LIM_Innenbeleuchtung_aktiv_encoding: LIM_Innenbeleuchtung_aktiv ;
+  LIM_Innenlicht_H_umschalten_encoding: LIM_Innenlicht_H_umschalten ;
+  LIM_Leselicht_hl_umschalten_encoding: LIM_Leselicht_hl_umschalten ;
+  LIM_Leselicht_hr_umschalten_encoding: LIM_Leselicht_hr_umschalten ;
+  LIM_PAO_OFF_Status_encoding: LIM_PAO_OFF_Status ;
+  LIM_PAO_ON_Status_encoding: LIM_PAO_ON_Status ;
+  LIM_PAO_Schriftzug_Status_encoding: LIM_PAO_Schriftzug_Status ;
+  LIM_S_Rollo_hi_encoding: LIM_S_Rollo_hi ;
+  LIM_S_Rollo_vo_encoding: LIM_S_Rollo_vo ;
+  LIM_S_SAD_Vo_encoding: LIM_S_SAD_Vo ;
+  LIM_S_SAD_hi_encoding: LIM_S_SAD_hi ;
+  LIM_TK_Funktion_Status_encoding: LIM_TK_Funktion_Status ;
+  Magnetzone_encoding: Magnetzone ;
+  Navi_Kompass_encoding: Navi_Kompass ;
+  SC_100Prozent_7Bit_Init: DI_KL_58st, DI_KL_58xs ;
+  SC_Aus_Ein: BCM1_Innenlicht_Anf_hl_ZusatzL, BCM1_Innenlicht_Anf_hr_ZusatzL, BCM1_Innenlicht_H, BCM1_Innenlicht_V, BCM1_Leselicht_Anf_hl, BCM1_Leselicht_Anf_hl_ZusatzL, BCM1_Leselicht_Anf_hr, BCM1_Leselicht_Anf_hr_ZusatzL, BCM1_Leselicht_Anf_vl, BCM1_Leselicht_Anf_vr, Enable_EC, Enable_Kompass, Innenleuchten_Stellgliedtest, Kalibrierung_Kompass, Klemme_15, Klemme_X ;
+  SC_BZ: LIM_PAO_Alivesignal ;
+  SC_Betaetigung: ISP_Taste_betaetigt, LIM2_Taster_REAR_hi_betaetigt, LIM_bCall_Taster, ZV_auf_Funk ;
+  SC_Defekt: LIM2_Taster_Leselicht_hl_def, LIM2_Taster_Leselicht_hr_def, LIM2_Taster_REAR_hi_def, LIM_Beleuchtung_Panormadach_def, LIM_FLED_REAR_hinten_def, LIM_Innenlicht_ZusatzL_hl_def, LIM_Innenlicht_ZusatzL_hr_def, LIM_Leselicht_hl_def_Sitzreihe3, LIM_Leselicht_hr_def_Sitzreihe3, LIM_Leselicht_ZusatzL_hl_def, LIM_Leselicht_ZusatzL_hr_def, LIM_Taster_Leselicht_hl_def_SR3, LIM_Taster_Leselicht_hr_def_SR3, LIM_Taster_REAR_hinten_def ;
+  SC_Freigabe: HLR_TCH_Freigabe ;
+  SC_Lokalaktiv_2: LIM2_Lokalaktiv, LIM_Lokalaktiv, TCH_Lokalaktiv ;
+  SC_PAO_OFF_Anf_encoding: SC_PAO_OFF_Anf ;
+  SC_PAO_ON_Anf_encoding: SC_PAO_ON_Anf ;
+  SC_PAO_Schriftzug_Anf_encoding: SC_PAO_Schriftzug_Anf ;
+  SC_SI_CAN_Sleep: BCM1_CAN_Sleep ;
+  SC_Taster_betaetigt_2: LIM_PDC, LIM_Sideview ;
+  SC_Veraltet_Bit: TSG_FT_01_alt ;
+  SC_geschlossen_offen: SAD_offen ;
+  SC_inaktiv_aktiv: FSH_aktiv, FT_Kisi_li_aktiv, FT_Kisi_re_aktiv, ISP_EC_aktiv, ISP_Kompass_aktiv, LIM2_Innenlicht_h_aktiv, LIM_Rear_Mode ;
+  SC_normal_Fehler: ISP_defekt, ISP_ECSensor_h_defekt, ISP_ECSensor_v_defekt, ISP_ResponseError, ISP_Taste_haengt, LIM2_defekt, LIM2_ResponseError, LIM2_Ueberspannung, LIM2_Uebertemperatur, LIM_defekt, LIM_Innenlicht_H_1_def, LIM_ISP_EC_Aufblenden_def, LIM_Leselicht_hl_def, LIM_Leselicht_hr_def, LIM_ResponseError, LIM_Tasten_Innenlicht_V_def, LIM_Taster_Leseleuchten_H_def, LIM_Taster_Leselicht_hl_def, LIM_Taster_Leselicht_hr_def, LIM_Taster_Leselicht_vl_def, LIM_Taster_Leselicht_vr_def, LIM_Ueberspannung, LIM_Uebertemperatur, LIM_Unterspannung, TCH_ResponseError, UGDO_B_ResponseError, UGDO_ResponseError ;
+  SC_ungueltig_gueltig: LIM2_Gueltigkeit_Lichterfehler, LIM2_Gueltigkeit_Tasterfehler, LIM_ErrorGueltigkeit_Lichterfehler, LIM_ErrorGueltigkeit_Tasterfehler ;
+  SM_Parken_UGDO_Aktion_encoding: SM_Parken_UGDO_Aktion ;
+  SM_Parken_UGDO_Anf_encoding: SM_Parken_UGDO_Anf ;
+  Stellgliedtest_LED_Heizen_encoding: Stellgliedtest_LED_Heizen ;
+  Stellgliedtest_LED_Kuehlen_encoding: Stellgliedtest_LED_Kuehlen ;
+  Stellgliedtest_Luefter_encoding: Stellgliedtest_Luefter ;
+  Stellgliedtest_Restwaerme_LED_encoding: Stellgliedtest_Restwaerme_LED ;
+  Stellgliedtest_TCH_encoding: Stellgliedtest_TCH ;
+  TCH_BEM_Status_encoding: TCH_BEM_Status ;
+  TCH_Fehlerstatus_Interner_Fehler_encoding: TCH_Fehlerstatus_Interner_Fehler ;
+  TCH_Ist_Temperatur_encoding: TCH_Ist_Temperatur ;
+  TCH_Status_LED_Heizen_encoding: TCH_Status_LED_Heizen ;
+  TCH_Status_LED_Kuehlen_encoding: TCH_Status_LED_Kuehlen ;
+  TCH_Status_Luefter_encoding: TCH_Status_Luefter ;
+  TCH_Status_PWM_Peltierelement_encoding: TCH_Status_PWM_Peltierelement ;
+  TCH_Status_Peltierelement_encoding: TCH_Status_Peltierelement ;
+  TCH_Status_Restwaerme_LED_encoding: TCH_Status_Restwaerme_LED ;
+  TCH_Status_Taster_Heizen_encoding: TCH_Status_Taster_Heizen ;
+  TCH_Status_Taster_Kuehlen_encoding: TCH_Status_Taster_Kuehlen ;
+  Testmode_EC_encoding: Testmode_EC ;
+  UGDO_Buttons_encoding: UGDO_Buttons ;
+  UGDO_Channel_10_encoding: UGDO_Channel_10 ;
+  UGDO_Channel_11_encoding: UGDO_Channel_11 ;
+  UGDO_Channel_12_encoding: UGDO_Channel_12 ;
+  UGDO_Channel_13_encoding: UGDO_Channel_13 ;
+  UGDO_Channel_14_encoding: UGDO_Channel_14 ;
+  UGDO_Channel_15_encoding: UGDO_Channel_15 ;
+  UGDO_Channel_1_encoding: UGDO_Channel_1 ;
+  UGDO_Channel_2_encoding: UGDO_Channel_2 ;
+  UGDO_Channel_3_encoding: UGDO_Channel_3 ;
+  UGDO_Channel_4_encoding: UGDO_Channel_4 ;
+  UGDO_Channel_5_encoding: UGDO_Channel_5 ;
+  UGDO_Channel_6_encoding: UGDO_Channel_6 ;
+  UGDO_Channel_7_encoding: UGDO_Channel_7 ;
+  UGDO_Channel_8_encoding: UGDO_Channel_8 ;
+  UGDO_Channel_9_encoding: UGDO_Channel_9 ;
+  UGDO_DoorState_encoding: UGDO_DoorState ;
+  UGDO_Failure_Antenne_encoding: UGDO_Failure_Antenne ;
+  UGDO_Failure_Codierung_encoding: UGDO_Failure_Codierung ;
+  UGDO_Failure_Hardware_encoding: UGDO_Failure_Hardware ;
+  UGDO_Function_01_encoding: UGDO_Function_01 ;
+  UGDO_LED_Code_01_encoding: UGDO_LED_Code_01 ;
+  UGDO_SW_Buttons_encoding: UGDO_SW_Buttons ;
+  UGDO_SW_Function_encoding: UGDO_SW_Function ;
+  UGDO_SW_LED_Code_encoding: UGDO_SW_LED_Code ;
+  UGDO_SW_Switchboard_encoding: UGDO_SW_Switchboard ;
+  UGDO_Switchboard_encoding: UGDO_Switchboard ;
+  VS_VD_offen_ver_encoding: VS_VD_offen_ver ;
+  ZAS_Kl_15_encoding: ZAS_Kl_15 ;
+  bCall_active_encoding: bCall_active ;
+  eCall_Statuslicht_Farbe1_encoding: eCall_Statuslicht_Farbe1 ;
+  eCall_Statuslicht_Farbe2_encoding: eCall_Statuslicht_Farbe2 ;
+  eCall_Taste_encoding: eCall_Taste ;
+}

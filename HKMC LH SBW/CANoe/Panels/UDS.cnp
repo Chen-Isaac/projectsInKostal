@@ -1,0 +1,286 @@
+VPanel 22 1569 720 0 0 255""
+255 255 255
+32
+ElemEdit 397 655 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 398 654 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 396 677 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemBN 45 149 140 20 EnvVar:udsPnlCmd_DefaultSession <PE> EnvVar:udsPNL_CMD_Session_Default 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""DEFAULT"
+ElemBN 45 168 140 20 EnvVar:udsPnlCmd_ProgramSession <PE> EnvVar:udsPNL_CMD_Session_Programm 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""PROGRAM"
+ElemBN 45 187 140 20 EnvVar:udsPnlCmd_ExtendSession <PE> EnvVar:udsPNL_CMD_Session_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""EXTEND"
+ElemFrame 35 128 160 165 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$10 SessionControl"
+ElemFrame 15 0 1530 715 ElemFrame <PE> 16777215 0 -16 0 0 0 700 0 0 0 0 3 2 1 34"Arial""HKMC LH SBW UDS Panel"
+ElemBN 45 206 140 20 EnvVar:udsPNL_CMD_QuiCurrDiagMode_Start <PE> EnvVar:udsPNL_CMD_QuiCurrDiagMode_Start 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""QC Diag Mode Start"
+ElemFrame 32 52 415 60 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""Configuration"
+ElemRBT 62 70 130 15 EnvVar:udsPnlSel_AddressingMethod <PE> EnvVar:udsPNL_FLG_AddressType 0 0 0 0 16777088 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Physical Request"
+ElemRBT 62 91 130 15 EnvVar:udsPnlSel_AddressingMethod <PE> EnvVar:udsPNL_FLG_AddressType 0 0 0 1 16777088 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Functional Request"
+ElemRBT 229 70 170 15 EnvVar:udsPNL_FLG_SuppressType <PE> EnvVar:udsPNL_FLG_SuppressType 0 0 0 0 8453888 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Responce Non-Suppress"
+ElemRBT 229 91 170 15 EnvVar:udsPNL_FLG_SuppressType <PE> EnvVar:udsPNL_FLG_SuppressType 0 0 0 1 8453888 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Responce Suppress"
+ElemFrame 202 127 160 50 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$11 ECU Reset"
+ElemBN 207 148 140 20 EnvVar:udsPNL_CMD_Reset_Hardware <PE> EnvVar:udsPNL_CMD_Reset_Hardware 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""HARD RESET"
+SymbElemOCX 470 80 20 20 <none> <PE> EnvVar:udsPNL_FLG_TesterPresent 0 0 0 0 0 1
+ElemFrame 35 294 810 415 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$19 Read DTC"
+ElemBN 48 313 250 20 EnvVar:udsPNL_CMD_ReadDTC_NumbyStatus <PE> EnvVar:udsPNL_CMD_ReadDTCByStsMask 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""ReportDTCByStatusMask"
+ElemBN 319 313 255 20 EnvVar:udsPNL_CMD_ReadDTC_ByStatus <PE> EnvVar:udsPNL_CMD_ReadExtDatRecByDTCNo 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""ReportDTCExtDataRecByDTCNumber"
+ElemEdit 397 413 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 413 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC1 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 435 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC2 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 457 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC3 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 479 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC4 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 501 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC5 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 523 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC6 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 545 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC7 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 567 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC8 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 589 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC9 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 611 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC10 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 435 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 457 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 479 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 501 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 523 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 545 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 567 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 589 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 611 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 173 362 125 22 <none> <PE> EnvVar:udsPNL_OPT_ReadDTC_Number 0 0 2 :0 0 2 1 1 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 42 633 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC11 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 397 633 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemBN 528 414 50 20 EnvVar:udsPNL_CMD_DTC1_Extend <PE> EnvVar:udsPNL_CMD_DTC1_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 436 50 20 EnvVar:udsPNL_CMD_DTC2_Extend <PE> EnvVar:udsPNL_CMD_DTC2_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 458 50 20 EnvVar:udsPNL_CMD_DTC3_Extend <PE> EnvVar:udsPNL_CMD_DTC3_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 480 50 20 EnvVar:udsPNL_CMD_DTC4_Extend <PE> EnvVar:udsPNL_CMD_DTC4_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 502 50 20 EnvVar:udsPNL_CMD_DTC5_Extend <PE> EnvVar:udsPNL_CMD_DTC5_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 524 50 20 EnvVar:udsPNL_CMD_DTC6_Extend <PE> EnvVar:udsPNL_CMD_DTC6_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 546 50 20 EnvVar:udsPNL_CMD_DTC7_Extend <PE> EnvVar:udsPNL_CMD_DTC7_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 568 50 20 EnvVar:udsPNL_CMD_DTC8_Extend <PE> EnvVar:udsPNL_CMD_DTC8_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 590 50 20 EnvVar:udsPNL_CMD_DTC9_Extend <PE> EnvVar:udsPNL_CMD_DTC9_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 612 50 20 EnvVar:udsPNL_CMD_DTC10_Extend <PE> EnvVar:udsPNL_CMD_DTC10_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 528 634 50 20 EnvVar:udsPNL_CMD_DTC11_Extend <PE> EnvVar:udsPNL_CMD_DTC11_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemHexEdit 582 413 80 20 EnvVar:udsPNL_OPT_DTC1_Extend <PE> EnvVar:udsPNL_OPT_DTC1_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 435 80 20 EnvVar:udsPNL_OPT_DTC2_Extend <PE> EnvVar:udsPNL_OPT_DTC2_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 457 80 20 EnvVar:udsPNL_OPT_DTC3_Extend <PE> EnvVar:udsPNL_OPT_DTC3_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 480 80 20 EnvVar:udsPNL_OPT_DTC4_Extend <PE> EnvVar:udsPNL_OPT_DTC4_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 502 80 20 EnvVar:udsPNL_OPT_DTC5_Extend <PE> EnvVar:udsPNL_OPT_DTC5_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 524 80 20 EnvVar:udsPNL_OPT_DTC6_Extend <PE> EnvVar:udsPNL_OPT_DTC6_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 546 80 20 EnvVar:udsPNL_OPT_DTC7_Extend <PE> EnvVar:udsPNL_OPT_DTC7_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 568 80 20 EnvVar:udsPNL_OPT_DTC8_Extend <PE> EnvVar:udsPNL_OPT_DTC8_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 590 80 20 EnvVar:udsPNL_OPT_DTC9_Extend <PE> EnvVar:udsPNL_OPT_DTC9_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 612 80 20 EnvVar:udsPNL_OPT_DTC10_Extend <PE> EnvVar:udsPNL_OPT_DTC10_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 582 634 80 20 EnvVar:udsPNL_OPT_DTC11_Extend <PE> EnvVar:udsPNL_OPT_DTC11_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemST 48 341 120 15 ElemST <PE> 0 1 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Status Mask"
+ElemST 175 341 120 15 ElemST <PE> 0 1 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Number of DTC"
+ElemFrame 372 128 160 75 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$14 Clear DTC Info"
+ElemBN 380 150 140 25 EnvVar:udsPNL_CMD_ClearDTC_All <PE> EnvVar:udsPNL_CMD_ClearDTC_All 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""ALL DTC"
+ElemBN 380 174 140 25 EnvVar:udsPNL_CMD_ClearDTC_Chassic <PE> EnvVar:udsPNL_CMD_ClearDTC_Chassic 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Chassis DTC"
+ElemFrame 704 127 156 80 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$85  DTC Setting"
+ElemBN 714 152 140 20 EnvVar:udsPNL_CMD_DTC_ON <PE> EnvVar:udsPNL_CMD_DTC_ON 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""DTC ON"
+ElemBN 714 172 140 20 EnvVar:udsPNL_CMD_DTC_OFF <PE> EnvVar:udsPNL_CMD_DTC_OFF 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""DTC OFF"
+ElemFrame 1062 37 160 140 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$27 Security Access"
+ElemBN 1072 59 140 20 EnvVar:udsPNL_CMD_Security_Request <PE> EnvVar:udsPNL_CMD_Security_Request 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Request Seed"
+ElemEdit 1081 82 30 22 <none> <PE> EnvVar:udsPNL_OPT_Security_SEED0 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 1111 82 30 22 <none> <PE> EnvVar:udsPNL_OPT_Security_SEED1 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 1141 82 30 22 <none> <PE> EnvVar:udsPNL_OPT_Security_SEED2 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 1171 82 30 22 <none> <PE> EnvVar:udsPNL_OPT_Security_SEED3 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemBN 1072 119 140 20 EnvVar:udsPNL_CMD_Security_Send <PE> EnvVar:udsPNL_CMD_Security_Send 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Send Key"
+ElemEdit 1081 143 30 22 <none> <PE> EnvVar:udsPNL_IPT_Security_KEY0 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 1111 143 30 22 <none> <PE> EnvVar:udsPNL_IPT_Security_KEY1 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 1141 143 30 22 <none> <PE> EnvVar:udsPNL_IPT_Security_KEY2 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 1171 143 30 22 <none> <PE> EnvVar:udsPNL_IPT_Security_KEY3 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemFrame 537 128 160 145 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$28 Comm Control"
+ElemBN 547 147 140 25 EnvVar:udsPNL_CMD_Comm_ERX_ETX <PE> EnvVar:udsPNL_CMD_Comm_ERX_ETX 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Enable Rx + Tx"
+ElemBN 546 176 140 25 EnvVar:udsPNL_CMD_Comm_DRX_DTX <PE> EnvVar:udsPNL_CMD_Comm_DRX_DTX 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Disable Rx + Tx"
+ElemFrame 865 115 160 95 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$31 Routine Control"
+ElemBN 875 174 140 20 EnvVar:udsPNL_CMD_RoutineStart <PE> EnvVar:udsPNL_CMD_RoutineStart 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Start Routine"
+ElemValueTableBox 875 135 135 50 Start_Routine <PE> EnvVar:udsPNL_SEL_RoutineControl 0 0 0 0
+ElemFrame 205 215 310 75 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$29 Enable Normal Message Transmission"
+ElemFrame 877 217 420 110 ElemFrame <PE> 16777215 0 -14 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$2F IO ControlByIdentifier"
+ElemFrame 862 412 640 115 ElemFrame <PE> 16777215 0 -15 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$22 Read Data by Identifier"
+ElemValueTableBox 882 454 240 45 <none> <PE> EnvVar:udsPNL_SEL_ReadCustDiDs 0 0 0 0
+ElemFrame 872 552 445 60 ElemFrame <PE> 16777215 0 -15 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$2E Write Data by Identifier"
+ElemEdit 1147 457 310 22 <none> <PE> EnvVar:udsPNL_OPT_ReadCustDiDsResult 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemBN 1124 456 20 20 EnvVar:udsPNL_CMD_ReadCustDiDs <PE> EnvVar:udsPNL_CMD_ReadCustDiDs 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"">>"
+ElemBN 1075 576 20 20 EnvVar:udsPNL_CMD_WriteDiDs <PE> EnvVar:udsPNL_CMD_WriteDiDs 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"">>"
+ElemEdit 1105 576 200 22 <none> <PE> EnvVar:udsPNL_OPT_WriteDiDData 0 0 0 :0 2 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemSBM 500 20 107 41 ElemSBM <PE> <VFileName V4 QL> 1 "..\Bitmaps\logo Kostal 60%.bmp" * 1 0
+ElemST 884 578 25 20 ElemST <PE> 0 0 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 34"Arial""DID"
+ElemFrame 882 241 200 75 ElemFrame <PE> 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 34"Arial""PRA Control"
+ElemFrame 1088 241 200 75 ElemFrame <PE> 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Force Sleep Mode"
+ElemST 500 80 120 20 ElemST <PE> 0 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$3E Tester Present"
+ElemST 680 80 185 20 ElemST <PE> 0 0 16777215 0 -13 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$20 Stop Diagnostic Session"
+ElemFrame 867 347 445 60 ElemFrame <PE> 16777215 0 -15 0 0 0 700 0 0 0 0 3 2 1 34"Arial""$24 ReadScalingDataByIdentifier"
+ElemBN 1075 370 20 20 EnvVar:udsPNL_CMD_ReadScalingDataDiDs <PE> EnvVar:udsPNL_CMD_ReadScalingDataDiDs 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"">>"
+ElemEdit 1105 370 200 22 <none> <PE> EnvVar:udsPNL_OPT_ReadScalDatDiDsResult 0 0 0 :0 2 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 910 370 125 22 <none> <PE> EnvVar:udsPNL_OPT_ReadScaling_DID 0 0 2 :0 0 2 1 1 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemST 877 373 25 20 ElemST <PE> 0 0 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 34"Arial""DID"
+ElemST 937 434 95 20 ElemST <PE> 0 0 16777215 0 -13 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Customer DID"
+ElemSwitchAndDisplay 1367 259 30 30 <none> <PE> EnvVar:udsPNL_IND_Error 0 0 0 3 <VFileName V4 QL> 1 "..\Bitmaps\lIndicatorLight_3.bmp"  1 1 0 1 0 1 0
+ElemFrame 1357 242 100 60 ElemFrame <PE> 16777215 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New""Indicator"
+ElemEdit 1402 260 35 22 <none> <PE> EnvVar:udsPNL_IND_ErrorCode 0 0 2 :1 0 2 1 1 16777215 0 1 -12 0 0 0 700 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemBN 45 245 140 20 EnvVar:udsPNL_CMD_Session_ECUProgramm <PE> EnvVar:udsPNL_CMD_Session_ECUProgramm 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""ECU PROGRAM"
+ElemBN 46 266 140 20 EnvVar:udsPNL_CMD_Session_ExtDiagMode <PE> EnvVar:udsPNL_CMD_Session_ExtDiagMode 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extended Diag Mode"
+ElemBN 252 239 140 20 EnvVar:udsPNL_CMD_RESP_ON <PE> EnvVar:udsPNL_CMD_RESP_ON 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""RESP ON"
+ElemBN 252 259 140 20 EnvVar:udsPNL_CMD_RESP_OFF <PE> EnvVar:udsPNL_CMD_RESP_OFF 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""RESP OFF"
+ElemBN 547 203 140 25 EnvVar:udsPNL_CMD_Comm_DRX_DTX_RespON <PE> EnvVar:udsPNL_CMD_Comm_DRX_DTX_RespON 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Disable RxTX RESP ON"
+ElemBN 543 228 150 25 EnvVar:udsPNL_CMD_Comm_DRX_DTX_RespOFF <PE> EnvVar:udsPNL_CMD_Comm_DRX_DTX_RespOFF 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Disable RxTx RESP OFF"
+ElemSwitchAndDisplay 870 30 28 28 <none> <PE> EnvVar:udsPNL_SW_EnablePNL 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\ButtonQuadraticFlash.bmp"  1 5 1 0 1 0 0
+ElemEdit 41 655 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC12 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 41 677 355 22 <none> <PE> EnvVar:udsPNL_OPT_DTC13 0 0 0 :0 2 2 1 0 16777215 0 1 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 396 676 -180 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemBN 528 657 50 20 EnvVar:udsPNL_CMD_DTC11_Extend <PE> EnvVar:udsPNL_CMD_DTC11_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemBN 527 678 50 20 EnvVar:udsPNL_CMD_DTC11_Extend <PE> EnvVar:udsPNL_CMD_DTC11_Extend 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Extend"
+ElemHexEdit 581 655 80 20 EnvVar:udsPNL_OPT_DTC12_Extend <PE> EnvVar:udsPNL_OPT_DTC12_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemHexEdit 581 677 80 20 EnvVar:udsPNL_OPT_DTC13_Extend <PE> EnvVar:udsPNL_OPT_DTC13_Extend 0 0 0 3 1 2 3 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial"
+ElemEdit 40 361 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemSwitchAndDisplay 47 366 14 14 <none> <PE> EnvVar:udsPNL_ST_ReadDTC_MaskBIT7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 61 366 14 14 <none> <PE> EnvVar:udsPNL_ST_ReadDTC_MaskBIT6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 75 366 14 14 <none> <PE> EnvVar:udsPNL_ST_ReadDTC_MaskBIT5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 88 366 14 14 <none> <PE> EnvVar:udsPNL_ST_ReadDTC_MaskBIT4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 116 366 14 14 <none> <PE> EnvVar:udsPNL_ST_ReadDTC_MaskBIT2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 144 366 14 14 <none> <PE> EnvVar:udsPNL_ST_ReadDTC_MaskBIT0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 102 366 14 14 <none> <PE> EnvVar:udsPNL_ST_ReadDTC_MaskBIT3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 130 366 14 14 <none> <PE> EnvVar:udsPNL_ST_ReadDTC_MaskBIT1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 401 415 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC1_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 415 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC1_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 415 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC1_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 415 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC1_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 415 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC1_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 415 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC1_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 415 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC1_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 415 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC1_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 437 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC2_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 437 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC2_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 437 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC2_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 437 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC2_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 437 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC2_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 437 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC2_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 437 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC2_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 437 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC2_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 459 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC3_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 459 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC3_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 459 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC3_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 459 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC3_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 459 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC3_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 459 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC3_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 459 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC3_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 459 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC3_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 481 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC4_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 481 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC4_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 481 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC4_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 481 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC4_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 481 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC4_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 481 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC4_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 481 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC4_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 481 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC4_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 503 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC5_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 503 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC5_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  1 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 503 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC5_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 503 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC5_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 503 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC5_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 503 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC5_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 503 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC5_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 503 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC5_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 525 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC6_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 525 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC6_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 525 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC6_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 525 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC6_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 525 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC6_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 525 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC6_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 525 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC6_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 525 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC6_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 547 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC7_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 547 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC7_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 547 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC7_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 547 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC7_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 547 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC7_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 547 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC7_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 547 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC7_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 547 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC7_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 569 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC8_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 569 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC8_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 569 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC8_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 569 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC8_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 569 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC8_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 569 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC8_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 569 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC8_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 569 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC8_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 591 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC9_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 591 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC9_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 591 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC9_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 591 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC9_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 591 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC9_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 591 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC9_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 591 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC9_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 591 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC9_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 613 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 613 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 613 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 613 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 471 613 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 499 613 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 457 613 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 485 613 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemEdit 397 633 -180 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemSwitchAndDisplay 404 636 -187 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\..\..\..\..\..\..\..\..\..\..\..\..\KOSTAL ASSIGNMENTS\Hyndai Project\E Shifter New Specification\UDS Panel Task\CANoe\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 418 636 -201 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\..\..\..\..\..\..\..\..\..\..\..\..\KOSTAL ASSIGNMENTS\Hyndai Project\E Shifter New Specification\UDS Panel Task\CANoe\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 432 636 -215 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\..\..\..\..\..\..\..\..\..\..\..\..\KOSTAL ASSIGNMENTS\Hyndai Project\E Shifter New Specification\UDS Panel Task\CANoe\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 446 636 -229 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\..\..\..\..\..\..\..\..\..\..\..\..\KOSTAL ASSIGNMENTS\Hyndai Project\E Shifter New Specification\UDS Panel Task\CANoe\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 474 636 -257 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\..\..\..\..\..\..\..\..\..\..\..\..\KOSTAL ASSIGNMENTS\Hyndai Project\E Shifter New Specification\UDS Panel Task\CANoe\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 502 636 -285 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\..\..\..\..\..\..\..\..\..\..\..\..\KOSTAL ASSIGNMENTS\Hyndai Project\E Shifter New Specification\UDS Panel Task\CANoe\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 460 636 -243 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\..\..\..\..\..\..\..\..\..\..\..\..\KOSTAL ASSIGNMENTS\Hyndai Project\E Shifter New Specification\UDS Panel Task\CANoe\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 488 636 -271 14 <none> <PE> EnvVar:udsPNL_OPT_DTC10_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\..\..\..\..\..\..\..\..\..\..\..\..\KOSTAL ASSIGNMENTS\Hyndai Project\E Shifter New Specification\UDS Panel Task\CANoe\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 401 635 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC11_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 415 635 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC11_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 429 635 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC11_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 443 635 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC11_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 470 635 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC11_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 498 635 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC11_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 456 635 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC11_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemSwitchAndDisplay 484 635 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC11_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 1 1 0 0 1 0
+ElemST 402 394 15 10 ElemST <PE> 0 0 16777215 0 -9 0 0 0 400 0 0 0 0 3 2 1 34"Arial""b7"
+ElemST 500 394 15 10 ElemST <PE> 0 0 16777215 0 -9 0 0 0 400 0 0 0 0 3 2 1 34"Arial""b0"
+ElemSwitchAndDisplay 401 659 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 415 659 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 429 659 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 443 659 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 471 659 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 497 659 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 457 659 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 485 659 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemEdit 396 680 125 22 <none> <PE> <none> 0 0 0 :0 2 2 1 0 16777215 0 1 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemSwitchAndDisplay 401 684 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC13_MaskBit7 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 415 684 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC13_MaskBit6 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 429 684 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC13_MaskBit5 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 443 684 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC13_MaskBit4 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 471 684 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC13_MaskBit2 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 499 684 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC13_MaskBit0 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 457 684 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC12_MaskBit3 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 485 684 14 14 <none> <PE> EnvVar:udsPNL_OPT_DTC13_MaskBit1 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\LEDYellow.bmp"  2 5 1 0 1 0 0
+ElemSwitchAndDisplay 650 80 20 20 <none> <PE> EnvVar:udsPNL_DiagStop_Indicator 0 0 0 2 <VFileName V4 QL> 1 "..\Bitmaps\Start_Stop_Test.bmp"  1 5 1 0 1 0 0
+ElemBN 46 226 140 20 EnvVar:udsPNL_CMD_SleepMode_Start <PE> EnvVar:udsPNL_CMD_SleepMode_Start 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Sleep Mode Start"
+ElemBN 897 261 140 20 EnvVar:udsPNL_CMD_RetCtrToECU_PRACtr <PE> EnvVar:udsPNL_CMD_RetCtrToECU_PRACtr 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Return Cntrol To ECU"
+ElemBN 898 288 140 20 EnvVar:udsPNL_CMD_ShortTrmAdj_PRACtr <PE> EnvVar:udsPNL_CMD_ShortTrmAdj_PRACtr 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Short Term Adjustment"
+ElemBN 1096 263 140 20 EnvVar:udsPNL_CMD_RetCtrToECU_SleepMode <PE> EnvVar:udsPNL_CMD_RetCtrToECU_SleepMode 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Return Cntrol To ECU"
+ElemBN 1097 288 140 20 EnvVar:udsPNL_CMD_ShortTrmAdj_SleepMode <PE> EnvVar:udsPNL_CMD_ShortTrmAdj_SleepMode 0 0 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""Short Term Adjustment"
+ElemEdit 915 575 130 22 <none> <PE> EnvVar:udsPNL_IPT_WriteDataBy_ID 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 1045 286 30 22 <none> <PE> EnvVar:udsPNL_IPT_PRAShortTrmAdj_BYTE5 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 1241 286 30 22 <none> <PE> EnvVar:udsPNL_IPT_FSMShortTrmAdj_BYTE5 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemST 317 338 80 15 ElemST <PE> 0 1 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""DTC Number"
+ElemEdit 320 360 130 22 <none> <PE> EnvVar:udsPNL_IPT_RepDTCExtData_ByDTCNo 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemEdit 466 360 30 22 <none> <PE> EnvVar:udsPNL_IPT_ExtDataRecNo 0 0 0 :1 0 2 1 0 16777215 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 255 16711680 0 0 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New" 16 0 0 0 400 0 0 0 0 0 0 0 0"Courier New"""
+ElemST 467 338 85 15 ElemST <PE> 0 1 16777215 0 -12 0 0 0 400 0 0 0 0 3 2 1 34"Arial""ExtDataRecNo"
+ElemPanelCtrlBN 600 314 175 20 DTCStatusMask_Definition <PE>
+ -13 0 0 0 400 0 0 0 0 3 2 1 34"Arial" 1"DTCStatusMask_Definition"
+<VFileName V4 QL> 1 "DTCSTATUSMASK_DEFINITION.CNP" 
+~
+@
+
+
+[OCX1]
+Name=Bitmap_Switch
+
+
+[OCX1_Properties]
+1=0008000011020000110200000800020000000000080002000000000003000100000013000000ff0008000e0000002d0031002c0030002c003100000002000200
+2=0300010000000200030003000000000002000000
+
+
+

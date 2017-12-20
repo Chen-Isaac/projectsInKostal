@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Vector Test Table Editor-->
+<ttroot version="15" xmlns="http://www.vector-informatik.de/ITE/TestTable/1.0">
+  <tt>
+    <ts>
+      <title>Test preparation:Power supply initialization</title>
+      <caplfunction>
+        <title />
+        <name>initVTSystem</name>
+      </caplfunction>
+      <caplfunction>
+        <title>set inverted Ign = 1</title>
+        <active>false</active>
+        <name>setInvertedIgn</name>
+        <param>
+          <type>int</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </caplfunction>
+      <wait>
+        <title />
+        <active>false</active>
+        <time>
+          <value>
+            <const>500</const>
+          </value>
+          <unit>ms</unit>
+        </time>
+      </wait>
+      <caplfunction>
+        <title>set CommEnableWakeup =1</title>
+        <active>false</active>
+        <name>setCommEnableWakeup</name>
+        <param>
+          <type>int</type>
+          <value>
+            <const>1</const>
+          </value>
+        </param>
+      </caplfunction>
+    </ts>
+    <tf>
+      <title>5.5.11 Wake up / Sleep Strategy</title>
+      <tc>
+        <title>5.5.11.1 Wake Up</title>
+        <caplinline>
+          <title>test if ESCL is not woken up when the common enable wakeup is invalid</title>
+          <code>int result;
+result = testWaitForMessage(ESCL_Status,2000);
+if (!result)
+  testStepPass("Wake up test","When the common enable wakeup is invalid,the ESCL can't be woken up and send messages on serial bus");
+else
+  testStepFail("Wake up test","When the common enable wakeup is invalid,the ESCL is woken up and send messages on serial bus");</code>
+        </caplinline>
+        <caplfunction>
+          <title>set common enable wakeup be valid</title>
+          <active>true</active>
+          <name>setCommEnableWakeup</name>
+          <param>
+            <type>int</type>
+            <value>
+              <const>1</const>
+            </value>
+          </param>
+        </caplfunction>
+        <caplinline>
+          <title>test wake up time of ESCL</title>
+          <code>int result;
+float time;
+result = testWaitForMessage(ESCL_Status,300);
+time = testGetLastWaitElapsedTimeNS()/1000000;
+if (time &lt; 90)
+  testStepPass("Wake up test","the ESCL is woken up %5.2fms(&lt;90ms) after the common enable wakeup is valid,and send messages on serial bus",time);
+else
+  testStepFail("Wake up test","the ESCL is woken up %5.2fms(&gt;=90ms) after the common enable wakeup is valid,and send messages on serial bus",time);</code>
+        </caplinline>
+        <canoestandardservice>
+          <title />
+          <name>testValidateTesterConfirmation</name>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>111</const>
+            </value>
+          </param>
+          <param>
+            <type>char[]</type>
+            <value>
+              <const>111</const>
+            </value>
+          </param>
+          <param>
+            <type>long</type>
+            <value>
+              <const>1</const>
+            </value>
+          </param>
+        </canoestandardservice>
+      </tc>
+      <tc>
+        <title>5.5.11.2 Sleep</title>
+        <caplfunction>
+          <title>set common enable wakeup be invalid</title>
+          <active>false</active>
+          <name>setCommEnableWakeup</name>
+          <param>
+            <type>int</type>
+            <value>
+              <const>0</const>
+            </value>
+          </param>
+        </caplfunction>
+        <caplinline>
+          <title />
+          <active>false</active>
+          <code>int result;
+testWaitForTimeout(200);
+result = testWaitForMessage(ESCL_Status,200);
+if (!result)
+  testStepPass("Wake up test","When the common enable wakeup is invalid,any message is not allowed on serial bus after 200ms");
+else
+  testStepFail("Wake up test","When the common enable wakeup is invalid,the ESCL_Status message is still on serial bus");</code>
+        </caplinline>
+        <caplinline>
+          <title />
+          <active>false</active>
+          <code>
+          </code>
+        </caplinline>
+        <wait>
+          <title />
+          <active>false</active>
+          <time>
+            <value>
+              <const>30</const>
+            </value>
+            <unit>s</unit>
+          </time>
+        </wait>
+        <statecheck>
+          <title>test quiescent current @12.6V</title>
+          <active>true</active>
+          <expected>
+            <compare>
+              <dbobject>SysVar_BEGIN_OF_OBJECT|1|AvgCurrent|VTS::M12_Out2|-1|0|END_OF_OBJECT_SysVar|</dbobject>
+              <lt>
+                <const>0.00025</const>
+              </lt>
+            </compare>
+          </expected>
+        </statecheck>
+      </tc>
+      <capltestcase>
+        <title />
+        <name>case1</name>
+      </capltestcase>
+    </tf>
+  </tt>
+  <ttlib>
+    <ts_definitions />
+    <tc_definitions />
+    <function_definitions />
+  </ttlib>
+</ttroot>
